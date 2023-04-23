@@ -218,8 +218,13 @@ YUPIK_BOARDS += \
 		yupikp-iot-hsp-overlay.dtbo \
 		yupikp-iot-hsp-pm7250b-overlay.dtbo \
 		yupikp-iot-idps-amoled-overlay.dtbo \
+		yupikp-iot-rb3-gen2-videocollab-overlay.dtbo \
+		yupikp-iot-rb3-gen2-visionkit-overlay.dtbo \
+		yupikp-iot-rb3-gen2-corekit-overlay.dtbo \
 		katmaip-hsp-overlay.dtbo \
 		katmaip-hsp-pm7250b-overlay.dtbo \
+		katmaip-iot-rb3-gen2-videocollab-overlay.dtbo \
+		katmaip-iot-rb3-gen2-visionkit-overlay.dtbo \
 		yupikp-idp-overlay.dtbo \
 		yupikp-qrd-overlay.dtbo \
 		yupikp-idps-amoled-overlay.dtbo \
