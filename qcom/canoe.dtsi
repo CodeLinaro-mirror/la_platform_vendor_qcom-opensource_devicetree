@@ -1932,6 +1932,9 @@
 		      <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
 		interconnect-names = "ufs-ddr", "cpu-ufs";
 
+		/* set the dependency that smmu being probed before ufs */
+		depends-on-supply = <&apps_smmu>;
+
 		iommus = <&apps_smmu 0x60 0x0>;
 		qcom,iommu-dma = "fastmap";
 		qcom,iommu-msi-size = <0x1000>;
