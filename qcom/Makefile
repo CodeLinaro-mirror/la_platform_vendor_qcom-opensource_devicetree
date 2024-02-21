@@ -8,12 +8,23 @@
 
 add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o)-dtbs = $b $o) $(basename $b)-$(basename $o).dtb))
 
-# sun-dtb-y is list of DTBs to install when doing non-overlay build
-# sun-overlays-dtb-y is list of DTBs and DTBOs to install when doing overlay-supported build
+# canoe-dtb-y is list of DTBs to install when doing non-overlay build
+# canoe-overlays-dtb-y is list of DTBs and DTBOs to install when doing overlay-supported build
 # see DTB_TYPES from scripts/Makefile.dtbinst and install_dtbs from build.config.msm.common
 #
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
+
+CANOE_BASE_DTB += canoe-dummy.dtb
+
+NOAPQ_CANOE_BOARDS += \
+		canoe-dummy-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_CANOE) += \
+	$(call add-overlays, $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS),$(CANOE_BASE_DTB))\
+	$(call add-overlays, $(CANOE_BOARDS) $(APQ_CANOE_BOARDS),$(CANOE_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS) $(CANOE_BASE_DTB) $(CANOE_APQ_BASE_DTB)
+dtb-y += $(canoe-dtb-y)
 
 SUN_BASE_DTB += sun.dtb sun-v2.dtb
 SUN_APQ_BASE_DTB += sunp.dtb sunp-v2.dtb

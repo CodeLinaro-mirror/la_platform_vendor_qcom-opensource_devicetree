@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+/dts-v1/;
+/*
+ * This is a dummy DT file to appease the compiler. It will not be used.
+ * If you think you should be editing this file, you're wrong.
+ */
+/ {
+	model = "Qualcomm Technologies, Inc. Canoe Dummy";
+	compatible = "qcom,canoe-dummy", "qcom,canoe", "qcom,dummy";
+	qcom,board-id = <0xff 0>;
+};

@@ -1,4 +1,14 @@
 _platform_map = {
+    "canoe": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "canoe-dummy.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "canoe-dummy-overlay.dtbo"},
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
@@ -154,5 +164,5 @@ def _get_dtb_lists(target, dt_overlay_supported):
 def get_dtb_list(target, dt_overlay_supported = True):
     return [dtb["name"] for dtb in _get_dtb_lists(target, dt_overlay_supported).get("dtb_list", [])]
 
-def get_dtbo_list(target, dt_overlay_supported = True):
+def get_dtbo_list(target, dt_overlay_supported=True):
     return [dtb["name"] for dtb in _get_dtb_lists(target, dt_overlay_supported).get("dtbo_list", [])]
