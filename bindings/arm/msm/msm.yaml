@@ -69,4 +69,9 @@ properties:
               - qcom,rcm
           - const: qcom,sunp
 
+      - description: Qualcomm Technologies, Inc. CANOE RUMI
+        items:
+          - enum:
+              - qcom,canoe
+
 additionalProperties: true
