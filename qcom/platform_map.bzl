@@ -2,11 +2,25 @@ _platform_map = {
     "canoe": {
         "dtb_list": [
             # keep sorted
-            {"name": "canoe-dummy.dtb"},
+            {"name": "canoe.dtb"},
+            {
+                "name": "canoep.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-v2.dtb",
+                "apq": True,
+            },
+            {"name": "canoe-v2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
-            {"name": "canoe-dummy-overlay.dtbo"},
+            {"name": "canoe-atp-overlay.dtbo"},
+            {"name": "canoe-cdp-overlay.dtbo"},
+            {"name": "canoe-mtp-overlay.dtbo"},
+            {"name": "canoe-qrd-overlay.dtbo"},
+            {"name": "canoe-rcm-overlay.dtbo"},
+            {"name": "canoe-rumi-overlay.dtbo"},
         ],
     },
     "sun": {
@@ -164,5 +178,5 @@ def _get_dtb_lists(target, dt_overlay_supported):
 def get_dtb_list(target, dt_overlay_supported = True):
     return [dtb["name"] for dtb in _get_dtb_lists(target, dt_overlay_supported).get("dtb_list", [])]
 
-def get_dtbo_list(target, dt_overlay_supported=True):
+def get_dtbo_list(target, dt_overlay_supported = True):
     return [dtb["name"] for dtb in _get_dtb_lists(target, dt_overlay_supported).get("dtbo_list", [])]

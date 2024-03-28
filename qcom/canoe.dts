@@ -4,10 +4,9 @@
  */
 
 /dts-v1/;
-/*
- * This is a dummy DT file to appease the compiler. It will not be used.
- * If you think you should be editing this file, you're wrong.
- */
+
+#include "canoe.dtsi"
+
 / {
 	model = "Qualcomm Technologies, Inc. Canoe SoC";
 	compatible = "qcom,canoe";
