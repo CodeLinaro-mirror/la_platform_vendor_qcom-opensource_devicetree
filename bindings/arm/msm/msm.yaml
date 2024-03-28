@@ -72,6 +72,33 @@ properties:
       - description: Qualcomm Technologies, Inc. CANOE RUMI
         items:
           - enum:
-              - qcom,canoe
+              - qcom,canoe-atp
+                qcom,atp
+              - qcom,canoe-cdp
+              - qcom,cdp
+              - qcom,canoe-mtp
+              - qcom,mtp
+              - qcom,canoe-qrd
+              - qcom,qrd
+              - qcom,canoe-rcm
+              - qcom,rcm
+              - qcom,canoe-rumi
+              - qcom,rumi
+          - const: qcom,canoe
+
+      - description: Qualcomm Technologies, Inc. CANOEP RUMI
+        items:
+          - enum:
+              - qcom,canoep-atp
+              - qcom,atp
+              - qcom,canoep-cdp
+              - qcom,cdp
+              - qcom,canoep-mtp
+              - qcom,mtp
+              - qcom,canoep-qrd
+              - qcom,qrd
+              - qcom,canoep-rcm
+              - qcom,rcm
+          - const: qcom,canoep
 
 additionalProperties: true
