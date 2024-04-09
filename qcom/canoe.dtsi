@@ -245,3 +245,5 @@
 		clock-frequency = <19200000>;
 	};
 };
+
+#include "canoe-pinctrl.dtsi"
