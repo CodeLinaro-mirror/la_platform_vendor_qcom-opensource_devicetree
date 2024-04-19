@@ -1151,6 +1151,7 @@
 #include "canoe-regulators.dtsi"
 #include "canoe-qupv3.dtsi"
 #include "canoe-usb.dtsi"
+#include "msm-arm-smmu-canoe.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
