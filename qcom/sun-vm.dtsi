@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/clock/qcom,gcc-sun.h>
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
 
 / {
 	#address-cells = <0x2>;
@@ -49,17 +50,15 @@
 			exit-latency-us = <129>;
 			min-residency-us = <560>;
 			arm,psci-suspend-param = <0x00000004>;
-			status = "disabled";
 		};
 
-		CLUSTER_PWR_DWN: cl5 { /* C4+CL5 */
+		CLUSTER_PWR_DWN: ss3 { /* C4+CL5+SS3 */
 			compatible = "arm,idle-state";
 			idle-state-name = "ret-pll-off";
 			entry-latency-us = <1964>;
 			exit-latency-us = <1901>;
 			min-residency-us = <24511>;
-			arm,psci-suspend-param = <0x01000054>;
-			status = "disabled";
+			arm,psci-suspend-param = <0x0000C354>;
 		};
 	};
 
@@ -96,7 +95,7 @@
 		vendor = "QTI";
 		image-name = "qcom,trustedvm";
 		qcom,pasid = <0x0 0x1c>;
-		qcom,qtee-config-info = "p=3,9,39,77,78,7C,8F,97,C8,FE,11B,159,199,47E,7F1,CDF;";
+		qcom,qtee-config-info = "p=3,9,39,77,78,7C,8F,97,C8,FE,10C,11B,159,199,47E,7F1,CDF;";
 		qcom,secdomain-ids = <45>;
 		qcom,primary-vm-index = <0>;
 		vm-uri = "vmuid/trusted-ui";
@@ -106,14 +105,16 @@
 		vm-attrs = "crash-fatal", "context-dump";
 
 		iomemory-ranges = <0x0 0xa24000 0x0 0xa24000 0x0 0x4000 0x0
-				0x0 0x824000 0x0 0x824000 0x0 0x4000 0x0>;
+				0x0 0x824000 0x0 0x824000 0x0 0x4000 0x0
+				0x0 0x407000 0x0 0x407000 0x0 0x1000 0x0>;
 
 		/* For LEVM por usecases is QUP1_SE4 and QUP2_SE7.
 		 * QUP1_SE4: GPII5 : IRQ_316
 		 * QUP2_SE7: GPII5 : IRQ_625
 		 */
 		gic-irq-ranges = <316 316
-				  625 625>; /* PVM->SVM IRQ transfer */
+				  625 625 /* PVM->SVM IRQ transfer */
+				  279 279>;
 
 		memory {
 			#address-cells = <0x2>;
@@ -143,6 +144,12 @@
 
 		vdevices {
 			generate = "/hypervisor";
+
+			minidump {
+				vdevice-type = "minidump";
+				push-compatible = "qcom,minidump_rm";
+				minidump_allowed;
+			};
 
 			rm-rpc {
 				vdevice-type = "rm-rpc";
@@ -183,17 +190,38 @@
 				};
 			};
 
+			virtio-mmio@2 {
+				vdevice-type = "virtio-mmio";
+				patch = "/soc/virtio-mmio";
+				peer-default;
+				vqs-num = <0x3>;
+				push-compatible = "virtio,mmio";
+				dma-coherent;
+				dma_base = <0x0 0x8000>;
+				memory {
+					qcom,label = <0x15>;			//for virtio-vsock
+					#address-cells = <0x2>;
+					base = <0x0 0xDA700000>;
+				};
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
 				push-compatible = "swiotlb";
 				peer-default;
-				dma_base = <0x0 0x8000>;
+				dma_base = <0x0 0x14000>;
 				memory {
 					qcom,label = <0x12>;
 					#address-cells = <0x2>;
-					base = <0x0 0xDA700000>;
+					base = <0x0 0xDA70c000>;
 				};
+			};
+
+			vrtc {
+				vdevice-type = "vrtc-pl031";
+				peer-default;
+				allocate-base;
 			};
 
 			test-dbl-tuivm {
@@ -308,6 +336,10 @@
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	virtio-mmio {
+		wakeup-source;
+	};
+
 	gcc: clock-controller@100000 {
 		compatible = "qcom,dummycc";
 		clock-output-names = "gcc_clocks";
@@ -395,6 +427,15 @@
 		      <0x16080000 0x200000>;    /* GICR * 8 */
 	};
 
+	ipcc_mproc_ns1: qcom,ipcc@407000 {
+		compatible = "qcom,ipcc";
+		reg = <0x407000 0x1000>;
+		interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		always-on;
@@ -448,7 +489,10 @@
 	 * QUP2 : SE7 - Secondary touch
 	 */
 	qup_iommu_group: qup_common_iommu_group {
-		qcom,iommu-dma-addr-pool = <0x00020000 0xfffe0000>;
+		iommu-addresses = <&gpi_dma1 0x00000000 0x00020000>,
+				<&qupv3_1 0x00000000 0x00020000>,
+				<&gpi_dma2 0x00000000 0x00020000>,
+				<&qupv3_2 0x00000000 0x00020000>;
 	};
 
 	/* QUPv3_1 GPI Instance */
@@ -459,6 +503,7 @@
 		reg-names = "gpi-top";
 		iommus = <&apps_smmu 0xb8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
@@ -492,6 +537,7 @@
 			<&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
 		iommus = <&apps_smmu 0xb8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		ranges;
 		status = "ok";
@@ -533,6 +579,7 @@
 		reg-names = "gpi-top";
 		iommus = <&apps_smmu 0x438 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
@@ -566,6 +613,7 @@
 			<&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x438 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		ranges;
 		status = "ok";
@@ -625,11 +673,11 @@
 		affinity = <0>;
 	};
 
-	qcom,gh-qtimer@16805000 {
+	qcom,gh-qtimer@1680b000 {
 		compatible = "qcom,gh-qtmr";
-		reg = <0x16805000 0x1000>;
+		reg = <0x1680b000 0x1000>;
 		reg-names = "qtmr-base";
-		interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
 	};
@@ -637,6 +685,8 @@
 	qcom,mem-buf {
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x1 0x00000000>; /* 4GB IPA space for dmabuf */
 		qcom,vmid = <45>;
 	};
 
