@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Canoe";
@@ -247,3 +248,4 @@
 };
 
 #include "canoe-pinctrl.dtsi"
+#include "canoe-regulators.dtsi"

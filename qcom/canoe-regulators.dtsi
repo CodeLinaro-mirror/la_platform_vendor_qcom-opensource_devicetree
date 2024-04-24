@@ -1,0 +1,619 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+&soc {
+	VDD_MODEM_LEVEL: S1D_LEVEL:
+	pm_f10d_s1_level: regulator-pm-f10d-s1-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_s1_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	/* VDD_NSP1: PM_F10D S2-S3 */
+	VDD_NSP1_LEVEL: S2D_LEVEL:
+	pm_f10d_s2_level: regulator-pm-f10d-s2-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_s2_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	/* VDD_NSP2: PM_F10D S4-S6 */
+	VDD_NSP2_LEVEL: S4D_LEVEL:
+	pm_f10d_s4_level: regulator-pm-f10d-s4-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_s4_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	/* VDD_MMCX: PM_F10D S7-S9 */
+	VDD_MMCX_LEVEL: VDD_MM_LEVEL: S7D_LEVEL:
+	pm_f10d_s7_level: regulator-pm-f10d-s7-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_s7_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	/* VDD_GFX: PM_F10F S1-S5 */
+	VDD_GFX_LEVEL: S1F_LEVEL: pm_f10f_s1_level: regulator-pm-f10f-s1-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s1_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_MXC_LEVEL: S9F_LEVEL: VDD_MM_MXC_VOTER_LEVEL:
+	pm_f10f_s9_level: regulator-pm-f10f-s9-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s9_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_GFX_MXC_LEVEL: S10F_LEVEL: VDD_GFX_GFX_MXC_VOTER_LEVEL:
+	pm_f10f_s10_level: regulator-pm-f10f-s10-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s10_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	/* VDD_CX: PM_F10G S5-S6 */
+	VDD_CX_LEVEL: S5G_LEVEL: pm_f10g_s5_level: regulator-pm-f10g-s5-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_s5_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_LPI_CX_LEVEL: S8G_LEVEL:
+	pm_f10g_s8_level: regulator-pm-f10g-s8-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_s8_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_EBI_LEVEL: S1I_LEVEL: pm_f10i_s1_level: regulator-pm-f10i-s1-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_s1_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_MXA_LEVEL: VDD_MX_LEVEL: S10I_LEVEL:
+	pm_f10i_s10_level: regulator-pm-f10i-s10-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_s10_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	VDD_LPI_MX_LEVEL: L1I_LEVEL:
+	pm_f10i_l1_level: regulator-pm-f10i-l1-level {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_l1_level";
+		regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
+		regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+	};
+
+	L1B: pm_nuku_l1: regulator-pm-nuku-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l1";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2B: pm_nuku_l2: regulator-pm-nuku-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l2";
+		regulator-min-microvolt = <3008000>;
+		regulator-max-microvolt = <3048000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L3B: pm_nuku_l3: regulator-pm-nuku-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l3";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4B: pm_nuku_l4: regulator-pm-nuku-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l4";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L5B: pm_nuku_l5: regulator-pm-nuku-l5 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l5";
+		regulator-min-microvolt = <3100000>;
+		regulator-max-microvolt = <3148000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L6B: pm_nuku_l6: regulator-pm-nuku-l6 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l6";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <3008000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L7B: pm_nuku_l7: regulator-pm-nuku-l7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l7";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <3008000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L8B: pm_nuku_l8: regulator-pm-nuku-l8 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l8";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <3008000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L9B: pm_nuku_l9: regulator-pm-nuku-l9 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l9";
+		regulator-min-microvolt = <2960000>;
+		regulator-max-microvolt = <3008000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L10B: pm_nuku_l10: regulator-pm-nuku-l10 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l10";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L11B: pm_nuku_l11: regulator-pm-nuku-l11 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l11";
+		regulator-min-microvolt = <1064000>;
+		regulator-max-microvolt = <1100000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L12B: pm_nuku_l12: regulator-pm-nuku-l12 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l12";
+		regulator-min-microvolt = <1650000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L13B: pm_nuku_l13: regulator-pm-nuku-l13 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l13";
+		regulator-min-microvolt = <3000000>;
+		regulator-max-microvolt = <3000000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L14B: pm_nuku_l14: regulator-pm-nuku-l14 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l14";
+		regulator-min-microvolt = <3200000>;
+		regulator-max-microvolt = <3200000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L15B: pm_nuku_l15: regulator-pm-nuku-l15 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l15";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L16B: pm_nuku_l16: regulator-pm-nuku-l16 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l16";
+		regulator-min-microvolt = <1504000>;
+		regulator-max-microvolt = <3544000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L17B: pm_nuku_l17: regulator-pm-nuku-l17 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l17";
+		regulator-min-microvolt = <2504000>;
+		regulator-max-microvolt = <2504000>;
+		qcom,hpm-min-load = <10000>;
+	};
+
+	L18B: pm_nuku_l18: regulator-pm-nuku-l18 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_l18";
+		regulator-min-microvolt = <320000>;
+		regulator-max-microvolt = <2000000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	BOB1: pm_nuku_bob1: regulator-pm-nuku-bob1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_bob1";
+		regulator-min-microvolt = <3008000>;
+		regulator-max-microvolt = <4000000>;
+	};
+
+	BOB2: pm_nuku_bob2: regulator-pm-nuku-bob2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_nuku_bob2";
+		regulator-min-microvolt = <2704000>;
+		regulator-max-microvolt = <3008000>;
+	};
+
+	S10D: pm_f10d_s10: regulator-pm-f10d-s10 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_s10";
+		regulator-min-microvolt = <1010000>;
+		regulator-max-microvolt = <1100000>;
+	};
+
+	L1D: pm_f10d_l1: regulator-pm-f10d-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_l1";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1256000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2D: pm_f10d_l2: regulator-pm-f10d-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_l2";
+		regulator-min-microvolt = <912000>;
+		regulator-max-microvolt = <936000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3D: pm_f10d_l3: regulator-pm-f10d-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_l3";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <912000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4D: pm_f10d_l4: regulator-pm-f10d-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10d_l4";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	S6F: pm_f10f_s6: regulator-pm-f10f-s6 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s6";
+		regulator-min-microvolt = <300000>;
+		regulator-max-microvolt = <570000>;
+	};
+
+	S7F: pm_f10f_s7: regulator-pm-f10f-s7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s7";
+		regulator-min-microvolt = <1224000>;
+		regulator-max-microvolt = <1340000>;
+	};
+
+	S8F: pm_f10f_s8: regulator-pm-f10f-s8 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_s8";
+		regulator-min-microvolt = <1856000>;
+		regulator-max-microvolt = <2000000>;
+	};
+
+	L1F: pm_f10f_l1: regulator-pm-f10f-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_l1";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2F: pm_f10f_l2: regulator-pm-f10f-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_l2";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3F: pm_f10f_l3: regulator-pm-f10f-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_l3";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <919000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4F: pm_f10f_l4: regulator-pm-f10f-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10f_l4";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <912000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	S7G: pm_f10g_s7: regulator-pm-f10g-s7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_s7";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <1100000>;
+	};
+
+	S9G: pm_f10g_s9: regulator-pm-f10g-s9 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_s9";
+		regulator-min-microvolt = <1010000>;
+		regulator-max-microvolt = <1100000>;
+	};
+
+	L1G: pm_f10g_l1: regulator-pm-f10g-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_l1";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2G: pm_f10g_l2: regulator-pm-f10g-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_l2";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3G: pm_f10g_l3: regulator-pm-f10g-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_l3";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4G: pm_f10g_l4: regulator-pm-f10g-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10g_l4";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <920000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	S7I: pm_f10i_s7: regulator-pm-f10i-s7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_s7";
+		regulator-min-microvolt = <900000>;
+		regulator-max-microvolt = <970000>;
+	};
+
+	L2I: pm_f10i_l2: regulator-pm-f10i-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_l2";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3I: pm_f10i_l3: regulator-pm-f10i-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_l3";
+		regulator-min-microvolt = <880000>;
+		regulator-max-microvolt = <920000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4I: pm_f10i_l4: regulator-pm-f10i-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f10i_l4";
+		regulator-min-microvolt = <320000>;
+		regulator-max-microvolt = <2000000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	S1J: pm_f4_s1: regulator-pm-f4-s1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f4_s1";
+		regulator-min-microvolt = <700000>;
+		regulator-max-microvolt = <1000000>;
+	};
+
+	S2J: pm_f4_s2: regulator-pm-f4-s2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f4_s2";
+		regulator-min-microvolt = <700000>;
+		regulator-max-microvolt = <1036000>;
+	};
+
+	S3J: pm_f4_s3: regulator-pm-f4-s3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f4_s3";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1300000>;
+	};
+
+	S4J: pm_f4_s4: regulator-pm-f4-s4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm_f4_s4";
+		regulator-min-microvolt = <556000>;
+		regulator-max-microvolt = <816000>;
+	};
+
+	L1K: pmr_nalojr_l1: regulator-pmr-nalojr-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l1";
+		regulator-min-microvolt = <806000>;
+		regulator-max-microvolt = <901000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2K: pmr_nalojr_l2: regulator-pmr-nalojr-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l2";
+		regulator-min-microvolt = <912000>;
+		regulator-max-microvolt = <931000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3K: pmr_nalojr_l3: regulator-pmr-nalojr-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l3";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L4K: pmr_nalojr_l4: regulator-pmr-nalojr-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l4";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L5K: pmr_nalojr_l5: regulator-pmr-nalojr-l5 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l5";
+		regulator-min-microvolt = <952000>;
+		regulator-max-microvolt = <969000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L6K: pmr_nalojr_l6: regulator-pmr-nalojr-l6 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l6";
+		regulator-min-microvolt = <1776000>;
+		regulator-max-microvolt = <1860000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L7K: pmr_nalojr_l7: regulator-pmr-nalojr-l7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pmr_nalojr_l7";
+		regulator-min-microvolt = <800000>;
+		regulator-max-microvolt = <800000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L1M: pm8010m_l1: regulator-pm8010m-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l1";
+		regulator-min-microvolt = <1000000>;
+		regulator-max-microvolt = <1000000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2M: pm8010m_l2: regulator-pm8010m-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l2";
+		regulator-min-microvolt = <1100000>;
+		regulator-max-microvolt = <1100000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3M: pm8010m_l3: regulator-pm8010m-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l3";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+	};
+
+	L4M: pm8010m_l4: regulator-pm8010m-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l4";
+		regulator-min-microvolt = <2200000>;
+		regulator-max-microvolt = <2200000>;
+	};
+
+	L5M: pm8010m_l5: regulator-pm8010m-l5 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l5";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+	};
+
+	L6M: pm8010m_l6: regulator-pm8010m-l6 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l6";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+	};
+
+	L7M: pm8010m_l7: regulator-pm8010m-l7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010m_l7";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+	};
+
+	L1N: pm8010n_l1: regulator-pm8010n-l1 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l1";
+		regulator-min-microvolt = <1104000>;
+		regulator-max-microvolt = <1104000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L2N: pm8010n_l2: regulator-pm8010n-l2 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l2";
+		regulator-min-microvolt = <1104000>;
+		regulator-max-microvolt = <1104000>;
+		qcom,hpm-min-load = <30000>;
+	};
+
+	L3N: pm8010n_l3: regulator-pm8010n-l3 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l3";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+	};
+
+	L4N: pm8010n_l4: regulator-pm8010n-l4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l4";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+	};
+
+	L5N: pm8010n_l5: regulator-pm8010n-l5 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l5";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+	};
+
+	L6N: pm8010n_l6: regulator-pm8010n-l6 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l6";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+	};
+
+	L7N: pm8010n_l7: regulator-pm8010n-l7 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "pm8010n_l7";
+		regulator-min-microvolt = <3304000>;
+		regulator-max-microvolt = <3304000>;
+	};
+};
