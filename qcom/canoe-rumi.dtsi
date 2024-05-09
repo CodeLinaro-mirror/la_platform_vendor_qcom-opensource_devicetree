@@ -21,3 +21,7 @@
 &qupv3_se7_2uart {
 	qcom,rumi_platform;
 };
+
+&cam_rsc {
+	status = "disabled";
+};
