@@ -194,6 +194,16 @@ _platform_map = {
             {"name": "pineapple-vm-rumi.dtb"},
         ],
     },
+    "vienna": {
+        "dtb_list": [
+            {"name": "vienna.dtb"},
+        ],
+        "dtbo_list": [
+            {
+                "name": "vienna-rumi-overlay.dtbo",
+            },
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):

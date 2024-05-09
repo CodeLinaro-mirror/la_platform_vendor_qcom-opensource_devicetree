@@ -93,6 +93,19 @@ pineapple-dtb-$(CONFIG_ARCH_PINEAPPLE) += \
 pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_PINEAPPLE_BOARDS) $(PINEAPPLE_BASE_DTB) $(PINEAPPLE_APQ_BASE_DTB)
 dtb-y += $(pineapple-dtb-y)
 
+VIENNA_BASE_DTB += vienna.dtb
+
+#VIENNA_BOARDS +=
+
+NOAPQ_VIENNA_BOARDS += \
+		 vienna-rumi-overlay.dtbo
+
+vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
+	$(call add-overlays, $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS),$(VIENNA_BASE_DTB))\
+	$(call add-overlays, $(VIENNA_BOARDS) $(APQ_VIENNA_BOARDS),$(VIENNA_APQ_BASE_DTB))
+vienna-overlays-dtb-$(CONFIG_ARCH_VIENNA) += $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS) $(VIENNA_BASE_DTB) $(VIENNA_APQ_BASE_DTB)
+dtb-y += $(vienna-dtb-y)
+
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
