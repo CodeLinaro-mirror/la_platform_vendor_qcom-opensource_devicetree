@@ -6,7 +6,8 @@
 #include "canoe.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. CanoeP SoC";
-	compatible = "qcom,canoep";
-	qcom,msm-id = <0x10295 0x10000>;
+		model = "Qualcomm Technologies, Inc. Honu";
+		compatible = "qcom,honu";
+		qcom,msm-id = <0x30294 0x10000>;
 };
+
