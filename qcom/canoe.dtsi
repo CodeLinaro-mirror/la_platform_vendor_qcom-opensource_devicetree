@@ -660,6 +660,7 @@
 #include "canoe-pinctrl.dtsi"
 #include "canoe-regulators.dtsi"
 #include "canoe-qupv3.dtsi"
+#include "canoe-usb.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
