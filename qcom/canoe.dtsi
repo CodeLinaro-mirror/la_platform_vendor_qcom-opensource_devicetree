@@ -170,7 +170,7 @@
 
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,canoe-pdc", "qcom,pdc";
-		reg = <0xb220000 0x30000>, <0x179600f0 0xf4>;
+		reg = <0xb220000 0x10000>, <0x179600f0 0xf4>;
 		qcom,pdc-ranges = <0 745 38>, <40 785 11>, <51 527 4>,
 				  <58 534 2>, <61 537 20>, <84 559 14>,
 				  <98 609 32>, <130 717 12>, <142 251 5>,
