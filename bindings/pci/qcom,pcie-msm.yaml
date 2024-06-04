@@ -323,10 +323,6 @@ properties:
                  define L1.2 latency tolerance reporting (LTR).
     $ref: /schemas/types.yaml#/definitions/uint32
 
-  qcom,slv-addr-space-size:
-    description: Memory block size dedicated to PCIe root complex.
-    $ref: /schemas/types.yaml#/definitions/uint32
-
   qcom,ep-latency:
     description: The latency(ms) between when PCIe PHY is up and PERST is
                  de-asserted. This guarantees the 100MHz clock is available
@@ -674,7 +670,6 @@ examples:
         qcom,drv-l1ss-timeout-us = <5000>;
         qcom,l1-2-th-scale = <2>;
         qcom,l1-2-th-value = <150>;
-        qcom,slv-addr-space-size = <0x4000000>;
         qcom,ep-latency = <10>;
         qcom,num-parf-testbus-sel = <0xb9>;
         qcom,config-recovery;
@@ -981,7 +976,6 @@ examples:
         qcom,drv-name = "lpass";
         qcom,drv-l1ss-timeout-us = <5000>;
         qcom,eq-fmdc-t-min-phase23 = <1>;
-        qcom,slv-addr-space-size = <0x20000000>;
         qcom,ep-latency = <10>;
         qcom,num-parf-testbus-sel = <0xb9>;
         qcom,l1-2-th-scale = <2>;
