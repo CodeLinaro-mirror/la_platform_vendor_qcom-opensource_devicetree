@@ -40,6 +40,13 @@ properties:
               - qcom,pcie-crm-v2
               - qcom,disp-crm-v2
 
+      - description: v3 of CESTA HW
+        items:
+          - enum:
+              - qcom,cam-crm-v3
+              - qcom,pcie-crm-v3
+              - qcom,disp-crm-v3
+
   reg:
     minItems: 6
 
