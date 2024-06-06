@@ -21,7 +21,7 @@
 			compatible = "qcom,geni-debug-uart";
 			reg = <0xa9c000 0x4000>;
 			reg-names = "se_phys";
-			interrupts = <GIC_SPI 579 IRQ_TYPE_LEVEL_HIGH>;
+			interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>;
 			clock-names = "se";
 			clocks = <&gcc GCC_QUPV3_WRAP1_S7_CLK>;
 			pinctrl-names = "default", "sleep";
