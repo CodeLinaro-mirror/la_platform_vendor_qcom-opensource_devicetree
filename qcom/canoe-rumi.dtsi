@@ -26,6 +26,18 @@
 	status = "disabled";
 };
 
+&disp_crm {
+	status = "disabled";
+};
+
+&cam_crm {
+	status = "disabled";
+};
+
+&pcie_crm {
+	status = "disabled";
+};
+
 &soc {
 	usb_nop_phy: usb_nop_phy {
 		compatible = "usb-nop-xceiv";
