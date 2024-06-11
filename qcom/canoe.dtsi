@@ -455,6 +455,11 @@
 		qcom,sw-drv-ids = <0>;
 	};
 
+	pcie_pdc: pdc@b370000 {
+		compatible = "qcom,canoe-pcie-pdc", "qcom,pcie-pdc";
+		reg = <0xb370000 0x10000>;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
