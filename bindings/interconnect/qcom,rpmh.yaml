@@ -9,6 +9,7 @@ title: Qualcomm Technologies, Inc. RPMh Network-On-Chip Interconnect
 maintainers:
   - Georgi Djakov <georgi.djakov@linaro.org>
   - Odelu Kukatla <okukatla@codeaurora.org>
+  - Vivek Aknurwar <quic_viveka@quicinc.com>
 
 description: |
    RPMh interconnect providers support system bandwidth requirements through
@@ -172,6 +173,20 @@ properties:
       - qcom,parrot-nsp_noc
       - qcom,parrot-pcie_anoc
       - qcom,parrot-system_noc
+      - qcom,canoe-clk_virt
+      - qcom,canoe-mc_virt
+      - qcom,canoe-cnoc_cfg
+      - qcom,canoe-cnoc_main
+      - qcom,canoe-system_noc
+      - qcom,canoe-pcie_anoc
+      - qcom,canoe-aggre1_noc
+      - qcom,canoe-aggre2_noc
+      - qcom,canoe-mmss_noc
+      - qcom,canoe-gem_noc
+      - qcom,canoe-nsp_noc
+      - qcom,canoe-lpass_ag_noc
+      - qcom,canoe-lpass_lpiaon_noc
+      - qcom,canoe-lpass_lpicx_noc
 
   '#interconnect-cells': true
 
