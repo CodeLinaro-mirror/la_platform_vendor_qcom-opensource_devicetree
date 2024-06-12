@@ -740,6 +740,90 @@
 		regulator-name = "video_cc_mvs0c_gdsc";
 		qcom,support-cfg-gdscr;
 	};
+
+	clk_virt: interconnect@0 {
+		compatible = "qcom,canoe-clk_virt";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	mc_virt: interconnect@1 {
+		compatible = "qcom,canoe-mc_virt";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	config_noc: interconnect@1600000 {
+		compatible = "qcom,canoe-cnoc_cfg";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	cnoc_main: interconnect@1500000 {
+		compatible = "qcom,canoe-cnoc_main";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	system_noc: interconnect@1680000 {
+		compatible = "qcom,canoe-system_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	pcie_noc: interconnect@16c0000 {
+		compatible = "qcom,canoe-pcie_anoc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	aggre1_noc: interconnect@16e0000 {
+		compatible = "qcom,canoe-aggre1_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	aggre2_noc: interconnect@1700000 {
+		compatible = "qcom,canoe-aggre2_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	mmss_noc: interconnect@1780000 {
+		compatible = "qcom,canoe-mmss_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	gem_noc: interconnect@31100000 {
+		compatible = "qcom,canoe-gem_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	nsp_noc: interconnect@260c0000 {
+		compatible = "qcom,canoe-nsp_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	lpass_ag_noc: interconnect@7f40000 {
+		compatible = "qcom,canoe-lpass_ag_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	lpass_lpiaon_noc: interconnect@7400000 {
+		compatible = "qcom,canoe-lpass_lpiaon_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
+
+	lpass_lpicx_noc: interconnect@7420000 {
+		compatible = "qcom,canoe-lpass_lpicx_noc";
+		qcom,stub;
+		#interconnect-cells = <1>;
+	};
 };
 
 &reserved_memory {
