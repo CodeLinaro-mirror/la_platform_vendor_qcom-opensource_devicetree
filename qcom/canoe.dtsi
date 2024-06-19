@@ -163,14 +163,14 @@
 };
 
 &soc {
-	#address-cells = <1>;
-	#size-cells = <1>;
-	ranges = <0 0 0 0xffffffff>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges = <0 0 0 0 0x10 0>;
 	compatible = "simple-bus";
 
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,canoe-pdc", "qcom,pdc";
-		reg = <0xb220000 0x10000>, <0x179600f0 0xf4>;
+		reg = <0x0 0xb220000 0x0 0x10000>, <0x0 0x179600f0 0x0 0xf4>;
 		qcom,pdc-ranges = <0 745 38>, <40 785 11>, <51 527 4>,
 				  <58 534 2>, <61 537 20>, <84 559 14>,
 				  <98 609 32>, <130 717 12>, <142 251 5>,
@@ -186,12 +186,12 @@
 
 	tcsr_mutex_block: syscon@1f40000 {
 		compatible = "syscon";
-		reg = <0x1f40000 0x20000>;
+		reg = <0x0 0x1f40000 0x0 0x20000>;
 	};
 
 	tcsr: syscon@1fc0000 {
 		compatible = "syscon";
-		reg = <0x1fc0000 0x30000>;
+		reg = <0x0 0x1fc0000 0x0 0x30000>;
 	};
 
 	tcsr_mutex: hwlock {
@@ -202,7 +202,7 @@
 
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,canoe-tlmm";
-		reg = <0xf000000 0x1000000>;
+		reg = <0x0 0xf000000 0x0 0x1000000>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
 		#gpio-cells = <2>;
@@ -217,8 +217,8 @@
 		interrupt-controller;
 		#redistributor-regions = <1>;
 		redistributor-stride = <0x0 0x40000>;
-		reg = <0x17000000 0x10000>,	/* GICD */
-		      <0x17080000 0x200000>;	/* GICR * 8 */
+		reg = <0x0 0x17000000 0x0 0x10000>,	/* GICD */
+		      <0x0 0x17080000 0x0 0x200000>;	/* GICR * 8 */
 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
@@ -227,7 +227,7 @@
 		#size-cells = <1>;
 		ranges;
 		compatible = "arm,armv7-timer-mem";
-		reg = <0x17810000 0x1000>;
+		reg = <0x0 0x17810000 0x0 0x1000>;
 		clock-frequency = <19200000>;
 
 		frame@17811000 {
@@ -286,8 +286,8 @@
 		interrupt-names = "eud_irq";
 		interrupt-parent = <&pdc>;
 		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-		reg = <0x88e0000 0x2000>,
-				<0x88e2000 0x1000>;
+		reg = <0x0 0x88e0000 0x0 0x2000>,
+				<0x0 0x88e2000 0x0 0x1000>;
 		reg-names = "eud_base", "eud_mode_mgr2";
 		qcom,secure-eud-en;
 		qcom,eud-utmi-delay = /bits/ 16 <255>;
@@ -306,9 +306,9 @@
 	apps_rsc: rsc@18900000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
-		reg = <0x18900000 0x10000>,
-		      <0x18910000 0x10000>,
-		      <0x18920000 0x10000>;
+		reg = <0x0 0x18900000 0x0 0x10000>,
+		      <0x0 0x18910000 0x0 0x10000>,
+		      <0x0 0x18920000 0x0 0x10000>;
 		reg-names = "drv-0", "drv-1", "drv-2";
 		qcom,drv-count = <3>;
 		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
@@ -332,9 +332,9 @@
 	cam_rsc: rsc@9545000 {
 		label = "cam_rsc";
 		compatible = "qcom,rpmh-rsc";
-		reg = <0x9545000 0x1000>,
-		      <0x9546000 0x1000>,
-		      <0x9547000 0x1000>;
+		reg = <0x0 0x9545000 0x0 0x1000>,
+		      <0x0 0x9546000 0x0 0x1000>,
+		      <0x0 0x9547000 0x0 0x1000>;
 		reg-names = "drv-0", "drv-1", "drv-2";
 		qcom,drv-count = <3>;
 		qcom,hw-channel;
@@ -410,8 +410,8 @@
 	disp_crm: crm@9bc3000 {
 		label = "disp_crm";
 		compatible = "qcom,disp-crm-v3";
-		reg = <0x9bc3000 0x9000>, <0x9bcc000 0x400>, <0x9bcc400 0x400>,
-		      <0x9bcc800 0x2000>, <0x9bce800 0x600>, <0x9bcee00 0x200>;
+		reg = <0x0 0x9bc3000 0x0 0x9000>, <0x0 0x9bcc000 0x0 0x400>, <0x0 0x9bcc400 0x0 0x400>,
+		      <0x0 0x9bcc800 0x0 0x2000>, <0x0 0x9bce800 0x0 0x600>, <0x0 0x9bcee00 0x0 0x200>;
 		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
 		interrupts = <GIC_SPI 812 IRQ_TYPE_EDGE_RISING>,
 			     <GIC_SPI 813 IRQ_TYPE_EDGE_RISING>,
@@ -432,8 +432,8 @@
 	cam_crm: crm@9548000 {
 		label = "cam_crm";
 		compatible = "qcom,cam-crm-v3";
-		reg = <0x9548000 0x1e00>, <0x9549e00 0x400>, <0x954a200 0x400>,
-		      <0x954a600 0x2000>, <0x954c600 0x600>, <0x954cc00 0x200>;
+		reg = <0x0 0x9548000 0x0 0x1e00>, <0x0 0x9549e00 0x0 0x400>, <0x0 0x954a200 0x0 0x400>,
+		      <0x0 0x954a600 0x0 0x2000>, <0x0 0x954c600 0x0 0x600>, <0x0 0x954cc00 0x0 0x200>;
 		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
 		interrupts = <GIC_SPI 121 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "cam_crm_drv0";
@@ -445,8 +445,8 @@
 	pcie_crm: crm@1d01000 {
 		label = "pcie_crm";
 		compatible = "qcom,pcie-crm-v3";
-		reg = <0x1d01000 0x2000>, <0x1d03000 0x400>, <0x1d03400 0x400>,
-		      <0x1d03800 0x2000>, <0x1d05800 0x600>, <0x1d05e00 0x200>;
+		reg = <0x0 0x1d01000 0x0 0x2000>, <0x0 0x1d03000 0x0 0x400>, <0x0 0x1d03400 0x0 0x400>,
+		      <0x0 0x1d03800 0x0 0x2000>, <0x0 0x1d05800 0x0 0x600>, <0x0 0x1d05e00 0x0 0x200>;
 		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
 		interrupts = <GIC_SPI 641 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "pcie_crm_drv0";
@@ -457,7 +457,7 @@
 
 	pcie_pdc: pdc@b370000 {
 		compatible = "qcom,canoe-pcie-pdc", "qcom,pcie-pdc";
-		reg = <0xb370000 0x10000>;
+		reg = <0x0 0xb370000 0x0 0x10000>;
 	};
 
 	clocks {
@@ -545,7 +545,7 @@
 
 	camcc_crm: syscon@954a600 {
 		compatible = "syscon";
-		reg = <0x954a600 0x2000>;
+		reg = <0x0 0x954a600 0x0 0x2000>;
 	};
 
 	camcc: clock-controller@956d000 {
@@ -565,7 +565,7 @@
 
 	gcc: clock-controller@100000 {
 		compatible = "qcom,canoe-gcc", "syscon";
-		reg = <0x100000 0x1f4200>;
+		reg = <0x0 0x100000 0x0 0x1f4200>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
 		vdd_mx-supply = <&VDD_MX_LEVEL>;
@@ -610,17 +610,17 @@
 
 	apsscc: syscon@17c00000 {
 		compatible = "syscon";
-		reg = <0x17c00000 0x2da3000>;
+		reg = <0x0 0x17c00000 0x0 0x2da3000>;
 	};
 
 	gxclkctl: syscon@3d64000 {
 		compatible = "syscon";
-		reg = <0x3d64000 0x5000>;
+		reg = <0x0 0x3d64000 0x0 0x5000>;
 	};
 
 	mccc: syscon@310ba000 {
 		compatible = "syscon";
-		reg = <0x310ba000 0x800>;
+		reg = <0x0 0x310ba000 0x0 0x800>;
 	};
 
 	/* CAM_CC GDSCs */
@@ -678,13 +678,13 @@
 
 	gcc_apcs_gdsc_vote_ctrl: syscon@15214c {
 		compatible = "syscon";
-		reg = <0x15214c 0x4>;
+		reg = <0x0 0x15214c 0x0 0x4>;
 	};
 
 	/* GCC GDSCs */
 	gcc_pcie_0_gdsc: qcom,gdsc@16b004 {
 		compatible = "qcom,gdsc";
-		reg = <0x16b004 0x4>;
+		reg = <0x0 0x16b004 0x0 0x4>;
 		regulator-name = "gcc_pcie_0_gdsc";
 		parent-supply = <&VDD_CX_LEVEL>;
 		qcom,retain-regs;
@@ -695,7 +695,7 @@
 
 	gcc_pcie_0_phy_gdsc: qcom,gdsc@16c000 {
 		compatible = "qcom,gdsc";
-		reg = <0x16c000 0x4>;
+		reg = <0x0 0x16c000 0x0 0x4>;
 		regulator-name = "gcc_pcie_0_phy_gdsc";
 		parent-supply = <&VDD_MX_LEVEL>;
 		qcom,retain-regs;
@@ -706,7 +706,7 @@
 
 	gcc_ufs_mem_phy_gdsc: qcom,gdsc@19e000 {
 		compatible = "qcom,gdsc";
-		reg = <0x19e000 0x4>;
+		reg = <0x0 0x19e000 0x0 0x4>;
 		regulator-name = "gcc_ufs_mem_phy_gdsc";
 		parent-supply = <&VDD_MX_LEVEL>;
 		proxy-supply = <&gcc_ufs_mem_phy_gdsc>;
@@ -717,7 +717,7 @@
 
 	gcc_ufs_phy_gdsc: qcom,gdsc@177004 {
 		compatible = "qcom,gdsc";
-		reg = <0x177004 0x4>;
+		reg = <0x0 0x177004 0x0 0x4>;
 		regulator-name = "gcc_ufs_phy_gdsc";
 		parent-supply = <&VDD_CX_LEVEL>;
 		proxy-supply = <&gcc_ufs_phy_gdsc>;
@@ -728,7 +728,7 @@
 
 	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
 		compatible = "qcom,gdsc";
-		reg = <0x139004 0x4>;
+		reg = <0x0 0x139004 0x0 0x4>;
 		regulator-name = "gcc_usb30_prim_gdsc";
 		proxy-supply = <&gcc_usb30_prim_gdsc>;
 		qcom,proxy-consumer-enable;
@@ -738,7 +738,7 @@
 
 	gcc_usb3_phy_gdsc: qcom,gdsc@150018 {
 		compatible = "qcom,gdsc";
-		reg = <0x150018 0x4>;
+		reg = <0x0 0x150018 0x0 0x4>;
 		regulator-name = "gcc_usb3_phy_gdsc";
 		parent-supply = <&VDD_MX_LEVEL>;
 		proxy-supply = <&gcc_usb3_phy_gdsc>;
@@ -750,7 +750,7 @@
 	/* GPU_CC GDSCs */
 	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
 		compatible = "syscon";
-		reg = <0x3d99094 0x4>;
+		reg = <0x0 0x3d99094 0x0 0x4>;
 	};
 
 	gpu_cc_cx_gdsc: qcom,gdsc@3d99080 {
