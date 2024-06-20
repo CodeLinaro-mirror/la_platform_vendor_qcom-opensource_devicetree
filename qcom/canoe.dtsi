@@ -34,6 +34,10 @@
 		serial0 = &qupv3_se7_2uart;
 	};
 
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
+
 	cpus {
 		#address-cells = <2>;
 		#size-cells = <0>;
@@ -160,6 +164,12 @@
 	reserved_memory: reserved-memory { };
 
 	soc: soc { };
+};
+
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
 };
 
 &soc {
