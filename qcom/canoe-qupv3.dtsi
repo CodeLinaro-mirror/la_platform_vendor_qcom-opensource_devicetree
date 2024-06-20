@@ -7,7 +7,7 @@
 	/* QUPv3_1 wrapper instance */
 	qupv3_1: qcom,qupv3_1_geni_se@ac0000 {
 		compatible = "qcom,geni-se-qup";
-		reg = <0xac0000 0x2000>;
+		reg = <0x0 0xac0000 0x0 0x2000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 		clock-names = "m-ahb", "s-ahb";
