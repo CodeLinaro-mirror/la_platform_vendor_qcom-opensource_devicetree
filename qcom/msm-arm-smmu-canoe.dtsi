@@ -8,13 +8,13 @@
 &soc {
 	apps_smmu: apps-smmu@15000000 {
 		compatible = "qcom,qsmmu-v500";
-		reg = <0x15000000 0x100000>;
+		reg = <0x0 0x15000000 0x0 0x100000>;
 		#iommu-cells = <2>;
 		qcom,use-3-lvl-tables;
 		qcom,handoff-smrs = <0x800 0x2>;
 		#global-interrupts = <1>;
-		#size-cells = <1>;
-		#address-cells = <1>;
+		#size-cells = <2>;
+		#address-cells = <2>;
 		ranges;
 		dma-coherent;
 
@@ -134,7 +134,7 @@
 
 		anoc_1_qtb: anoc_1_qtb@16f2000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x16f2000 0x1000>;
+			reg = <0x0 0x16f2000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <2>;
@@ -142,7 +142,7 @@
 
 		anoc_2_qtb: anoc_2_qtb@171e000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x171e000 0x1000>;
+			reg = <0x0 0x171e000 0x0 0x1000>;
 			qcom,stream-id-range = <0x400 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <1>;
@@ -150,7 +150,7 @@
 
 		mdp_hf_qtb: mdp_hf_qtb@17d0000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x17d0000 0x1000>;
+			reg = <0x0 0x17d0000 0x0 0x1000>;
 			qcom,stream-id-range = <0x800 0x400>;
 			qcom,iova-width = <32>;
 			qcom,num-qtb-ports = <2>;
@@ -158,7 +158,7 @@
 
 		nsp_qtb: nsp_qtb@7d3000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x7d3000 0x1000>;
+			reg = <0x0 0x7d3000 0x0 0x1000>;
 			qcom,stream-id-range = <0xc00 0x400>;
 			qcom,iova-width = <34>;
 			qcom,num-qtb-ports = <2>;
@@ -166,7 +166,7 @@
 
 		lpass_qtb: lpass_qtb@7b3000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x7b3000 0x1000>;
+			reg = <0x0 0x7b3000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1000 0x400>;
 			qcom,iova-width = <32>;
 			qcom,num-qtb-ports = <2>;
@@ -174,7 +174,7 @@
 
 		pcie_qtb: pcie_qtb@16cd000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x16cd000 0x1000>;
+			reg = <0x0 0x16cd000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1400 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <2>;
@@ -183,7 +183,7 @@
 
 		sf_qtb: sf_qtb@17d1000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x17d1000 0x1000>;
+			reg = <0x0 0x17d1000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1800 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <1>;
@@ -191,7 +191,7 @@
 
 		cam_hf_qtb: cam_hf_qtb@17d2000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x17d2000 0x1000>;
+			reg = <0x0 0x17d2000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1c00 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <2>;
@@ -199,7 +199,7 @@
 
 		qpace_qtb: qpace_qtb@31483000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x31483000 0x1000>;
+			reg = <0x0 0x31483000 0x0 0x1000>;
 			qcom,stream-id-range = <0x2000 0x400>;
 			qcom,iova-width = <36>;
 			qcom,num-qtb-ports = <1>;
