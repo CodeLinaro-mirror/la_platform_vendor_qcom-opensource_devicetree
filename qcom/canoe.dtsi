@@ -1345,6 +1345,7 @@
 	};
 };
 
+#include "canoe-dma-heaps.dtsi"
 #include "canoe-pinctrl.dtsi"
 #include "canoe-regulators.dtsi"
 #include "canoe-qupv3.dtsi"
