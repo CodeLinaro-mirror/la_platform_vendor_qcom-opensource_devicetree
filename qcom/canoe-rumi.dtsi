@@ -46,6 +46,10 @@
 	status = "disabled";
 };
 
+&pmic_arbiter {
+	status = "disabled";
+};
+
 &soc {
 	usb_nop_phy: usb_nop_phy {
 		compatible = "usb-nop-xceiv";
