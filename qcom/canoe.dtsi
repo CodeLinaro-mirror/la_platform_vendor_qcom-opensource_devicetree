@@ -500,6 +500,18 @@
 		status = "disabled";
 	};
 
+	cache-controller@31800000 {
+		compatible = "qcom,canoe-llcc";
+		reg = <0x0 0x31800000 0x0 0x200000>, <0x0 0x32800000 0x0 0x200000>,
+			<0x0 0x31C00000 0x0 0x200000>, <0x0 0x32C00000 0x0 0x200000>,
+			<0x0 0x34800000 0x0 0x200000>, <0x0 0x34C00000 0x0 0x200000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
+			"llcc3_base", "llcc_broadcast_or_base",
+			"llcc_broadcast_and_base";
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
