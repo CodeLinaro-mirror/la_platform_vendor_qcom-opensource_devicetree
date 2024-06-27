@@ -35,6 +35,7 @@ properties:
       - qcom,pineapple-llcc
       - qcom,sun-llcc
       - qcom,x1e80100-llcc
+      - qcom,canoe-llcc
 
   reg:
     minItems: 2
@@ -90,21 +91,16 @@ examples:
   - |
     #include <dt-bindings/interrupt-controller/arm-gic.h>
 
-    soc {
-        #address-cells = <2>;
-        #size-cells = <2>;
+    system-cache-controller@1100000 {
+      compatible = "qcom,sdm845-llcc";
+      reg = <0x01100000 0x50000>, <0x01180000 0x50000>,
+          <0x01200000 0x50000>, <0x01280000 0x50000>,
+          <0x1300000 0x50000> ;
+      reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
+          "llcc3_base", "llcc_broadcast_base";
+      interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
 
-        system-cache-controller@1100000 {
-            compatible = "qcom,sdm845-llcc";
-            reg = <0x01100000 0x50000>, <0x01180000 0x50000>,
-                <0x01200000 0x50000>, <0x01280000 0x50000>,
-                <0x1300000 0x50000> ;
-            reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
-                "llcc3_base", "llcc_broadcast_base";
-            interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
-
-            llcc_perfmon {
-                compatible = "qcom,llcc-perfmon";
-            }
-        };
+      llcc_perfmon {
+          compatible = "qcom,llcc-perfmon";
+      }
     };
