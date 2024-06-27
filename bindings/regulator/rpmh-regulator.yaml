@@ -58,6 +58,10 @@ properties:
       - pmic5-hfsmps
       - pmic5-ftsmps
       - pmic5-bob
+      - pmic7-ldo
+      - pmic7-hfsmps
+      - pmic7-ftsmps
+      - pmic7-bob
 
   qcom,always-wait-for-ack:
     description: |
