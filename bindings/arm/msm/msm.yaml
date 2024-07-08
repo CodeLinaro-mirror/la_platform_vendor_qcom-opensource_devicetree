@@ -188,4 +188,11 @@ properties:
               - qcom,wdp
           - const: qcom,monacop
 
+      - description: Qualcomm Technologies, Inc. VIENNA
+        items:
+          - enum:
+              - qcom,vienna-rumi
+              - qcom,rumi
+          - const: qcom,vienna
+
 additionalProperties: true
