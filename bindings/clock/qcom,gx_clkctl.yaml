@@ -15,11 +15,13 @@ description: |
 
   See also:
     dt-bindings/clock/qcom,gxclkctl-sun.h
+    dt-bindings/clock/qcom,gxclkctl-canoe.h
 
 properties:
   compatible:
     enum:
       - qcom,sun-gx_clkctl
+      - qcom,canoe-gx_clkctl
 
   reg:
     maxItems: 1
