@@ -53,6 +53,36 @@ _platform_map = {
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
     },
+    "canoe-tuivm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "canoe-oemvm-cdp.dtb"},
+            {"name": "canoe-oemvm-mtp.dtb"},
+            {"name": "canoe-oemvm-qrd.dtb"},
+            {"name": "canoe-oemvm-rcm.dtb"},
+            {"name": "canoe-oemvm-rumi.dtb"},
+            {"name": "canoe-vm-cdp.dtb"},
+            {"name": "canoe-vm-mtp.dtb"},
+            {"name": "canoe-vm-qrd.dtb"},
+            {"name": "canoe-vm-rcm.dtb"},
+            {"name": "canoe-vm-rumi.dtb"},
+        ],
+    },
+    "canoe-oemvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "canoe-oemvm-cdp.dtb"},
+            {"name": "canoe-oemvm-mtp.dtb"},
+            {"name": "canoe-oemvm-qrd.dtb"},
+            {"name": "canoe-oemvm-rcm.dtb"},
+            {"name": "canoe-oemvm-rumi.dtb"},
+            {"name": "canoe-vm-cdp.dtb"},
+            {"name": "canoe-vm-mtp.dtb"},
+            {"name": "canoe-vm-qrd.dtb"},
+            {"name": "canoe-vm-rcm.dtb"},
+            {"name": "canoe-vm-rumi.dtb"},
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted

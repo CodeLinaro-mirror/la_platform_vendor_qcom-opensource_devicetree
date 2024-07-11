@@ -146,6 +146,23 @@ dtb-y += $(sun_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_CANOE), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
+				canoe-vm-mtp.dtb \
+				canoe-vm-cdp.dtb \
+				canoe-vm-qrd.dtb \
+				canoe-vm-rcm.dtb \
+				canoe-oemvm-rumi.dtb \
+				canoe-oemvm-mtp.dtb \
+				canoe-oemvm-cdp.dtb \
+				canoe-oemvm-qrd.dtb \
+				canoe-oemvm-rcm.dtb
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
 clean-files     := *.dtb *.dtbo
