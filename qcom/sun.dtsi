@@ -3579,7 +3579,8 @@
 		interconnect-names = "rproc_ddr", "rproc_cnoc";
 
 		memory-region = <&soccp_mem 0>;
-		soccp-config = <&tcsr 0x1a000>;
+		soccp-tcsr = <&tcsr 0x1a000>;
+		soccp-spare = <0xda0024>;
 
 		/* Inputs from SOCCP */
 		interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
