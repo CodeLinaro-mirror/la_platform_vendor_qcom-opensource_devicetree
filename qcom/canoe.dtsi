@@ -999,8 +999,20 @@
 	};
 
 	videocc: clock-controller@20f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "videocc_clocks";
+		compatible = "qcom,canoe-videocc", "syscon";
+		reg = <0x0 0x20f0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+				<&rpmhcc RPMH_CXO_CLK_A>,
+				<&sleep_clk>,
+				<&gcc GCC_VIDEO_AHB_CLK>;
+		clock-names = "bi_tcxo",
+				"bi_tcxo_ao",
+				"sleep_clk",
+				"iface";
+
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -1135,41 +1147,6 @@
 	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
 		compatible = "syscon";
 		reg = <0x0 0x3d99094 0x0 0x4>;
-	};
-
-	/* VIDEO_CC GDSCs */
-	video_cc_mvs0_gdsc: qcom,gdsc@20f80a8 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0_vpp0_gdsc: qcom,gdsc@20f8120 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_vpp0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0_vpp1_gdsc: qcom,gdsc@20f80f4 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_vpp1_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0a_gdsc: qcom,gdsc@20f807c {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0a_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0c_gdsc: qcom,gdsc@20f814c {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0c_gdsc";
-		qcom,support-cfg-gdscr;
 	};
 
 	clk_virt: interconnect@0 {
