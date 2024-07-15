@@ -12,6 +12,8 @@
 #include <dt-bindings/clock/qcom,tcsrcc-canoe.h>
 #include <dt-bindings/clock/qcom,videocc-canoe.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,canoe.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
@@ -34,6 +36,7 @@
 
 	aliases {
 		serial0 = &qupv3_se7_2uart;
+		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
 	};
 
 	firmware: firmware {
@@ -1082,6 +1085,143 @@
 		compatible = "qcom,canoe-lpass_lpicx_noc";
 		qcom,stub;
 		#interconnect-cells = <1>;
+	};
+
+	ufsphy_mem: ufsphy_mem@1d80000 {
+		reg = <0x0 0x1d80000 0x0 0x2000>;
+		reg-names = "phy_mem";
+		#phy-cells = <0>;
+
+		lanes-per-direction = <2>;
+		clock-names = "ref_clk_src",
+			"ref_aux_clk", "qref_clk",
+			"rx_sym0_mux_clk", "rx_sym1_mux_clk", "tx_sym0_mux_clk",
+			"rx_sym0_phy_clk", "rx_sym1_phy_clk", "tx_sym0_phy_clk";
+		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
+			<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+			<&tcsrcc TCSR_UFS_CLKREF_EN>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
+			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
+			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>;
+		resets = <&ufshc_mem 0>;
+		status = "disabled";
+	};
+
+	ice_cfg: shared_ice {
+		 alg1 {
+		      alg-name = "alg1";
+		      rx-alloc-percent = <60>;
+		      status = "disabled";
+		 };
+
+		 alg2 {
+		      alg-name = "alg2";
+		      status = "disabled";
+
+		 };
+
+		 alg3 {
+		      alg-name = "alg3";
+		      num-core = <28 28 15 13>;
+		      status = "ok";
+		 };
+	};
+
+	ufshc_dma_resv: ufshc_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
+		 * from 0x1000 - 0xffffffff.
+		 */
+		iommu-addresses = <&ufshc_mem 0x0 0x0 0x0 0x1000>;
+	};
+
+	ufshc_mem: ufshc@1d84000 {
+		compatible = "qcom,ufshc";
+		reg = <0x0 0x1d84000 0x0 0x3000>,
+		      <0x0 0x1d88000 0x0 0x18000>,
+		      <0x0 0x1da5000 0x0 0x2000>,
+		      <0x0 0x1da4000 0x0 0x10>;
+		reg-names = "ufs_mem", "ice", "mcq_sqd", "mcq_vs";
+		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+		phys = <&ufsphy_mem>;
+		phy-names = "ufsphy";
+		#reset-cells = <1>;
+
+// Remove for RUMI. Try to enable it later after the basic bootup works.
+//		qcom,ice-use-hwkm;
+//		qcom,prime-mask = <0xc0>;
+//		qcom,silver-mask = <0x3f>;
+//		qcom,esi-affinity-mask = <0xe0>;
+
+		lanes-per-direction = <2>;
+		dev-ref-clk-freq = <0>; /* 19.2 MHz */
+		clock-names =
+			"core_clk",
+			"bus_aggr_clk",
+			"iface_clk",
+			"core_clk_unipro",
+			"core_clk_ice",
+			"ref_clk",
+			"tx_lane0_sync_clk",
+			"rx_lane0_sync_clk",
+			"rx_lane1_sync_clk";
+		clocks =
+			<&gcc GCC_UFS_PHY_AXI_CLK>,
+			<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+			<&gcc GCC_UFS_PHY_AHB_CLK>,
+			<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+			<&gcc GCC_UFS_PHY_ICE_CORE_CLK>,
+			<&rpmhcc RPMH_LN_BB_CLK3>,
+			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+		freq-table-hz =
+			<100000000 403000000>,
+			<0 0>,
+			<0 0>,
+			<100000000 403000000>,
+			<100000000 403000000>,
+			<0 0>,
+			<0 0>,
+			<0 0>,
+			<0 0>;
+
+		interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+		      <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+		interconnect-names = "ufs-ddr", "cpu-ufs";
+
+		iommus = <&apps_smmu 0x60 0x0>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-msi-size = <0x1000>;
+		memory-region = <&ufshc_dma_resv>;
+		shared-ice-cfg = <&ice_cfg>;
+		dma-coherent;
+
+		qcom,bypass-pbl-rst-wa;
+		qcom,max-cpus = <8>;
+
+// Remove because gic_its is not available
+//		msi-parent = <&gic_its 0x60>;
+
+		status = "disabled";
+
+		qos0 {
+			mask = <0xc0>;
+			vote = <44>;
+			perf;
+			/* Set CPU6 to fmax, and CPU[6-7] will run at fmax */
+			cpu_freq_vote = <6>;
+		};
+
+		qos1 {
+			mask = <0x3f>;
+			vote = <44>;
+			/* Set CPU0 to fmax, and CPU[0-5] will run at fmax */
+			cpu_freq_vote = <0>;
+		};
 	};
 };
 
