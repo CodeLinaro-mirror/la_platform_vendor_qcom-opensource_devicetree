@@ -281,6 +281,7 @@
 	};
 
 	soc: soc { };
+	pcie0: pcie@1c00000 { };
 
 	hypervisor: hypervisor {
 		gh_watchdog: qcom,gh-watchdog { };
