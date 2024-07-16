@@ -490,6 +490,9 @@
 		};
 	};
 
+	qcom_tzlog: tz-log@0 {
+	};
+
 	eud: qcom,msm-eud@88e0000 {
 		compatible = "qcom,msm-eud";
 		interrupt-names = "eud_irq";
