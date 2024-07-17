@@ -1090,6 +1090,40 @@
 		reg = <0x0 0x310ba000 0x0 0x800>;
 	};
 
+	debugcc: clock-controller@0 {
+		compatible = "qcom,canoe-debugcc";
+		qcom,apsscc = <&apsscc>;
+		qcom,cambistmclkcc = <&cambistmclkcc>;
+		qcom,camcc = <&camcc>;
+		qcom,dispcc = <&dispcc>;
+		qcom,evacc = <&evacc>;
+		qcom,gcc = <&gcc>;
+		qcom,gpucc = <&gpucc>;
+		qcom,gxclkctl = <&gxclkctldebugcc>;
+		qcom,tcsrcc = <&tcsrcc>;
+		qcom,videocc = <&videocc>;
+		qcom,mccc = <&mccc>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&cambistmclkcc 0>,
+			 <&camcc 0>,
+			 <&dispcc 0>,
+			 <&evacc 0>,
+			 <&gcc 0>,
+			 <&gpucc 0>,
+			 <&tcsrcc 0>,
+			 <&videocc 0>;
+		clock-names = "xo_clk_src",
+			      "cambistmclkcc",
+			      "camcc",
+			      "dispcc",
+			      "evacc",
+			      "gcc",
+			      "gpucc",
+			      "tcsrcc",
+			      "videocc";
+		#clock-cells = <1>;
+	};
+
 	/* CAM_CC GDSCs */
 	cam_cc_ipe_0_gdsc: qcom,gdsc@958d174 {
 		compatible = "qcom,gdsc";
