@@ -937,8 +937,20 @@
 	};
 
 	camcc: clock-controller@956d000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "camcc_clocks";
+		compatible = "qcom,canoe-camcc", "syscon";
+		reg = <0x0 0x956d000 0x0 0x80000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&rpmhcc RPMH_CXO_CLK_A>,
+			 <&sleep_clk>,
+			 <&gcc GCC_CAMERA_AHB_CLK>;
+		clock-names = "bi_tcxo",
+			      "bi_tcxo_ao",
+			      "sleep_clk",
+			      "iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -1043,40 +1055,66 @@
 
 	/* CAM_CC GDSCs */
 	cam_cc_ipe_0_gdsc: qcom,gdsc@958d174 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958d174 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
 		regulator-name = "cam_cc_ipe_0_gdsc";
+		parent-supply = <&cam_cc_titan_top_gdsc>;
+		qcom,retain-regs;
 		qcom,support-hw-trigger;
 		qcom,support-cfg-gdscr;
 	};
 
 	cam_cc_ofe_gdsc: qcom,gdsc@958d0c8 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958d0c8 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
 		regulator-name = "cam_cc_ofe_gdsc";
+		parent-supply = <&cam_cc_titan_top_gdsc>;
+		qcom,retain-regs;
 		qcom,support-hw-trigger;
 		qcom,support-cfg-gdscr;
 	};
 
 	cam_cc_tfe_0_gdsc: qcom,gdsc@958e004 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958e004 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
 		regulator-name = "cam_cc_tfe_0_gdsc";
+		parent-supply = <&cam_cc_titan_top_gdsc>;
+		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
 
 	cam_cc_tfe_1_gdsc: qcom,gdsc@958e080 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958e080 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
 		regulator-name = "cam_cc_tfe_1_gdsc";
+		parent-supply = <&cam_cc_titan_top_gdsc>;
+		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
 
 	cam_cc_tfe_2_gdsc: qcom,gdsc@958e0e4 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958e0e4 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
 		regulator-name = "cam_cc_tfe_2_gdsc";
+		parent-supply = <&cam_cc_titan_top_gdsc>;
+		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
 
 	cam_cc_titan_top_gdsc: qcom,gdsc@958e334 {
-		compatible = "qcom,stub-regulator";
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x958e334 0x0 0x4>;
+		clocks = <&gcc GCC_CAMERA_AHB_CLK>;
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		regulator-name = "cam_cc_titan_top_gdsc";
+		parent-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
 
