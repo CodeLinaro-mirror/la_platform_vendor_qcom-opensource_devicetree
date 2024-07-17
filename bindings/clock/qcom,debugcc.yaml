@@ -9,6 +9,7 @@ title: Qualcomm Technologies, Inc. Debug Clock Controller
 maintainers:
   - Xubin Bai <quic_xubibai@quicinc.com>
   - Vivek Aknurwar <quic_viveka@quicinc.com>
+  - Dongfang Zhao <quic_doz@quicinc.com>
 
 description: |
   Debug Clock Controller module which support debug clock controllers.
@@ -19,6 +20,7 @@ properties:
       - qcom,pineapple-debugcc
       - qcom,sun-debugcc
       - qcom,parrot-debugcc
+      - qcom,canoe-debugcc
       - qcom,sm8150-debugcc
       - qcom,sc8180x-debugcc
 
