@@ -789,13 +789,18 @@
 	};
 
 	evacc: clock-controller@24f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "evacc_clocks";
+		compatible = "qcom,canoe-evacc", "syscon";
+		reg = <0x0 0x24f0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "bi_tcxo";
+
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
 	};
-
 
 	gcc: clock-controller@100000 {
 		compatible = "qcom,canoe-gcc", "syscon";
@@ -896,20 +901,6 @@
 	cam_cc_titan_top_gdsc: qcom,gdsc@958e334 {
 		compatible = "qcom,stub-regulator";
 		regulator-name = "cam_cc_titan_top_gdsc";
-		qcom,support-cfg-gdscr;
-	};
-
-	/* EVA_CC GDSCs */
-	eva_cc_mvs0_gdsc: qcom,gdsc@24f8068 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	eva_cc_mvs0c_gdsc: qcom,gdsc@24f8034 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0c_gdsc";
 		qcom,support-cfg-gdscr;
 	};
 
