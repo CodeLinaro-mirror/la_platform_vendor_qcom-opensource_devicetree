@@ -14,5 +14,46 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
+
+		qupv3_se5_2uart_pins: qupv3_se5_2uart_pins {
+			qupv3_se5_2uart_tx_active: qupv3_se5_2uart_tx_active {
+				mux {
+					pins = "gpio21";
+					function = "qup0_se5_l2";
+				};
+
+				config {
+					pins = "gpio21";
+					drive-strength = <2>;
+					bias-disable;
+				};
+			};
+
+			qupv3_se5_2uart_rx_active: qupv3_se5_2uart_rx_active {
+				mux {
+					pins = "gpio20";
+					function = "qup0_se5_l3";
+				};
+
+				config {
+					pins = "gpio20";
+					drive-strength = <2>;
+					bias-disable;
+				};
+			};
+
+			qupv3_se5_2uart_sleep: qupv3_se5_2uart_sleep {
+				mux {
+					pins = "gpio21", "gpio20";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio21", "gpio20";
+					drive-strength = <2>;
+					bias-pull-down;
+				};
+			};
+		};
 	};
 };

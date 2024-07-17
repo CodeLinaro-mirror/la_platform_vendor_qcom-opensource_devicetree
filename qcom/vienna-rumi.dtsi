@@ -21,3 +21,6 @@
 	clock-frequency = <2000000>;
 };
 
+&qupv3_se5_2uart {
+	qcom,rumi_platform;
+};
