@@ -4,13 +4,13 @@
  */
 
 /dts-v1/;
-/memreserve/ 0x90000000 0x100000;
+/plugin/;
 
-#include "canoe.dtsi"
 #include "canoe-rumi.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Canoe RUMI";
 	compatible = "qcom,canoe-rumi", "qcom,canoe", "qcom,rumi";
+	qcom,msm-id = <0x10294 0x10000>, <0x10294 0x20000>;
 	qcom,board-id = <15 0>;
 };
