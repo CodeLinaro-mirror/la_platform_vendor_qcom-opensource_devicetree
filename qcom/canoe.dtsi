@@ -1477,6 +1477,15 @@
 		reg = <0x0 0xff800000 0x0 0x800000>;
 	};
 
+	/* cdsp eva shared memory */
+	cdsp_eva_mem: cdsp_eva_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x400000>;
+	};
+
 	/*
 	 * 6Mb for dma_atomic_pool_init()
 	 * 8Mb for kgsl snapshot
