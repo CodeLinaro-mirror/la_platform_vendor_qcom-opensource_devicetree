@@ -20,6 +20,10 @@
 
 	aliases { };
 
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	 };
+
 	cpus {
 		#address-cells = <2>;
 		#size-cells = <0>;
@@ -111,6 +115,12 @@
 	soc: soc { };
 };
 
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
+};
+
 &soc {
 	#address-cells = <1>;
 	#size-cells = <1>;
@@ -192,6 +202,122 @@
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
+	};
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x14680000 0x1000>;
+		ranges = <0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		restart_reason@65c {
+			compatible = "qcom,msm-imem-restart_reason";
+			reg = <0x65c 0x4>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		kaslr_offset@6d0 {
+			compatible = "qcom,msm-imem-kaslr_offset";
+			reg = <0x6d0 0xc>;
+		};
+
+		pil@94c {
+			compatible = "qcom,pil-reloc-info";
+			reg = <0x94c 0xc8>;
+		};
+
+		pil@6dc {
+			compatible = "qcom,msm-imem-pil-disable-timeout";
+			reg = <0x6dc 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+
+		modem_dsm@c98 {
+			compatible = "qcom,msm-imem-mss-dsm";
+			reg = <0xc98 0x10>;
+		};
+	};
+
+	ipcc_mproc: qcom,ipcc@ed15000 {
+		compatible = "qcom,ipcc";
+		reg = <0x0ed1500 0x1000>;
+		interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
+	tcsr_mutex_block: syscon@1f40000 {
+		compatible = "syscon";
+		reg = <0x1f40000 0x20000>;
+	};
+
+	tcsr: syscon@1fc0000 {
+		compatible = "syscon";
+		reg = <0x1fc0000 0x30000>;
+	};
+
+	tcsr_mutex: hwlock {
+		compatible = "qcom,tcsr-mutex";
+		syscon = <&tcsr_mutex_block 0 0x1000>;
+		#hwlock-cells = <1>;
+	};
+
+	eud: qcom,msm-eud@88e0000 {
+		compatible = "qcom,msm-eud";
+		interrupt-names = "eud_irq";
+		/*interrupt-parent = <&pdc>;*/
+		reg = <0x88e0000 0x2000>,
+			<0x88e2000 0x1000>;
+		reg-names = "eud_base", "eud_mode_mgr2";
+		qcom,secure-eud-en;
+		status = "ok";
+	};
+
+	cache-controller@24800000 {
+		compatible = "qcom,vienna-llcc";
+		reg = <0x24800000 0x200000>;
+		reg-names = "llcc_base";
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+	};
+
+	qfprom: qfprom@351c8000 {
+		compatible = "qcom,vienna-qfprom", "qcom,qfprom";
+		reg = <0x351c8000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
+	cpucp: qcom,cpucp@17400000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "qcom,cpucp";
+		reg = <0x17400000 0x10>,
+			<0x17d90000 0x2000>;
+		#mbox-cells = <1>;
+		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
 	};
 };
 

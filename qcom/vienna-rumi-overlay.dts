@@ -7,7 +7,6 @@
 /plugin/;
 /memreserve/ 0x90000000 0x100;
 
-#include "vienna.dtsi"
 #include "vienna-rumi.dtsi"
 
 / {
