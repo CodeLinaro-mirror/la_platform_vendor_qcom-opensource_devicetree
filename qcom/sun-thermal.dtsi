@@ -317,7 +317,7 @@
 	};
 
 	cpu-0-0-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 1>;
 		trips {
@@ -328,7 +328,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -366,7 +366,7 @@
 	};
 
 	cpu-0-0-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 2>;
 		trips {
@@ -377,7 +377,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -415,7 +415,7 @@
 	};
 
 	cpu-0-1-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 3>;
 		trips {
@@ -426,7 +426,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -464,7 +464,7 @@
 	};
 
 	cpu-0-1-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 4>;
 		trips {
@@ -475,7 +475,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -513,7 +513,7 @@
 	};
 
 	cpu-0-2-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 5>;
 		trips {
@@ -524,7 +524,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -562,7 +562,7 @@
 	};
 
 	cpu-0-2-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 6>;
 		trips {
@@ -573,7 +573,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -611,7 +611,7 @@
 	};
 
 	cpu-0-3-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 7>;
 		trips {
@@ -622,7 +622,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -660,7 +660,7 @@
 	};
 
 	cpu-0-3-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 8>;
 		trips {
@@ -671,7 +671,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -709,7 +709,7 @@
 	};
 
 	cpu-0-4-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 9>;
 		trips {
@@ -720,7 +720,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -758,7 +758,7 @@
 	};
 
 	cpu-0-4-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 10>;
 		trips {
@@ -769,7 +769,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -807,7 +807,7 @@
 	};
 
 	cpu-0-5-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 11>;
 		trips {
@@ -818,7 +818,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -856,7 +856,7 @@
 	};
 
 	cpu-0-5-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens0 12>;
 		trips {
@@ -867,7 +867,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -962,7 +962,7 @@
 	};
 
 	cpu-1-0-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 1>;
 		trips {
@@ -973,7 +973,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1011,7 +1011,7 @@
 	};
 
 	cpu-1-0-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 2>;
 		trips {
@@ -1022,7 +1022,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1060,7 +1060,7 @@
 	};
 
 	cpu-1-1-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 3>;
 		trips {
@@ -1071,7 +1071,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1109,7 +1109,7 @@
 	};
 
 	cpu-1-1-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 4>;
 		trips {
@@ -1120,7 +1120,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1196,7 +1196,7 @@
 	};
 
 	nsphvx-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 7>;
 		trips {
@@ -1207,7 +1207,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1221,7 +1221,7 @@
 	};
 
 	nsphvx-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 8>;
 		trips {
@@ -1232,7 +1232,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1246,7 +1246,7 @@
 	};
 
 	nsphvx-2 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 9>;
 		trips {
@@ -1257,7 +1257,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1271,7 +1271,7 @@
 	};
 
 	nsphmx-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 10>;
 		trips {
@@ -1282,7 +1282,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1296,7 +1296,7 @@
 	};
 
 	nsphmx-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 11>;
 		trips {
@@ -1307,7 +1307,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1321,7 +1321,7 @@
 	};
 
 	nsphmx-2 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 12>;
 		trips {
@@ -1332,7 +1332,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1346,7 +1346,7 @@
 	};
 
 	nsphmx-3 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 13>;
 		trips {
@@ -1357,7 +1357,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1371,7 +1371,7 @@
 	};
 
 	ddr {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 14>;
 		trips {
@@ -1422,7 +1422,7 @@
 	};
 
 	gpuss-0 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 1>;
 		trips {
@@ -1433,7 +1433,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1460,7 +1460,7 @@
 	};
 
 	gpuss-1 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 2>;
 		trips {
@@ -1471,7 +1471,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1498,7 +1498,7 @@
 	};
 
 	gpuss-2 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 3>;
 		trips {
@@ -1509,7 +1509,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1536,7 +1536,7 @@
 	};
 
 	gpuss-3 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 4>;
 		trips {
@@ -1547,7 +1547,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1574,7 +1574,7 @@
 	};
 
 	gpuss-4 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 5>;
 		trips {
@@ -1585,7 +1585,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1612,7 +1612,7 @@
 	};
 
 	gpuss-5 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 6>;
 		trips {
@@ -1623,7 +1623,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1650,7 +1650,7 @@
 	};
 
 	gpuss-6 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 7>;
 		trips {
@@ -1661,7 +1661,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1688,7 +1688,7 @@
 	};
 
 	gpuss-7 {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <4>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 8>;
 		trips {
@@ -1699,7 +1699,7 @@
 			};
 
 			thermal-hal-config {
-				temperature = <135000>;
+				temperature = <95000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1726,7 +1726,7 @@
 	};
 
 	mdmss-0 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 9>;
 		trips {
@@ -1790,7 +1790,7 @@
 	};
 
 	mdmss-1 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 10>;
 		trips {
@@ -1854,7 +1854,7 @@
 	};
 
 	mdmss-2 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 11>;
 		trips {
@@ -1918,7 +1918,7 @@
 	};
 
 	mdmss-3 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 12>;
 		trips {

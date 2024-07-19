@@ -613,6 +613,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		qcom,interconnect-trace-noc;
 
 		in-ports {
 			#address-cells = <1>;
@@ -812,6 +813,7 @@
 		coresight-name = "coresight-turing-etm0";
 
 		qcom,atid-num = <2>;
+		atid = <38 39>;
 		trace-name = "turing-etm0";
 
 
@@ -971,6 +973,7 @@
 
 		coresight-name = "coresight-modem-etm0";
 		qcom,atid-num = <2>;
+		atid = <36 37>;
 		trace-name = "modem-etm0";
 		qcom,secure-component;
 
@@ -998,6 +1001,7 @@
 
 		coresight-name = "coresight-modem2-etm0";
 		qcom,atid-num = <1>;
+		atid = <39>;
 		trace-name = "modem2-etm0";
 
 		out-ports {
@@ -1477,6 +1481,7 @@
 		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		qcom,trace-noc-v2;
 
 		in-ports {
 			#address-cells = <1>;
@@ -1757,8 +1762,10 @@
 
 		coresight-name = "coresight-tpdm-llm-lmh0";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1778,8 +1785,10 @@
 
 		coresight-name = "coresight-tpdm-llm-lmh1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1799,8 +1808,10 @@
 
 		coresight-name = "coresight-tpdm-ext-dsb0";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1820,8 +1831,10 @@
 
 		coresight-name = "coresight-tpdm-ext-dsb1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1841,8 +1854,10 @@
 
 		coresight-name = "coresight-tpdm-ext-dsb2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1862,8 +1877,10 @@
 
 		coresight-name = "coresight-tpdm-ext-dsb3";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1883,8 +1900,10 @@
 
 		coresight-name = "coresight-tpdm-ext-dsb4";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1904,8 +1923,10 @@
 
 		coresight-name = "coresight-tpdm-ext_cmb0";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1925,8 +1946,10 @@
 
 		coresight-name = "coresight-tpdm-ext_cmb1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1946,8 +1969,10 @@
 
 		coresight-name = "coresight-tpdm-ext_cmb2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1967,8 +1992,10 @@
 
 		coresight-name = "coresight-tpdm-ext_cmb3";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -1988,8 +2015,10 @@
 
 		coresight-name = "coresight-tpdm-int-cmb";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		out-ports {
 			port {
@@ -2023,8 +2052,10 @@
 				<10 64>,
 				<11 64>;
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		in-ports {
 			#address-cells = <1>;
@@ -2217,8 +2248,10 @@
 
 		qcom,replicator-loses-context;
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2323,8 +2356,11 @@
 		coresight-name = "coresight-replicator-etr1_ncc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2429,8 +2465,11 @@
 		coresight-name = "coresight-replicator-etr2_ncc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2535,8 +2574,11 @@
 		coresight-name = "coresight-replicator-etr3_ncc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2641,8 +2683,11 @@
 		coresight-name = "coresight-replicator-etr4_ncc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2747,8 +2792,11 @@
 		coresight-name = "coresight-replicator-etr5_ncc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2782,8 +2830,10 @@
 
 		coresight-name = "coresight-funnel-ncc0_lv1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2874,8 +2924,10 @@
 
 		coresight-name = "coresight-tmc-etf-uc0";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2906,8 +2958,11 @@
 		coresight-name = "coresight-replicator-uc0";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2941,8 +2996,10 @@
 
 		coresight-name = "coresight-funnel-ncc0_lv2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -2984,8 +3041,10 @@
 
 		coresight-name = "coresight-tmc-etf_ncc0";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
@@ -3086,8 +3145,11 @@
 		coresight-name = "coresight-replicator-etr0_ncc1";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3192,8 +3254,10 @@
 		coresight-name = "coresight-replicator-etr1_ncc1";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3227,8 +3291,10 @@
 
 		coresight-name = "coresight-funnel-ncc1_lv1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3287,8 +3353,10 @@
 
 		coresight-name = "coresight-tmc-etf-uc1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3319,8 +3387,11 @@
 		coresight-name = "coresight-replicator-uc1";
 
 		qcom,replicator-loses-context;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3354,8 +3425,10 @@
 
 		coresight-name = "coresight-funnel-ncc1_lv2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3397,8 +3470,10 @@
 
 		coresight-name = "coresight-tmc-etf_ncc1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
@@ -3428,8 +3503,10 @@
 
 		coresight-name = "coresight-funnel-apss";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 
 		in-ports {
 			#address-cells = <1>;
@@ -3708,6 +3785,7 @@
 		reg-names = "traceNoc-base";
 
 		coresight-name = "coresight-tracenoc-ddr";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3813,6 +3891,7 @@
 		coresight-name = "coresight-audio-etm0";
 		qcom,atid-num = <2>;
 		trace-name = "audio-etm0";
+		atid = <40 41>;
 
 		out-ports {
 			port@0 {
@@ -3941,6 +4020,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		qcom,interconnect-trace-noc;
 
 		in-ports {
 			#address-cells = <1>;
@@ -3969,6 +4049,7 @@
 		compatible = "arm,coresight-dummy-source";
 		coresight-name = "coresight-lpass-stm";
 		trace-name = "lpass-stm";
+		atid = <25>;
 
 		out-ports {
 			port@0 {
@@ -4411,6 +4492,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {
@@ -4432,6 +4514,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {
@@ -4453,6 +4536,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {
@@ -4474,6 +4558,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		qcom,trace-noc-v2;
 
 		in-ports {
 			#address-cells = <1>;
@@ -5539,8 +5624,10 @@
 		coresight-name = "coresight-cti-apss_cti";
 
 		qcom,extended_cti;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 	};
 
 	cti@12195000 {
@@ -5551,8 +5638,10 @@
 		coresight-name = "coresight-cti-apss_dl";
 
 		qcom,extended_cti;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"dynamic_clk";
 	};
 
 	cti@10a05000 {
