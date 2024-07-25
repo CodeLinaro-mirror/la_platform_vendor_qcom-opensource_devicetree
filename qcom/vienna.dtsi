@@ -475,6 +475,7 @@
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
 #include "vienna-stub-regulators.dtsi"
+#include "msm-arm-smmu-vienna.dtsi"
 #include "vienna-qupv3.dtsi"
 
 &reserved_memory {
