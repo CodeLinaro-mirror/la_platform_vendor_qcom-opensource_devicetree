@@ -195,6 +195,7 @@
 	};
 };
 
+#include "vienna-dma-heaps.dtsi"
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
 
