@@ -535,6 +535,10 @@
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 1>;
 			};
+
+			apps_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
+			};
 		};
 	};
 
@@ -1005,86 +1009,156 @@
 
 	clk_virt: interconnect@0 {
 		compatible = "qcom,canoe-clk_virt";
-		qcom,stub;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,disabled-voters = "pcie_crm_hw_0";
 	};
 
 	mc_virt: interconnect@1 {
 		compatible = "qcom,canoe-mc_virt";
-		qcom,stub;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,disabled-voters = "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "pcie_crm_hw_0",
+				       "disp_crm_sw_0",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5";
 	};
 
 	config_noc: interconnect@1600000 {
 		compatible = "qcom,canoe-cnoc_cfg";
-		qcom,stub;
+		reg = <0x0 0x1600000 0x0 0x6200>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	cnoc_main: interconnect@1500000 {
 		compatible = "qcom,canoe-cnoc_main";
-		qcom,stub;
+		reg = <0x0 0x1500000 0x0 0x1A080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	system_noc: interconnect@1680000 {
 		compatible = "qcom,canoe-system_noc";
-		qcom,stub;
+		reg = <0x0 0x1680000 0x0 0x1F080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	pcie_noc: interconnect@16c0000 {
 		compatible = "qcom,canoe-pcie_anoc";
-		qcom,stub;
+		reg = <0x0 0x16c0000 0x0 0x11400>;
 		#interconnect-cells = <1>;
+		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,disabled-voters = "pcie_crm_hw_0";
+		qcom,skip-qos;
 	};
 
 	aggre1_noc: interconnect@16e0000 {
 		compatible = "qcom,canoe-aggre1_noc";
-		qcom,stub;
+		reg = <0x0 0x16e0000 0x0 0x16400>;
 		#interconnect-cells = <1>;
+		clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+			 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,skip-qos;
 	};
 
 	aggre2_noc: interconnect@1700000 {
 		compatible = "qcom,canoe-aggre2_noc";
-		qcom,stub;
+		reg = <0x0 0x1700000 0x0 0x22400>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		clocks = <&rpmhcc RPMH_IPA_CLK>;
+		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1780000 {
 		compatible = "qcom,canoe-mmss_noc";
-		qcom,stub;
+		reg = <0x0 0x1780000 0x0 0x5b800>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,disabled-voters = "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "disp_crm_sw_0",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5";
+		qcom,skip-qos;
 	};
 
 	gem_noc: interconnect@31100000 {
 		compatible = "qcom,canoe-gem_noc";
-		qcom,stub;
+		reg = <0x0 0x31100000 0x0 0x153080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,disabled-voters = "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "pcie_crm_hw_0",
+				       "disp_crm_sw_0",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5";
+		qcom,skip-qos;
 	};
 
 	nsp_noc: interconnect@260c0000 {
 		compatible = "qcom,canoe-nsp_noc";
-		qcom,stub;
+		reg = <0x0 0x260c0000 0x0 0x21280>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@7f40000 {
 		compatible = "qcom,canoe-lpass_ag_noc";
-		qcom,stub;
+		reg = <0x0 0x7f40000 0x0 0xe080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	lpass_lpiaon_noc: interconnect@7400000 {
 		compatible = "qcom,canoe-lpass_lpiaon_noc";
-		qcom,stub;
+		reg = <0x0 0x7400000 0x0 0x19080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	lpass_lpicx_noc: interconnect@7420000 {
 		compatible = "qcom,canoe-lpass_lpicx_noc";
-		qcom,stub;
+		reg = <0x0 0x7420000 0x0 0x44080>;
 		#interconnect-cells = <1>;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
 	ufsphy_mem: ufsphy_mem@1d80000 {
