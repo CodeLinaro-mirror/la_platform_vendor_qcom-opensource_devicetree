@@ -107,3 +107,26 @@
 	qcom,disable-lpm;
 	status = "ok";
 };
+
+&sdhc_2 {
+	vdd-supply = <&L9B>;
+	qcom,vdd-voltage-level = <2950000 2960000>;
+	qcom,vdd-current-level = <33 977000>;
+
+	vdd-io-supply = <&L8B>;
+	qcom,vdd-io-voltage-level = <1800000 2960000>;
+	qcom,vdd-io-current-level = <0 22000>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc2_on>;
+	pinctrl-1 = <&sdc2_off>;
+
+	cd-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
+
+	resets = <&gcc GCC_SDCC2_BCR>;
+	reset-names = "core_reset";
+
+	qcom,uses_level_shifter;
+
+	status = "ok";
+};
