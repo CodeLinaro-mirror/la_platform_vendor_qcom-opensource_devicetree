@@ -8,5 +8,6 @@
 &soc {
 	qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		depends-on-supply = <&qcom_scm>;
 	};
 };
