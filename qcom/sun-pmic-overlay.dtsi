@@ -5,14 +5,16 @@
 
 #include <dt-bindings/gpio/gpio.h>
 
-#include "pm8010.dtsi"
-#include "pm8550.dtsi"
-#include "pm8550ve.dtsi"
-#include "pm8550vs.dtsi"
-#include "pmd802x.dtsi"
-#include "pmih010x.dtsi"
-#include "pmk8550.dtsi"
-#include "pmr735d.dtsi"
+&spmi_bus {
+	#include "pm8010.dtsi"
+	#include "pm8550.dtsi"
+	#include "pmd802x.dtsi"
+	#include "pmk8550.dtsi"
+	#include "pmih010x.dtsi"
+	#include "pm8550ve.dtsi"
+	#include "pm8550vs.dtsi"
+	#include "pmr735d.dtsi"
+};
 
 &pm8550vs_f {
 	status = "ok";
@@ -31,26 +33,6 @@
 };
 
 &pm8550ve_i {
-	status = "ok";
-};
-
-&pm8550vs_f_temp_alarm {
-	status = "ok";
-};
-
-&pm8550vs_j_temp_alarm {
-	status = "ok";
-};
-
-&pm8550ve_d_temp_alarm {
-	status = "ok";
-};
-
-&pm8550ve_g_temp_alarm {
-	status = "ok";
-};
-
-&pm8550ve_i_temp_alarm {
 	status = "ok";
 };
 
