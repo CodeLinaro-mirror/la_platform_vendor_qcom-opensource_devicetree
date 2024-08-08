@@ -2124,7 +2124,9 @@
 		reg = <0x0 0x1de0000 0x0 0x20000>,
 			<0x0 0x1dc4000 0x0 0x22000>;
 		reg-names = "crypto-base","crypto-bam-base";
-		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 274 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "bam-irq", "core-irq";
 		qcom,bam-pipe-pair = <2>;
 		qcom,offload-ops-support;
 		qcom,use-key-index;

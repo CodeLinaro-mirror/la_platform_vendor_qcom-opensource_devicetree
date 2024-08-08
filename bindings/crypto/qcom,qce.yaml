@@ -51,7 +51,12 @@ properties:
     const: data_path
 
   interrupts:
-    maxItems: 1
+    maxItems: 2
+
+  interrupt-names:
+    items:
+      - const: bam-irq
+      - const: core-irq
 
   iommus:
     maxItems: 2
@@ -271,6 +276,7 @@ required:
   - reg
   - reg-names
   - interrupts
+  - interrupt-names
   - interconnects
   - interconnect-names
   - qcom_cedev_ns_cb
@@ -295,7 +301,9 @@ examples:
             reg = <0x1de0000 0x20000>,
                 <0x1dc4000 0x28000>;
             reg-names = "crypto-base","crypto-bam-base";
-            interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+            interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
+                         <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>;
+            interrupt-names = "bam-irq", "crypto-irq";
             qcom,bam-pipe-pair = <2>;
             qcom,offload-ops-support;
             qcom,bam-pipe-offload-cpb-hlos = <1>;
