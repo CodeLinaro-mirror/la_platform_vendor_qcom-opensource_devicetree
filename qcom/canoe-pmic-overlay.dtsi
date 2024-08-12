@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/gpio/gpio.h>
+
+&spmi0_bus {
+	#include "pmk8850.dtsi"
+	#include "pmh0101.dtsi"
+	#include "pmh0110.dtsi"
+};
+
+&spmi1_bus {
+	#include "pmd802x.dtsi"
+	#include "pmih010x.dtsi"
+	#include "pmh0104.dtsi"
+	#include "pmr735d.dtsi"
+	#include "pm8010.dtsi"
+};

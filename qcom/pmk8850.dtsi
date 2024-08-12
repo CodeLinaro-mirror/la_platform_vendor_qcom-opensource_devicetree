@@ -1,0 +1,90 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/spmi/spmi.h>
+
+pmk8850@0 {
+	compatible = "qcom,spmi-pmic";
+	reg = <0 SPMI_USID>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pmk8850_sdam_1: sdam@7000 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+	};
+
+	pmk8850_sdam_2: sdam@7100 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7100>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+	};
+
+	pmk8850_sdam_5: sdam@7400 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7400>;
+	};
+
+	pmk8850_sdam_6: sdam@7500 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7500>;
+	};
+
+	ecm_sdam_0: pmk8850_sdam_13: sdam@7c00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7c00>;
+	};
+
+	ecm_sdam_1: pmk8850_sdam_14: sdam@7d00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x7d00>;
+	};
+
+	pmk8850_sdam_21: sdam@8400 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x8400>;
+	};
+
+	pmk8850_sdam_22: sdam@8500 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x8500>;
+	};
+
+	ecm_sdam_2: pmk8850_sdam_41: sdam@9800 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x9800>;
+	};
+
+	pmk8850_sdam_43: sdam@9a00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0x9a00>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		ibb_spur_sqm_timer: sqm-timer@b8 {
+			reg = <0xb8 0x2>;
+		};
+	};
+
+	pmk8850_gpios: pinctrl@b800 {
+		compatible = "qcom,pmk8850-gpio";
+		reg = <0xb800>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+
+	pmk8850_rtc: rtc@6100 {
+		compatible = "qcom,pmk8350-rtc";
+		reg = <0x6100>, <0x6200>;
+		reg-names = "rtc", "alarm";
+		interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+	};
+};
