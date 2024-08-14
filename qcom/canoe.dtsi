@@ -2014,6 +2014,8 @@
 		memory-region = <&oem_vm_mem &vm_comm_mem>;
 		virtio-backends = <&oem_vm_virt_be0>;
 	};
+
+	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 };
 
 &reserved_memory {
