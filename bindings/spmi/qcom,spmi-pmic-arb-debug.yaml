@@ -21,7 +21,10 @@ description: |
 
 properties:
   compatible:
-    const: qcom,spmi-pmic-arb-debug
+    enum:
+      - qcom,spmi-pmic-arb-debug
+      - qcom,spmi-pmic-arb-debug-v7
+      - qcom,spmi-pmic-arb-debug-v8
 
   reg:
     minItems: 1
@@ -65,13 +68,48 @@ properties:
     minimum: 0
     maximum: 31
 
+patternProperties:
+  "^spmi@[0-3]$":
+    type: object
+    $ref: spmi.yaml
+    unevaluatedProperties: false
+    description:
+      It represents the SPMI PMIC arbiter debug bus instance.
+
+    properties:
+      reg:
+        maxItems: 1
+
+    required:
+      - reg
+
 required:
   - compatible
   - reg
   - reg-names
 
 allOf:
-  - $ref: spmi.yaml
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: qcom,spmi-pmic-arb-debug
+    then:
+      $ref: spmi.yaml
+      patternProperties:
+        "^spmi@[0-3]$": false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - qcom,spmi-pmic-arb-debug-v7
+              - qcom,spmi-pmic-arb-debug-v8
+    then:
+      patternProperties:
+        "^spmi@[0-3]$": true
+
   - if:
       required:
         - qcom,fuse-enable-bit
@@ -101,4 +139,27 @@ examples:
       qcom,fuse-disable-bit = <12>;
       #address-cells = <2>;
       #size-cells = <0>;
+    };
+
+    pmic-arb-debug@11314000 {
+      compatible = "qcom,spmi-pmic-arb-debug-v8";
+      reg = <0x11314000 0x64>, <0x221c8780 4>;
+      reg-names = "core", "fuse";
+      clocks = <&aoss_qmp>;
+      clock-names = "core_clk";
+      qcom,fuse-enable-bit = <14>;
+      #address-cells = <1>;
+      #size-cells = <0>;
+
+      spmi@0 {
+        reg = <0>;
+        #address-cells = <2>;
+        #size-cells = <0>;
+      };
+
+      spmi@1 {
+        reg = <1>;
+        #address-cells = <2>;
+        #size-cells = <0>;
+      };
     };
