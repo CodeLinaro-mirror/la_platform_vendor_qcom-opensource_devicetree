@@ -11,8 +11,8 @@
 		compatible = "qcom,qsmmu-v500", "qcom,adreno-smmu";
 		reg = <0x0 0x3da0000 0x0 0x40000>;
 		#iommu-cells = <2>;
-		#size-cells = <1>;
-		#address-cells = <1>;
+		#size-cells = <2>;
+		#address-cells = <2>;
 		#global-interrupts = <1>;
 		ranges;
 		dma-coherent;
@@ -47,7 +47,7 @@
 
 		gpu_qtb: gpu_qtb@3de8000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x3de8000 0x1000>;
+			reg = <0x0 0x3de8000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <49>;
 			qcom,num-qtb-ports = <2>;
