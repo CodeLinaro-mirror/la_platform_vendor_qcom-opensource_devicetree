@@ -5,6 +5,7 @@
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Vienna";
@@ -236,6 +237,7 @@
 #include "vienna-dma-heaps.dtsi"
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
+#include "vienna-stub-regulators.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
