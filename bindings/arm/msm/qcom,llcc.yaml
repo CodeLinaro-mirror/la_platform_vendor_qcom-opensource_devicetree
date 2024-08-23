@@ -37,6 +37,7 @@ properties:
       - qcom,x1e80100-llcc
       - qcom,canoe-llcc
       - qcom,vienna-llcc
+      - qcom,sdmshrike-llcc
 
   reg:
     minItems: 2
