@@ -9,7 +9,9 @@
 /delete-node/ &apps_smmu;
 /delete-node/ &tcsr_mutex;
 #include "msm-arm-smmu-sdxkova.dtsi"
-/{
+#include "sdxkova-dma-heaps.dtsi"
+
+/ {
 	qcom_tzlog: tz-log@14680720 {
 		compatible = "qcom,tz-log";
 		reg = <0x0 0x14680720 0x0 0x3000>;
