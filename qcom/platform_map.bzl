@@ -19,6 +19,15 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sdxkova.512": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "sdxkova-idp-512mb.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
