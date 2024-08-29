@@ -36,6 +36,7 @@ properties:
       - qcom,sun-llcc
       - qcom,x1e80100-llcc
       - qcom,canoe-llcc
+      - qcom,vienna-llcc
 
   reg:
     minItems: 2
