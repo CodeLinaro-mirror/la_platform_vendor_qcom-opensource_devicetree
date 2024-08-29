@@ -1,0 +1,70 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/spmi/spmi.h>
+
+pmh0110_d: pmh0110@3 {
+	compatible = "qcom,spmi-pmic";
+	reg = <3 SPMI_USID>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pmh0110_d_gpios: pinctrl@8800 {
+		compatible = "qcom,pmh0110-gpio";
+		reg = <0x8800>;
+		gpio-controller;
+		#gpios-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+};
+
+pmh0110_f: pmh0110@5 {
+	compatible = "qcom,spmi-pmic";
+	reg = <5 SPMI_USID>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pmh0110_f_gpios: pinctrl@8800 {
+		compatible = "qcom,pmh0110-gpio";
+		reg = <0x8800>;
+		gpio-controller;
+		#gpios-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+};
+
+pmh0110_g: pmh0110@6 {
+	compatible = "qcom,spmi-pmic";
+	reg = <6 SPMI_USID>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pmh0110_g_gpios: pinctrl@8800 {
+		compatible = "qcom,pmh0110-gpio";
+		reg = <0x8800>;
+		gpio-controller;
+		#gpios-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+};
+
+pmh0110_i: pmh0110@8 {
+	compatible = "qcom,spmi-pmic";
+	reg = <8 SPMI_USID>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pmh0110_i_gpios: pinctrl@8800 {
+		compatible = "qcom,pmh0110-gpio";
+		reg = <0x8800>;
+		gpio-controller;
+		#gpios-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+};
