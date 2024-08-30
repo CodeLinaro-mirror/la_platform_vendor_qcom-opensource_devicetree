@@ -195,4 +195,31 @@ properties:
               - qcom,rumi
           - const: qcom,vienna
 
+      - description: Qualcomm Technologies, Inc. sa8155
+        items:
+          - enum:
+              - qcom,sa8155-adp-star
+              - qcom,adp-star
+              - qcom,sa8155-v2-adp-air
+              - qcom,adp-air
+          - const: qcom,sa8155
+
+      - description: Qualcomm Technologies, Inc. sa8155p
+        items:
+          - enum:
+              - qcom,sa8155p-adp-star
+              - qcom,adp-star
+              - qcom,sa8155p-v2-adp-air
+              - qcom,adp-air
+          - const: qcom,sa8155p
+
+      - description: Qualcomm Technologies, Inc. sa8195p
+        items:
+          - enum:
+              - qcom,sa8195p-adp-star
+              - qcom,adp-star
+              - qcom,sa8195p-adp-air
+              - qcom,adp-air
+          - const: qcom,sa8195p
+
 additionalProperties: true
