@@ -71,6 +71,7 @@ properties:
       - qcom,ravelin-wpss-pas
       - qcom,monaco-modem-pas
       - qcom,monaco-adsp-pas
+      - qcom,sdmshrike-adsp-pas
 
   reg:
     maxItems: 1
