@@ -772,6 +772,7 @@
 		clock-output-names = "cambistmclkcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	camcc_crm: syscon@954a600 {
@@ -784,6 +785,7 @@
 		clock-output-names = "camcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	evacc: clock-controller@24f0000 {
@@ -791,6 +793,7 @@
 		clock-output-names = "evacc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 
@@ -823,6 +826,7 @@
 		clock-output-names = "gpucc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	tcsrcc: clock-controller@1fd5044 {
@@ -830,6 +834,7 @@
 		clock-output-names = "tcsrcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	videocc: clock-controller@20f0000 {
@@ -837,6 +842,7 @@
 		clock-output-names = "videocc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	apsscc: syscon@17c00000 {
