@@ -18,3 +18,8 @@
 	#include "pmr735d.dtsi"
 	#include "pm8010.dtsi"
 };
+
+&led_controller {
+	nvmem = <&pmk8850_sdam_21>, <&pmk8850_sdam_22>;
+	nvmem-names = "lpg_chan_sdam", "lut_sdam";
+};
