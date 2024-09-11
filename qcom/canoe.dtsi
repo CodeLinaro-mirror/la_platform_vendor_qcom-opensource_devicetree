@@ -871,6 +871,7 @@
 		clock-output-names = "cambistmclkcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	camcc_crm: syscon@954a600 {
@@ -883,15 +884,22 @@
 		clock-output-names = "camcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	evacc: clock-controller@24f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "evacc_clocks";
+		compatible = "qcom,canoe-evacc", "syscon";
+		reg = <0x0 0x24f0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "bi_tcxo";
+
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
-
 
 	gcc: clock-controller@100000 {
 		compatible = "qcom,canoe-gcc", "syscon";
@@ -922,6 +930,7 @@
 		clock-output-names = "gpucc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	tcsrcc: clock-controller@1fd5044 {
@@ -929,6 +938,7 @@
 		clock-output-names = "tcsrcc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	videocc: clock-controller@20f0000 {
@@ -936,6 +946,7 @@
 		clock-output-names = "videocc_clocks";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	apsscc: syscon@17c00000 {
@@ -989,20 +1000,6 @@
 	cam_cc_titan_top_gdsc: qcom,gdsc@958e334 {
 		compatible = "qcom,stub-regulator";
 		regulator-name = "cam_cc_titan_top_gdsc";
-		qcom,support-cfg-gdscr;
-	};
-
-	/* EVA_CC GDSCs */
-	eva_cc_mvs0_gdsc: qcom,gdsc@24f8068 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	eva_cc_mvs0c_gdsc: qcom,gdsc@24f8034 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0c_gdsc";
 		qcom,support-cfg-gdscr;
 	};
 
