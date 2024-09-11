@@ -734,8 +734,8 @@
 
 	qcom,msm-imem@14680000 {
 		compatible = "qcom,msm-imem";
-		reg = <0x14680000 0x1000>;
-		ranges = <0x0 0x14680000 0x1000>;
+		reg = <0x0 0x14680000 0x0 0x1000>;
+		ranges = <0x0 0x0 0x14680000 0x1000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 
