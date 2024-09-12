@@ -24,6 +24,7 @@ description: |
     dt-bindings/clock/qcom,gpucc-pineapple.h
     dt-bindings/clock/qcom,gpucc-sun.h
     dt-bindings/clock/qcom,gpucc-parrot.h
+    dt-bindings/clock/qcom,gpucc-canoe.h
 
 properties:
   compatible:
@@ -39,6 +40,7 @@ properties:
       - qcom,pineapple-gpucc
       - qcom,sun-gpucc
       - qcom,parrot-gpucc
+      - qcom,canoe-gpucc
 
   clocks:
     items:
