@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 title: Qualcomm Technologies, Inc. Graphics Clock & Reset Controller
 
 maintainers:
-  - Taniya Das <tdas@codeaurora.org>
+  - Taniya Das <quic_tdas@quicinc.com>
 
 description: |
   Graphics clock control module which supports the clocks, resets and
@@ -35,6 +35,7 @@ properties:
       - qcom,sc8280xp-gpucc
       - qcom,sm6350-gpucc
       - qcom,sm8150-gpucc
+      - qcom,sa8155-gpucc
       - qcom,sm8250-gpucc
       - qcom,pineapple-gpucc
       - qcom,sun-gpucc
