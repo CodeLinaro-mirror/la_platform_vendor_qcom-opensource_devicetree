@@ -4,11 +4,11 @@
 $id: http://devicetree.org/schemas/clock/qcom,gcc-sm8150.yaml#
 $schema: http://devicetree.org/meta-schemas/core.yaml#
 
-title: Qualcomm Global Clock & Reset Controller Binding for SM8150
+title: Qualcomm Technologies, Inc. Global Clock & Reset Controller module for SM8150
 
 maintainers:
   - Stephen Boyd <sboyd@kernel.org>
-  - Taniya Das <tdas@codeaurora.org>
+  - Taniya Das <quic_tdas@quicinc.com>
 
 description: |
   Qualcomm global clock control module which supports the clocks, resets and
@@ -20,6 +20,7 @@ description: |
 properties:
   compatible:
     const: qcom,gcc-sm8150
+           qcom,sa8155-gcc
 
   clocks:
     items:
