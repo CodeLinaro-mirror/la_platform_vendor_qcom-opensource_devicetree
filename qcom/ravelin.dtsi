@@ -805,6 +805,11 @@
 		qcom,vmid = <3>;
 	};
 
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
+
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm";
@@ -1760,8 +1765,8 @@
 
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x007C4000 0x1000>, <0x007C5000 0x1000>,
-				<0x007C8000 0x8000>, <0x007D0000 0x9000>;
-		reg-names = "hc", "cqhci", "cqhci_ice", "cqhci_ice_hwkm";
+				<0x007C8000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 		iommus = <&apps_smmu 0x560 0x0>;
 		qcom,iommu-dma = "fastmap";
 
@@ -1772,6 +1777,11 @@
 				<GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "hc_irq", "pwr_irq";
 
+		boot_device_type = <0x1>;
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+
+		qcom,ice-use-hwkm;
 		bus-width = <8>;
 		non-removable;
 		supports-cqe;
@@ -2449,10 +2459,18 @@
 		shared-buffers = <&trust_ui_vm_vblk0_ring &trust_ui_vm_swiotlb>;
 	};
 
-	qcom,virtio_backend@0 {
-		compatible = "qcom,virtio_backend";
+	trust_ui_vm_virt_be0: trust_ui_vm_virt_be0@11 {
 		qcom,vm = <&trust_ui_vm>;
 		qcom,label = <0x11>;
+	};
+
+	gh-secure-vm-loader@0 {
+		compatible = "qcom,gh-secure-vm-loader";
+		qcom,pas-id = <28>;
+		qcom,vmid = <45>;
+		qcom,firmware-name = "trustedvm";
+		memory-region = <&trust_ui_vm_mem>;
+		virtio-backends = <&trust_ui_vm_virt_be0>;
 	};
 
 	vendor_hooks: qcom,cpu-vendor-hooks {
