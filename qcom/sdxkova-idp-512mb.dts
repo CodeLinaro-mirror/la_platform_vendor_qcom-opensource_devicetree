@@ -8,6 +8,7 @@
 #include "sdxkova.dtsi"
 #include "sdxkova-idp-mbb.dtsi"
 #include "sdxkova-idp-512mb.dtsi"
+#include "sdxkova-reserved-memory-512mb.dtsi"
 / {
 	model = "Qualcomm Technologies, Inc. SDXKOVA IDP MIN 512MB";
 	compatible = "qcom,sdxkova-idp",
