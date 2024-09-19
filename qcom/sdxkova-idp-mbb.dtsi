@@ -41,3 +41,14 @@
 	io-channels = <&pmk8550_vadc PM7550BA_ADC5_GEN3_DIE_TEMP>;
 	io-channel-names = "thermal";
 };
+
+&pm7550ba_eusb2_repeater {
+	vdd18-supply = <&pmx75_l5>;
+	vdd3-supply = <&pmx75_l10>;
+	status = "ok";
+};
+
+&eusb2_phy {
+	dummy-supply = <&pm7550ba_eusb2_repeater>;
+	usb-repeater = <&pm7550ba_eusb2_repeater>;
+};
