@@ -50,6 +50,33 @@
 	aliases {
 		serial0 = &qupv3_se7_2uart;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		hsuart0 = &qupv3_se14_4uart;
+		i2c0 = &qupv3_se0_i2c;
+		i2c1 = &qupv3_se1_i2c;
+		i2c2 = &qupv3_se2_i2c;
+		i2c3 = &qupv3_se3_i2c;
+		i2c4 = &qupv3_se4_i2c;
+		i2c5 = &qupv3_se5_i2c;
+		i2c6 = &qupv3_se6_i2c;
+		i2c8 = &qupv3_se8_i2c;
+		i2c9 = &qupv3_se9_i2c;
+		i2c10 = &qupv3_se10_i2c;
+		i2c11 = &qupv3_se11_i2c;
+		i2c12 = &qupv3_se12_i2c;
+		i2c13 = &qupv3_se13_i2c;
+		i2c15 = &qupv3_se15_i2c;
+		spi0 = &qupv3_se0_spi;
+		spi1 = &qupv3_se1_spi;
+		spi2 = &qupv3_se2_spi;
+		spi4 = &qupv3_se4_spi;
+		spi5 = &qupv3_se5_spi;
+		spi6 = &qupv3_se6_spi;
+		spi8 = &qupv3_se8_spi;
+		spi10 = &qupv3_se10_spi;
+		spi11 = &qupv3_se11_spi;
+		spi12 = &qupv3_se12_spi;
+		spi13 = &qupv3_se13_spi;
+		spi15 = &qupv3_se15_spi;
 	};
 
 	cpus {
@@ -365,6 +392,14 @@
 	#size-cells = <2>;
 	ranges;
 
+	cdsp_eva_mem: cdsp_eva_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x400000>;
+	};
+
 	/* global autoconfigured region for contiguous allocations */
 	system_cma: linux,cma {
 		compatible = "shared-dma-pool";
@@ -531,6 +566,20 @@
 		};
 	};
 
+	cache-controller@24800000 {
+		compatible = "qcom,tuna-llcc";
+		reg = <0x24800000 0x200000>, <0x25800000 0x200000>,
+			<0x24C00000 0x200000>, <0x25C00000 0x200000>,
+			<0x26800000 0x200000>, <0x26C00000 0x200000>;
+
+		reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
+				"llcc3_base", "llcc_broadcast_or_base",
+				"llcc_broadcast_and_base";
+
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+	};
+
 	apps_rsc: rsc@17a00000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
@@ -675,7 +724,7 @@
 
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,tuna-pdc", "qcom,pdc";
-		reg = <0xb220000 0x10000>, <0x17c000f0 0x60>;
+		reg = <0xb220000 0x10000>, <0x174000f0 0x64>;
 		qcom,pdc-ranges = <0 480 8>, <8 719 1>, <9 718 1>,
 				  <10 230 1>, <11 724 1>, <12 716 1>,
 				  <13 727 1>, <14 720 1>, <15 726 1>,
@@ -705,6 +754,35 @@
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
 		qcom,gpios-reserved = <54>;
+	};
+
+	slimbam: bamdma@6c04000 {
+		compatible = "qcom,bam-v1.7.0";
+		reg = <0x6c04000 0x20000>, <0x6c8f000 0x1000>;
+		reg-names = "bam", "bam_remote_mem";
+		interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
+		num-channels  = <31>;
+		#dma-cells = <1>;
+		qcom,controlled-remotely;
+		qcom,ee = <1>;
+		qcom,num-ees = <2>;
+	};
+
+	slim_msm: slim@6c40000 {
+		compatible = "qcom,slim-ngd-v1.5.0";
+		reg = <0x6c40000 0x2c000>, <0x6c8E000 0x1000>;
+		reg-names = "ctrl", "slimbus_remote_mem";
+		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
+		dmas = <&slimbam 3>, <&slimbam 4>;
+		dma-names = "rx", "tx";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "disabled";
+	};
+
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
 	};
 
 	tcsr_mutex_block: syscon@1f40000 {
@@ -763,6 +841,14 @@
 		priority = <0>;
 		mbox-desc-offset = <0x0>;
 		#mbox-cells = <1>;
+	};
+
+	qcom,tmecom-qmp-client {
+		compatible = "qcom,tmecom-qmp-client";
+		mboxes = <&qmp_tme 0>;
+		mbox-names = "tmecom";
+		label = "tmecom";
+		depends-on-supply = <&qmp_tme>;
 	};
 
 	qcom,smp2p-adsp {
@@ -1294,12 +1380,16 @@
 
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
-		reg = <0x1d84000 0x3000>;
-		reg-names = "ufs_mem";
+		reg = <0x1d84000 0x3000>,
+			<0x1d88000 0x18000>;
+		reg-names = "ufs_mem", "ice";
+
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
+
+		qcom,ice-use-hwkm;
 
 		lanes-per-direction = <2>;
 		clock-names =
@@ -1410,6 +1500,11 @@
 	rng: rng@10c3000 {
 		compatible = "qcom,trng";
 		reg = <0x10c3000 0x1000>;
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
@@ -1801,6 +1896,7 @@
 #include "tuna-qupv3.dtsi"
 #include "msm-rdbg.dtsi"
 #include "tuna-pmic-overlay.dtsi"
+#include "tuna-walt.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
