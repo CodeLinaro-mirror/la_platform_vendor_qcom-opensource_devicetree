@@ -23,6 +23,7 @@
 		interrupt-names = "pwr_event_irq", "dp_hs_phy_irq",
 				"dm_hs_phy_irq", "ss_phy_irq";
 		qcom,use-pdc-interrupts;
+		qcom,use-eusb2-phy;
 
 		USB3_GDSC-supply = <&gcc_usb30_gdsc>;
 		clocks = <&gcc GCC_USB30_MASTER_CLK>,
@@ -52,7 +53,7 @@
 			dma-coherent;
 
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-			usb-phy = <&usb_nop_phy>, <&usb_qmp_phy>;
+			usb-phy = <&eusb2_phy>, <&usb_qmp_phy>;
 			snps,has-lpm-erratum;
 			snps,is-utmi-l1-suspend;
 			snps,dis-u1-entry-quirk;
@@ -72,6 +73,31 @@
 	dwc3_mem_region: dwc3_mem_region {
 		iommu-addresses = <&dwc3 0x0 0x0 0x0 0x90000000>,
 					<&dwc3 0x0 0xf0000000 0xffffffff 0x10000000>;
+	};
+
+	/* USB port related High Speed PHY */
+	eusb2_phy: hsphy@ff4000 {
+		compatible = "qcom,usb-snps-eusb2-phy";
+		reg = <0x0 0xff4000 0x0 0x154>,
+			<0x0 0xff2000 0x0 0x4>,
+			<0x0 0xc276000 0x0 0x4>;
+		reg-names = "eusb2_phy_base",
+			"eud_enable_reg",
+			"eud_detect_reg";
+
+		vdd-supply = <&L4B>;
+		qcom,vdd-voltage-level = <0 880000 880000>;
+		vdda12-supply = <&L1B>;
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			<&gcc GCC_USB2_CLKREF_EN>,
+			<&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>;
+		clock-names = "ref_clk_src", "ref_clk", "cfg_ahb_clk";
+
+		resets = <&gcc GCC_QUSB2PHY_BCR>;
+		reset-names = "phy_reset";
+		qcom,param-override-seq =
+			<0x00 0x58>; /* eUSB2 HPG version 1.0.2 update */
 	};
 
 	/* USB port related QMP USB UNI PHY */
