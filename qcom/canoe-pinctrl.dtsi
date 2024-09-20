@@ -3636,5 +3636,12 @@
 			};
 		};
 	};
+
+	key_vol_up_default: key-vol-up-default-state {
+		pins = "gpio101";
+		function = "gpio";
+		input-enable;
+		bias-pull-up;
+	};
 };
 
