@@ -4,3 +4,8 @@
  */
 
 #include "sdxkova-pmic-overlay.dtsi"
+
+&pmx75_vbus_detect {
+	status = "ok";
+};
+
