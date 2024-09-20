@@ -14,10 +14,10 @@
 };
 
 &arch_timer {
-	clock-frequency = <500000>;
+	clock-frequency = <2000000>;
 };
 
 &memtimer {
-	clock-frequency = <500000>;
+	clock-frequency = <2000000>;
 };
 
