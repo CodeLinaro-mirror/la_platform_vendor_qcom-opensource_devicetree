@@ -91,6 +91,14 @@ pmk8850@0 {
 		};
 	};
 
+	pmk8850_sdam_71: sdam@b600 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xb600>;
+		usb_mode: usb-mode@50 {
+			reg = <0x50 0x1>;
+		};
+	};
+
 	pmk8850_gpios: pinctrl@b800 {
 		compatible = "qcom,pmk8850-gpio";
 		reg = <0xb800>;
