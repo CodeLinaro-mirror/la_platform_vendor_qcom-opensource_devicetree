@@ -1951,6 +1951,10 @@
 		clock-frequency = <32768>;
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	trust_ui_vm_vblk0_ring: trust_ui_vm_vblk0_ring {
 		size = <0x4000>;
 		gunyah-label = <0x11>;
