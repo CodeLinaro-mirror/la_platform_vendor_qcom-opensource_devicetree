@@ -15,7 +15,7 @@
 	interrupt-parent = <&vgic>;
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce";
+		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce root=/dev/ram rw init=/init";
 	};
 
 	cpus {
@@ -93,7 +93,7 @@
 		};
 
 		segments {
-			config_cpio = <2>;
+			ramdisk = <2>;
 		};
 
 		vcpus {

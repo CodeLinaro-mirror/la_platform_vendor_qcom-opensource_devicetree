@@ -8,6 +8,7 @@ kernel_dtstree(
             "qcom/Makefile",
             "qcom/**/*.dtsi",
             "qcom/**/*.dts",
+	    "qcom/**/*.dtso",
             "bindings/**/*",
         ],
         exclude = [
@@ -16,6 +17,6 @@ kernel_dtstree(
             "**/*.bazel",
             "**/*.bzl",
         ],
-    ),
+    ) + ["//common:kernel_aarch64_sources"],
     visibility = ["//visibility:public"],
 )
