@@ -181,7 +181,7 @@
 	};
 
 	firmware: firmware {
-		scm {
+		qcom_scm: qcom_scm {
 			compatible = "qcom,scm";
 		};
 	};
@@ -272,3 +272,4 @@
 };
 
 #include "msm-arm-smmu-canoe-vm.dtsi"
+#include "canoe-vm-dma-heaps.dtsi"
