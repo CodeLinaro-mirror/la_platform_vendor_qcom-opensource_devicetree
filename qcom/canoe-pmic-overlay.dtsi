@@ -36,6 +36,41 @@
 	nvmem-names = "lpg_chan_sdam", "lut_sdam";
 };
 
+&pmh0101_tz {
+	io-channels = <&pmk8850_vadc PMH0101_ADC5_GEN4_DIE_TEMP(0, PMH0101_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmh0110_d_tz {
+	io-channels = <&pmk8850_vadc PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_D_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmh0110_f_tz {
+	io-channels = <&pmk8850_vadc PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_F_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmh0110_g_tz {
+	io-channels = <&pmk8850_vadc PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_G_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmh0110_i_tz {
+	io-channels = <&pmk8850_vadc PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_I_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmih010x_tz {
+	io-channels = <&pmk8850_vadc PMIH010X_ADC5_GEN4_DIE_TEMP(1, PMIH010X_SID)>;
+	io-channel-names = "thermal";
+};
+
+&pmih010x_lite_tz {
+	io-channels = <&pmk8850_vadc PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE(1, PMIH010X_SID)>;
+	io-channel-names = "thermal";
+};
+
 &pmk8850_vadc {
 	/* PMK8850 ADC Channels */
 	pmk8850_offset_ref {
