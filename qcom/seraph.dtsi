@@ -7,6 +7,7 @@
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/spmi/spmi.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Seraph";
@@ -400,3 +401,4 @@
 
 #include "seraph-reserved-memory.dtsi"
 #include "msm-arm-smmu-seraph.dtsi"
+#include "seraph-regulators.dtsi"
