@@ -60,6 +60,18 @@ _platform_map = {
             {"name": "canoe-rcm-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
+        "binary_compatible_with": ["alor"],
+    },
+    "alor": {
+        "dtb_list": [
+            {"name": "alor.dtb"},
+        ],
+        "dtbo_list": [
+            {
+                "name": "alor-rumi-overlay.dtbo",
+                "apq": False,
+            },
+        ],
     },
     "canoe-tuivm": {
         "dtb_list": [
