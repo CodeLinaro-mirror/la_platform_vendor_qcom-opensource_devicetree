@@ -154,6 +154,18 @@
 		spi6 = &qupv3_se6_spi;
 		spi7 = &qupv3_se7_spi;
 	};
+
+	eud: qcom,msm-eud@ff0000 {
+		compatible = "qcom,msm-eud-sdxpinn";
+		interrupt-names = "eud_irq";
+		interrupt-parent = <&pdc>;
+		interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x0 0xff0000 0x0 0x2000>,
+			<0x0 0xff2000 0x0 0x1000>;
+		reg-names = "eud_base", "eud_mode_mgr2";
+		qcom,secure-eud-en;
+		status = "ok";
+	};
 };
 
 &clk_virt {
