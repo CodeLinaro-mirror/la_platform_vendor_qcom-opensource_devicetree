@@ -8,6 +8,7 @@ title: Qualcomm Technologies, Inc. RPMh Clocks
 
 maintainers:
   - Taniya Das <tdas@codeaurora.org>
+  - Vivek Aknurwar <quic_viveka@quicinc.com>
 
 description: |
   Resource Power Manager Hardened (RPMh) manages shared resources on
@@ -33,6 +34,7 @@ properties:
       - qcom,pineapple-rpmh-clk
       - qcom,sun-rpmh-clk
       - qcom,parrot-rpmh-clk
+      - qcom,canoe-rpmh-clk
 
   clocks:
     maxItems: 1
