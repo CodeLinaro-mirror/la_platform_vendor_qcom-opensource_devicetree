@@ -141,6 +141,29 @@
 				};
 			};
 
+			test-dbl-tuivm {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/test-dbl-tuivm";
+				qcom,label = <0x4>;
+				peer-default;
+			};
+
+			test-dbl-tuivm-source {
+				vdevice-type = "doorbell-source";
+				generate = "/hypervisor/test-dbl-tuivm-source";
+				qcom,label = <0x4>;
+				peer-default;
+			};
+
+			test-msgq-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-msgq-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x4>;
+				peer-default;
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
@@ -225,5 +248,16 @@
 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
+	};
+
+	qcom,test-dbl-tuivm {
+		compatible = "qcom,gh-dbl";
+		qcom,label = <0x4>;
+	};
+
+	qcom,test-msgq-tuivm {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <0x4>;
+		affinity = <0>;
 	};
 };
