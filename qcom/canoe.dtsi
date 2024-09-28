@@ -38,7 +38,7 @@
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
-	aliases {
+	aliases: aliases {
 		serial0 = &qupv3_se7_2uart;
 		hsuart0 = &qupv3_se18_4uart;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
