@@ -46,9 +46,12 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "canoe-atp-overlay.dtbo"},
+            {"name": "canoe-cdp-kiwi-overlay.dtbo"},
             {"name": "canoe-cdp-overlay.dtbo"},
+            {"name": "canoe-mtp-kiwi-overlay.dtbo"},
             {"name": "canoe-mtp-overlay.dtbo"},
             {"name": "canoe-qrd-overlay.dtbo"},
+            {"name": "canoe-rcm-kiwi-overlay.dtbo"},
             {"name": "canoe-rcm-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
