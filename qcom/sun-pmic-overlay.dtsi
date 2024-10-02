@@ -5,6 +5,8 @@
 
 #include <dt-bindings/gpio/gpio.h>
 
+#define PMIH010X_SID	7
+
 &spmi_bus {
 	#include "pm8010.dtsi"
 	#include "pm8550.dtsi"
@@ -114,12 +116,12 @@
 };
 
 &pmih010x_tz {
-	io-channels = <&pmk8550_vadc PMIH010X_ADC5_GEN4_DIE_TEMP>;
+	io-channels = <&pmk8550_vadc PMIH010X_ADC5_GEN4_DIE_TEMP(0, PMIH010X_SID)>;
 	io-channel-names = "thermal";
 };
 
 &pmih010x_lite_tz {
-	io-channels = <&pmk8550_vadc PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE>;
+	io-channels = <&pmk8550_vadc PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE(0, PMIH010X_SID)>;
 	io-channel-names = "thermal";
 };
 
@@ -213,7 +215,7 @@
 	};
 
 	pmih010x_usb_therm {
-		reg = <PMIH010X_ADC5_GEN4_AMUX_THM4_USB_THERM_100K_PU>;
+		reg = <PMIH010X_ADC5_GEN4_AMUX_THM4_USB_THERM_100K_PU(0, PMIH010X_SID)>;
 		label = "pmih010x_usb_therm";
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
@@ -223,7 +225,7 @@
 	};
 
 	pmih010x_wls_therm {
-		reg = <PMIH010X_ADC5_GEN4_AMUX4_GPIO12_100K_PU>;
+		reg = <PMIH010X_ADC5_GEN4_AMUX4_GPIO12_100K_PU(0, PMIH010X_SID)>;
 		label = "pmih010x_wls_therm";
 		qcom,ratiometric;
 		qcom,pre-scaling = <1 1>;
@@ -232,60 +234,60 @@
 	};
 
 	pmih010x_offset_ref {
-		reg = <PMIH010X_ADC5_GEN4_OFFSET_REF>;
+		reg = <PMIH010X_ADC5_GEN4_OFFSET_REF(0, PMIH010X_SID)>;
 		label = "pmih010x_offset_ref";
 		qcom,pre-scaling = <1 1>;
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_vref_1p25 {
-		reg = <PMIH010X_ADC5_GEN4_1P25VREF>;
+		reg = <PMIH010X_ADC5_GEN4_1P25VREF(0, PMIH010X_SID)>;
 		label = "pmih010x_vref_1p25";
 		qcom,pre-scaling = <1 1>;
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_die_temp {
-		reg = <PMIH010X_ADC5_GEN4_DIE_TEMP>;
+		reg = <PMIH010X_ADC5_GEN4_DIE_TEMP(0, PMIH010X_SID)>;
 		label = "pmih010x_die_temp";
 		qcom,pre-scaling = <1 1>;
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_vph_pwr {
-		reg = <PMIH010X_ADC5_GEN4_VPH_PWR>;
+		reg = <PMIH010X_ADC5_GEN4_VPH_PWR(0, PMIH010X_SID)>;
 		label = "pmih010x_vph_pwr";
 		qcom,pre-scaling = <1 3>;
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_vbat_sns_qbg {
-		reg = <PMIH010X_ADC5_GEN4_VBAT_SNS_QBG>;
+		reg = <PMIH010X_ADC5_GEN4_VBAT_SNS_QBG(0, PMIH010X_SID)>;
 		label = "pmih010x_vbat_sns_qbg";
 		qcom,pre-scaling = <1 3>;
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_iin {
-		reg = <PMIH010X_ADC5_GEN4_IIN>;
+		reg = <PMIH010X_ADC5_GEN4_IIN(0, PMIH010X_SID)>;
 		label = "pmih010x_iin";
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_ichg_fb {
-		reg = <PMIH010X_ADC5_GEN4_ICHG_FB>;
+		reg = <PMIH010X_ADC5_GEN4_ICHG_FB(0, PMIH010X_SID)>;
 		label = "pmih010x_ichg_fb";
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_chg_temp {
-		reg = <PMIH010X_ADC5_GEN4_CHG_TEMP>;
+		reg = <PMIH010X_ADC5_GEN4_CHG_TEMP(0, PMIH010X_SID)>;
 		label = "pmih010x_chg_temp";
 		qcom,adc5-gen4;
 	};
 
 	pmih010x_lite_die_temp {
-		reg = <PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE>;
+		reg = <PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE(0, PMIH010X_SID)>;
 		label = "pmih010x_lite_die_temp";
 		qcom,pre-scaling = <1 1>;
 		qcom,adc5-gen4;
@@ -495,7 +497,8 @@
 	sys-therm-8 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-sensors = <&pmk8550_vadc PMIH010X_ADC5_GEN4_AMUX4_GPIO12_100K_PU>;
+		thermal-sensors = <&pmk8550_vadc
+				   PMIH010X_ADC5_GEN4_AMUX4_GPIO12_100K_PU(0, PMIH010X_SID)>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -514,7 +517,8 @@
 	sys-therm-11 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-sensors = <&pmk8550_vadc PMIH010X_ADC5_GEN4_AMUX_THM4_USB_THERM_100K_PU>;
+		thermal-sensors = <&pmk8550_vadc
+				   PMIH010X_ADC5_GEN4_AMUX_THM4_USB_THERM_100K_PU(0, PMIH010X_SID)>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
