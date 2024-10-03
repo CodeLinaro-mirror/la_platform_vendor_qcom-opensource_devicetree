@@ -26,6 +26,7 @@ properties:
           - qcom,spmi-vadc
           - qcom,spmi-adc5
           - qcom,spmi-adc5-gen3
+          - qcom,spmi-adc5-gen4
           - qcom,spmi-adc5-lite
           - qcom,spmi-adc-rev2
           - qcom,spmi-adc7
@@ -40,14 +41,14 @@ properties:
       - For compatible property "qcom,spmi-adc7-sw-calib", two registers are required.
         First register is the VADC peripheral base address and the second is the
         ADC common peripheral base addess.
-      - For compatible property "qcom,spmi-adc5-gen3", each reg corresponds
-        to the SDAM peripheral base address that is being used.
+      - For compatible property "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4", each reg
+        corresponds to the SDAM peripheral base address that is being used.
 
   qcom,debug-base:
     $ref: /schemas/types.yaml#/definitions/uint32
     description: |
       Debug ADC peripheral base address in the SPMI PMIC register map. Defined for
-      compatible "qcom,spmi-adc5-gen3".
+      compatible "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4".
 
   '#address-cells':
     const: 1
@@ -61,22 +62,23 @@ properties:
   '#thermal-sensor-cells':
     const: 1
     description: |
-      For compatible property "qcom,spmi-adc5-gen3", property is required for ADC_TM device.
+      For compatible property "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4", property is
+      required for ADC_TM device.
 
   interrupts:
     minItems: 1
     maxItems: 2
     description: |
       End of conversion interrupt.
-      - For compatible property "qcom,spmi-adc5-gen3", interrupts are defined
-        for each SDAM being used.
+      - For compatible property "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4", interrupts
+        are defined for each SDAM being used.
 
   interrupt-names:
     minItems: 1
     maxItems: 2
     description: |
-      For compatible property "qcom,spmi-adc5-gen3", names should be defined
-      as "adc-sdam<N>" where <N> represents the SDAM index.
+      For compatible property "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4", names should
+      be defined as "adc-sdam<N>" where <N> represents the SDAM index.
 
 required:
   - compatible
@@ -193,14 +195,14 @@ patternProperties:
         description: |
             The index of the VADC scale function used to convert raw ADC code to
             physical scaled units for the channel. Defined for compatibles
-            "qcom,spmi-adc5", "qcom,spmi-adc7" and "qcom,spmi-adc5-gen3".
+            "qcom,spmi-adc5", "qcom,spmi-adc7", "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4".
             See include/dt-bindings/iio/qcom,spmi-vadc.h for values.
 
       qcom,adc-tm-type:
         $ref: /schemas/types.yaml#/definitions/uint32
         description: |
             Type of ADC_TM usage defined for a given channel. Defined for compatible
-            "qcom,spmi-adc5-gen3".
+            "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4".
               0 - not used for ADC_TM
               1 - connected to thermistor; supports temperature threshold violation detection
                   and temperature reading
@@ -213,8 +215,8 @@ patternProperties:
         $ref: /schemas/types.yaml#/definitions/uint32
         description: |
             Type of reverse scaling function used for the ADC_TM channels. Defined for
-            compatible "qcom,spmi-adc5-gen3" and valid only for the case of
-            non-thermal ADC_TM client.
+            compatible "qcom,spmi-adc5-gen3" and "qcom,spmi-adc5-gen4" and valid only
+            for the case of non-thermal ADC_TM client.
         const: 0
 
       qcom,adc5-gen4:
@@ -365,6 +367,44 @@ allOf:
               default: 1
 
             qcom,no-cal: false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: qcom,spmi-adc5-gen4
+
+    then:
+      properties:
+        reg:
+          minItems: 2
+        interrupts:
+          minItems: 2
+        interrupt-names:
+          items:
+            - const: adc-sdam0
+            - const: adc-sdam1
+      required:
+        - interrupts
+        - interrupt-names
+      patternProperties:
+        "^channel@[0-9a-f]+$":
+          properties:
+            qcom,decimation:
+              enum: [ 85, 340, 1360 ]
+              default: 340
+
+            qcom,hw-settle-time:
+              enum: [ 15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000,
+                      8000, 16000, 32000, 64000, 128000 ]
+              default: 15
+
+            qcom,avg-samples:
+              enum: [ 1, 2, 4, 8, 16 ]
+              default: 1
+
+            qcom,no-cal: false
+            qcom,adc5-gen4: false
 
   - if:
       properties:
