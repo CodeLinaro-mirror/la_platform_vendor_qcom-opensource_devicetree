@@ -1386,6 +1386,10 @@
 		reg = <0x0 0x1fc0000 0x0 0x30000>;
 	};
 
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+	};
+
 	qcom,smp2p-modem {
 		compatible = "qcom,smp2p";
 		qcom,smem = <435>, <428>;
