@@ -28,10 +28,6 @@
 	qcom,rumi_platform;
 };
 
-&cam_rsc {
-	status = "disabled";
-};
-
 &disp_crm {
 	status = "disabled";
 };

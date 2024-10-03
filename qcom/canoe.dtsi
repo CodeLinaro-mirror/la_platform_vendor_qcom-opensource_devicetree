@@ -698,6 +698,11 @@
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
 			};
+
+			cam_bcm_voter0: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
+			};
 		};
 
 		cam_rsc_drv1: drv@1 {
@@ -719,6 +724,11 @@
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
 			};
+
+			cam_bcm_voter1: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
+			};
 		};
 
 		cam_rsc_drv2: drv@2 {
@@ -739,6 +749,11 @@
 						  <SLEEP_TCS     1>,
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
+			};
+
+			cam_bcm_voter2: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
 			};
 		};
 	};
@@ -1228,19 +1243,22 @@
 	mc_virt: interconnect@1 {
 		compatible = "qcom,canoe-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,disabled-voters = "cam_ife_0",
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
 				       "cam_ife_1",
-				       "cam_ife_2",
-				       "pcie_crm_hw_0",
-				       "disp_crm_sw_0",
+				       "cam_ife_2";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>;
+		qcom,disabled-voters = "pcie_crm_hw_0",
 				       "disp_crm_hw_0",
 				       "disp_crm_hw_1",
 				       "disp_crm_hw_2",
 				       "disp_crm_hw_3",
 				       "disp_crm_hw_4",
-				       "disp_crm_hw_5";
+				       "disp_crm_hw_5",
+				       "disp_crm_sw_0";
 	};
 
 	config_noc: interconnect@1600000 {
@@ -1304,12 +1322,15 @@
 		compatible = "qcom,canoe-mmss_noc";
 		reg = <0x0 0x1780000 0x0 0x5b800>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,disabled-voters = "cam_ife_0",
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
 				       "cam_ife_1",
-				       "cam_ife_2",
-				       "disp_crm_sw_0",
+				       "cam_ife_2";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>;
+		qcom,disabled-voters = "disp_crm_sw_0",
 				       "disp_crm_hw_0",
 				       "disp_crm_hw_1",
 				       "disp_crm_hw_2",
@@ -1323,19 +1344,22 @@
 		compatible = "qcom,canoe-gem_noc";
 		reg = <0x0 0x31100000 0x0 0x153080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,disabled-voters = "cam_ife_0",
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
 				       "cam_ife_1",
-				       "cam_ife_2",
-				       "pcie_crm_hw_0",
-				       "disp_crm_sw_0",
+				       "cam_ife_2";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>;
+		qcom,disabled-voters = "pcie_crm_hw_0",
 				       "disp_crm_hw_0",
 				       "disp_crm_hw_1",
 				       "disp_crm_hw_2",
 				       "disp_crm_hw_3",
 				       "disp_crm_hw_4",
-				       "disp_crm_hw_5";
+				       "disp_crm_hw_5",
+				       "disp_crm_sw_0";
 		qcom,skip-qos;
 	};
 
