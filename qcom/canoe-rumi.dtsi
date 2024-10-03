@@ -167,3 +167,12 @@
 
 	status = "ok";
 };
+
+&VDD_MMCX_LEVEL {
+	regulator-always-on;
+};
+
+&VDD_MXC_LEVEL {
+	regulator-always-on;
+	regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+};
