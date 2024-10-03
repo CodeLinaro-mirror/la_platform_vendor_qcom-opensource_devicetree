@@ -7,7 +7,7 @@
 
 #include "sdxkova.dtsi"
 #include "sdxkova-idp-cpe.dtsi"
-#include "sdxkova-reserved-memory.dtsi"
+#include "sdxkova-reserved-memory-2G.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. SDXKOVA IDP CPE";
