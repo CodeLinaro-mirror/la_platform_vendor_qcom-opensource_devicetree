@@ -31,6 +31,32 @@
 	#include "pm8010.dtsi"
 };
 
+&pmh0101_gpios {
+	pmh0101_bidir_lvl_shifter1_active: pmh0101-bidir-lvl-shifter1-state {
+		pins = "gpio11", "gpio12";
+		function = "normal";
+		bias-high-impedance;
+	};
+
+	pmh0101_bidir_lvl_shifter2_active: pmh0101-bidir-lvl-shifter2-state {
+		pins = "gpio13", "gpio14";
+		function = "normal";
+		bias-high-impedance;
+	};
+
+	pmh0101_bidir_lvl_shifter3_active: pmh0101-bidir-lvl-shifter3-state {
+		pins = "gpio15", "gpio16";
+		function = "normal";
+		bias-high-impedance;
+	};
+
+	pmh0101_bidir_lvl_shifter4_active: pmh0101-bidir-lvl-shifter4-state {
+		pins = "gpio17", "gpio18";
+		function = "normal";
+		bias-high-impedance;
+	};
+};
+
 &led_controller {
 	nvmem = <&pmk8850_sdam_21>, <&pmk8850_sdam_22>;
 	nvmem-names = "lpg_chan_sdam", "lut_sdam";
