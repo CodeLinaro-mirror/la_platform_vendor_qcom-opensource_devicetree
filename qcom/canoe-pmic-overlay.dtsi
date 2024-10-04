@@ -4,6 +4,18 @@
  */
 
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmh0101.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmh0110.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmih010x.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmk8850.h>
+
+#define PMK8850_SID		0
+#define PMH0101_SID		1
+#define PMH0110_D_SID		3
+#define PMH0110_F_SID		5
+#define PMH0110_G_SID		6
+#define PMIH010X_SID		7
+#define PMH0110_I_SID		8
 
 &spmi0_bus {
 	#include "pmk8850.dtsi"
@@ -22,4 +34,130 @@
 &led_controller {
 	nvmem = <&pmk8850_sdam_21>, <&pmk8850_sdam_22>;
 	nvmem-names = "lpg_chan_sdam", "lut_sdam";
+};
+
+&pmk8850_vadc {
+	/* PMK8850 ADC Channels */
+	pmk8850_offset_ref {
+		reg = <PMK8850_ADC5_GEN4_OFFSET_REF(0, PMK8850_SID)>;
+		label = "pmk8850_offset_ref";
+	};
+
+	pmk8850_vref_1p25 {
+		reg = <PMK8850_ADC5_GEN4_1P25VREF(0, PMK8850_SID)>;
+		label = "pmk8850_vref_1p25";
+	};
+
+	pmk8850_die_temp {
+		reg = <PMK8850_ADC5_GEN4_DIE_TEMP(0, PMK8850_SID)>;
+		label = "pmk8850_die_temp";
+	};
+
+	/* PMH0101 ADC Channels */
+	pmh0101_offset_ref {
+		reg = <PMH0101_ADC5_GEN4_OFFSET_REF(0, PMH0101_SID)>;
+		label = "pmh0101_offset_ref";
+	};
+
+	pmh0101_vref_1p25 {
+		reg = <PMH0101_ADC5_GEN4_1P25VREF(0, PMH0101_SID)>;
+		label = "pmh0101_vref_1p25";
+	};
+
+	pmh0101_die_temp {
+		reg = <PMH0101_ADC5_GEN4_DIE_TEMP(0, PMH0101_SID)>;
+		label = "pmh0101_die_temp";
+	};
+
+	pmh0101_vph_pwr {
+		reg = <PMH0101_ADC5_GEN4_VPH_PWR(0, PMH0101_SID)>;
+		label = "pmh0101_vph_pwr";
+	};
+
+	/* PMH0110 ADC Channels */
+	pmh0110_d_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_D_SID)>;
+		label = "pmh0110_d_die_temp";
+	};
+
+	pmh0110_d_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_D_SID)>;
+		label = "pmh0110_d_vph_pwr";
+	};
+
+	pmh0110_f_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_F_SID)>;
+		label = "pmh0110_f_die_temp";
+	};
+
+	pmh0110_f_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_F_SID)>;
+		label = "pmh0110_f_vph_pwr";
+	};
+
+	pmh0110_g_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_G_SID)>;
+		label = "pmh0110_g_die_temp";
+	};
+
+	pmh0110_g_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_G_SID)>;
+		label = "pmh0110_g_vph_pwr";
+	};
+
+	pmh0110_i_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_I_SID)>;
+		label = "pmh0110_i_die_temp";
+	};
+
+	pmh0110_i_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_I_SID)>;
+		label = "pmh0110_i_vph_pwr";
+	};
+
+	/* PMIH010X ADC Channels */
+	pmih010x_offset_ref {
+		reg = <PMIH010X_ADC5_GEN4_OFFSET_REF(1, PMIH010X_SID)>;
+		label = "pmih010x_offset_ref";
+	};
+
+	pmih010x_vref_1p25 {
+		reg = <PMIH010X_ADC5_GEN4_1P25VREF(1, PMIH010X_SID)>;
+		label = "pmih010x_vref_1p25";
+	};
+
+	pmih010x_die_temp {
+		reg = <PMIH010X_ADC5_GEN4_DIE_TEMP(1, PMIH010X_SID)>;
+		label = "pmih010x_die_temp";
+	};
+
+	pmih010x_vph_pwr {
+		reg = <PMIH010X_ADC5_GEN4_VPH_PWR(1, PMIH010X_SID)>;
+		label = "pmih010x_vph_pwr";
+	};
+
+	pmih010x_vbat_sns_qbg {
+		reg = <PMIH010X_ADC5_GEN4_VBAT_SNS_QBG(1, PMIH010X_SID)>;
+		label = "pmih010x_vbat_sns_qbg";
+	};
+
+	pmih010x_iin {
+		reg = <PMIH010X_ADC5_GEN4_IIN(1, PMIH010X_SID)>;
+		label = "pmih010x_iin";
+	};
+
+	pmih010x_ichg_fb {
+		reg = <PMIH010X_ADC5_GEN4_ICHG_FB(1, PMIH010X_SID)>;
+		label = "pmih010x_ichg_fb";
+	};
+
+	pmih010x_chg_temp {
+		reg = <PMIH010X_ADC5_GEN4_CHG_TEMP(1, PMIH010X_SID)>;
+		label = "pmih010x_chg_temp";
+	};
+
+	pmih010x_lite_die_temp {
+		reg = <PMIH010X_ADC5_GEN4_TEMP_ALARM_LITE(1, PMIH010X_SID)>;
+		label = "pmih010x_lite_die_temp";
+	};
 };
