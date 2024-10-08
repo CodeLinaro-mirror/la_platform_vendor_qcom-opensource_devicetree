@@ -351,6 +351,7 @@
 };
 
 #include "sa510m-qupv3.dtsi"
+#include "sa510m-pinctrl.dtsi"
 #include "msm-arm-smmu-sa510m.dtsi"
 
 &qupv3_se3_2uart {
