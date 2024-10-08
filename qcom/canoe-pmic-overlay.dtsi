@@ -161,3 +161,8 @@
 		label = "pmih010x_lite_die_temp";
 	};
 };
+
+&pmih010x_eusb2_repeater {
+	vdd18-supply = <&pm_nuku_l15>;
+	vdd3-supply = <&pm_nuku_l5>;
+};
