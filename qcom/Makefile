@@ -20,11 +20,14 @@ CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb ho
 
 CANOE_BOARDS += \
 		canoe-mtp-kiwi-overlay.dtbo \
+		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
 		canoe-cdp-kiwi-overlay.dtbo \
+		canoe-cdp-mango-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
 		canoe-qrd-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
+		canoe-rcm-mango-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
 		canoe-atp-overlay.dtbo
 
