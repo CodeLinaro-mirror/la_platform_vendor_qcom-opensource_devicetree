@@ -23,6 +23,7 @@ CANOE_BOARDS += \
 		canoe-mtp-kiwi-overlay.dtbo \
 		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
+		canoe-mtp-qmp1000-overlay.dtbo \
 		canoe-cdp-kiwi-overlay.dtbo \
 		canoe-cdp-mango-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
