@@ -2087,6 +2087,9 @@
 	};
 
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+
+	thermal_zones: thermal-zones {
+	};
 };
 
 &reserved_memory {
@@ -2383,6 +2386,7 @@
 #include "canoe-qupv3.dtsi"
 #include "canoe-usb.dtsi"
 #include "msm-arm-smmu-canoe.dtsi"
+#include "canoe-thermal.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
