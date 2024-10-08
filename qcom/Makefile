@@ -19,6 +19,7 @@ CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb honu.dtb h
 CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb honup.dtb honup-v2.dtb honup-tp.dtb honup-tp-v2.dtb
 
 CANOE_BOARDS += \
+		canoe-mtp-3.5mm-overlay.dtbo \
 		canoe-mtp-kiwi-overlay.dtbo \
 		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
