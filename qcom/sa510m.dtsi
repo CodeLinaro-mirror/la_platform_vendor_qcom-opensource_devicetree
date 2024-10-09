@@ -714,6 +714,13 @@
 
 	thermal_zones: thermal-zones {
 	};
+
+	wdog: qcom,wdt@17017000 {
+		compatible ="qcom,msm-watchdog";
+		reg = <0x17017000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_PPI 3 IRQ_TYPE_LEVEL_HIGH>;
+	};
 };
 
 #include "sa510m-qupv3.dtsi"
