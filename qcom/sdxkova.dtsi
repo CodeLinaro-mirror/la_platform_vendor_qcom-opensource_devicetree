@@ -1315,6 +1315,7 @@
 		reg-names = "llcc0_base";
 		interrupts = <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
+		memory-region = <&llcc_tcm_mem>;
 	};
 
 	qcom,sps {
