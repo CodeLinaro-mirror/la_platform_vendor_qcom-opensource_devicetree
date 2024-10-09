@@ -45,6 +45,7 @@ description: |
         qcs404
         qdu1000
         qru1000
+        sa510m
         sa8155p
         sa8540p
         sc7180
@@ -749,6 +750,11 @@ properties:
           - enum:
               - qcom,sdxkova-idp
           - const: qcom,sdxkova
+
+      - items:
+          - enum:
+              - qcom,sa510m-idp
+          - const: qcom,sa510m
 
       - items:
           - enum:

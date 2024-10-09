@@ -1,0 +1,357 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+
+/ {
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	model = "Qualcomm Technologies, Inc. SA510M";
+	compatible = "qcom,sa510m";
+	qcom,msm-id = <570 0x10000>, <571 0x10000>;
+	interrupt-parent = <&intc>;
+
+	aliases {
+		serial0 = &qupv3_se3_2uart;
+	};
+
+	chosen: chosen { };
+
+	firmware: firmware { };
+
+	memory { device_type = "memory"; reg = <0 0>; };
+
+	cpus {
+		#size-cells = <0>;
+		#address-cells = <1>;
+
+		CPU0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a7";
+			reg = <0x0>;
+			//qcom,freq-domain = <&cpufreq_hw 0>;
+			enable-method = "psci";
+			cpu-idle-states = <&A7_SPC &A7_PC>;
+			power-domains = <&CPU_PD0>;
+			power-domain-names = "psci";
+			#cooling-cells = <2>;
+		};
+	};
+
+	reserved_memory: reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		quickboot_mem: quickboot_region@82100000 {
+			no-map;
+			reg = <0x82100000 0x100000>;
+		};
+
+		aop_image_mem: aop_image_region@82200000 {
+			no-map;
+			reg = <0x82200000 0x20000>;
+		};
+
+		aop_cmd_db_mem: aop_cmd_db_region@82220000 {
+			compatible = "qcom,cmd-db";
+			no-map;
+			reg = <0x82220000 0x20000>;
+		};
+
+		aop_config_mem: aop_config_region@82240000 {
+			no-map;
+			reg = <0x82240000 0x20000>;
+		};
+
+		ipa_fw_mem: ipa_fw_region@82270000 {
+			no-map;
+			reg = <0x82270000 0x10000>;
+		};
+
+		smem_mem: smem_region@82280000 {
+			no-map;
+			reg = <0x82280000 0xc0000>;
+		};
+
+		tme_crashdump_mem: tme_crashdump_region@82340000 {
+			no-map;
+			reg = <0x82340000 0x40000>;
+		};
+
+		tme_log_mem: tme_log_region@82380000 {
+			no-map;
+			reg = <0x82380000 0x4000>;
+		};
+
+		access_control_db_mem: access_control_db_region@82384000 {
+			no-map;
+			reg = <0x82384000 0x40000>;
+		};
+
+		secdata_mem: secdata_region@823c4000 {
+			no-map;
+			reg = <0x823c4000 0x1000>;
+		};
+
+		modem_efs_mem: modem_efs_region@823c5000 {
+			no-map;
+			reg = <0x823c5000 0x10000>;
+		};
+
+		cpucp_fw_mem: cpucp_fw_region@82400000 {
+			no-map;
+			reg = <0x82400000 0x80000>;
+		};
+
+		xbl_dt_log_mem: xbl_dt_log_region@824c0000 {
+			no-map;
+			reg = <0x824c0000 0x20000>;
+		};
+
+		qtee_tz_mem: qtee_tz_region@82500000 {
+			no-map;
+			reg = <0x82500000 0x180000>;
+		};
+
+		trusted_apps_mem: trusted_apps_region@82680000 {
+			no-map;
+			reg = <0x82680000 0x600000>;
+		};
+
+		mpss_audio_mem: mpss_audio_region@82e00000 {
+			no-map;
+			reg = <0x82e00000 0x5000000>;
+		};
+
+		audio_heap_mem: audio_heap_region@88000000 {
+			compatible = "shared-dma-pool";
+			no-map;
+			reg = <0x88000000 0x400000>;
+		};
+
+			/* global autoconfigured region for contiguous allocations */
+		system_cma: linux,cma {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x00000000 0xffffffff>;
+			reusable;
+			alignment = <0x400000>;
+			size = <0x1800000>;
+			linux,cma-default;
+		};
+
+		qseecom_mem: qseecom_region {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x00000000 0xffffffff>;
+			reusable;
+			alignment = <0x400000>;
+			size = <0x400000>;
+		};
+
+		qseecom_ta_mem: qseecom_ta_region {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x00000000 0xffffffff>;
+			reusable;
+			alignment = <0x400000>;
+			size = <0x400000>;
+		};
+	};
+
+	idle-states {
+		entry-method = "psci";
+
+		A7_SPC: a7-c3 { /* C3 */
+			compatible = "arm,idle-state";
+			idle-state-name = "standalone-pc";
+			entry-latency-us = <350>;
+			exit-latency-us = <450>;
+			min-residency-us = <1774>;
+			arm,psci-suspend-param = <0x40000003>;
+			local-timer-stop;
+		};
+
+		A7_PC: a7-c4 { /* C4 */
+			compatible = "arm,idle-state";
+			idle-state-name = "pc";
+			entry-latency-us = <550>;
+			exit-latency-us = <750>;
+			min-residency-us = <6700>;
+			arm,psci-suspend-param = <0x40000004>;
+			local-timer-stop;
+		};
+
+		CX_MIN: cx-min { /* C8 */
+			compatible = "domain-idle-state";
+			idle-state-name = "cx-min";
+			entry-latency-us = <750>;
+			exit-latency-us = <2350>;
+			min-residency-us = <9144>;
+			arm,psci-suspend-param = <0x40000008>;
+		};
+
+	};
+
+	soc: soc { };
+};
+
+&chosen {
+	bootargs = "pcie_ports=compat cpufreq.default_governor=performance ";
+	linux,initrd-start = <0x90000000>;
+};
+
+&soc {
+	#address-cells = <1>;
+	#size-cells = <1>;
+	ranges;
+	compatible = "simple-bus";
+
+	psci {
+		compatible = "arm,psci-1.0";
+		 method = "smc";
+
+		CPU_PD0: cpu-pd0 {
+			#power-domain-cells = <0>;
+			power-domains = <&CLUSTER_PD>;
+		};
+
+		CLUSTER_PD: cluster-pd {
+			#power-domain-cells = <0>;
+			domain-idle-states = <&CX_MIN>;
+		};
+	};
+
+	intc: interrupt-controller@17000000 {
+		compatible = "qcom,msm-qgic2";
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		reg = <0x17000000 0x1000>,
+			<0x17002000 0x1000>;
+	};
+
+	pdc: interrupt-controller@b220000 {
+		compatible = "qcom,sa510m-pdc", "qcom,pdc";
+		reg = <0xb220000 0x10000>;
+		qcom,pdc-ranges = <1 148 6>, <9 156 2>, <17 164 7>,
+				  <26 173 1>, <29 176 1>, <40 187 1>,
+				  <46 193 6>, <52 266 32>, <84 249 1>,
+				  <85 256 1>, <86 315 4>, <90 43 1>,
+				  <91 45 1>, <92 154 2>, <94 158 6>,
+				  <100 171 2>, <102 174 1>, <103 23 7>,
+				  <110 147 1>, <111 31 4>, <115 175 1>,
+				  <116 177 10>, <126 188 5>;
+		#interrupt-cells = <2>;
+		interrupt-parent = <&intc>;
+		interrupt-controller;
+	};
+
+	timer {
+		compatible = "arm,armv7-timer";
+		interrupts = <1 13 0xf08>,
+			<1 12 0xf08>,
+			<1 10 0xf08>,
+			<1 11 0xf08>;
+		clock-frequency = <19200000>;
+	};
+
+	timer@17020000 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		compatible = "arm,armv7-timer-mem";
+		reg = <0x17020000 0x1000>;
+		clock-frequency = <19200000>;
+
+		frame@17021000 {
+			frame-number = <0>;
+			interrupts = <0 7 0x4>,
+					 <0 6 0x4>;
+			reg = <0x17021000 0x1000>,
+				  <0x17022000 0x1000>;
+		};
+
+		frame@17023000 {
+			frame-number = <1>;
+			interrupts = <0 8 0x4>;
+			reg = <0x17023000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17024000 {
+			frame-number = <2>;
+			interrupts = <0 9 0x4>;
+			reg = <0x17024000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17025000 {
+			frame-number = <3>;
+			interrupts = <0 10 0x4>;
+			reg = <0x17025000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17026000 {
+			frame-number = <4>;
+			interrupts = <0 11 0x4>;
+			reg = <0x17026000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17027000 {
+			frame-number = <5>;
+			interrupts = <0 12 0x4>;
+			reg = <0x17027000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17028000 {
+			frame-number = <6>;
+			interrupts = <0 13 0x4>;
+			reg = <0x17028000 0x1000>;
+			status = "disabled";
+		};
+
+		frame@17029000 {
+			frame-number = <7>;
+			interrupts = <0 14 0x4>;
+			reg = <0x17029000 0x1000>;
+			status = "disabled";
+		};
+	};
+
+	apps_rsc: rsc@17040000 {
+		label = "apps_rsc";
+		compatible = "qcom,rpmh-rsc";
+		reg = <0x17040000 0x10000>,
+			<0x17050000 0x10000>,
+			<0x17060000 0x10000>;
+		reg-names = "drv-0", "drv-1", "drv-2";
+		qcom,drv-count = <3>;
+		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>, /* dummy */
+				<GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+
+		apps_rsc_drv2: drv@2 {
+			qcom,drv-id = <2>;
+			qcom,tcs-offset = <0xd00>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS	2>,
+						  <SLEEP_TCS	 3>,
+						  <WAKE_TCS	  3>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+		};
+	};
+};
+
+#include "sa510m-qupv3.dtsi"
+
+&qupv3_se3_2uart {
+	status = "ok";
+};
