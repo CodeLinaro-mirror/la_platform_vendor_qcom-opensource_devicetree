@@ -2381,6 +2381,7 @@
 	};
 };
 
+#include "canoe-coresight.dtsi"
 #include "canoe-debug.dtsi"
 #include "canoe-dma-heaps.dtsi"
 #include "canoe-pinctrl.dtsi"
