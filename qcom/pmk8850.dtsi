@@ -29,6 +29,22 @@ pmk8850@0 {
 		bob1_off_mode_enable: bob1-off-mode-enable@50 {
 			reg = <0x50 0x1>;
 		};
+
+		fmd_set: fmd-set@9a {
+			reg = <0x9a 0x1>;
+		};
+
+		fmd_cont_after_pon: fmd_cont_after_pon@9c {
+			reg = <0x9c 0x1>;
+		};
+
+		fmd_chg_pon: fmd-chg-pon@9f {
+			reg = <0x9f 0x1>;
+		};
+
+		fmd_cnt2_stop: fmd-cnt2-stop@a2 {
+			reg = <0xa2 0x1>;
+		};
 	};
 
 	pmk8850_sdam_5: sdam@7400 {
