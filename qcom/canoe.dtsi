@@ -712,6 +712,11 @@
 		qcom,gic-class1-cpus = <&CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
 	};
 
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
