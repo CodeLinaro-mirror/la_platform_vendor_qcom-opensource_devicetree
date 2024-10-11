@@ -10,7 +10,7 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Canoe MTP";
-	compatible = "qcom,canoe-mtp", "qcom,canoe", "qcom,canoep-cdp", "qcom,canoep",
+	compatible = "qcom,canoe-mtp", "qcom,canoe", "qcom,canoep-mtp", "qcom,canoep",
 			   "qcom,mtp";
 	qcom,msm-id = <0x10294 0x10000>, <0x10294 0x20000>, <0x10295 0x10000>, <0x10295 0x20000>,
 		      <0x30294 0x10000>, <0x30294 0x20000>, <0x30295 0x10000>, <0x30295 0x20000>,
