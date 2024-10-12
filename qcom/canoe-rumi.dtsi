@@ -218,3 +218,15 @@
 	qcom,no-l1ss-supported;
 	qcom,no-aux-clk-sync;
 };
+
+&bwmon_ddr {
+	qcom,hw-timer-hz = <192000>;
+};
+
+&bwmon_llcc_gold {
+	qcom,hw-timer-hz = <192000>;
+};
+
+&bwmon_llcc_prime {
+	qcom,hw-timer-hz = <192000>;
+};
