@@ -69,10 +69,12 @@
 };
 
 &sdhc_1 {
-	status = "disabled";
+	status = "ok";
 
 	no-mmc;
 	max-frequency = <192000000>;
+
+	qcom,uses_level_shifter;
 
 	vdd-supply = <&vreg_sdc1_emmc_sd_vdd>;
 	qcom,vdd-voltage-level = <2950000 2950000>;
