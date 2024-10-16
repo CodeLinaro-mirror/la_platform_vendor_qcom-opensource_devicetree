@@ -4,7 +4,7 @@
 $id: http://devicetree.org/schemas/clock/qcom,evacc-sun.yaml#
 $schema: http://devicetree.org/meta-schemas/core.yaml#
 
-title: Qualcomm Technologies, Inc. Eva Clock Controller Binding for SUN
+title: Qualcomm Technologies, Inc. Eva Clock Controller for SUN
 
 maintainers:
   - Xubin Bai <quic_xubibai@quicinc.com>
@@ -17,7 +17,9 @@ description: |
 
 properties:
   compatible:
-    const: qcom,sun-evacc
+    enum:
+      - qcom,sun-evacc
+      - qcom,sun-evacc-v2
 
   clocks:
     items:
@@ -61,5 +63,4 @@ examples:
       #clock-cells = <1>;
       #reset-cells = <1>;
     };
-
 ...
