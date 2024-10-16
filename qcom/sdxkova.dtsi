@@ -2229,6 +2229,7 @@
 	status = "ok";
 };
 
+#include "sdxkova-debug.dtsi"
 #include "sdxkova-usb.dtsi"
 #include "sdxkova-coresight.dtsi"
 #include "ipcc-test-sdxkova.dtsi"
