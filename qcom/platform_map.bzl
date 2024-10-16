@@ -28,6 +28,15 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sa510m": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "sa510m-idp.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted

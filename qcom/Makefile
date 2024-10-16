@@ -182,6 +182,13 @@ dtb-y += $($(MSM_ARCH)-dtb-y)
 
 endif
 
+ifeq ($(CONFIG_ARCH_SA510M), y)
+sa510m-dtb-$(CONFIG_ARCH_SA510M) += sa510m-idp.dtb
+
+dtb-y += $(sa510m-dtb-y)
+
+endif
+
 ifeq ($(CONFIG_ARCH_SUN), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 sun_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += sun-vm-rumi.dtb \
