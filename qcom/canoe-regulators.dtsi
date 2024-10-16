@@ -10,8 +10,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "mss.lvl";
 
-		VDD_MODEM_LEVEL: S1D_LEVEL: S1D_E0_LEVEL: pmh0110_d_s1_level:
-		pm_f10d_s1_level: regulator-pmh0110-d-s1-level {
+		VDD_MODEM_LEVEL: S1D_LEVEL: S1D_E0_LEVEL:
+		pmh0110_d_s1_level: regulator-pmh0110-d-s1-level {
 			regulator-name = "pmh0110_d_s1_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -28,8 +28,8 @@
 		qcom,resource-name = "nsp.lvl";
 
 		/* VDD_NSP1: PMH0110_D S2-S3 */
-		VDD_NSP1_LEVEL: S2D_LEVEL: S2D_E0_LEVEL: pmh0110_d_s2_level:
-		pm_f10d_s2_level: regulator-pmh0110-d-s2-level {
+		VDD_NSP1_LEVEL: S2D_LEVEL: S2D_E0_LEVEL:
+		pmh0110_d_s2_level: regulator-pmh0110-d-s2-level {
 			regulator-name = "pmh0110_d_s2_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -46,8 +46,8 @@
 		qcom,resource-name = "nsp2.lvl";
 
 		/* VDD_NSP2: PMH0110_D S4-S6 */
-		VDD_NSP2_LEVEL: S4D_LEVEL: S4D_E0_LEVEL: pmh0110_d_s4_level:
-		pm_f10d_s4_level: regulator-pmh0110-d-s4-level {
+		VDD_NSP2_LEVEL: S4D_LEVEL: S4D_E0_LEVEL:
+		pmh0110_d_s4_level: regulator-pmh0110-d-s4-level {
 			regulator-name = "pmh0110_d_s4_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -64,8 +64,8 @@
 		qcom,resource-name = "gfx.lvl";
 
 		/* VDD_GFX: PMH0110_F S1-S5 */
-		VDD_GFX_LEVEL: S1F_LEVEL: S1F_E0_LEVEL: pmh0110_f_s1_level:
-		pm_f10f_s1_level: regulator-pmh0110-f-s1-level {
+		VDD_GFX_LEVEL: S1F_LEVEL: S1F_E0_LEVEL:
+		pmh0110_f_s1_level: regulator-pmh0110-f-s1-level {
 			regulator-name = "pmh0110_f_s1_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -81,8 +81,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "gmxc.lvl";
 
-		VDD_GFX_MXC_LEVEL: S10F_LEVEL: S10F_E0_LEVEL: pmh0110_f_s10_level:
-		pm_f10f_s10_level: regulator-pmh0110-f-s10-level {
+		VDD_GFX_MXC_LEVEL: S10F_LEVEL: S10F_E0_LEVEL:
+		pmh0110_f_s10_level: regulator-pmh0110-f-s10-level {
 			regulator-name = "pmh0110_f_s10_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -113,8 +113,8 @@
 		qcom,resource-name = "cx.lvl";
 
 		/* VDD_CX: PMH0110_G S5-S6 */
-		VDD_CX_LEVEL: S5G_LEVEL: S5G_E0_LEVEL: pmh0110_g_s5_level:
-		pm_f10g_s5_level: regulator-pmh0110-g-s5-level {
+		VDD_CX_LEVEL: S5G_LEVEL: S5G_E0_LEVEL:
+		pmh0110_g_s5_level: regulator-pmh0110-g-s5-level {
 			regulator-name = "pmh0110_g_s5_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -130,8 +130,8 @@
 				 RPMH_REGULATOR_LEVEL_MAX>;
 		};
 
-		VDD_CX_LEVEL_AO: S5G_LEVEL_AO: S5G_E0_LEVEL_AO: pmh0110_g_s5_level_ao:
-		pm_f10g_s5_level_ao: regulator-pmh0110-g-s5-level-ao {
+		VDD_CX_LEVEL_AO: S5G_LEVEL_AO: S5G_E0_LEVEL_AO:
+		pmh0110_g_s5_level_ao: regulator-pmh0110-g-s5-level-ao {
 			regulator-name = "pmh0110_g_s5_level_ao";
 			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
 			regulator-min-microvolt =
@@ -148,9 +148,8 @@
 		qcom,resource-name = "mmcx.lvl";
 
 		/* VDD_MMCX: PMH0110_D S7-S9 */
-		VDD_MMCX_LEVEL: VDD_MM_LEVEL: S7D_LEVEL:
-		S7D_E0_LEVEL: pmh0110_d_s7_level:
-		pm_f10d_s7_level: regulator-pmh0110-d-s7-level {
+		VDD_MMCX_LEVEL: VDD_MM_LEVEL: S7D_LEVEL: S7D_E0_LEVEL:
+		pmh0110_d_s7_level: regulator-pmh0110-d-s7-level {
 			regulator-name = "pmh0110_d_s7_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -166,9 +165,8 @@
 				 RPMH_REGULATOR_LEVEL_MAX>;
 		};
 
-		VDD_MMCX_LEVEL_AO: VDD_MM_LEVEL_AO: S7D_LEVEL_AO:
-		S7D_E0_LEVEL_AO: pmh0110_d_s7_level_ao:
-		pm_f10d_s7_level_ao: regulator-pmh0110-d-s7-level-ao {
+		VDD_MMCX_LEVEL_AO: VDD_MM_LEVEL_AO: S7D_LEVEL_AO: S7D_E0_LEVEL_AO:
+		pmh0110_d_s7_level_ao: regulator-pmh0110-d-s7-level-ao {
 			regulator-name = "pmh0110_d_s7_level_ao";
 			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
 			regulator-min-microvolt =
@@ -195,8 +193,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "mxc.lvl";
 
-		VDD_MXC_LEVEL: S9F_LEVEL: S9F_E0_LEVEL: pmh0110_f_s9_level:
-		pm_f10f_s9_level: regulator-pmh0110-f-s9-level {
+		VDD_MXC_LEVEL: S9F_LEVEL: S9F_E0_LEVEL:
+		pmh0110_f_s9_level: regulator-pmh0110-f-s9-level {
 			regulator-name = "pmh0110_f_s9_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -212,8 +210,8 @@
 				 RPMH_REGULATOR_LEVEL_MAX>;
 		};
 
-		VDD_MXC_LEVEL_AO: S9F_LEVEL_AO: S9F_E0_LEVEL_AO: pmh0110_f_s9_level_ao:
-		pm_f10f_s9_level_ao: regulator-pmh0110-f-s9-level-ao {
+		VDD_MXC_LEVEL_AO: S9F_LEVEL_AO: S9F_E0_LEVEL_AO:
+		pmh0110_f_s9_level_ao: regulator-pmh0110-f-s9-level-ao {
 			regulator-name = "pmh0110_f_s9_level_ao";
 			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
 			regulator-min-microvolt =
@@ -243,8 +241,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "lcx.lvl";
 
-		VDD_LPI_CX_LEVEL: S8G_LEVEL: S8G_E0_LEVEL: pmh0110_g_s8_level:
-		pm_f10g_s8_level: regulator-pmh0110-g-s8-level {
+		VDD_LPI_CX_LEVEL: S8G_LEVEL: S8G_E0_LEVEL:
+		pmh0110_g_s8_level: regulator-pmh0110-g-s8-level {
 			regulator-name = "pmh0110_g_s8_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -260,8 +258,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "ebi.lvl";
 
-		VDD_EBI_LEVEL: S1I_LEVEL: S1I_E0_LEVEL: pmh0110_i_s1_level:
-		pm_f10i_s1_level: regulator-pmh0110-i-s1-level {
+		VDD_EBI_LEVEL: S1I_LEVEL: S1I_E0_LEVEL:
+		pmh0110_i_s1_level: regulator-pmh0110-i-s1-level {
 			regulator-name = "pmh0110_i_s1_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -277,8 +275,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "mx.lvl";
 
-		VDD_MXA_LEVEL: VDD_MX_LEVEL: S10I_LEVEL: S10I_E0_LEVEL: pmh0110_i_s10_level:
-		pm_f10i_s10_level: regulator-pmh0110-i-s10-level {
+		VDD_MXA_LEVEL: VDD_MX_LEVEL: S10I_LEVEL: S10I_E0_LEVEL:
+		pmh0110_i_s10_level: regulator-pmh0110-i-s10-level {
 			regulator-name = "pmh0110_i_s10_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -294,9 +292,8 @@
 				 RPMH_REGULATOR_LEVEL_MAX>;
 		};
 
-		VDD_MXA_LEVEL_AO: VDD_MX_LEVEL_AO: S10I_LEVEL_AO:
-		S10I_E0_LEVEL_AO: pmh0110_i_s10_level_ao:
-		pm_f10i_s10_level_ao: regulator-pmh0110-i-s10-level-ao {
+		VDD_MXA_LEVEL_AO: VDD_MX_LEVEL_AO: S10I_LEVEL_AO: S10I_E0_LEVEL_AO:
+		pmh0110_i_s10_level_ao: regulator-pmh0110-i-s10-level-ao {
 			regulator-name = "pmh0110_i_s10_level_ao";
 			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
 			regulator-min-microvolt =
@@ -312,8 +309,8 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "lmx.lvl";
 
-		VDD_LPI_MX_LEVEL: L1I_LEVEL: L1I_E0_LEVEL: pmh0110_i_l1_level:
-		pm_f10i_l1_level: regulator-pmh0110-i-l1-level {
+		VDD_LPI_MX_LEVEL: L1I_LEVEL: L1I_E0_LEVEL:
+		pmh0110_i_l1_level: regulator-pmh0110-i-l1-level {
 			regulator-name = "pmh0110_i_l1_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -329,8 +326,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "B1B_E0";
 
-		BOB1: BOB1_E0: pmh0101_bob1:
-		pm_nuku_bob1: regulator-pmh0101-bob1 {
+		BOB1: BOB1_E0: pmh0101_bob1: regulator-pmh0101-bob1 {
 			regulator-name = "pmh0101_bob1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3008000>;
@@ -343,8 +339,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "B2B_E0";
 
-		BOB2: BOB2_E0: pmh0101_bob2:
-		pm_nuku_bob2: regulator-pmh0101-bob2 {
+		BOB2: BOB2_E0: pmh0101_bob2: regulator-pmh0101-bob2 {
 			regulator-name = "pmh0101_bob2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2704000>;
@@ -361,7 +356,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L1B: L1B_E0: pmh0101_l1: pm_nuku_l1: regulator-pmh0101-l1 {
+		L1B: L1B_E0: pmh0101_l1: regulator-pmh0101-l1 {
 			regulator-name = "pmh0101_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -379,7 +374,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 20000>;
 
-		L2B: L2B_E0: pmh0101_l2: pm_nuku_l2: regulator-pmh0101-l2 {
+		L2B: L2B_E0: pmh0101_l2: regulator-pmh0101-l2 {
 			regulator-name = "pmh0101_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3008000>;
@@ -397,7 +392,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L4B: L4B_E0: pmh0101_l4: pm_nuku_l4: regulator-pmh0101-l4 {
+		L4B: L4B_E0: pmh0101_l4: regulator-pmh0101-l4 {
 			regulator-name = "pmh0101_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -415,7 +410,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 10000>;
 
-		L5B: L5B_E0: pmh0101_l5: pm_nuku_l5: regulator-pmh0101-l5 {
+		L5B: L5B_E0: pmh0101_l5: regulator-pmh0101-l5 {
 			regulator-name = "pmh0101_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3100000>;
@@ -433,7 +428,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 20000>;
 
-		L6B: L6B_E0: pmh0101_l6: pm_nuku_l6: regulator-pmh0101-l6 {
+		L6B: L6B_E0: pmh0101_l6: regulator-pmh0101-l6 {
 			regulator-name = "pmh0101_l6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -451,7 +446,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 20000>;
 
-		L7B: L7B_E0: pmh0101_l7: pm_nuku_l7: regulator-pmh0101-l7 {
+		L7B: L7B_E0: pmh0101_l7: regulator-pmh0101-l7 {
 			regulator-name = "pmh0101_l7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -469,7 +464,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 10000>;
 
-		L8B: L8B_E0: pmh0101_l8: pm_nuku_l8: regulator-pmh0101-l8 {
+		L8B: L8B_E0: pmh0101_l8: regulator-pmh0101-l8 {
 			regulator-name = "pmh0101_l8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -487,7 +482,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 80000>;
 
-		L9B: L9B_E0: pmh0101_l9: pm_nuku_l9: regulator-pmh0101-l9 {
+		L9B: L9B_E0: pmh0101_l9: regulator-pmh0101-l9 {
 			regulator-name = "pmh0101_l9";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2960000>;
@@ -505,7 +500,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L10B: L10B_E0: pmh0101_l10: pm_nuku_l10: regulator-pmh0101-l10 {
+		L10B: L10B_E0: pmh0101_l10: regulator-pmh0101-l10 {
 			regulator-name = "pmh0101_l10";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -523,7 +518,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L11B: L11B_E0: pmh0101_l11: pm_nuku_l11: regulator-pmh0101-l11 {
+		L11B: L11B_E0: pmh0101_l11: regulator-pmh0101-l11 {
 			regulator-name = "pmh0101_l11";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1000000>;
@@ -541,7 +536,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L12B: L12B_E0: pmh0101_l12: pm_nuku_l12: regulator-pmh0101-l12 {
+		L12B: L12B_E0: pmh0101_l12: regulator-pmh0101-l12 {
 			regulator-name = "pmh0101_l12";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -559,7 +554,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 10000>;
 
-		L13B: L13B_E0: pmh0101_l13: pm_nuku_l13: regulator-pmh0101-l13 {
+		L13B: L13B_E0: pmh0101_l13: regulator-pmh0101-l13 {
 			regulator-name = "pmh0101_l13";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3000000>;
@@ -577,7 +572,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 10000>;
 
-		L14B: L14B_E0: pmh0101_l14: pm_nuku_l14: regulator-pmh0101-l14 {
+		L14B: L14B_E0: pmh0101_l14: regulator-pmh0101-l14 {
 			regulator-name = "pmh0101_l14";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3200000>;
@@ -595,7 +590,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L15B: L15B_E0: pmh0101_l15: pm_nuku_l15: regulator-pmh0101-l15 {
+		L15B: L15B_E0: pmh0101_l15: regulator-pmh0101-l15 {
 			regulator-name = "pmh0101_l15";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -613,7 +608,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 80000>;
 
-		L17B: L17B_E0: pmh0101_l17: pm_nuku_l17: regulator-pmh0101-l17 {
+		L17B: L17B_E0: pmh0101_l17: regulator-pmh0101-l17 {
 			regulator-name = "pmh0101_l17";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2504000>;
@@ -631,7 +626,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L18B: L18B_E0: pmh0101_l18: pm_nuku_l18: regulator-pmh0101-l18 {
+		L18B: L18B_E0: pmh0101_l18: regulator-pmh0101-l18 {
 			regulator-name = "pmh0101_l18";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -645,8 +640,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S10D_E0";
 
-		S10D: S10D_E0: pmh0110_d_s10:
-		pm_f10d_s10: regulator-pmh0110-d-s10 {
+		S10D: S10D_E0: pmh0110_d_s10: regulator-pmh0110-d-s10 {
 			regulator-name = "pmh0110_d_s10";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1000000>;
@@ -663,7 +657,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L1D: L1D_E0: pmh0110_d_l1: pm_f10d_l1: regulator-pmh0110-d-l1 {
+		L1D: L1D_E0: pmh0110_d_l1: regulator-pmh0110-d-l1 {
 			regulator-name = "pmh0110_d_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -681,7 +675,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L2D: L2D_E0: pmh0110_d_l2: pm_f10d_l2: regulator-pmh0110-d-l2 {
+		L2D: L2D_E0: pmh0110_d_l2: regulator-pmh0110-d-l2 {
 			regulator-name = "pmh0110_d_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <912000>;
@@ -699,7 +693,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L3D: L3D_E0: pmh0110_d_l3: pm_f10d_l3: regulator-pmh0110-d-l3 {
+		L3D: L3D_E0: pmh0110_d_l3: regulator-pmh0110-d-l3 {
 			regulator-name = "pmh0110_d_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -717,7 +711,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L4D: L4D_E0: pmh0110_d_l4: pm_f10d_l4: regulator-pmh0110-d-l4 {
+		L4D: L4D_E0: pmh0110_d_l4: regulator-pmh0110-d-l4 {
 			regulator-name = "pmh0110_d_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -731,7 +725,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S6F_E0";
 
-		S6F: S6F_E0: pmh0110_f_s6: pm_f10f_s6: regulator-pmh0110-f-s6 {
+		S6F: S6F_E0: pmh0110_f_s6: regulator-pmh0110-f-s6 {
 			regulator-name = "pmh0110_f_s6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <300000>;
@@ -744,7 +738,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S7F_E0";
 
-		S7F: S7F_E0: pmh0110_f_s7: pm_f10f_s7: regulator-pmh0110-f-s7 {
+		S7F: S7F_E0: pmh0110_f_s7: regulator-pmh0110-f-s7 {
 			regulator-name = "pmh0110_f_s7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1224000>;
@@ -757,7 +751,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S8F_E0";
 
-		S8F: S8F_E0: pmh0110_f_s8: pm_f10f_s8: regulator-pmh0110-f-s8 {
+		S8F: S8F_E0: pmh0110_f_s8: regulator-pmh0110-f-s8 {
 			regulator-name = "pmh0110_f_s8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -774,7 +768,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L1F: L1F_E0: pmh0110_f_l1: pm_f10f_l1: regulator-pmh0110-f-l1 {
+		L1F: L1F_E0: pmh0110_f_l1: regulator-pmh0110-f-l1 {
 			regulator-name = "pmh0110_f_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -792,7 +786,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L2F: L2F_E0: pmh0110_f_l2: pm_f10f_l2: regulator-pmh0110-f-l2 {
+		L2F: L2F_E0: pmh0110_f_l2: regulator-pmh0110-f-l2 {
 			regulator-name = "pmh0110_f_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -810,7 +804,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L3F: L3F_E0: pmh0110_f_l3: pm_f10f_l3: regulator-pmh0110-f-l3 {
+		L3F: L3F_E0: pmh0110_f_l3: regulator-pmh0110-f-l3 {
 			regulator-name = "pmh0110_f_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -828,7 +822,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L4F: L4F_E0: pmh0110_f_l4: pm_f10f_l4: regulator-pmh0110-f-l4 {
+		L4F: L4F_E0: pmh0110_f_l4: regulator-pmh0110-f-l4 {
 			regulator-name = "pmh0110_f_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -842,7 +836,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S7G_E0";
 
-		S7G: S7G_E0: pmh0110_g_s7: pm_f10g_s7: regulator-pmh0110-g-s7 {
+		S7G: S7G_E0: pmh0110_g_s7: regulator-pmh0110-g-s7 {
 			regulator-name = "pmh0110_g_s7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -855,7 +849,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S9G_E0";
 
-		S9G: S9G_E0: pmh0110_g_s9: pm_f10g_s9: regulator-pmh0110-g-s9 {
+		S9G: S9G_E0: pmh0110_g_s9: regulator-pmh0110-g-s9 {
 			regulator-name = "pmh0110_g_s9";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1000000>;
@@ -872,7 +866,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L1G: L1G_E0: pmh0110_g_l1: pm_f10g_l1: regulator-pmh0110-g-l1 {
+		L1G: L1G_E0: pmh0110_g_l1: regulator-pmh0110-g-l1 {
 			regulator-name = "pmh0110_g_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -890,7 +884,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L2G: L2G_E0: pmh0110_g_l2: pm_f10g_l2: regulator-pmh0110-g-l2 {
+		L2G: L2G_E0: pmh0110_g_l2: regulator-pmh0110-g-l2 {
 			regulator-name = "pmh0110_g_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -908,7 +902,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L3G: L3G_E0: pmh0110_g_l3: pm_f10g_l3: regulator-pmh0110-g-l3 {
+		L3G: L3G_E0: pmh0110_g_l3: regulator-pmh0110-g-l3 {
 			regulator-name = "pmh0110_g_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -926,7 +920,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L4G: L4G_E0: pmh0110_g_l4: pm_f10g_l4: regulator-pmh0110-g-l4 {
+		L4G: L4G_E0: pmh0110_g_l4: regulator-pmh0110-g-l4 {
 			regulator-name = "pmh0110_g_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -940,7 +934,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S7I_E0";
 
-		S7I: S7I_E0: pmh0110_i_s7: pm_f10i_s7: regulator-pmh0110-i-s7 {
+		S7I: S7I_E0: pmh0110_i_s7: regulator-pmh0110-i-s7 {
 			regulator-name = "pmh0110_i_s7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <900000>;
@@ -957,7 +951,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L2I: L2I_E0: pmh0110_i_l2: pm_f10i_l2: regulator-pmh0110-i-l2 {
+		L2I: L2I_E0: pmh0110_i_l2: regulator-pmh0110-i-l2 {
 			regulator-name = "pmh0110_i_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -975,7 +969,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L3I: L3I_E0: pmh0110_i_l3: pm_f10i_l3: regulator-pmh0110-i-l3 {
+		L3I: L3I_E0: pmh0110_i_l3: regulator-pmh0110-i-l3 {
 			regulator-name = "pmh0110_i_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <880000>;
@@ -989,7 +983,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S1J_E1";
 
-		S1J: S1J_E1: pmh0104_s1: pm_f4_s1: regulator-pmh0104-s1 {
+		S1J: S1J_E1: pmh0104_s1: regulator-pmh0104-s1 {
 			regulator-name = "pmh0104_s1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <400000>;
@@ -1002,7 +996,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S2J_E1";
 
-		S2J: S2J_E1: pmh0104_s2: pm_f4_s2: regulator-pmh0104-s2 {
+		S2J: S2J_E1: pmh0104_s2: regulator-pmh0104-s2 {
 			regulator-name = "pmh0104_s2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <500000>;
@@ -1015,7 +1009,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S3J_E1";
 
-		S3J: S3J_E1: pmh0104_s3: pm_f4_s3: regulator-pmh0104-s3 {
+		S3J: S3J_E1: pmh0104_s3: regulator-pmh0104-s3 {
 			regulator-name = "pmh0104_s3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -1028,7 +1022,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S4J_E1";
 
-		S4J: S4J_E1: pmh0104_s4: pm_f4_s4: regulator-pmh0104-s4 {
+		S4J: S4J_E1: pmh0104_s4: regulator-pmh0104-s4 {
 			regulator-name = "pmh0104_s4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <300000>;
@@ -1045,7 +1039,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L1K: L1K_E1: pmr735d_l1: pmr_nalojr_l1: regulator-pmr735d-l1 {
+		L1K: L1K_E1: pmr735d_l1: regulator-pmr735d-l1 {
 			regulator-name = "pmr735d_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <300000>;
@@ -1063,7 +1057,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L2K: L2K_E1: pmr735d_l2: pmr_nalojr_l2: regulator-pmr735d-l2 {
+		L2K: L2K_E1: pmr735d_l2: regulator-pmr735d-l2 {
 			regulator-name = "pmr735d_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <912000>;
@@ -1081,7 +1075,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L3K: L3K_E1: pmr735d_l3: pmr_nalojr_l3: regulator-pmr735d-l3 {
+		L3K: L3K_E1: pmr735d_l3: regulator-pmr735d-l3 {
 			regulator-name = "pmr735d_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -1099,7 +1093,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L4K: L4K_E1: pmr735d_l4: pmr_nalojr_l4: regulator-pmr735d-l4 {
+		L4K: L4K_E1: pmr735d_l4: regulator-pmr735d-l4 {
 			regulator-name = "pmr735d_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -1117,7 +1111,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L5K: L5K_E1: pmr735d_l5: pmr_nalojr_l5: regulator-pmr735d-l5 {
+		L5K: L5K_E1: pmr735d_l5: regulator-pmr735d-l5 {
 			regulator-name = "pmr735d_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <920000>;
@@ -1135,7 +1129,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L6K: L6K_E1: pmr735d_l6: pmr_nalojr_l6: regulator-pmr735d-l6 {
+		L6K: L6K_E1: pmr735d_l6: regulator-pmr735d-l6 {
 			regulator-name = "pmr735d_l6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1776000>;
@@ -1153,7 +1147,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
 
-		L7K: L7K_E1: pmr735d_l7: pmr_nalojr_l7: regulator-pmr735d-l7 {
+		L7K: L7K_E1: pmr735d_l7: regulator-pmr735d-l7 {
 			regulator-name = "pmr735d_l7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <800000>;
@@ -1171,7 +1165,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 100000>;
 
-		L1M: L1M_E1: pm8010_m_l1: pm8010m_l1: regulator-pm8010-m-l1 {
+		L1M: L1M_E1: pm8010_m_l1: regulator-pm8010-m-l1 {
 			regulator-name = "pm8010_m_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1000000>;
@@ -1189,7 +1183,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 100000>;
 
-		L2M: L2M_E1: pm8010_m_l2: pm8010m_l2: regulator-pm8010-m-l2 {
+		L2M: L2M_E1: pm8010_m_l2: regulator-pm8010-m-l2 {
 			regulator-name = "pm8010_m_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1100000>;
@@ -1203,7 +1197,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L3M_E1";
 
-		L3M: L3M_E1: pm8010_m_l3: pm8010m_l3: regulator-pm8010-m-l3 {
+		L3M: L3M_E1: pm8010_m_l3: regulator-pm8010-m-l3 {
 			regulator-name = "pm8010_m_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2800000>;
@@ -1216,7 +1210,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L4M_E1";
 
-		L4M: L4M_E1: pm8010_m_l4: pm8010m_l4: regulator-pm8010-m-l4 {
+		L4M: L4M_E1: pm8010_m_l4: regulator-pm8010-m-l4 {
 			regulator-name = "pm8010_m_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2200000>;
@@ -1229,7 +1223,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L5M_E1";
 
-		L5M: L5M_E1: pm8010_m_l5: pm8010m_l5: regulator-pm8010-m-l5 {
+		L5M: L5M_E1: pm8010_m_l5: regulator-pm8010-m-l5 {
 			regulator-name = "pm8010_m_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -1242,7 +1236,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L6M_E1";
 
-		L6M: L6M_E1: pm8010_m_l6: pm8010m_l6: regulator-pm8010-m-l6 {
+		L6M: L6M_E1: pm8010_m_l6: regulator-pm8010-m-l6 {
 			regulator-name = "pm8010_m_l6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2800000>;
@@ -1255,7 +1249,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L7M_E1";
 
-		L7M: L7M_E1: pm8010_m_l7: pm8010m_l7: regulator-pm8010-m-l7 {
+		L7M: L7M_E1: pm8010_m_l7: regulator-pm8010-m-l7 {
 			regulator-name = "pm8010_m_l7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2800000>;
@@ -1272,7 +1266,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 100000>;
 
-		L1N: L1N_E1: pm8010_n_l1: pm8010n_l1: regulator-pm8010-n-l1 {
+		L1N: L1N_E1: pm8010_n_l1: regulator-pm8010-n-l1 {
 			regulator-name = "pm8010_n_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1100000>;
@@ -1290,7 +1284,7 @@
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 100000>;
 
-		L2N: L2N_E1: pm8010_n_l2: pm8010n_l2: regulator-pm8010-n-l2 {
+		L2N: L2N_E1: pm8010_n_l2: regulator-pm8010-n-l2 {
 			regulator-name = "pm8010_n_l2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
@@ -1304,7 +1298,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L3N_E1";
 
-		L3N: L3N_E1: pm8010_n_l3: pm8010n_l3: regulator-pm8010-n-l3 {
+		L3N: L3N_E1: pm8010_n_l3: regulator-pm8010-n-l3 {
 			regulator-name = "pm8010_n_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -1317,7 +1311,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L4N_E1";
 
-		L4N: L4N_E1: pm8010_n_l4: pm8010n_l4: regulator-pm8010-n-l4 {
+		L4N: L4N_E1: pm8010_n_l4: regulator-pm8010-n-l4 {
 			regulator-name = "pm8010_n_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
@@ -1330,7 +1324,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L5N_E1";
 
-		L5N: L5N_E1: pm8010_n_l5: pm8010n_l5: regulator-pm8010-n-l5 {
+		L5N: L5N_E1: pm8010_n_l5: regulator-pm8010-n-l5 {
 			regulator-name = "pm8010_n_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2800000>;
@@ -1343,7 +1337,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L6N_E1";
 
-		L6N: L6N_E1: pm8010_n_l6: pm8010n_l6: regulator-pm8010-n-l6 {
+		L6N: L6N_E1: pm8010_n_l6: regulator-pm8010-n-l6 {
 			regulator-name = "pm8010_n_l6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <2800000>;
@@ -1356,7 +1350,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L7N_E1";
 
-		L7N: L7N_E1: pm8010_n_l7: pm8010n_l7: regulator-pm8010-n-l7 {
+		L7N: L7N_E1: pm8010_n_l7: regulator-pm8010-n-l7 {
 			regulator-name = "pm8010_n_l7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <3304000>;
