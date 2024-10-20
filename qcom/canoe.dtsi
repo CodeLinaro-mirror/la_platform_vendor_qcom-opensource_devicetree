@@ -34,7 +34,7 @@
 
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 irqaffinity=0-1 fw_devlink.strict=1 pcie_ports=compat";
+		bootargs = "log_buf_len=512K cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc nokaslr kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-1 fw_devlink.strict=1 pcie_ports=compat kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 disable_dma32=on cgroup_disable=pressure";
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
