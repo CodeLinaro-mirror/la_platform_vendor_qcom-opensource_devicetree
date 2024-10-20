@@ -270,3 +270,5 @@
 		qcom,secondary;
 	};
 };
+
+#include "msm-arm-smmu-canoe-vm.dtsi"
