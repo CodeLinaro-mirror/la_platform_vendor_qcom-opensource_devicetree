@@ -676,7 +676,12 @@
 		status = "ok";
 	};
 
-	qcom_tzlog: tz-log@0 {
+	qcom_tzlog: tz-log@14680720 {
+		compatible = "qcom,tz-log";
+		reg = <0x14680720 0x3000>;
+		qcom,hyplog-enabled;
+		hyplog-address-offset = <0x410>;
+		hyplog-size-offset = <0x414>;
 	};
 
 	eud: qcom,msm-eud@88e0000 {
@@ -2224,6 +2229,21 @@
 		reg = <0x0 0x81200000 0x0 0x200000>;
 	};
 
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
 	/*
 	 * hyp_tags_mem is dynamically removed from the RAM
 	 * partition tables before boot occurs. Size of region
