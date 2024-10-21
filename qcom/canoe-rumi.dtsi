@@ -32,10 +32,6 @@
 	status = "disabled";
 };
 
-&cam_crm {
-	status = "disabled";
-};
-
 &pcie_crm {
 	status = "disabled";
 };
