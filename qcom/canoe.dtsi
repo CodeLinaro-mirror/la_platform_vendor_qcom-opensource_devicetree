@@ -2380,6 +2380,14 @@
 		reg = <0x0 0x9b2c0000 0x0 0x40000>;
 	};
 
+	sp_mem: sp_region {  /* SPSS-HLOS ION shared mem */
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
+	};
+
 	camera_mem: camera_region@9b300000 {
 		no-map;
 		reg = <0x0 0x9b300000 0x0 0x800000>;
