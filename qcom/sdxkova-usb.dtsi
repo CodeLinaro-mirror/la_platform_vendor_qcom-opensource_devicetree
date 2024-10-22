@@ -72,7 +72,7 @@
 			imod-interval-ns = <1000>;
 			maximum-speed = "super-speed-plus";
 			usb-role-switch;
-			dr_mode = "peripheral";
+			dr_mode = "otg";
 		};
 
 	};
