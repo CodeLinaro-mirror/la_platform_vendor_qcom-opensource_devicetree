@@ -27,7 +27,8 @@ CANOE_BOARDS += \
 		canoe-cdp-kiwi-overlay.dtbo \
 		canoe-cdp-mango-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
-		canoe-qrd-overlay.dtbo \
+		canoe-qrd-sku1-overlay.dtbo \
+		canoe-qrd-sku2-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-mango-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
