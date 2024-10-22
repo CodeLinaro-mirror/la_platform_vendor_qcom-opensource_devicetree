@@ -38,10 +38,17 @@
 		resets = <&gcc GCC_USB30_BCR>;
 		reset-names = "core_reset";
 
+		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
+		interconnects = <&system_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
+				<&system_noc MASTER_USB3_0 &system_noc SLAVE_IPA_CFG>,
+				<&gem_noc MASTER_APPSS_PROC &system_noc SLAVE_USB3>;
+
 		qcom,sleep-clk-bcr;
 		qcom,core-clk-rate = <200000000>;
 		qcom,core-clk-rate-hs = <66666667>;
 		qcom,core-clk-rate-disconnected = <133333333>;
+		qcom,default-bus-vote = <3>; /* use low-svs bus voting */
+		qcom,pm-qos-latency = <2>;
 
 		dwc3: dwc3@a600000 {
 			compatible = "snps,dwc3";
