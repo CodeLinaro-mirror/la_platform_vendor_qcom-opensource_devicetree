@@ -22,26 +22,6 @@ _platform_map = {
             {"name": "canoe-tp.dtb"},
             {"name": "canoe-tp-v2.dtb"},
             {"name": "canoe-v2.dtb"},
-            {"name": "honu.dtb"},
-            {
-                "name": "honup.dtb",
-                "apq": True,
-            },
-            {
-                "name": "honup-tp.dtb",
-                "apq": True,
-            },
-            {
-                "name": "honup-tp-v2.dtb",
-                "apq": True,
-            },
-            {
-                "name": "honup-v2.dtb",
-                "apq": True,
-            },
-            {"name": "honu-tp.dtb"},
-            {"name": "honu-tp-v2.dtb"},
-            {"name": "honu-v2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted

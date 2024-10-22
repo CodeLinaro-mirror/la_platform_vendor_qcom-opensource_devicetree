@@ -6,7 +6,7 @@
 #include "canoe.dtsi"
 
 / {
-		model = "Qualcomm Technologies, Inc. Canoe Alt. Thermal Profile SoC";
-		compatible = "qcom,canoe";
-		qcom,msm-id = <0x1010294 0x10000>;
+	model = "Qualcomm Technologies, Inc. Canoe Alt. Thermal Profile SoC";
+	compatible = "qcom,canoe";
+	qcom,msm-id = <0x1000294 0x10000>;
 };
