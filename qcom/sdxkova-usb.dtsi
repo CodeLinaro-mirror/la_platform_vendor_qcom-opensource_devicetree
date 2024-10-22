@@ -50,6 +50,21 @@
 		qcom,default-bus-vote = <3>; /* use low-svs bus voting */
 		qcom,pm-qos-latency = <2>;
 
+		qcom,num-gsi-evt-buffs = <0x3>;
+		qcom,gsi-reg-offset =
+			<0x0fc /* GSI_GENERAL_CFG */
+			0x208 /* GSI_DBL_ADDR_L */
+			0x224 /* GSI_DBL_ADDR_H */
+			0x240 /* GSI_RING_BASE_ADDR_L */
+			0x25c /* GSI_RING_BASE_ADDR_H */
+			0x1a4>; /* GSI_IF_STS */
+
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
+
 		dwc3: dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0xa600000 0x0 0xd93c>;
