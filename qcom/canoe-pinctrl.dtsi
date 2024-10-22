@@ -101,7 +101,7 @@
 		qupv3_se18_cts: qupv3_se18_cts {
 			mux {
 				pins = "gpio24";
-				function = "qup2_se6_l0";
+				function = "qup3_se5_l0";
 			};
 
 			config {
@@ -114,7 +114,7 @@
 		qupv3_se18_rts: qupv3_se18_rts {
 			mux {
 				pins = "gpio25";
-				function = "qup2_se6_l1";
+				function = "qup3_se5_l1";
 			};
 
 			config {
@@ -127,7 +127,7 @@
 		qupv3_se18_tx: qupv3_se18_tx {
 			mux {
 				pins = "gpio26";
-				function = "qup2_se6_l2";
+				function = "qup3_se5_l2";
 			};
 
 			config {
@@ -137,10 +137,10 @@
 			};
 		};
 
-		qupv3_se18_rx_active: qupv3_se18_rx {
+		qupv3_se18_rx_active: qupv3_se18_rx_active {
 			mux {
 				pins = "gpio27";
-				function = "qup2_se6_l3";
+				function = "qup3_se5_l3";
 			};
 
 			config {
