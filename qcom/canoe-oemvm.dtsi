@@ -179,6 +179,17 @@
 				peer-default;
 				qcom,label = <0x000000C>;
 			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x8>;
+					allocate-base;
+				};
+			};
 		};
 	};
 
@@ -259,5 +270,17 @@
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
 	};
+
+	qcom,qrtr {
+		compatible = "qcom,qrtr";
+		qcom,node-id = <21>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <8>;
+	};
+
+
 };
 #include "canoe-vm-dma-heaps.dtsi"
