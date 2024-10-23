@@ -1437,12 +1437,20 @@
 		reg = <0x0 0x3d99094 0x0 0x4>;
 	};
 
+	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <5>;
+	};
+
 	clk_virt: interconnect@0 {
 		compatible = "qcom,canoe-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,disabled-voters = "pcie_crm_hw_0";
+		qcom,bcm-voter-names = "hlos",
+				       "pcie_crm_hw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>;
 	};
 
 	mc_virt: interconnect@1 {
@@ -1451,13 +1459,14 @@
 		qcom,bcm-voter-names = "hlos",
 				       "cam_ife_0",
 				       "cam_ife_1",
-				       "cam_ife_2";
+				       "cam_ife_2",
+				       "pcie_crm_hw_0";
 		qcom,bcm-voters = <&apps_bcm_voter>,
 				  <&cam_bcm_voter0>,
 				  <&cam_bcm_voter1>,
-				  <&cam_bcm_voter2>;
-		qcom,disabled-voters = "pcie_crm_hw_0",
-				       "disp_crm_hw_0",
+				  <&cam_bcm_voter2>,
+				  <&pcie_crm_hw_0_bcm_voter>;
+		qcom,disabled-voters = "disp_crm_hw_0",
 				       "disp_crm_hw_1",
 				       "disp_crm_hw_2",
 				       "disp_crm_hw_3",
@@ -1496,9 +1505,10 @@
 		#interconnect-cells = <1>;
 		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
 			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,disabled-voters = "pcie_crm_hw_0";
+		qcom,bcm-voter-names = "hlos",
+				       "pcie_crm_hw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>;
 		qcom,skip-qos;
 	};
 
@@ -1552,13 +1562,14 @@
 		qcom,bcm-voter-names = "hlos",
 				       "cam_ife_0",
 				       "cam_ife_1",
-				       "cam_ife_2";
+				       "cam_ife_2",
+				       "pcie_crm_hw_0";
 		qcom,bcm-voters = <&apps_bcm_voter>,
 				  <&cam_bcm_voter0>,
 				  <&cam_bcm_voter1>,
-				  <&cam_bcm_voter2>;
-		qcom,disabled-voters = "pcie_crm_hw_0",
-				       "disp_crm_hw_0",
+				  <&cam_bcm_voter2>,
+				  <&pcie_crm_hw_0_bcm_voter>;
+		qcom,disabled-voters = "disp_crm_hw_0",
 				       "disp_crm_hw_1",
 				       "disp_crm_hw_2",
 				       "disp_crm_hw_3",
