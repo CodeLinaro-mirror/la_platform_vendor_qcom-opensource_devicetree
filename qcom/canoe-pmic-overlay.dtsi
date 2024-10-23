@@ -301,6 +301,11 @@
 	};
 };
 
+&pmih010x_haptics {
+	nvmem-names = "hap_cfg_sdam";
+	nvmem = <&pmk8850_sdam_46>;
+};
+
 &pmih010x_eusb2_repeater {
 	vdd18-supply = <&pmh0101_l15>;
 	vdd3-supply = <&pmh0101_l5>;

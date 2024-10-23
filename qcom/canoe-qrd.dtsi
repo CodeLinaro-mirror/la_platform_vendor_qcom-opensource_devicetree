@@ -35,6 +35,11 @@
 	usb-repeater = <&pmih010x_eusb2_repeater>;
 };
 
+&pmih010x_haptics {
+	qcom,vmax-mv = <1850>;
+	qcom,lra-period-us = <7692>;
+};
+
 &pcie {
 	gdsc-phy-vdd-supply = <&gcc_pcie_0_phy_gdsc>;
 };
