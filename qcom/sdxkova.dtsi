@@ -523,6 +523,25 @@
 		qcom,freq-hw-domain = <&cpufreq_hw 0>;
 	};
 
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		read-only;
+		ranges;
+
+		boot_config: boot_config@600 {
+			reg = <0x0 0x600 0x0 0x1>;
+		};
+	};
+
+	qfprom_sys: qfprom@0 {
+		compatible = "qcom,qfprom-sys";
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_config";
+	};
+
 	ipcc_mproc: qcom,ipcc@408000 {
 		compatible = "qcom,ipcc";
 		reg = <0x0 0x408000 0x0 0x1000>;
