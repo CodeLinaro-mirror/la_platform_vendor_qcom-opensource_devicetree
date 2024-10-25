@@ -294,6 +294,6 @@
 };
 
 &pmih010x_eusb2_repeater {
-	vdd18-supply = <&pm_nuku_l15>;
-	vdd3-supply = <&pm_nuku_l5>;
+	vdd18-supply = <&pmh0101_l15>;
+	vdd3-supply = <&pmh0101_l5>;
 };

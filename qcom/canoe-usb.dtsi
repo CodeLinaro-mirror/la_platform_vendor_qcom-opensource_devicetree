@@ -97,10 +97,10 @@
 			"eud_enable_reg",
 			"eud_detect_reg";
 
-		vdd-supply = <&pm_f10f_l4>;
+		vdd-supply = <&pmh0110_f_l4>;
 		qcom,vdd-voltage-level = <0 880000 880000>;
-		vdda12-supply = <&pm_f10d_l1>;
-		vdd_refgen-supply = <&pm_f10i_l3>;
+		vdda12-supply = <&pmh0110_d_l1>;
+		vdd_refgen-supply = <&pmh0110_i_l3>;
 
 		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
 			<&tcsrcc TCSR_USB2_CLKREF_EN>;
@@ -116,10 +116,10 @@
 		reg = <0x88e8000 0x3000>;
 		reg-names = "qmp_phy_base";
 
-		vdd-supply = <&pm_f10f_l4>;
+		vdd-supply = <&pmh0110_f_l4>;
 		qcom,vdd-voltage-level = <0 880000 880000>;
 		qcom,vdd-max-load-uA = <47000>;
-		core-supply = <&pm_f10d_l1>;
+		core-supply = <&pmh0110_d_l1>;
 
 		usb3_dp_phy_gdsc-supply = <&gcc_usb3_phy_gdsc>;
 		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
