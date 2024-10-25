@@ -20,7 +20,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7";
+		bootargs = "earlycon=qcom_geni,0xa94000 kasan=off nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7";
 	};
 
 	aliases { };
@@ -36,7 +36,7 @@
 			device_type = "cpu";
 			compatible = "qcom,kryo";
 			reg = <0x0 0x0>;
-			enable-method = "spin-table"; // TODO: Update to psci
+			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
 			L2_0: l2-cache {
@@ -48,7 +48,7 @@
 			device_type = "cpu";
 			compatible = "qcom,kryo";
 			reg = <0x0 0x100>;
-			enable-method = "spin-table";
+			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_1>;
 			L2_1: l2-cache {
@@ -61,7 +61,7 @@
 			device_type = "cpu";
 			compatible = "qcom,kryo";
 			reg = <0x0 0x200>;
-			enable-method = "spin-table";
+			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_1>;
 		};
@@ -70,7 +70,7 @@
 			device_type = "cpu";
 			compatible = "qcom,kryo";
 			reg = <0x0 0x300>;
-			enable-method = "spin-table";
+			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_1>;
 		};
@@ -79,7 +79,7 @@
 			device_type = "cpu";
 			compatible = "qcom,kryo";
 			reg = <0x0 0x400>;
-			enable-method = "spin-table";
+			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_1>;
 		};
@@ -131,6 +131,12 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	psci {
+		compatible = "arm,psci-1.0";
+		method = "smc";
+	};
+
 	intc: interrupt-controller@17200000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
