@@ -204,6 +204,17 @@
 				};
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x3>;
+					allocate-base;
+				};
+			};
+
 		};
 	};
 
@@ -457,6 +468,11 @@
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <3>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <3>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
