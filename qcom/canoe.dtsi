@@ -225,6 +225,10 @@
 	};
 
 	soc: soc { };
+
+	hypervisor: hypervisor {
+		gh_watchdog: qcom,gh-watchdog { };
+	};
 };
 
 &firmware {
