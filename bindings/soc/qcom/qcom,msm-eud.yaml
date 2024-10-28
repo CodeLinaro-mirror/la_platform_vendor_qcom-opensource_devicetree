@@ -15,7 +15,10 @@ description: |+
 
 properties:
   compatible:
-    - const: qcom,msm-eud
+    items:
+      - enum:
+         - qcom,msm-eud-sdxpinn
+      - const: qcom,msm-eud
 
   reg:
     items:
