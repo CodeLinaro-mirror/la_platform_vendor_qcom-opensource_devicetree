@@ -18,6 +18,17 @@
 		dma-coherent;
 		qcom,use-3-lvl-tables;
 
+		/*
+		 * When gdsc is enabled, and cpu enters cpuidle, DDR
+		 * bandwidth vote must be present to prevent DDR
+		 * shutdown.
+		 */
+		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
+		interconnects = <&gem_noc MASTER_GPU_TCU &mc_virt SLAVE_EBI1>;
+
+		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>;
+		clock-names = "gpu_cc_gpu_smmu_vote_clk";
+
 		interrupts =    <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
@@ -50,6 +61,7 @@
 			reg = <0x0 0x3de8000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <49>;
+			interconnects = <&gem_noc MASTER_GPU_TCU &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <2>;
 		};
 	};
