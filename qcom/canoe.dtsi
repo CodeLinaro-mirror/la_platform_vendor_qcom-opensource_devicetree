@@ -2486,6 +2486,21 @@
 		qcom,log-type = <2>;
 	};
 
+	llcc_pmu: llcc-pmu@0x31095000 {
+		compatible = "qcom,llcc-pmu-ver3";
+		reg = <0x0 0x31095000 0x0 0x400>;
+		reg-names = "lagg-base";
+		qcom,idx-tbl =
+			< 2 >,
+			< 3 >,
+			< 4 >,
+			< 5 >,
+			< 6 >,
+			< 7 >,
+			< 0 >,
+			< 1 >;
+	};
+
 	qcom_pmu: qcom,pmu {
 		compatible = "qcom,pmu";
 		qcom,long-counter;
