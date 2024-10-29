@@ -23,7 +23,9 @@
 		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7";
 	};
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se5_2uart;
+	};
 
 	firmware: firmware {
 		qcom_scm: qcom_scm { };
@@ -473,6 +475,7 @@
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
 #include "vienna-stub-regulators.dtsi"
+#include "vienna-qupv3.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -488,4 +491,8 @@
 		size = <0x0 0x1000000>;
 		linux,cma-default;
 	};
+};
+
+&qupv3_se5_2uart {
+	status = "ok";
 };
