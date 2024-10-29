@@ -2221,6 +2221,11 @@
 		virtio-backends = <&oem_vm_virt_be0>;
 	};
 
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
+
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
 	thermal_zones: thermal-zones {
