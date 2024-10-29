@@ -103,6 +103,13 @@ properties:
               - qcom,rcm
           - const: qcom,canoep
 
+      - description: Qualcomm Technologies, Inc. ALOR
+        items:
+          - enum:
+              - qcom,alor-rumi
+              - qcom,rumi
+          - const: qcom,alor
+
       - description: Qualcomm Technologies, Inc. HONU
         items:
           - const: qcom,honu

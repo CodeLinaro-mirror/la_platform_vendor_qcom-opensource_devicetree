@@ -40,6 +40,16 @@ canoe-dtb-$(CONFIG_ARCH_CANOE) += \
 	$(call add-overlays, $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS),$(CANOE_BASE_DTB))\
 	$(call add-overlays, $(CANOE_BOARDS) $(APQ_CANOE_BOARDS),$(CANOE_APQ_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS) $(CANOE_BASE_DTB) $(CANOE_APQ_BASE_DTB)
+
+ALOR_BASE_DTB += alor.dtb
+
+NOAPQ_ALOR_BOARDS += \
+		alor-rumi-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_ALOR) += \
+	$(call add-overlays, $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
+
 dtb-y += $(canoe-dtb-y)
 
 SA8155_BASE_DTB += sa8155.dtb sa8155-v2.dtb
