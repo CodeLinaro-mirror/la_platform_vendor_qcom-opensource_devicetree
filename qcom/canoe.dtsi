@@ -1771,6 +1771,12 @@
 		qcom,smem-state-names = "stop", "wakeup", "sleep", "ping";
 	};
 
+	qcom,msm-adsprpc-mem {
+		compatible = "qcom,msm-adsprpc-mem-region";
+		memory-region = <&adsp_mem_heap>;
+		restrict-access;
+	};
+
 	adsp_pas: remoteproc-adsp@03000000 {
 		compatible = "qcom,canoe-adsp-pas";
 		reg = <0x03000000 0x10000>;
@@ -2511,6 +2517,14 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		size = <0x0 0xc800000>;
 		alignment = <0x0 0x400000>;
+	};
+
+	adsp_mem_heap: adsp_heap_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xC00000>;
 	};
 
 	/*
