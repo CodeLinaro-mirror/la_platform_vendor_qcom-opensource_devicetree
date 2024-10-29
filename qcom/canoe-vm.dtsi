@@ -3,6 +3,7 @@
  * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
+#include <dt-bindings/clock/qcom,gcc-canoe.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 / {
@@ -194,6 +195,13 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	gcc: clock-controller@100000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "gcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
 
 	vm_tlmm_irq: vm-tlmm-irq@0 {
 		compatible = "qcom,tlmm-vm-irq";
