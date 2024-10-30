@@ -6,14 +6,14 @@
 /dts-v1/;
 /plugin/;
 
-#include "canoe-qrd-sku1.dtsi"
+#include "canoe-mtp-st54l-pandeiro.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Canoe QRD SKU1";
-	compatible = "qcom,canoe-qrd", "qcom,canoe", "qcom,canoep-cdp", "qcom,canoep",
-		     "qcom,qrd";
+	model = "Qualcomm Technologies, Inc. Canoe MTP + ST54L + Pandeiro";
+	compatible = "qcom,canoe-mtp", "qcom,canoe", "qcom,canoep-mtp", "qcom,canoep",
+			   "qcom,mtp";
 	qcom,msm-id = <660 0x10000>, <660 0x20000>, <661 0x10000>, <661 0x20000>,
 		      <0x1000294 0x10000>, <0x1000294 0x20000>,
 		      <0x1000295 0x10000>, <0x1000295 0x20000>;
-	qcom,board-id = <0x1000b 0>;
+	qcom,board-id = <0x40008 0>;
 };

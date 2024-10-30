@@ -23,15 +23,17 @@ CANOE_BOARDS += \
 		canoe-mtp-kiwi-overlay.dtbo \
 		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
+		canoe-mtp-pictor-overlay.dtbo \
 		canoe-mtp-qmp1000-overlay.dtbo \
+		canoe-mtp-st54l-pandeiro-overlay.dtbo \
 		canoe-cdp-kiwi-overlay.dtbo \
-		canoe-cdp-mango-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
-		canoe-qrd-sku1-overlay.dtbo \
-		canoe-qrd-sku2-overlay.dtbo \
+		canoe-cdp-st54l-pandeiro-overlay.dtbo \
+		canoe-qrd-overlay.dtbo \
+		canoe-qrd-st54l-pandeiro-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
-		canoe-rcm-mango-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
+		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo
 
 NOAPQ_CANOE_BOARDS += \
