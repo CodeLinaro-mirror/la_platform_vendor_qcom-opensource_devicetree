@@ -1912,6 +1912,13 @@
 		status = "disabled";
 	};
 
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1107>;
+		qcom,net-id = <1>;
+		qcom,low-latency;
+	};
+
 	qcom,glink {
 		compatible = "qcom,glink";
 	};
