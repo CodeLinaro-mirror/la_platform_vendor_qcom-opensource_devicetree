@@ -2147,8 +2147,9 @@
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
 
+		qcom,ice-use-hwkm;
+
 // Remove for RUMI. Try to enable it later after the basic bootup works.
-//		qcom,ice-use-hwkm;
 //		qcom,prime-mask = <0xc0>;
 //		qcom,silver-mask = <0x3f>;
 //		qcom,esi-affinity-mask = <0xe0>;
