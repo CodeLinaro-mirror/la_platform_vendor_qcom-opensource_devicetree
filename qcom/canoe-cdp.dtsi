@@ -33,3 +33,7 @@
 	dummy-supply = <&pmih010x_eusb2_repeater>;
 	usb-repeater = <&pmih010x_eusb2_repeater>;
 };
+
+&pcie {
+	gdsc-phy-vdd-supply = <&gcc_pcie_0_phy_gdsc>;
+};

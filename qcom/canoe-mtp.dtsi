@@ -41,3 +41,7 @@
 	nvmem-cells = <&usb_mode>;
 	nvmem-cell-names = "usb_mode";
 };
+
+&pcie {
+	gdsc-phy-vdd-supply = <&gcc_pcie_0_phy_gdsc>;
+};
