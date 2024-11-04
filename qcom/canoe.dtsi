@@ -502,6 +502,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
+		qcom,gpios-reserved = <36 37 38 39 144 145 146 147>;
 	};
 
 	slimbam: bamdma@6C04000 {
