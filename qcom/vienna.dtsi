@@ -330,6 +330,7 @@
 		compatible = "qcom,msm-eud";
 		interrupt-names = "eud_irq";
 		/*interrupt-parent = <&pdc>;*/
+		interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>;
 		reg = <0x88e0000 0x2000>,
 			<0x88e2000 0x1000>;
 		reg-names = "eud_base", "eud_mode_mgr2";
