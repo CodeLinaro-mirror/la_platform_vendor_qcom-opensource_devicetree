@@ -25,6 +25,7 @@ properties:
       - qcom,qcs404-adsp-pas
       - qcom,qcs404-cdsp-pas
       - qcom,qcs404-wcss-pas
+      - qcom,sa510-modem-pas
       - qcom,sc7180-mpss-pas
       - qcom,sc7280-mpss-pas
       - qcom,sc8180x-adsp-pas
