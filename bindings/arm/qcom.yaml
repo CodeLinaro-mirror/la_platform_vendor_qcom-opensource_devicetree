@@ -749,6 +749,7 @@ properties:
       - items:
           - enum:
               - qcom,sdxkova-idp
+              - qcom,sdxkova-rcm
           - const: qcom,sdxkova
 
       - items:
