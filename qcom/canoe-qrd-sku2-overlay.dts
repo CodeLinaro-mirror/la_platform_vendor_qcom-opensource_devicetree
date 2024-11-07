@@ -6,16 +6,16 @@
 /dts-v1/;
 /plugin/;
 
-#include "canoe-qrd.dtsi"
+#include "canoe-qrd-sku2.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Canoe QRD";
+	model = "Qualcomm Technologies, Inc. Canoe QRD SKU2";
 	compatible = "qcom,canoe-qrd", "qcom,canoe", "qcom,canoep-cdp", "qcom,canoep",
-			   "qcom,qrd";
+		     "qcom,qrd";
 	qcom,msm-id = <0x10294 0x10000>, <0x10294 0x20000>, <0x10295 0x10000>, <0x10295 0x20000>,
 		      <0x30294 0x10000>, <0x30294 0x20000>, <0x30295 0x10000>, <0x30295 0x20000>,
 		      <0x1010294 0x10000>, <0x1010294 0x20000>, <0x1010295 0x10000>,
 		      <0x1010295 0x20000>, <0x1030294 0x10000>, <0x1030294 0x20000>,
 		      <0x1030295 0x10000>, <0x1030295 0x20000>;
-	qcom,board-id = <11 0>;
+	qcom,board-id = <0x2000b 0>;
 };
