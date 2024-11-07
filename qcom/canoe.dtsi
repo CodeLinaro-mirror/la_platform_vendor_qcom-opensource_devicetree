@@ -3132,6 +3132,7 @@
 };
 
 #include "ipcc-test-canoe.dtsi"
+#include "msm-rdbg.dtsi"
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_cdsp;
 /delete-node/ &ipcc_self_ping_slpi;
