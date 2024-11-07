@@ -389,4 +389,16 @@
 			dma-coherent;
 		};
 	};
+
+	apps_smmu_pmu {
+		compatible = "arm,smmu-pmu";
+		reg = <0x15002000 0x2000>,
+			<0x15007000 0x1000>;
+	};
+
+	gfx_smmu_pmu {
+		compatible = "arm,smmu-pmu";
+		reg = <0x3da2000 0x2000>,
+			<0x3da7000 0x1000>;
+	};
 };
