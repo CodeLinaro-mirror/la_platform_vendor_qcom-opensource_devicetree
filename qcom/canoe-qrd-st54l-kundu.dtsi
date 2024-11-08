@@ -64,3 +64,37 @@
 		};
 	};
 };
+
+&pmic_glink_adc {
+	status = "ok";
+
+	smb1396_1_iin {
+		reg = <0x1043401>;
+		label = "smb1396_1_iin";
+	};
+
+	smb1396_1_ichg {
+		reg = <0x1043402>;
+		label = "smb1396_1_ichg";
+	};
+
+	smb1396_1_die_temp {
+		reg = <0x1043403>;
+		label = "smb1396_1_die_temp";
+	};
+
+	smb1396_2_iin {
+		reg = <0x1043501>;
+		label = "smb1396_2_iin";
+	};
+
+	smb1396_2_ichg {
+		reg = <0x1043502>;
+		label = "smb1396_2_ichg";
+	};
+
+	smb1396_2_die_temp {
+		reg = <0x1043503>;
+		label = "smb1396_2_die_temp";
+	};
+};
