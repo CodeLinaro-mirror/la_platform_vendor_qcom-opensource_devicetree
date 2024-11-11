@@ -143,6 +143,7 @@
 };
 
 #include "alor-reserved-memory.dtsi"
+#include "msm-arm-smmu-alor.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
