@@ -64,6 +64,7 @@
 		 * deferred probe doesn't run into existing bug in smmu driver.
 		 */
 		dummy-supply = <&apps_smmu>;
+		extcon = <&eud>;
 
 		dwc3: dwc3@a600000 {
 			compatible = "snps,dwc3";
