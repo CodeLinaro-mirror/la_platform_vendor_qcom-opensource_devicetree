@@ -138,6 +138,9 @@
 				};
 			};
 		};
+
+		thermal_zones: thermal-zones {
+		};
 	};
 
 	firmware: firmware { };
@@ -2473,6 +2476,7 @@
 #include "sdxkova-coresight.dtsi"
 #include "ipcc-test-sdxkova.dtsi"
 #include "sdxkova-pcie.dtsi"
+#include "sdxkova-thermal.dtsi"
 
 &CPU0 {
 	/delete-property/ clocks;
