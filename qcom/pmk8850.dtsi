@@ -18,6 +18,10 @@ pmk8850@0 {
 		reg = <0x7000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
+
+		ocp_log: ocp-log@76 {
+			reg = <0x76 0x6>;
+		};
 	};
 
 	pmk8850_sdam_2: sdam@7100 {
@@ -33,6 +37,10 @@ pmk8850@0 {
 
 		bob1_off_mode_enable: bob1-off-mode-enable@50 {
 			reg = <0x50 0x1>;
+		};
+
+		alarm_log: alarm-log@76 {
+			reg = <0x76 0x6>;
 		};
 
 		fmd_set: fmd-set@9a {
