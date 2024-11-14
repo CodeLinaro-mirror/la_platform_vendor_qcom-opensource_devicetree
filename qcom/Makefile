@@ -52,30 +52,62 @@ sun-dtb-$(CONFIG_ARCH_SUN) += \
 	$(call add-overlays, $(SUN_BOARDS) $(APQ_SUN_BOARDS),$(SUN_APQ_BASE_DTB))
 sun-overlays-dtb-$(CONFIG_ARCH_SUN) += $(SUN_BOARDS) $(NOAPQ_SUN_BOARDS) $(SUN_BASE_DTB) $(SUN_APQ_BASE_DTB)
 
-TUNA_BASE_DTB += tuna.dtb
-NOAPQ_TUNA_BOARDS += \
+TUNA_BASE_DTB += tuna.dtb tuna7.dtb
+TUNA_APQ_BASE_DTB += tunap.dtb
+TUNA_BOARDS += \
 		tuna-atp-overlay.dtbo \
 		tuna-cdp-overlay.dtbo \
+		tuna-mtp-kiwi-harmonium-overlay.dtbo \
 		tuna-mtp-kiwi-overlay.dtbo \
+		tuna-mtp-nfc-overlay.dtbo \
 		tuna-mtp-overlay.dtbo \
 		tuna-mtp-qmp1000-overlay.dtbo \
+		tuna-mtp-kiwi-pmd802x-overlay.dtbo \
 		tuna-qrd-overlay.dtbo \
 		tuna-rcm-kiwi-overlay.dtbo \
-		tuna-rcm-overlay.dtbo \
+		tuna-rcm-overlay.dtbo
+
+NOAPQ_TUNA_BOARDS += \
 		tuna-rumi-overlay.dtbo
 
 sun-dtb-$(CONFIG_ARCH_TUNA) +=  \
-        $(call add-overlays, $(NOAPQ_TUNA_BOARDS),$(TUNA_BASE_DTB))
-sun-overlays-dtb-$(CONFIG_ARCH_TUNA) += $(NOAPQ_TUNA_BOARDS) $(TUNA_BASE_DTB)
+        $(call add-overlays, $(TUNA_BOARDS) $(NOAPQ_TUNA_BOARDS),$(TUNA_BASE_DTB)) \
+	$(call add-overlays, $(TUNA_BOARDS) $(APQ_TUNA_BOARDS),$(TUNA_APQ_BASE_DTB))
+sun-overlays-dtb-$(CONFIG_ARCH_TUNA) += $(TUNA_BOARDS) $(NOAPQ_TUNA_BOARDS) $(TUNA_BASE_DTB) $(TUNA_APQ_BASE_DTB)
 dtb-y += $(sun-dtb-y)
 
 KERA_BASE_DTB += kera.dtb
+KERA_APQ_BASE_DTB += kerap.dtb
+KERA_BOARDS += \
+		kera-atp-overlay.dtbo \
+		kera-mtp-overlay.dtbo \
+		kera-mtp-qca6750-overlay.dtbo \
+		kera-mtp-qca6750-qmp1000-overlay.dtbo \
+		kera-mtp-wcn7750-qmp1000-overlay.dtbo \
+		kera-mtp-wcn7750-ufs4-overlay.dtbo \
+		kera-mtp-wcn7750-ufs3-overlay.dtbo \
+		kera-cdp-overlay.dtbo \
+		kera-cdp-qca6750-ufs2-overlay.dtbo \
+		kera-cdp-qca6750-ufs3-overlay.dtbo \
+		kera-cdp-qca6750-ufs4-overlay.dtbo \
+		kera-qrd-overlay.dtbo \
+		kera-qrd-wcn7750-ufs2-overlay.dtbo \
+		kera-qrd-wcn7750-ufs3-overlay.dtbo \
+		kera-rcm-overlay.dtbo \
+		kera-rcm-qca6750-ufs2-overlay.dtbo \
+		kera-rcm-qca6750-ufs3-overlay.dtbo \
+		kera-rcm-wcn7750-ufs2-overlay.dtbo \
+		kera-rcm-wcn7750-ufs3-overlay.dtbo \
+		kera-rcm-wcn7750-ufs4-overlay.dtbo
+
 NOAPQ_KERA_BOARDS += \
-		 kera-rumi-overlay.dtbo
+		kera-rumi-overlay.dtbo
 
 sun-dtb-$(CONFIG_ARCH_KERA) +=  \
-        $(call add-overlays, $(NOAPQ_KERA_BOARDS),$(KERA_BASE_DTB))
-sun-overlays-dtb-$(CONFIG_ARCH_KERA) += $(NOAPQ_KERA_BOARDS) $(KERA_BASE_DTB)
+	$(call add-overlays, $(KERA_BOARDS) $(NOAPQ_KERA_BOARDS),$(KERA_BASE_DTB)) \
+	$(call add-overlays, $(KERA_BOARDS) $(APQ_KERA_BOARDS),$(KERA_APQ_BASE_DTB))
+sun-overlays-dtb-$(CONFIG_ARCH_KERA) += $(KERA_BOARDS) $(NOAPQ_KERA_BOARDS) $(KERA_BASE_DTB) $(KERA_APQ_BASE_DTB)
+
 dtb-y += $(sun-dtb-y)
 
 PINEAPPLE_BASE_DTB += pineapple.dtb pineapple-v2.dtb
@@ -207,6 +239,38 @@ sun_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += sun-vm-rumi.dtb \
 				sunp-oemvm-hdk.dtb
 dtb-y += $(sun_tuivm-dtb-y)
 
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_TUNA), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+tuna_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += tuna-vm-rumi.dtb \
+				tuna-vm-atp.dtb \
+				tuna-vm-cdp.dtb \
+				tuna-vm-mtp.dtb \
+				tuna-vm-mtp-kiwi.dtb \
+				tuna-vm-mtp-qmp1000.dtb \
+				tuna-vm-qrd.dtb \
+				tuna-vm-rcm.dtb \
+				tuna-vm-rcm-kiwi.dtb \
+				tuna-oemvm-rumi.dtb \
+				tuna-oemvm-atp.dtb \
+				tuna-oemvm-cdp.dtb \
+				tuna-oemvm-mtp.dtb \
+				tuna-oemvm-mtp-kiwi.dtb \
+				tuna-oemvm-mtp-qmp1000.dtb \
+				tuna-oemvm-qrd.dtb \
+				tuna-oemvm-rcm.dtb \
+				tuna-oemvm-rcm-kiwi.dtb
+dtb-y += $(tuna_tuivm-dtb-y)
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_KERA), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+kera_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += kera-vm-rumi.dtb \
+				kera-oemvm-rumi.dtb
+dtb-y += $(kera_tuivm-dtb-y)
 endif
 endif
 

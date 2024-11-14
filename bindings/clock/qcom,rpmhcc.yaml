@@ -26,6 +26,7 @@ properties:
       - qcom,sdx55-rpmh-clk
       - qcom,sdx65-rpmh-clk
       - qcom,sdx75-rpmh-clk
+      - qcom,sdxbaagha-rpmh-clk
       - qcom,sm4450-rpmh-clk
       - qcom,sm6350-rpmh-clk
       - qcom,sm8150-rpmh-clk
@@ -35,6 +36,7 @@ properties:
       - qcom,pineapple-rpmh-clk
       - qcom,sun-rpmh-clk
       - qcom,parrot-rpmh-clk
+      - qcom,tuna-rpmh-clk
 
   clocks:
     maxItems: 1

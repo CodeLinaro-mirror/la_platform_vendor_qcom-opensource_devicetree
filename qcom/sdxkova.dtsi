@@ -6,6 +6,8 @@
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/spmi/spmi.h>
 #include "sdx75.dtsi"
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+#include <dt-bindings/gpio/gpio.h>
 /delete-node/ &apps_smmu;
 /delete-node/ &tcsr_mutex;
 #include "msm-arm-smmu-sdxkova.dtsi"
@@ -290,6 +292,168 @@
 			pins = "gpio103";
 			bias-pull-up;
 			drive-strength = <2>;
+		};
+	};
+
+	pcie0 {
+		pcie0_perst_default: pcie0_perst_default {
+			mux {
+				pins = "gpio44";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio44";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		pcie0_clkreq_default: pcie0_clkreq_default {
+			mux {
+				pins = "gpio43";
+				function = "pcie0_clkreq_n";
+			};
+
+			config {
+				pins = "gpio43";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie0_wake_default: pcie0_wake_default {
+			mux {
+				pins = "gpio42";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio42";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie0_clkreq_sleep: pcie0_clkreq_sleep {
+			mux {
+				pins = "gpio43";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio43";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+	};
+
+	pcie1 {
+		pcie1_perst_default: pcie1_perst_default {
+			mux {
+				pins = "gpio125";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio125";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		pcie1_clkreq_default: pcie1_clkreq_default {
+			mux {
+				pins = "gpio124";
+				function = "pcie1_clkreq_n";
+			};
+
+			config {
+				pins = "gpio124";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie1_wake_default: pcie1_wake_default {
+			mux {
+				pins = "gpio123";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio123";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie1_clkreq_sleep: pcie1_clkreq_sleep {
+			mux {
+				pins = "gpio124";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio124";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+	};
+
+	pcie2 {
+		pcie2_perst_default: pcie2_perst_default {
+			mux {
+				pins = "gpio122";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio122";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		pcie2_clkreq_default: pcie2_clkreq_default {
+			mux {
+				pins = "gpio121";
+				function = "pcie2_clkreq_n";
+			};
+
+			config {
+				pins = "gpio121";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie2_wake_default: pcie2_wake_default {
+			mux {
+				pins = "gpio120";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio120";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie2_clkreq_sleep: pcie2_clkreq_sleep {
+			mux {
+				pins = "gpio121";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio121";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
 		};
 	};
 
@@ -1086,7 +1250,7 @@
 #include "sdxkova-regulators.dtsi"
 
 &chosen {
-	bootargs = "cpufreq.default_governor=performance";
+	bootargs = "cpufreq.default_governor=performance pcie_ports=compat";
 };
 
 &soc {
@@ -1317,10 +1481,15 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
+
 	qcom,msm-imem@14680000 {
 		compatible = "qcom,msm-imem";
 		reg = <0x0 0x14680000 0x0 0x1000>;
-		ranges = <0x0 0x0 0x14680000 0x0 0x1000>;
+		ranges = <0x0 0x0 0x0 0x14680000 0x0 0x1000>;
 		#address-cells = <2>;
 		#size-cells = <2>;
 
@@ -1362,6 +1531,11 @@
 		diag_dload@c8 {
 			compatible = "qcom,msm-imem-diag-dload";
 			reg = <0x0 0xc8 0x0 0xc8>;
+		};
+
+		modem_dsm@c98 {
+			compatible = "qcom,msm-imem-mss-dsm";
+			reg = <0x0 0xc98 0x0 0x10>;
 		};
 	};
 
@@ -1659,6 +1833,80 @@
 			};
 		};
 	};
+
+	modem_pas: remoteproc-mss@04080000 {
+		compatible = "qcom,sdxpinn-modem-pas";
+		reg = <0x0 0x4080000 0x0 0x10000>;
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "xo";
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		mx-supply = <&VDD_MODEM_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_NOM_L1 100000>;
+		reg-names = "cx", "mx";
+
+		qcom,signal-aop;
+		qcom,qmp = <&aoss_qmp>;
+		memory-region = <&mpssadsp_mem>,
+				<&q6_mpss_dtb_mem>,
+				<&system_cma>,
+				<&dsm_partition_1_mem>,
+				<&dsm_partition_2_mem>,
+				<&qlink_logging_mem>;
+		firmware-name = "modem.mdt", "modem_dtb.mdt";
+
+		/* Inputs from mss */
+		interrupts-extended = <&intc GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
+					<&modem_smp2p_in 0 0>,
+					<&modem_smp2p_in 2 0>,
+					<&modem_smp2p_in 1 0>,
+					<&modem_smp2p_in 3 0>,
+					<&modem_smp2p_in 7 0>;
+
+		interrupt-names = "wdog",
+					"fatal",
+					"handover",
+					"ready",
+					"stop-ack",
+					"shutdown-ack";
+
+		/* Outputs to mss */
+		qcom,smem-states = <&modem_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
+	};
+
+	qnand_1: nand@1c98000 {
+		compatible = "qcom,msm-nand";
+		reg =   <0x0 0x01c98000 0x0 0x1000>,
+			<0x0 0x01c9C000 0x0 0x1c000>;
+		reg-names =     "nand_phys",
+				"bam_phys";
+		qcom,reg-adjustment-offset = <0x4000>;
+
+		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "bam_irq";
+
+		clock-names = "core_clk";
+		clocks = <&rpmhcc RPMH_QPIC_CLK>;
+
+		interconnects = <&system_noc MASTER_QPIC &mc_virt SLAVE_EBI1>;
+		interconnect-names = "nand-ddr";
+		qcom,msm-bus,name = "qpic_nand";
+		qcom,msm-bus,num-cases = <2>;
+		qcom,msm-bus,num-paths = <1>;
+		qcom,msm-bus,vectors-KBps =
+			<0 0>,
+		/* Voting for max b/w on PNOC bus for now */
+			<1057800 725760>;
+
+		iommus = <&apps_smmu 0x100 0x3>;
+		qcom,iommu-dma = "atomic";
+		dma-coherent;
+
+		status = "disabled";
+	};
 };
 
 &gcc {
@@ -1736,6 +1984,7 @@
 		<&qupv3_se3_tx>, <&qupv3_se3_default_rx>;
 		pinctrl-3 = <&qupv3_se3_default_cts>, <&qupv3_se3_default_rts>,
 		<&qupv3_se3_default_tx>, <&qupv3_se3_default_rx>;
+		qcom,suspend-ignore-children;
 		qcom,wakeup-byte = <0xFD>;
 		status = "disabled";
 	};
@@ -2046,3 +2295,20 @@
 
 #include "sdxkova-usb.dtsi"
 #include "ipcc-test-sdxkova.dtsi"
+#include "sdxkova-pcie.dtsi"
+
+&CPU0 {
+	/delete-property/ clocks;
+};
+
+&CPU1 {
+	/delete-property/ clocks;
+};
+
+&CPU2 {
+	/delete-property/ clocks;
+};
+
+&CPU3 {
+	/delete-property/ clocks;
+};

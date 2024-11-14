@@ -65,6 +65,11 @@
 		reg = <0x0 0x81ce4000 0x0 0x10000>;
 	};
 
+	chipinfo_mem: chipinfo_region@81cf4000 {
+		no-map;
+		reg = <0x0 0x81cf4000 0x0 0x1000>;
+	};
+
 	smem_mem: smem_region@81d00000 {
 		compatible = "qcom,smem";
 		reg = <0x0 0x81d00000 0x0 0x200000>;
@@ -227,6 +232,20 @@
 	 * partition tables before boot occurs. Size of region
 	 * varies.
 	 */
+
+	trust_ui_vm_mem: trust_ui_vm_region@f3800000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0xf3800000 0x0 0x4400000>;
+		reusable;
+		alignment = <0x0 0x400000>;
+	};
+
+	oem_vm_mem: oem_vm_region@f7c00000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0xf7c00000 0x0 0x4c00000>;
+		reusable;
+		alignment = <0x0 0x400000>;
+	};
 
 	llcc_lpi_mem: llcc_lpi_region@ff800000 {
 		no-map;

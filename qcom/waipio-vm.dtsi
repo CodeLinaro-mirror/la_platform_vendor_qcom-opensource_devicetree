@@ -20,10 +20,11 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable root=/dev/ram rw init=/init";
+		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable root=/dev/vda init=/sbin/init";
 	};
 
 	cpus {
@@ -209,7 +210,7 @@
 				peer-default;
 				memory {
 					qcom,label = <0x8>;
-					qcom,mem-info-tag = <0x2>;
+					qcom,mem-info-tag = <0x3>;
 					allocate-base;
 				};
 			};
@@ -286,7 +287,9 @@
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		tlmm-vm-gpio-list = <365 366 367 368 301 305 387 388 317 318 319 320 321 322>;
+		tlmm-vm-gpio-list = <&tlmm 64 0 &tlmm 65 0 &tlmm 66 0 &tlmm 67 0 &tlmm 0 0
+				     &tlmm 4 0 &tlmm 86 0 &tlmm 87 0 &tlmm 16 0 &tlmm 17 0
+				     &tlmm 18 0 &tlmm 19 0 &tlmm 20 0 &tlmm 21 0>;
 	};
 
 	vgic: interrupt-controller@17100000 {
