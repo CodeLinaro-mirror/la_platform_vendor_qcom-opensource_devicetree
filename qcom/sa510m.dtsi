@@ -975,6 +975,7 @@
 };
 
 #include "sa510m-qupv3.dtsi"
+#include "sa510m-pcie.dtsi"
 #include "sa510m-pinctrl.dtsi"
 #include "msm-arm-smmu-sa510m.dtsi"
 #include "sdxbaagha-regulators.dtsi"
