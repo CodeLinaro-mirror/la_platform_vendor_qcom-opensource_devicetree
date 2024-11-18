@@ -1982,7 +1982,8 @@
 	};
 
 	qup1_gpi_iommu_region: qup1_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma0 0x0 0x100000>, <&gpi_dma0 0x200000 0xffe00000>;
+		iommu-addresses = <&gpi_dma0 0x0 0x0 0x0 0x100000>,
+				  <&gpi_dma0 0x0 0x200000 0x0 0xffe00000>;
 	};
 
 	/* GPI Instance */
@@ -2014,8 +2015,8 @@
 	};
 
 	qup1_se_iommu_region: qup1_se_iommu_region {
-		iommu-addresses =  <&qupv3_id_0 0x0 0x40000000>,
-				   <&qupv3_id_0 0x50000000 0xb0000000>;
+		iommu-addresses = <&qupv3_id_0 0x0 0x0 0x0 0x40000000>,
+				  <&qupv3_id_0 0x0 0x50000000 0x0 0xb0000000>;
 	};
 
 	qnand_1: nand@1c98000 {
