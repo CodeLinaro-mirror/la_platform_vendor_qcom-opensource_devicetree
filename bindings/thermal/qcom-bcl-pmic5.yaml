@@ -23,8 +23,11 @@ description: |
 
 properties:
   compatible:
-    const: qcom,bcl-v5
     description: msm battery state of charge device
+    items:
+      - const: qcom,bcl-v5
+      - const: qcom,pm8550-bcl-v5
+      - const: qcom,pmh0101-bcl-v5
 
   reg:
     maxItems: 1
