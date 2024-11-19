@@ -690,6 +690,12 @@
 			status = "ok";
 	};
 
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0xc221000 0x1000>;
+		clock-frequency = <32768>;
+	};
+
 	qnand_1: nand@1c98000 {
 		compatible = "qcom,msm-nand";
 		reg =   <0x01c98000 0x1000>,
