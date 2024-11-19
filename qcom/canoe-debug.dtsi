@@ -288,54 +288,54 @@
 
 			cpu_cache {
 				cache_cpu0 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x230>;
 				};
 
 				cache_cpu1 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x231>;
 				};
 
 				cache_cpu2 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x232>;
 				};
 
 				cache_cpu3 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x233>;
 				};
 
 				cache_cpu4 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x234>;
 				};
 
 				cache_cpu5 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x235>;
 				};
 
 				cache_cpu6 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x236>;
 				};
 
 				cache_cpu7 {
-					qcom,dump-size = <0x2aa000>;
+					qcom,dump-size = <0x200000>;
 					qcom,dump-id = <0x237>;
 				};
 			};
 
 			cluster_cache {
 				cl_cache0 {
-					qcom,dump-size = <0x1400000>;
+					qcom,dump-size = <0x1800000>;
 					qcom,dump-id = <0x240>;
 				};
 
 				cl_cache1 {
-					qcom,dump-size = <0x1400000>;
+					qcom,dump-size = <0x1800000>;
 					qcom,dump-id = <0x241>;
 				};
 
