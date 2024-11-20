@@ -2278,8 +2278,7 @@
 		qcom,bypass-pbl-rst-wa;
 		qcom,max-cpus = <8>;
 
-// Remove because gic_its is not available
-//		msi-parent = <&gic_its 0x60>;
+		msi-parent = <&gic_its 0x60>;
 
 		status = "disabled";
 
