@@ -15,23 +15,25 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
-CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb honu.dtb honu-v2.dtb honu-tp.dtb honu-tp-v2.dtb
-CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb honup.dtb honup-v2.dtb honup-tp.dtb honup-tp-v2.dtb
+CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb
+CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb
 
 CANOE_BOARDS += \
 		canoe-mtp-3.5mm-overlay.dtbo \
 		canoe-mtp-kiwi-overlay.dtbo \
 		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
+		canoe-mtp-pictor-overlay.dtbo \
 		canoe-mtp-qmp1000-overlay.dtbo \
+		canoe-mtp-st54l-pandeiro-overlay.dtbo \
 		canoe-cdp-kiwi-overlay.dtbo \
-		canoe-cdp-mango-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
-		canoe-qrd-sku1-overlay.dtbo \
-		canoe-qrd-sku2-overlay.dtbo \
+		canoe-cdp-st54l-pandeiro-overlay.dtbo \
+		canoe-qrd-overlay.dtbo \
+		canoe-qrd-st54l-pandeiro-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
-		canoe-rcm-mango-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
+		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo
 
 NOAPQ_CANOE_BOARDS += \

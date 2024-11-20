@@ -6,14 +6,14 @@
 /dts-v1/;
 /plugin/;
 
-#include "canoe-atp.dtsi"
+#include "canoe-rcm-st54l-pandeiro.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Canoe ATP + ST54L + Pandeiro";
-	compatible = "qcom,canoe-atp", "qcom,canoe", "qcom,canoep-atp", "qcom,canoep",
-			   "qcom,atp";
+	model = "Qualcomm Technologies, Inc. Canoe RCM + ST54L + Pandeiro";
+	compatible = "qcom,canoe-rcm", "qcom,canoe", "qcom,canoep-rcm", "qcom,canoep",
+			   "qcom,rcm";
 	qcom,msm-id = <660 0x10000>, <660 0x20000>, <661 0x10000>, <661 0x20000>,
 		      <0x1000294 0x10000>, <0x1000294 0x20000>,
 		      <0x1000295 0x10000>, <0x1000295 0x20000>;
-	qcom,board-id = <0x21 0>;
+	qcom,board-id = <0x20015 0>;
 };

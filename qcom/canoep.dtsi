@@ -8,5 +8,5 @@
 / {
 	model = "Qualcomm Technologies, Inc. CanoeP SoC";
 	compatible = "qcom,canoep";
-	qcom,msm-id = <0x10295 0x10000>;
+	qcom,msm-id = <661 0x10000>;
 };
