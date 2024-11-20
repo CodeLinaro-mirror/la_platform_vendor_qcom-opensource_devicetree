@@ -7,7 +7,7 @@
 
 #include "sdxkova.dtsi"
 #include "sdxkova-idp-mbb-v3.dtsi"
-#include "sdxkova-reserved-memory-2G.dtsi"
+#include "sdxkova-reserved-memory.dtsi"
 / {
 	model = "Qualcomm Technologies, Inc. SDXKOVA IDP MBB V3";
 	compatible = "qcom,sdxkova-idp",
