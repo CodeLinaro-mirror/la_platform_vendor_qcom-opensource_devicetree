@@ -110,14 +110,6 @@ properties:
               - qcom,rumi
           - const: qcom,alor
 
-      - description: Qualcomm Technologies, Inc. HONU
-        items:
-          - const: qcom,honu
-
-      - description: Qualcomm Technologies, Inc. HONUP
-        items:
-          - const: qcom,honup
-
       - description: Qualcomm Technologies, Inc. PARROT
         items:
           - enum:
