@@ -939,6 +939,7 @@
 				  "disp_crm_drv3",
 				  "disp_crm_drv4",
 				  "disp_crm_drv5";
+		clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>;
 		qcom,hw-drv-ids = <0 1 2 3 4 5>;
 		qcom,sw-drv-ids = <0 1 2 3 4 5>;
 	};
