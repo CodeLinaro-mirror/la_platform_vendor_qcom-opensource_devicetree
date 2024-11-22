@@ -3207,6 +3207,7 @@
 #include "msm-arm-smmu-canoe.dtsi"
 #include "canoe-thermal.dtsi"
 #include "canoe-pcie.dtsi"
+#include "canoe-walt.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
