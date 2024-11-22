@@ -466,6 +466,17 @@
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm";
 	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <64>;
+		qcom,support-hypervisor;
+	};
+
 };
 
 #include "msm-arm-smmu-canoe-vm.dtsi"
