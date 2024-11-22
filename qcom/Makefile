@@ -239,6 +239,24 @@ dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_MONACO_AUTO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+MONACO_LA_GVM_BASE_DTB += monaco-vm-la.dtb
+
+MONACO_LA_GVM_BOARDS += \
+		monaco-vm-la-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
 clean-files     := *.dtb *.dtbo
