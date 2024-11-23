@@ -90,9 +90,9 @@
 	/* USB port related High Speed PHY */
 	eusb2_phy0: hsphy@88e3000 {
 		compatible = "qcom,usb-m31-eusb2-phy";
-		reg = <0x88e3000 0x29C>,
-			<0x088e2000 0x4>,
-			<0x0c278000 0x4>;
+		reg = <0x0 0x88e3000 0x0 0x29C>,
+			<0x0 0x088e2000 0x0 0x4>,
+			<0x0 0x0c278000 0x0 0x4>;
 		reg-names = "eusb2_phy_base",
 			"eud_enable_reg",
 			"eud_detect_reg";
@@ -113,7 +113,7 @@
 	/* USB port related QMP USB DP Combo PHY */
 	usb_qmp_dp_phy: ssphy@88e8000 {
 		compatible = "qcom,usb-ssphy-qmp-dp-combo";
-		reg = <0x88e8000 0x3000>;
+		reg = <0x0 0x88e8000 0x0 0x3000>;
 		reg-names = "qmp_phy_base";
 
 		vdd-supply = <&pmh0110_f_l4>;
