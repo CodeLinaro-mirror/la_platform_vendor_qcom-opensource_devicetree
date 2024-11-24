@@ -1800,12 +1800,13 @@
 
 	qcom_cedev: qcedev@1de0000 {
 		compatible = "qcom,qcedev";
-		reg = <0x1de0000 0x20000>,
-			<0x1dc4000 0x22000>;
+		reg = <0x0 0x1de0000 0x0 0x20000>,
+			<0x0 0x1dc4000 0x0 0x22000>;
 		reg-names = "crypto-base","crypto-bam-base";
 		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bam-pipe-pair = <2>;
 		qcom,offload-ops-support;
+		qcom,use-key-index;
 		qcom,bam-pipe-offload-cpb-hlos = <1>;
 		qcom,bam-pipe-offload-hlos-cpb = <3>;
 		qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
@@ -1844,7 +1845,7 @@
 
 	rng: rng@10c3000 {
 		compatible = "qcom,trng";
-		reg = <0x10c3000 0x1000>;
+		reg = <0x0 0x10c3000 0x0 0x1000>;
 	};
 
 	ufshc_dma_resv: ufshc_dma_resv_region {
