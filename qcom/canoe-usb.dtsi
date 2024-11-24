@@ -76,6 +76,7 @@
 			snps,dis_u2_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
+			num-hc-interrupters = /bits/ 16 <3>;
 			dr_mode = "otg";
 			maximum-speed = "super-speed-plus";
 			usb-role-switch;
@@ -322,5 +323,13 @@
 			USB3_DP_PCS_USB3_RXEQTRAINING_DFE_TIME_S2 0x07
 			USB3_DP_PCS_USB3_RCVR_DTCT_DLY_U3_L 0x40
 			USB3_DP_PCS_USB3_RCVR_DTCT_DLY_U3_H 0x00>;
+	};
+
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu 0x100b 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0xb>;
+		qcom,usb-audio-intr-num = <2>;
 	};
 };
