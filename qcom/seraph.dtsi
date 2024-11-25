@@ -302,6 +302,8 @@
 		wakeup-parent = <&pdc>;
 		qcom,gpios-reserved = <18 19>;
 	};
+
+	thermal_zones: thermal-zones {};
 };
 
 &reserved_memory {
