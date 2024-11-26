@@ -93,6 +93,7 @@ properties:
       - enum:
           - arm,smmu-v1
           - arm,smmu-v2
+          - arm,smmu-pmu
           - arm,mmu-400
           - arm,mmu-401
           - arm,mmu-500
