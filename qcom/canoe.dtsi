@@ -1978,7 +1978,7 @@
 
 	soccp_pas: remoteproc-soccp@a3380000 {
 		compatible = "qcom,canoe-soccp-pas";
-		reg = <0xa3380000 0x10000>;
+		reg = <0x0 0xa3380000 0x0 0x10000>;
 		status = "ok";
 
 		cx-supply = <&VDD_CX_LEVEL>;
@@ -2057,7 +2057,7 @@
 
 	adsp_pas: remoteproc-adsp@03000000 {
 		compatible = "qcom,canoe-adsp-pas";
-		reg = <0x03000000 0x10000>;
+		reg = <0x0 0x03000000 0x0 0x10000>;
 		status = "ok";
 
 		cx-supply = <&VDD_LPI_CX_LEVEL>;
@@ -2124,7 +2124,7 @@
 
 	modem_pas: remoteproc-mss@04080000 {
 		compatible = "qcom,canoe-modem-pas";
-		reg = <0x4080000 0x10000>;
+		reg = <0x0 0x4080000 0x0 0x10000>;
 		status = "ok";
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
@@ -2195,7 +2195,7 @@
 
 	cdsp_pas: remoteproc-cdsp@32300000 {
 		compatible = "qcom,canoe-cdsp-pas";
-		reg = <0x32300000 0x10000>;
+		reg = <0x0 0x32300000 0x0 0x10000>;
 		status = "ok";
 
 		cx-supply = <&VDD_CX_LEVEL>;
