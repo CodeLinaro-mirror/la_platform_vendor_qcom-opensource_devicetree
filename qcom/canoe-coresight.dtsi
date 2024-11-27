@@ -3587,6 +3587,7 @@
 		device-name = "tmc_etr1";
 
 		iommus = <&apps_smmu 0x0500 0x0>;
+		memory-region = <&tmc_etr1_region>;
 		dma-coherent;
 		arm,scatter-gather;
 
@@ -3608,6 +3609,10 @@
 					<&replicator_dummy_out_tmc_etr1>;
 				};
 			};
+		};
+
+		tmc_etr1_region: tmc_etr1_region {
+			iommu-addresses = <&tmc_etr1 0x1 0x0 0xfe 0x0>;
 		};
 	};
 
