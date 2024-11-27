@@ -87,7 +87,8 @@
 			<&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
 			<&gcc GCC_CNOC_PCIE_SF_AXI_CLK>,
 			<&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
-			<&pcie_0_pipe_clk>;
+			<&pcie_0_pipe_clk>,
+			<&gcc GCC_PCIE_0_PHY_AUX_CLK>;
 		clock-names = "pcie_pipe_clk", "pcie_ref_clk_src",
 				"pcie_aux_clk", "pcie_cfg_ahb_clk",
 				"pcie_mstr_axi_clk", "pcie_slv_axi_clk",
@@ -96,11 +97,11 @@
 				"gcc_ddrss_pcie_sf_qtb_clk",
 				"pcie_aggre_noc_axi_clk",
 				"gcc_cnoc_pcie_sf_axi_clk", "pcie_pipe_clk_mux",
-				"pcie_pipe_clk_ext_src";
+				"pcie_pipe_clk_ext_src", "pcie_phy_aux_clk";
 		qcom,pcie-clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>, <0>, <0>,
-				<100000000>, <0>, <0>, <0>, <0>, <0>;
+				<100000000>, <0>, <0>, <0>, <0>, <0>, <0>;
 		clock-suppressible = <0>, <0>, <0>, <0>, <0>, <0>, <1>, <0>,
-				<0>, <0>, <0>, <1>, <0>, <0>;
+				<0>, <0>, <0>, <1>, <0>, <0>, <0>;
 
 		gdsc-core-vdd-supply = <&gcc_pcie_0_gdsc>;
 		vreg-1p2-supply = <&L1D>;
