@@ -1274,6 +1274,14 @@
 		reusable;
 		size = <0x0 0x1000000>;
 	};
+
+	ramoops_mem: ramoops_region {
+		compatible = "ramoops";
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x200000>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
 };
 
 &soc {
