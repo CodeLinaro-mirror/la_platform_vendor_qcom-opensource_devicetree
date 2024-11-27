@@ -583,6 +583,19 @@
 		qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 	};
 
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,cortex-a7-pmu";
+		interrupts = <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	qcom_pmu: qcom,pmu {
+		compatible = "qcom,pmu";
+		qcom,pmu-events-tbl =
+			< 0x0008 0x01 0xFF 0xFF >,
+			< 0x0011 0x01 0xFF 0xFF >,
+			< 0x0017 0x01 0xFF 0xFF >;
+	};
+
 	gcc: clock-controller@80000 {
 		compatible = "qcom,sdxbaagha-gcc", "syscon";
 		reg = <0x80000 0x1f4200>;
