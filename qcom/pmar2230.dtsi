@@ -76,6 +76,13 @@ pmar2230: pmar2230@0 {
 			reg = <0x7400>;
 		};
 
+		pmar2230-pwm {
+			compatible = "qcom,pmk8850-pwm", "qcom,pmk8550-pwm";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#pwm-cells = <2>;
+		};
+
 		pmar2230_vadc: vadc@7900 {
 			compatible = "qcom,spmi-adc5-gen4";
 			reg = <0x7900>;
