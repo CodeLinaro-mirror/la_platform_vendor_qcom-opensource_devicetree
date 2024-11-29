@@ -71,6 +71,7 @@ properties:
           - qcom,pmr735b-gpio
           - qcom,pmr735d-gpio
           - qcom,pms405-gpio
+          - qcom,pmw6100-gpio
           - qcom,pmx55-gpio
           - qcom,pmx65-gpio
           - qcom,pmxr2230-gpio
@@ -328,6 +329,7 @@ allOf:
             enum:
               - qcom,pmh0101-gpio
               - qcom,pmih010x-gpio
+              - qcom,pmw6100-gpio
     then:
       properties:
         gpio-line-names:
@@ -484,6 +486,7 @@ $defs:
                  - gpio1-gpio2 for pmr735d
                  - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
                                             and gpio10)
+                 - gpio1-gpio18 for pmw6100
                  - gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
                                             and gpio11)
                  - gpio1-gpio16 for pmx65
