@@ -14,6 +14,15 @@ pmar2230: pmar2230@0 {
 		#address-cells = <1>;
 		#size-cells = <0>;
 
+		pmar2230_tz: pmar2230-temp-alarm@a00 {
+			compatible = "qcom,spmi-temp-alarm";
+			reg = <0xa00>;
+			interrupts = <0x0 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+			#thermal-sensor-cells = <0>;
+			io-channels = <&pmar2230_vadc PMAR2230_ADC5_GEN4_DIE_TEMP>;
+			io-channel-names = "thermal";
+		};
+
 		pmar2230_gpios: pinctrl@8800 {
 			compatible = "qcom,pmar2230-gpio";
 			reg = <0x8800>;
