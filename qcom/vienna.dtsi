@@ -6,6 +6,7 @@
 #include <dt-bindings/clock/qcom,gcc-vienna.h>
 #include <dt-bindings/clock/qcom,gpucc-vienna.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,vienna.h>
@@ -29,7 +30,37 @@
 	};
 
 	aliases {
-		serial0 = &qupv3_se5_2uart;
+		serial0 = &uart4;
+		i2c0 = &i2c0;
+		i2c1 = &i2c1;
+		i2c2 = &i2c2_a;
+		i2c3 = &i2c3_a;
+		i2c4 = &i2c4;
+		i2c5 = &i2c5_a;
+		i2c6 = &i2c6;
+		i2c7 = &i2c7_a;
+		i2c8 = &i2c8;
+		i2c9 = &i2c9;
+		i2c10 = &i2c10;
+		i2c11 = &i2c2_b;
+		i2c12 = &i2c3_b;
+		i2c13 = &i2c5_b;
+		i2c14 = &i2c7_b;
+		spi0 = &spi0;
+		spi1 = &spi1;
+		spi2 = &spi2_a;
+		spi3 = &spi3_a;
+		spi4 = &spi4;
+		spi5 = &spi5_a;
+		spi6 = &spi6;
+		spi7 = &spi7_a;
+		spi8 = &spi8;
+		spi9 = &spi9;
+		spi10 = &spi10;
+		spi11 = &spi2_b;
+		spi12 = &spi3_b;
+		spi13 = &spi5_b;
+		spi14 = &spi7_b;
 	};
 
 	firmware: firmware {
@@ -1426,7 +1457,7 @@
 	};
 };
 
-&qupv3_se5_2uart {
+&uart4 {
 	status = "ok";
 };
 

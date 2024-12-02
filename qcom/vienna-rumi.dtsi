@@ -34,8 +34,9 @@
 	clock-frequency = <5000000>;
 };
 
-&qupv3_se5_2uart {
+&uart5 {
 	qcom,rumi_platform;
+	status = "ok";
 };
 
 &usb0 {
