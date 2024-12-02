@@ -155,6 +155,19 @@ properties:
       for HAP525_HV haptics module.
     type: boolean
 
+  qcom,sw-cmd-freq-detect:
+    description: |
+      Boolean flag indicating that software command based frequency detection
+      method is used for LRA resonant frequency detection.
+    type: boolean
+
+  qcom,hbst-ovp-trim:
+    description: |
+      Boolean flag indicating that the hBoost OVP trim PBS sequence would be
+      triggered during driver initialization. This is only applicable for HAP530_HV
+      haptics module.
+    type: boolean
+
 patternProperties:
   ".*hap-swr-slave-reg$":
     description: |
