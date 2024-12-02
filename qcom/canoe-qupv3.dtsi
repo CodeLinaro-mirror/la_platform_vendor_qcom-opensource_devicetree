@@ -31,7 +31,8 @@
 	 */
 
 	 qup1_gpi_iommu_region: qup1_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma1 0x0 0x100000>, <&gpi_dma1 0x200000 0xffe00000>;
+		iommu-addresses =  <&gpi_dma1 0x0 0x0 0x0 0x100000>,
+				   <&gpi_dma1 0x0 0x200000 0xffffffff 0xffe00000>;
 	};
 
 	/* GPI Instance */
@@ -63,7 +64,8 @@
 	};
 
 	qup1_se_iommu_region: qup1_se_iommu_region {
-		iommu-addresses =  <&qupv3_1 0x0 0x40000000>, <&qupv3_1 0x50000000 0xb0000000>;
+		iommu-addresses =  <&qupv3_1 0x0 0x0 0x0 0x40000000>,
+				   <&qupv3_1 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	/* QUPv3_1 wrapper instance */
@@ -463,7 +465,8 @@
 	};
 
 	qup2_gpi_iommu_region: qup2_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma2 0x0 0x100000>, <&gpi_dma2 0x200000 0xffe00000>;
+		iommu-addresses =  <&gpi_dma2 0x0 0x0 0x0 0x100000>,
+				   <&gpi_dma2 0x0 0x200000 0xffffffff 0xffe00000>;
 	};
 
 	/* GPI Instance */
@@ -495,7 +498,8 @@
 	};
 
 	qup2_se_iommu_region: qup2_se_iommu_region {
-		iommu-addresses =  <&qupv3_2 0x0 0x40000000>, <&qupv3_2 0x50000000 0xb0000000>;
+		iommu-addresses =  <&qupv3_2 0x0 0x0 0x0 0x40000000>,
+				   <&qupv3_2 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	/* QUPv3_2 wrapper instance */
@@ -784,7 +788,8 @@
 	};
 
 	qup3_gpi_iommu_region: qup3_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma3 0x0 0x100000>, <&gpi_dma3 0x200000 0xffe00000>;
+		iommu-addresses =  <&gpi_dma3 0x0 0x0 0x0 0x100000>,
+				   <&gpi_dma3 0x0 0x200000 0xffffffff 0xffe00000>;
 	};
 
 	/* GPI Instance */
@@ -817,7 +822,8 @@
 	};
 
 	 qup3_se_iommu_region: qup3_se_iommu_region {
-		iommu-addresses =  <&qupv3_3 0x0 0x40000000>, <&qupv3_3 0x50000000 0xb0000000>;
+		iommu-addresses =  <&qupv3_3 0x0 0x0 0x0 0x40000000>,
+				   <&qupv3_3 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	/* QUPv3_3 wrapper instance */
@@ -1131,7 +1137,8 @@
 	};
 
 	qup4_gpi_iommu_region: qup4_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma4 0x0 0x100000>, <&gpi_dma4 0x200000 0xffe00000>;
+		iommu-addresses =  <&gpi_dma4 0x0 0x0 0x0 0x100000>,
+				   <&gpi_dma4 0x0 0x200000 0xffffffff 0xffe00000>;
 	};
 
 	/* GPI Instance */
@@ -1164,7 +1171,8 @@
 	};
 
 	qup4_se_iommu_region: qup4_se_iommu_region {
-		iommu-addresses =  <&qupv3_4 0x0 0x40000000>, <&qupv3_4 0x50000000 0xb0000000>;
+		iommu-addresses =  <&qupv3_4 0x0 0x0 0x0 0x40000000>,
+				   <&qupv3_4 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	/* QUPv3_4 wrapper instance */
