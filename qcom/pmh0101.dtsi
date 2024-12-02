@@ -8,7 +8,7 @@
 #include <dt-bindings/spmi/spmi.h>
 
 pmh0101@1 {
-	comptaible = "qcom,spmi-pmic";
+	compatible = "qcom,spmi-pmic";
 	reg = <1 SPMI_USID>;
 	#address-cells = <1>;
 	#size-cells = <0>;
