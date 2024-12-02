@@ -76,6 +76,7 @@
 		compatible = "qcom,pmic-pon-log";
 		nvmem = <&pmk8850_sdam_5>, <&pmk8850_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
+		depends-on-supply = <&gh_watchdog>;
 	};
 };
 
