@@ -2512,8 +2512,8 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "mmio-sram";
-		reg = <0x0 0x81f08000 0x0 0x120>;
-		ranges = <0 0x0 0x81f08000 0x120>;
+		reg = <0x0 0x81f08000 0x0 0x180>;
+		ranges = <0 0x0 0x81f08000 0x180>;
 
 		pdp_rx: scmi-shmem@0 {
 			compatible = "arm,scmi-shmem";
@@ -2542,7 +2542,7 @@
 		reg-names = "tx", "rx";
 		#mbox-cells = <1>;
 		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,rx-chans = <0x55>;
+		qcom,rx-chans = <0x7>;
 	};
 
 	pdp1: qcom,pdp1@0x1a980000 {
@@ -2552,7 +2552,7 @@
 		reg-names = "tx", "rx";
 		#mbox-cells = <1>;
 		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,rx-chans = <0xaa>;
+		qcom,rx-chans = <0x8>;
 	};
 
 	cpucp_scmi: qcom,cpucp-scmi {
