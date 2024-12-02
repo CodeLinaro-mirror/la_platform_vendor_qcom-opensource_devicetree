@@ -23,7 +23,7 @@ pmh0110_d: pmh0110@3 {
 		compatible = "qcom,pmh0110-gpio";
 		reg = <0x8800>;
 		gpio-controller;
-		#gpios-cells = <2>;
+		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
@@ -46,7 +46,7 @@ pmh0110_f: pmh0110@5 {
 		compatible = "qcom,pmh0110-gpio";
 		reg = <0x8800>;
 		gpio-controller;
-		#gpios-cells = <2>;
+		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
@@ -69,7 +69,7 @@ pmh0110_g: pmh0110@6 {
 		compatible = "qcom,pmh0110-gpio";
 		reg = <0x8800>;
 		gpio-controller;
-		#gpios-cells = <2>;
+		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
@@ -92,7 +92,7 @@ pmh0110_i: pmh0110@8 {
 		compatible = "qcom,pmh0110-gpio";
 		reg = <0x8800>;
 		gpio-controller;
-		#gpios-cells = <2>;
+		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
