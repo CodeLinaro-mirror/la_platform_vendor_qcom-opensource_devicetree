@@ -284,3 +284,4 @@
 };
 
 #include "alor-pinctrl.dtsi"
+#include "alor-stub-regulators.dtsi"
