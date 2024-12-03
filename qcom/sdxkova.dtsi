@@ -1267,6 +1267,23 @@
 	bootargs = "cpufreq.default_governor=performance pcie_ports=compat";
 };
 
+&reserved_memory {
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0x0 0x1000000>;
+	};
+
+	ramoops_mem: ramoops_region {
+		compatible = "ramoops";
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x200000>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
+};
+
 &soc {
 
 	clocks {
@@ -1571,6 +1588,15 @@
 			compatible = "qcom,msm-imem-mss-dsm";
 			reg = <0x0 0xc98 0x0 0x10>;
 		};
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
 	};
 
 	tcsr_mutex_block: syscon@1f40000 {
