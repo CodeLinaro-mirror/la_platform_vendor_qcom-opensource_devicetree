@@ -2420,7 +2420,7 @@
 		depends-on-supply = <&apps_smmu>;
 
 		iommus = <&apps_smmu 0x60 0x0>;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
 		qcom,iommu-msi-size = <0x1000>;
 		memory-region = <&ufshc_dma_resv>;
 		shared-ice-cfg = <&ice_cfg>;
