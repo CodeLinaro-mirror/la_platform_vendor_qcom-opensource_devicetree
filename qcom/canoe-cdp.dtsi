@@ -373,3 +373,12 @@
 	periph-d45-supply = <&L6N>;
 	periph-d46-supply = <&L7N>;
 };
+
+&qtm_therm {
+	status = "ok";
+};
+
+&pmk8850_vadc {
+	pinctrl-0 = <&pa_therm2_default>, <&qtm_therm_default>;
+	pinctrl-names = "default";
+};
