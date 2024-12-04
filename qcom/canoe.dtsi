@@ -3001,6 +3001,14 @@
 	thermal_zones: thermal-zones {
 	};
 
+	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
+		qcom,iommu-msi-size = <0x1000>;
+		qcom,iommu-geometry = <0x18000000 0x98010000>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-pagetable = "coherent";
+		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
+	};
+
 	sdhc2_opp_table: sdhc2-opp-table {
 		compatible = "operating-points-v2";
 
