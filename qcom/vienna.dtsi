@@ -631,6 +631,11 @@
 		#size-cells = <1>;
 		read-only;
 		ranges;
+
+		gpu_speed_bin: gpu_speed_bin@138 {
+			reg = <0x138 0x1>;
+			bits = <0 8>;
+		};
 	};
 
 	cpucp: qcom,cpucp@17400000 {
