@@ -636,6 +636,50 @@
 		};
 	};
 
+	rpmh-regulator-ls1b-e0 {
+		compatible = "qcom,rpmh-xob-regulator";
+		qcom,resource-name = "LS1B_E0";
+
+		/* PMH0101 GPIO 11 and 12 bi-directional level-shifter */
+		LS1B: LS1B_E0: pmh0101_ls1: regulator-pmh0101-ls1 {
+			regulator-name = "pmh0101_ls1";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+		};
+	};
+
+	rpmh-regulator-ls2b-e0 {
+		compatible = "qcom,rpmh-xob-regulator";
+		qcom,resource-name = "LS2B_E0";
+
+		/* PMH0101 GPIO 13 and 14 bi-directional level-shifter */
+		LS2B: LS2B_E0: pmh0101_ls2: regulator-pmh0101-ls2 {
+			regulator-name = "pmh0101_ls2";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+		};
+	};
+
+	rpmh-regulator-ls3b-e0 {
+		compatible = "qcom,rpmh-xob-regulator";
+		qcom,resource-name = "LS3B_E0";
+
+		/* PMH0101 GPIO 15 and 16 bi-directional level-shifter */
+		LS3B: LS3B_E0: pmh0101_ls3: regulator-pmh0101-ls3 {
+			regulator-name = "pmh0101_ls3";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+		};
+	};
+
+	rpmh-regulator-ls4b-e0 {
+		compatible = "qcom,rpmh-xob-regulator";
+		qcom,resource-name = "LS4B_E0";
+
+		/* PMH0101 GPIO 17 and 18 bi-directional level-shifter */
+		LS4B: LS4B_E0: pmh0101_ls4: regulator-pmh0101-ls4 {
+			regulator-name = "pmh0101_ls4";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+		};
+	};
+
 	rpmh-regulator-s10d-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S10D_E0";
