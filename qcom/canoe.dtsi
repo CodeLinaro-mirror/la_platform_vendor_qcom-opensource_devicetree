@@ -2374,10 +2374,9 @@
 
 		qcom,ice-use-hwkm;
 
-// Remove for RUMI. Try to enable it later after the basic bootup works.
-//		qcom,prime-mask = <0xc0>;
-//		qcom,silver-mask = <0x3f>;
-//		qcom,esi-affinity-mask = <0xe0>;
+		qcom,prime-mask = <0xc0>;
+		qcom,silver-mask = <0x3f>;
+		qcom,esi-affinity-mask = <0xe0>;
 
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
