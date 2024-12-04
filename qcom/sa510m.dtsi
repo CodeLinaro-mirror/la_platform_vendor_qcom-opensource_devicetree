@@ -279,6 +279,12 @@
 		reg = <0x0 0x1fc0000 0x0 0x30000>;
 	};
 
+	ram@c370000 {
+		compatible = "qcom,rpmh-stats";
+		reg = <0x0c370000 0x400>;
+		ss-name = "modem", "apss";
+	};
+
 	timer {
 		compatible = "arm,armv7-timer";
 		interrupts = <1 13 0xf08>,
