@@ -153,6 +153,17 @@
 };
 
 &pmk8850_gpios {
+	pinctrl-0 = <&alt_sleep_clk_default>;
+	pinctrl-names = "default";
+
+	alt_sleep_clk_default: alt-sleep-clk-default-state {
+		pins = "gpio3";
+		function = "func1";
+		input-disable;
+		output-enable;
+		power-source = <0>; /* 1.8 V */
+	};
+
 	lcd_bl_pwm_default: lcd-bl-pwm-default-state {
 		pins = "gpio5";
 		function = "func3";
