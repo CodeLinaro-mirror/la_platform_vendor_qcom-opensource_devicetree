@@ -26,6 +26,7 @@ properties:
       - qcom,sys-pm-pineapple
       - qcom,sys-pm-monaco-auto
       - qcom,sys-pm-sun
+      - qcom,sys-pm-canoe
 
   reg:
     maxItems: 1
@@ -47,6 +48,7 @@ allOf:
         compatible:
           contains:
             enum:
+              - qcom,sys-pm-canoe
               - qcom,sys-pm-sun
               - qcom,sys-pm-pineapple
               - qcom,sys-pm-parrot
