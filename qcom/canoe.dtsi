@@ -822,6 +822,18 @@
 		qcom,msgq-names = "trusted_vm", "oem_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0xd>;
+		qcom,primary;
+	};
+
+	qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0xe>;
+		qcom,primary;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
