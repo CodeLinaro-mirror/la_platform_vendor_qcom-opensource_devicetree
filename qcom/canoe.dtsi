@@ -1164,7 +1164,7 @@
 		#reset-cells = <1>;
 	};
 
-	camcc_crm: syscon@954a600 {
+	camcc_crmc: syscon@954a600 {
 		compatible = "syscon";
 		reg = <0x0 0x954a600 0x0 0x2000>;
 	};
@@ -1184,6 +1184,7 @@
 			      "bi_tcxo_ao",
 			      "sleep_clk",
 			      "iface";
+		qcom,cam_crm-crmc = <&camcc_crmc>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
