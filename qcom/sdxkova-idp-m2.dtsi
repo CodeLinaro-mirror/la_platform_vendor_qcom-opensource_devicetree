@@ -30,3 +30,23 @@
 &usb {
 	extcon = <&pmx75_vbus_detect>, <&eud>;
 };
+
+&pcie0 {
+	status = "disabled";
+};
+
+&pcie0_msi {
+	status = "disabled";
+};
+
+&pcie1 {
+	status = "disabled";
+};
+
+&pcie2 {
+	status = "disabled";
+};
+
+&pcie_ep {
+	status = "ok";
+};
