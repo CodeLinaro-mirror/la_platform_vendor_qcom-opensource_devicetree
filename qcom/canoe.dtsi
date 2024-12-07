@@ -2032,7 +2032,7 @@
 	adsp_pas: remoteproc-adsp@03000000 {
 		compatible = "qcom,canoe-adsp-pas";
 		reg = <0x03000000 0x10000>;
-		status = "disabled";
+		status = "ok";
 
 		cx-supply = <&VDD_LPI_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
