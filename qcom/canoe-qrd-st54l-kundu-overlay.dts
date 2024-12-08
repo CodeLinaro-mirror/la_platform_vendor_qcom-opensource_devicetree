@@ -6,7 +6,7 @@
 /dts-v1/;
 /plugin/;
 
-#include "canoe-qrd.dtsi"
+#include "canoe-qrd-st54l-kundu.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Canoe QRD + ST54L + Kundu";

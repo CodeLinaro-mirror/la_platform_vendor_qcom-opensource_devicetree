@@ -29,7 +29,7 @@ CANOE_BOARDS += \
 		canoe-cdp-kiwi-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
 		canoe-cdp-st54l-pandeiro-overlay.dtbo \
-		canoe-qrd-overlay.dtbo \
+		canoe-qrd-st54l-kundu-overlay.dtbo \
 		canoe-qrd-st54l-pandeiro-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
