@@ -517,6 +517,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L11B>;
 
 		L11B: L11B_E0: pmh0101_l11: regulator-pmh0101-l11 {
 			regulator-name = "pmh0101_l11";
@@ -525,6 +526,7 @@
 			regulator-max-microvolt = <1292000>;
 			qcom,init-voltage = <1064000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			qcom,proxy-consumer-enable;
 		};
 	};
 
@@ -535,6 +537,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L12B>;
 
 		L12B: L12B_E0: pmh0101_l12: regulator-pmh0101-l12 {
 			regulator-name = "pmh0101_l12";
@@ -543,6 +546,7 @@
 			regulator-max-microvolt = <1800000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			qcom,proxy-consumer-enable;
 		};
 	};
 
@@ -553,6 +557,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 10000>;
+		proxy-supply = <&L13B>;
 
 		L13B: L13B_E0: pmh0101_l13: regulator-pmh0101-l13 {
 			regulator-name = "pmh0101_l13";
@@ -561,6 +566,7 @@
 			regulator-max-microvolt = <3000000>;
 			qcom,init-voltage = <3000000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			qcom,proxy-consumer-enable;
 		};
 	};
 
@@ -701,6 +707,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 		qcom,send-defaults;
+		proxy-supply = <&L1D>;
 
 		L1D: L1D_E0: pmh0110_d_l1: regulator-pmh0110-d-l1 {
 			regulator-name = "pmh0110_d_l1";
@@ -709,6 +716,7 @@
 			regulator-max-microvolt = <1256000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			qcom,proxy-consumer-enable;
 		};
 
 		L1D_AO: L1D_E0_AO: pmh0110_d_l1_ao: regulator-pmh0110-d-l1-ao {
@@ -758,6 +766,7 @@
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 		qcom,send-defaults;
+		proxy-supply = <&L3D>;
 
 		L3D: L3D_E0: pmh0110_d_l3: regulator-pmh0110-d-l3 {
 			regulator-name = "pmh0110_d_l3";
@@ -766,6 +775,7 @@
 			regulator-max-microvolt = <880000>;
 			qcom,init-voltage = <880000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			qcom,proxy-consumer-enable;
 		};
 
 		L3D_AO: L3D_E0_AO: pmh0110_d_l3_ao: regulator-pmh0110-d-l3-ao {
