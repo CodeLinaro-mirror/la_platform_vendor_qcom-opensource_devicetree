@@ -1389,6 +1389,11 @@
 		#power-domain-cells = <1>;
 	};
 
+	dispcc_crmc: syscon@9bcc800 {
+		compatible = "syscon";
+		reg = <0x0 0x9bcc800 0x0 0x2000>;
+	};
+
 	dispcc: clock-controller@9ba2000 {
 		compatible = "qcom,canoe-dispcc", "syscon";
 		reg = <0x0 0x9ba2000 0x0 0x20000>;
@@ -1403,6 +1408,7 @@
 			      "bi_tcxo_ao",
 			      "sleep_clk",
 			      "iface";
+		qcom,disp_crm-crmc = <&dispcc_crmc>;
 		#clock-cells = <1>;
 		#power-domain-cells = <1>;
 		#reset-cells = <1>;
