@@ -57,7 +57,7 @@
 			device_type = "cpu";
 			compatible = "arm,cortex-a7";
 			reg = <0x0>;
-			//qcom,freq-domain = <&cpufreq_hw 0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			enable-method = "psci";
 			cpu-idle-states = <&A7_SPC &A7_PC>;
 			power-domains = <&CPU_PD0>;
