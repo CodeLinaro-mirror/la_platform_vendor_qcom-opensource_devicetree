@@ -1141,6 +1141,12 @@
 		};
 	};
 
+	cpuss-sleep-stats@17850000 {
+		compatible = "qcom,cpuss-sleep-stats-v4";
+		reg = <0x17850000 0x4000>;
+		reg-names = "base";
+	};
+
 	sys-pm-vx@c320000 {
 		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-canoe";
 		reg = <0xc320000 0x400>;
