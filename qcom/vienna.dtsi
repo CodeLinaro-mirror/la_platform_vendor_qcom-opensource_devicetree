@@ -358,6 +358,34 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	kryo-erp {
+		compatible = "arm,arm64-kryo-cpu-erp";
+		interrupts = <GIC_PPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "l1-l2-faultirq","l3-scu-faultirq";
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	llcc_pmu: llcc-pmu@24095000 {
+		compatible = "qcom,llcc-pmu-ver2";
+		reg = <0x24095000 0x300>;
+		reg-names = "lagg-base";
+	};
+
+	qcom_pmu: qcom,pmu {
+		compatible = "qcom,pmu";
+		qcom,pmu-events-tbl =
+			< 0x0008 0x3F 0xFF 0xFF >,
+			< 0x0011 0x3F 0xFF 0xFF >,
+			< 0x0017 0x3F 0xFF 0xFF >,
+			< 0x002A 0x3F 0xFF 0xFF >,
+			< 0x1000 0x3F 0xFF 0xFF >;
+	};
+
 	qfprom: qfprom@351c8000 {
 		compatible = "qcom,vienna-qfprom", "qcom,qfprom";
 		reg = <0x351c8000 0x1000>;
