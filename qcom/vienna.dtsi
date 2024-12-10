@@ -516,3 +516,8 @@
 &qupv3_se5_2uart {
 	status = "ok";
 };
+
+#include "ipcc-test.dtsi"
+/delete-node/ &ipcc_self_ping_adsp;
+/delete-node/ &ipcc_self_ping_cdsp;
+/delete-node/ &ipcc_self_ping_slpi;
