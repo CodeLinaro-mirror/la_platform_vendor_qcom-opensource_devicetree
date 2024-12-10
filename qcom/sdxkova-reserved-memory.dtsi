@@ -140,7 +140,7 @@
 
 	mpssadsp_mem: mpssadsp_region@8e000000 {
 		no-map;
-		reg = <0x0 0x8e000000 0x0 0xf100000>;
+		reg = <0x0 0x8e000000 0x0 0xfb00000>;
 	};
 
 	/* Linux kernel image is loaded at 0xa8000000 */
