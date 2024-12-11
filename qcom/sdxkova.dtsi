@@ -1740,6 +1740,13 @@
 	thermal_zones: thermal-zones {
 	};
 
+	qcom,rmtfs_sharedmem@0 {
+		compatible = "qcom,sharedmem-uio";
+		reg = <0x0 0x400000>;
+		reg-names = "rmtfs";
+		qcom,client-id = <0x00000001>;
+	};
+
 	pmic_glink: qcom,pmic_glink {
 		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
