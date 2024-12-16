@@ -854,6 +854,10 @@
 		pinctrl-0 = <&pcie_ep_clkreq_default
 			     &pcie_ep_perst_default
 			     &pcie_ep_wake_default>;
+		pinctrl-1 = <&pcie_ep_clkreq_sleep
+			     &pcie_ep_perst_default
+			     &pcie_ep_wake_default>;
+
 		clkreq-gpio = <&tlmm 43 GPIO_ACTIVE_HIGH>;
 		perst-gpio = <&tlmm 44 GPIO_ACTIVE_HIGH>;
 		wake-gpio = <&tlmm 42 GPIO_ACTIVE_HIGH>;
