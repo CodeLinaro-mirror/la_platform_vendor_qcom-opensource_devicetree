@@ -10,6 +10,18 @@
 		compatible = "qcom,dma-heaps";
 		depends-on-supply = <&scm>;
 
+		qcom,qseecom {
+			qcom,dma-heap-name = "qcom,qseecom";
+			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			memory-region = <&qseecom_mem>;
+		};
+
+		qcom,qseecom_ta {
+			qcom,dma-heap-name = "qcom,qseecom-ta";
+			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			memory-region = <&qseecom_ta_mem>;
+		};
+
 		qcom_audio: qcom,audio {
 			qcom,dma-heap-name = "qcom,audio";
 			qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
