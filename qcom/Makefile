@@ -53,7 +53,7 @@ canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
 
-dtb-y += $(canoe-dtb-y)
+dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
 SA8155_BASE_DTB += sa8155.dtb sa8155-v2.dtb
 SA8155P_BASE_DTB += sa8155p.dtb sa8155p-v2.dtb
@@ -111,7 +111,7 @@ sun-dtb-$(CONFIG_ARCH_SUN) += \
 	$(call add-overlays, $(SUN_BOARDS) $(NOAPQ_SUN_BOARDS),$(SUN_BASE_DTB))\
 	$(call add-overlays, $(SUN_BOARDS) $(APQ_SUN_BOARDS),$(SUN_APQ_BASE_DTB))
 sun-overlays-dtb-$(CONFIG_ARCH_SUN) += $(SUN_BOARDS) $(NOAPQ_SUN_BOARDS) $(SUN_BASE_DTB) $(SUN_APQ_BASE_DTB)
-dtb-y += $(sun-dtb-y)
+dtb-y += $(sun-dtb-y) $(sun-overlays-dtb-y)
 
 PINEAPPLE_BASE_DTB += pineapple.dtb pineapple-v2.dtb
 PINEAPPLE_APQ_BASE_DTB += pineapplep.dtb pineapplep-v2.dtb
