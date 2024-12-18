@@ -997,7 +997,7 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L2I_E0";
 		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
+		qcom,supported-modes = <RPMH_REGULATOR_MODE_RET
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
