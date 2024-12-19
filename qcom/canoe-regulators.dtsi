@@ -781,6 +781,11 @@
 	rpmh-regulator-s7f-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S7F_E0";
+		qcom,regulator-type = "pmic7-ftsmps";
+		qcom,supported-modes =
+			<RPMH_REGULATOR_MODE_RET
+			 RPMH_REGULATOR_MODE_HPM>;
+		qcom,mode-threshold-currents = <0 100000>;
 
 		S7F: S7F_E0: pmh0110_f_s7: regulator-pmh0110-f-s7 {
 			regulator-name = "pmh0110_f_s7";
@@ -788,6 +793,7 @@
 			regulator-min-microvolt = <1224000>;
 			regulator-max-microvolt = <1400000>;
 			qcom,init-voltage = <1256000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_RET>;
 		};
 	};
 
