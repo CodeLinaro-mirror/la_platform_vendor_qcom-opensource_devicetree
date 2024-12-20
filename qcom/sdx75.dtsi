@@ -2,7 +2,7 @@
 /*
  * SDX75 SoC device tree source
  *
- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  *
  */
 
@@ -52,6 +52,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
+			#cooling-cells = <2>;
 
 			L2_0: l2-cache {
 				compatible = "cache";
@@ -78,6 +79,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_100>;
+			#cooling-cells = <2>;
 
 			L2_100: l2-cache {
 				compatible = "cache";
@@ -99,6 +101,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_200>;
+			#cooling-cells = <2>;
 
 			L2_200: l2-cache {
 				compatible = "cache";
@@ -120,6 +123,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_300>;
+			#cooling-cells = <2>;
 
 			L2_300: l2-cache {
 				compatible = "cache";
