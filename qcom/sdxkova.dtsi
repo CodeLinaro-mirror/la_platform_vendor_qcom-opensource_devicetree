@@ -1504,7 +1504,7 @@
 		ranges;
 
 		boot_config: boot_config@600 {
-			reg = <0x0 0x600 0x0 0x1>;
+			reg = <0x600 0x1>;
 		};
 	};
 
