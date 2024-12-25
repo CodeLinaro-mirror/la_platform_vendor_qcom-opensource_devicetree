@@ -4936,7 +4936,7 @@
 
 		device-name = "modem_etr1";
 
-		real-name = "modem_etr1";
+		real-name = "tmc_etr1";
 		qdss,buffer-size = <0x2000000>;
 		qcom,secure-component;
 		memory-region = <&qdss_apps_mem>;
