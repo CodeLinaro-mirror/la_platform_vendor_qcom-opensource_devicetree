@@ -76,6 +76,9 @@ properties:
       - qcom,canoe-cdsp-pas
       - qcom,canoe-modem-pas
       - qcom,canoe-soccp-pas
+      - qcom,vienna-cdsp-pas
+      - qcom,vienna-modem-pas
+      - qcom,vienna-adsp-pas
 
   reg:
     maxItems: 1
