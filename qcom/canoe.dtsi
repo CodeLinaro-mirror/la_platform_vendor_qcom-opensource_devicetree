@@ -3106,6 +3106,15 @@
 	thermal_zones: thermal-zones {
 	};
 
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,canoe-qfprom", "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
 		qcom,iommu-msi-size = <0x1000>;
 		qcom,iommu-geometry = <0x0 0x18000000 0x0 0x98010000>;
