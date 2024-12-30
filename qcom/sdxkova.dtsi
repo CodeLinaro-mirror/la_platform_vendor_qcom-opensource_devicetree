@@ -1310,7 +1310,7 @@
 #include "sdxkova-regulators.dtsi"
 
 &chosen {
-	bootargs = "cpufreq.default_governor=performance pcie_ports=compat";
+	bootargs = "disable_dma32=on cpufreq.default_governor=performance pcie_ports=compat";
 };
 
 &reserved_memory {
