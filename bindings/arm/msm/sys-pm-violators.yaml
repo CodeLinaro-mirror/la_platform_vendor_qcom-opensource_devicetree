@@ -26,6 +26,7 @@ properties:
       - qcom,sys-pm-pineapple
       - qcom,sys-pm-monaco-auto
       - qcom,sys-pm-sun
+      - qcom,sys-pm-sdxkova
 
   reg:
     maxItems: 1
@@ -51,6 +52,7 @@ allOf:
               - qcom,sys-pm-pineapple
               - qcom,sys-pm-parrot
               - qcom,sys-pm-ravelin
+              - qcom,sys-pm-sdxkova
     then:
       properties:
         reg:
