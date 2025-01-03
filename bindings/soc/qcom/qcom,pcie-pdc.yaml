@@ -22,6 +22,7 @@ properties:
       - qcom,pineapple-pcie-pdc
       - qcom,cliffs-pcie-pdc
       - qcom,pcie-pdc
+      - qcom,sdxkova-pcie-pdc
 
   reg:
     maxItems: 1
