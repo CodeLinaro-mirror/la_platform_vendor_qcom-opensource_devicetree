@@ -221,4 +221,12 @@ properties:
               - qcom,adp-air
           - const: qcom,sa8195p
 
+      - description: Qualcomm Technologies, Inc. QUINVM
+        items:
+          - const: qcom,quinvm
+
+      - description: Qualcomm Technologies, Inc. LEMANS
+        items:
+          - const: qcom,lemans
+
 additionalProperties: true
