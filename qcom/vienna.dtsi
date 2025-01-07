@@ -645,6 +645,7 @@
 #include "vienna-stub-regulators.dtsi"
 #include "msm-arm-smmu-vienna.dtsi"
 #include "vienna-qupv3.dtsi"
+#include "vienna-usb.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
