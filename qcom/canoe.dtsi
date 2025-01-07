@@ -2712,12 +2712,12 @@
 		qcom,pipe-attr-ee;
 	};
 
-	cpucp_sram: cpucp-sram@0x18b4e000 {
+	cpucp_sram: cpucp-sram@0x1d838000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "mmio-sram";
-		reg = <0x0 0x18b4e000 0x0 0x400>;
-		ranges = <0 0x0 0x18b4e000 0x400>;
+		reg = <0x0 0x1d838000 0x0 0x400>;
+		ranges = <0 0x0 0x1d838000 0x400>;
 
 		cpucp_tx: scmi-shmem@0 {
 			compatible = "arm,scmi-shmem";
