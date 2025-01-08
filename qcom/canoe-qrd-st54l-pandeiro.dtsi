@@ -4,3 +4,23 @@
  */
 
 #include "canoe-qrd.dtsi"
+
+&wcd_usbss {
+	interrupt-parent = <&spmi0_bus>;
+	interrupts = <0x0 0xb6 0x1 IRQ_TYPE_EDGE_BOTH>;
+	interrupt-names = "usb_wcd";
+	nvmem-cells = <&usb_mode>;
+	nvmem-cell-names = "usb_mode";
+
+	mode-switch;
+
+	port {
+		wcd_usbss_mux: endpoint {
+			remote-endpoint = <&ucsi_audio_mux>;
+		};
+	};
+};
+
+&ucsi_audio_mux {
+	remote-endpoint = <&wcd_usbss_mux>;
+};
