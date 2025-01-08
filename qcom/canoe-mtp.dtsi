@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/gpio/gpio.h>
@@ -33,6 +33,12 @@
 &eusb2_phy0 {
 	dummy-supply = <&pmih010x_eusb2_repeater>;
 	usb-repeater = <&pmih010x_eusb2_repeater>;
+};
+
+&battery_charger {
+	qcom,thermal-mitigation-step = <500000>;
+	#cooling-cells = <2>;
+	qcom,ship-mode-immediate;
 };
 
 &wcd_usbss {
