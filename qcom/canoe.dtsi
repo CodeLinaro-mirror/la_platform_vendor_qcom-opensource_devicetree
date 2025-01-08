@@ -3063,6 +3063,36 @@
 		};
 	};
 
+	noc_bw_mpam: qcom,noc_bw_mpam {
+		compatible = "qcom,platform-mpam";
+		reg = <0x0 0x1d83a400 0x0 0x400>;
+		reg-names = "mon-base";
+		qcom,msc-id = <3>;
+		qcom,msc-name = "noc_bw";
+		qcom,gears = "low", "medium", "high", "veryhigh";
+		qcom,gear-id = <1>, <2>, <3>, <4>;
+
+		cpu_cluster0 {
+			qcom,client-id = <0x1>;
+			qcom,client-name = "cpu_cluster0";
+		};
+
+		cpu_cluster1 {
+			qcom,client-id = <0x2>;
+			qcom,client-name = "cpu_cluster1";
+		};
+
+		gpu {
+			qcom,client-id = <0x10>;
+			qcom,client-name = "gpu";
+		};
+
+		nsp {
+			qcom,client-id = <0x100>;
+			qcom,client-name = "nsp";
+		};
+	};
+
 	llcc_pmu: llcc-pmu@0x31095000 {
 		compatible = "qcom,llcc-pmu-ver3";
 		reg = <0x0 0x31095000 0x0 0x400>;
