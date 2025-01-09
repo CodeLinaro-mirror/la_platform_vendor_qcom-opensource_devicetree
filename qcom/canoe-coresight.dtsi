@@ -87,7 +87,7 @@
 	swao_csr: csr@11311000 {
 		compatible = "qcom,coresight-csr";
 		reg = <0x0 0x11311000 0x0 0x1000>,
-		      <0x0 0x113110f8 0x0 0x78>;
+		      <0x0 0x113110f8 0x0 0x90>;
 		reg-names = "csr-base", "msr-base";
 
 		device-name = "swao_csr";
@@ -353,12 +353,12 @@
 		reg = <0x0 0x11000000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_modem_0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -372,8 +372,8 @@
 
 	tpdm_modem1: tpdm@11001000 {
 		compatible = "qcom,coresight-static-tpdm";
-
 		device-name = "tpdm_modem_1";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -395,7 +395,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -416,7 +415,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		in-ports {
 			#address-cells = <1>;
@@ -662,12 +660,12 @@
 		reg = <0x0 0x11180000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_turing";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -682,6 +680,7 @@
 	tpdm_turing_llm: tpdm@11181000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -696,6 +695,7 @@
 	tpdm_turing_llm2: tpdm@11182000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm2";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -718,7 +718,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -741,7 +740,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -992,6 +990,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x1102c000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_gcc";
 
@@ -1053,6 +1052,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11422000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_ipa";
 
@@ -1138,6 +1138,7 @@
 		reg = <0x0 0x12180000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_llm_lmh0";
 
@@ -1161,6 +1162,7 @@
 		reg = <0x0 0x12181000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_llm_lmh1";
 
@@ -1184,6 +1186,7 @@
 		reg = <0x0 0x12183000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <7>;
 
 		device-name = "tpdm_ext_cmb0";
 
@@ -1207,6 +1210,7 @@
 		reg = <0x0 0x12185000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_ext_dsb0";
 
@@ -1374,6 +1378,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1407,6 +1412,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1513,6 +1519,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1619,6 +1626,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1725,6 +1733,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1831,6 +1840,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -1937,6 +1947,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2043,6 +2054,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2078,6 +2090,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2153,6 +2166,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2196,6 +2210,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2306,6 +2321,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2339,6 +2355,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2445,6 +2462,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2550,6 +2568,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2585,6 +2604,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2628,6 +2648,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2671,6 +2692,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 		in-ports {
 			port {
@@ -2702,6 +2724,7 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
 
 
 		in-ports {
@@ -2747,6 +2770,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11384000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_lpass_crdl";
 
@@ -2802,12 +2826,12 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x113a4000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_soccp";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2857,6 +2881,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11034000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_video";
 
@@ -2912,6 +2937,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111c4000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_eva";
 
@@ -2967,6 +2993,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11463000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_mdss";
 
@@ -3081,6 +3108,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11103000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_gpu";
 
@@ -3217,6 +3245,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11504000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_ddr_shrm";
 
@@ -3259,6 +3288,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x1150b000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_ddr_ch02";
 
@@ -3279,6 +3309,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x1150e000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_ddr_ch13";
 
@@ -3475,6 +3506,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111a5000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_dlmm";
 
@@ -3495,6 +3527,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111a6000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_north_dsb";
 
@@ -3515,6 +3548,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111a7000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_south_dsb";
 
@@ -3555,6 +3589,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111a3000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_pmu";
 
@@ -3735,6 +3770,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111b1000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_lmh";
 
@@ -4349,6 +4385,7 @@
 		reg = <0x0 0x1130d000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_swao_1";
 
@@ -5113,7 +5150,7 @@
 	modem0-qmi {
 		compatible = "qcom,coresight-qmi";
 
-		device-name = "coresight-qmi-modem0";
+		device-name = "qmi_modem0";
 		qcom,inst-id = <2>;
 
 		in-ports {
