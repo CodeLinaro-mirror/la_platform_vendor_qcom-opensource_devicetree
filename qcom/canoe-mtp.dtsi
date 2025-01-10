@@ -6,6 +6,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clock/qcom,gcc-canoe.h>
 #include <dt-bindings/input/input.h>
+#include <dt-bindings/clock/qcom,gcc-canoe.h>
 
 #include "canoe-pmic-overlay.dtsi"
 #include "canoe-thermal-overlay.dtsi"
@@ -58,7 +59,8 @@
 };
 
 &pcie {
-	gdsc-phy-vdd-supply = <&gcc_pcie_0_phy_gdsc>;
+	power-domains = <&gcc GCC_PCIE_0_GDSC>, <&gcc GCC_PCIE_0_PHY_GDSC>;
+	power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
 };
 
 &ufsphy_mem {

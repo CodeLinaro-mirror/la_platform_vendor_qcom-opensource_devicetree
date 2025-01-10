@@ -213,6 +213,9 @@
 	qcom,no-l1-supported;
 	qcom,no-l1ss-supported;
 	qcom,no-aux-clk-sync;
+
+	power-domains = <&gcc GCC_PCIE_0_GDSC>;
+	power-domain-names = "gdsc-core-vdd";
 };
 
 &bwmon_ddr {
