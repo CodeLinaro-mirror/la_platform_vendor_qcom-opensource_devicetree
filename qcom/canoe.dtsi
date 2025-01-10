@@ -1302,6 +1302,7 @@
 			      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	gpucc: clock-controller@3d90000 {
@@ -1481,28 +1482,6 @@
 	};
 
 	/* GCC GDSCs */
-	gcc_pcie_0_gdsc: qcom,gdsc@16b004 {
-		compatible = "qcom,gdsc";
-		reg = <0x0 0x16b004 0x0 0x4>;
-		regulator-name = "gcc_pcie_0_gdsc";
-		parent-supply = <&VDD_CX_LEVEL>;
-		qcom,retain-regs;
-		qcom,no-status-check-on-disable;
-		qcom,collapse-vote = <&gcc_apcs_gdsc_vote_ctrl 0>;
-		qcom,support-cfg-gdscr;
-	};
-
-	gcc_pcie_0_phy_gdsc: qcom,gdsc@16c000 {
-		compatible = "qcom,gdsc";
-		reg = <0x0 0x16c000 0x0 0x4>;
-		regulator-name = "gcc_pcie_0_phy_gdsc";
-		parent-supply = <&VDD_MX_LEVEL>;
-		qcom,retain-regs;
-		qcom,no-status-check-on-disable;
-		qcom,collapse-vote = <&gcc_apcs_gdsc_vote_ctrl 2>;
-		qcom,support-cfg-gdscr;
-	};
-
 	gcc_ufs_mem_phy_gdsc: qcom,gdsc@19e000 {
 		compatible = "qcom,gdsc";
 		reg = <0x0 0x19e000 0x0 0x4>;
