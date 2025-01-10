@@ -3092,7 +3092,7 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
 				qcom,cpufreq-memfreq-tbl =
-					< 2035200  350000 >,
+					< 2035200  282000 >,
 					< 4185600  533000 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
