@@ -2861,6 +2861,26 @@
 		qcom,log-type = <2>;
 	};
 
+	qcom_mpam: qcom,mpam {
+		compatible = "qcom,mpam";
+	};
+
+	cpu_mpam: qcom,cpu_mpam {
+		compatible = "qcom,cpu-mpam";
+		reg = <0x0 0x1d83a000 0x0 0x400>;
+		reg-names = "mon-base";
+
+		L2_0 {
+			qcom,msc-id = <0>;
+			qcom,msc-name = "L2_0";
+		};
+
+		L2_1 {
+			qcom,msc-id = <1>;
+			qcom,msc-name = "L2_1";
+		};
+	};
+
 	llcc_pmu: llcc-pmu@0x31095000 {
 		compatible = "qcom,llcc-pmu-ver3";
 		reg = <0x0 0x31095000 0x0 0x400>;
