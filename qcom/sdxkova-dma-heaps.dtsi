@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
@@ -8,7 +8,7 @@
 &soc {
 	qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
-		depends-on-supply = <&scm>;
+		depends-on-supply = <&qcom_scm>;
 
 		qcom_audio: qcom,audio {
 			qcom,dma-heap-name = "qcom,audio";
