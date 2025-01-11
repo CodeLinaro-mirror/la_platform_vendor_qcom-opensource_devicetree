@@ -37,8 +37,8 @@
 };
 
 &pcie {
-	power-domains = <&gcc GCC_PCIE_0_GDSC>, <&gcc GCC_PCIE_0_PHY_GDSC>;
-	power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
+	power-domains = <&gcc GCC_PCIE_0_PHY_GDSC>;
+	power-domain-names = "gdsc-phy-vdd";
 };
 
 &ufsphy_mem {
