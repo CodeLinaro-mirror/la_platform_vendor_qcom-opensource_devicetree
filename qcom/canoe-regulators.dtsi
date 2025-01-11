@@ -700,6 +700,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
+		qcom,send-defaults;
 
 		L1D: L1D_E0: pmh0110_d_l1: regulator-pmh0110-d-l1 {
 			regulator-name = "pmh0110_d_l1";
@@ -708,6 +709,26 @@
 			regulator-max-microvolt = <1256000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+		};
+
+		L1D_AO: L1D_E0_AO: pmh0110_d_l1_ao: regulator-pmh0110-d-l1-ao {
+			regulator-name = "pmh0110_d_l1_ao";
+			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1256000>;
+			qcom,init-voltage = <1200000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			regulator-always-on;
+		};
+
+		regulator-pmh0110-d-l1-so {
+			regulator-name = "pmh0110_d_l1_so";
+			qcom,set = <RPMH_REGULATOR_SET_SLEEP>;
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1256000>;
+			qcom,init-voltage = <1200000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_LPM>;
+			qcom,init-enable = <0>;
 		};
 	};
 
@@ -736,6 +757,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
+		qcom,send-defaults;
 
 		L3D: L3D_E0: pmh0110_d_l3: regulator-pmh0110-d-l3 {
 			regulator-name = "pmh0110_d_l3";
@@ -744,6 +766,26 @@
 			regulator-max-microvolt = <880000>;
 			qcom,init-voltage = <880000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+		};
+
+		L3D_AO: L3D_E0_AO: pmh0110_d_l3_ao: regulator-pmh0110-d-l3-ao {
+			regulator-name = "pmh0110_d_l3_ao";
+			qcom,set = <RPMH_REGULATOR_SET_ACTIVE>;
+			regulator-min-microvolt = <880000>;
+			regulator-max-microvolt = <880000>;
+			qcom,init-voltage = <880000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+			regulator-always-on;
+		};
+
+		regulator-pmh0110-d-l3-so {
+			regulator-name = "pmh0110_d_l3_so";
+			qcom,set = <RPMH_REGULATOR_SET_SLEEP>;
+			regulator-min-microvolt = <880000>;
+			regulator-max-microvolt = <880000>;
+			qcom,init-voltage = <880000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_LPM>;
+			qcom,init-enable = <0>;
 		};
 	};
 
