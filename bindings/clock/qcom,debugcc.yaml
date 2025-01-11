@@ -23,6 +23,7 @@ properties:
       - qcom,canoe-debugcc
       - qcom,sm8150-debugcc
       - qcom,sc8180x-debugcc
+      - qcom,vienna-debugcc
 
   clocks:
     items:
