@@ -1062,6 +1062,7 @@
 };
 
 #include "sa510m-qupv3.dtsi"
+#include "sa510m-pcie.dtsi"
 #include "sa510m-pinctrl.dtsi"
 #include "sa510m-dma-heaps.dtsi"
 #include "msm-arm-smmu-sa510m.dtsi"
