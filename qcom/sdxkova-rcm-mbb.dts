@@ -13,6 +13,6 @@
 	model = "Qualcomm Technologies, Inc. SDXKOVA RCM MBB";
 	compatible = "qcom,sdxkova-rcm",
 			"qcom,sdxkova", "qcom,rcm";
-	qcom,msm-id = <556 0x10000>, <580 0x10000>, <609 0x10000>, <610 0x10000>;
+	qcom,msm-id = <677 0x10000>, <678 0x10000>, <679 0x10000>;
 	qcom,board-id = <0x10015 0x300>;
 };
