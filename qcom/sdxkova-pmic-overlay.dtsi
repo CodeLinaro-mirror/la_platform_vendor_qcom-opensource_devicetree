@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/gpio/gpio.h>
@@ -87,6 +87,15 @@
 	/delete-node/ pm8550_vref_1p25;
 	/delete-node/ pm8550_die_temp;
 	/delete-node/ pm8550_vph_pwr;
+
+	pmk8550_xo_therm {
+		reg = <PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_100K_PU>;
+		label = "pmk8550_xo_therm";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
 
 	/* PM8550BA Channel nodes */
 	pm7550ba_offset_ref {
