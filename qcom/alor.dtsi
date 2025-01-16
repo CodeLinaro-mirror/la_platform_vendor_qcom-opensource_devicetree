@@ -13,6 +13,7 @@
 #include <dt-bindings/clock/qcom,alor-videocc.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Alor";
@@ -192,6 +193,7 @@
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
+		wakeup-parent = <&pdc>;
 	};
 
 	intc: interrupt-controller@17000000 {
@@ -654,6 +656,126 @@
 		compatible = "qcom,stub-regulator";
 		regulator-name = "video_cc_mvs0c_gdsc";
 		qcom,support-cfg-gdscr;
+	};
+
+	apps_rsc: rsc@18900000 {
+		label = "apps_rsc";
+		compatible = "qcom,rpmh-rsc";
+		reg = <0x0 0x18900000 0x0 0x10000>,
+		      <0x0 0x18910000 0x0 0x10000>,
+		      <0x0 0x18920000 0x0 0x10000>;
+		reg-names = "drv-0", "drv-1", "drv-2";
+		qcom,drv-count = <3>;
+		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+
+		apps_rsc_drv2: drv@2 {
+			qcom,drv-id = <2>;
+			qcom,tcs-offset = <0xd00>;
+			qcom,tcs-distance = <0x2a0>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    3>,
+						  <SLEEP_TCS     2>,
+						  <WAKE_TCS      2>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 1>;
+			};
+		};
+	};
+
+	cam_rsc: rsc@9545000 {
+		label = "cam_rsc";
+		compatible = "qcom,rpmh-rsc";
+		reg = <0x0 0x9545000 0x0 0x1000>,
+		      <0x0 0x9546000 0x0 0x1000>,
+		      <0x0 0x9547000 0x0 0x1000>;
+		reg-names = "drv-0", "drv-1", "drv-2";
+		qcom,drv-count = <3>;
+		qcom,hw-channel;
+		interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>;
+
+		cam_rsc_drv0: drv@0 {
+			qcom,drv-id = <0>;
+			qcom,tcs-offset = <0x520>;
+			qcom,tcs-distance = <0x150>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+
+			channel@1 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+		};
+
+		cam_rsc_drv1: drv@1 {
+			qcom,drv-id = <1>;
+			qcom,tcs-offset = <0x520>;
+			qcom,tcs-distance = <0x150>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+
+			channel@1 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+		};
+
+		cam_rsc_drv2: drv@2 {
+			qcom,drv-id = <2>;
+			qcom,tcs-offset = <0x520>;
+			qcom,tcs-distance = <0x150>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+
+			channel@1 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <WAKE_TCS      1>,
+						  <SLEEP_TCS     1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+		};
+	};
+
+	pdc: interrupt-controller@b220000 {
+		compatible = "qcom,alor-pdc", "qcom,pdc";
+		reg = <0x0 0xb220000 0x0 0x10000>, <0x0 0x179600f0 0x0 0xf8>;
+		qcom,pdc-ranges = <0 745 38>, <40 785 11>, <51 527 4>,
+				  <58 534 2>, <61 537 20>, <84 559 14>,
+				  <98 609 32>, <130 717 12>, <142 251 5>,
+				  <147 796 16>, <163 783 2>, <165 531 2>,
+				  <167 536 1>, <168 557 2>, <170 415 1>,
+				  <171 438 1>, <172 579 1>, <173 703 1>,
+				  <174 708 1>, <175 714 1>, <176 68 1>,
+				  <177 86 1>, <178 96 1>, <179 249 1>,
+				  <180 504 9>;
+		#interrupt-cells = <2>;
+		interrupt-parent = <&intc>;
+		interrupt-controller;
 	};
 };
 
