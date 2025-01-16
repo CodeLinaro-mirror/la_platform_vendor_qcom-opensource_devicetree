@@ -38,6 +38,7 @@ properties:
           - qcom,ravelin-pdc
           - qcom,canoe-pdc
           - qcom,vienna-pdc
+          - qcom,alor-pdc
       - const: qcom,pdc
 
   reg:
