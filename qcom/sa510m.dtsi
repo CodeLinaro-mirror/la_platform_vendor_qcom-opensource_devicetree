@@ -20,7 +20,7 @@
 
 	model = "Qualcomm Technologies, Inc. SA510M";
 	compatible = "qcom,sa510m";
-	qcom,msm-id = <570 0x10000>, <571 0x10000>;
+	qcom,msm-id = <697 0x10000>;
 	interrupt-parent = <&intc>;
 
 	aliases {
