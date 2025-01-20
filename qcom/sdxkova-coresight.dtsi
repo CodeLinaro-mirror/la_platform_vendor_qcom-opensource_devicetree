@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &soc {
@@ -2221,7 +2221,7 @@
 	};
 
 	dummy_replicator {
-		compatible = "arm,coresight-static-replicato";
+		compatible = "arm,coresight-static-replicator";
 
 		coresight-name = "coresight-replicator-dummy";
 		qcom,dummy-link;
@@ -2411,7 +2411,7 @@
 
 	apss_cti2: cti@26900000 {
 		compatible = "arm,coresight-cti", "arm,primecell";
-		reg = <0x0 0x16900000 0x0 0x1000>;
+		reg = <0x0 0x26900000 0x0 0x1000>;
 
 		arm,primecell-periphid = <0x000bb922>;
 		coresight-name = "coresight-cti-apss_cti2";

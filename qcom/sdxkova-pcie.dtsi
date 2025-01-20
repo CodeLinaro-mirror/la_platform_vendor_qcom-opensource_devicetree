@@ -1084,4 +1084,28 @@
 		status = "disabled";
 	};
 
+	mhi_device: mhi_dev@1bf4000 {
+		compatible = "qcom,msm-mhi-dev";
+		reg = <0x0 0x1bf4000 0x0 0x1000>;
+		reg-names = "mhi_mmio_base";
+		qcom,mhi-ep-msi = <0>;
+		qcom,mhi-version = <0x1000000>;
+		qcom,use-mhi-dma-software-channel;
+		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "mhi-device-inta";
+		qcom,mhi-ifc-id = <0x030917cb>;
+		qcom,mhi-interrupt;
+		qcom,no-m0-timeout;
+		qcom,mhi-has-smmu;
+		iommus = <&apps_smmu 0x800 0x0>;
+		qcom,iommu-dma = "bypass";
+
+		status = "disabled";
+	};
+
+	mhi_net_device: qcom,mhi_net_dev {
+		compatible = "qcom,msm-mhi-dev-net";
+		status = "disabled";
+	};
+
 };

@@ -42,6 +42,24 @@
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 	};
 
+	cpus {
+		CPU0: cpu@0 {
+			cpu-idle-states = <&SILVER_OFF &SILVER_RAIL_OFF>;
+		};
+
+		CPU1: cpu@100 {
+			cpu-idle-states = <&SILVER_OFF &SILVER_RAIL_OFF>;
+		};
+
+		CPU2: cpu@200 {
+			cpu-idle-states = <&SILVER_OFF &SILVER_RAIL_OFF>;
+		};
+
+		CPU3: cpu@300 {
+			cpu-idle-states = <&SILVER_OFF &SILVER_RAIL_OFF>;
+		};
+	};
+
 	/delete-node/ reserved-memory;
 
 	reserved_memory: reserved-memory {
@@ -76,7 +94,92 @@
 
 	};
 
+	/delete-node/ idle-states;
+
+	idle-states {
+		entry-method = "psci";
+
+		SILVER_OFF: silver-c3 { /* C3 */
+			compatible = "arm,idle-state";
+			idle-state-name = "pc";
+			entry-latency-us = <235>;
+			exit-latency-us = <428>;
+			min-residency-us = <1774>;
+			arm,psci-suspend-param = <0x40000003>;
+			local-timer-stop;
+		};
+
+		SILVER_RAIL_OFF: silver-c4 { /* C4 */
+			compatible = "arm,idle-state";
+			idle-state-name = "rail-pc";
+			entry-latency-us = <800>;
+			exit-latency-us = <750>;
+			min-residency-us = <4090>;
+			arm,psci-suspend-param = <0x40000004>;
+			local-timer-stop;
+		};
+
+		CLUSTER_PWR_DN: cluster-d4 { /* D4 */
+			compatible = "domain-idle-state";
+			idle-state-name = "l3-off";
+			entry-latency-us = <1050>;
+			exit-latency-us = <2500>;
+			min-residency-us = <5309>;
+			arm,psci-suspend-param = <0x41000044>;
+		};
+
+		CX_RET: cx-ret { /* Cx Ret */
+			compatible = "domain-idle-state";
+			idle-state-name = "cx-ret";
+			entry-latency-us = <2761>;
+			exit-latency-us = <3964>;
+			min-residency-us = <8467>;
+			arm,psci-suspend-param = <0x41001344>;
+		};
+
+		APSS_OFF: cluster-e3 { /* E3 */
+			compatible = "domain-idle-state";
+			idle-state-name = "llcc-off";
+			entry-latency-us = <2793>;
+			exit-latency-us = <4023>;
+			min-residency-us = <9826>;
+			arm,psci-suspend-param = <0x4100B344>;
+		};
+	};
+
+	/delete-node/ psci;
+
 	soc: soc {
+		psci {
+			compatible = "arm,psci-1.0";
+			method = "smc";
+
+			CPU_PD0: cpu-pd0 {
+				#power-domain-cells = <0>;
+				power-domains = <&CLUSTER_PD>;
+			};
+
+			CPU_PD1: cpu-pd1 {
+				#power-domain-cells = <0>;
+				power-domains = <&CLUSTER_PD>;
+			};
+
+			CPU_PD2: cpu-pd2 {
+				#power-domain-cells = <0>;
+				power-domains = <&CLUSTER_PD>;
+			};
+
+			CPU_PD3: cpu-pd3 {
+				#power-domain-cells = <0>;
+				power-domains = <&CLUSTER_PD>;
+			};
+
+			CLUSTER_PD: cluster-pd {
+				#power-domain-cells = <0>;
+				domain-idle-states = <&CLUSTER_PWR_DN &CX_RET &APSS_OFF>;
+			};
+		};
+
 		/delete-node/ rsc@17a00000;
 
 		apps_rsc: rsc@17a00000 {
@@ -86,21 +189,23 @@
 			      <0x0 0x17a10000 0x0 0x10000>,
 			      <0x0 0x17a20000 0x0 0x10000>;
 			reg-names = "drv-0", "drv-1", "drv-2";
+			qcom,drv-count = <3>;
 			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-			qcom,drv-count = <3>;
+			power-domains = <&CLUSTER_PD>;
 
 			apps_rsc_drv2: drv@2 {
 				qcom,drv-id = <2>;
 				qcom,tcs-offset = <0xd00>;
+				qcom,tcs-distance = <0x2a0>;
+
 				channel@0 {
-					qcom,tcs-offset = <0xd00>;
-					qcom,tcs-config = <ACTIVE_TCS    3>,
-							  <SLEEP_TCS     2>,
-							  <WAKE_TCS      2>,
-							  <FAST_PATH_TCS 0>,
-							  <CONTROL_TCS   0>;
+					 qcom,tcs-config = <ACTIVE_TCS    3>,
+							   <SLEEP_TCS     2>,
+							   <WAKE_TCS      2>,
+							   <CONTROL_TCS   0>,
+							   <FAST_PATH_TCS 1>;
 				};
 
 				apps_bcm_voter: bcm-voter {
@@ -337,6 +442,51 @@
 			qcom,hw-timer-hz = <19200000>;
 			qcom,count-unit = <0x10000>;
 			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+		};
+
+		cluster-device {
+			compatible = "qcom,lpm-cluster-dev";
+			power-domains = <&CLUSTER_PD>;
+		};
+
+		pcie_crm: crm@501000 {
+			label = "pcie_crm";
+			compatible = "qcom,pcie-crm";
+			reg = <0x0 0x501000 0x0 0x3000>, <0x0 0x504800 0x0 0x800>, <0x0 0x505000 0x0 0x2000>, <0x0 0x504000 0x0 0x800>;
+			reg-names = "base", "crm_b", "crm_c", "crm_v";
+			interrupts = <GIC_SPI 261 IRQ_TYPE_EDGE_RISING>;
+			interrupt-names = "pcie_crm";
+			clocks = <&pcie_pipe_clk>;
+			qcom,hw-drv-ids = <0>;
+			qcom,sw-drv-ids = <0>;
+		};
+
+		pcie_pdc: pdc@b2b0000 {
+			compatible = "qcom,sdxkova-pcie-pdc", "qcom,pcie-pdc";
+			reg = <0x0 0xb2b0000 0x0 0x30000>;
+		};
+
+		cpuss-sleep-stats@17800054 {
+			compatible = "qcom,cpuss-sleep-stats-v2";
+			reg = <0x0 0x17800054 0x0 0x4>, <0x0 0x17810054 0x0 0x4>, <0x0 0x17820054 0x0 0x4>,
+			      <0x0 0x17830054 0x0 0x4>, <0x0 0x17880098 0x0 0x4>, <0x0 0x178c0000 0x0 0x10000>;
+			reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
+				    "seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
+				    "l3_seq_lpm_cntr_cfg", "apss_seq_mem_base";
+			num-cpus = <4>;
+		};
+
+		sram@c3f0000 {
+			compatible = "qcom,rpmh-stats-v4";
+			reg = <0x0 0xc3f0000 0x0 0x400>;
+			qcom,qmp = <&aoss_qmp>;
+			ss-name = "modem", "apss";
+		};
+
+		sys-pm-vx@c300000 {
+			compatible = "qcom,sys-pm-violators", "qcom,sys-pm-sdxkova";
+			reg = <0x0 0xc300000 0x0 0x400>;
+			qcom,qmp = <&aoss_qmp>;
 		};
 
 		thermal_zones: thermal-zones {
@@ -1497,11 +1647,13 @@
 	};
 };
 
-&scm {
-	qcom,dload-mode = <&tcsr 0x13000>;
-};
-
 &firmware {
+	/delete-node/ scm;
+	qcom_scm: qcom_scm {
+		compatible = "qcom,scm-sdx75", "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x13000>;
+	};
+
 	qtee_shmbridge {
 		compatible = "qcom,tee-shared-memory-bridge";
 	};
@@ -1518,7 +1670,7 @@
 #include "sdxkova-regulators.dtsi"
 
 &chosen {
-	bootargs = "disable_dma32=on swiotlb=noforce cpufreq.default_governor=performance pcie_ports=compat";
+	bootargs = "disable_dma32=on swiotlb=noforce cpufreq.default_governor=performance pcie_ports=compat ftrace_dump_on_oops";
 };
 
 &reserved_memory {
@@ -1870,6 +2022,12 @@
 		memory-region = <&va_md_mem>;
 	};
 
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0x0 0xc221000 0x0 0x1000>;
+		clock-frequency = <32768>;
+	};
+
 	tcsr_mutex_block: syscon@1f40000 {
 		compatible = "syscon";
 		reg = <0x0 0x1f40000 0x0 0x20000>;
@@ -1922,6 +2080,41 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+	};
+
+qcom_cedev: qcedev@1de0000 {
+		compatible = "qcom,qcedev";
+		reg = <0x0  0x1de0000 0x0 0x20000>,
+			<0x0 0x1dc4000 0x0 0x28000>;
+		reg-names = "crypto-base","crypto-bam-base";
+		interrupts = <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bam-pipe-pair = <2>;
+		qcom,ce-hw-instance = <0>;
+		qcom,ce-device = <0>;
+		qcom,ce-hw-shared;
+		qcom,bam-ee = <0>;
+		qcom,smmu-s1-enable;
+		qcom,no-clock-support;
+		interconnect-names = "data_path";
+		interconnects = <&system_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		iommus = <&apps_smmu 0x0020 0x0>,
+			<&apps_smmu 0x0021 0x0>;
+		qcom,iommu-dma = "atomic";
+		dma-coherent;
+
+		qcom_cedev_ns_cb {
+			compatible = "qcom,qcedev,context-bank";
+			label = "ns_context";
+			iommus = <&apps_smmu 0x0021 0x0>;
+			dma-coherent;
+		};
+	};
+
+	qcom_rng: qrng@10c3000 {
+		compatible = "qcom,msm-rng";
+		reg = <0x0 0x10c3000 0x0 0x1000>;
+		qcom,no-qrng-config;
+		qcom,no-clock-support;
 	};
 
 	aoss_qmp: power-controller@c300000 {
