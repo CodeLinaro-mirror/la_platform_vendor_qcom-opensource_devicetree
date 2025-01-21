@@ -67,6 +67,10 @@ properties:
   dma-coherent:
     maxItems: 1
 
+  qcom,use-smem:
+    type: boolean
+    description: Optional property which indicate GPI uses SMEM memory allocations.
+
 required:
   - compatible
   - reg
@@ -111,6 +115,7 @@ examples:
        qcom,iommu-dma-addr-pool = <0x100000 0x100000>;
        qcom,gpi-ee-offset = <0x10000>;
        dma-coherent;
+       qcom,use-smem;
    };
 
 ...
