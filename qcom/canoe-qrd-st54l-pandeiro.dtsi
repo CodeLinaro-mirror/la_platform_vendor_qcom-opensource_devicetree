@@ -28,3 +28,12 @@
 &usb0 {
 	qcom,wcd_usbss = <&wcd_usbss>;
 };
+
+&xoagg_therm {
+	status = "ok";
+};
+
+&pmk8850_vadc {
+	pinctrl-0 = <&pa_therm2_default>, <&xoagg_therm_default>;
+	pinctrl-names = "default";
+};

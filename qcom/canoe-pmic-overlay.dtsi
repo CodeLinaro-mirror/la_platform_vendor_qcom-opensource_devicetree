@@ -32,6 +32,18 @@
 };
 
 &pmh0101_gpios {
+	qtm_therm_default: qtm-therm-default-state {
+		pins = "gpio2";
+		function = "normal";
+		bias-high-impedance;
+	};
+
+	pa_therm2_default: pa-therm2-default-state {
+		pins = "gpio3";
+		function = "normal";
+		bias-high-impedance;
+	};
+
 	cam_sensor_1p8_rst0_active: cam-sensor-1p8-rst0-active-state {
 		pins = "gpio4";
 		function = "normal";
@@ -180,6 +192,12 @@
 		output-enable;
 		power-source = <0>; /* 1.8 V */
 	};
+
+	xoagg_therm_default: xoagg-therm-default-state {
+		pins = "gpio7";
+		function = "normal";
+		bias-high-impedance;
+	};
 };
 
 &pmk8850_vadc {
@@ -207,12 +225,13 @@
 		qcom,adc-tm-type = <1>;
 	};
 
-	pmk8850_xoagg_therm {
+	xoagg_therm: pmk8850_xoagg_therm {
 		reg = <PMK8850_ADC5_GEN4_AMUX2_GPIO7_100K_PU(0, PMK8850_SID)>;
 		label = "pmk8850_xoagg_therm";
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 		qcom,adc-tm-type = <1>;
+		status = "disabled";
 	};
 
 	/* PMH0101 ADC Channels */
@@ -268,12 +287,13 @@
 		qcom,adc-tm-type = <1>;
 	};
 
-	pmh0101_qtm_therm {
+	qtm_therm: pmh0101_qtm_therm {
 		reg = <PMH0101_ADC5_GEN4_AMUX2_GPIO2_100K_PU(0, PMH0101_SID)>;
 		label = "pmh0101_qtm_therm";
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 		qcom,adc-tm-type = <1>;
+		status = "disabled";
 	};
 
 	pmh0101_pa_therm2 {

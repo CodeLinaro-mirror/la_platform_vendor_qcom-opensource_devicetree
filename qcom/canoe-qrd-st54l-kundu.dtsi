@@ -8,3 +8,16 @@
 &redriver {
 	set-aux;
 };
+
+&qtm_therm {
+	status = "ok";
+};
+
+&xoagg_therm {
+	status = "ok";
+};
+
+&pmk8850_vadc {
+	pinctrl-0 = <&pa_therm2_default>, <&xoagg_therm_default>, <&qtm_therm_default>;
+	pinctrl-names = "default";
+};
