@@ -436,7 +436,7 @@
 
 		bwmon_ddr: qcom,bwmon-ddr@19091000 {
 			compatible = "qcom,bwmon5";
-			reg = <0x19091000 0x1000>;
+			reg = <0x0 0x19091000 0x0 0x1000>;
 			reg-names = "base";
 			interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>;
 			qcom,hw-timer-hz = <19200000>;
