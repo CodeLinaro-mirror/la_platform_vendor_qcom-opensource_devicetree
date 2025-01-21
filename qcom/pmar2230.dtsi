@@ -118,5 +118,41 @@ pmar2230: pmar2230@0 {
 				label = "pm2230_vph_pwr";
 				qcom,pre-scaling = <1 3>;
 			};
+
+			pmar2230_xo_therm {
+				reg = <PMAR2230_ADC5_GEN4_AMUX_THM5_XO_THERM_100K_PU>;
+				label = "pmar2230_xo_therm";
+				qcom,ratiometric;
+				qcom,hw-settle-time = <200>;
+				qcom,pre-scaling = <1 1>;
+				qcom,adc-tm-type = <1>;
+			};
+
+			pmar2230_soc_therm {
+				reg = <PMAR2230_ADC5_GEN4_AMUX_THM1_100K_PU>;
+				label = "pmar2230_soc_therm";
+				qcom,ratiometric;
+				qcom,hw-settle-time = <200>;
+				qcom,pre-scaling = <1 1>;
+				qcom,adc-tm-type = <1>;
+			};
+
+			pmar2230_wlan_pa_therm {
+				reg = <PMAR2230_ADC5_GEN4_AMUX_THM2_100K_PU>;
+				label = "pmar2230_wlan_pa_therm";
+				qcom,ratiometric;
+				qcom,hw-settle-time = <200>;
+				qcom,pre-scaling = <1 1>;
+				qcom,adc-tm-type = <1>;
+			};
+
+			pmar2230_quiet_therm {
+				reg = <PMAR2230_ADC5_GEN4_AMUX_THM3_100K_PU>;
+				label = "pmar2230_quiet_therm";
+				qcom,ratiometric;
+				qcom,hw-settle-time = <200>;
+				qcom,pre-scaling = <1 1>;
+				qcom,adc-tm-type = <1>;
+			};
 		};
 };
