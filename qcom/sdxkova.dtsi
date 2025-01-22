@@ -34,6 +34,9 @@
 
 	/delete-node/ timer;
 
+	/delete-node/ memory@80000000;
+	memory { device_type = "memory"; reg = <0 0 0 0>; };
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
