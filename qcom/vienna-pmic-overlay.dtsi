@@ -2,7 +2,7 @@
  /*
   * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
   */
-
+#include <dt-bindings/gpio/gpio.h>
 #include "pmw6100.dtsi"
 
 &spmi0_bus {
@@ -140,6 +140,36 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
+		};
+	};
+};
+
+&pmw6100_gpios {
+	key_vol_up {
+		key_vol_up_default: key_vol_up_default {
+			pins = "gpio9";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <1>;
+		};
+	};
+};
+
+&soc {
+	gpio_key {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+		vol_up {
+			label = "volume_up";
+			gpios = <&pmw6100_gpios 9 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <KEY_VOLUMEUP>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
 		};
 	};
 };
