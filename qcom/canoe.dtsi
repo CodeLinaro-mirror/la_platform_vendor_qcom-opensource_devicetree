@@ -3360,6 +3360,11 @@
 		#size-cells = <1>;
 		read-only;
 		ranges;
+
+		ssip_config: ssip_config@148 {
+			reg = <0x148 0x2>;
+			bit = <3 3>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
