@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/clock/qcom,gcc-canoe.h>
@@ -80,6 +80,7 @@
 		iommu-map = <0x0 &apps_smmu 0x1400 0x1>,
 			<0x100 &apps_smmu 0x1401 0x1>;
 
+		qcom,target-link-speed = <0x3>;
 		qcom,boot-option = <0x1>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
