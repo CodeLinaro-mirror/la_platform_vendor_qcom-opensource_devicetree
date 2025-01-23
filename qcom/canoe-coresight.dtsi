@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &soc {
@@ -1134,7 +1134,8 @@
 	};
 
 	tpdm_llm_lmh0: tpdm@12180000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12180000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1158,7 +1159,8 @@
 	};
 
 	tpdm_llm_lmh1: tpdm@12181000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12181000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1182,7 +1184,8 @@
 	};
 
 	tpdm_ext_cmb0: tpdm@12183000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12183000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
@@ -1206,7 +1209,8 @@
 	};
 
 	tpdm_ext_dsb0: tpdm@12185000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12185000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
@@ -1230,7 +1234,8 @@
 	};
 
 	tpda_apss: tpda@1218b000 {
-		compatible = "qcom,coresight-tpda", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb969>;
 		reg = <0x0 0x1218b000 0x0 0x1000>;
 		reg-names = "tpda-base";
 
@@ -1323,14 +1328,17 @@
 	};
 
 	funnel_ncc0_uetm: funnel@1d02b000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d02b000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
 		device-name = "funnel_ncc0_uetm";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&cpucp_scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"atclk";
 
 		in-ports {
 			#address-cells = <1>;
@@ -1368,8 +1376,9 @@
 	};
 
 	uc0_etf: tmc@1d031000 {
-		compatible = "arm,coresight-tmc", "arm,primecell";
-		reg = <0x0 0x1d031000 0x0 0x1000>;
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
+		reg = <0x0 0x1d028000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etf_uc0";
@@ -1400,7 +1409,8 @@
 	};
 
 	replicator_uc0: replicator@1d02a000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d02a000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -1507,7 +1517,8 @@
 	};
 
 	replicator_ncc0_0: replicator@1d090000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d090000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -1614,7 +1625,8 @@
 	};
 
 	replicator_ncc0_1: replicator@1d0a0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d0a0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -1721,7 +1733,8 @@
 	};
 
 	replicator_ncc0_2: replicator@1d0b0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d0b0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -1828,7 +1841,8 @@
 	};
 
 	replicator_ncc0_3: replicator@1d0c0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d0c0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -1935,7 +1949,8 @@
 	};
 
 	replicator_ncc0_4: replicator@1d0d0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d0d0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -2042,7 +2057,8 @@
 	};
 
 	replicator_ncc0_5: replicator@1d0e0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d0e0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -2080,7 +2096,8 @@
 	};
 
 	funnel_ncc0_lv1: funnel@1d081000  {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d081000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
@@ -2156,7 +2173,8 @@
 	};
 
 	funnel_ncc0_lv2: funnel@1d021000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d021000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
@@ -2200,7 +2218,8 @@
 	};
 
 	ncc_etf: tmc@1d029000 {
-		compatible = "arm,coresight-tmc", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
 		reg = <0x0 0x1d029000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
@@ -2266,14 +2285,17 @@
 	};
 
 	funnel_ncc1_uetm: funnel@1d12b000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d12b000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
 		device-name = "funnel_ncc1_uetm";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&cpucp_scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"atclk";
 
 		in-ports {
 			#address-cells = <1>;
@@ -2311,7 +2333,8 @@
 	};
 
 	uc1_etf: tmc@1d131000 {
-		compatible = "arm,coresight-tmc", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
 		reg = <0x0 0x1d131000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
@@ -2343,7 +2366,8 @@
 	};
 
 	replicator_uc1: replicator@1d12a000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d12a000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -2450,7 +2474,8 @@
 	};
 
 	replicator_ncc1_0: replicator@1d190000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d190000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -2557,7 +2582,8 @@
 	};
 
 	replicator_ncc1_1: replicator@1d1a0000 {
-		compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb909>;
 		reg = <0x0 0x1d1a0000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
@@ -2594,7 +2620,8 @@
 	};
 
 	funnel_ncc1_lv1: funnel@1d181000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d181000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
@@ -2638,7 +2665,8 @@
 	};
 
 	funnel_ncc1_lv2: funnel@1d121000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1d121000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
@@ -2682,7 +2710,8 @@
 	};
 
 	tmc@1d129000 {
-		compatible = "arm,coresight-tmc", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
 		reg = <0x0 0x1d129000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
@@ -2714,7 +2743,8 @@
 	};
 
 	funnel_apss: funnel@12080000 {
-		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x12080000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
