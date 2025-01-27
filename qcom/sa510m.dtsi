@@ -1076,6 +1076,7 @@
 #include "sa510m-usb.dtsi"
 #include "sa510m-pmic.dtsi"
 #include "sa510m-thermal.dtsi"
+#include "sa510m-debug.dtsi"
 
 &qupv3_se3_2uart {
 	status = "ok";
