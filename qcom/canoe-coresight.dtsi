@@ -1371,7 +1371,7 @@
 		};
 	};
 
-	uc0_etf: tmc@1d031000 {
+	uc0_etf: tmc@1d028000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
 		reg = <0x0 0x1d028000 0x0 0x1000>;
@@ -2328,10 +2328,10 @@
 		};
 	};
 
-	uc1_etf: tmc@1d131000 {
+	uc1_etf: tmc@1d128000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
-		reg = <0x0 0x1d131000 0x0 0x1000>;
+		reg = <0x0 0x1d128000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etf_uc1";
