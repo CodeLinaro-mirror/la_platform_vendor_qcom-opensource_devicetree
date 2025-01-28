@@ -45,6 +45,7 @@
 	qcom,thermal-mitigation-step = <500000>;
 	#cooling-cells = <2>;
 	qcom,ship-mode-immediate;
+	qcom,wireless-fw-name = "cps4061.bin";
 };
 
 &pcie {
