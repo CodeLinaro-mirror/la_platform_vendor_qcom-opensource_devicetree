@@ -2041,6 +2041,15 @@
 			qcom,allocate-on-request;
 			label = "modem";
 		};
+
+		mem_client_5: qcom,client_5 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x400000>;
+			qcom,client-id = <6>;
+			qcom,allocate-on-request;
+			qcom,shared;
+			label = "modem";
+		};
 	};
 
 	mini_dump_mode {
