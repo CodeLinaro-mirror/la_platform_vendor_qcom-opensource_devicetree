@@ -2527,6 +2527,20 @@ qcom_cedev: qcedev@1de0000 {
 			qcom,glinkpkt-ch-name = "DATA22";
 			qcom,glinkpkt-dev-name = "smd22";
 		};
+
+		qcom,glinkpkt-qmc-dma {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "QMC_DMA_LINE";
+			qcom,glinkpkt-dev-name = "qmc_dma";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-qmc-cma {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "QMC_CMA_LINE";
+			qcom,glinkpkt-dev-name = "qmc_cma";
+			qcom,glinkpkt-enable-ch-close;
+		};
 	};
 
 	qup1_gpi_iommu_region: qup1_gpi_iommu_region {
