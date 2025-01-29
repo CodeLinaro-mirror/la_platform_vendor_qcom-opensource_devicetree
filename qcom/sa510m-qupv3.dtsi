@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &soc {
@@ -11,6 +11,11 @@
 	 * Qup0 3: SE 3
 	 * Qup0 4: SE 4
 	 */
+
+	qup_iommu_region0: qup_iommu_region0 {
+		iommu-addresses =  <&gpi_dma0 0x100000 0x100000>, <&gpi_dma0 0x200000 0xffe00000>,
+			<&qupv3_0 0x40000000 0x10000000>, <&qupv3_0 0x50000000 0xb0000000>;
+	};
 
 	/* GPI Instance */
 	gpi_dma0: qcom,gpi-dma@900000  {
@@ -27,7 +32,7 @@
 			<GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,gpii-mask = <0xf>;
 		qcom,ev-factor = <2>;
-		qcom,iommu-dma-addr-pool = <0x100000 0x100000>;
+		memory-region = <&qup_iommu_region0>;
 		qcom,gpi-ee-offset = <0x10000>;
 		status = "ok";
 	};
@@ -42,7 +47,7 @@
 		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
 			<&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x143 0x0>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
+		memory-region = <&qup_iommu_region0>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		ranges;
@@ -80,9 +85,10 @@
 			<&clk_virt MASTER_QUP_CORE_0 &clk_virt SLAVE_QUP_CORE_0>,
 			<&mem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_QUP_0>,
 			<&aggre_noc MASTER_QUP_0 &mc_virt SLAVE_EBI1>;
-			pinctrl-names = "default", "sleep";
+			pinctrl-names = "default", "sleep", "shutdown";
 			pinctrl-0 = <&qupv3_se0_2uart_tx_active>, <&qupv3_se0_2uart_rx_active>;
 			pinctrl-1 = <&qupv3_se0_2uart_sleep>;
+			pinctrl-2 = <&qupv3_se0_2uart_sleep>;
 			status = "disabled";
 		};
 
@@ -180,7 +186,7 @@
 				<&gpi_dma0 1 4 3 64 0>;
 			dma-names = "tx", "rx";
 			qcom,shared;
-			status = "ok";
+			status = "disabled";
 		};
 
 		qupv3_se4_spi: spi@990000 {
