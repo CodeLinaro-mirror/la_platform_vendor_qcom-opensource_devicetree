@@ -96,29 +96,25 @@
 					cpu = <&CPU0>;
 				};
 
+				core1 {
+					cpu = <&CPU1>;
+				};
+
+				core2 {
+					cpu = <&CPU2>;
+				};
+
+				core3 {
+					cpu = <&CPU3>;
+				};
 			};
 
 			cluster1 {
 				core0 {
-					cpu = <&CPU1>;
-				};
-
-				core1 {
-					cpu = <&CPU2>;
-				};
-
-				core2 {
-					cpu = <&CPU3>;
-				};
-
-				core3 {
 					cpu = <&CPU4>;
 				};
-
 			};
-
 		};
-
 	};
 
 	reserved_memory: reserved-memory { };
