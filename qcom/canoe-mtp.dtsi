@@ -379,3 +379,30 @@
 	pinctrl-0 = <&pa_therm2_default>, <&qtm_therm_default>;
 	pinctrl-names = "default";
 };
+
+&pmic_glink_debug {
+	i2c@104 {
+		reg = <0x104>; /* I2C instance 4 in ADSP for SE3 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		qcom,bus-type = "i2c";
+
+		smb1501@68 {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x68>;
+			qcom,can-sleep;
+		};
+
+		smb1501@69 {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x69>;
+			qcom,can-sleep;
+		};
+
+		cps4061@30 {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x30>;
+			qcom,can-sleep;
+		};
+	};
+};
