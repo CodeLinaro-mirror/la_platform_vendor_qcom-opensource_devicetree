@@ -9,10 +9,9 @@
 		arm,primecell-periphid = <0x000bb999>;
 		reg = <0x0 0x11301000 0x0 0x1000>;
 		reg-names = "tgu-base";
-		tgu-steps = <4>;
+		tgu-steps = <3>;
 		tgu-conditions = <4>;
-		tgu-regs = <16>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <17>;
 
 		device-name = "tgu_rpmh";
 
@@ -25,10 +24,9 @@
 		arm,primecell-periphid = <0x000bb999>;
 		reg = <0x0 0x1130e000 0x0 0x1000>;
 		reg-names = "tgu-base";
-		tgu-steps = <3>;
+		tgu-steps = <2>;
 		tgu-conditions = <4>;
 		tgu-regs = <4>;
-		tgu-timer-counters = <8>;
 
 		device-name = "tgu_ipcb";
 
@@ -45,8 +43,7 @@
 
 		tgu-steps = <3>;
 		tgu-conditions = <4>;
-		tgu-regs = <9>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <8>;
 
 		device-name = "tgu_spmi0";
 
@@ -61,10 +58,9 @@
 		reg = <0x0 0x11310000 0x0 0x1000>;
 		reg-names = "tgu-base";
 
-		tgu-steps = <3>;
+		tgu-steps = <2>;
 		tgu-conditions = <4>;
-		tgu-regs = <9>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <8>;
 
 		device-name = "tgu_spmi1";
 
@@ -1058,7 +1054,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1375,7 +1370,7 @@
 		};
 	};
 
-	uc0_etf: tmc@1d031000 {
+	uc0_etf: tmc@1d028000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
 		reg = <0x0 0x1d028000 0x0 0x1000>;
@@ -2332,10 +2327,10 @@
 		};
 	};
 
-	uc1_etf: tmc@1d131000 {
+	uc1_etf: tmc@1d128000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
-		reg = <0x0 0x1d131000 0x0 0x1000>;
+		reg = <0x0 0x1d128000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etf_uc1";

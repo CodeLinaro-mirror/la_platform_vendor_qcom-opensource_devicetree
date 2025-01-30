@@ -27,6 +27,7 @@ properties:
       - qcom,sys-pm-monaco-auto
       - qcom,sys-pm-sun
       - qcom,sys-pm-canoe
+      - qcom,sys-pm-vienna
 
   reg:
     maxItems: 1
@@ -49,6 +50,7 @@ allOf:
           contains:
             enum:
               - qcom,sys-pm-canoe
+              - qcom,sys-pm-vienna
               - qcom,sys-pm-sun
               - qcom,sys-pm-pineapple
               - qcom,sys-pm-parrot
