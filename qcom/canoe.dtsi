@@ -2169,7 +2169,7 @@
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 
-		firmware-name = "soccp.mdt", "soccp_dtb.mdt";
+		firmware-name = "soccp.mbn", "soccp_dtb.mbn";
 
 		memory-region = <&soccp_mem &soccp_dtb_mem>;
 
