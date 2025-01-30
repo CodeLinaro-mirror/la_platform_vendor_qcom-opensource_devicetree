@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 &soc {
 	/* QUPv3 SE Instances
@@ -222,6 +222,32 @@
 			pinctrl-1 = <&qupv3_se2_spi_sleep>;
 			dmas = <&gpi_dma1 0 2 1 64 0>,
 				<&gpi_dma1 1 2 1 64 0>;
+			dma-names = "tx", "rx";
+			spi-max-frequency = <50000000>;
+			status = "disabled";
+		};
+
+		qupv3_se2_qspi: qspi@a88000 {
+			compatible = "qcom,qspi-geni";
+			reg = <0xa88000 0x4000>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg-names = "se_phys";
+			interrupts = <GIC_SPI 830 IRQ_TYPE_LEVEL_HIGH>;
+			clock-names = "se-clk";
+			clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
+			interconnect-names = "qup-core", "qup-config", "qup-memory";
+			interconnects =
+			<&clk_virt MASTER_QUP_CORE_1 &clk_virt SLAVE_QUP_CORE_1>,
+			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
+			<&aggre1_noc MASTER_QUP_1 &mc_virt  SLAVE_EBI1>;
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&qupv3_se2_qspi_io0_active>, <&qupv3_se2_qspi_io1_active>,
+				<&qupv3_se2_qspi_clk_active>, <&qupv3_se2_qspi_cs_active>,
+				<&qupv3_se2_qspi_io2_active>, <&qupv3_se2_qspi_io3_active>;
+			pinctrl-1 = <&qupv3_se2_qspi_sleep>;
+			dmas = <&gpi_dma1 0 2 9 64 0>,
+				<&gpi_dma1 1 2 9 64 0>;
 			dma-names = "tx", "rx";
 			spi-max-frequency = <50000000>;
 			status = "disabled";
