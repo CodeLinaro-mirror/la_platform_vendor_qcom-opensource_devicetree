@@ -229,4 +229,22 @@ properties:
         items:
           - const: qcom,lemans
 
+      - description: Qualcomm Technologies, Inc. YUPIK-IOT
+        items:
+          - enum:
+              - qcom,yupik-iot-idp
+              - qcom,idp
+              - qcom,yupik-iot-qrd
+              - qcom,qrd
+          - const: qcom,yupik-iot
+
+      - description: Qualcomm Technologies, Inc. YUPIKP-IOT
+        items:
+          - enum:
+              - qcom,yupikp-iot-idp
+              - qcom,idp
+              - qcom,yupikp-iot-qrd
+              - qcom,qrd
+          - const: qcom,yupikp-iot
+
 additionalProperties: true
