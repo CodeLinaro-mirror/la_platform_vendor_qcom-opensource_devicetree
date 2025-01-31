@@ -68,3 +68,9 @@
 &CX_RET {
 	status = "disabled";
 };
+
+&rpmhcc {
+	compatible = "fixed-clock";
+	clock-output-names = "rpmh_clocks";
+	clock-frequency = <19200000>;
+};
