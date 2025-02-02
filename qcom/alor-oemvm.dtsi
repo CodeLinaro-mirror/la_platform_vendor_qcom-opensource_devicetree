@@ -229,4 +229,13 @@
 		gunyah-label = <0x5>;
 		affinity = <0>;
 	};
+
+	qcom,gh-qtimer@1781b000 {
+		compatible = "qcom,gh-qtmr";
+		reg = <0x0 0x1781b000 0x0 0x1000>;
+		reg-names = "qtmr-base";
+		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "qcom,qtmr-intr";
+		qcom,secondary;
+	};
 };
