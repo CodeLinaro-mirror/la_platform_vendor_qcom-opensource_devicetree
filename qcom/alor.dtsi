@@ -1462,6 +1462,18 @@
 		qcom,label = <0x5>;
 	};
 
+	qcom,test-msgq-tuivm {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <0x4>;
+		qcom,primary;
+	};
+
+	qcom,test-msgq-oemvm {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <0x5>;
+		qcom,primary;
+	};
+
 };
 
 #include "alor-debug.dtsi"
