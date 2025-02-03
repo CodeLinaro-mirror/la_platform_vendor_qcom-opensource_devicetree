@@ -1,4 +1,14 @@
 _platform_map = {
+    "autogvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "lemans-vm-la.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "lemans-vm-la-overlay.dtbo"},
+        ],
+    },
     "canoe": {
         "dtb_list": [
             # keep sorted
