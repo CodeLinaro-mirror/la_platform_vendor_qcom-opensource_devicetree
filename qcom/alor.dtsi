@@ -272,6 +272,9 @@
 		#mbox-cells = <2>;
 	};
 
+	qcom_tzlog: tz-log@0 {
+	};
+
 	cache-controller@31800000 {
 		compatible = "qcom,alor-llcc";
 		reg = <0x0 0x31800000 0x0 0x200000>, <0x0 0x32800000 0x0 0x200000>,
