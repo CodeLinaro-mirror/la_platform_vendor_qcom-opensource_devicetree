@@ -200,6 +200,18 @@ properties:
       - qcom,vienna-nsp_noc
       - qcom,vienna-pcie_anoc
       - qcom,vienna-system_noc
+      - qcom,yupik-aggre1_noc
+      - qcom,yupik-aggre2_noc
+      - qcom,yupik-clk_virt
+      - qcom,yupik-cnoc2
+      - qcom,yupik-cnoc3
+      - qcom,yupik-dc_noc
+      - qcom,yupik-gem_noc
+      - qcom,yupik-lpass_ag_noc
+      - qcom,yupik-mc_virt
+      - qcom,yupik-mmss_noc
+      - qcom,yupik-nsp_noc
+      - qcom,yupik-system_noc
 
   '#interconnect-cells': true
 
