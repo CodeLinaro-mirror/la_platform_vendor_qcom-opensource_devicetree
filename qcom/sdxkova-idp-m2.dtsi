@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include "sdxkova-pmic-overlay.dtsi"
@@ -28,6 +28,13 @@
 };
 
 &usb {
+	/* Need to dynamically bypass SMMU when in PCIE mode */
+	nvmem-cells = <&boot_config>;
+	nvmem-cell-names = "boot_conf";
+	qcom,fast-boot-mask = <0x1e>;
+	qcom,host-bypass-mask = <0x40>;
+	qcom,fast-boot-values = <0x5 0x7>;
+
 	extcon = <&pmx75_vbus_detect>, <&eud>;
 };
 
