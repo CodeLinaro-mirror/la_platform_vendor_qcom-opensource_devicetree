@@ -34,6 +34,9 @@
 
 	/delete-node/ timer;
 
+	/delete-node/ memory@80000000;
+	memory { device_type = "memory"; reg = <0 0 0 0>; };
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
@@ -436,7 +439,7 @@
 
 		bwmon_ddr: qcom,bwmon-ddr@19091000 {
 			compatible = "qcom,bwmon5";
-			reg = <0x19091000 0x1000>;
+			reg = <0x0 0x19091000 0x0 0x1000>;
 			reg-names = "base";
 			interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>;
 			qcom,hw-timer-hz = <19200000>;
@@ -2013,6 +2016,42 @@
 		};
 	};
 
+	qcom,memshare {
+		compatible = "qcom,memshare";
+
+		qcom,client_1 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x0>;
+			qcom,client-id = <0>;
+			qcom,allocate-boot-time;
+			label = "modem";
+		};
+
+		qcom,client_2 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x0>;
+			qcom,client-id = <2>;
+			label = "modem";
+		};
+
+		qcom,client_3 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x0>;
+			qcom,client-id = <1>;
+			qcom,allocate-on-request;
+			label = "modem";
+		};
+
+		mem_client_5: qcom,client_5 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x400000>;
+			qcom,client-id = <6>;
+			qcom,allocate-on-request;
+			qcom,shared;
+			label = "modem";
+		};
+	};
+
 	mini_dump_mode {
 		compatible = "qcom,minidump";
 	};
@@ -2487,6 +2526,20 @@ qcom_cedev: qcedev@1de0000 {
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DATA22";
 			qcom,glinkpkt-dev-name = "smd22";
+		};
+
+		qcom,glinkpkt-qmc-dma {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "QMC_DMA_LINE";
+			qcom,glinkpkt-dev-name = "qmc_dma";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-qmc-cma {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "QMC_CMA_LINE";
+			qcom,glinkpkt-dev-name = "qmc_cma";
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 

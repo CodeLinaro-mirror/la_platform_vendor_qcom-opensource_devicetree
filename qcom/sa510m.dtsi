@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -135,6 +135,11 @@
 		xbl_dt_log_mem: xbl_dt_log_region@824c0000 {
 			no-map;
 			reg = <0x824c0000 0x20000>;
+		};
+
+		uefi_log: uefi_log@82260000 {
+			no-map;
+			reg = <0x82260000 0x10000>;
 		};
 
 		qtee_tz_mem: qtee_tz_region@82500000 {
@@ -1071,6 +1076,7 @@
 #include "sa510m-usb.dtsi"
 #include "sa510m-pmic.dtsi"
 #include "sa510m-thermal.dtsi"
+#include "sa510m-debug.dtsi"
 
 &qupv3_se3_2uart {
 	status = "ok";
