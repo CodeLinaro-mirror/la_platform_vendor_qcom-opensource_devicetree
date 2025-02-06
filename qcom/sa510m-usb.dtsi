@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024,2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/clock/qcom,gcc-sdxbaagha.h>
@@ -48,14 +48,6 @@
 				0x144 /* GSI_RING_BASE_ADDR_H */
 				0x1a4>; /* GSI_IF_STS */
 
-//		extcon = <&usb2_phy0>, <&eud>;
-
-		/* Boot Config Information */
-//		nvmem-cells = <&boot_config>;
-//		nvmem-cell-names = "boot_conf";
-//		qcom,fast-boot-mask = <0x1e>;
-//		qcom,host-bypass-mask = <0x40>;
-//		qcom,fast-boot-values = <0x3>;
 
 		dwc3@a600000 {
 			compatible = "snps,dwc3";
@@ -81,7 +73,6 @@
 		reg-names = "hsusb_phy_base",
 				"eud_enable_reg";
 
-//		extcon = <&pmx35_vbus_detect>;
 
 		vdd-supply = <&L3A>;
 		vdda18-supply = <&L5A>;
