@@ -382,15 +382,9 @@
 	};
 
 	tpdm_modem2: tpdm@11002000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x0 0x11002000 0x0 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <32>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_2";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <64>;
 
 		out-ports {
 			port {
