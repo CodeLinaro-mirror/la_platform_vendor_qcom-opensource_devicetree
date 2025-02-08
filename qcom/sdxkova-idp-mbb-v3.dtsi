@@ -11,6 +11,10 @@
 
 /delete-node/ &sdhc_1;
 
+&chosen {
+	bootargs = "disable_dma32=on swiotlb=noforce cpufreq.default_governor=performance pcie_ports=compat ftrace_dump_on_oops mem=1G";
+};
+
 &soc {
 	sdhc_1: sdhci@8804000 {
 		status = "ok";
