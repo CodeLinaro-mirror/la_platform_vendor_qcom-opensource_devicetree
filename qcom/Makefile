@@ -175,6 +175,7 @@ sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-mbb.dtb \
 				sdxkova-idp-mbb-v2.dtb \
 				sdxkova-idp-mbb-v3.dtb \
+				sdxkova-idp-mbb-v4.dtb \
 				sdxkova-idp-m2.dtb \
 				sdxkova-idp-cpe-v2.dtb \
 				sdxkova-idp-cpe-v3.dtb \
