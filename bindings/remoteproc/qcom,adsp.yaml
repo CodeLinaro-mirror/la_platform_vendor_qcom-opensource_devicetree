@@ -39,6 +39,7 @@ properties:
       - qcom,sdm845-cdsp-pas
       - qcom,sdx55-mpss-pas
       - qcom,sdxpinn-modem-pas
+      - qcom,sdxpinn-modem-pas-sub6
       - qcom,sm6350-adsp-pas
       - qcom,sm6350-cdsp-pas
       - qcom,sm6350-mpss-pas
