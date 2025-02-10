@@ -79,3 +79,8 @@
 		};
 	};
 };
+
+/* Enable PCIe0 node for Ethernet attach. */
+&pcie0 {
+	status = "ok";
+};
