@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -90,7 +90,7 @@ pmh0101@1 {
 			function-enumerator = <0>;
 			color = <LED_COLOR_ID_YELLOW>;
 			led-sources = <1>, <4>;
-			led-max-microamp = <300000>;
+			led-max-microamp = <500000>;
 			flash-max-microamp = <2000000>;
 			flash-max-timeout-us = <1280000>;
 		};
@@ -100,7 +100,7 @@ pmh0101@1 {
 			function-enumerator = <1>;
 			color = <LED_COLOR_ID_WHITE>;
 			led-sources = <2>, <3>;
-			led-max-microamp = <300000>;
+			led-max-microamp = <500000>;
 			flash-max-microamp = <2000000>;
 			flash-max-timeout-us = <1280000>;
 		};
@@ -110,7 +110,7 @@ pmh0101@1 {
 			function-enumerator = <2>;
 			color = <LED_COLOR_ID_AMBER>;
 			led-sources = <1>, <2>, <3>, <4>;
-			led-max-microamp = <300000>;
+			led-max-microamp = <500000>;
 			flash-max-microamp = <2000000>;
 			flash-max-timeout-us = <1280000>;
 		};
