@@ -4,14 +4,13 @@
  */
 
 /dts-v1/;
-/plugin/;
 
-#include "kera-rcm.dtsi"
+#include "kera-oemvm.dtsi"
+#include "kera-oemvm-rcm-qca6750.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Kera RCM";
+	model = "Qualcomm Technologies, Inc. Kera OEMVM RCM + QCA6750";
 	compatible = "qcom,kera-rcm", "qcom,kera", "qcom,kerap-rcm", "qcom,kerap",
 			"qcom,rcm";
-	qcom,msm-id = <686 0x10000>, <659 0x10000>;
-	qcom,board-id = <0x10015 0>;
+	qcom,board-id = <0x10015 0>, <0x20015 0>, <0x30015 0>;
 };

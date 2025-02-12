@@ -4,7 +4,6 @@
  */
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
-#include "tuna-thermal-overlay.dtsi"
 
 &qupv3_se4_spi {
 	#address-cells = <1>;
@@ -46,7 +45,7 @@
 };
 
 &ufsphy_mem {
-	compatible = "qcom,ufs-phy-qmp-v4-pineapple";
+	compatible = "qcom,ufs-phy-qmp-v4-niobe";
 
 	/* VDDA_UFS_CORE */
 	vdda-phy-supply = <&L1F>;
@@ -80,6 +79,9 @@
 	vccq-supply = <&L3F>;
 	vccq-max-microamp = <1200000>;
 
+	qcom,vccq-proxy-vote-supply = <&L3F>;
+	qcom,vccq-proxy-vote-max-microamp = <1200000>;
+
 	/* VDD_PX10 is voted for the ufs_reset_n */
 	qcom,vddp-ref-clk-supply = <&L5B>;
 	qcom,vddp-ref-clk-max-microamp = <100>;
@@ -111,7 +113,7 @@
 	pinctrl-0 = <&sdc2_on>;
 	pinctrl-1 = <&sdc2_off>;
 
-	cd-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
+	cd-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
 
 	qcom,uses_level_shifter;
 
@@ -120,4 +122,55 @@
 
 &thermal_zones {
 	/delete-node/ sys-therm-11;
+};
+
+&qupv3_se5_i2c {
+	status = "ok";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+	redriver: redriver@1c {
+		compatible = "onnn,redriver";
+		reg = <0x1c>;
+
+		vdd-supply = <&L7B>;
+
+		lane-channel-swap;
+
+		eq = /bits/ 8 <
+				/* Parameters for USB */
+				0x4 0x4 0x4 0x4
+				/* Parameters for DP */
+				0x5 0x7 0x7 0x5>;
+		flat-gain = /bits/ 8 <
+				/* Parameters for USB */
+				0x3 0x1 0x1 0x3
+				/* Parameters for DP */
+				0x0 0x3 0x3 0x0>;
+		output-comp = /bits/ 8 <
+				/* Parameters for USB */
+				0x3 0x3 0x3 0x3
+				/* Parameters for DP */
+				0x3 0x3 0x3 0x3>;
+		loss-match = /bits/ 8 <
+				/* Parameters for USB */
+				0x1 0x3 0x3 0x1
+				/* Parameters for DP */
+				0x3 0x3 0x3 0x3>;
+	};
+};
+
+&usb_qmp_dp_phy {
+	pinctrl-names = "unused";
+};
+
+&usb0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio>;
+	gpios = <&tlmm 122 0>;
+
+	ssusb_redriver = <&redriver>;
+
+	qcom,wcd_usbss = <&wcd_usbss>;
+
 };

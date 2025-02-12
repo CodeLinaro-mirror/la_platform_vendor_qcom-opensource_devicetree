@@ -7,9 +7,10 @@
 /plugin/;
 
 #include "kera-cdp-qca6750-ufs2.dtsi"
+#include "kera-pmiv0102.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Kera CDP + QCA6750 + UFS2.0";
+	model = "Qualcomm Technologies, Inc. Kera CDP + QCA6750 + UFS2";
 	compatible = "qcom,kera-cdp", "qcom,kera", "qcom,kerap-cdp", "qcom,kerap",
 			"qcom,cdp";
 

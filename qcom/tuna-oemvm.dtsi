@@ -40,14 +40,24 @@
 	};
 
 	idle-states {
-		CPU_PWR_DWN: c4 {  /* Using Medium C4 latencies */
+		CPU_PWR_DWN: c4 {  /* Using Gold C4 latencies */
 			compatible = "arm,idle-state";
-			status = "disabled";
+			idle-state-name = "rail-pc";
+			entry-latency-us = <550>;
+			exit-latency-us = <1050>;
+			min-residency-us = <7951>;
+			arm,psci-suspend-param = <0x40000004>;
+			local-timer-stop;
 		};
 
-		CLUSTER_PWR_DWN: ss3 { /* C4+CL5+SS3 */
+		CLUSTER_PWR_DWN: d4 { /* C4+D4 */
 			compatible = "arm,idle-state";
-			status = "disabled";
+			idle-state-name = "l3-pc";
+			entry-latency-us = <750>;
+			exit-latency-us = <2350>;
+			min-residency-us = <9144>;
+			arm,psci-suspend-param = <0x40000044>;
+			local-timer-stop;
 		};
 	};
 
@@ -214,6 +224,15 @@
 				qcom,label = <0xe>;
 				peer-default;
 			};
+
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x3>;
+			};
 		};
 	};
 
@@ -307,6 +326,10 @@
 		compatible = "qcom,smcinvoke";
 	};
 
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
 	qcom,qrtr {
 		compatible = "qcom,qrtr";
 		qcom,node-id = <21>;
@@ -315,6 +338,11 @@
 	qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <8>;
+	};
+
+	qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <3>;
 	};
 
 	qtee_shmbridge {

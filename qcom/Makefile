@@ -80,20 +80,22 @@ KERA_BASE_DTB += kera.dtb
 KERA_APQ_BASE_DTB += kerap.dtb
 KERA_BOARDS += \
 		kera-atp-overlay.dtbo \
-		kera-mtp-overlay.dtbo \
-		kera-mtp-qca6750-overlay.dtbo \
+		kera-mtp-qca6750-ufs4-overlay.dtbo \
+		kera-mtp-qca6750-ufs3-overlay.dtbo \
 		kera-mtp-qca6750-qmp1000-overlay.dtbo \
 		kera-mtp-wcn7750-qmp1000-overlay.dtbo \
 		kera-mtp-wcn7750-ufs4-overlay.dtbo \
 		kera-mtp-wcn7750-ufs3-overlay.dtbo \
-		kera-cdp-overlay.dtbo \
 		kera-cdp-qca6750-ufs2-overlay.dtbo \
 		kera-cdp-qca6750-ufs3-overlay.dtbo \
 		kera-cdp-qca6750-ufs4-overlay.dtbo \
-		kera-qrd-overlay.dtbo \
+		kera-iot-cdp-qca6750-ufs4-overlay.dtbo \
+		kera-cdp-qca6750-ufs4-slt-overlay.dtbo \
+		kera-qrd-wcn7750-ufs4-overlay.dtbo \
 		kera-qrd-wcn7750-ufs2-overlay.dtbo \
 		kera-qrd-wcn7750-ufs3-overlay.dtbo \
-		kera-rcm-overlay.dtbo \
+		kera-qrd-qca6750-ufs2-overlay.dtbo \
+		kera-rcm-qca6750-ufs4-overlay.dtbo \
 		kera-rcm-qca6750-ufs2-overlay.dtbo \
 		kera-rcm-qca6750-ufs3-overlay.dtbo \
 		kera-rcm-wcn7750-ufs2-overlay.dtbo \
@@ -269,7 +271,21 @@ endif
 ifeq ($(CONFIG_ARCH_KERA), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 kera_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += kera-vm-rumi.dtb \
-				kera-oemvm-rumi.dtb
+				kera-vm-atp.dtb \
+				kera-vm-cdp-qca6750.dtb \
+				kera-vm-mtp-qca6750.dtb \
+				kera-vm-mtp-wcn7750.dtb \
+				kera-vm-qrd-wcn7750.dtb \
+				kera-vm-rcm-qca6750.dtb \
+				kera-vm-rcm-wcn7750.dtb \
+				kera-oemvm-rumi.dtb \
+				kera-oemvm-atp.dtb \
+				kera-oemvm-cdp-qca6750.dtb \
+				kera-oemvm-mtp-qca6750.dtb \
+				kera-oemvm-mtp-wcn7750.dtb \
+				kera-oemvm-qrd-wcn7750.dtb \
+				kera-oemvm-rcm-qca6750.dtb \
+				kera-oemvm-rcm-wcn7750.dtb
 dtb-y += $(kera_tuivm-dtb-y)
 endif
 endif

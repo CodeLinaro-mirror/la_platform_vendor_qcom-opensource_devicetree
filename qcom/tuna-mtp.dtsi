@@ -5,7 +5,6 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clock/qcom,gcc-sun.h>
-#include "tuna-thermal-overlay.dtsi"
 
 &qupv3_se4_i2c {
 	#address-cells = <1>;
@@ -44,7 +43,7 @@
 };
 
 &ufsphy_mem {
-	compatible = "qcom,ufs-phy-qmp-v4-pineapple";
+	compatible = "qcom,ufs-phy-qmp-v4-niobe";
 
 	/* VDDA_UFS_CORE */
 	vdda-phy-supply = <&L1F>;
@@ -78,6 +77,9 @@
 	vccq-supply = <&L3F>;
 	vccq-max-microamp = <1200000>;
 
+	qcom,vccq-proxy-vote-supply = <&L3F>;
+	qcom,vccq-proxy-vote-max-microamp = <1200000>;
+
 	/* VDD_PX10 is voted for the ufs_reset_n */
 	qcom,vddp-ref-clk-supply = <&L5B>;
 	qcom,vddp-ref-clk-max-microamp = <100>;
@@ -101,10 +103,13 @@
 	pinctrl-0 = <&sdc2_on>;
 	pinctrl-1 = <&sdc2_off>;
 
-	cd-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
+	cd-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
 
 	qcom,uses_level_shifter;
 
 	status = "ok";
 };
 
+&usb0 {
+	qcom,wcd_usbss = <&wcd_usbss>;
+};

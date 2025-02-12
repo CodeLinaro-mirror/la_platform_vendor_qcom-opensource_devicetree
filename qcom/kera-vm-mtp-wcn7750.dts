@@ -4,14 +4,13 @@
  */
 
 /dts-v1/;
-/plugin/;
 
-#include "kera-mtp-qca6750.dtsi"
+#include "kera-vm.dtsi"
+#include "kera-vm-mtp-wcn7750.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Kera MTP + QCA6750";
+	model = "Qualcomm Technologies, Inc. Kera SVM MTP + WCN7750";
 	compatible = "qcom,kera-mtp", "qcom,kera", "qcom,kerap-mtp", "qcom,kerap",
 			"qcom,mtp";
-	qcom,msm-id = <686 0x10000>, <659 0x10000>;
-	qcom,board-id = <0x20008 0>;
+	qcom,board-id = <0x10008 1>, <0x20008 1>, <0x30008 1>;
 };

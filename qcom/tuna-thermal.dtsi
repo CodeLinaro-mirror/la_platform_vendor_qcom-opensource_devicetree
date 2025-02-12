@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -1211,7 +1211,7 @@
 	};
 
 	gpu-0 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 5>;
 
@@ -1244,13 +1244,13 @@
 		cooling-maps {
 			gpu0_cdev {
 				trip = <&gpu0_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
 
 	gpu-1 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 6>;
 
@@ -1283,13 +1283,13 @@
 		cooling-maps {
 			gpu1_cdev {
 				trip = <&gpu1_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
 
 	gpu-2 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 7>;
 
@@ -1322,13 +1322,13 @@
 		cooling-maps {
 			gpu2_cdev {
 				trip = <&gpu2_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
 
 	gpu-3 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 8>;
 
@@ -1361,13 +1361,13 @@
 		cooling-maps {
 			gpu3_cdev {
 				trip = <&gpu3_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
 
 	gpu-4 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 9>;
 
@@ -1400,13 +1400,13 @@
 		cooling-maps {
 			gpu4_cdev {
 				trip = <&gpu4_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
 
 	gpu-5 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <10>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens2 10>;
 
@@ -1439,7 +1439,7 @@
 		cooling-maps {
 			gpu5_cdev {
 				trip = <&gpu5_tj_cfg>;
-				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu 0 6>;
 			};
 		};
 	};
@@ -1569,7 +1569,7 @@
 	};
 
 	mdmss-0 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens3 1>;
 
@@ -1628,7 +1628,7 @@
 	};
 
 	mdmss-1 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens3 2>;
 
@@ -1687,7 +1687,7 @@
 	};
 
 	mdmss-2 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens3 3>;
 
@@ -1746,7 +1746,7 @@
 	};
 
 	mdmss-3 {
-		polling-delay-passive = <0>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens3 4>;
 
