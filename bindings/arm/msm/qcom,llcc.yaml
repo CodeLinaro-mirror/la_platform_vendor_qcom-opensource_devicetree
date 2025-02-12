@@ -38,6 +38,7 @@ properties:
       - qcom,canoe-llcc
       - qcom,vienna-llcc
       - qcom,sdmshrike-llcc
+      - qcom,alor-llcc
 
   reg:
     minItems: 2
@@ -56,6 +57,8 @@ properties:
     properties:
         compatible:
             const: qcom,llcc-perfmon
+
+    additionalProperties: false
 required:
   - compatible
   - reg
@@ -104,5 +107,5 @@ examples:
 
       llcc_perfmon {
           compatible = "qcom,llcc-perfmon";
-      }
+      };
     };
