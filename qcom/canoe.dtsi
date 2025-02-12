@@ -3522,6 +3522,12 @@
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
 	};
+
+	qcom,cache-allocation {
+		compatible = "qcom,cache-allocation-canoe";
+		qcom,cluster-num = <2>;
+		qcom,devfreq = <&msm_gpu>;
+	};
 };
 
 &reserved_memory {
