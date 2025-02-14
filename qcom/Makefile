@@ -15,7 +15,7 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
-CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb
+CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb alor-interposer.dtb
 CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb
 
 CANOE_BOARDS += \
@@ -35,7 +35,9 @@ CANOE_BOARDS += \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
-		canoe-atp-overlay.dtbo
+		canoe-atp-overlay.dtbo \
+		alor-interposer-mtp-overlay.dtbo \
+		alor-interposer-rcm-overlay.dtbo
 
 NOAPQ_CANOE_BOARDS += \
 		canoe-rumi-overlay.dtbo
