@@ -24,6 +24,7 @@ properties:
       - qcom,sm8150-debugcc
       - qcom,sc8180x-debugcc
       - qcom,vienna-debugcc
+      - qcom,alor-debugcc
 
   clocks:
     items:

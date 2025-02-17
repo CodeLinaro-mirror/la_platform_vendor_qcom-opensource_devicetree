@@ -36,6 +36,7 @@ properties:
       - qcom,parrot-rpmh-clk
       - qcom,canoe-rpmh-clk
       - qcom,vienna-rpmh-clk
+      - qcom,alor-rpmh-clk
 
   clocks:
     maxItems: 1
