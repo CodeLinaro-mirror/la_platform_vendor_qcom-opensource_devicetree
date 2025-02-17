@@ -45,6 +45,10 @@
 	mmc0 = &sdhc_1; /* eMMC */
 };
 
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
+
 	cpus {
 		#address-cells = <2>;
 		#size-cells = <0>;
@@ -1057,6 +1061,10 @@
 		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	qcom-secure-buffer {
+		compatible = "qcom,secure-buffer";
+	};
+
 	qcom_tzlog: tz-log@146aa720 {
 		compatible = "qcom,tz-log";
 		reg = <0x146aa720 0x3000>;
@@ -1371,4 +1379,10 @@
 
 &venus_gdsc {
 	status = "ok";
+};
+
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
 };
