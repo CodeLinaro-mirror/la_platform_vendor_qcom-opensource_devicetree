@@ -80,6 +80,10 @@ properties:
       - qcom,vienna-modem-pas
       - qcom,vienna-adsp-pas
       - qcom,alor-wpss-pas
+      - qcom,alor-adsp-pas
+      - qcom,alor-cdsp-pas
+      - qcom,alor-modem-pas
+      - qcom,alor-soccp-pas
 
   reg:
     maxItems: 1
