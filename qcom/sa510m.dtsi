@@ -173,6 +173,14 @@
 			linux,cma-default;
 		};
 
+		dump_mem: mem_dump {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x00000000 0xffffffff>;
+			reusable;
+			alignment = <0x400000>;
+			size = <0x800000>;
+		};
+
 		qseecom_mem: qseecom_region {
 			compatible = "shared-dma-pool";
 			alloc-ranges = <0x00000000 0xffffffff>;
