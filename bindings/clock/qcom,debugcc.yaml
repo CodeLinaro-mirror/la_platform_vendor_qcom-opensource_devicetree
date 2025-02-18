@@ -25,6 +25,7 @@ properties:
       - qcom,sc8180x-debugcc
       - qcom,vienna-debugcc
       - qcom,alor-debugcc
+      - qcom,debugcc-sc7280
 
   clocks:
     items:
