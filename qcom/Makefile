@@ -171,27 +171,27 @@ endif
 endif
 
 ifeq ($(CONFIG_ARCH_SDXKOVA), y)
-sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
-				sdxkova-idp-mbb.dtb \
-				sdxkova-idp-mbb-v2.dtb \
-				sdxkova-idp-mbb-v3.dtb \
-				sdxkova-idp-mbb-v4.dtb \
-				sdxkova-idp-m2.dtb \
+sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-atp.dtb \
+				sdxkova-cdp.dtb \
+				sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v2.dtb \
 				sdxkova-idp-cpe-v3.dtb \
 				sdxkova-idp-cpe-v4.dtb \
 				sdxkova-idp-cpe-v5.dtb \
-				sdxkova-idp-lga-v2.dtb \
 				sdxkova-idp-lga.dtb \
+				sdxkova-idp-lga-v2.dtb \
+				sdxkova-idp-m2.dtb \
 				sdxkova-idp-m2-v2.dtb \
 				sdxkova-idp-m2-v3.dtb \
 				sdxkova-idp-m2-v5.dtb \
 				sdxkova-idp-m2-v6.dtb \
-				sdxkova-rcm-mbb-v3.dtb \
-				sdxkova-rcm-mbb-v2.dtb \
+				sdxkova-idp-mbb.dtb \
+				sdxkova-idp-mbb-v2.dtb \
+				sdxkova-idp-mbb-v3.dtb \
+				sdxkova-idp-mbb-v4.dtb \
 				sdxkova-rcm-mbb.dtb \
-				sdxkova-atp.dtb \
-				sdxkova-cdp.dtb
+				sdxkova-rcm-mbb-v2.dtb \
+				sdxkova-rcm-mbb-v3.dtb
 
 sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v2.dtb \
