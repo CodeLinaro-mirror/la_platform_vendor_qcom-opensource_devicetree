@@ -15,6 +15,7 @@
 			<GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
+		tm-disable-on-suspend;
 	};
 
 	qcom,cpufreq-cdev {
