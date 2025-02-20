@@ -1,9 +1,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include "sdxkova-reserved-memory.dtsi"
+
+&gunyah_hyp_mem {
+	no-map;
+	reg = <0x0 0x80000000 0x0 0x600000>;
+};
 
 &access_control_db_mem {
 	no-map;
@@ -15,4 +20,29 @@
 &trusted_apps_mem {
 	no-map;
 	reg = <0x0 0x81780000 0x0 0x500000>;
+};
+
+&dsm_partition_1_mem {
+	no-map;
+	reg = <0x0 0x8b400000 0x0 0x3780000>;
+};
+
+/delete-node/ &dsm_partition_2_mem;
+
+&mpssadsp_mem {
+	no-map;
+	reg = <0x0 0x8ec00000 0x0 0xd400000>;
+};
+
+&modem_pas {
+/delete-property/ compatible;
+/delete-property/ memory-region;
+
+	compatible = "qcom,sdxpinn-modem-pas-sub6";
+
+	memory-region = <&mpssadsp_mem>,
+			<&q6_mpss_dtb_mem>,
+			<&system_cma>,
+			<&dsm_partition_1_mem>,
+			<&qlink_logging_mem>;
 };
