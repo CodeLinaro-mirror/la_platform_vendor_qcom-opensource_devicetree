@@ -202,7 +202,9 @@ dtb-y += $($(MSM_ARCH)-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_SA510M), y)
-sa510m-dtb-$(CONFIG_ARCH_SA510M) += sa510m-idp.dtb
+sa510m-dtb-$(CONFIG_ARCH_SA510M) += kuno-idp.dtb \
+				sa510m-idp-wlan-over-sdio.dtb \
+				sa510m-idp.dtb
 
 dtb-y += $(sa510m-dtb-y)
 

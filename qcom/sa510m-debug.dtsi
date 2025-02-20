@@ -18,7 +18,7 @@
 
 	mem_dump: mem_dump {
 		compatible = "qcom,mem-dump";
-		memory-region = <&system_cma>;
+		memory-region = <&dump_mem>;
 
 		static_dump {
 				qcom,static-mem-dump;
