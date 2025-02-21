@@ -1104,6 +1104,7 @@
 #include "sa510m-pmic.dtsi"
 #include "sa510m-thermal.dtsi"
 #include "sa510m-debug.dtsi"
+#include "sa510m-coresight.dtsi"
 
 &qupv3_se3_2uart {
 	status = "ok";
