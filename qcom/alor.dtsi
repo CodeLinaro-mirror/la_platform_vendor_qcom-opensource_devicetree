@@ -272,6 +272,9 @@
 		#mbox-cells = <2>;
 	};
 
+	qcom_tzlog: tz-log@0 {
+	};
+
 	cache-controller@31800000 {
 		compatible = "qcom,alor-llcc";
 		reg = <0x0 0x31800000 0x0 0x200000>, <0x0 0x32800000 0x0 0x200000>,
@@ -359,6 +362,19 @@
 
 	vendor_hooks: qcom,cpu-vendor-hooks {
 		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,alor-qfprom", "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
 	};
 };
 
