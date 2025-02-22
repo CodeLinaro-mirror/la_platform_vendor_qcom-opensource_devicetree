@@ -794,6 +794,11 @@
 		};
 	};
 
+	show_resume_irqs@17000000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x0 0x17000000 0x0 0x10000>;	/* GICD */
+	};
+
 	memtimer: timer@17810000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
