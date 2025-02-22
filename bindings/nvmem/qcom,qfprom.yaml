@@ -16,6 +16,7 @@ properties:
   compatible:
     items:
       - enum:
+          - qcom,alor-qfprom
           - qcom,apq8064-qfprom
           - qcom,apq8084-qfprom
           - qcom,canoe-qfprom
