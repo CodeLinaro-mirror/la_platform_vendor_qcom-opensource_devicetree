@@ -67,20 +67,6 @@ pmh0101@1 {
 		#thermal-sensor-cells = <1>;
 	};
 
-	pmih010x_bcl2: bcl@4900 {
-		compatible = "qcom,pmh0101-bcl-v5";
-		reg = <0x4900 0x100>;
-		interrupts = <0x7 0x49 0x0 IRQ_TYPE_NONE>,
-			     <0x7 0x49 0x1 IRQ_TYPE_NONE>,
-			     <0x7 0x49 0x2 IRQ_TYPE_NONE>;
-		interrupt-names = "bcl-lvl0",
-				  "bcl-lvl1",
-				  "bcl-lvl2";
-		qcom,pmic7-threshold;
-		#thermal-sensor-cells = <1>;
-		status = "disabled";
-	};
-
 	pmh0101_flash: led-controller@ee00 {
 		compatible = "qcom,pmh0101-flash-led", "qcom,spmi-flash-led";
 		reg = <0xee00>;
