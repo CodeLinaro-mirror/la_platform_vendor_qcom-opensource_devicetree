@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+#include <dt-bindings/soc/qcom,dcc_v2.h>
+
+&soc {
+	dcc: dcc@100ff000 {
+		compatible = "qcom,dcc-v2";
+		reg = <0x100ff000 0x1000>,
+		      <0x10080800 0x7800>;
+		reg-names = "dcc-base", "dcc-ram-base";
+
+		qcom,transaction_timeout = <0>;
+		dcc-ram-offset = <0x800>;
+	};
+};

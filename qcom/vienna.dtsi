@@ -1496,6 +1496,7 @@
 };
 
 #include "vienna-dma-heaps.dtsi"
+#include "vienna-debug.dtsi"
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
 #include "vienna-stub-regulators.dtsi"
