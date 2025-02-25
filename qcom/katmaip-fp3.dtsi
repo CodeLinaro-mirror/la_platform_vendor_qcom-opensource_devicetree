@@ -8,6 +8,5 @@
 / {
 	model = "Qualcomm Technologies, Inc. KATMAIP-FP3 SoC";
 	compatible = "qcom,yupikp-iot";
-	qcom,msm-id = <575 0x10000>;
-	qcom,softsku-id = <3>;
+	qcom,msm-id = <0xC00023F 0x10000>;
 };
