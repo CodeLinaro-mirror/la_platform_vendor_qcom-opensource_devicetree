@@ -724,7 +724,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
-		qcom,gpios-reserved = <36 37 38 39 119 120 144 145 146 147>;
+		qcom,gpios-reserved = <36 37 38 39 74 119 120 144 145 146 147>;
 	};
 
 	tlmm-vm-mem-access {
