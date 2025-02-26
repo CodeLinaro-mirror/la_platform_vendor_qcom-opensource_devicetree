@@ -1113,10 +1113,10 @@
 		restrict-access;
 	};
 
-	adsp_pas: remoteproc-adsp@22900000 {
+	adsp_pas: remoteproc-adsp@03000000 {
 		compatible = "qcom,vienna-adsp-pas";
-		reg = <0x22900000 0x10000>;
-		status = "disabled";
+		reg = <0x03000000 0x10000>;
+		status = "ok";
 
 		cx-supply = <&VDD_LPI_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
@@ -1186,7 +1186,7 @@
 	modem_pas: remoteproc-mss@04080000 {
 		compatible = "qcom,vienna-modem-pas";
 		reg = <0x04080000 0x10000>;
-		status = "disabled";
+		status = "ok";
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
@@ -1260,7 +1260,7 @@
 	cdsp_pas: remoteproc-cdsp@32300000 {
 		compatible = "qcom,vienna-cdsp-pas";
 		reg = <0x32300000 0x10000>;
-		status = "disabled";
+		status = "ok";
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
