@@ -3796,6 +3796,7 @@
 		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_lmh";
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
