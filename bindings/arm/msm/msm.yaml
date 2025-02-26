@@ -229,6 +229,14 @@ properties:
         items:
           - const: qcom,lemans
 
+      - description: Qualcomm Technologies, Inc. YUPIK
+        items:
+          - const: qcom,yupik
+
+      - description: Qualcomm Technologies, Inc. YUPIKP
+        items:
+          - const: qcom,yupikp
+
       - description: Qualcomm Technologies, Inc. YUPIK-IOT
         items:
           - enum:
