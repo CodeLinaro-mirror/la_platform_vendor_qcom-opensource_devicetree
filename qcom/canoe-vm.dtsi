@@ -191,7 +191,7 @@
 				memory {
 					qcom,label = <0x11>;			//for persist.img
 					#address-cells = <0x2>;
-					base = <0x0 0xDA6F8000>;
+					allocate-base;
 				};
 			};
 
@@ -206,7 +206,7 @@
 				memory {
 					qcom,label = <0x10>;			//for system.img
 					#address-cells = <0x2>;
-					base = <0x0 0xDA6FC000>;
+					allocate-base;
 				};
 			};
 
@@ -221,7 +221,7 @@
 				memory {
 					qcom,label = <0x15>;			//for virtio-vsock
 					#address-cells = <0x2>;
-					base = <0x0 0xDA700000>;
+					allocate-base;
 				};
 			};
 
@@ -290,7 +290,7 @@
 				memory {
 					qcom,label = <0x12>;
 					#address-cells = <0x2>;
-					base = <0x0 0xDA70c000>;
+					allocate-base;
 				};
 			};
 
