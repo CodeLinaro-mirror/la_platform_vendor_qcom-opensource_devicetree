@@ -121,6 +121,8 @@ patternProperties:
                   - mmw2_sub1_dsc
                   - mmw3_sub1_dsc
                   - mmw_ific_sub1_dsc
+                  - modem_nr_1rx_dsc
+                  - modem_nr_2rx_dsc
 
           '#cooling-cells':
             const: 2
