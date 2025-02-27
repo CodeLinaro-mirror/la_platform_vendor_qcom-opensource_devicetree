@@ -1332,6 +1332,8 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -1381,6 +1383,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1416,6 +1419,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1524,6 +1528,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1632,6 +1637,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1740,6 +1746,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1848,6 +1855,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1956,6 +1964,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2064,6 +2073,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2101,6 +2111,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2178,6 +2189,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2223,6 +2235,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2289,6 +2302,8 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2338,6 +2353,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2373,6 +2389,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2481,6 +2498,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2588,6 +2606,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2625,6 +2644,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2670,6 +2690,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2715,6 +2736,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
