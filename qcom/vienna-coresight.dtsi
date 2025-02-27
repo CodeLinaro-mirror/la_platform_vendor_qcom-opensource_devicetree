@@ -4,6 +4,58 @@
  */
 
 &soc {
+	ipcb_tgu: tgu@1130E000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb999>;
+		reg = <0x1130E000 0x1000>;
+		reg-names = "tgu-base";
+		tgu-steps = <2>;
+		tgu-conditions = <3>;
+		tgu-regs = <4>;
+		tgu-timer-counters = <2>;
+
+		device-name = "tgu_ipcb";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
+	spmi_tgu0: tgu@1130f000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb999>;
+
+		reg = <0x1130f000 0x1000>;
+		reg-names = "tgu-base";
+
+		tgu-steps = <2>;
+		tgu-conditions = <3>;
+		tgu-regs = <7>;
+		tgu-timer-counters = <2>;
+
+		device-name = "tgu_spmi0";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
+	spmi_tgu1: tgu@11310000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb999>;
+
+		reg = <0x11310000 0x1000>;
+		reg-names = "tgu-base";
+
+		tgu-steps = <2>;
+		tgu-conditions = <3>;
+		tgu-regs = <7>;
+		tgu-timer-counters = <2>;
+
+		device-name = "tgu_spmi1";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
 	csr: csr@10001000 {
 		compatible = "qcom,coresight-csr";
 		reg = <0x10001000 0x1000>;
