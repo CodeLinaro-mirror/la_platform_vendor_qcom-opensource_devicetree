@@ -13,6 +13,12 @@ pmh0101@1 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0101";
+	};
+
 	pmh0101_tz: pmh0101-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
 		reg = <0xa00>;

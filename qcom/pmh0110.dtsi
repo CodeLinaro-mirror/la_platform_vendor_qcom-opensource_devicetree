@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -11,6 +11,12 @@ pmh0110_d: pmh0110@3 {
 	reg = <3 SPMI_USID>;
 	#address-cells = <1>;
 	#size-cells = <0>;
+
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0110_d";
+	};
 
 	pmh0110_d_tz: pmh0110-d-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
@@ -35,6 +41,12 @@ pmh0110_f: pmh0110@5 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0110_f";
+	};
+
 	pmh0110_f_tz: pmh0110-f-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
 		reg = <0xa00>;
@@ -58,6 +70,12 @@ pmh0110_g: pmh0110@6 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0110_g";
+	};
+
 	pmh0110_g_tz: pmh0110-g-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
 		reg = <0xa00>;
@@ -80,6 +98,12 @@ pmh0110_i: pmh0110@8 {
 	reg = <8 SPMI_USID>;
 	#address-cells = <1>;
 	#size-cells = <0>;
+
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0110_i";
+	};
 
 	pmh0110_i_tz: pmh0110-i-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
