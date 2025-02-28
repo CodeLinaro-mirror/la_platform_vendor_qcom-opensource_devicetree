@@ -84,6 +84,247 @@
 		clock-names = "apb_pclk";
 	};
 
+	etm0: etm@12040000 {
+		compatible = "arm,coresight-etm4x-sysreg";
+
+		reg = <0x12040000 0x1000>;
+		cpu = <&CPU0>;
+
+		device-name = "etm0";
+
+		qcom,skip-power-up;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				etm0_out_funnel_kryo: endpoint {
+				remote-endpoint = <&funnel_kryo_in_etm0>;
+				};
+			};
+		};
+	};
+
+	etm1: etm@12140000 {
+		compatible = "arm,coresight-etm4x-sysreg";
+
+		reg = <0x12140000 0x1000>;
+		cpu = <&CPU1>;
+
+		device-name = "etm1";
+
+		qcom,skip-power-up;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				etm1_out_funnel_kryo: endpoint {
+				remote-endpoint = <&funnel_kryo_in_etm1>;
+				};
+			};
+		};
+	};
+
+	etm2: etm@12240000 {
+		compatible = "arm,coresight-etm4x-sysreg";
+
+		reg = <0x12240000 0x1000>;
+		cpu = <&CPU2>;
+
+		device-name = "etm2";
+
+		qcom,skip-power-up;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				etm2_out_funnel_kryo: endpoint {
+				remote-endpoint = <&funnel_kryo_in_etm2>;
+				};
+			};
+		};
+	};
+
+	etm3: etm@12340000 {
+		compatible = "arm,coresight-etm4x-sysreg";
+
+		reg = <0x12340000 0x1000>;
+		cpu = <&CPU3>;
+
+		device-name = "etm3";
+
+		qcom,skip-power-up;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				etm3_out_funnel_kryo: endpoint {
+				remote-endpoint = <&funnel_kryo_in_etm3>;
+				};
+			};
+		};
+	};
+
+	etm4: etm@12440000 {
+		compatible = "arm,coresight-etm4x-sysreg";
+
+		reg = <0x12440000 0x1000>;
+		cpu = <&CPU4>;
+
+		device-name = "etm4";
+
+		qcom,skip-power-up;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				etm4_out_funnel_kryo: endpoint {
+				remote-endpoint = <&funnel_kryo_in_etm4>;
+				};
+			};
+		};
+	};
+
+	funnel_kryo: funnel@12800000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+		reg = <0x12800000 0x1000>;
+		reg-names = "funnel-base";
+
+		device-name = "funnel_kryo";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				funnel_kryo_in_etm0: endpoint {
+					remote-endpoint =
+					<&etm0_out_funnel_kryo>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_kryo_in_etm1: endpoint {
+					remote-endpoint =
+					<&etm1_out_funnel_kryo>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_kryo_in_etm2: endpoint {
+					remote-endpoint =
+					<&etm2_out_funnel_kryo>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				funnel_kryo_in_etm3: endpoint {
+					remote-endpoint =
+					<&etm3_out_funnel_kryo>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_kryo_in_etm4: endpoint {
+					remote-endpoint =
+					<&etm4_out_funnel_kryo>;
+				};
+			};
+
+		};
+
+		out-ports {
+			port {
+				funnel_kryo_out_funnel_apss: endpoint {
+					remote-endpoint =
+					<&funnel_apss_in_funnel_kryo>;
+				};
+			};
+		};
+	};
+
+	funnel_apss: funnel@12810000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+		reg = <0x12810000 0x1000>;
+		reg-names = "funnel-base";
+
+		device-name = "funnel_apss";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				funnel_apss_in_funnel_kryo: endpoint {
+					remote-endpoint =
+					<&funnel_kryo_out_funnel_apss>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				funnel_apss_out_tn_ag: endpoint {
+					remote-endpoint =
+					<&tn_ag_in_funnel_apss>;
+				};
+			};
+		};
+	};
+
+	tn_ag: tn@111a0000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0c00>;
+		reg = <0x111a0000 0x3080>;
+		reg-names = "traceNoc-base";
+
+		device-name = "tracenoc_ag";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+		qcom,trace-noc-v2;
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@b {
+				reg = <11>;
+				tn_ag_in_funnel_apss: endpoint {
+					remote-endpoint =
+					<&funnel_apss_out_tn_ag>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				tn_ag_out_funnel_in0: endpoint {
+					remote-endpoint =
+					<&funnel_in0_in_tn_ag>;
+				};
+			};
+		};
+	};
+
 	stm: stm@10002000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb962>;
@@ -121,6 +362,14 @@
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				funnel_in0_in_tn_ag: endpoint {
+					remote-endpoint =
+					<&tn_ag_out_funnel_in0>;
+				};
+			};
 
 			port@7 {
 				reg = <7>;
