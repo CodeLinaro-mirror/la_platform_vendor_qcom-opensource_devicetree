@@ -39,6 +39,7 @@ properties:
           - qcom,canoe-pdc
           - qcom,vienna-pdc
           - qcom,alor-pdc
+          - qcom,yupik-pdc
       - const: qcom,pdc
 
   reg:
