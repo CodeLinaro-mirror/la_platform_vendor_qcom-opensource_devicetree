@@ -84,6 +84,70 @@
 		clock-names = "apb_pclk";
 	};
 
+	tmc_etf: tmc@11305000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
+		reg = <0x11305000 0x1000>;
+		reg-names = "tmc-base";
+
+		device-name = "tmc_etf";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
+	tmc_etr: tmc@10048000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
+		reg = <0x10048000 0x1000>;
+		reg-names = "tmc-base";
+
+		device-name = "tmc_etr";
+
+		qcom,iommu-dma = "bypass";
+		iommus = <&apps_smmu 0x03e0 0x40>;
+		dma-coherent;
+		arm,scatter-gather;
+
+		qcom,sw-usb;
+		coresight-csr = <&csr>;
+		csr-atid-offset = <0xf8>;
+		csr-irqctrl-offset = <0x6c>;
+		byte-cntr-name = "byte-cntr";
+		byte-cntr-class-name = "coresight-tmc-etr-stream";
+		interrupts = <GIC_SPI 313 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "byte-cntr-irq";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
+	tmc_etr1: tmc@1004f000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
+		reg = <0x1004f000 0x1000>;
+		reg-names = "tmc-base";
+
+		device-name = "tmc_etr1";
+
+		qcom,iommu-dma = "bypass";
+		iommus = <&apps_smmu 0x03c0 0x0>;
+		dma-coherent;
+		arm,scatter-gather;
+
+		qcom,sw-usb;
+		coresight-csr = <&csr>;
+		csr-atid-offset = <0x108>;
+		csr-irqctrl-offset = <0x70>;
+		byte-cntr-name = "byte-cntr1";
+		byte-cntr-class-name = "coresight-tmc-etr1-stream";
+		interrupts = <GIC_SPI 314 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "byte-cntr-irq";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+	};
+
 	cti@10010000 {
 		compatible = "arm,coresight-cti", "arm,primecell";
 		reg = <0x10010000 0x1000>;
