@@ -111,6 +111,159 @@
 		};
 	};
 
+	lpass_stm: lpass-stm {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "lpass_stm";
+		trace-name = "lpass-stm";
+		atid = <25>;
+
+		out-ports {
+			port@0 {
+				reg = <0>;
+				lpass_stm_out_funnel_lpass_lpi_1: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_1_in_lpass_stm>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_stm_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_stm>;
+				};
+			};
+
+		};
+	};
+
+	tpdm_lpass_lpi: tpdm@11346000 {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "tpdm_lpass_lpi";
+
+		trace-name = "tpda-lpass-lpi";
+
+		out-ports {
+			port@0 {
+				reg = <0>;
+				tpdm_lpass_lpi_out_funnel_lpass_lpi_1: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_1_in_tpdm_lpass_lpi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_lpi_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_lpi>;
+				};
+			};
+		};
+	};
+
+	tpdm_lpass_rscc: tpdm@11352000 {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "tpdm_lpass_rscc";
+
+		trace-name = "tpda-lpass-rscc";
+
+		out-ports {
+			port@0 {
+				reg = <0>;
+				tpdm_lpass_rscc_out_funnel_lpass_lpi_1: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_1_in_tpdm_lpass_rscc>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_rscc_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_rscc>;
+				};
+			};
+		};
+	};
+
+	tpdm_lpass_audio: tpdm@11354000 {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "tpdm_lpass_audio";
+
+		trace-name = "tpda-lpass-audio";
+		status = "disabled";
+
+		out-ports {
+			port@0 {
+				reg = <0>;
+				tpdm_lpass_audio_out_funnel_lpass_lpi_1: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_1_in_tpdm_lpass_audio>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_audio_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_audio>;
+				};
+			};
+		};
+	};
+
+	funnel_lpass_lpi_1: funnel@11350000 {
+		compatible = "arm,coresight-static-funnel";
+		device-name = "funnel_lpass_lpi_1";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				funnel_lpass_lpi_1_in_lpass_stm: endpoint {
+					remote-endpoint =
+					<&lpass_stm_out_funnel_lpass_lpi_1>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_lpass_lpi_1_in_tpdm_lpass_lpi: endpoint {
+					remote-endpoint =
+					<&tpdm_lpass_lpi_out_funnel_lpass_lpi_1>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_lpass_lpi_1_in_tpdm_lpass_rscc: endpoint {
+					remote-endpoint =
+					<&tpdm_lpass_rscc_out_funnel_lpass_lpi_1>;
+				};
+			};
+
+			port@5 {
+				reg = <5>;
+				funnel_lpass_lpi_1_in_tpdm_lpass_audio: endpoint {
+					remote-endpoint =
+					<&tpdm_lpass_audio_out_funnel_lpass_lpi_1>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				funnel_lpass_lpi_1_out_funnel_lpass_lpi_0: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_0_in_funnel_lpass_lpi_1>;
+				};
+			};
+		};
+	};
+
 	funnel_lpass_lpi_0: funnel@11344000 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_lpass_lpi_0";
@@ -124,6 +277,14 @@
 				funnel_lpass_lpi_in_audio_etm0: endpoint {
 					remote-endpoint =
 					<&audio_etm0_out_funnel_lpass_lpi>;
+				};
+			};
+
+			port@7 {
+				reg = <7>;
+				funnel_lpass_lpi_0_in_funnel_lpass_lpi_1: endpoint {
+					remote-endpoint =
+					<&funnel_lpass_lpi_1_out_funnel_lpass_lpi_0>;
 				};
 			};
 		};
@@ -372,6 +533,22 @@
 		};
 	};
 
+	modem_diag: modem_diag {
+		compatible = "arm,coresight-dummy-source";
+
+		device-name = "modem_diag";
+		atid = <50>;
+
+		out-ports {
+			port {
+				modem_diag_out_funnel_modem_dl: endpoint {
+					remote-endpoint =
+					<&funnel_modem_dl_in_modem_diag>;
+				};
+			};
+		};
+	};
+
 	funnel_modem_dl: funnel@11007000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb908>;
@@ -393,6 +570,14 @@
 				funnel_modem_dl_in_modem_etm: endpoint {
 					remote-endpoint =
 					<&modem_etm_out_funnel_modem_dl>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_modem_dl_in_modem_diag: endpoint {
+					remote-endpoint =
+					<&modem_diag_out_funnel_modem_dl>;
 				};
 			};
 		};
@@ -505,6 +690,56 @@
 		};
 	};
 
+	gladiator {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "gladiator";
+		atid = <96>;
+
+		out-ports {
+			port {
+				gladiator_out_tn_ddr: endpoint {
+					remote-endpoint =
+					<&tn_ddr_in_gladiator>;
+				};
+			};
+		};
+	};
+
+	ddr_tn: TN@11500000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0c00>;
+		reg = <0x11500000 0x1000>;
+		reg-names = "traceNoc-base";
+
+		device-name = "tracenoc_ddr";
+		qcom,interconnect-trace-noc;
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@6 {
+				reg = <6>;
+				tn_ddr_in_gladiator: endpoint {
+					remote-endpoint =
+					<&gladiator_out_tn_ddr>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				tn_ddr_out_tn_ag: endpoint {
+					remote-endpoint =
+					<&tn_ag_in_tn_ddr>;
+				};
+			};
+		};
+	};
+
 	tn_ag: tn@111a0000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0c00>;
@@ -542,6 +777,14 @@
 				tn_ag_in_funnel_turing: endpoint {
 					remote-endpoint =
 					<&funnel_turing_out_tn_ag>;
+				};
+			};
+
+			port@31 {
+				reg = <49>;
+				tn_ag_in_tn_ddr: endpoint {
+					remote-endpoint =
+					<&tn_ddr_out_tn_ag>;
 				};
 			};
 		};
@@ -725,6 +968,29 @@
 					<&replicator_qdss_in_replicator_swao>;
 				};
 			};
+
+			port@1 {
+				reg = <1>;
+				replicator_swao_out_eud: endpoint {
+					remote-endpoint =
+					  <&eud_in_replicator_swao>;
+				};
+			};
+		};
+	};
+
+	dummy_eud: dummy-eud {
+		compatible = "arm,coresight-dummy-sink";
+
+		device-name = "eud";
+
+		in-ports {
+			port {
+				eud_in_replicator_swao: endpoint {
+					remote-endpoint =
+						<&replicator_swao_out_eud>;
+				};
+			};
 		};
 	};
 
@@ -885,6 +1151,38 @@
 				qmi_in_audio_etm0: endpoint {
 					remote-endpoint =
 						<&audio_etm0_out_qmi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				qmi_in_lpass_stm: endpoint {
+					remote-endpoint =
+						<&lpass_stm_out_qmi>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				qmi_in_lpass_lpi: endpoint {
+					remote-endpoint =
+						<&lpass_lpi_out_qmi>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				qmi_in_lpass_rscc: endpoint {
+					remote-endpoint =
+						<&lpass_rscc_out_qmi>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				qmi_in_lpass_audio: endpoint {
+					remote-endpoint =
+						<&lpass_audio_out_qmi>;
 				};
 			};
 		};
