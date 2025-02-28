@@ -3101,6 +3101,10 @@
 		qcom,policy-cpus = < 6 >;
 	};
 
+	qcom,cpuss-telemetry {
+		compatible = "qcom,cpuss-telemetry";
+	};
+
 	cpucp_log: qcom,cpucp_log@0x81210000 {
 		compatible = "qcom,cpucp-log";
 		reg =	<0x0 0x81210000 0x0 0x10000>,
