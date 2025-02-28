@@ -8,7 +8,8 @@
 #include <dt-bindings/clock/qcom,alor-dispcc.h>
 #include <dt-bindings/clock/qcom,evacc-canoe.h>
 #include <dt-bindings/clock/qcom,alor-gcc.h>
-#include <dt-bindings/clock/qcom,alor-gpucc.h>
+#include <dt-bindings/clock/qcom,gpucc-canoe.h>
+#include <dt-bindings/clock/qcom,gxclkctl-canoe.h>
 #include <dt-bindings/clock/qcom,tcsrcc-canoe.h>
 #include <dt-bindings/clock/qcom,videocc-canoe.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
@@ -794,10 +795,29 @@
 	};
 
 	gpucc: clock-controller@3d90000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "gpucc_clocks";
+		compatible = "qcom,canoe-gpucc", "syscon";
+		reg = <0x0 0x3d90000 0x0 0x9800>;
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
+			 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+		clock-names = "bi_tcxo",
+			      "gpll0_out_main",
+			      "gpll0_out_main_div";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
+	};
+
+	gxclkctl: clock-controller@3d68024 {
+		compatible = "qcom,canoe-gx_clkctl";
+		reg = <0x0 0x3d68024 0x0 0x8>;
+		reg-name = "cc_base";
+		power-domains = <&gpucc GPU_CC_CX_GDSC>;
+		vdd_gfx-supply = <&VDD_GFX_MXC_VOTER_LEVEL>;
+		#power-domain-cells = <1>;
 	};
 
 	tcsrcc: clock-controller@1fd5044 {
@@ -905,25 +925,6 @@
 		compatible = "qcom,stub-regulator";
 		regulator-name = "disp_cc_mdss_core_int2_gdsc";
 		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	/* GPU_CC GDSCs */
-	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
-		compatible = "syscon";
-		reg = <0x3d99094 0x4>;
-	};
-
-	gpu_cc_cx_gdsc: qcom,gdsc@3d99080 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "gpu_cc_cx_gdsc";
-		qcom,support-cfg-gdscr;
-	};
-
-	/* GX_CLKCTL GDSCs */
-	gx_clkctl_gx_gdsc: qcom,gdsc@3d68024 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "gx_clkctl_gx_gdsc";
 		qcom,support-cfg-gdscr;
 	};
 
