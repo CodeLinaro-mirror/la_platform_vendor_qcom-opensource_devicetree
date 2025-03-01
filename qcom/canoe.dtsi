@@ -2744,7 +2744,10 @@
 
 		qcom,prime-mask = <0xc0>;
 		qcom,silver-mask = <0x3f>;
-		qcom,esi-affinity-mask = <0xe0>;
+		qcom,cluster-mask = <0x3f 0xc0>;
+
+		/* affine cpu for each CQ starting from CQ:0 to CQ:max_cqs */
+		qcom,esi-affinity-mask = <4 5 3 4 5 3 7 7>;
 
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
@@ -2795,24 +2798,19 @@
 
 		qcom,bypass-pbl-rst-wa;
 		qcom,max-cpus = <8>;
+		qcom,enforce-high-irq-cpus;
 
 		msi-parent = <&gic_its 0x60>;
 
 		status = "disabled";
 
 		qos0 {
-			mask = <0xc0>;
 			vote = <44>;
 			perf;
-			/* Set CPU6 to fmax, and CPU[6-7] will run at fmax */
-			cpu_freq_vote = <6>;
 		};
 
 		qos1 {
-			mask = <0x3f>;
 			vote = <44>;
-			/* Set CPU0 to fmax, and CPU[0-5] will run at fmax */
-			cpu_freq_vote = <0>;
 		};
 	};
 
