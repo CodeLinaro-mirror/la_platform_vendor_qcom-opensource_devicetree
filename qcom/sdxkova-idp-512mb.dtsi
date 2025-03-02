@@ -9,3 +9,11 @@
 &system_cma {
 	size = <0x0 0xc00000>;
 };
+
+&qseecom_mem {
+	size = <0x0 0x400000>;
+};
+
+&va_md_mem {
+	size = <0x0 0x0>;
+};
