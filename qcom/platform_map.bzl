@@ -3,10 +3,12 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "lemans-vm-la.dtb"},
+            {"name": "sa8797p-gunyah-vm-qam.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
             {"name": "lemans-vm-la-overlay.dtbo"},
+            {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},
         ],
     },
     "canoe": {
