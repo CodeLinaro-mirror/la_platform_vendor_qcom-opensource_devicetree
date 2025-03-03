@@ -31,19 +31,23 @@
 
 	firmware: firmware {
 
-	qcom_scm {
-		compatible = "qcom,scm";
-		qcom,dload-mode = <&tcsr 0x13000>;
-	};
+		qcom_scm {
+			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x13000>;
+		};
 
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-		qcom,custom-bridge-size = <512>;
-	};
+		qtee_shmbridge {
+			compatible = "qcom,tee-shared-memory-bridge";
+			qcom,custom-bridge-size = <512>;
+		};
 
-	qcom_smcinvoke {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+			qcom,support-legacy_smc;
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
 		};
 	};
 
@@ -1083,6 +1087,11 @@
 	};
 
 	thermal_zones: thermal-zones {
+	};
+
+	qcom_tzlog: tz-log@14693720 {
+		compatible = "qcom,tz-log";
+		reg = <0x14693720 0x3000>;
 	};
 
 	wdog: qcom,wdt@17017000 {
