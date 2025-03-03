@@ -4,9 +4,31 @@
  */
 
 #include "sdxkova-pmic-overlay.dtsi"
+#include "pm7550ba.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 
 &soc {
+};
+
+&modem_pas {
+	qcom,pmic_glink_rpmsg {
+		qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
+	};
+
+	qcom,pmic_glink_log_rpmsg {
+		qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
+		qcom,intents = <0x800 5
+				0xc00 3
+				0x2000 1>;
+	};
+};
+
+&pmic_glink {
+	status = "ok";
+};
+
+&pmic_glink_log {
+	status = "ok";
 };
 
 &qnand_1 {
