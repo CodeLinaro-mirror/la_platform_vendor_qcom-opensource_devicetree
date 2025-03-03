@@ -36,6 +36,7 @@ properties:
       - qcom,sun-llcc
       - qcom,x1e80100-llcc
       - qcom,canoe-llcc
+      - qcom,yupik-llcc
       - qcom,vienna-llcc
       - qcom,sdmshrike-llcc
       - qcom,alor-llcc
@@ -73,6 +74,7 @@ allOf:
               - qcom,pineapple-llcc
               - qcom,sun-llcc
               - qcom,x1e80100-llcc
+              - qcom,yupik-llcc
     then:
       properties:
         reg:
