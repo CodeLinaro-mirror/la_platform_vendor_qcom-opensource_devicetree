@@ -507,6 +507,11 @@
 		};
 	};
 
+	show_resume_irqs@17100000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17100000 0x290000>;	/* GICD */
+	};
+
 	intc: interrupt-controller@17100000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
@@ -2900,7 +2905,7 @@
 
 		qcom,prime-mask = <0x80>;
 		qcom,silver-mask = <0x07>;
-		qcom,esi-affinity-mask = <6 5 5 7 7 7 6 6>;
+		qcom,esi-affinity-mask = <6 5 4 7 7 6 6 7>;
 
 		lanes-per-direction = <2>;
 		clock-names =

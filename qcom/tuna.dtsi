@@ -554,6 +554,11 @@
 
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
+	show_resume_irqs@17100000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17100000 0x290000>;	/* GICD */
+	};
+
 	intc: interrupt-controller@17100000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
@@ -1858,7 +1863,7 @@
 	};
 
 	dispcc: clock-controller@af00000 {
-		compatible = "qcom,tuna-dispcc-v1", "syscon";
+		compatible = "qcom,tuna-dispcc", "syscon";
 		reg = <0xaf00000 0x20000>;
 		reg-name = "cc_base";
 		vdd_mm-supply = <&VDD_MM_LEVEL>;
@@ -1896,7 +1901,7 @@
 	};
 
 	gcc: clock-controller@100000 {
-		compatible = "qcom,tuna-gcc-v1", "syscon";
+		compatible = "qcom,tuna-gcc", "syscon";
 		reg = <0x100000 0x1f4200>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
@@ -2546,7 +2551,7 @@
 		qcom,prime-mask = <0x80>;
 		qcom,silver-mask = <0x0f>;
 		qcom,cluster-mask = <0x03 0x1c 0x60 0x80>;
-		qcom,esi-affinity-mask = <5 6 7 7 7 6 6 5>;
+		qcom,esi-affinity-mask = <6 5 7 7 5 6 5 7>;
 
 		lanes-per-direction = <2>;
 		clock-names =
