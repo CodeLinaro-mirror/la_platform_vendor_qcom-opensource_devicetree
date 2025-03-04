@@ -3506,6 +3506,10 @@
 			reg = <0x148 0x2>;
 			bit = <3 3>;
 		};
+
+		disp_qultiv_fuse:disp_qultiv_fuse@144 {
+			reg = <0x144 0x4>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
