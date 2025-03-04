@@ -199,7 +199,11 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
-				canoe-oemvm-rcm.dtb
+				canoe-oemvm-rcm.dtb \
+				alor-interposer-vm-mtp.dtb \
+				alor-interposer-vm-rcm.dtb \
+				alor-interposer-oemvm-mtp.dtb \
+				alor-interposer-oemvm-rcm.dtb
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
