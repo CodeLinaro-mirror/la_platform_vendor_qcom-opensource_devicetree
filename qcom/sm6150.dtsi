@@ -337,6 +337,15 @@
 			size = <0x0 0x800000>;
 		};
 
+		system_cma: linux,cma {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+			reusable;
+			alignment = <0x0 0x400000>;
+			size = <0x0 0x2400000>;
+			linux,cma-default;
+		};
+
 		sdsp_mem: sdsp_region {
 			compatible = "shared-dma-pool";
 			alloc-ranges = <0 0x00000000 0 0xffffffff>;
@@ -938,6 +947,7 @@
 #include "sm6150-regulator.dtsi"
 #include "sm6150-gdsc.dtsi"
 #include "sm6150-pinctrl.dtsi"
+#include "msm-arm-smmu-sm6150.dtsi"
 
 &tlmm {
 	status = "okay";
