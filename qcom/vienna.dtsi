@@ -1500,7 +1500,7 @@
 #include "vienna-debug.dtsi"
 #include "vienna-pinctrl.dtsi"
 #include "vienna-reserved-memory.dtsi"
-#include "vienna-stub-regulators.dtsi"
+#include "vienna-regulators.dtsi"
 #include "msm-arm-smmu-vienna.dtsi"
 #include "vienna-qupv3.dtsi"
 #include "vienna-usb.dtsi"
