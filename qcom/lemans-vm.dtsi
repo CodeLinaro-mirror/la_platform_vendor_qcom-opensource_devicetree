@@ -120,6 +120,7 @@
 &firmware {
 	scm {
 		compatible = "qcom,scm";
+		qcom,scm-hab;
 	};
 };
 
