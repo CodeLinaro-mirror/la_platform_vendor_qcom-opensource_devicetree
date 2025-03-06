@@ -1784,23 +1784,16 @@
 				  <&pcie_crm_hw_0_bcm_voter>;
 	};
 
-	aggre1_noc: interconnect@16e0000 {
-		compatible = "qcom,canoe-aggre1_noc";
-		reg = <0x0 0x16e0000 0x0 0x16400>;
+	aggre1_noc: aggre2_noc:
+	aggre_noc: interconnect@16e0000 {
+		compatible = "qcom,canoe-aggre_noc";
+		reg = <0x0 0x16e0000 0x0 0x42400>;
 		#interconnect-cells = <1>;
 		clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-			 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
+			 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+			 <&rpmhcc RPMH_IPA_CLK>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-	};
-
-	aggre2_noc: interconnect@1700000 {
-		compatible = "qcom,canoe-aggre2_noc";
-		reg = <0x0 0x1700000 0x0 0x22400>;
-		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		clocks = <&rpmhcc RPMH_IPA_CLK>;
 	};
 
 	mmss_noc: interconnect@1780000 {
