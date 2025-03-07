@@ -16,3 +16,7 @@
 &tlmm {
 	qcom,gpios-reserved = <6 7 8 9>;
 };
+
+&qupv3_se0_2uart {
+	status = "ok";
+};
