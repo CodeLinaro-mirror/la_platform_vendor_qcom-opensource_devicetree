@@ -53,10 +53,6 @@
 	status = "disabled";
 };
 
-&SILVER_OFF {
-	status = "disabled";
-};
-
 &SILVER_RAIL_OFF {
 	status = "disabled";
 };
