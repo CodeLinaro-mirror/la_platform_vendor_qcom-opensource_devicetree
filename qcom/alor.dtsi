@@ -1177,6 +1177,26 @@
 		interrupt-parent = <&intc>;
 		interrupt-controller;
 	};
+
+	cpuss-sleep-stats@18870000 {
+		compatible = "qcom,cpuss-sleep-stats-v4";
+		reg = <0x0 0x18870000 0x0 0x4000>;
+		reg-names = "base";
+	};
+
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-alor";
+		reg = <0x0 0xc320000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v4";
+		reg = <0x0 0xc3f0000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+		ss-name = "modem", "adsp", "adsp_island",
+			  "cdsp", "apss", "wpss";
+	};
 };
 
 #include "alor-debug.dtsi"
