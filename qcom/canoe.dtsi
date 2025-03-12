@@ -2413,7 +2413,7 @@
 		reg-names = "cx","mx","nsp";
 
 		firmware-name = "cdsp.mdt", "cdsp_dtb.mdt";
-		memory-region = <&cdsp_mem &q6_cdsp_dtb_mem &global_sync_mem>;
+		memory-region = <&cdsp_mem &q6_cdsp_dtb_mem>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
