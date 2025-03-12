@@ -2723,6 +2723,36 @@
 		compatible = "qcom,cpu-vendor-hooks";
 	};
 
+	ufshc_opp_table: ufshc-opp-table {
+		compatible = "operating-points-v2";
+
+		// LOW_SVS
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <100000000>,
+				 /bits/ 64 <100000000>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>;
+		};
+
+		// NOM/TURBO
+		opp-403000000 {
+			opp-hz = /bits/ 64 <403000000>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <403000000>,
+				 /bits/ 64 <403000000>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>,
+				 /bits/ 64 <0>;
+		};
+	};
+
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
 		reg = <0x0 0x1d84000 0x0 0x3000>,
@@ -2766,16 +2796,8 @@
 			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-		freq-table-hz =
-			<100000000 403000000>,
-			<0 0>,
-			<0 0>,
-			<100000000 403000000>,
-			<100000000 403000000>,
-			<0 0>,
-			<0 0>,
-			<0 0>,
-			<0 0>;
+
+		operating-points-v2 = <&ufshc_opp_table>;
 
 		interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
 		      <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
