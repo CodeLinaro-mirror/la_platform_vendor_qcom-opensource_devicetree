@@ -13,6 +13,12 @@ pmk8850@0 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmk8850";
+};
+
 	pmk8850_sdam_1: sdam@7000 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0x7000>;

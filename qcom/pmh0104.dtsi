@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -11,6 +11,12 @@ pmh0104@9 {
 	reg = <9 SPMI_USID>;
 	#address-cells = <1>;
 	#size-cells = <0>;
+
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmh0104";
+	};
 
 	pmh0104_tz: pmh0104-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
