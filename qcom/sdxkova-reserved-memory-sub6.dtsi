@@ -12,6 +12,11 @@
 	reg = <0x0 0x8b400000 0x0 0x3780000>;
 };
 
+&mpssadsp_mem {
+	no-map;
+	reg = <0x0 0x8ec00000 0x0 0xeb00000>;
+};
+
 &modem_pas {
 /delete-property/ compatible;
 /delete-property/ memory-region;
