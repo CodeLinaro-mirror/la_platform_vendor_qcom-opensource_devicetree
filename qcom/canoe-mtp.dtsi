@@ -9,6 +9,7 @@
 #include <dt-bindings/clock/qcom,gcc-canoe.h>
 
 #include "canoe-pmic-overlay.dtsi"
+#include "canoe-qpt-overlay.dtsi"
 #include "canoe-thermal-overlay.dtsi"
 
 &soc {
