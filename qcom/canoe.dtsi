@@ -1607,28 +1607,6 @@
 	};
 
 	/* GCC GDSCs */
-	gcc_ufs_mem_phy_gdsc: qcom,gdsc@19e000 {
-		compatible = "qcom,gdsc";
-		reg = <0x0 0x19e000 0x0 0x4>;
-		regulator-name = "gcc_ufs_mem_phy_gdsc";
-		parent-supply = <&VDD_MX_LEVEL>;
-		proxy-supply = <&gcc_ufs_mem_phy_gdsc>;
-		qcom,proxy-consumer-enable;
-		qcom,retain-regs;
-		qcom,support-cfg-gdscr;
-	};
-
-	gcc_ufs_phy_gdsc: qcom,gdsc@177004 {
-		compatible = "qcom,gdsc";
-		reg = <0x0 0x177004 0x0 0x4>;
-		regulator-name = "gcc_ufs_phy_gdsc";
-		parent-supply = <&VDD_CX_LEVEL>;
-		proxy-supply = <&gcc_ufs_phy_gdsc>;
-		qcom,proxy-consumer-enable;
-		qcom,retain-regs;
-		qcom,support-cfg-gdscr;
-	};
-
 	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
 		compatible = "qcom,gdsc";
 		reg = <0x0 0x139004 0x0 0x4>;
@@ -2055,20 +2033,21 @@
 		reg-names = "phy_mem";
 		#phy-cells = <0>;
 
+		power-domains = <&gcc GCC_UFS_MEM_PHY_GDSC>;
 		lanes-per-direction = <2>;
 		clock-names = "ref_clk_src",
 			"ref_aux_clk", "qref_clk",
 			"rx_sym0_mux_clk", "rx_sym1_mux_clk", "tx_sym0_mux_clk",
 			"rx_sym0_phy_clk", "rx_sym1_phy_clk", "tx_sym0_phy_clk";
-		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
 			<&tcsrcc TCSR_UFS_CLKREF_EN>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
-			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
-			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>;
+			<&ufs_phy_rx_symbol_0_clk>,
+			<&ufs_phy_rx_symbol_1_clk>,
+			<&ufs_phy_tx_symbol_0_clk>;
 		resets = <&ufshc_mem 0>;
 		status = "disabled";
 	};
@@ -2777,6 +2756,7 @@
 		/* affine cpu for each CQ starting from CQ:0 to CQ:max_cqs */
 		qcom,esi-affinity-mask = <4 5 3 4 5 3 7 7>;
 
+		power-domains = <&gcc GCC_UFS_PHY_GDSC>;
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		clock-names =

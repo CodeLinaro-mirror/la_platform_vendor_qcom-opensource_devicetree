@@ -116,9 +116,6 @@
 	vdda-pll-supply = <&pmh0110_d_l1>;
 	vdda-pll-max-microamp = <20840>;
 
-	/* Phy GDSC for VDD_MX, always on */
-	vdd-phy-gdsc-supply = <&gcc_ufs_mem_phy_gdsc>;
-
 	/* Qref power supply, Refer Qref diagram */
 	vdda-qref-supply = <&pmh0110_d_l3>;
 	vdda-qref-max-microamp = <659720>;
@@ -139,8 +136,6 @@
 	limit-rate = <2>; /* HS Rate-B */
 	rpm-level = <0>;
 	spm-level = <0>;
-
-	vdd-hba-supply = <&gcc_ufs_phy_gdsc>;
 
 	vcc-supply = <&pmh0101_l17>;
 	vcc-max-microamp = <1200000>;
