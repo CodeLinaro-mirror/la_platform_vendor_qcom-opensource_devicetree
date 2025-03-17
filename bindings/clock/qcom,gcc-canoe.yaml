@@ -16,12 +16,14 @@ description: |
   See also:
   - dt-bindings/clock/qcom,gcc-canoe.h
   - dt-bindings/clock/qcom,gcc-vienna.h
+  - dt-bindings/clock/qcom,alor-gcc.h
 
 properties:
   compatible:
     enum:
       - qcom,canoe-gcc
       - qcom,vienna-gcc
+      - qcom,alor-gcc
 
   clocks:
     items:
