@@ -152,8 +152,7 @@
 	};
 
 	tpdm_tmess0: tpdm@114c0000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x114c0000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -177,8 +176,7 @@
 	};
 
 	tpdm_tmess1: tpdm@114c1000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x114c1000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -202,8 +200,7 @@
 	};
 
 	tpdm_tmess2: tpdm@114c2000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x114c2000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -227,8 +224,7 @@
 	};
 
 	tpdm_tmess3: tpdm@114c3000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x114c3000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
@@ -1134,7 +1130,7 @@
 
 	tpdm_llm_lmh0: tpdm@12180000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12180000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1159,7 +1155,7 @@
 
 	tpdm_llm_lmh1: tpdm@12181000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12181000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1184,7 +1180,7 @@
 
 	tpdm_ext_cmb0: tpdm@12183000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12183000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
@@ -1209,7 +1205,7 @@
 
 	tpdm_ext_dsb0: tpdm@12185000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x0 0x12185000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
@@ -1234,7 +1230,7 @@
 
 	tpda_apss: tpda@1218b000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0f00>;
+		arm,primecell-periphid = <0x000bb969>;
 		reg = <0x0 0x1218b000 0x0 0x1000>;
 		reg-names = "tpda-base";
 
@@ -4171,8 +4167,7 @@
 	};
 
 	tpdm_dcc: tpdm@10003000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x10003000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
