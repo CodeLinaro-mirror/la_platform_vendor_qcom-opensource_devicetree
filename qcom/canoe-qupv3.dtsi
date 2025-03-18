@@ -599,7 +599,6 @@
 			#address-cells = <3>;
 			#size-cells = <0>;
 			qcom,ibi-ctrl-id = <3>;
-			i3c_rgltr1-supply = <&L2N>;
 			dmas = <&gpi_dma2 0 0 4 1024 0>,
 				<&gpi_dma2 1 0 4 1024 0>;
 			dma-names = "tx", "rx";
