@@ -42,6 +42,8 @@
 	aliases: aliases {
 	ufshc1 = &ufshc_mem; /* Embedded UFS slot */
 	serial0 = &qupv3_se0_2uart;
+	hsuart0 = &qupv3_se7_4uart;
+	hsuart1 = &qupv3_se4_2uart;
 	mmc0 = &sdhc_1; /* eMMC */
 };
 
