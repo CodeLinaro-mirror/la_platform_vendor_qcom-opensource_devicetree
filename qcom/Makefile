@@ -205,6 +205,24 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+LEMANS_LA_GVM_BASE_DTB += lemans-vm-la.dtb
+
+LEMANS_LA_GVM_BOARDS += \
+		lemans-vm-la-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(LEMANS_LA_GVM_BOARDS),$(LEMANS_LA_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
 clean-files     := *.dtb *.dtbo

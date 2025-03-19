@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/input/input.h>
@@ -70,16 +70,6 @@ pmk8850@0 {
 		reg = <0x7500>;
 	};
 
-	ecm_sdam_0: pmk8850_sdam_13: sdam@7c00 {
-		compatible = "qcom,spmi-sdam";
-		reg = <0x7c00>;
-	};
-
-	ecm_sdam_1: pmk8850_sdam_14: sdam@7d00 {
-		compatible = "qcom,spmi-sdam";
-		reg = <0x7d00>;
-	};
-
 	pmk8850_sdam_21: sdam@8400 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0x8400>;
@@ -88,11 +78,6 @@ pmk8850@0 {
 	pmk8850_sdam_22: sdam@8500 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0x8500>;
-	};
-
-	ecm_sdam_2: pmk8850_sdam_41: sdam@9800 {
-		compatible = "qcom,spmi-sdam";
-		reg = <0x9800>;
 	};
 
 	pmk8850_sdam_43: sdam@9a00 {
@@ -109,6 +94,21 @@ pmk8850@0 {
 	pmk8850_sdam_46: sdam@9d00 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0x9d00>;
+	};
+
+	ecm_sdam_0: pmk8850_sdam_59: sdam@aa00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xaa00>;
+	};
+
+	ecm_sdam_1: pmk8850_sdam_60: sdam@ab00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xab00>;
+	};
+
+	ecm_sdam_2: pmk8850_sdam_61: sdam@ac00 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xac00>;
 	};
 
 	pon_hlos@1300 {

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &tlmm {
@@ -492,6 +492,103 @@
 			config {
 				pins = "gpio40", "gpio41",
 					"gpio42", "gpio43";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	qupv3_se2_qspi_pins: qupv3_se2_qspi_pins {
+		qupv3_se2_qspi_io1_active: qupv3_se2_qspi_io1_active {
+			mux {
+				pins = "gpio40";
+				function = "qup1_se2_l0";
+			};
+
+			config {
+				pins = "gpio40";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_io0_active: qupv3_se2_qspi_io0_active {
+			mux {
+				pins = "gpio41";
+				function = "qup1_se2_l1";
+			};
+
+			config {
+				pins = "gpio41";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_clk_active: qupv3_se2_qspi_clk_active {
+			mux {
+				pins = "gpio42";
+				function = "qup1_se2_l2";
+			};
+
+			config {
+				pins = "gpio42";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_cs_active: qupv3_se2_qspi_cs_active {
+			mux {
+				pins = "gpio43";
+				function = "qup1_se2_l3";
+			};
+
+			config {
+				pins = "gpio43";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_io2_active: qupv3_se2_qspi_io2_active {
+			mux {
+				pins = "gpio130";
+				function = "qup1_se2_l4";
+			};
+
+			config {
+				pins = "gpio130";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_io3_active: qupv3_se2_qspi_io3_active {
+			mux {
+				pins = "gpio131";
+				function = "qup1_se2_l5";
+			};
+
+			config {
+				pins = "gpio131";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se2_qspi_sleep: qupv3_se2_qspi_sleep {
+			mux {
+				pins = "gpio40", "gpio41",
+					"gpio42", "gpio43",
+					"gpio130", "gpio131";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio40", "gpio41",
+					"gpio42", "gpio43",
+					"gpio130", "gpio131";
 				drive-strength = <2>;
 				bias-disable;
 			};
@@ -3154,6 +3251,19 @@
 				bias-disable;           /* NO PULL */
 				output-high;
 			};
+		};
+	};
+
+	trigout_a: trigout_a {
+		mux {
+			pins = "gpio83";
+			function = "qdss_cti";
+		};
+
+		config {
+			pins = "gpio83";
+			drive-strength = <2>;
+			bias-disable;
 		};
 	};
 

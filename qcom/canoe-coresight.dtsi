@@ -152,7 +152,8 @@
 	};
 
 	tpdm_tmess0: tpdm@114c0000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x114c0000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -176,7 +177,8 @@
 	};
 
 	tpdm_tmess1: tpdm@114c1000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x114c1000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -200,7 +202,8 @@
 	};
 
 	tpdm_tmess2: tpdm@114c2000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x114c2000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -224,7 +227,8 @@
 	};
 
 	tpdm_tmess3: tpdm@114c3000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x114c3000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
@@ -382,15 +386,9 @@
 	};
 
 	tpdm_modem2: tpdm@11002000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x0 0x11002000 0x0 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <32>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_2";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <64>;
 
 		out-ports {
 			port {
@@ -1130,7 +1128,7 @@
 
 	tpdm_llm_lmh0: tpdm@12180000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x12180000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1155,7 +1153,7 @@
 
 	tpdm_llm_lmh1: tpdm@12181000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x12181000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -1180,7 +1178,7 @@
 
 	tpdm_ext_cmb0: tpdm@12183000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x12183000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
@@ -1205,7 +1203,7 @@
 
 	tpdm_ext_dsb0: tpdm@12185000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x12185000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
@@ -1230,7 +1228,7 @@
 
 	tpda_apss: tpda@1218b000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb969>;
+		arm,primecell-periphid = <0x000f0f00>;
 		reg = <0x0 0x1218b000 0x0 0x1000>;
 		reg-names = "tpda-base";
 
@@ -1334,6 +1332,8 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -1383,6 +1383,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1418,6 +1419,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1526,6 +1528,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1634,6 +1637,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1742,6 +1746,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1850,6 +1855,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -1958,6 +1964,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2066,6 +2073,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2103,6 +2111,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2180,6 +2189,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2225,6 +2235,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD0>;
 
 		in-ports {
 			port {
@@ -2291,6 +2302,8 @@
 			<&cpucp_scmi_clk 0>;
 		clock-names = "apb_pclk",
 				"atclk";
+		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2340,6 +2353,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2375,6 +2389,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2483,6 +2498,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2590,6 +2606,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -2627,6 +2644,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2672,6 +2690,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -2717,6 +2736,7 @@
 		clock-names = "apb_pclk",
 				"atclk";
 		qcom,atclk-dependence;
+		power-domains = <&CLUSTER_PD1>;
 
 		in-ports {
 			port {
@@ -3798,6 +3818,7 @@
 		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_lmh";
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -4167,7 +4188,8 @@
 	};
 
 	tpdm_dcc: tpdm@10003000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0 0x10003000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
@@ -5224,9 +5246,9 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		qcom,cti-gpio-trigout = <16>;
+		qcom,cti-gpio-trigout = <20>;
 		pinctrl-names = "cti-trigout-pctrl";
-//		pinctrl-0 = <&trigout_a>;
+		pinctrl-0 = <&trigout_a>;
 	};
 
 	cti@11003000 {

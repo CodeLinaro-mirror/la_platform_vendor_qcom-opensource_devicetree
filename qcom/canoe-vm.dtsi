@@ -191,7 +191,7 @@
 				memory {
 					qcom,label = <0x11>;			//for persist.img
 					#address-cells = <0x2>;
-					base = <0x0 0xDA6F8000>;
+					allocate-base;
 				};
 			};
 
@@ -206,7 +206,7 @@
 				memory {
 					qcom,label = <0x10>;			//for system.img
 					#address-cells = <0x2>;
-					base = <0x0 0xDA6FC000>;
+					allocate-base;
 				};
 			};
 
@@ -221,7 +221,7 @@
 				memory {
 					qcom,label = <0x15>;			//for virtio-vsock
 					#address-cells = <0x2>;
-					base = <0x0 0xDA700000>;
+					allocate-base;
 				};
 			};
 
@@ -290,7 +290,7 @@
 				memory {
 					qcom,label = <0x12>;
 					#address-cells = <0x2>;
-					base = <0x0 0xDA70c000>;
+					allocate-base;
 				};
 			};
 
@@ -517,11 +517,11 @@
 		dma-coherent;
 	};
 
-	qti,smmu-proxy-display-cb {
+	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
 		qcom,iommu-defer-smr-config;
-		iommu-addresses = <0x00020000 0xfffe0000>;
+		memory-region = <&smmu_proxy_iommu_region>;
 		iommus = <&apps_smmu 0x801 0x0>;
 		dma-coherent;
 	};
@@ -530,9 +530,12 @@
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_EVA_CB>;
 		qcom,iommu-defer-smr-config;
-		iommu-addresses = <0x00000000 0xffffffff>;
 		iommus = <&apps_smmu 0x1927 0x0>;
 		dma-coherent;
+	};
+
+	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
+		iommu-addresses = <&smmu_proxy_display_cb 0x0 0x20000>;
 	};
 
 	/*

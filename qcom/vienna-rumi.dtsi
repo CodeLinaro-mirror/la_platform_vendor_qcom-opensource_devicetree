@@ -27,11 +27,11 @@
 };
 
 &arch_timer {
-	clock-frequency = <2000000>;
+	clock-frequency = <5000000>;
 };
 
 &memtimer {
-	clock-frequency = <2000000>;
+	clock-frequency = <5000000>;
 };
 
 &qupv3_se5_2uart {
@@ -67,4 +67,10 @@
 
 &CX_RET {
 	status = "disabled";
+};
+
+&rpmhcc {
+	compatible = "fixed-clock";
+	clock-output-names = "rpmh_clocks";
+	clock-frequency = <19200000>;
 };

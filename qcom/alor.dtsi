@@ -1,8 +1,17 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
+#include <dt-bindings/clock/qcom,alor-cambistmclkcc.h>
+#include <dt-bindings/clock/qcom,alor-camcc.h>
+#include <dt-bindings/clock/qcom,alor-dispcc.h>
+#include <dt-bindings/clock/qcom,alor-evacc.h>
+#include <dt-bindings/clock/qcom,alor-gcc.h>
+#include <dt-bindings/clock/qcom,alor-gpucc.h>
+#include <dt-bindings/clock/qcom,alor-tcsrcc.h>
+#include <dt-bindings/clock/qcom,alor-videocc.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 / {
@@ -23,6 +32,13 @@
 	aliases { };
 
 	reserved_memory: reserved-memory { };
+
+	firmware: firmware {
+		qcom_scm: qcom_scm {
+			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x19000>;
+		};
+	};
 
 	cpus {
 		#address-cells = <2>;
@@ -144,6 +160,7 @@
 
 #include "alor-reserved-memory.dtsi"
 #include "msm-arm-smmu-alor.dtsi"
+#include "alor-dma-heaps.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -255,6 +272,390 @@
 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
 	};
+
+	ipcc_mproc: qcom,ipcc@1106000 {
+		compatible = "qcom,ipcc";
+		reg = <0x0 0x1106000 0x0 0x1000>;
+		interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
+	qcom_tzlog: tz-log@0 {
+	};
+
+	cache-controller@31800000 {
+		compatible = "qcom,alor-llcc";
+		reg = <0x0 0x31800000 0x0 0x200000>, <0x0 0x32800000 0x0 0x200000>,
+			<0x0 0x31C00000 0x0 0x200000>, <0x0 0x32C00000 0x0 0x200000>,
+			<0x0 0x34800000 0x0 0x200000>, <0x0 0x34C00000 0x0 0x200000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc2_base",
+			"llcc3_base", "llcc_broadcast_or_base",
+			"llcc_broadcast_and_base";
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+	};
+
+	psci {
+		compatible = "arm,psci-1.0";
+		method = "smc";
+	};
+
+	tcsr: syscon@1fc0000 {
+		compatible = "syscon";
+		reg = <0x0 0x1fc0000 0x0 0x30000>;
+	};
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x0 0x14680000 0x0 0x1000>;
+		ranges = <0x0 0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		restart_reason@65c {
+			compatible = "qcom,msm-imem-restart_reason";
+			reg = <0x65c 0x4>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		kaslr_offset@6d0 {
+			compatible = "qcom,msm-imem-kaslr_offset";
+			reg = <0x6d0 0xc>;
+		};
+
+		pil@94c {
+			compatible = "qcom,pil-reloc-info";
+			reg = <0x94c 0xc8>;
+		};
+
+		pil@6dc {
+			compatible = "qcom,msm-imem-pil-disable-timeout";
+			reg = <0x6dc 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+
+		modem_dsm@c98 {
+			compatible = "qcom,msm-imem-mss-dsm";
+			reg = <0xc98 0x10>;
+		};
+
+		sys_dbg@af8 {
+			compatible = "qcom,msm-imem-gpu-dump-skip";
+			reg = <0xb0c 0x4>;
+		};
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,alor-qfprom", "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
+	clocks {
+		xo_board: xo_board {
+			compatible = "fixed-clock";
+			clock-frequency = <76800000>;
+			clock-output-names = "xo_board";
+			#clock-cells = <0>;
+		};
+
+		sleep_clk: sleep_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <32000>;
+			clock-output-names = "sleep_clk";
+			#clock-cells = <0>;
+		};
+
+		pcie_0_pipe_clk: pcie_0_pipe_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <1000>;
+			clock-output-names = "pcie_0_pipe_clk";
+			#clock-cells = <0>;
+		};
+
+		ufs_phy_rx_symbol_0_clk: ufs_phy_rx_symbol_0_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <1000>;
+			clock-output-names = "ufs_phy_rx_symbol_0_clk";
+			#clock-cells = <0>;
+		};
+
+		ufs_phy_rx_symbol_1_clk: ufs_phy_rx_symbol_1_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <1000>;
+			clock-output-names = "ufs_phy_rx_symbol_1_clk";
+			#clock-cells = <0>;
+		};
+
+		ufs_phy_tx_symbol_0_clk: ufs_phy_tx_symbol_0_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <1000>;
+			clock-output-names = "ufs_phy_tx_symbol_0_clk";
+			#clock-cells = <0>;
+		};
+
+		usb3_phy_wrapper_gcc_usb30_pipe_clk: usb3_phy_wrapper_gcc_usb30_pipe_clk {
+			compatible = "fixed-clock";
+			clock-frequency = <1000>;
+			clock-output-names = "usb3_phy_wrapper_gcc_usb30_pipe_clk";
+			#clock-cells = <0>;
+		};
+	};
+
+	rpmhcc: clock-controller {
+		compatible = "fixed-clock";
+		clock-output-names = "rpmh_clocks";
+		clock-frequency = <19200000>;
+		#clock-cells = <1>;
+	};
+
+	cambistmclkcc: clock-controller@1760000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "cambistmclkcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	camcc: clock-controller@956d000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "camcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	dispcc: clock-controller@9ba2000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "dispcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	evacc: clock-controller@24f0000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "evacc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	gcc: clock-controller@100000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "gcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	gpucc: clock-controller@3d90000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "gpucc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	tcsrcc: clock-controller@1fd5044 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "tcsrcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	videocc: clock-controller@20f0000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "videocc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
+	/* CAM_CC GDSCs */
+	cam_cc_ipe_0_gdsc: qcom,gdsc@958d174 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_ipe_0_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	cam_cc_ofe_gdsc: qcom,gdsc@958d0c8 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_ofe_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	cam_cc_tfe_0_gdsc: qcom,gdsc@958e004 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_tfe_0_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	cam_cc_tfe_1_gdsc: qcom,gdsc@958e080 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_tfe_1_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	cam_cc_tfe_2_gdsc: qcom,gdsc@958e0e4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_tfe_2_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	cam_cc_titan_top_gdsc: qcom,gdsc@958e334 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "cam_cc_titan_top_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	/* DISP_CC GDSCs */
+	disp_cc_mdss_core_gdsc: qcom,gdsc@9bab000 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "disp_cc_mdss_core_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	disp_cc_mdss_core_int2_gdsc: qcom,gdsc@9bad000 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "disp_cc_mdss_core_int2_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	/* EVA_CC GDSCs */
+	eva_cc_mvs0_gdsc: qcom,gdsc@24f8068 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "eva_cc_mvs0_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	eva_cc_mvs0c_gdsc: qcom,gdsc@24f8034 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "eva_cc_mvs0c_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	/* GCC GDSCs */
+	gcc_pcie_0_gdsc: qcom,gdsc@16b004 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_pcie_0_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_pcie_0_phy_gdsc: qcom,gdsc@16c000 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_pcie_0_phy_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_ufs_mem_phy_gdsc: qcom,gdsc@19e000 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_ufs_mem_phy_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_ufs_phy_gdsc: qcom,gdsc@177004 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_ufs_phy_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_usb30_prim_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_usb3_phy_gdsc: qcom,gdsc@150018 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gcc_usb3_phy_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	/* GPU_CC GDSCs */
+	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
+		compatible = "syscon";
+		reg = <0x3d99094 0x4>;
+	};
+
+	gpu_cc_cx_gdsc: qcom,gdsc@3d99080 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gpu_cc_cx_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	/* GX_CLKCTL GDSCs */
+	gx_clkctl_gx_gdsc: qcom,gdsc@3d68024 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "gx_clkctl_gx_gdsc";
+		qcom,support-cfg-gdscr;
+	};
+
+	/* VIDEO_CC GDSCs */
+	video_cc_mvs0_gdsc: qcom,gdsc@20f80a8 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "video_cc_mvs0_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	video_cc_mvs0_vpp0_gdsc: qcom,gdsc@20f8120 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "video_cc_mvs0_vpp0_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	video_cc_mvs0_vpp1_gdsc: qcom,gdsc@20f80f4 {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "video_cc_mvs0_vpp1_gdsc";
+		qcom,support-hw-trigger;
+		qcom,support-cfg-gdscr;
+	};
+
+	video_cc_mvs0c_gdsc: qcom,gdsc@20f814c {
+		compatible = "qcom,stub-regulator";
+		regulator-name = "video_cc_mvs0c_gdsc";
+		qcom,support-cfg-gdscr;
+	};
 };
 
 #include "alor-pinctrl.dtsi"
+#include "alor-stub-regulators.dtsi"

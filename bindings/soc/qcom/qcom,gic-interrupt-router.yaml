@@ -6,6 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 
 title: Qualcomm Technologies, Inc. GIC Interrupt Router
 
+maintainers:
+  - Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+
 description: |
   The ARM GIC peripheral supports "1 of N" selection of SPI interrupts. CPUs
   may be classified as class0 and/or class1 and SPIs may be routed to any CPU
@@ -14,17 +17,25 @@ description: |
 properties:
   compatible:
     const: "qcom,gic-intr-routing"
-    Usage: required
+    description: "Compatibility string for the GIC interrupt router"
 
   qcom,gic-class0-cpus:
-    Usage: required
-    Value type: <prop-encoded-array>
-    Definition: List of CPUs in GIC class 0.
+    description: "List of CPUs in GIC class 0."
+    $ref: /schemas/types.yaml#/definitions/uint32-array
 
   qcom,gic-class1-cpus:
-    Usage: required
-    Value type: <prop-encoded-array>
-    Definition: List of CPUs in GIC class 1.
+    description: "List of CPUs in GIC class 1."
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+  qcom,gic-runtime-cpu-class-en:
+    type: boolean
+    description: "Indicates runtime configuration of CPU class is supported on chipset."
+
+  qcom,gic-cpulist:
+    description: "List of all available CPUs."
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+additionalProperties: false
 
 examples:
   - |
@@ -32,5 +43,7 @@ examples:
       compatible = "qcom,gic-intr-routing";
       qcom,gic-class0-cpus = <0 1 2 3>;
       qcom,gic-class1-cpus = <4 5 6 7>;
+      qcom,gic-cpulist = <0 1 2 3 4 5 6 7 >;
+      qcom,gic-runtime-cpu-class-en;
     };
 ...
