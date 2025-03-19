@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
@@ -1173,9 +1173,9 @@
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L3K_E1";
 		qcom,regulator-type = "pmic5-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
+		qcom,supported-modes = <RPMH_REGULATOR_MODE_PASS
 					RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 30000>;
+		qcom,mode-threshold-currents = <0 25>;
 
 		L3K: L3K_E1: pmr735d_l3: regulator-pmr735d-l3 {
 			regulator-name = "pmr735d_l3";
