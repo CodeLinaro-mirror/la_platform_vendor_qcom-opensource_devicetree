@@ -1097,5 +1097,56 @@
 				bias-pull-down; /* pull down */
 			};
 		};
+
+		sdc4_on: sdc4_on {
+			clk {
+				pins = "gpio103";
+				function = "sdc4_clk";
+				bias-disable;
+				drive-strength = <12>;
+			};
+
+			cmd {
+				pins = "gpio102";
+				function = "sdc4_cmd";
+				bias-pull-up;
+				drive-strength = <12>;
+			};
+
+			data {
+				pins = "gpio104", "gpio105",
+					"gpio106", "gpio107";
+				function = "sdc4_data";
+				bias-pull-up;
+				drive-strength = <12>;
+			};
+
+		};
+
+		sdc4_off: sdc4_off {
+			clk {
+				pins = "gpio103";
+				function = "sdc4_clk";
+				bias-disable;
+				drive-strength = <2>;
+			};
+
+			cmd {
+				pins = "gpio102";
+				function = "sdc4_cmd";
+				bias-pull-up;
+				drive-strength = <2>;
+			};
+
+			data {
+				pins = "gpio104", "gpio105",
+					"gpio106", "gpio107";
+				function = "sdc4_data";
+				bias-pull-up;
+				drive-strength = <2>;
+			};
+
+		};
+
 	};
 };

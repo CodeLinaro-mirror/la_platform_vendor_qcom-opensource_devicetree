@@ -25,6 +25,7 @@
 
 	aliases {
 		serial0 = &qupv3_se3_2uart;
+		mmc0 = &sdhc_4;
 	};
 
 	chosen: chosen { };
@@ -1163,6 +1164,51 @@
 		interrupt-parent = <&tlmm>;
 		interrupts = <32 IRQ_TYPE_EDGE_RISING>;
 		status = "okay";
+	};
+
+	sdhc4_opp_table: sdhc4-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <1600000 56000>;
+			opp-avg-kBps = <50000 0>;
+		};
+	};
+
+	sdhc_4: sdhci@8844000 {
+		status = "disabled";
+
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x8844000 0x1000>;
+		reg-names = "hc";
+
+		interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		bus-width = <4>;
+		qcom,restore-after-cx-collapse;
+
+		clocks = <&gcc GCC_SDCC4_AHB_CLK>,
+			<&gcc GCC_SDCC4_APPS_CLK>;
+		clock-names = "iface", "core";
+
+		iommus = <&apps_smmu 0x080 0x0>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-dma-addr-pool = <0x20000000 0x10000000>;
+		qcom,iommu-geometry = <0x10000000 0x10000000>;
+
+		interconnects = <&aggre_noc MASTER_SDCC_4 &mc_virt SLAVE_EBI1>,
+				<&mem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_SDCC_4>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+
+		operating-points-v2 = <&sdhc4_opp_table>;
+
+		qos0 {
+			mask = <0x01>;
+			vote = <44>;
+		};
 	};
 };
 
