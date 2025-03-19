@@ -3797,6 +3797,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_crm";
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
