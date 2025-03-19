@@ -26,7 +26,20 @@
 
 &pmic_glink_debug {
 	i2c@104 {
-		reg = <0x104>; /* I2C instance 4 in ADSP for SE3 */
+		reg = <0x104>; /* I2C instance 4 in SOCCP for SE3 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		qcom,bus-type = "i2c";
+
+		cps4061@30 {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x30>;
+			qcom,can-sleep;
+		};
+	};
+
+	i2c@106 {
+		reg = <0x106>; /* I2C instance 6 in SOCCP for SE5 */
 		#address-cells = <1>;
 		#size-cells = <0>;
 		qcom,bus-type = "i2c";
@@ -40,12 +53,6 @@
 		smb1396@35 {
 			compatible = "qcom,i2c-pmic";
 			reg = <0x35>;
-			qcom,can-sleep;
-		};
-
-		cps4061@30 {
-			compatible = "qcom,i2c-pmic";
-			reg = <0x30>;
 			qcom,can-sleep;
 		};
 	};
@@ -69,32 +76,32 @@
 	status = "ok";
 
 	smb1396_1_iin {
-		reg = <0x1043401>;
+		reg = <0x1063401>;
 		label = "smb1396_1_iin";
 	};
 
 	smb1396_1_ichg {
-		reg = <0x1043402>;
+		reg = <0x1063402>;
 		label = "smb1396_1_ichg";
 	};
 
 	smb1396_1_die_temp {
-		reg = <0x1043403>;
+		reg = <0x1063403>;
 		label = "smb1396_1_die_temp";
 	};
 
 	smb1396_2_iin {
-		reg = <0x1043501>;
+		reg = <0x1063501>;
 		label = "smb1396_2_iin";
 	};
 
 	smb1396_2_ichg {
-		reg = <0x1043502>;
+		reg = <0x1063502>;
 		label = "smb1396_2_ichg";
 	};
 
 	smb1396_2_die_temp {
-		reg = <0x1043503>;
+		reg = <0x1063503>;
 		label = "smb1396_2_die_temp";
 	};
 };
