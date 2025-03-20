@@ -4,6 +4,7 @@
  */
 
 #include "sm6150.dtsi"
+#include "sm6150-pmic-overlay.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. QCS610";
