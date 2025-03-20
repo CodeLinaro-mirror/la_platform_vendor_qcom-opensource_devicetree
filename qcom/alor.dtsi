@@ -31,7 +31,9 @@
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se7_2uart;
+	};
 
 	reserved_memory: reserved-memory { };
 
@@ -806,3 +808,8 @@
 
 #include "alor-pinctrl.dtsi"
 #include "alor-stub-regulators.dtsi"
+#include "alor-qupv3.dtsi"
+
+&qupv3_se7_2uart {
+	status = "ok";
+};
