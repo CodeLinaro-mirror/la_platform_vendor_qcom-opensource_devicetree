@@ -555,7 +555,7 @@
 		};
 	};
 
-	qcom,qpace {
+	qcom_qpace: qcom,qpace {
 		compatible = "qcom,qpace";
 		iommus = <&apps_smmu 0x2020 0x13>,
 			 <&apps_smmu 0x2024 0x13>,
