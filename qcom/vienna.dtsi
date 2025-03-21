@@ -1546,6 +1546,25 @@
 	};
 };
 
+&usb0 {
+	usb-role-switch;
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		port {
+			usb_port0_connector: endpoint {
+				remote-endpoint = <&usb_port0>;
+			};
+		};
+	};
+};
+
 #include "ipcc-test-vienna.dtsi"
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_cdsp;
