@@ -48,6 +48,7 @@
 				0x144 /* GSI_RING_BASE_ADDR_H */
 				0x1a4>; /* GSI_IF_STS */
 
+		extcon = <&pmx35_vbus_detect>;
 
 		dwc3@a600000 {
 			compatible = "snps,dwc3";

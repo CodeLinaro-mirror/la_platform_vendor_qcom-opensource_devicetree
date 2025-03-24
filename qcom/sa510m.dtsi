@@ -440,6 +440,11 @@
 		};
 	};
 
+	restart@c264000 {
+		compatible = "qcom,pshold";
+		reg = <0x0c264000 0x1000>;
+	};
+
 	apps_rsc: rsc@17040000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
@@ -1086,6 +1091,16 @@
 		reg-names = "wdt-base";
 		interrupts = <GIC_PPI 3 IRQ_TYPE_LEVEL_HIGH>;
 	};
+
+	pps {
+		compatible = "pps-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_pps>;
+		gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <32 IRQ_TYPE_EDGE_RISING>;
+		status = "okay";
+	};
 };
 
 #include "sa510m-qupv3.dtsi"
@@ -1099,6 +1114,7 @@
 #include "sa510m-pmic.dtsi"
 #include "sa510m-thermal.dtsi"
 #include "sa510m-debug.dtsi"
+#include "sa510m-coresight.dtsi"
 
 &qupv3_se3_2uart {
 	status = "ok";
