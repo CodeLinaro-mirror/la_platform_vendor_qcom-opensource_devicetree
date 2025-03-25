@@ -82,6 +82,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 			L2_0: l2-cache {
 			      cache-level = <2>;
 			};
@@ -99,6 +100,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 			L2_1: l2-cache {
 			      cache-level = <2>;
 			};
@@ -117,6 +119,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU3: cpu@300 {
@@ -131,6 +134,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU4: cpu@400 {
@@ -145,6 +149,7 @@
 			qcom,freq-domain = <&cpufreq_hw 1>;
 			capacity-dmips-mhz = <1946>;
 			dynamic-power-coefficient = <472>;
+			#cooling-cells = <2>;
 		};
 
 		cpu-map {
@@ -1857,3 +1862,5 @@
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_cdsp;
 /delete-node/ &ipcc_self_ping_slpi;
+
+#include "vienna-thermal.dtsi"

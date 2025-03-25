@@ -75,3 +75,8 @@
 &eusb2_phy0 {
 	status = "disabled";
 };
+
+&tsens0 {
+	status = "disabled";
+};
+
