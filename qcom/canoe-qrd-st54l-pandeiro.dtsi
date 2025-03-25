@@ -98,3 +98,8 @@
 		label = "smb1501_2_die_temp";
 	};
 };
+
+&pmih010x_eusb2_repeater {
+	qcom,param-override-seq =
+		 <0x2 0x54>;
+};
