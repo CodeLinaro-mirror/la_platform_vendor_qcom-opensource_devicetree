@@ -49,6 +49,8 @@
 
 		qcom,use-eusb2-phy;
 
+		extcon = <&eud>;
+
 		dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0xa600000 0xE000>;
