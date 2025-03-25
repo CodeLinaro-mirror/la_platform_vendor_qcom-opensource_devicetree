@@ -3506,6 +3506,10 @@
 			reg = <0x148 0x2>;
 			bit = <3 3>;
 		};
+
+		disp_qultiv_fuse:disp_qultiv_fuse@144 {
+			reg = <0x144 0x4>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
@@ -3865,6 +3869,11 @@
 	xbl_ramdump_mem: xbl_ramdump_region@b8000000 {
 		no-map;
 		reg = <0x0 0xb8000000 0x0 0x1c0000>;
+	};
+
+	hwfence_shbuf: hwfence-shmem {
+		no-map;
+		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
 	};
 
 	global_sync_mem: global_sync_region@d7a00000 {
