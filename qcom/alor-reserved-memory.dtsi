@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &reserved_memory {
@@ -76,8 +76,10 @@
 	};
 
 	smem_mem: smem_region@81d00000 {
+		compatible = "qcom,smem";
 		no-map;
 		reg = <0x0 0x81d00000 0x0 0x200000>;
+		hwlocks = <&tcsr_mutex 3>;
 	};
 
 	pdp_ns_shared_mem: pdp_ns_shared_region@81f00000 {
