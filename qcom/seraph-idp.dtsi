@@ -3,5 +3,8 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include "seraph-pmic-overlay.dtsi"
+#include "seraph-thermal-overlay.dtsi"
+
 &soc {
 };
