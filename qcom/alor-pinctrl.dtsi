@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 &tlmm {
@@ -42,6 +42,19 @@
 				drive-strength = <2>;
 				bias-pull-down;
 			};
+		};
+	};
+
+	trigout_a: trigout_a {
+		mux {
+			pins = "gpio112";
+			function = "qdss_cti";
+		};
+
+		config {
+			pins = "gpio112";
+			drive-strength = <2>;
+			bias-disable;
 		};
 	};
 };

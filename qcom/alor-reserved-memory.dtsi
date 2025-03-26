@@ -265,4 +265,11 @@
 		no-map;
 		reg = <0x0 0xff800000 0x0 0x800000>;
 	};
+
+	qdss_apps_mem: qdss_apps_region@82800000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x82800000 0x0 0x2000000>;
+		reusable;
+		alignment = <0x0 0x400000>;
+	};
 };
