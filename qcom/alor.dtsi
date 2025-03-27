@@ -6,11 +6,11 @@
 #include <dt-bindings/clock/qcom,alor-cambistmclkcc.h>
 #include <dt-bindings/clock/qcom,alor-camcc.h>
 #include <dt-bindings/clock/qcom,alor-dispcc.h>
-#include <dt-bindings/clock/qcom,alor-evacc.h>
+#include <dt-bindings/clock/qcom,evacc-canoe.h>
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 #include <dt-bindings/clock/qcom,alor-gpucc.h>
 #include <dt-bindings/clock/qcom,tcsrcc-canoe.h>
-#include <dt-bindings/clock/qcom,alor-videocc.h>
+#include <dt-bindings/clock/qcom,videocc-canoe.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
@@ -540,10 +540,23 @@
 	};
 
 	evacc: clock-controller@24f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "evacc_clocks";
+		compatible = "qcom,canoe-evacc", "syscon";
+		reg = <0x0 0x24f0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&rpmhcc RPMH_CXO_CLK_A>,
+			 <&sleep_clk>,
+			 <&gcc GCC_EVA_AHB_CLK>;
+		clock-names = "bi_tcxo",
+			      "bi_tcxo_ao",
+			      "sleep_clk",
+			      "iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
 	};
 
 	gcc: clock-controller@100000 {
@@ -587,10 +600,46 @@
 	};
 
 	videocc: clock-controller@20f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "videocc_clocks";
+		compatible = "qcom,alor-videocc", "syscon";
+		reg = <0x0 0x20f0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			<&rpmhcc RPMH_CXO_CLK_A>,
+			<&sleep_clk>,
+			<&gcc GCC_VIDEO_AHB_CLK>;
+		clock-names = "bi_tcxo",
+				"bi_tcxo_ao",
+				"sleep_clk",
+				"iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		#power-domain-cells = <1>;
+	};
+
+	/* GCC GDSCs */
+	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
+		compatible = "qcom,gdsc";
+		reg = <0x139004 0x4>;
+		regulator-name = "gcc_usb30_prim_gdsc";
+		parent-supply = <&VDD_CX_LEVEL>;
+		qcom,retain-regs;
+		qcom,support-cfg-gdscr;
+		proxy-supply = <&gcc_usb30_prim_gdsc>;
+		qcom,proxy-consumer-enable;
+	};
+
+	gcc_usb3_phy_gdsc: qcom,gdsc@150018 {
+		compatible = "qcom,gdsc";
+		reg = <0x150018 0x4>;
+		regulator-name = "gcc_usb3_phy_gdsc";
+		parent-supply = <&VDD_MX_LEVEL>;
+		qcom,retain-regs;
+		qcom,support-cfg-gdscr;
+		proxy-supply = <&gcc_usb3_phy_gdsc>;
+		qcom,proxy-consumer-enable;
 	};
 
 	/* CAM_CC GDSCs */
@@ -650,20 +699,6 @@
 		qcom,support-cfg-gdscr;
 	};
 
-	/* EVA_CC GDSCs */
-	eva_cc_mvs0_gdsc: qcom,gdsc@24f8068 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	eva_cc_mvs0c_gdsc: qcom,gdsc@24f8034 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "eva_cc_mvs0c_gdsc";
-		qcom,support-cfg-gdscr;
-	};
-
 	/* GPU_CC GDSCs */
 	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
 		compatible = "syscon";
@@ -680,34 +715,6 @@
 	gx_clkctl_gx_gdsc: qcom,gdsc@3d68024 {
 		compatible = "qcom,stub-regulator";
 		regulator-name = "gx_clkctl_gx_gdsc";
-		qcom,support-cfg-gdscr;
-	};
-
-	/* VIDEO_CC GDSCs */
-	video_cc_mvs0_gdsc: qcom,gdsc@20f80a8 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0_vpp0_gdsc: qcom,gdsc@20f8120 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_vpp0_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0_vpp1_gdsc: qcom,gdsc@20f80f4 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0_vpp1_gdsc";
-		qcom,support-hw-trigger;
-		qcom,support-cfg-gdscr;
-	};
-
-	video_cc_mvs0c_gdsc: qcom,gdsc@20f814c {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "video_cc_mvs0c_gdsc";
 		qcom,support-cfg-gdscr;
 	};
 
