@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &tlmm {
@@ -594,4 +594,169 @@
 			};
 		};
 	};
+
+
+	wsa_swr_clk_pin: wsa_swr_clk_pin {
+			wsa_swr_clk_sleep: wsa_swr_clk_sleep {
+				mux {
+					pins = "gpio111";
+					function = "WSA_CLK";
+				};
+
+				config {
+					pins = "gpio111";
+					drive-strength = <2>;
+					bias-bus-hold;
+				};
+			};
+
+			wsa_swr_clk_active: wsa_swr_clk_active {
+				mux {
+					pins = "gpio111";
+					function = "WSA_CLK";
+				};
+
+				config {
+					pins = "gpio111";
+					drive-strength = <2>;
+					bias-bus-hold;
+				};
+			};
+		};
+
+	wsa_swr_data_pin: wsa_swr_data_pin {
+			wsa_swr_data_sleep: wsa_swr_data_sleep {
+				mux {
+					pins = "gpio110";
+					function = "WSA_DATA";
+				};
+
+				config {
+					pins = "gpio110";
+					drive-strength = <4>;
+					bias-bus-hold;
+				};
+			};
+
+			wsa_swr_data_active: wsa_swr_data_active {
+				mux {
+					pins = "gpio110";
+					function = "WSA_DATA";
+				};
+
+				config {
+					pins = "gpio110";
+					drive-strength = <4>;
+					bias-bus-hold;
+				};
+			};
+		};
+
+		/* WSA speaker reset pins */
+	spkr_1_sd_n: spkr_1_sd_n {
+			spkr_1_sd_n_sleep: spkr_1_sd_n_sleep {
+				mux {
+					pins = "gpio108";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio108";
+					drive-strength = <2>;   /* 2 mA */
+					bias-pull-down;
+					input-enable;
+				};
+			};
+
+			spkr_1_sd_n_active: spkr_1_sd_n_active {
+				mux {
+					pins = "gpio108";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio108";
+					drive-strength = <16>;   /* 16 mA */
+					bias-disable;
+					output-high;
+				};
+			};
+		};
+
+	spkr_2_sd_n: spkr_2_sd_n {
+			spkr_2_sd_n_sleep: spkr_2_sd_n_sleep {
+				mux {
+					pins = "gpio109";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio109";
+					drive-strength = <2>;   /* 2 mA */
+					bias-pull-down;
+					input-enable;
+				};
+			};
+
+			spkr_2_sd_n_active: spkr_2_sd_n_active {
+				mux {
+					pins = "gpio109";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio109";
+					drive-strength = <16>;   /* 16 mA */
+					bias-disable;
+					output-high;
+				};
+			};
+		};
+
+
+	wcd9xxx_intr:	wcd9xxx_intr {
+			wcd_intr_default: wcd_intr_default {
+				mux {
+					pins = "gpio122";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio122";
+					drive-strength = <2>; /* 2 mA */
+					bias-pull-down; /* pull down */
+					input-enable;
+				};
+			};
+		};
+
+
+	tert_i2s_sck_ws_d0: tert_i2s_sck_ws_d0 {
+			tert_i2s_sck_ws_d0_sleep: tert_i2s_sck_ws_do_sleep {
+				mux {
+					pins = "gpio115", "gpio116", "gpio117";
+					function = "ter_mi2s";
+				};
+
+				config {
+					pins = "gpio115", "gpio116", "gpio117";
+					drive-strength = <2>;   /* 2 mA */
+				};
+			};
+
+			tert_i2s_sck_ws_d0_active: tert_i2s_sck_ws_do_active {
+				mux {
+					pins = "gpio115", "gpio116", "gpio117";
+					function = "ter_mi2s";
+				};
+
+				config {
+					pins = "gpio115", "gpio116", "gpio117";
+					drive-strength = <8>;   /* 8 mA */
+					bias-disable;
+					output-high;
+					input-enable;
+				};
+			};
+		};
 };
