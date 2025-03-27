@@ -98,6 +98,10 @@
 					<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
 	};
 
+	usb_nop_phy: usb_nop_phy {
+		compatible = "usb-nop-xceiv";
+	};
+
 	/* USB port related High Speed PHY */
 	eusb2_phy0: hsphy@88e3000 {
 		compatible = "qcom,usb-m31-eusb2-phy";
