@@ -291,6 +291,13 @@
 				type = "passive";
 			};
 		};
+
+		cooling-maps {
+			lbat_lvl0 {
+				trip = <&b_bcl_lvl0>;
+				cooling-device = <&msm_gpu 1 1>;
+			};
+		};
 	};
 
 	pmw6100-bcl-lvl1 {
@@ -317,6 +324,13 @@
 				type = "passive";
 			};
 		};
+
+		cooling-maps {
+			lbat_lvl1 {
+				trip = <&b_bcl_lvl1>;
+				cooling-device = <&msm_gpu 1 1>;
+			};
+		};
 	};
 
 	pmw6100-bcl-lvl2 {
@@ -341,6 +355,13 @@
 				temperature = <1>;
 				hysteresis = <1>;
 				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			lbat_lvl2 {
+				trip = <&b_bcl_lvl2>;
+				cooling-device = <&msm_gpu 3 3>;
 			};
 		};
 	};
