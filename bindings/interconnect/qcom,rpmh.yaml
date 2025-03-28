@@ -200,6 +200,20 @@ properties:
       - qcom,vienna-nsp_noc
       - qcom,vienna-pcie_anoc
       - qcom,vienna-system_noc
+      - qcom,alor-aggre1_noc
+      - qcom,alor-aggre2_noc
+      - qcom,alor-clk_virt
+      - qcom,alor-cnoc_cfg
+      - qcom,alor-cnoc_main
+      - qcom,alor-gem_noc
+      - qcom,alor-lpass_ag_noc
+      - qcom,alor-lpass_lpiaon_noc
+      - qcom,alor-lpass_lpicx_noc
+      - qcom,alor-mc_virt
+      - qcom,alor-mmss_noc
+      - qcom,alor-nsp_noc
+      - qcom,alor-pcie_anoc
+      - qcom,alor-system_noc
       - qcom,yupik-aggre1_noc
       - qcom,yupik-aggre2_noc
       - qcom,yupik-clk_virt
