@@ -999,6 +999,17 @@
 			clock-names = "qdss_clk";
 			llcc-scid-status-snapshot;
 		};
+
+		scid_heuristics {
+			compatible = "qcom,scid-heuristics";
+			qcom,heuristics-scid = <28>;
+			/* Need to update different value for V2 device */
+			qcom,freq-threshold-idx = <1065600>, <1065600>, <1065600>, <1065600>,
+					<1065600>, <1065600>, <1255680>, <1255680>;
+			qcom,frequency-threshold-residency = <1500>, <1500>, <1500>, <1500>,
+					<1500>, <1500>, <1500>, <1500>;
+			qcom,scid-heuristics-enabled;
+		};
 	};
 
 	gic-interrupt-router {
