@@ -137,8 +137,19 @@ pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_P
 dtb-y += $(pineapple-dtb-y)
 
 VIENNA_BASE_DTB += vienna.dtb
+VIENNA_APQ_BASE_DTB += viennap.dtb
 
-#VIENNA_BOARDS +=
+VIENNA_BOARDS += \
+		 vienna-atp-overlay.dtbo \
+		 vienna-atp-no-cam-overlay.dtbo \
+		 vienna-idp-overlay.dtbo \
+		 vienna-idp-no-cam-overlay.dtbo \
+		 vienna-rcm-overlay.dtbo \
+		 vienna-rcm-no-cam-overlay.dtbo \
+		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-no-cam-overlay.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
 		 vienna-rumi-overlay.dtbo

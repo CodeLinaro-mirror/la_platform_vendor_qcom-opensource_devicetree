@@ -194,9 +194,34 @@ properties:
       - description: Qualcomm Technologies, Inc. VIENNA
         items:
           - enum:
+              - qcom,vienna-atp
+              - qcom,atp
+              - qcom,vienna-idp
+              - qcom,idp
+              - qcom,vienna-rcm
+              - qcom,rcm
+              - qcom,vienna-wdp
+              - qcom,wdp
+              - qcom,vienna-wrd
+              - qcom,wrd
               - qcom,vienna-rumi
               - qcom,rumi
           - const: qcom,vienna
+
+      - description: Qualcomm Technologies, Inc. VIENNAP
+        items:
+          - enum:
+              - qcom,viennap-atp
+              - qcom,atp
+              - qcom,viennap-idp
+              - qcom,idp
+              - qcom,viennap-rcm
+              - qcom,rcm
+              - qcom,viennap-wdp
+              - qcom,wdp
+              - qcom,viennap-wrd
+              - qcom,wrd
+          - const: qcom,viennap
 
       - description: Qualcomm Technologies, Inc. sa8155
         items:
