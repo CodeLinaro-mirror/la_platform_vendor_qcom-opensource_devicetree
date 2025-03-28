@@ -384,6 +384,11 @@
 		interrupt-controller;
 	};
 
+	show_resume_irqs@17200000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17200000 0x130000>;	/* GICD */
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
