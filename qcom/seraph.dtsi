@@ -303,6 +303,11 @@
 		qcom,gpios-reserved = <18 19>;
 	};
 
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+		qcom,vmid-cp-camera-preview-ro;
+	};
+
 	thermal_zones: thermal-zones {};
 };
 
