@@ -16,7 +16,6 @@
 	interrupt-parent = <&vgic>;
 
 	chosen {
-		bootargs = "nokaslr console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable memory_hotplug.memmap_on_memory=force root=/dev/ram rw init=/init";
 	};
 
 	cpus {
