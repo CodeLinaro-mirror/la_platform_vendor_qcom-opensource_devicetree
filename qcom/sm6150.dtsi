@@ -708,6 +708,9 @@
 		#interconnect-cells = <1>;
 	};
 
+	thermal_zones: thermal-zones {
+	};
+
 	aopcc: qcom,aopcc@0 {
 		compatible = "qcom,aop-qmp-clk";
 		mboxes = <&qmp_aop 0>;
@@ -1509,6 +1512,7 @@
 
 #include "sm6150-regulator.dtsi"
 #include "sm6150-gdsc.dtsi"
+#include "sm6150-thermal.dtsi"
 #include "sm6150-pinctrl.dtsi"
 #include "msm-arm-smmu-sm6150.dtsi"
 #include "sm6150-qupv3.dtsi"
