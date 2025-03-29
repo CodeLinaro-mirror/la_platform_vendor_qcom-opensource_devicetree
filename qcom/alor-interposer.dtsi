@@ -15,3 +15,5 @@
 &cache_cont {
 		compatible = "qcom,alor-llcc";
 };
+
+/delete-node/ &qcom_qpace;
