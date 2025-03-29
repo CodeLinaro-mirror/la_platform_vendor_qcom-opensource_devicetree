@@ -1271,6 +1271,7 @@
 #include "sm6150-pinctrl.dtsi"
 #include "msm-arm-smmu-sm6150.dtsi"
 #include "sm6150-qupv3.dtsi"
+#include "sm6150-usb.dtsi"
 
 &tlmm {
 	status = "okay";
