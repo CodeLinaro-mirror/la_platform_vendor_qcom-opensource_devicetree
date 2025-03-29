@@ -17,8 +17,7 @@
 		ranges;
 		dma-coherent;
 
-		qcom,regulator-names = "vdd";
-		vdd-supply = <&gpu_cc_cx_gdsc>;
+		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
 
 		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>;
 		clock-names = "gpu_cc_gpu_smmu_vote_clk";
