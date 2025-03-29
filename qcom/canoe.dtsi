@@ -1224,7 +1224,7 @@
 				  "disp_crm_drv4",
 				  "disp_crm_drv5";
 		clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>;
-		qcom,hw-drv-ids = <0 1 2 3 4 5>;
+		qcom,hw-drv-ids = <0 1 2 3 4 5 6 7 8>;
 		qcom,sw-drv-ids = <1>;
 	};
 
@@ -1691,7 +1691,28 @@
 		qcom,crm-pwr-states = <2>;
 	};
 
-	disp_crm_sw_0_bcm_voter: bcm_voter@7 {
+	disp_crm_hw_6_bcm_voter: bcm_voter@7 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <6>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_7_bcm_voter: bcm_voter@8 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <7>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_8_bcm_voter: bcm_voter@9 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <8>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_sw_0_bcm_voter: bcm_voter@10 {
 		compatible = "qcom,bcm-voter";
 		qcom,crm-name = "disp_crm";
 		qcom,crm-sw-client;
@@ -1722,6 +1743,9 @@
 				       "disp_crm_hw_3",
 				       "disp_crm_hw_4",
 				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
 				       "disp_crm_sw_0";
 		qcom,bcm-voters = <&apps_bcm_voter>,
 				  <&cam_bcm_voter0>,
@@ -1734,6 +1758,9 @@
 				  <&disp_crm_hw_3_bcm_voter>,
 				  <&disp_crm_hw_4_bcm_voter>,
 				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
 				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
@@ -1799,6 +1826,9 @@
 				       "disp_crm_hw_3",
 				       "disp_crm_hw_4",
 				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
 				       "disp_crm_sw_0";
 		qcom,bcm-voters = <&apps_bcm_voter>,
 				  <&cam_bcm_voter0>,
@@ -1810,6 +1840,9 @@
 				  <&disp_crm_hw_3_bcm_voter>,
 				  <&disp_crm_hw_4_bcm_voter>,
 				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
 				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
@@ -1828,6 +1861,9 @@
 				       "disp_crm_hw_3",
 				       "disp_crm_hw_4",
 				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
 				       "disp_crm_sw_0";
 		qcom,bcm-voters = <&apps_bcm_voter>,
 				  <&cam_bcm_voter0>,
@@ -1840,6 +1876,9 @@
 				  <&disp_crm_hw_3_bcm_voter>,
 				  <&disp_crm_hw_4_bcm_voter>,
 				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
 				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
