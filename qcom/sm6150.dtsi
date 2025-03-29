@@ -1146,6 +1146,11 @@
 		hwlocks = <&tcsr_mutex 3>;
 	};
 
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
+
 	qcom,glinkpkt {
 		compatible = "qcom,glinkpkt";
 
