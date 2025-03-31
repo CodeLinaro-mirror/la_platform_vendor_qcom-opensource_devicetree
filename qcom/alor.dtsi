@@ -1048,6 +1048,7 @@
 	};
 };
 
+#include "alor-debug.dtsi"
 #include "alor-pinctrl.dtsi"
 #include "alor-stub-regulators.dtsi"
 #include "alor-qupv3.dtsi"
