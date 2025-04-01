@@ -1128,3 +1128,57 @@
 &qupv3_se3_2uart {
 	status = "ok";
 };
+
+&qupv3_se4_i2c {
+	status = "okay";
+	smi230_gyro@69 {
+		compatible = "SMI230GYRO";
+		reg = <0x69>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&sensor_int2_default>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <93 IRQ_TYPE_EDGE_RISING>;
+		gpio_irq = <&tlmm 93 IRQ_TYPE_EDGE_RISING>;
+	};
+
+	smi230_acc@19 {
+		compatible = "SMI230ACC";
+		reg = <0x19>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&sensor_int1_default>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <90 IRQ_TYPE_EDGE_RISING>;
+		gpio_irq = <&tlmm 90 IRQ_TYPE_EDGE_RISING>;
+	};
+
+	iam20680@68 {
+		compatible = "invensense,iam20680";
+		reg = <0x68>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&sensor_int1_default>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <90 IRQ_TYPE_EDGE_RISING>;
+		axis_map_x = <1>;
+		axis_map_y = <0>;
+		axis_map_z = <2>;
+		negate_x = <1>;
+		negate_y = <0>;
+		negate_z = <0>;
+		inven,secondary_type = "none";
+		inven,aux_type = "none";
+		inven,read_only_slave_type = "none";
+	};
+
+	asm330lhh@6b {
+		compatible = "st,asm330lhh";
+		reg = <0x6b>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&sensor_int1_default>,<&sensor_int2_default>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <93 IRQ_TYPE_EDGE_RISING>;
+		st,int-pin= <2>;
+		qcom,regulator_check = <0>;
+		qcom,asm330_hrtimer;
+	};
+
+};
