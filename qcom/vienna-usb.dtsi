@@ -51,6 +51,8 @@
 
 		extcon = <&eud>;
 
+		qcom,default-bus-vote = <2>; /* use svs bus voting */
+
 		dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0xa600000 0xE000>;
