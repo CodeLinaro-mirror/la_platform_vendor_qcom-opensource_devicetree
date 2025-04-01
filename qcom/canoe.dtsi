@@ -2965,7 +2965,12 @@
 
 	oem_vm_vblk0_ring: oem_vm_vblk0_ring {
 		size = <0x4000>;
-		gunyah-label = <0x13>;
+		gunyah-label = <0x16>; /* persist */
+	};
+
+	oem_vm_vblk1_ring: oem_vm_vblk1_ring {
+		size = <0x4000>;
+		gunyah-label = <0x13>; /* system */
 	};
 
 	oem_vm_swiotlb: oem_vm_swiotlb {
@@ -2975,13 +2980,18 @@
 
 	oem_vm: qcom,oem_vm {
 		vm_name = "oemvm";
-		shared-buffers-size = <0x104000>;
-		shared-buffers = <&oem_vm_vblk0_ring &oem_vm_swiotlb>;
+		shared-buffers-size = <0x108000>;
+		shared-buffers = <&oem_vm_vblk0_ring &oem_vm_vblk1_ring &oem_vm_swiotlb>;
 	};
 
-	oem_vm_virt_be0: oem_vm_virt_be0@13 {
+	oem_vm_virt_be0: oem_vm_virt_be0@16 {
 		qcom,vm = <&oem_vm>;
-		qcom,label = <0x13>;
+		qcom,label = <0x16>; /* persist */
+	};
+
+	oem_vm_virt_be1: oem_vm_virt_be1@13 {
+		qcom,vm = <&oem_vm>;
+		qcom,label = <0x13>; /* system */
 	};
 
 	qcom,test-dbl-tuivm {
@@ -3029,7 +3039,7 @@
 		qcom,firmware-name = "oemvm";
 		qcom,keep-running;
 		memory-region = <&oem_vm_mem &vm_comm_mem>;
-		virtio-backends = <&oem_vm_virt_be0>;
+		virtio-backends = <&oem_vm_virt_be0 &oem_vm_virt_be1>;
 	};
 
 	qcom,sps {
