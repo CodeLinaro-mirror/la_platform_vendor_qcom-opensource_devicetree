@@ -831,7 +831,7 @@
 	/* GCC GDSCs */
 	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
 		compatible = "qcom,gdsc";
-		reg = <0x139004 0x4>;
+		reg = <0x0 0x139004 0x0 0x4>;
 		regulator-name = "gcc_usb30_prim_gdsc";
 		parent-supply = <&VDD_CX_LEVEL>;
 		qcom,retain-regs;
@@ -842,7 +842,7 @@
 
 	gcc_usb3_phy_gdsc: qcom,gdsc@150018 {
 		compatible = "qcom,gdsc";
-		reg = <0x150018 0x4>;
+		reg = <0x0 0x150018 0x0 0x4>;
 		regulator-name = "gcc_usb3_phy_gdsc";
 		parent-supply = <&VDD_MX_LEVEL>;
 		qcom,retain-regs;
