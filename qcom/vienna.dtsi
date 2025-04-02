@@ -1497,9 +1497,9 @@
 		qcom,bus-id = <0>;
 	};
 
-	spmi0_debug_bus: qcom,spmi-debug@0ec14000 {
+	spmi0_debug_bus: qcom,spmi-debug@11314000 {
 		compatible = "qcom,spmi-pmic-arb-debug";
-		reg = <0x0ec14000 0x60>, <0x351c8784 0x4>;
+		reg = <0x11314000 0x60>, <0x351c8784 0x4>;
 		reg-names = "core", "fuse";
 		clocks = <&aoss_qmp>;
 		clock-names = "core_clk";
@@ -1834,6 +1834,7 @@
 #include "vienna-coresight.dtsi"
 #include "vienna-debug.dtsi"
 #include "vienna-pinctrl.dtsi"
+#include "vienna-pmic-overlay.dtsi"
 #include "vienna-reserved-memory.dtsi"
 #include "vienna-regulators.dtsi"
 #include "msm-arm-smmu-vienna.dtsi"
