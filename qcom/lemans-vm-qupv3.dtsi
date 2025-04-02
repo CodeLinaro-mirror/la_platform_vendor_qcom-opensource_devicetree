@@ -4,6 +4,10 @@
  */
 
 &soc {
+	qup_iommu_region: qup_iommu_region {
+		iommu-addresses = <&qupv3_1 0x0 0x40000000>, <&qupv3_1 0x50000000 0xb0000000>,
+				  <&qupv3_2 0x0 0x40000000>, <&qupv3_2 0x50000000 0xb0000000>;
+	};
 
 	/* QUPv3_1  wrapper  instance */
 	qupv3_1: qcom,qupv3_1_geni_se@ac0000 {
@@ -16,7 +20,7 @@
 		clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
 			<&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x443 0x0>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
+		memory-region = <&qup_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		status = "ok";
@@ -61,7 +65,7 @@
 		clocks = <&gcc GCC_QUPV3_WRAP_2_M_AHB_CLK>,
 			<&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x5a3  0x0>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
+		memory-region = <&qup_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		status = "ok";
