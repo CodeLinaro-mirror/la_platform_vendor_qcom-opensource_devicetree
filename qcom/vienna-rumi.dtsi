@@ -88,6 +88,31 @@
 	status = "disabled";
 };
 
+&sdhc_3 {
+
+	/* device communication power supply for msm_io*/
+	vdd-io-supply = <&L11A>;
+	qcom,vdd-io-voltage-level = <1800000 1800000>;
+	qcom,vdd-io-always-on;
+	qcom,vdd-io-current-level = <200 22697>;
+
+	keep-power-in-suspend;
+	non-removable;
+	qcom,core_3_0v_support;
+	no-sd;
+	no-mmc;
+	qcom,restore-after-cx-collapse;
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc3_clk_on &sdc3_cmd_on &sdc3_data_on>;
+	pinctrl-1 = <&sdc3_clk_off &sdc3_cmd_off &sdc3_data_off>;
+	/* forbid SDR104/SDR50/DDR50 for hi3881 */
+	sdhci-caps-mask = <0x7 0x0>;
+
+	max-frequency = <100000>;
+
+	status = "disabled";
+};
+
 &rpmhcc {
 	compatible = "fixed-clock";
 	clock-output-names = "rpmh_clocks";
