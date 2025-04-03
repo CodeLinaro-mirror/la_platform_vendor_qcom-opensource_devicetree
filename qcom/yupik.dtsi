@@ -49,8 +49,8 @@
 
 	aliases: aliases {
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
-		sdhc0 = &sdhc_1; /*SDC1 eMMC slot*/
-		sdhc1 = &sdhc_2; /* SDC2 SD card slot */
+		mmc0 = &sdhc_1; /*SDC1 eMMC slot*/
+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		serial0 = &qupv3_se5_2uart;
 		hsuart0 = &qupv3_se7_4uart;
 	};
@@ -3725,17 +3725,31 @@
 		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 	};
 
+	sdhc1_opp_table: sdhc1-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <250000 133320>;
+			opp-avg-kBps = <104000 0>;
+		};
+
+		opp-384000000 {
+			opp-hz = /bits/ 64 <384000000>;
+			opp-peak-kBps = <800000 300000>;
+			opp-avg-kBps = <400000 0>;
+		};
+	};
+
 	sdhc_1: sdhci@7C4000 {
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x007C4000 0x1000>, <0x007C5000 0x1000>,
 		      <0x007c8000 0x8000>, <0x7d0000 0x9000>;
-		reg-names = "hc_mem", "cqhci_mem", "cqhci_ice",
-			    "cqhci_ice_hwkm";
+		reg-names = "hc", "cqhci", "cqhci_ice", "cqhci_ice_hwkm";
 
 		iommus = <&apps_smmu 0xc0 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "fastmap";
-		qcom,iommu-dma-addr-pool = <0x40000000 0x20000000>;
 		qcom,iommu-geometry = <0x40000000 0x20000000>;
 
 		interrupts = <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
@@ -3752,28 +3766,8 @@
 		interconnects = <&aggre1_noc MASTER_SDCC_1 &mc_virt SLAVE_EBI1>,
 			<&gem_noc MASTER_APPSS_PROC &cnoc2 SLAVE_SDCC_1>;
 		interconnect-names = "sdhc-ddr","cpu-sdhc";
-		qcom,msm-bus,name = "sdhc1";
-		qcom,msm-bus,num-cases = <8>;
-		qcom,msm-bus,num-paths = <2>;
-		qcom,msm-bus,vectors-KBps =
-			/* No Vote */
-			<0 0>, <0 0>,
-			/* 400 KB/s*/
-			<1000 590000>, <2000 1590000>,
-			/* 25 MB/s */
-			<50000 590000>, <30000 1590000>,
-			/* 50 MB/s */
-			<80000 590000>, <40000 1590000>,
-			/* 100 MB/s */
-			<100000 590000>, <50000 1590000>,
-			/* 200 MB/s */
-			<150000 2060000>, <80000 6440000>,
-			/* 400 MB/s */
-			<261438 2060000>, <300000 6440000>,
-			/* Max. bandwidth */
-			<1338562 4096000>, <1338562 9170000>;
-		qcom,bus-bw-vectors-bps = <0 400000 25000000 50000000
-			100000000 200000000 400000000 4294967295>;
+
+		operating-points-v2 = <&sdhc1_opp_table>;
 
 		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
 		qcom,dll-hsr-list = <0x000f642c 0x0 0x0 0x2C010800 0x80040868>;
@@ -3789,7 +3783,6 @@
 		non-removable;
 		supports-cqe;
 
-		qcom,devfreq,freq-table = <50000000 200000000>;
 		qcom,scaling-lower-bus-speed-mode = "DDR52";
 
 		/* Add dt entry for gcc hw reset */
@@ -3809,6 +3802,22 @@
 		};
 	};
 
+	sdhc2_opp_table: sdhc2-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <250000 133320>;
+			opp-avg-kBps = <50000 0>;
+		};
+
+		opp-202000000 {
+			opp-hz = /bits/ 64 <202000000>;
+			opp-peak-kBps = <800000 300000>;
+			opp-avg-kBps = <104000 0>;
+		};
+	};
+
 	sdhc_2: sdhci@8804000 {
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x08804000 0x1000>;
@@ -3816,7 +3825,7 @@
 
 		iommus = <&apps_smmu 0x100 0x0>;
 		dma-coherent;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
 
 		interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
@@ -3830,31 +3839,10 @@
 		interconnects = <&aggre1_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
 			<&gem_noc MASTER_APPSS_PROC &cnoc2 SLAVE_SDCC_2>;
 		interconnect-names = "sdhc-ddr","cpu-sdhc";
-		qcom,msm-bus,name = "sdhc2";
-		qcom,msm-bus,num-cases = <7>;
-		qcom,msm-bus,num-paths = <2>;
-		qcom,msm-bus,vectors-KBps =
-			/* No Vote */
-			<0 0>, <0 0>,
-			/* 400 KB/s*/
-			<1000 590000>, <2000 1590000>,
-			/* 25 MB/s */
-			<50000 590000>, <30000 1590000>,
-			/* 50 MB/s */
-			<80000 590000>, <40000 1590000>,
-			/* 100 MB/s */
-			<100000 590000>, <50000 1590000>,
-			/* 200 MB/s */
-			<261438 2060000>, <300000 6440000>,
-			/* Max. bandwidth */
-			<1338562 4096000>, <1338562 9170000>;
-		qcom,bus-bw-vectors-bps = <0 400000 25000000 50000000
-			100000000 200000000 4294967295>;
 
+		operating-points-v2 = <&sdhc2_opp_table>;
 		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
 		qcom,dll-hsr-list = <0x0007642c 0x0 0x10 0x2C010800 0x80040868>;
-
-		qcom,devfreq,freq-table = <50000000 202000000>;
 
 		status = "disabled";
 
