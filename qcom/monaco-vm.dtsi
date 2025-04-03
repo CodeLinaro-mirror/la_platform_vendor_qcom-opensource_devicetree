@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include "quin-vm-common.dtsi"
@@ -412,6 +412,12 @@
 	dma_dev@0x0 {
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
+	};
+
+	qcom_rng_ee3: qrng@10d3000 {
+		compatible = "qcom,trng";
+		reg = <0x10d3000 0x1000>;
+		status = "disabled";
 	};
 
 	usb3_phy_wrapper_gcc_usb30_prim_pipe_clk: usb3_phy_wrapper_gcc_usb30_prim_pipe_clk {
