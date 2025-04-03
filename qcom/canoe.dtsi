@@ -555,6 +555,19 @@
 		};
 	};
 
+	qcom,qpace {
+		compatible = "qcom,qpace";
+		iommus = <&apps_smmu 0x2020 0x13>,
+			 <&apps_smmu 0x2024 0x13>,
+			 <&apps_smmu 0x2028 0x13>,
+			 <&apps_smmu 0x202C 0x13>;
+		qcom,iommu-dma = "bypass";
+		dma-coherent;
+		interconnects = <&gem_noc MASTER_QPACE &mc_virt SLAVE_EBI1>;
+		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 	qcom,smp2p-cdsp {
 		compatible = "qcom,smp2p";
 		qcom,smem = <94>, <432>;
