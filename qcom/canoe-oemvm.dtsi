@@ -79,6 +79,7 @@
 		vm-uri = "vmuid/oemvm";
 		vm-guid = "847bfe26-0b12-5728-812a-06103f6bdec0";
 
+		vwdog = &wdog;
 		vm-attrs = "context-dump", "crash-restart";
 
 		memory {
@@ -370,6 +371,17 @@
 		compatible = "qcom,logbuf-vendor-hooks";
 	};
 
+	wdog: qcom,wdt@17600000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17600000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bark-time = <11000>;
+		qcom,pet-time = <9360>;
+		qcom,ipi-ping;
+		qcom,wakeup-enable;
+	};
 
 };
 #include "canoe-vm-dma-heaps.dtsi"
