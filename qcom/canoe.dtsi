@@ -929,7 +929,7 @@
 		};
 	};
 
-	qcom,spcom {
+	qcom_spcom: qcom,spcom {
 		compatible = "qcom,spcom";
 
 		qcom,rproc-handle = <&spss_pas>;
