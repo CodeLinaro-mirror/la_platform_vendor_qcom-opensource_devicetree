@@ -9,6 +9,7 @@
 #include <dt-bindings/clock/qcom,gcc-canoe.h>
 
 #include "canoe-pmic-overlay.dtsi"
+#include "canoe-qpt-overlay.dtsi"
 #include "canoe-thermal-overlay.dtsi"
 
 &soc {
@@ -69,9 +70,6 @@
 	vdda-pll-supply = <&L1D>;
 	vdda-pll-max-microamp = <20840>;
 
-	/* Phy GDSC for VDD_MX, always on */
-	vdd-phy-gdsc-supply = <&gcc_ufs_mem_phy_gdsc>;
-
 	/* Qref power supply, Refer Qref diagram */
 	vdda-qref-supply = <&L3D>;
 	vdda-qref-max-microamp = <659720>;
@@ -87,8 +85,6 @@
 };
 
 &ufshc_mem {
-	vdd-hba-supply = <&gcc_ufs_phy_gdsc>;
-
 	vcc-supply = <&L17B>;
 	vcc-max-microamp = <1200000>;
 

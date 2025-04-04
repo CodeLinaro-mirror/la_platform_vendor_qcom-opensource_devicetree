@@ -3797,6 +3797,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_crm";
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -4604,7 +4605,7 @@
 		compatible = "arm,coresight-dummy-source";
 		device-name = "tpdm_lpass_rscc";
 
-		trace-name = "tpda-lpass-rscc";
+		trace-name = "tpda-lpass-lpi";
 
 		out-ports {
 			port@0 {

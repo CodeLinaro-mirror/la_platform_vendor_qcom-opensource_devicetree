@@ -22,6 +22,7 @@ properties:
     enum:
       - qcom,cpuss-sleep-stats
       - qcom,cpuss-sleep-stats-v4
+      - qcom,cpuss-sleep-stats-v6
 
   reg:
     maxItems: 10
@@ -44,6 +45,10 @@ properties:
   num-cpus:
    const: 8
    description: provides information about the number of CPUs in the system.
+
+  num-clusters:
+   const: 2
+   description: provides information about the number of clusters in the system.
 
 required:
   - compatible
@@ -79,6 +84,24 @@ allOf:
           items:
             - description: provides information about the number of CPUs in the system.
 
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - qcom,cpuss-sleep-stats-v6
+    then:
+      properties:
+        reg:
+          items:
+            - description: cpuss sleep stats RAM base register region.
+        reg-names:
+          items:
+            - description: names corresponding to each reg property value.
+        num-clusters:
+          items:
+            - description: provides information about the number of clusters in the system.
+
 additionalProperties: false
 
 examples:
@@ -98,8 +121,16 @@ examples:
      };
 
   - |
-    cpuss-sleep-stats@17850000 {
+    cpuss-sleep-stats@18870000 {
       compatible = "qcom,cpuss-sleep-stats-v4";
-      reg = <0x17850000 0x4000>;
+      reg = <0x0 0x18870000 0x0 0x4000>;
       reg-names = "base";
+    };
+
+  - |
+    cpuss-sleep-stats@18870000 {
+      compatible = "qcom,cpuss-sleep-stats-v6";
+      reg = <0x0 0x18870000 0x0 0x4000>;
+      reg-names = "base";
+      num-clusters = <2>;
     };

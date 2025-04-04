@@ -20,6 +20,7 @@ description: |
     dt-bindings/clock/qcom,dispcc-pineapple.h
     dt-bindings/clock/qcom,dispcc-sun.h
     dt-bindings/clock/qcom,dispcc-canoe.h
+    dt-bindings/clock/qcom,alor-dispcc.h
 
 properties:
   compatible:
@@ -31,6 +32,7 @@ properties:
       - qcom,pineapple-dispcc
       - qcom,sun-dispcc
       - qcom,canoe-dispcc
+      - qcom,alor-dispcc
 
   clocks:
     items:

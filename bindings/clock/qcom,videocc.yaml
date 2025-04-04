@@ -39,6 +39,7 @@ properties:
       - qcom,sun-videocc-v2
       - qcom,parrot-videocc
       - qcom,canoe-videocc
+      - qcom,alor-videocc
 
   clocks:
     items:

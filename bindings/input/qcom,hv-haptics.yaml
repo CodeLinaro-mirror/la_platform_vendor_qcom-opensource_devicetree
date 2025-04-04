@@ -73,6 +73,25 @@ properties:
     minItems: 1
     maxItems: 8
 
+  qcom,swr-brake-mode:
+    description: |
+      Vibration brake mode used in SWR play. See "BRAKE_*" constants in
+      include/dt-bindings/input/qcom,hv-haptics.h.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    enum: [0, 1, 2, 3]
+    default: 3  # AUTO brake mode
+
+  qcom,swr-brake-pattern:
+    description: |
+      Brake pattern byte array for SWR play. The array needs to be specified as
+      8-bit using '/bits/ 8' parameter. The pattern will be played at the end of
+      the SWR playing waveform if manual brake mode (either open-loop or closed-loop)
+      is selected in SWR play. If this property is not specified, or if it contains
+      all zero values, then manual brake is disabled.
+    $ref: /schemas/types.yaml#/definitions/uint8-array
+    minItems: 1
+    maxItems: 8
+
   qcom,fifo-empty-threshold:
     description: |
       FIFO empty threshold. The "fifo-empty" IRQ will be triggered when the
@@ -167,6 +186,30 @@ properties:
       triggered during driver initialization. This is only applicable for HAP530_HV
       haptics module.
     type: boolean
+
+  qcom,freq-detect-in-play:
+    description: |
+      Boolean flag indicating that resonance frequency detection is automatically
+      performed during constant effect vibrations.
+    type: boolean
+
+  qcom,over-drive-mv:
+    description: The voltage in millivolts that over-drive and over-brake will be
+      applied during DIRECT_PLAY. This is only applicable for HAP530_HV haptics
+      module with revision of V2 and above.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    minimum: 100
+    maximum: 11000
+
+  qcom,over-drive-half-cycles:
+    description: Number of half cycles that over-drive will be applied.
+    minimum: 1
+    maximum: 16
+
+  qcom,over-brake-half-cycles:
+    description: Number of half cycles that over-brake will be applied.
+    minimum: 1
+    maximum: 16
 
 patternProperties:
   ".*hap-swr-slave-reg$":

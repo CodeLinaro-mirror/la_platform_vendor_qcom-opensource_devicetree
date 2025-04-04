@@ -13,6 +13,12 @@ pmk8850@0 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmk8850";
+};
+
 	pmk8850_sdam_1: sdam@7000 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0x7000>;
@@ -129,6 +135,21 @@ pmk8850@0 {
 		};
 	};
 
+	pmk8850_sdam_49: sdam@a000 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xa000>;
+	};
+
+	pmk8850_sdam_50: sdam@a100 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xa100>;
+	};
+
+	pmk8850_sdam_51: sdam@a200 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xa200>;
+	};
+
 	pmk8850_sdam_71: sdam@b600 {
 		compatible = "qcom,spmi-sdam";
 		reg = <0xb600>;
@@ -171,5 +192,19 @@ pmk8850@0 {
 		#thermal-sensor-cells = <1>;
 		#io-channel-cells = <1>;
 		io-channel-ranges;
+	};
+
+	pmk8850_qpt: qcom,power-telemetry-device {
+		compatible = "qcom,power-telemetry";
+		status = "disabled";
+		interrupts = <0x0 0xa2 0x1 IRQ_TYPE_EDGE_RISING>,
+				<0x0 0xa1 0x1 IRQ_TYPE_EDGE_RISING>;
+		nvmem = <&pmk8850_sdam_49>,
+				<&pmk8850_sdam_50>,
+				<&pmk8850_sdam_51>;
+		nvmem-names = "qpt-config-sdam",
+				"qpt-frac-sdam",
+				"qpt-data-sdam";
+		#powerzone-cells = <1>;
 	};
 };

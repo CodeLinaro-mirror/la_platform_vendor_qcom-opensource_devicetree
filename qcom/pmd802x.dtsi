@@ -12,6 +12,12 @@ qcom,pmd802x@4 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+	pmic-ecid@100 {
+		compatible = "qcom,pmic-ecid";
+		reg = <0x100>;
+		qcom,pmic-name = "pmd802x";
+	};
+
 	pmd802x_tz: pmd802x-temp-alarm@a00 {
 		compatible = "qcom,spmi-temp-alarm";
 		reg = <0xa00>;
@@ -82,4 +88,3 @@ qcom,pmd802x@4 {
 		};
 	};
 };
-

@@ -15,7 +15,7 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
-CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb
+CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb alor-interposer.dtb
 CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb
 
 CANOE_BOARDS += \
@@ -23,6 +23,7 @@ CANOE_BOARDS += \
 		canoe-mtp-kiwi-overlay.dtbo \
 		canoe-mtp-mango-overlay.dtbo \
 		canoe-mtp-overlay.dtbo \
+		canoe-mtp-pdm-mic-overlay.dtbo \
 		canoe-mtp-pictor-overlay.dtbo \
 		canoe-mtp-qmp1000-overlay.dtbo \
 		canoe-mtp-st54l-pandeiro-overlay.dtbo \
@@ -34,7 +35,9 @@ CANOE_BOARDS += \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
-		canoe-atp-overlay.dtbo
+		canoe-atp-overlay.dtbo \
+		alor-interposer-mtp-overlay.dtbo \
+		alor-interposer-rcm-overlay.dtbo
 
 NOAPQ_CANOE_BOARDS += \
 		canoe-rumi-overlay.dtbo
@@ -199,7 +202,11 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
-				canoe-oemvm-rcm.dtb
+				canoe-oemvm-rcm.dtb \
+				alor-interposer-vm-mtp.dtb \
+				alor-interposer-vm-rcm.dtb \
+				alor-interposer-oemvm-mtp.dtb \
+				alor-interposer-oemvm-rcm.dtb
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
@@ -217,6 +224,40 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_NORD), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb
+SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SA8797P_GH_LA_GVM_QAM_BOARDS),$(SA8797P_GH_LA_GVM_QAM_BASE_DTB)) \
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
+
+dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_MONACO_AUTO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+MONACO_LA_GVM_BASE_DTB += monaco-vm-la.dtb
+
+MONACO_LA_GVM_BOARDS += \
+		monaco-vm-la-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
 
