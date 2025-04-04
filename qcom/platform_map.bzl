@@ -339,12 +339,26 @@ _platform_map = {
     },
     "vienna": {
         "dtb_list": [
+            # keep sorted
             {"name": "vienna.dtb"},
+            {
+                "name": "viennap.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
-            {
-                "name": "vienna-rumi-overlay.dtbo",
-            },
+            # keep sorted
+            {"name": "vienna-atp-no-cam-overlay.dtbo"},
+            {"name": "vienna-atp-overlay.dtbo"},
+            {"name": "vienna-idp-no-cam-overlay.dtbo"},
+            {"name": "vienna-idp-overlay.dtbo"},
+            {"name": "vienna-rcm-no-cam-overlay.dtbo"},
+            {"name": "vienna-rcm-overlay.dtbo"},
+            {"name": "vienna-rumi-overlay.dtbo"},
+            {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-overlay.dtbo"},
+            {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },
 }
