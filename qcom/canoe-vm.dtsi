@@ -210,6 +210,21 @@
 				};
 			};
 
+			virtio-mmio@2 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x3>;
+				push-compatible = "virtio,mmio";
+				dma-coherent;
+				dma_base = <0x0 0x8000>;
+				memory {
+					qcom,label = <0x15>;			//for virtio-vsock
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
 			vrtc {
 				vdevice-type = "vrtc-pl031";
 				peer-default;
@@ -271,11 +286,11 @@
 				generate = "/swiotlb";
 				push-compatible = "swiotlb";
 				peer-default;
-				dma_base = <0x0 0x8000>;
+				dma_base = <0x0 0x14000>;
 				memory {
 					qcom,label = <0x12>;
 					#address-cells = <0x2>;
-					base = <0x0 0xDA700000>;
+					allocate-base;
 				};
 			};
 
