@@ -17,6 +17,16 @@
 };
 
 /delete-node/ &qcom_qpace;
+/delete-node/ &spss_pas;
+/delete-node/ &qcom_spcom;
+/delete-node/ &spss_utils;
+/delete-node/ &qcom_sp_hlos;
+/delete-node/ &qcom_secure_sp_tz;
+/delete-node/ &qcom_secure_sp_modem;
+/delete-node/ &sp_mem;
+/delete-node/ &spu_tz_shared_mem;
+/delete-node/ &spu_modem_shared_mem;
+/delete-node/ &spss_region_mem;
 
 &ddr_freq_table {
 	qcom,freq-tbl =
