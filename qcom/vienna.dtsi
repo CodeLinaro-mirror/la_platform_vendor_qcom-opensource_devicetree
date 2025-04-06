@@ -1547,6 +1547,20 @@
 			qcom,glinkpkt-ch-name = "bt_cp_ctrl";
 			qcom,glinkpkt-dev-name = "bt_cp_ctrl";
 		};
+
+		qcom,glinkpkt-hci-aribter {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
+			qcom,intents = <0x1000 10>;
+		};
+
+		qcom,glinkpkt-socket-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
+			qcom,intents = <0x1000 10>;
+		};
 	};
 
 	thermal_zones: thermal-zones {};
