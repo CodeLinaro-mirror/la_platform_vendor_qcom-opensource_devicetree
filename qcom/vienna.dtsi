@@ -588,6 +588,14 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		/* keep a few m cores in class0 only to avoid wakeup of l cores */
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		/* keep other cores in class1 */
+		qcom,gic-class1-cpus = <&CPU4>;
+	};
+
 	kryo-erp {
 		compatible = "arm,arm64-kryo-cpu-erp";
 		interrupts = <GIC_PPI 0 IRQ_TYPE_LEVEL_HIGH>,
