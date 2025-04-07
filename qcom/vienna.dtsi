@@ -1676,8 +1676,10 @@
 
 	ddr_freq_table: ddr-freq-table {
 		qcom,freq-tbl =
+			<  200000 >,
+			<  451200 >,
 			<  547200 >,
-			<  768000 >,
+			< 1353600 >,
 			< 1555200 >,
 			< 1708800 >,
 			< 2092800 >,
@@ -1752,31 +1754,34 @@
 
 			silver {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU1 &CPU2 &CPU3 &CPU4>;
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,sampling-enabled;
 				qcom,cpufreq-memfreq-tbl =
-					< 1036800 1708000 >,
-					< 1478400 2092800 >,
-					< 1747200 2736000 >,
-					< 1958400 3187200 >;
+					<  249600  200000 >,
+					<  460800  451200 >,
+					< 1036800  547200 >,
+					< 1363200  681000 >,
+					< 1478400  768000 >,
+					< 1747200 1353600 >,
+					< 1958400 1555200 >;
 			};
 
 			gold {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,sampling-enabled;
 				qcom,cpufreq-memfreq-tbl =
-					<  614400  547200 >,
-					<  960000  135360 >,
-					< 1190000 2092800 >,
-					< 1612000 3187200 >,
-					< 1785000 3686400 >,
-					< 2122000 4224000 >;
+					<  960000  547200 >,
+					< 1190000  768000 >,
+					< 1440000 1353600 >,
+					< 1612000 1555200 >,
+					< 1785000 1708800 >,
+					< 2122000 2092800 >;
 			};
 
 			silver-compute {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU1 &CPU2 &CPU3 &CPU4>;
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
@@ -1785,7 +1790,7 @@
 
 			gold-compute {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
@@ -1802,10 +1807,11 @@
 
 			silver {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU1 &CPU2 &CPU3 &CPU4>;
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1036800  806400 >,
-					< 1478400 1209600 >,
+					< 1036800  902400 >,
+					< 1363200 1209600 >,
+					< 1478400 1305600 >,
 					< 1747200 1401600 >,
 					< 1958400 1612800 >;
 				qcom,sampling-enabled;
@@ -1813,14 +1819,10 @@
 
 			gold {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
-					<  268800  249600 >,
-					<  508800  403200 >,
-					<  614400  537600 >,
-					<  960000  806400 >,
 					< 1190400  902400 >,
-					< 1440000 1209600>,
+					< 1440000 1209600 >,
 					< 1612800 1305600 >,
 					< 1785600 1401600 >,
 					< 2112000 1612800 >;
@@ -1829,7 +1831,7 @@
 
 			silver-compute {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU1 &CPU2 &CPU3 &CPU4>;
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
 					< 1958000 1612800 >;
 				qcom,sampling-enabled;
@@ -1838,7 +1840,7 @@
 
 			gold-compute {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
 					< 1785600  249600 >,
 					< 2112000 1401600 >;
@@ -1856,7 +1858,7 @@
 
 			ddrqos_gold_lat: gold {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
 					< 3206400 4700000 >;
 				qcom,sampling-enabled;
@@ -1864,7 +1866,7 @@
 
 			ddrqos_gold_latfloor: prime-latfloor {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU0>;
+				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
 					< 3206400 4700000 >;
 				qcom,sampling-enabled;
