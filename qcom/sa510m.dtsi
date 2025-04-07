@@ -1181,4 +1181,9 @@
 		qcom,asm330_hrtimer;
 	};
 
+	eeprom@52 {
+		compatible = "atmel,24c128";
+		reg = <0x52>;
+		pagesize = <64>;
+	};
 };
