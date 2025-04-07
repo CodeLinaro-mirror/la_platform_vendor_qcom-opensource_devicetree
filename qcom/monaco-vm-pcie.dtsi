@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/clock/qcom,gcc-monaco_auto.h>
@@ -104,7 +104,7 @@
 				"pcie_0_pipediv2_clk",
 				"pcie_pipe_clk_ext_src";
 
-		clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>,
+		qcom,pcie-clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>,
 					<0>, <0>, <100000000>, <0>,
 					<0>, <0>, <0>;
 
@@ -422,7 +422,7 @@
 				"pcie_1_pipediv2_clk",
 				"pcie_pipe_clk_ext_src";
 
-		clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>,
+		qcom,pcie-clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>,
 					<0>, <0>, <100000000>, <0>,
 					<0>, <0>, <0>;
 
