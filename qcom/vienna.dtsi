@@ -65,10 +65,21 @@
 	};
 
 	firmware: firmware {
-		qcom_scm: qcom_scm { };
+
+		qcom_scm: qcom_scm {
+			compatible = "qcom,scm";
+		};
 
 		qtee_shmbridge {
 			compatible = "qcom,tee-shared-memory-bridge";
+		};
+
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
 		};
 	};
 
@@ -731,6 +742,16 @@
 		reg = <0x10c3000 0x1000>;
 		qcom,no-qrng-config;
 		qcom,no-clock-support;
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
 	};
 
 	qcom,smp2p-adsp {
@@ -1952,6 +1973,22 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x800000>;
+	};
+
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
 	};
 };
 
