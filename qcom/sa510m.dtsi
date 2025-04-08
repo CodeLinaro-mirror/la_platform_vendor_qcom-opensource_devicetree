@@ -302,6 +302,11 @@
 		ss-name = "modem", "apss";
 	};
 
+	show_resume_irqs@17000000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17000000 0x5000>;           /* GICD */
+	};
+
 	timer {
 		compatible = "arm,armv7-timer";
 		interrupts = <1 13 0xf08>,
