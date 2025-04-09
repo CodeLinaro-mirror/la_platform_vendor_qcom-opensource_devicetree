@@ -21,7 +21,7 @@
 		#size-cells = <0>;
 
 		qcom,power-on@800 {
-			compatible = "qcom,qpnp-power-on";
+			compatible = "qcom,pm8998-pon";
 			reg = <0x800>;
 		};
 
