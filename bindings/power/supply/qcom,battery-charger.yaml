@@ -17,7 +17,10 @@ description: |
 
 properties:
   compatible:
-    const: qcom,battery-charger
+    items:
+      - enum:
+          - qcom,battery-charger
+          - qcom,pmw6100-battery-charger
 
   qcom,thermal-mitigation:
     description: |
