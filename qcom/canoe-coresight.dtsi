@@ -877,8 +877,8 @@
 
 		device-name = "turing_etm0";
 
-		qcom,atid-num = <2>;
-		atid = <38 39>;
+		qcom,atid-num = <4>;
+		atid = <38 39 40 41>;
 		trace-name = "turing-etm0";
 
 		out-ports {
