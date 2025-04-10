@@ -5250,6 +5250,25 @@
 		qcom,cti-gpio-trigout = <20>;
 		pinctrl-names = "cti-trigout-pctrl";
 		pinctrl-0 = <&trigout_a>;
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		trig-conns@0 {
+			reg = <0>;
+			arm,trig-out-sigs = <3>;
+			arm,cs-dev-assoc = <&tmc_etr>;
+		};
+
+		trig-conns@1 {
+			reg = <1>;
+			arm,trig-out-sigs = <16 20>;
+		};
+
+		trig-conns@2 {
+			reg = <2>;
+			arm,trig-out-sigs = <4 5 6 7>;
+		};
 	};
 
 	cti@11003000 {
@@ -5432,6 +5451,22 @@
 		qcom,extended_cti;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		trig-conns@0 {
+			reg = <0>;
+			arm,trig-in-sigs = <4>;
+			arm,cs-dev-assoc = <&tmc_etr>;
+		};
+
+		trig-conns@1 {
+			reg = <1>;
+			arm,trig-in-sigs = <24>;
+			arm,trig-out-sigs = <1>;
+			arm,cs-dev-assoc = <&tmc_etf>;
+		};
 	};
 
 	cti@11321000 {
