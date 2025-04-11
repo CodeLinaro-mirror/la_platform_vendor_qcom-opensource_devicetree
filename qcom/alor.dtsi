@@ -19,6 +19,7 @@
 #include <dt-bindings/interconnect/qcom,alor.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/mailbox/qcom-ipcc-canoe.h>
+#include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
@@ -2575,6 +2576,161 @@
 		/* Outputs to soccp */
 		qcom,smem-states = <&soccp_smp2p_out 0>, <&soccp_smp2p_out 10>, <&soccp_smp2p_out 9>, <&soccp_smp2p_out 8>;
 		qcom,smem-state-names = "stop", "wakeup", "sleep", "ping";
+	};
+
+	pmic_arbiter: arbiter@c400000 {
+		compatible = "qcom,canoe-spmi-pmic-arb";
+		reg = <0x0 0xc400000 0x0 0x3000>,
+		      <0x0 0xc900000 0x0 0x400000>,
+		      <0x0 0xc4c0000 0x0 0x400000>,
+		      <0x0 0xc403000 0x0 0x8000>;
+		reg-names = "core", "chnls", "obsrvr", "chnl_map";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		qcom,channel = <0>;
+		qcom,ee = <0>;
+
+		spmi0_bus: spmi@c426000 {
+			reg = <0x0 0xc426000 0x0 0x4000>,
+			      <0x0 0xc8c0000 0x0 0x10000>,
+			      <0x0 0xc42a000 0x0 0x8000>;
+			reg-names = "cnfg", "intr", "chnl_owner";
+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+
+		spmi1_bus: spmi@c437000 {
+			reg = <0x0 0xc437000 0x0 0x4000>,
+			      <0x0 0xc8d0000 0x0 0x10000>,
+			      <0x0 0xc43b000 0x0 0x8000>;
+			reg-names = "cnfg", "intr", "chnl_owner";
+			interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+	};
+
+	pmic-arb-debug@11314000 {
+		compatible = "qcom,spmi-pmic-arb-debug-v8";
+		reg = <0x0 0x11314000 0x0 0x64>,
+		      <0x0 0x221c8780 0x0 0x4>;
+		reg-names = "core", "fuse";
+		clocks = <&aoss_qmp>;
+		clock-names = "core_clk";
+		qcom,fuse-enable-bit = <14>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		depends-on-supply = <&pmic_arbiter>;
+
+		spmi_debug_bus_0: spmi@0 {
+			reg = <0>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+
+			pmk8850@0 {
+				compatible = "qcom,spmi-pmic";
+				reg = <0 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550@1 {
+				compatible = "qcom,spmi-pmic";
+				reg = <1 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmg1110@2 {
+				compatible = "qcom,spmi-pmic";
+				reg = <2 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550ve@3 {
+				compatible = "qcom,spmi-pmic";
+				reg = <3 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550ve@5 {
+				compatible = "qcom,spmi-pmic";
+				reg = <5 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550ve@6 {
+				compatible = "qcom,spmi-pmic";
+				reg = <6 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550ve@8 {
+				compatible = "qcom,spmi-pmic";
+				reg = <8 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmg1110@9 {
+				compatible = "qcom,spmi-pmic";
+				reg = <9 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmr735d@a {
+				compatible = "qcom,spmi-pmic";
+				reg = <10 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmg1110@b {
+				compatible = "qcom,spmi-pmic";
+				reg = <11 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8010@c {
+				compatible = "qcom,spmi-pmic";
+				reg = <12 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8010@d {
+				compatible = "qcom,spmi-pmic";
+				reg = <13 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+		};
 	};
 };
 
