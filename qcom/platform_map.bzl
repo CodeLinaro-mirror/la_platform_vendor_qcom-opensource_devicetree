@@ -147,8 +147,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "alor-interposer-oemvm-mtp.dtb"},
+            {"name": "alor-interposer-oemvm-qrd.dtb"},
             {"name": "alor-interposer-oemvm-rcm.dtb"},
             {"name": "alor-interposer-vm-mtp.dtb"},
+            {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
@@ -166,8 +168,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "alor-interposer-oemvm-mtp.dtb"},
+            {"name": "alor-interposer-oemvm-qrd.dtb"},
             {"name": "alor-interposer-oemvm-rcm.dtb"},
             {"name": "alor-interposer-vm-mtp.dtb"},
+            {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
