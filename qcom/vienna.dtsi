@@ -2252,6 +2252,31 @@
 	};
 };
 
+&i2c9 {
+	status = "ok";
+
+	raydium_ts@39 {
+		compatible = "raydium,raydium-ts";
+		reg = <0x39>;
+		status = "ok";
+		interrupt-parent = <&tlmm>;
+		interrupts = <113 0x2008>;
+		vcc_i2c-supply = <&L15A>;
+		pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		pinctrl-2 = <&ts_release>;
+		raydium,reset-gpio = <&tlmm 114 0x00>;
+		raydium,irq-gpio = <&tlmm 113 0x00>;
+		raydium,num-max-touches = <2>;
+		raydium,soft-reset-delay-ms = <50>;
+		raydium,hard-reset-delay-ms = <100>;
+		raydium,x_max = <454>;
+		raydium,y_max = <454>;
+		raydium,display-coords= <0 0 454 454>;
+	};
+};
+
 #include "ipcc-test-vienna.dtsi"
 #include "vienna-walt.dtsi"
 #include "msm-rdbg.dtsi"
