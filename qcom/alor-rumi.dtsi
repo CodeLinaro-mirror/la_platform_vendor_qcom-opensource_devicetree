@@ -142,3 +142,19 @@
 &APSS_OFF {
 	status = "nok";
 };
+
+&cam_crm {
+	status = "disabled";
+};
+
+&disp_crm {
+	status = "disabled";
+};
+
+&pcie_crm {
+	status = "disabled";
+};
+
+&pcie_pdc {
+	status = "disabled";
+};

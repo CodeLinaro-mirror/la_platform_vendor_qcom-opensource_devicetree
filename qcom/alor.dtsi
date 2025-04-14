@@ -622,6 +622,60 @@
 		};
 	};
 
+	disp_crm: crm@9bc3000 {
+		label = "disp_crm";
+		compatible = "qcom,disp-crm-v3";
+		reg = <0x0 0x9bc3000 0x0 0x9000>, <0x0 0x9bcc000 0x0 0x400>, <0x0 0x9bcc400 0x0 0x400>,
+		      <0x0 0x9bcc800 0x0 0x2000>, <0x0 0x9bce800 0x0 0x600>, <0x0 0x9bcee00 0x0 0x200>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 812 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 813 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 814 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 815 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 816 IRQ_TYPE_EDGE_RISING>,
+			     <GIC_SPI 817 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "disp_crm_drv0",
+				  "disp_crm_drv1",
+				  "disp_crm_drv2",
+				  "disp_crm_drv3",
+				  "disp_crm_drv4",
+				  "disp_crm_drv5";
+		clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>;
+		qcom,hw-drv-ids = <0 1 2 3 4 5 6 7 8>;
+		qcom,sw-drv-ids = <1>;
+	};
+
+	cam_crm: crm@9548000 {
+		label = "cam_crm";
+		compatible = "qcom,cam-crm-v3";
+		reg = <0x0 0x9548000 0x0 0x1e00>, <0x0 0x9549e00 0x0 0x400>, <0x0 0x954a200 0x0 0x400>,
+		      <0x0 0x954a600 0x0 0x2000>, <0x0 0x954c600 0x0 0x600>, <0x0 0x954cc00 0x0 0x200>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 121 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "cam_crm_drv0";
+		clocks = <&camcc CAM_CC_DRV_AHB_CLK>;
+		qcom,hw-drv-ids = <0 1 2>;
+		qcom,sw-drv-ids = <0>;
+	};
+
+	pcie_crm: crm@1d01000 {
+		label = "pcie_crm";
+		compatible = "qcom,pcie-crm-v3";
+		reg = <0x0 0x1d01000 0x0 0x2000>, <0x0 0x1d03000 0x0 0x400>, <0x0 0x1d03400 0x0 0x400>,
+		      <0x0 0x1d03800 0x0 0x2000>, <0x0 0x1d05800 0x0 0x600>, <0x0 0x1d05e00 0x0 0x200>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 641 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pcie_crm_drv0";
+		clocks = <&pcie_0_pipe_clk>;
+		qcom,hw-drv-ids = <0 1>;
+		qcom,sw-drv-ids = <0>;
+	};
+
+	pcie_pdc: pdc@b370000 {
+		compatible = "qcom,alor-pcie-pdc", "qcom,pcie-pdc";
+		reg = <0x0 0xb370000 0x0 0x10000>;
+	};
+
 	google,debug-kinfo {
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
