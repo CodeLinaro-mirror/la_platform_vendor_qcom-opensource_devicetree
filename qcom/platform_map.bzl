@@ -464,8 +464,21 @@ _platform_map = {
     "seraph": {
         "dtb_list": [
             {"name": "seraph.dtb"},
+            {
+                "name": "seraphp.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
+            {"name": "seraph-atp-overlay.dtbo"},
+            {"name": "seraphp-atp-overlay.dtbo"},
+            {"name": "seraph-idp-overlay.dtbo"},
+            {"name": "seraphp-idp-overlay.dtbo"},
+            {"name": "seraph-idp-dtof-overlay.dtbo"},
+            {"name": "seraphp-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-idp-no-display-overlay.dtbo"},
+            {"name": "seraphp-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-rumi-overlay.dtbo"},
         ],
     },
     "sun": {
