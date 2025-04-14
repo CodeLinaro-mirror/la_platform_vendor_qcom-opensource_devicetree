@@ -940,6 +940,10 @@
 		};
 	};
 
+	qcom,glink {
+		compatible = "qcom,glink";
+	};
+
 	qcom,sps {
 		compatible = "qcom,msm-sps-4k";
 		qcom,pipe-attr-ee;
