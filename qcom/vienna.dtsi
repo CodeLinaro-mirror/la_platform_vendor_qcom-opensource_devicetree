@@ -417,6 +417,11 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+		qcom,vmid-cp-camera-preview-ro;
+	};
+
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,vienna-pdc", "qcom,pdc";
 		reg = <0xb220000 0x10000>, <0x174000f0 0x64>;
