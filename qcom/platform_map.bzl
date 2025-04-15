@@ -359,6 +359,7 @@ _platform_map = {
             {"name": "vienna-wdp-ddsip-overlay.dtbo"},
             {"name": "vienna-wdp-overlay.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-ddsip-overlay.dtbo"},
             {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },

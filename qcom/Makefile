@@ -194,6 +194,7 @@ VIENNA_BOARDS += \
 		 vienna-wdp-ddsip-overlay.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
 		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-ddsip-overlay.dtbo \
 		 vienna-wrd-no-cam-overlay.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
