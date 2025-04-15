@@ -356,6 +356,7 @@ _platform_map = {
             {"name": "vienna-rcm-overlay.dtbo"},
             {"name": "vienna-rumi-overlay.dtbo"},
             {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-ddsip-overlay.dtbo"},
             {"name": "vienna-wdp-overlay.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay.dtbo"},
             {"name": "vienna-wrd-overlay.dtbo"},
