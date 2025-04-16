@@ -20,6 +20,15 @@ properties:
     enum:
       - qcom,cache-allocation-canoe
 
+  reg:
+    description: |
+      Address and size of CPUCP shared memory for MPAM monitor data.
+
+  reg-names:
+    $ref: /schemas/types.yaml#/definitions/string
+    items:
+      - const: mon-base
+
   qcom,cluster-num:
     $ref: /schemas/types.yaml#/definitions/uint32
     description: |
@@ -32,6 +41,8 @@ properties:
 
 required:
   - compatible
+  - reg
+  - reg-names
   - qcom,cluster-num
   - qcom,devfreq
 
@@ -41,6 +52,8 @@ examples:
   - |
     qcom,cache-allocation {
        compatible = "qcom,cache-allocation-canoe";
+       reg = <0x0 0x1d83a400 0x0 0x400>;
+       reg-names = "mon-base";
        qcom,cluster-num = <2>;
        qcom,devfreq = <&msm_gpu>;
     };
