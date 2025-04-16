@@ -299,6 +299,14 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0xC00000>;
 	};
+
+	vm_comm_mem: vm_comm_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x800000>;
+	};
 };
 
 &soc {
@@ -1577,6 +1585,111 @@
 		qcom,pred-prem-cnt = <2>;
 		qcom,sample-invalid-time = <40000000>;
 	};
+
+	trust_ui_vm_vblk0_ring: trust_ui_vm_vblk0_ring {
+		size = <0x4000>;
+		gunyah-label = <0x11>;
+	};
+
+	trust_ui_vm_vblk1_ring: trust_ui_vm_vblk1_ring {
+		size = <0x4000>;
+		gunyah-label = <0x10>;
+	};
+
+	trust_ui_vm_swiotlb: trust_ui_vm_swiotlb {
+		size = <0x400000>;
+		gunyah-label = <0x12>;
+	};
+
+	trust_ui_vm: qcom,trust_ui_vm {
+		vm_name = "trustedvm";
+		shared-buffers-size = <0x408000>;
+		shared-buffers = <&trust_ui_vm_vblk0_ring &trust_ui_vm_vblk1_ring &trust_ui_vm_swiotlb>;
+	};
+
+	trust_ui_vm_virt_be0: trust_ui_vm_virt_be0@11 {
+		qcom,vm = <&trust_ui_vm>;
+		qcom,label = <0x11>;
+	};
+
+	trust_ui_vm_virt_be1: trust_ui_vm_virt_be1@10 {
+		qcom,vm = <&trust_ui_vm>;
+		qcom,label = <0x10>;
+	};
+
+	gh_secure_vm_loader0: gh-secure-vm-loader@0 {
+		compatible = "qcom,gh-secure-vm-loader";
+		qcom,pas-id = <28>;
+		qcom,vmid = <45>;
+		qcom,firmware-name = "trustedvm";
+		qcom,keep-running;
+		memory-region = <&trust_ui_vm_mem &vm_comm_mem>;
+		virtio-backends = <&trust_ui_vm_virt_be0 &trust_ui_vm_virt_be1>;
+	};
+
+	oem_vm_vblk0_ring: oem_vm_vblk0_ring {
+		size = <0x4000>;
+		gunyah-label = <0x16>; /* persist */
+	};
+
+	oem_vm_vblk1_ring: oem_vm_vblk1_ring {
+		size = <0x4000>;
+		gunyah-label = <0x13>; /* system */
+	};
+
+	oem_vm_swiotlb: oem_vm_swiotlb {
+		size = <0x100000>;
+		gunyah-label = <0x14>;
+	};
+
+	oem_vm: qcom,oem_vm {
+		vm_name = "oemvm";
+		shared-buffers-size = <0x108000>;
+		shared-buffers = <&oem_vm_vblk0_ring &oem_vm_vblk1_ring &oem_vm_swiotlb>;
+	};
+
+	oem_vm_virt_be0: oem_vm_virt_be0@16 {
+		qcom,vm = <&oem_vm>;
+		qcom,label = <0x16>; /* persist */
+	};
+
+	oem_vm_virt_be1: oem_vm_virt_be1@13 {
+		qcom,vm = <&oem_vm>;
+		qcom,label = <0x13>; /* system */
+	};
+
+	gh_secure_vm_loader1: gh-secure-vm-loader@1 {
+		compatible = "qcom,gh-secure-vm-loader";
+		qcom,pas-id = <34>;
+		qcom,vmid = <49>;
+		qcom,firmware-name = "oemvm";
+		qcom,keep-running;
+		memory-region = <&oem_vm_mem &vm_comm_mem>;
+		virtio-backends = <&oem_vm_virt_be0 &oem_vm_virt_be1>;
+	};
+
+	qcom,test-dbl-tuivm {
+		compatible = "qcom,gh-dbl";
+		qcom,label = <0x4>;
+	};
+
+	qcom,test-dbl-oemvm {
+		compatible = "qcom,gh-dbl";
+		qcom,label = <0x5>;
+	};
+
+	qcom,test-msgq-tuivm {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <0x4>;
+		qcom,primary;
+	};
+
+	qcom,test-msgq-oemvm {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <0x5>;
+		qcom,primary;
+	};
+
 };
 
 #include "alor-debug.dtsi"
