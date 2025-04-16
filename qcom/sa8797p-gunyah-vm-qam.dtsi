@@ -5,3 +5,16 @@
 
 #include "sa8797p-gunyah-vm.dtsi"
 
+&vm_config {
+	/* Pass through regions */
+	iomemory-ranges = <
+		/* MPROC NS1 IPCC region */
+		0x0 0x9008000 0x0 0x9008000 0x0 0x1000 0x0
+	>;
+
+	/* Pass through IRQs */
+	gic-irq-ranges = <
+		/* MPROC NS1 IPCC GIC IRQ */
+		471 471
+	>;
+};
