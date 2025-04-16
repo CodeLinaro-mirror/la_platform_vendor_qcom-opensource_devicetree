@@ -283,6 +283,24 @@ dtb-y += $(autogvm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_DIREWOLF), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+DIREWOLF_LA_GVM_BASE_DTB += direwolf-vm-la.dtb
+
+DIREWOLF_LA_GVM_BOARDS += \
+                   direwolf-vm-la-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(DIREWOLF_LA_GVM_BOARDS),$(DIREWOLF_LA_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(DIREWOLF_LA_GVM_BOARDS) $(DIREWOLF_LA_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_NORD), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb
