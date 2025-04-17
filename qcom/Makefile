@@ -335,6 +335,15 @@ dtb-y += $(autogvm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_ALOR), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-rumi.dtb \
+				alor-oemvm-rumi.dtb
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
 clean-files     := *.dtb *.dtbo

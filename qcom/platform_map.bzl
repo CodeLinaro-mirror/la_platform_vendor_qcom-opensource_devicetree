@@ -160,6 +160,7 @@ _platform_map = {
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
         ],
+        "binary_compatible_with": ["alor-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -178,6 +179,21 @@ _platform_map = {
             {"name": "canoe-vm-qrd.dtb"},
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
+        ],
+        "binary_compatible_with": ["alor-oemvm"],
+    },
+    "alor-vm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "alor-oemvm-rumi.dtb"},
+            {"name": "alor-vm-rumi.dtb"},
+        ],
+    },
+    "alor-oemvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "alor-oemvm-rumi.dtb"},
+            {"name": "alor-vm-rumi.dtb"},
         ],
     },
     "gen3auto": {
