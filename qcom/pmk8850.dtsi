@@ -207,4 +207,8 @@ pmk8850@0 {
 				"qpt-data-sdam";
 		#powerzone-cells = <1>;
 	};
+
+	pmk8850_qvadj: qcom,voltage-adj-device {
+		compatible = "qcom,vadj";
+	};
 };
