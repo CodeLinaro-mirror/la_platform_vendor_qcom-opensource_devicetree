@@ -192,6 +192,7 @@ VIENNA_BOARDS += \
 		 vienna-rcm-overlay.dtbo \
 		 vienna-rcm-no-cam-overlay.dtbo \
 		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-ddsip-overlay.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
 		 vienna-wrd-overlay.dtbo \
 		 vienna-wrd-no-cam-overlay.dtbo
