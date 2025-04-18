@@ -163,6 +163,25 @@
 				qcom,pre-scaling = <1 1>;
 			};
 		};
+
+		pmw6100_bcl: bcl@4700 {
+			compatible = "qcom,bcl-v5";
+			reg = <0x4700 0x100>;
+			interrupts = <0x0 0x47 0x0 IRQ_TYPE_NONE>,
+					<0x0 0x47 0x1 IRQ_TYPE_NONE>,
+					<0x0 0x47 0x2 IRQ_TYPE_NONE>;
+			interrupt-names = "bcl-lvl0",
+						"bcl-lvl1",
+						"bcl-lvl2";
+			qcom,pmic7-threshold;
+			qcom,ibat-ccm-lando-hw-support;
+			#thermal-sensor-cells = <1>;
+		};
+
+		bcl_soc: bcl-soc {
+			compatible = "qcom,msm-bcl-soc";
+			#thermal-sensor-cells = <0>;
+		};
 	};
 };
 
@@ -190,6 +209,174 @@
 				temperature = <145000>;
 				hysteresis = <0>;
 				type = "critical";
+			};
+		};
+	};
+
+	vbat {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 2>;
+
+		trips {
+			vbat_lvl0:vbat-lvl0 {
+				temperature = <2790>;
+				hysteresis = <100>;
+				type = "passive";
+			};
+
+			vbat_lvl1:vbat-lvl1 {
+				temperature = <2600>;
+				hysteresis = <100>;
+				type = "passive";
+			};
+
+			vbat_lvl2:vbat-lvl2 {
+				temperature = <2300>;
+				hysteresis = <100>;
+				type = "passive";
+			};
+		};
+	};
+
+	pmw6100-ibat-lvl0 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 0>;
+
+		trips {
+			ibat_lvl0:ibat-lvl0 {
+				temperature = <2730>;
+				hysteresis = <200>;
+				type = "passive";
+			};
+		};
+	};
+
+	pmw6100-ibat-lvl1 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 1>;
+
+		trips {
+			ibat_lvl1:ibat-lvl1 {
+				temperature = <3000>;
+				hysteresis = <200>;
+				type = "passive";
+			};
+		};
+	};
+
+	pmw6100-bcl-lvl0 {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 5>;
+
+		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			b_bcl_lvl0: b-bcl-lvl0 {
+				temperature = <1>;
+				hysteresis = <1>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			lbat_lvl0 {
+				trip = <&b_bcl_lvl0>;
+				cooling-device = <&msm_gpu 1 1>;
+			};
+		};
+	};
+
+	pmw6100-bcl-lvl1 {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 6>;
+
+		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			b_bcl_lvl1: b-bcl-lvl1 {
+				temperature = <1>;
+				hysteresis = <1>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			lbat_lvl1 {
+				trip = <&b_bcl_lvl1>;
+				cooling-device = <&msm_gpu 1 1>;
+			};
+		};
+	};
+
+	pmw6100-bcl-lvl2 {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_bcl 7>;
+
+		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			b_bcl_lvl2: b-bcl-lvl2 {
+				temperature = <1>;
+				hysteresis = <1>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			lbat_lvl2 {
+				trip = <&b_bcl_lvl2>;
+				cooling-device = <&msm_gpu 3 3>;
+			};
+		};
+	};
+
+	socd {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
+		thermal-sensors = <&bcl_soc>;
+
+		trips {
+			socd_trip:socd-trip {
+				temperature = <90>;
+				hysteresis = <0>;
+				type = "passive";
 			};
 		};
 	};

@@ -73,6 +73,10 @@
 			compatible = "virtio,mmio";
 			wakeup-source;
 		};
+
+		virtio_net@1b018000 {
+			status = "disabled";
+		};
 	};
 
 	firmware: firmware {

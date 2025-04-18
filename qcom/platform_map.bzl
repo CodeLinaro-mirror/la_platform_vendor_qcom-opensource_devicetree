@@ -82,6 +82,66 @@ _platform_map = {
             {"name": "alor-interposer-rcm-overlay.dtbo"},
         ],
     },
+    "lahaina": {
+        "dtb_list": [
+            {"name": "yupik-iot.dtb"},
+            {"name": "katmai.dtb"},
+            {"name": "katmai-fp2.dtb"},
+            {"name": "katmai-fp3.dtb"},
+            {"name": "katmai-fp2p5.dtb"},
+            {
+                "name": "yupikp-iot.dtb",
+                "apq": True,
+            },
+            {
+                "name": "katmaip.dtb",
+                "apq": True,
+            },
+            {
+                "name": "katmaip-fp2.dtb",
+                "apq": True,
+            },
+            {
+                "name": "katmaip-fp3.dtb",
+                "apq": True,
+            },
+            {
+                "name": "katmaip-fp2p5.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "yupik-iot-idp-overlay.dtbo"},
+            {"name": "yupik-iot-idp-pm7250b-overlay.dtbo"},
+            {"name": "yupik-iot-qrd-overlay.dtbo"},
+            {"name": "yupik-iot-hsp-overlay.dtbo"},
+            {"name": "yupik-iot-hsp-pm7250b-overlay.dtbo"},
+            {"name": "yupik-iot-idps-amoled-overlay.dtbo"},
+            {"name": "katmai-hsp-overlay.dtbo"},
+            {"name": "katmai-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmai-fp2-hsp-overlay.dtbo"},
+            {"name": "katmai-fp2-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmai-fp2p5-hsp-overlay.dtbo"},
+            {"name": "katmai-fp2p5-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmai-fp3-hsp-overlay.dtbo"},
+            {"name": "katmai-fp3-hsp-pm7250b-overlay.dtbo"},
+            {"name": "yupikp-iot-idp-overlay.dtbo"},
+            {"name": "yupikp-iot-idp-pm7250b-overlay.dtbo"},
+            {"name": "yupikp-iot-qrd-overlay.dtbo"},
+            {"name": "yupikp-iot-hsp-overlay.dtbo"},
+            {"name": "yupikp-iot-hsp-pm7250b-overlay.dtbo"},
+            {"name": "yupikp-iot-idps-amoled-overlay.dtbo"},
+            {"name": "katmaip-hsp-overlay.dtbo"},
+            {"name": "katmaip-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmaip-fp2-hsp-overlay.dtbo"},
+            {"name": "katmaip-fp2-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmaip-fp2p5-hsp-overlay.dtbo"},
+            {"name": "katmaip-fp2p5-hsp-pm7250b-overlay.dtbo"},
+            {"name": "katmaip-fp3-hsp-overlay.dtbo"},
+            {"name": "katmaip-fp3-hsp-pm7250b-overlay.dtbo"},
+        ],
+    },
     "canoe-tuivm": {
         "dtb_list": [
             # keep sorted
@@ -279,12 +339,26 @@ _platform_map = {
     },
     "vienna": {
         "dtb_list": [
+            # keep sorted
             {"name": "vienna.dtb"},
+            {
+                "name": "viennap.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
-            {
-                "name": "vienna-rumi-overlay.dtbo",
-            },
+            # keep sorted
+            {"name": "vienna-atp-no-cam-overlay.dtbo"},
+            {"name": "vienna-atp-overlay.dtbo"},
+            {"name": "vienna-idp-no-cam-overlay.dtbo"},
+            {"name": "vienna-idp-overlay.dtbo"},
+            {"name": "vienna-rcm-no-cam-overlay.dtbo"},
+            {"name": "vienna-rcm-overlay.dtbo"},
+            {"name": "vienna-rumi-overlay.dtbo"},
+            {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-overlay.dtbo"},
+            {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },
 }

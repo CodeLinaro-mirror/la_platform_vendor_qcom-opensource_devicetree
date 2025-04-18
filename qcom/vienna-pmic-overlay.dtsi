@@ -77,6 +77,15 @@
 		qcom,pre-scaling = <1 1>;
 		qcom,adc-tm-type = <1>;
 	};
+
+	pmw6100_sys_therm_3 {
+		reg = <PMW6100_ADC5_GEN4_AMUX4_AMUX_04_100K_PU(0, PMW6100_SID)>;
+		label = "pmw6100_sys_therm_3";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
 };
 
 &thermal_zones {
@@ -127,6 +136,27 @@
 		polling-delay = <0>;
 		thermal-sensors = <&pmw6100_vadc
 				   PMW6100_ADC5_GEN4_AMUX3_AMUX_03_100K_PU(0, PMW6100_SID)>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	sys-therm-3 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmw6100_vadc
+				   PMW6100_ADC5_GEN4_AMUX4_AMUX_04_100K_PU(0, PMW6100_SID)>;
 
 		trips {
 			active-config0 {

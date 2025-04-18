@@ -58,6 +58,48 @@ canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
+YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
+YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb
+
+YUPIK_BOARDS += \
+		yupikp-iot-idp-overlay.dtbo \
+		yupikp-iot-idp-pm7250b-overlay.dtbo \
+		yupikp-iot-qrd-overlay.dtbo \
+		yupikp-iot-hsp-overlay.dtbo \
+		yupikp-iot-hsp-pm7250b-overlay.dtbo \
+		yupikp-iot-idps-amoled-overlay.dtbo \
+		katmaip-hsp-overlay.dtbo \
+		katmaip-hsp-pm7250b-overlay.dtbo \
+		katmaip-fp2-hsp-overlay.dtbo \
+		katmaip-fp2-hsp-pm7250b-overlay.dtbo \
+		katmaip-fp2p5-hsp-overlay.dtbo \
+		katmaip-fp2p5-hsp-pm7250b-overlay.dtbo \
+		katmaip-fp3-hsp-overlay.dtbo \
+		katmaip-fp3-hsp-pm7250b-overlay.dtbo
+
+NOAPQ_YUPIK_BOARDS += \
+		yupik-iot-idp-overlay.dtbo \
+		yupik-iot-idp-pm7250b-overlay.dtbo \
+		yupik-iot-qrd-overlay.dtbo \
+		yupik-iot-hsp-overlay.dtbo \
+		yupik-iot-hsp-pm7250b-overlay.dtbo \
+		yupik-iot-idps-amoled-overlay.dtbo \
+		katmai-hsp-overlay.dtbo \
+		katmai-hsp-pm7250b-overlay.dtbo \
+		katmai-fp2-hsp-overlay.dtbo \
+		katmai-fp2-hsp-pm7250b-overlay.dtbo \
+		katmai-fp2p5-hsp-overlay.dtbo \
+		katmai-fp2p5-hsp-pm7250b-overlay.dtbo \
+		katmai-fp3-hsp-overlay.dtbo \
+		katmai-fp3-hsp-pm7250b-overlay.dtbo
+
+lahaina-dtb-$(CONFIG_ARCH_YUPIK) += \
+	$(call add-overlays, $(NOAPQ_YUPIK_BOARDS),$(YUPIK_BASE_DTB)) \
+	$(call add-overlays, $(YUPIK_BOARDS),$(YUPIK_APQ_BASE_DTB))
+lahaina-overlays-dtb-$(CONFIG_ARCH_YUPIK) += $(NOAPQ_YUPIK_BOARDS) $(YUPIK_BASE_DTB) $(YUPIK_APQ_BASE_DTB) $(YUPIK_BOARDS)
+
+dtb-y += $(lahaina-dtb-y) $(lahaina-overlays-dtb-y)
+
 SA8155_BASE_DTB += sa8155.dtb sa8155-v2.dtb
 SA8155P_BASE_DTB += sa8155p.dtb sa8155p-v2.dtb
 
@@ -139,8 +181,19 @@ pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_P
 dtb-y += $(pineapple-dtb-y)
 
 VIENNA_BASE_DTB += vienna.dtb
+VIENNA_APQ_BASE_DTB += viennap.dtb
 
-#VIENNA_BOARDS +=
+VIENNA_BOARDS += \
+		 vienna-atp-overlay.dtbo \
+		 vienna-atp-no-cam-overlay.dtbo \
+		 vienna-idp-overlay.dtbo \
+		 vienna-idp-no-cam-overlay.dtbo \
+		 vienna-rcm-overlay.dtbo \
+		 vienna-rcm-no-cam-overlay.dtbo \
+		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-no-cam-overlay.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
 		 vienna-rumi-overlay.dtbo

@@ -7,8 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 title: Qualcomm Technologies, Inc. (QTI) PCIe PDC Device
 
 maintainers:
-  - Maulik Shah <quic_mkshah@quicinc.com>
-  - Rashid Zafar <quic_rzafar@quicinc.com>
+  - Maulik Shah <maulik.shah@oss.qualcomm.com>
 
 description:
   Support for configuring IRQ at PCIe PDC interrupt controller.
@@ -22,6 +21,7 @@ properties:
       - qcom,pineapple-pcie-pdc
       - qcom,cliffs-pcie-pdc
       - qcom,canoe-pcie-pdc
+      - qcom,alor-pcie-pdc
       - qcom,pcie-pdc
 
   reg:

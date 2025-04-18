@@ -28,6 +28,7 @@ properties:
       - qcom,sys-pm-sun
       - qcom,sys-pm-canoe
       - qcom,sys-pm-vienna
+      - qcom,sys-pm-alor
 
   reg:
     maxItems: 1

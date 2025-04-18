@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -309,22 +309,22 @@
 
 	limits_stat: limits-stat {
 		compatible = "qcom,limits-stat";
-		qcom,limits-stat-sensor-names = "aoss-0", "cpu-0-0-0", "cpu-0-0-1",
-						"cpu-0-1-0", "cpu-0-1-1", "cpu-0-2-0",
-						"cpu-0-2-1", "cpu-0-3-0", "cpu-0-3-1",
-						"cpu-0-4-0", "cpu-0-4-1", "cpu-0-5-0",
-						"cpu-0-5-1", "cpullc-0-0", "cpullc-0-1",
-						"aoss-1", "cpu-1-0-0", "cpu-1-0-1",
-						"cpu-1-1-0", "cpu-1-1-1", "cpullc-1-0",
-						"cpullc-1-1", "nsphvx-0", "nsphvx-1",
-						"nsphvx-2", "nsphvx-3","nsphmx-0", "nsphmx-1",
-						"nsphmx-2", "nsphmx-3", "ddr", "aoss-2",
-						"gpuss-0", "gpuss-1", "gpuss-2","gpuss-3",
-						"gpuss-4", "gpuss-5", "gpuss-6", "gpuss-7",
-						"gpuss-8","gpuss-9","gpuss-10", "mdmss-0",
-						"mdmss-1", "mdmss-2","mdmss-3", "camera-0",
-						"camera-1","video","aoss-3","aoss-4","aoss-5",
-						"aoss-6", "pmih010x-ibat-lvl0", "vbat";
+		qcom,limits-stat-sensor-names = "cpullc-0-0", "cpullc-0-1", "qmx-0-0",
+						"qmx-0-1", "qmx-0-2", "cpu-0-0-0",
+						"cpu-0-0-1", "cpu-0-1-0", "cpu-0-1-1",
+						"cpu-0-2-0", "cpu-0-2-1", "cpu-0-3-0",
+						"cpu-0-3-1", "cpu-0-4-0", "cpu-0-4-1",
+						"cpu-0-5-0", "cpu-0-5-1", "cpullc-1-0",
+						"cpullc-1-1", "qmx-1-0", "qmx-1-1",
+						"qmx-1-2", "qmx-1-3", "qmx-1-4", "cpu-1-0-0",
+						"cpu-1-0-1","cpu-1-1-0", "cpu-1-1-1", "nsphvx-0",
+						"nsphvx-1", "nsphvx-2", "nsphvx-3", "nsphmx-0",
+						"nsphmx-1", "nsphmx-2","nsphmx-3", "gpuss-0",
+						"gpuss-1", "gpuss-2", "gpuss-3", "gpuss-4",
+						"gpuss-5","gpuss-6", "gpuss-7", "gpuss-8",
+						"gpuss-9","gpuss-10", "ddr", "mdmss-0","mdmss-1",
+						"mdmss-2","mdmss-3","camera-0", "camera-1",
+						"video", "pmih010x-ibat-lvl0", "vbat";
 	};
 };
 

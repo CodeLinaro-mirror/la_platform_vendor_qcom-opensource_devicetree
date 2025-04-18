@@ -254,3 +254,9 @@
 		};
 	};
 };
+
+&pmih010x_eusb2_repeater {
+	qcom,param-override-seq =
+		<0xa 0x51
+		 0x5 0x57>;
+};

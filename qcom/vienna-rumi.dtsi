@@ -3,6 +3,8 @@
  * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
+#include <dt-bindings/clock/qcom,gcc-vienna.h>
+
 &soc {
 	usb_emuphy: phy@a71c000 {
 		compatible = "qcom,usb-emu-phy";
@@ -30,6 +32,30 @@
 	clock-frequency = <5000000>;
 };
 
+&sdhc_1 {
+	status = "okay";
+	vdd-supply = <&L20A>;
+	qcom,vdd-voltage-level = <2952000 2952000>;
+	qcom,vdd-current-level = <0 570340>;
+
+	vdd-io-supply = <&L16A>;
+	qcom,vdd-io-always-on;
+	qcom,vdd-io-lpm-sup;
+	qcom,vdd-io-voltage-level = <1800000 1800000>;
+	qcom,vdd-io-current-level = <0 325560>;
+
+	/delete-property/ mmc-ddr-1_8v;
+	/delete-property/ mmc-hs200-1_8v;
+	/delete-property/ mmc-hs400-1_8v;
+	/delete-property/ mmc-hs400-enhanced-strobe;
+
+	max-frequency = <100000000>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc1_on>;
+	pinctrl-1 = <&sdc1_off>;
+};
+
 &uart5 {
 	qcom,rumi_platform;
 	status = "ok";
@@ -47,10 +73,6 @@
 };
 
 &GOLD_RAIL_OFF {
-	status = "disabled";
-};
-
-&SILVER_OFF {
 	status = "disabled";
 };
 
@@ -75,3 +97,8 @@
 &eusb2_phy0 {
 	status = "disabled";
 };
+
+&tsens0 {
+	status = "disabled";
+};
+

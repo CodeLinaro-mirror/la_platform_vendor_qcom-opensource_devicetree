@@ -9,6 +9,7 @@
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
 	qcom,msm-id = <690 0x10000>, <690 0x20000>, <690 0x10001>;
+	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 
 	chosen {
@@ -1093,6 +1094,87 @@
 	dma_dev@0x0 {
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
+	};
+
+	hab: qcom,hab {
+		compatible = "qcom,hab";
+		vmid = <2>;
+
+		mmidgrp100: mmidgrp100 {
+			grp-start-id = <100>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp200: mmidgrp200 {
+			grp-start-id = <200>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp300: mmidgrp300 {
+			grp-start-id = <300>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp400: mmidgrp400 {
+			grp-start-id = <400>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp500: mmidgrp500 {
+			grp-start-id = <500>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp600: mmidgrp600 {
+			grp-start-id = <600>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1400: mmidgrp1400 {
+			grp-start-id = <1400>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1500: mmidgrp1500 {
+			grp-start-id = <1500>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1600: mmidgrp1600 {
+			grp-start-id = <1600>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+	};
+
+	scmi {
+		compatible = "arm,scmi-virtio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "ok";
+
+		scmi_power: protocol@11 {
+			reg = <0x11>;
+			#power-domain-cells = <1>;
+		};
+
+		scmi_perf: protocol@13 {
+			reg = <0x13>;
+			#power-domain-cells = <1>;
+		};
+
+		scmi_reset: protocol@16 {
+			reg = <0x16>;
+			#reset-cells = <1>;
+		};
 	};
 };
 
