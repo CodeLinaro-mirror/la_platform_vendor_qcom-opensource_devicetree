@@ -4,6 +4,7 @@
  */
 
 #include "sa8797p-gunyah-vm.dtsi"
+#include "sa8797p-gunyah-vm-qupv3.dtsi"
 
 &vm_config {
 	/* Pass through regions */
