@@ -2781,7 +2781,7 @@
 #include "alor-debug.dtsi"
 #include "alor-coresight.dtsi"
 #include "alor-pinctrl.dtsi"
-#include "alor-stub-regulators.dtsi"
+#include "alor-regulators.dtsi"
 #include "alor-qupv3.dtsi"
 #include "alor-usb.dtsi"
 #include "alor-walt.dtsi"
