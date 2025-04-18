@@ -7,7 +7,7 @@
 
 #include "sdxkova.dtsi"
 #include "sdxkova-idp-lga-v2.dtsi"
-#include "sdxkova-reserved-memory-sub6.dtsi"
+#include "sdxkova-reserved-memory-2G.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. SDXKOVA IDP LGA V2";
