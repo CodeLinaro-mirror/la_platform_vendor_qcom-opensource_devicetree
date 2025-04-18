@@ -1010,9 +1010,9 @@
 		};
 	};
 
-	tpdm_sdcc5_2: tpdm@10c20000 {
+	tpdm_sdcc5_2: tpdm@11420280 {
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x0 0x10c20000 0x0 0x1000>;
+		reg = <0x0 0x11420280 0x0 0x1000>;
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_sdcc2";
@@ -1363,7 +1363,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -1470,7 +1469,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -1577,7 +1575,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -1684,7 +1681,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -1791,7 +1787,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -1898,7 +1893,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -2306,7 +2300,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -2413,7 +2406,6 @@
 		qcom,skip-power-up;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		//status = "disabled";
 
 		out-ports {
 			port {
@@ -3124,6 +3116,28 @@
 		};
 	};
 
+	tpdm_mdss: tpdm@11463000 {
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		reg = <0x0 0x11463000 0x0 0x1000>;
+		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
+
+		device-name = "tpdm_mdss";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+
+		out-ports {
+			port {
+				tpdm_mdss_out_tn_mdss: endpoint {
+					remote-endpoint =
+					<&tn_mdss_in_tpdm_mdss>;
+				};
+			};
+		};
+	};
+
 	tpdm_mdss_rscc: tpdm@11464000 {
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11464000 0x0 0x1000>;
@@ -3714,9 +3728,9 @@
 
 		out-ports {
 			port {
-				tpdm_south_dsb_out_tn_ag: endpoint {
+				tpdm_nps_dsb_out_tn_ag: endpoint {
 					remote-endpoint =
-					<&tn_ag_in_tpdm_south_dsb>;
+					<&tn_ag_in_tpdm_nps_dsb>;
 				};
 			};
 		};
@@ -3883,23 +3897,44 @@
 		};
 	};
 
-	tpdm_dch_dsb: tpdm@113e1000 {
+	tpdm_dch_dsb: tpdm@113e6000 {
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x0 0x113e1000 0x0 0x1000>;
+		reg = <0x0 0x113e6000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_dch_dsb";
-		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {
 				tpdm_dch_dsb_out_tn_ag: endpoint {
 					remote-endpoint =
 					<&tn_ag_in_tpdm_dch_dsb>;
+				};
+			};
+		};
+	};
+
+	tpdm_south: tpdm@113e4000 {
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		reg = <0x0 0x113e4000 0x0 0x1000>;
+		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
+
+		device-name = "tpdm_south_dsb";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		out-ports {
+			port {
+				tpdm_south_dsb_out_tn_ag: endpoint {
+					remote-endpoint =
+					<&tn_ag_in_tpdm_south_dsb>;
 				};
 			};
 		};
@@ -3987,16 +4022,16 @@
 	};
 
 	tpdm_wpss: tpdm@11080000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
-		reg = <0x0 0x11081000 0x0 0x1000>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		reg = <0x0 0x11080000 0x0 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
-		device-name = "tpdm-wpss";
+		device-name = "tpdm_wpss";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -4009,16 +4044,15 @@
 	};
 
 	tpdm_wpss1: tpdm@11081000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x11081000 0x0 0x1000>;
 		reg-names = "tpdm-base";
-
-		device-name = "tpdm-wpss1";
+		qcom,cmb-element-bits = <32>;
+		device-name = "tpdm_wpss1";
+		qcom,cmb-msrs-num = <12>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -4066,7 +4100,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
+
 
 		in-ports {
 			#address-cells = <1>;
@@ -4099,6 +4133,31 @@
 		};
 
 		out-ports {
+			port {
+				funnel_wpss_out_replicator_wpss: endpoint {
+					remote-endpoint =
+					<&replicator_wpss_in_funnel_wpss>;
+				};
+			};
+		};
+
+	};
+
+	wpss_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_wpss";
+
+		in-ports {
+			port {
+				replicator_wpss_in_funnel_wpss: endpoint {
+					remote-endpoint =
+					<&funnel_wpss_out_replicator_wpss>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -4107,7 +4166,7 @@
 				funnel_wpss_out_tpda_dl2_4: endpoint {
 				remote-endpoint =
 					<&tpda_dl2_4_in_funnel_wpss>;
-				source = <&tpdm_wpss>;
+				filter-source= <&tpdm_wpss>;
 				};
 			};
 
@@ -4116,7 +4175,7 @@
 				funnel_wpss_out_tpda_dl2_5: endpoint {
 				remote-endpoint =
 					<&tpda_dl2_5_in_funnel_wpss>;
-				source = <&tpdm_wpss1>;
+				filter-source = <&tpdm_wpss1>;
 				};
 			};
 
@@ -4125,7 +4184,7 @@
 				funnel_wpss_out_funnel_dl2: endpoint {
 				remote-endpoint =
 					<&funnel_dl2_in_funnel_wpss>;
-				source = <&wpss_etm>;
+				filter-source = <&wpss_etm>;
 				};
 			};
 		};
@@ -4142,14 +4201,13 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
 			port@4 {
-				reg = <4>;
+				reg = <3>;
 				tpda_dl2_4_in_funnel_wpss: endpoint {
 					remote-endpoint =
 					<&funnel_wpss_out_tpda_dl2_4>;
@@ -4157,7 +4215,7 @@
 			};
 
 			port@5 {
-				reg = <5>;
+				reg = <4>;
 				tpda_dl2_5_in_funnel_wpss: endpoint {
 					remote-endpoint =
 					<&funnel_wpss_out_tpda_dl2_5>;
@@ -4184,7 +4242,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		in-ports {
 			#address-cells = <1>;
@@ -4348,9 +4405,9 @@
 
 			port@1b {
 				reg = <27>;
-				tn_ag_in_tpdm_south_dsb: endpoint {
+				tn_ag_in_tpdm_nps_dsb: endpoint {
 					remote-endpoint =
-					<&tpdm_south_dsb_out_tn_ag>;
+					<&tpdm_nps_dsb_out_tn_ag>;
 				};
 			};
 
@@ -4463,6 +4520,14 @@
 				tn_ag_in_funnel_dl2: endpoint {
 					remote-endpoint =
 					<&funnel_dl2_out_tn_ag>;
+				};
+			};
+
+			port@31 {
+				reg = <49>;
+				tn_ag_in_tpdm_south_dsb: endpoint {
+					remote-endpoint =
+					<&tpdm_south_dsb_out_tn_ag>;
 				};
 			};
 
