@@ -499,8 +499,18 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
-	};
 
+		smp2p_test2_in: qcom,smp2p-test2-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test2_out: qcom,smp2p-test2-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
+	};
 
 	qcom,smp2p-cdsp {
 		compatible = "qcom,smp2p";
@@ -532,6 +542,17 @@
 			qcom,entry-name = "rdbg";
 			interrupt-controller;
 			#interrupt-cells = <2>;
+		};
+
+		smp2p_test5_in: qcom,smp2p-test5-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test5_out: qcom,smp2p-test5-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
 		};
 	};
 
@@ -578,6 +599,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_test1_in: qcom,smp2p-test1-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test1_out: qcom,smp2p-test1-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
 	};
 
 	qcom,smp2p-soccp {
@@ -600,6 +632,45 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_test19_in: qcom,smp2p-test19-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test19_out: qcom,smp2p-test19-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
+	};
+
+	qcom,smp2p_test_adsp {
+		compatible = "qcom,smp2p-test";
+		label = "adsp";
+		qcom,smem-states = <&smp2p_test2_out 0>;
+		interrupts-extended = <&smp2p_test2_in 0 0>;
+	};
+
+	qcom,smp2p_test_cdsp {
+		compatible = "qcom,smp2p-test";
+		label = "cdsp";
+		qcom,smem-states = <&smp2p_test5_out 0>;
+		interrupts-extended = <&smp2p_test5_in 0 0>;
+	};
+
+	qcom,smp2p_test_mpss {
+		compatible = "qcom,smp2p-test";
+		label = "mpss";
+		qcom,smem-states = <&smp2p_test1_out 0>;
+		interrupts-extended = <&smp2p_test1_in 0 0>;
+	};
+
+	qcom,smp2p_test_soccp {
+		compatible = "qcom,smp2p-test";
+		label = "soccp";
+		qcom,smem-states = <&smp2p_test19_out 0>;
+		interrupts-extended = <&smp2p_test19_in 0 0>;
 	};
 
 	qcom,smp2p_sleepstate {
