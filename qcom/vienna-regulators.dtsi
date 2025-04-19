@@ -184,9 +184,9 @@
 		pmw6100_s11: regulator-pmw6100-s11 {
 			regulator-name = "pmw6100_s11";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <598000>;
+			regulator-min-microvolt = <510000>;
 			regulator-max-microvolt = <2070000>;
-			qcom,init-voltage = <598000>;
+			qcom,init-voltage = <510000>;
 		};
 	};
 
