@@ -92,6 +92,9 @@
 
 		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
 		reset-names = "phy_reset";
+
+		dummy-supply = <&pmw6100_eusb2_repeater>;
+		usb-repeater = <&pmw6100_eusb2_repeater>;
 	};
 
 	usb_nop_phy: usb_nop_phy {
