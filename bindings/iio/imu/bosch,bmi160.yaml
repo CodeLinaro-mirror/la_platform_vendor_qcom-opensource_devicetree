@@ -16,7 +16,10 @@ description: |
 
 properties:
   compatible:
-    const: bosch,bmi160
+    enum:
+      - bosch,bmi160
+      - SMI230GYRO
+      - SMI230ACC
 
   reg:
     maxItems: 1
