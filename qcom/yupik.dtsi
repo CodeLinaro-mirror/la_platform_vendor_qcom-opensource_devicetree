@@ -2659,6 +2659,11 @@
 
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
+
+		boot_device_type = <0x0>;
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+
 		clock-names =
 			"core_clk",
 			"bus_aggr_clk",
@@ -3913,6 +3918,10 @@
 		non-removable;
 		supports-cqe;
 
+		boot_device_type = <0x1>;
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+
 		qcom,scaling-lower-bus-speed-mode = "DDR52";
 
 		/* Add dt entry for gcc hw reset */
@@ -4665,6 +4674,10 @@
 		adsp_variant: adsp_variant@6020 {
 			reg = <0x6022 0x1>;
 			bits = <2 4>;
+		};
+
+		boot_config: boot_config@6070 {
+			reg = <0x6070 0x4>;
 		};
 	};
 
