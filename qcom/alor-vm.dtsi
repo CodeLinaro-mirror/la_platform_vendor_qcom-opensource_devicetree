@@ -364,3 +364,5 @@
 		};
 	};
 };
+
+#include "msm-arm-smmu-alor-vm.dtsi"
