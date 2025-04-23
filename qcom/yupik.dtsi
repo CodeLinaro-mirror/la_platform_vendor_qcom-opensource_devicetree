@@ -273,11 +273,22 @@
 };
 
 &firmware {
-	 qcom_scm {
+	qcom_scm {
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x13000>;
 	};
 
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
 };
 
 &reserved_memory {
@@ -673,14 +684,6 @@
 		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		iommus = <&apps_smmu 0x04E4 0x0011>;
 		qcom,iommu-dma = "atomic";
-	};
-
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-	};
-
-	qcom_smcinvoke {
-		compatible = "qcom,smcinvoke";
 	};
 
 	ipcc_mproc: qcom,ipcc@408000 {
