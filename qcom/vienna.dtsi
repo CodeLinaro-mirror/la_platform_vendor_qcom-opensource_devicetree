@@ -451,12 +451,6 @@
 	sdhc1_opp_table: sdhc1-opp-table {
 		compatible = "operating-points-v2";
 
-		opp-400000 {
-			opp-hz = /bits/ 64 <400000>;
-			opp-peak-kBps = <0 0>;
-			opp-avg-kBps = <0 0>;
-		};
-
 		opp-100000000 {
 			opp-hz = /bits/ 64 <100000000>;
 			opp-peak-kBps = <250000 133320>;
@@ -467,6 +461,22 @@
 			opp-hz = /bits/ 64 <384000000>;
 			opp-peak-kBps = <800000 300000>;
 			opp-avg-kBps = <400000 0>;
+		};
+	};
+
+	sdhc3_opp_table: sdhc3-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <160000 100000>;
+			opp-avg-kBps = <50000 0>;
+		};
+
+		opp-202000000 {
+			opp-hz = /bits/ 64 <202000000>;
+			opp-peak-kBps = <200000 120000>;
+			opp-avg-kBps = <104000 0>;
 		};
 	};
 
@@ -535,7 +545,7 @@
 		reset-names = "core_reset";
 
 		qos0 {
-			mask = <0xf0>;
+			mask = <0x10>;
 			vote = <44>;
 		};
 
@@ -718,6 +728,7 @@
 
 	sdhc_3: sdhci@8844000 {
 		compatible = "qcom,sdhci-msm-v5";
+		status = "disabled";
 		reg = <0x08844000 0x1000>;
 		reg-names = "hc";
 
@@ -731,26 +742,7 @@
 		interconnects = <&aggre_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
 			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_2>;
 		interconnect-names = "sdhc-ddr","cpu-sdhc";
-		qcom,msm-bus,name = "sdhc3";
-		qcom,msm-bus,num-cases = <8>;
-		qcom,msm-bus,num-paths = <2>;
-		qcom,msm-bus,vectors-KBps =
-			/* No Vote */
-			<0 0>, <0 0>,
-			/* 400 KB/s*/
-			<1046 3200>, <1600 1600>,
-			/* 25 MB/s */
-			<65360 250000>, <100000 133320>,
-			/* 50 MB/s */
-			<130718 250000>, <133320 133320>,
-			/* 100 MB/s */
-			<261438 250000>, <150000 133320>,
-			/* 200 MB/s */
-			<261438 800000>, <300000 300000>,
-			/* Max. bandwidth */
-			<1338562 4096000>, <1338562 4096000>;
-			qcom,bus-bw-vectors-bps = <0 400000 25000000 50000000
-				100000000 200000000 4294967295>;
+		operating-points-v2 = <&sdhc3_opp_table>;
 
 		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
 		qcom,dll-hsr-list = <0x0007442C 0x0 0x10 0x290106C0 0x80040868>;
@@ -760,7 +752,15 @@
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "bypass";
 
-		status = "disabled";
+		qos0 {
+			mask = <0x10>;
+			vote = <44>;
+		};
+
+		qos1 {
+			mask = <0x0f>;
+			vote = <44>;
+		};
 	};
 
 	cpucp: qcom,cpucp@17400000 {
