@@ -62,13 +62,19 @@ _platform_map = {
     },
     "alor": {
         "dtb_list": [
+            # keep sorted
             {"name": "alor.dtb"},
         ],
         "dtbo_list": [
-            {
-                "name": "alor-rumi-overlay.dtbo",
-                "apq": False,
-            },
+            # keep sorted
+            {"name": "alor-atp-overlay.dtbo"},
+            {"name": "alor-cdp-overlay.dtbo"},
+            {"name": "alor-mtp-overlay.dtbo"},
+            {"name": "alor-mtp-pm7550ba-smb1398-overlay.dtbo"},
+            {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
+            {"name": "alor-rcm-overlay.dtbo"},
+            {"name": "alor-rcm-peach-overlay.dtbo"},
+            {"name": "alor-rumi-overlay.dtbo"},
         ],
     },
     "alor-interposer": {

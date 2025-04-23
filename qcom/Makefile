@@ -50,12 +50,21 @@ canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS)
 
 ALOR_BASE_DTB += alor.dtb
 
+ALOR_BOARDS += \
+	        alor-atp-overlay.dtbo \
+		alor-cdp-overlay.dtbo \
+		alor-mtp-overlay.dtbo \
+		alor-mtp-pmih010x-smb1398-overlay.dtbo \
+		alor-mtp-pm7550ba-smb1398-overlay.dtbo \
+		alor-rcm-overlay.dtbo \
+		alor-rcm-peach-overlay.dtbo
+
 NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_ALOR) += \
-	$(call add-overlays, $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
+	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
