@@ -10,6 +10,11 @@
 #include "pm7325b.dtsi"
 #include "yupik-thermal-overlay.dtsi"
 
+/ {
+	qcom,pmic-id = <0x0 0x0 0x0 0x3c>;
+	qcom,pmic-id-size = <4>;
+};
+
 &soc {
 	gpio_keys {
 		compatible = "gpio-keys";
