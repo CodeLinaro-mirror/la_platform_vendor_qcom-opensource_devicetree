@@ -12,6 +12,7 @@
 / {
 	aliases {
 		hsuart0 = &qupv3_se17_4uart;
+		hsuart1 = &qupv3_se14_4uart;
 	};
 };
 
@@ -86,6 +87,10 @@
 };
 
 &qupv3_2 {
+	status = "ok";
+};
+
+&qupv3_se14_4uart {
 	status = "ok";
 };
 
