@@ -155,18 +155,6 @@
 				label = "pmw6100_vbat_sns";
 				qcom,pre-scaling = <1 3>;
 			};
-
-			pmw6100_usbc_mux {
-				reg = <PMW6100_ADC5_GEN4_USBC_MUX(0, PMW6100_SID)>;
-				label = "pmw6100_usbc_mux";
-				qcom,pre-scaling = <1 1>;
-			};
-
-			pmw6100_vref_bat_therm {
-				reg = <PMW6100_ADC5_GEN4_VREF_BAT_THERM(0, PMW6100_SID)>;
-				label = "pmw6100_vref_bat_therm";
-				qcom,pre-scaling = <1 1>;
-			};
 		};
 
 		pmw6100_bcl: bcl@4700 {
