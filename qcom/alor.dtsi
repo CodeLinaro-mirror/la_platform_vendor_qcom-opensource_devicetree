@@ -3147,7 +3147,7 @@
 		#size-cells = <0>;
 		depends-on-supply = <&pmic_arbiter>;
 
-		spmi_debug_bus_0: spmi@0 {
+		spmi0_debug_bus: spmi@0 {
 			reg = <0>;
 			#address-cells = <2>;
 			#size-cells = <0>;
