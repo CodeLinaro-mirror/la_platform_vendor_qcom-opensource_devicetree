@@ -2321,13 +2321,15 @@
 					<&adsp_smp2p_in 0 0>,
 					<&adsp_smp2p_in 2 0>,
 					<&adsp_smp2p_in 1 0>,
-					<&adsp_smp2p_in 3 0>;
+					<&adsp_smp2p_in 3 0>,
+					<&adsp_smp2p_in 7 0>;
 
 		interrupt-names = "wdog",
 				"fatal",
 				"handover",
 				"ready",
-				"stop-ack";
+				"stop-ack",
+				"shutdown-ack";
 
 		/* Outputs to turing */
 		qcom,smem-states = <&adsp_smp2p_out 0>;
@@ -2460,13 +2462,15 @@
 					<&cdsp_smp2p_in 0 0>,
 					<&cdsp_smp2p_in 2 0>,
 					<&cdsp_smp2p_in 1 0>,
-					<&cdsp_smp2p_in 3 0>;
+					<&cdsp_smp2p_in 3 0>,
+					<&cdsp_smp2p_in 7 0>;
 
 		interrupt-names = "wdog",
 				"fatal",
 				"handover",
 				"ready",
-				"stop-ack";
+				"stop-ack",
+				"shutdown-ack";
 
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
@@ -2864,11 +2868,8 @@
 
 		qos0 {
 			vote = <44>;
+			mask = <0xff>;
 			perf;
-		};
-
-		qos1 {
-			vote = <44>;
 		};
 	};
 
@@ -3846,27 +3847,27 @@
 
 	mpss_mem: mpss_region@8aa00000 {
 		no-map;
-		reg = <0x0 0x8aa00000 0x0 0x10600000>;
+		reg = <0x0 0x8aa00000 0x0 0xeb00000>;
 	};
 
-	q6_mpss_dtb_mem: q6_mpss_dtb_region@9b000000 {
+	q6_mpss_dtb_mem: q6_mpss_dtb_region@99500000 {
 		no-map;
-		reg = <0x0 0x9b000000 0x0 0x80000>;
+		reg = <0x0 0x99500000 0x0 0x80000>;
 	};
 
-	ipa_fw_mem: ipa_fw_region@9b080000 {
+	ipa_fw_mem: ipa_fw_region@99580000 {
 		no-map;
-		reg = <0x0 0x9b080000 0x0 0x10000>;
+		reg = <0x0 0x99580000 0x0 0x10000>;
 	};
 
-	ipa_gsi_mem: ipa_gsi_region@9b090000 {
+	ipa_gsi_mem: ipa_gsi_region@99590000 {
 		no-map;
-		reg = <0x0 0x9b090000 0x0 0xa000>;
+		reg = <0x0 0x99590000 0x0 0xa000>;
 	};
 
-	gpu_microcode_mem: gpu_microcode_region@9b09a000 {
+	gpu_microcode_mem: gpu_microcode_region@9959a000 {
 		no-map;
-		reg = <0x0 0x9b09a000 0x0 0x2000>;
+		reg = <0x0 0x9959a000 0x0 0x2000>;
 	};
 
 	sp_mem: sp_region {  /* SPSS-HLOS ION shared mem */
@@ -3877,34 +3878,34 @@
 		size = <0x0 0x1000000>;
 	};
 
-	camera_mem: camera_region@9b100000 {
+	camera_mem: camera_region@99600000 {
 		no-map;
-		reg = <0x0 0x9b100000 0x0 0x800000>;
+		reg = <0x0 0x99600000 0x0 0x800000>;
 	};
 
-	camera_2_mem: camera_2_region@9b900000 {
+	camera_2_mem: camera_2_region@99e00000 {
 		no-map;
-		reg = <0x0 0x9b900000 0x0 0x800000>;
+		reg = <0x0 0x99e00000 0x0 0x800000>;
 	};
 
-	video_mem: video_region@9c100000 {
+	video_mem: video_region@9a600000 {
 		no-map;
-		reg = <0x0 0x9c100000 0x0 0x800000>;
+		reg = <0x0 0x9a600000 0x0 0x800000>;
 	};
 
-	cvp_mem: cvp_region@9c900000 {
+	cvp_mem: cvp_region@9ae00000 {
 		no-map;
-		reg = <0x0 0x9c900000 0x0 0x700000>;
+		reg = <0x0 0x9ae00000 0x0 0x700000>;
 	};
 
-	cdsp_mem: cdsp_region@9d000000 {
+	cdsp_mem: cdsp_region@9b500000 {
 		no-map;
-		reg = <0x0 0x9d000000 0x0 0x1900000>;
+		reg = <0x0 0x9b500000 0x0 0x1900000>;
 	};
 
-	q6_cdsp_dtb_mem: q6_cdsp_dtb_region@9e900000 {
+	q6_cdsp_dtb_mem: q6_cdsp_dtb_region@9ce00000 {
 		no-map;
-		reg = <0x0 0x9e900000 0x0 0x80000>;
+		reg = <0x0 0x9ce00000 0x0 0x80000>;
 	};
 
 	/* First part of the "SPU secure shared memory" region */
@@ -3956,16 +3957,16 @@
 
 	/* UEFI region at 0xa5000000 is reclaimed by Linux */
 
-	/* Linux kernel image is loaded at 0xa8000000 */
-
-	xbl_ramdump_mem: xbl_ramdump_region@b8000000 {
-		no-map;
-		reg = <0x0 0xb8000000 0x0 0x1c0000>;
-	};
+	/* Linux kernel image is loaded at 0xc7800000 */
 
 	hwfence_shbuf: hwfence-shmem {
 		no-map;
 		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
+	};
+
+	xbl_ramdump_mem: xbl_ramdump_region@d7800000 {
+		no-map;
+		reg = <0x0 0xd7800000 0x0 0x1c0000>;
 	};
 
 	global_sync_mem: global_sync_region@d7a00000 {
