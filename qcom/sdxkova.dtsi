@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/soc/qcom,ipcc.h>
@@ -2254,14 +2254,6 @@ qcom_cedev: qcedev@1de0000 {
 		qcom,pmx75-debug@1 {
 			compatible = "qcom,spmi-pmic";
 			reg = <1 SPMI_USID>;
-			#address-cells = <2>;
-			#size-cells = <0>;
-			qcom,can-sleep;
-		};
-
-		qcom,pm7550ba-debug@7 {
-			compatible = "qcom,spmi-pmic";
-			reg = <7 SPMI_USID>;
 			#address-cells = <2>;
 			#size-cells = <0>;
 			qcom,can-sleep;
