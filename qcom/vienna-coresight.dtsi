@@ -1563,6 +1563,7 @@
 	tpdm_turing_llm: tpdm@11181000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -1577,6 +1578,7 @@
 	tpdm_turing_llm2: tpdm@11182000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm2";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
