@@ -185,7 +185,7 @@
 			regulator-name = "pmw6100_s11";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <510000>;
-			regulator-max-microvolt = <2070000>;
+			regulator-max-microvolt = <1372000>;
 			qcom,init-voltage = <510000>;
 		};
 	};
@@ -771,26 +771,6 @@
 		};
 	};
 
-	rpmh-regulator-ldoa30 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "ldoa30";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes =
-			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 10000>;
-
-		L30A:
-		pmw6100_l30: regulator-pmw6100-l30 {
-			regulator-name = "pmw6100_l30";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <2300000>;
-			regulator-max-microvolt = <3200000>;
-			qcom,init-voltage = <2300000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-		};
-	};
-
 	rpmh-regulator-ldom1 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "ldom1";
@@ -799,6 +779,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		status = "disabled";
 
 		L1M:
 		pm8010mm_l1: regulator-pm8010mm-l1 {
@@ -819,6 +800,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		status = "disabled";
 
 		L2M:
 		pm8010m_l2: regulator-pm8010m-l2 {
@@ -839,13 +821,14 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L3M:
 		pm8010m_l3: regulator-pm8010m-l3 {
 			regulator-name = "pm8010m_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1792000>;
-			regulator-max-microvolt = <1900000>;
+			regulator-max-microvolt = <2900000>;
 			qcom,init-voltage = <1792000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
@@ -859,6 +842,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L4M:
 		pm8010m_l4: regulator-pm8010m-l4 {
@@ -879,6 +863,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L5M:
 		pm8010m_l5: regulator-pm8010m-l5 {
@@ -899,6 +884,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L6M:
 		pm8010m_l6: regulator-pm8010m-l6 {
@@ -919,6 +905,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L7M:
 		pm8010m_l7: regulator-pm8010m-l7 {
@@ -933,7 +920,7 @@
 
 	rpmh-regulator-bobb1 {
 		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "bobb1";
+		qcom,resource-name = "boba1";
 		BOB1: pmw6100_bob1: regulator-pmw6100-bob1 {
 			regulator-name = "pmw6100_bob1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
