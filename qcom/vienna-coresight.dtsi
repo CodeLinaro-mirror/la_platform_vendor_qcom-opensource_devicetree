@@ -3102,7 +3102,6 @@
 			<0x37280000 0x180000>;
 		reg-names = "stm-base", "stm-stimulus-base";
 
-		device-name = "stm";
 		atid = <16>;
 
 		clocks = <&aoss_qmp>;
@@ -3225,7 +3224,7 @@
 		reg = <0x11305000 0x1000>;
 		reg-names = "tmc-base";
 
-		device-name = "tmc_etf";
+		device-name = "tmc_etf0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3387,7 +3386,7 @@
 		reg = <0x10048000 0x1000>;
 		reg-names = "tmc-base";
 
-		device-name = "tmc_etr";
+		device-name = "tmc_etr0";
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x03e0 0x40>;
