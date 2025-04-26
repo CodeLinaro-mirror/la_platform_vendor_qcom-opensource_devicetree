@@ -68,6 +68,7 @@
 			snps,is-utmi-l1-suspend;
 			snps,dis-u1-entry-quirk;
 			snps,dis-u2-entry-quirk;
+			snps,usb2-gadget-lpm-disable;
 			maximum-speed = "high-speed";
 			dr_mode = "otg";
 			usb-role-switch;
@@ -85,13 +86,17 @@
 
 		vdd-supply = <&pmw6100_l25>;
 		qcom,vdd-voltage-level = <0 880000 880000>;
-		vdda12-supply = <&pmw6100_l7>;
+		vdda12-supply = <&pmw6100_l26>;
+		vdd_refgen-supply = <&pmw6100_l25>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "ref_clk_src";
 
 		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
 		reset-names = "phy_reset";
+
+		dummy-supply = <&pmw6100_eusb2_repeater>;
+		usb-repeater = <&pmw6100_eusb2_repeater>;
 	};
 
 	usb_nop_phy: usb_nop_phy {

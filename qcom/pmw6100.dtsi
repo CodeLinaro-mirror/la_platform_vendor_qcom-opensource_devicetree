@@ -91,6 +91,19 @@
 			reg = <0x7400>;
 		};
 
+		pmw6100_eusb2_repeater: qcom,eusb2-repeater@fd00 {
+			compatible = "qcom,pmic-eusb2-repeater";
+			reg = <0xfd00>;
+			vdd18-supply = <&pmw6100_l11>;
+			vdd3-supply = <&pmw6100_l19>;
+			qcom,param-override-seq =
+				/* <value reg_offset> */
+				/* Adjust HS trasmit amplitude */
+				<0xa 0x51
+				/* Tx pre-emphasis tuning */
+				0x3 0x57>;
+		};
+
 		pmw6100_vadc: vadc@8000 {
 			compatible = "qcom,spmi-adc5-gen4";
 			reg = <0x8000>;
