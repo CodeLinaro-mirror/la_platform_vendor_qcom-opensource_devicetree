@@ -1986,7 +1986,7 @@
 			ddrqos_dcvs_sp: sp {
 				compatible = "qcom,dcvs-path";
 				qcom,dcvs-path-type = <0>;
-				interconnects = <&mc_virt MASTER_APPSS_PROC
+				interconnects = <&gem_noc MASTER_APPSS_PROC
 						&mc_virt SLAVE_EBI1>;
 			};
 		};
