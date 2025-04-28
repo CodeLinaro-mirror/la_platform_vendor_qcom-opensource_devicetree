@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "sm6150.dtsi"
@@ -89,6 +89,20 @@
 				qcom,intents = <0x4000 0x2>;
 			};
 		};
+	};
+
+	bluetooth: bt_wcn3990 {
+	compatible = "qcom,wcn3990";
+	qcom,bt-sw-ctrl-gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
+	qcom,bt-vdd-io-supply = <&pm6150_l10>; /* IO */
+	qcom,bt-vdd-core-supply = <&pm6150l_l2>; /* RFA */
+	qcom,bt-vdd-pa-supply = <&pm6150l_l10>; /* CH0 */
+	qcom,bt-vdd-xtal-supply = <&pm6150l_l1>; /* XO */
+
+	qcom,bt-vdd-io-config = <1700000 1900000 1 0>;
+	qcom,bt-vdd-core-config = <1304000 1304000 1 0>;
+	qcom,bt-vdd-pa-config = <3000000 3312000 1 0>;
+	qcom,bt-vdd-xtal-config = <1700000 1900000 1 0>;
 	};
 
 };
