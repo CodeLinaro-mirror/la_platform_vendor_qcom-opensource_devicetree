@@ -187,6 +187,13 @@
 		reg = <0x0 0xd8208000 0x0 0xa0000>;
 	};
 
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
+
 	qtee_mem: qtee_region@d82a8000 {
 		no-map;
 		reg = <0x0 0xd82a8000 0x0 0x520000>;
