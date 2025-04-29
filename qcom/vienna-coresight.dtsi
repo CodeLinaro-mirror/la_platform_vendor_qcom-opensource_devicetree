@@ -393,6 +393,7 @@
 		reg = <0x1130d000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_swao";
 
@@ -482,11 +483,13 @@
 		};
 	};
 
-	tpdm_gfx: tpdm@11100280 {
+	tpdm_gfx: tpdm@11100000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11100280 0x1000>;
+		reg = <0x11100000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <8>;
 
 		device-name = "tpdm_gpu";
 
@@ -664,6 +667,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,cmb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_wdss";
 
@@ -754,6 +758,7 @@
 		reg = <0x114C0000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_tmess_0";
 
@@ -804,6 +809,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <64>;
 		qcom,cmb-element-bits = <64>;
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_tmess_2";
 
@@ -1084,6 +1090,7 @@
 		reg = <0x128A0000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_llm_silver";
 
@@ -1106,6 +1113,7 @@
 		reg = <0x128B0000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		device-name = "tpdm_llm_gold";
 
@@ -1128,6 +1136,7 @@
 		reg = <0x12860000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 
 
 		device-name = "tpdm_dl_cmb";
@@ -1151,6 +1160,7 @@
 		reg = <0x12861000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_dl_dsb";
 
@@ -1273,6 +1283,7 @@
 		reg = <0x11000000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_modem_dsb";
 
@@ -1544,6 +1555,7 @@
 		reg = <0x11180000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_turing";
 
@@ -1564,6 +1576,7 @@
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		out-ports {
 			port {
@@ -1579,6 +1592,7 @@
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm2";
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		out-ports {
 			port {
@@ -1642,6 +1656,7 @@
 		reg = <0x11185000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_dpm1";
 
@@ -1665,6 +1680,7 @@
 		reg = <0x11186000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_dpm2";
 
@@ -1879,6 +1895,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x1102c000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_gcc";
 
@@ -1943,6 +1960,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x11422000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ipa";
 
@@ -2009,6 +2027,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111A4000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_center";
 
@@ -2030,6 +2049,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AE000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_mm_dsb";
 
@@ -2051,6 +2071,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B1000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_lpass_dsb";
 
@@ -2072,6 +2093,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B4000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_west_dsb";
 
@@ -2093,6 +2115,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111b7000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_tme_dsb";
 
@@ -2135,6 +2158,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111A6000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_rdpm_cx";
 
@@ -2157,6 +2181,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111A7000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_rdpm_mxa";
 
@@ -2179,6 +2204,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111A8000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_rdpm_mxc";
 
@@ -2201,6 +2227,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111A9000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ipcc1";
 
@@ -2222,6 +2249,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AA000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ipcc2";
 
@@ -2243,6 +2271,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AB000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ipcc3";
 
@@ -2264,6 +2293,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AC000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ipcc4";
 
@@ -2285,6 +2315,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AD000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_mi_pmu";
 
@@ -2306,6 +2337,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111AF000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_mm_cmb0";
 
@@ -2327,6 +2359,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B0000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_mm_cmb1";
 
@@ -2348,6 +2381,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B2000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_lpass_cmb0";
 
@@ -2369,6 +2403,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B3000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_lpass_cmb1";
 
@@ -2390,6 +2425,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B5000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_west_cmb0";
 
@@ -2411,6 +2447,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B6000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_west_cmb1";
 
@@ -2432,6 +2469,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B8000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_tme_cmb0";
 
@@ -2453,6 +2491,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x111B9000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_tme_cmb1";
 
@@ -2474,6 +2513,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x11384000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_lpass_crdl";
 
@@ -2567,6 +2607,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x11504000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-msrs-num = <1>;
 
 		device-name = "tpdm_ddr_dpm";
 
@@ -2589,6 +2630,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x11503000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_ddr_shrm";
 
@@ -2611,6 +2653,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x11506000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_ddr_ch02";
 
