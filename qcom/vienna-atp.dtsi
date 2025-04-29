@@ -39,9 +39,11 @@
 	no-sd;
 	no-mmc;
 	qcom,restore-after-cx-collapse;
-	pinctrl-names = "default", "sleep";
+	qcom,dat1-gpio = <&tlmm 82 0x00>;
+	pinctrl-names = "default", "sleep", "gpio";
 	pinctrl-0 = <&sdc3_clk_on &sdc3_cmd_on &sdc3_data_on>;
 	pinctrl-1 = <&sdc3_clk_off &sdc3_cmd_off &sdc3_data_off>;
+	pinctrl-2 = <&sdc3_dat1_gpio_pin>;
 
 	status = "ok";
 };
