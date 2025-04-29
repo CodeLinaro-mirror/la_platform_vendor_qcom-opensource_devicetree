@@ -3708,6 +3708,11 @@
 		disp_qultiv_fuse:disp_qultiv_fuse@144 {
 			reg = <0x144 0x4>;
 		};
+
+		gpu_debug_bus_bin: gpu_debug_bus_bin@73 {
+			reg = <0x73 0x1>;
+			bits = <1 1>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
