@@ -192,6 +192,12 @@
 		reg = <0x0 0xd82a8000 0x0 0x520000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
 	/*
 	 * ta/tags mem is dynamically removed from the RAM
 	 * partition tables before boot occurs. Size of region
