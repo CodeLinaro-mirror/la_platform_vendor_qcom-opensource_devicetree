@@ -151,32 +151,64 @@
 				type = "passive";
 			};
 
+			modem0_config: modem0-config {
+				temperature = <105000>;
+				hysteresis = <3000>;
+				type = "active";
+			};
+
 			modem0_config0: modem0-config0 {
-				temperature = <115000>;
+				temperature = <110000>;
+				hysteresis = <3000>;
+				type = "active";
+			};
+
+			modem0_config1: modem0-config1 {
+				temperature = <120000>;
 				hysteresis = <3000>;
 				type = "active";
 			};
 
 			reset-mon-cfg {
-				temperature = <115000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
 
 		cooling-maps {
+			nr_2rx_cdev0 {
+				trip = <&modem0_config>;
+				cooling-device = <&modem_nr_2rx_dsc 1 1>;
+			};
+
 			lte_cdev0 {
 				trip = <&modem0_config0>;
-				cooling-device = <&modem_lte_dsc 255 255>;
+				cooling-device = <&modem_lte_dsc 1 1>;
 			};
 
 			nr_1rx_cdev0 {
 				trip = <&modem0_config0>;
+				cooling-device = <&modem_nr_1rx_dsc 1 1>;
+			};
+
+			nr_2rx_cdev1 {
+				trip = <&modem0_config0>;
+				cooling-device = <&modem_nr_2rx_dsc 3 3>;
+			};
+
+			lte_cdev1 {
+				trip = <&modem0_config1>;
+				cooling-device = <&modem_lte_dsc 255 255>;
+			};
+
+			nr_1rx_cdev1 {
+				trip = <&modem0_config1>;
 				cooling-device = <&modem_nr_1rx_dsc 255 255>;
 			};
 
-			nr_2rx_cdev0 {
-				trip = <&modem0_config0>;
+			nr_2rx_cdev2 {
+				trip = <&modem0_config1>;
 				cooling-device = <&modem_nr_2rx_dsc 255 255>;
 			};
 		};
@@ -193,32 +225,64 @@
 				type = "passive";
 			};
 
+			modem1_config: modem1-config {
+				temperature = <105000>;
+				hysteresis = <3000>;
+				type = "active";
+			};
+
 			modem1_config0: modem1-config0 {
-				temperature = <115000>;
+				temperature = <110000>;
+				hysteresis = <3000>;
+				type = "active";
+			};
+
+			modem1_config1: modem1-config1 {
+				temperature = <120000>;
 				hysteresis = <3000>;
 				type = "active";
 			};
 
 			reset-mon-cfg {
-				temperature = <115000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
 
 		cooling-maps {
+			nr_2rx_cdev0 {
+				trip = <&modem1_config>;
+				cooling-device = <&modem_nr_2rx_dsc 1 1>;
+			};
+
 			lte_cdev0 {
 				trip = <&modem1_config0>;
-				cooling-device = <&modem_lte_dsc 255 255>;
+				cooling-device = <&modem_lte_dsc 1 1>;
 			};
 
 			nr_1rx_cdev0 {
 				trip = <&modem1_config0>;
+				cooling-device = <&modem_nr_1rx_dsc 1 1>;
+			};
+
+			nr_2rx_cdev1 {
+				trip = <&modem1_config0>;
+				cooling-device = <&modem_nr_2rx_dsc 3 3>;
+			};
+
+			lte_cdev1 {
+				trip = <&modem1_config1>;
+				cooling-device = <&modem_lte_dsc 255 255>;
+			};
+
+			nr_1rx_cdev1 {
+				trip = <&modem1_config1>;
 				cooling-device = <&modem_nr_1rx_dsc 255 255>;
 			};
 
-			nr_2rx_cdev0 {
-				trip = <&modem1_config0>;
+			nr_2rx_cdev2 {
+				trip = <&modem1_config1>;
 				cooling-device = <&modem_nr_2rx_dsc 255 255>;
 			};
 		};
