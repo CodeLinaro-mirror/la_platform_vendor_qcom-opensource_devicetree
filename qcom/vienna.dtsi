@@ -1749,6 +1749,42 @@
 				qcom,glinkpkt-dev-name = "glink_pkt_data_wm";
 		};
 
+		qcom,glinkpkt-am-diag-cntl {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_CNTL";
+			qcom,glinkpkt-dev-name = "am_cntl";
+		};
+
+		qcom,glinkpkt-am-diag-cmd {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_CMD";
+			qcom,glinkpkt-dev-name = "am_cmd";
+		};
+
+		qcom,glinkpkt-am-diag-data {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_DATA";
+			qcom,glinkpkt-dev-name = "am_data";
+		};
+
+		qcom,glinkpkt-wm-diag-cntl {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_CNTL";
+			qcom,glinkpkt-dev-name = "wm_cntl";
+		};
+
+		qcom,glinkpkt-wm-diag-cmd {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_CMD";
+			qcom,glinkpkt-dev-name = "wm_cmd";
+		};
+
+		qcom,glinkpkt-wm-diag-data {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_DATA";
+			qcom,glinkpkt-dev-name = "wm_data";
+		};
+
 		qcom,glinkpkt-at-mdm0 {
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DS";
