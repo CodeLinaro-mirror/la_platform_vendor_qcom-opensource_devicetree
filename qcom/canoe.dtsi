@@ -3377,6 +3377,8 @@
 			qcom,num-cap-cfg = <5>;
 			qcom,slc-clients = "APPS_CLIENT", "GPU_CLIENT",
 				"NSP_CLIENT";
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
 		};
 	};
 
