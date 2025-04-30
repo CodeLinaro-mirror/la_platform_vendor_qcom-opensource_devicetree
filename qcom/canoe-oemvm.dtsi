@@ -339,6 +339,7 @@
 
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
+		peer = <2>;
 		msgq-label = <3>;
 	};
 
