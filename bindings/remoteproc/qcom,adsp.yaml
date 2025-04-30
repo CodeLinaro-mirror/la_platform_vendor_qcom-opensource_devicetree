@@ -79,6 +79,7 @@ properties:
       - qcom,vienna-cdsp-pas
       - qcom,vienna-modem-pas
       - qcom,vienna-adsp-pas
+      - qcom,alor-wpss-pas
 
   reg:
     maxItems: 1
