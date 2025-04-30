@@ -662,6 +662,11 @@
 		status = "ok";
 	};
 
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
+
 	cache-controller@24800000 {
 		compatible = "qcom,vienna-llcc";
 		reg = <0x24800000 0x200000>;
