@@ -2960,7 +2960,7 @@
 		qcom,enforce-high-irq-cpus;
 
 		msi-parent = <&gic_its 0x60>;
-
+		rpm-level = <1>;
 		status = "disabled";
 
 		qos0 {
