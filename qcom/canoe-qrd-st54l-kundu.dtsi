@@ -58,8 +58,8 @@
 	};
 
 	/* SPMI bridge bus 2 with SMB1510 device */
-	spmi@202 {
-		reg = <0x202>;
+	spmi@200 {
+		reg = <0x200>;
 		#address-cells = <2>;
 		#size-cells = <0>;
 		qcom,bus-type = "spmi";
