@@ -1686,7 +1686,7 @@
 		device-name = "uetm_cluster0_core2";
 
 		cluster = <0>;
-		core = <1>;
+		core = <2>;
 
 		out-ports {
 			port {
@@ -1795,7 +1795,7 @@
 		device-name = "uetm_cluster0_core3";
 
 		cluster = <0>;
-		core = <1>;
+		core = <3>;
 
 		out-ports {
 			port {
@@ -1904,7 +1904,7 @@
 		device-name = "uetm_cluster0_core4";
 
 		cluster = <0>;
-		core = <1>;
+		core = <4>;
 
 		out-ports {
 			port {
@@ -2013,7 +2013,7 @@
 		device-name = "uetm_cluster0_core5";
 
 		cluster = <0>;
-		core = <1>;
+		core = <5>;
 
 		out-ports {
 			port {
