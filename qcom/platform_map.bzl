@@ -127,6 +127,18 @@ _platform_map = {
         ],
         "binary_compatible_with": ["tuna", "kera"],
     },
+    "qcs610": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "qcs610.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "qcs610-iot-overlay.dtbo"},
+            {"name": "qcs610-ipc-overlay.dtbo"},
+            {"name": "qcs610-opk-overlay.dtbo"},
+        ],
+    },
     "tuna": {
         "dtb_list": [
             {"name": "tuna.dtb"},
@@ -263,6 +275,8 @@ _platform_map = {
             {"name": "tuna-oemvm-rcm.dtb"},
             {"name": "tuna-oemvm-rcm-kiwi.dtb"},
             {"name": "tuna-oemvm-rumi.dtb"},
+            {"name": "tunap-oemvm.dtb"},
+            {"name": "tuna7-oemvm.dtb"},
             {"name": "tuna-vm-atp.dtb"},
             {"name": "tuna-vm-cdp.dtb"},
             {"name": "tuna-vm-mtp.dtb"},
@@ -272,6 +286,8 @@ _platform_map = {
             {"name": "tuna-vm-rcm.dtb"},
             {"name": "tuna-vm-rcm-kiwi.dtb"},
             {"name": "tuna-vm-rumi.dtb"},
+            {"name": "tunap-vm.dtb"},
+            {"name": "tuna7-vm.dtb"},
         ],
     },
     "tuna-oemvm": {
@@ -286,6 +302,8 @@ _platform_map = {
             {"name": "tuna-oemvm-rcm.dtb"},
             {"name": "tuna-oemvm-rcm-kiwi.dtb"},
             {"name": "tuna-oemvm-rumi.dtb"},
+            {"name": "tunap-oemvm.dtb"},
+            {"name": "tuna7-oemvm.dtb"},
             {"name": "tuna-vm-atp.dtb"},
             {"name": "tuna-vm-cdp.dtb"},
             {"name": "tuna-vm-mtp.dtb"},
@@ -295,6 +313,8 @@ _platform_map = {
             {"name": "tuna-vm-rcm.dtb"},
             {"name": "tuna-vm-rcm-kiwi.dtb"},
             {"name": "tuna-vm-rumi.dtb"},
+            {"name": "tunap-vm.dtb"},
+            {"name": "tuna7-vm.dtb"},
         ],
     },
     "kera-tuivm": {
