@@ -542,6 +542,19 @@
 	qcom_tzlog: tz-log@0 {
 	};
 
+	eud: qcom,msm-eud@88e0000 {
+		compatible = "qcom,msm-eud";
+		interrupt-names = "eud_irq";
+		interrupt-parent = <&pdc>;
+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x0 0x88e0000 0x0 0x2000>,
+			<0x0 0x88e2000 0x0 0x1000>;
+		reg-names = "eud_base", "eud_mode_mgr2";
+		qcom,secure-eud-en;
+		qcom,eud-utmi-delay = /bits/ 16 <255>;
+		status = "ok";
+	};
+
 	cache-controller@31800000 {
 		compatible = "qcom,alor-llcc";
 		reg = <0x0 0x31800000 0x0 0x200000>, <0x0 0x32800000 0x0 0x200000>,
