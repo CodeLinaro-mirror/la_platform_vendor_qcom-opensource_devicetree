@@ -1677,7 +1677,7 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "adsp";
+			label = "lpass";
 			qcom,glink-label = "wm";
 		};
 
@@ -1692,7 +1692,7 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "adsp";
+			label = "lpass";
 			qcom,glink-label = "am";
 		};
 	};
