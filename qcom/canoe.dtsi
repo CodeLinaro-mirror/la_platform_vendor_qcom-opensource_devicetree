@@ -2868,8 +2868,11 @@
 
 		qos0 {
 			vote = <44>;
-			mask = <0xff>;
 			perf;
+		};
+
+		qos1 {
+			vote = <44>;
 		};
 	};
 
