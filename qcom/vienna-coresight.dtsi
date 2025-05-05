@@ -1301,16 +1301,9 @@
 	};
 
 	tpdm_modem_cmb1: tpdm@11001000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11001000 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <32>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_cmb1";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -1323,16 +1316,9 @@
 	};
 
 	tpdm_modem_cmb2: tpdm@11002000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11002000 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <32>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_cmb2";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -1345,16 +1331,9 @@
 	};
 
 	tpdm_modem_cmb3: tpdm@11003000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11003000 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <64>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_cmb3";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <64>;
 
 		out-ports {
 			port {
@@ -1367,16 +1346,9 @@
 	};
 
 	tpdm_modem_cmb4: tpdm@11004000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11004000 0x1000>;
-		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <64>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_modem_cmb4";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		qcom,cmb-element-bits = <64>;
 
 		out-ports {
 			port {
