@@ -106,12 +106,8 @@ properties:
       - description: Qualcomm Technologies, Inc. ALOR
         items:
           - enum:
-              - qcom,alor-cdp
-              - qcom,cdp
               - qcom,alor-mtp
               - qcom,mtp
-              - qcom,alor-qrd
-              - qcom,qrd
               - qcom,alor-rcm
               - qcom,rcm
               - qcom,alor-rumi
