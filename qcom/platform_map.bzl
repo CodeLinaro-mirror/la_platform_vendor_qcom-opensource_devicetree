@@ -80,7 +80,6 @@ _platform_map = {
             # keep sorted
             {"name": "alor-interposer-mtp-overlay.dtbo"},
             {"name": "alor-interposer-rcm-overlay.dtbo"},
-            {"name": "alor-interposer-qrd-st54l-pandeiro-overlay.dtbo"},
         ],
     },
     "lahaina": {
