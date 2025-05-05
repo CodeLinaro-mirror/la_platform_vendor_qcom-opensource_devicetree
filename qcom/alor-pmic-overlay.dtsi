@@ -75,6 +75,10 @@
 	};
 };
 
+&pm8550_led_flash {
+	status = "ok";
+};
+
 &thermal_zones {
 	pmg1110_temp_alarm: pmg1110_tz {
 		polling-delay-passive = <100>;
