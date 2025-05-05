@@ -83,7 +83,7 @@
 
 			b_bcl_lvl0: b-bcl-lvl0 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
@@ -116,7 +116,7 @@
 
 			b_bcl_lvl1: b-bcl-lvl1 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
@@ -149,7 +149,7 @@
 
 			b_bcl_lvl2: b-bcl-lvl2 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
@@ -169,7 +169,7 @@
 		trips {
 			bcl_lvl0: bcl-lvl0 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
@@ -190,7 +190,7 @@
 		trips {
 			bcl_lvl1: bcl-lvl1 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
@@ -211,7 +211,7 @@
 		trips {
 			bcl_lvl2: bcl-lvl2 {
 				temperature = <1>;
-				hysteresis = <0>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
