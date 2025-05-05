@@ -78,4 +78,28 @@
 	iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
 		<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
 	};
+
+	/* USB port related High Speed PHY */
+	eusb2_phy0: hsphy@88e3000 {
+		compatible = "qcom,usb-m31-eusb2-phy";
+		reg = <0x0 0x88e3000 0x0 0x29C>,
+			<0x0 0x088e2000 0x0 0x4>,
+			<0x0 0x0c278000 0x0 0x4>;
+		reg-names = "eusb2_phy_base",
+			"eud_enable_reg",
+			"eud_detect_reg";
+
+		vdd-supply = <&L3I_E0>;
+		qcom,vdd-voltage-level = <0 880000 950000>;
+		vdda12-supply = <&L2F_E0>;
+		vdd_refgen-supply = <&L2I_E0>;
+
+		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
+			<&tcsrcc TCSR_USB2_CLKREF_EN>;
+		clock-names = "ref_clk_src", "ref_clk";
+
+		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+		reset-names = "phy_reset";
+	};
+
 };
