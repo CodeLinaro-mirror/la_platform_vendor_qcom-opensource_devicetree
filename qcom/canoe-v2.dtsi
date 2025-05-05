@@ -43,30 +43,3 @@
 	};
 };
 
-&soc {
-
-	qup1_gpi_iommu_region: qup1_gpi_iommu_region {
-		iommu-addresses =  <&gpi_dma1 0x0 0x0 0x0 0x100000>,
-				   <&gpi_dma1 0x0 0x200000 0xffffffff 0xffe00000>;
-	};
-
-	/* GPI Instance */
-	gpi_dma1: qcom,gpi-dma@a00000 {
-		iommus = <&apps_smmu 0xb6 0x0>;
-		memory-region = <&qup1_gpi_iommu_region>;
-		/delete-property/ qcom,use-smem;
-	};
-
-	qup1_se_iommu_region: qup1_se_iommu_region {
-		iommu-addresses =  <&qupv3_1 0x0 0x0 0x0 0x40000000>,
-				   <&qupv3_1 0x0 0x50000000 0xffffffff 0xb0000000>;
-	};
-
-	qupv3_1: qcom,qupv3_1_geni_se@ac0000 {
-		iommus = <&apps_smmu 0xa3 0x0>;
-		memory-region = <&qup1_se_iommu_region>;
-		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
-		qcom,iommu-dma = "fastmap";
-	};
-};
-
