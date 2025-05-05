@@ -12,7 +12,7 @@
 
 	dump_mem: dump_mem_region {
 		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
-		size = <0x0 0xa00000>;
+		size = <0x0 0xc00000>;
 	};
 };
 
@@ -56,7 +56,7 @@
 
 			c4_context {
 					qcom,dump-size = <0x800>;
-					qcom,dump-id = <0x3>;
+					qcom,dump-id = <0x4>;
 			};
 
 			l1_icache0 {
@@ -86,7 +86,7 @@
 
 			l1_dcache0 {
 				qcom,dump-size = <0x10000>;
-				qcom,dump-id = <0x85>;
+				qcom,dump-id = <0x80>;
 			};
 
 			l1_dcache100 {
@@ -132,6 +132,11 @@
 			l2_cache400 {
 				qcom,dump-size = <0x50000>;
 				qcom,dump-id = <0xc4>;
+			};
+
+			cpuss_reg {
+				qcom,dump-size = <0x30000>;
+				qcom,dump-id = <0xef>;
 			};
 
 			rpmh {
@@ -193,16 +198,10 @@
 				qcom,dump-size = <0x400>;
 				qcom,dump-id = <0x165>;
 			};
-		};
 
-		dynamic_mem_dump {
-			qcom,dynamic-mem-dump;
-
-			cpuss_reg {
-				cpuss_reg {
-					qcom,dump-size = <0x30000>;
-					qcom,dump-id = <0xef>;
-				};
+			dcp_sw {
+				qcom,dump-size = <0x240FFF>;
+				qcom,dump-id = <0x290>;
 			};
 		};
 	};
