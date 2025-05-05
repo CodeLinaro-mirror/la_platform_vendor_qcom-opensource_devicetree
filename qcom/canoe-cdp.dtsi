@@ -115,7 +115,14 @@
 	resets = <&gcc GCC_SDCC2_BCR>;
 	reset-names = "core_reset";
 
+	/*
+	 * By default, the Canoe reference platforms use Level Shifter
+	 * devices with its Feedback Clock signal connects to the MSM.
+	 * Without the external feedback clock, the HS50 mode works at
+	 * reduced frequency at 37.5MHz.
+	 */
 	qcom,uses_level_shifter;
+	qcom,external-fb-clk;
 
 	status = "ok";
 };
