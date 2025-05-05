@@ -80,6 +80,7 @@ _platform_map = {
             # keep sorted
             {"name": "alor-interposer-mtp-overlay.dtbo"},
             {"name": "alor-interposer-rcm-overlay.dtbo"},
+            {"name": "alor-interposer-qrd-st54l-pandeiro-overlay.dtbo"},
         ],
     },
     "lahaina": {
@@ -146,8 +147,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "alor-interposer-oemvm-mtp.dtb"},
+            {"name": "alor-interposer-oemvm-qrd.dtb"},
             {"name": "alor-interposer-oemvm-rcm.dtb"},
             {"name": "alor-interposer-vm-mtp.dtb"},
+            {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
@@ -160,13 +163,16 @@ _platform_map = {
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
         ],
+        "binary_compatible_with": ["alor-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
             # keep sorted
             {"name": "alor-interposer-oemvm-mtp.dtb"},
+            {"name": "alor-interposer-oemvm-qrd.dtb"},
             {"name": "alor-interposer-oemvm-rcm.dtb"},
             {"name": "alor-interposer-vm-mtp.dtb"},
+            {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
@@ -178,6 +184,21 @@ _platform_map = {
             {"name": "canoe-vm-qrd.dtb"},
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
+        ],
+        "binary_compatible_with": ["alor-oemvm"],
+    },
+    "alor-vm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "alor-oemvm-rumi.dtb"},
+            {"name": "alor-vm-rumi.dtb"},
+        ],
+    },
+    "alor-oemvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "alor-oemvm-rumi.dtb"},
+            {"name": "alor-vm-rumi.dtb"},
         ],
     },
     "gen3auto": {
@@ -356,8 +377,10 @@ _platform_map = {
             {"name": "vienna-rcm-overlay.dtbo"},
             {"name": "vienna-rumi-overlay.dtbo"},
             {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-ddsip-overlay.dtbo"},
             {"name": "vienna-wdp-overlay.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-ddsip-overlay.dtbo"},
             {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },

@@ -158,6 +158,11 @@ pmk8850@0 {
 		};
 	};
 
+	pmk8850_sdam_72: sdam@b700 {
+		compatible = "qcom,spmi-sdam";
+		reg = <0xb700>;
+	};
+
 	pmk8850_gpios: pinctrl@b800 {
 		compatible = "qcom,pmk8850-gpio";
 		reg = <0xb800>;
@@ -206,5 +211,15 @@ pmk8850@0 {
 				"qpt-frac-sdam",
 				"qpt-data-sdam";
 		#powerzone-cells = <1>;
+	};
+
+	pmk8850_qvadj: qcom,voltage-adj-device {
+		compatible = "qcom,vadj";
+	};
+
+	btl {
+		compatible = "qcom,btl";
+		nvmem = <&pmk8850_sdam_72>;
+		nvmem-names = "btl-sdam";
 	};
 };

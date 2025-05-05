@@ -11,12 +11,14 @@
 		reg = <12 SPMI_USID>;
 		#address-cells = <1>;
 		#size-cells = <0>;
+		status = "disabled";
 
 		pm8010m_tz: pm8010m-temp-alarm@2400 {
 			compatible = "qcom,spmi-temp-alarm";
 			reg = <0x2400>;
 			interrupts = <0xc 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
 			#thermal-sensor-cells = <0>;
+			status = "disabled";
 		};
 	};
 };
@@ -27,6 +29,7 @@
 		polling-delay = <0>;
 		thermal-governor = "step_wise";
 		thermal-sensors = <&pm8010m_tz>;
+		status = "disabled";
 
 		trips {
 			pm8010m_trip0: trip0 {
@@ -187,6 +190,12 @@
 };
 
 &soc {
+	reboot_reason {
+		compatible = "qcom,reboot-reason";
+		nvmem-cells = <&restart_reason>;
+		nvmem-cell-names = "restart_reason";
+	};
+
 	gpio_key {
 		compatible = "gpio-keys";
 		label = "gpio-keys";

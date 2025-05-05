@@ -499,8 +499,18 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
-	};
 
+		smp2p_test2_in: qcom,smp2p-test2-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test2_out: qcom,smp2p-test2-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
+	};
 
 	qcom,smp2p-cdsp {
 		compatible = "qcom,smp2p";
@@ -532,6 +542,17 @@
 			qcom,entry-name = "rdbg";
 			interrupt-controller;
 			#interrupt-cells = <2>;
+		};
+
+		smp2p_test5_in: qcom,smp2p-test5-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test5_out: qcom,smp2p-test5-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
 		};
 	};
 
@@ -578,6 +599,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_test1_in: qcom,smp2p-test1-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test1_out: qcom,smp2p-test1-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
 	};
 
 	qcom,smp2p-soccp {
@@ -600,6 +632,45 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_test19_in: qcom,smp2p-test19-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test19_out: qcom,smp2p-test19-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
+	};
+
+	qcom,smp2p_test_adsp {
+		compatible = "qcom,smp2p-test";
+		label = "adsp";
+		qcom,smem-states = <&smp2p_test2_out 0>;
+		interrupts-extended = <&smp2p_test2_in 0 0>;
+	};
+
+	qcom,smp2p_test_cdsp {
+		compatible = "qcom,smp2p-test";
+		label = "cdsp";
+		qcom,smem-states = <&smp2p_test5_out 0>;
+		interrupts-extended = <&smp2p_test5_in 0 0>;
+	};
+
+	qcom,smp2p_test_mpss {
+		compatible = "qcom,smp2p-test";
+		label = "mpss";
+		qcom,smem-states = <&smp2p_test1_out 0>;
+		interrupts-extended = <&smp2p_test1_in 0 0>;
+	};
+
+	qcom,smp2p_test_soccp {
+		compatible = "qcom,smp2p-test";
+		label = "soccp";
+		qcom,smem-states = <&smp2p_test19_out 0>;
+		interrupts-extended = <&smp2p_test19_in 0 0>;
 	};
 
 	qcom,smp2p_sleepstate {
@@ -2317,15 +2388,15 @@
 			"ref_aux_clk", "qref_clk",
 			"rx_sym0_mux_clk", "rx_sym1_mux_clk", "tx_sym0_mux_clk",
 			"rx_sym0_phy_clk", "rx_sym1_phy_clk", "tx_sym0_phy_clk";
-		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
 			<&tcsrcc TCSR_UFS_CLKREF_EN>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
-			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
-			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>;
+			<&ufs_phy_rx_symbol_0_clk>,
+			<&ufs_phy_rx_symbol_1_clk>,
+			<&ufs_phy_tx_symbol_0_clk>;
 		resets = <&ufshc_mem 0>;
 		status = "disabled";
 	};
@@ -2422,6 +2493,7 @@
 		qcom,ice-use-hwkm;
 		qcom,prime-mask = <0xc0>;
 		qcom,silver-mask = <0x3f>;
+		qcom,cluster-mask = <0x3f 0xc0>;
 		/* affine cpu for each CQ starting from CQ:0 to CQ:max_cqs */
 		qcom,esi-affinity-mask = <4 5 3 4 5 3 7 7>;
 
@@ -2474,24 +2546,19 @@
 
 		qcom,bypass-pbl-rst-wa;
 		qcom,max-cpus = <8>;
+		qcom,enforce-high-irq-cpus;
 
 		msi-parent = <&gic_its 0x60>;
 
 		status = "disabled";
 
 		qos0 {
-			mask = <0xc0>;
 			vote = <44>;
 			perf;
-			/* Set CPU6 to fmax, and CPU[6-7] will run at fmax */
-			cpu_freq_vote = <6>;
 		};
 
 		qos1 {
-			mask = <0x3f>;
 			vote = <44>;
-			/* Set CPU0 to fmax, and CPU[0-5] will run at fmax */
-			cpu_freq_vote = <0>;
 		};
 	};
 

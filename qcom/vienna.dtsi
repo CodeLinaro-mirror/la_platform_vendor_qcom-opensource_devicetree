@@ -62,12 +62,14 @@
 		spi13 = &spi5_b;
 		spi14 = &spi7_b;
 		mmc0 = &sdhc_1;
+		mmc1 = &sdhc_3; /*SDC3 SDIO slot*/
 	};
 
 	firmware: firmware {
 
 		qcom_scm: qcom_scm {
 			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x19000>;
 		};
 
 		qtee_shmbridge {
@@ -450,12 +452,6 @@
 	sdhc1_opp_table: sdhc1-opp-table {
 		compatible = "operating-points-v2";
 
-		opp-400000 {
-			opp-hz = /bits/ 64 <400000>;
-			opp-peak-kBps = <0 0>;
-			opp-avg-kBps = <0 0>;
-		};
-
 		opp-100000000 {
 			opp-hz = /bits/ 64 <100000000>;
 			opp-peak-kBps = <250000 133320>;
@@ -466,6 +462,22 @@
 			opp-hz = /bits/ 64 <384000000>;
 			opp-peak-kBps = <800000 300000>;
 			opp-avg-kBps = <400000 0>;
+		};
+	};
+
+	sdhc3_opp_table: sdhc3-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <160000 100000>;
+			opp-avg-kBps = <50000 0>;
+		};
+
+		opp-202000000 {
+			opp-hz = /bits/ 64 <202000000>;
+			opp-peak-kBps = <200000 120000>;
+			opp-avg-kBps = <104000 0>;
 		};
 	};
 
@@ -480,7 +492,7 @@
 		qcom,iommu-dma = "fastmap";
 
 		/*
-		 * iommu-dma-addr-pool- Indicate the range of data addresses which will be
+		 * iommu-addresses - Indicate the range of data addresses which will be
 		 * used in dma allocation.
 		 *
 		 * iommu-geometry -  This is specific for fastmap which Allow clients
@@ -494,7 +506,7 @@
 		 * iommu-dma-addr-pool property along with iommu-geometry property.
 		 */
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
+		qcom,iommu-addresses = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
@@ -534,7 +546,7 @@
 		reset-names = "core_reset";
 
 		qos0 {
-			mask = <0xf0>;
+			mask = <0x10>;
 			vote = <44>;
 		};
 
@@ -665,9 +677,19 @@
 
 	qcom,rmtfs_sharedmem@0 {
 		compatible = "qcom,sharedmem-uio";
-		reg = <0x0 0x0 0x0 0x400000>;
+		reg = <0x0 0x400000>;
 		reg-names = "rmtfs";
 		qcom,client-id = <0x00000001>;
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
 	};
 
 	cpu_pmu: cpu-pmu {
@@ -702,6 +724,43 @@
 		gpu_speed_bin: gpu_speed_bin@138 {
 			reg = <0x138 0x1>;
 			bits = <0 8>;
+		};
+	};
+
+	sdhc_3: sdhci@8844000 {
+		compatible = "qcom,sdhci-msm-v5";
+		status = "disabled";
+		reg = <0x08844000 0x1000>;
+		reg-names = "hc";
+
+		interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		clocks = <&gcc GCC_SDCC2_APPS_CLK>, <&gcc GCC_SDCC2_AHB_CLK>;
+		clock-names = "core", "iface";
+
+		interconnects = <&aggre_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
+			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_2>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+		operating-points-v2 = <&sdhc3_opp_table>;
+
+		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
+		qcom,dll-hsr-list = <0x0007442C 0x0 0x10 0x290106C0 0x80040868>;
+
+		bus-width = <4>;
+
+		iommus = <&apps_smmu 0x140 0x0>;
+		qcom,iommu-dma = "bypass";
+
+		qos0 {
+			mask = <0x10>;
+			vote = <44>;
+		};
+
+		qos1 {
+			mask = <0x0f>;
+			vote = <44>;
 		};
 	};
 
@@ -746,6 +805,14 @@
 		priority = <0>;
 		mbox-desc-offset = <0x0>;
 		#mbox-cells = <1>;
+	};
+
+	qcom,tmecom-qmp-client {
+		compatible = "qcom,tmecom-qmp-client";
+		mboxes = <&qmp_tme 0>;
+		mbox-names = "tmecom";
+		label = "tmecom";
+		depends-on-supply = <&qmp_tme>;
 	};
 
 	qcom,sps {
@@ -1571,8 +1638,105 @@
 		};
 	};
 
+	qcom,glink {
+		compatible = "qcom,glink";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		glink_wm: wm {
+			qcom,remote-pid = <23>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_MPROC_M55_WM
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "wm_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_MPROC_M55_WM
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "adsp";
+			qcom,glink-label = "wm";
+		};
+
+		glink_am: am {
+			qcom,remote-pid = <24>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_MPROC_M55_AM
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "am_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_MPROC_M55_AM
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "adsp";
+			qcom,glink-label = "am";
+		};
+	};
+
 	qcom,glinkpkt {
 		compatible = "qcom,glinkpkt";
+
+		qcom,glinkpkt-ctrl-cdsp {
+				qcom,glinkpkt-edge = "cdsp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_CDSP";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_cdsp";
+		};
+
+		qcom,glinkpkt-data-cdsp {
+				qcom,glinkpkt-edge = "cdsp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_CDSP";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_cdsp";
+		};
+
+		qcom,glinkpkt-ctrl-lpass {
+				qcom,glinkpkt-edge = "lpass";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_LPASS";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_lpass";
+		};
+
+		qcom,glinkpkt-data-lpass {
+				qcom,glinkpkt-edge = "lpass";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_LPASS";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_lpass";
+		};
+
+		qcom,glinkpkt-ctrl-mpss {
+				qcom,glinkpkt-edge = "mpss";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_MPSS";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_mpss";
+		};
+
+		qcom,glinkpkt-data-mpss {
+				qcom,glinkpkt-edge = "mpss";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_MPSS";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_mpss";
+		};
+
+		qcom,glinkpkt-ctrl-am {
+				qcom,glinkpkt-edge = "am";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_AM";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_am";
+		};
+
+		qcom,glinkpkt-data-am {
+				qcom,glinkpkt-edge = "am";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_AM";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_am";
+		};
+
+		qcom,glinkpkt-ctrl-wm {
+				qcom,glinkpkt-edge = "wm";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_WM";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_wm";
+		};
+
+		qcom,glinkpkt-data-wm {
+				qcom,glinkpkt-edge = "wm";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_WM";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_wm";
+		};
 
 		qcom,glinkpkt-at-mdm0 {
 			qcom,glinkpkt-edge = "mpss";
@@ -1692,6 +1856,7 @@
 			#address-cells = <2>;
 			#size-cells = <0>;
 			qcom,can-sleep;
+			status = "disabled";
 		};
 	};
 

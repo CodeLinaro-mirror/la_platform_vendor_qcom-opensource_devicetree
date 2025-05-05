@@ -37,7 +37,8 @@ CANOE_BOARDS += \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
-		alor-interposer-rcm-overlay.dtbo
+		alor-interposer-rcm-overlay.dtbo \
+		alor-interposer-qrd-st54l-pandeiro-overlay.dtbo
 
 NOAPQ_CANOE_BOARDS += \
 		canoe-rumi-overlay.dtbo
@@ -191,8 +192,10 @@ VIENNA_BOARDS += \
 		 vienna-rcm-overlay.dtbo \
 		 vienna-rcm-no-cam-overlay.dtbo \
 		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-ddsip-overlay.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
 		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-ddsip-overlay.dtbo \
 		 vienna-wrd-no-cam-overlay.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
@@ -259,7 +262,9 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				alor-interposer-vm-mtp.dtb \
 				alor-interposer-vm-rcm.dtb \
 				alor-interposer-oemvm-mtp.dtb \
-				alor-interposer-oemvm-rcm.dtb
+				alor-interposer-oemvm-rcm.dtb \
+				alor-interposer-vm-qrd.dtb \
+				alor-interposer-oemvm-qrd.dtb
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
@@ -277,6 +282,24 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_DIREWOLF), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+DIREWOLF_LA_GVM_BASE_DTB += direwolf-vm-la.dtb
+
+DIREWOLF_LA_GVM_BOARDS += \
+                   direwolf-vm-la-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(DIREWOLF_LA_GVM_BOARDS),$(DIREWOLF_LA_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(DIREWOLF_LA_GVM_BOARDS) $(DIREWOLF_LA_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
 
@@ -313,6 +336,15 @@ autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_ALOR), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-rumi.dtb \
+				alor-oemvm-rumi.dtb
+dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
 endif

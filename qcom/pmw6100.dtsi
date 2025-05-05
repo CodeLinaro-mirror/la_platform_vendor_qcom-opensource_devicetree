@@ -74,6 +74,11 @@
 			reg = <0x7100>;
 			#address-cells = <1>;
 			#size-cells = <1>;
+
+			restart_reason: restart@48 {
+				reg = <0x48 0x1>;
+				bits = <1 7>;
+			};
 		};
 
 		pmw6100_sdam_3: sdam@7200 {
@@ -84,6 +89,19 @@
 		pmw6100_sdam_5: sdam@7400 {
 			compatible = "qcom,spmi-sdam";
 			reg = <0x7400>;
+		};
+
+		pmw6100_eusb2_repeater: qcom,eusb2-repeater@fd00 {
+			compatible = "qcom,pmic-eusb2-repeater";
+			reg = <0xfd00>;
+			vdd18-supply = <&pmw6100_l11>;
+			vdd3-supply = <&pmw6100_l19>;
+			qcom,param-override-seq =
+				/* <value reg_offset> */
+				/* Adjust HS trasmit amplitude */
+				<0xa 0x51
+				/* Tx pre-emphasis tuning */
+				0x3 0x57>;
 		};
 
 		pmw6100_vadc: vadc@8000 {
@@ -149,18 +167,6 @@
 				reg = <PMW6100_ADC5_GEN4_VBAT_SNS_QBG(0, PMW6100_SID)>;
 				label = "pmw6100_vbat_sns";
 				qcom,pre-scaling = <1 3>;
-			};
-
-			pmw6100_usbc_mux {
-				reg = <PMW6100_ADC5_GEN4_USBC_MUX(0, PMW6100_SID)>;
-				label = "pmw6100_usbc_mux";
-				qcom,pre-scaling = <1 1>;
-			};
-
-			pmw6100_vref_bat_therm {
-				reg = <PMW6100_ADC5_GEN4_VREF_BAT_THERM(0, PMW6100_SID)>;
-				label = "pmw6100_vref_bat_therm";
-				qcom,pre-scaling = <1 1>;
 			};
 		};
 
