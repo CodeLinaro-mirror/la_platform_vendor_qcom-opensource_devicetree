@@ -1133,6 +1133,7 @@
 		interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&camcc CAM_CC_DRV_AHB_CLK>;
 
 		cam_rsc_drv0: drv@0 {
 			qcom,drv-id = <0>;
@@ -1459,8 +1460,6 @@
 			      "bi_tcxo_ao",
 			      "sleep_clk",
 			      "iface";
-		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
-		interconnect-names = "cam-to-ddr";
 		qcom,cam_crm-crmc = <&camcc_crmc>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
