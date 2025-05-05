@@ -838,6 +838,10 @@
 		memory-region = <&kinfo_mem>;
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 };
 
 #include "msm-arm-smmu-canoe-vm.dtsi"
