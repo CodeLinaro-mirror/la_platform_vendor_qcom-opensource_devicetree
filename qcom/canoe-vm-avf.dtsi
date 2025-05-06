@@ -95,7 +95,7 @@
 		vm-uri = "vmuid/trusted-ui";
 		vm-guid = "598085da-c516-5b25-a9c1-927a02819770";
 
-		vm-attrs = "context-dump", "crash-restart";
+		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
 		/* QUP1: GPII5 : region is 0xa24000 */
 		iomemory-ranges = <0x0 0x1107000 0x0 0x1107000 0x0 0x1000 0x0

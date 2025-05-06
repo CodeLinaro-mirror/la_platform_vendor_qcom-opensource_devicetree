@@ -51,7 +51,7 @@
 		vm-uri = "vmuid/oemvm";
 		vm-guid = "847bfe26-0b12-5728-812a-06103f6bdec0";
 
-		vm-attrs = "context-dump", "crash-restart";
+		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
 		/*
 		 * Allow VMMIO traps. Currently doesn't include
