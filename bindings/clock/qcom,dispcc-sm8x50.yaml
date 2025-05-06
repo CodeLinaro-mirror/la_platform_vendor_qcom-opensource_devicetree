@@ -31,6 +31,7 @@ properties:
       - qcom,sm8350-dispcc
       - qcom,pineapple-dispcc
       - qcom,sun-dispcc
+      - qcom,sun-dispcc_mx
       - qcom,canoe-dispcc
       - qcom,alor-dispcc
 
