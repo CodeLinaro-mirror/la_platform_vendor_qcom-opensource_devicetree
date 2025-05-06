@@ -243,6 +243,12 @@
 		#size-cells = <2>;
 		ranges;
 	};
+
+	/* Techpack dtbos will target this node for adding required-subnodes property
+	 * For Canoe VMs DTB will be replaced by a DTBO.
+	 * Add this until DTB build is deprecated.
+	 */
+	non_devices_common: non-devices-common { };
 };
 
 &reserved_memory {
