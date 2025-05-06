@@ -97,7 +97,6 @@
 	qcom,vdd-io-current-level = <200 22697>;
 
 	keep-power-in-suspend;
-	non-removable;
 	qcom,core_3_0v_support;
 	no-sd;
 	no-mmc;
