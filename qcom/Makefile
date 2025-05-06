@@ -112,6 +112,18 @@ sun-overlays-dtb-$(CONFIG_ARCH_KERA) += $(KERA_BOARDS) $(NOAPQ_KERA_BOARDS) $(KE
 
 dtb-y += $(sun-dtb-y)
 
+QCS610_BASE_DTB += qcs610.dtb
+
+QCS610_BOARDS += \
+		 qcs610-iot-overlay.dtbo \
+		 qcs610-ipc-overlay.dtbo \
+		 qcs610-opk-overlay.dtbo
+
+qcs610-dtb-$(CONFIG_ARCH_SM6150) += \
+        $(call add-overlays, $(QCS610_BOARDS),$(QCS610_BASE_DTB))
+qcs610-overlays-dtb-$(CONFIG_ARCH_SM6150) += $(QCS610_BOARDS) $(QCS610_BASE_DTB)
+dtb-y += $(qcs610-dtb-y)
+
 PINEAPPLE_BASE_DTB += pineapple.dtb pineapple-v2.dtb
 PINEAPPLE_APQ_BASE_DTB += pineapplep.dtb pineapplep-v2.dtb
 
@@ -255,6 +267,8 @@ tuna_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += tuna-vm-rumi.dtb \
 				tuna-vm-qrd.dtb \
 				tuna-vm-rcm.dtb \
 				tuna-vm-rcm-kiwi.dtb \
+				tunap-vm.dtb \
+				tuna7-vm.dtb \
 				tuna-oemvm-rumi.dtb \
 				tuna-oemvm-atp.dtb \
 				tuna-oemvm-cdp.dtb \
@@ -263,7 +277,9 @@ tuna_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += tuna-vm-rumi.dtb \
 				tuna-oemvm-mtp-qmp1000.dtb \
 				tuna-oemvm-qrd.dtb \
 				tuna-oemvm-rcm.dtb \
-				tuna-oemvm-rcm-kiwi.dtb
+				tuna-oemvm-rcm-kiwi.dtb \
+				tunap-oemvm.dtb \
+				tuna7-oemvm.dtb
 dtb-y += $(tuna_tuivm-dtb-y)
 endif
 endif

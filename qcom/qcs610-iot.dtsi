@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+/ {
+	model = "Qualcomm Technologies, Inc. QCS610 IOT";
+	compatible = "qcom,qcs610-iot", "qcom,qcs610", "qcom,iot";
+	qcom,board-id = <32 0>;
+};
+
+&L16A {
+	regulator-max-microvolt = <3304000>;
+};
+
+&L19A {
+	regulator-max-microvolt = <3304000>;
+};
+
+&L4C {
+	regulator-max-microvolt = <2912000>;
+};
+
+&L5C {
+	regulator-max-microvolt = <2912000>;
+};
+
+&L13A {
+	regulator-always-on;
+};
+
+&L7C {
+	regulator-always-on;
+};
+
+&L10A {
+	regulator-always-on;
+};
+
+&L14A {
+	regulator-always-on;
+};
