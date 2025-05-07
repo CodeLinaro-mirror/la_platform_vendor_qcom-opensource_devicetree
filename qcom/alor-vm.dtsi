@@ -91,6 +91,16 @@
 
 		vm-attrs = "context-dump", "crash-restart";
 
+		iomemory-ranges = <0x0 0x1924000 0x0 0x1924000 0x0 0x4000 0x0
+				0x0 0x1a24000 0x0 0x1a24000 0x0 0x4000 0x0>;
+
+		/* For LEVM por usecases is QUP1_SE4 and QUP3_SE1.
+		 * QUP1_SE4: GPII5 : IRQ_873
+		 * QUP3_SE1: GPII5 : IRQ_625
+		 */
+		gic-irq-ranges = <873 873  /* PVM->SVM IRQ transfer */
+				  625 625>;
+
 		memory {
 			#address-cells = <0x2>;
 			#size-cells = <0x0>;
@@ -273,12 +283,13 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <12>;
+		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71>;
 	};
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		tlmm-vm-gpio-list = <&tlmm 12 0>;
+		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
+					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0>;
 	};
 
 	vgic: interrupt-controller@17000000 {
