@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
@@ -371,6 +371,11 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x800000>;
+	};
+
+	hwfence_shbuf: hwfence-shmem {
+		no-map;
+		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
 	};
 
 	non_secure_display_memory: non_secure_display_region {
