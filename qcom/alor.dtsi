@@ -42,6 +42,8 @@
 		ufshc1 = &ufshc_mem;
 	};
 
+	ddr-regions { };
+
 	reserved_memory: reserved-memory { };
 
 	firmware: firmware {
