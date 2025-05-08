@@ -10,7 +10,7 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Alor Interposer OEMVM RCM";
-	compatible = "qcom,canoe-rcm", "qcom,canoe", "qcom,rcm";
+	compatible = "qcom,alor-rcm", "qcom,alor", "qcom,rcm";
 	qcom,msm-id = <704 0x10000>, <704 0x20000>,
 			<0x10002C0 0x10000>, <0x10002C0 0x20000>;
 	qcom,board-id = <0x15 0>;

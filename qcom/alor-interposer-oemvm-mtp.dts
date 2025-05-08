@@ -10,7 +10,7 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Alor Interposer OEMVM MTP";
-	compatible = "qcom,canoe-mtp", "qcom,canoe", "qcom,mtp";
+	compatible = "qcom,alor-mtp", "qcom,alor", "qcom,mtp";
 	qcom,msm-id = <704 0x10000>, <704 0x20000>,
 			<0x10002C0 0x10000>, <0x10002C0 0x20000>;
 	qcom,board-id = <8 0>;
