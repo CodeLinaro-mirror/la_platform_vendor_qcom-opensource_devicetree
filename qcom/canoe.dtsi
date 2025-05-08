@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
@@ -2695,6 +2695,18 @@
 				qcom,glinkpkt-edge = "cdsp";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_CDSP";
 				qcom,glinkpkt-dev-name = "glink_pkt_data_cdsp";
+		};
+
+		qcom,glinkpkt-ctrl-soccp {
+				qcom,glinkpkt-edge = "soccp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_SOCCP";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_soccp";
+		};
+
+		qcom,glinkpkt-data-soccp {
+				qcom,glinkpkt-edge = "soccp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_SOCCP";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_soccp";
 		};
 
 		qcom,glinkpkt-ctrl-lpass {
