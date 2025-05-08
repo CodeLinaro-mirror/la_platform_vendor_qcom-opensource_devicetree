@@ -275,7 +275,22 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				alor-interposer-oemvm-mtp.dtb \
 				alor-interposer-oemvm-rcm.dtb \
 				alor-interposer-vm-qrd.dtb \
-				alor-interposer-oemvm-qrd.dtb
+				alor-interposer-oemvm-qrd.dtb \
+				canoe-vm-mtp-overlay.dtbo \
+				canoe-vm-qrd-overlay.dtbo \
+				canoe-vm-rcm-overlay.dtbo \
+				canoe-vm-cdp-overlay.dtbo \
+				alor-interposer-vm-mtp-overlay.dtbo \
+				alor-interposer-vm-qrd-overlay.dtbo \
+				alor-interposer-vm-rcm-overlay.dtbo \
+				canoe-oemvm-mtp-overlay.dtbo \
+				canoe-oemvm-qrd-overlay.dtbo \
+				canoe-oemvm-rcm-overlay.dtbo \
+				canoe-oemvm-cdp-overlay.dtbo \
+				alor-interposer-oemvm-mtp-overlay.dtbo \
+				alor-interposer-oemvm-qrd-overlay.dtbo \
+				alor-interposer-oemvm-rcm-overlay.dtbo
+
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
