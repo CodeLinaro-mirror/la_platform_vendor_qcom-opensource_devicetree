@@ -2278,7 +2278,8 @@
 		tuivm {
 			qcom,label = <0x08>;
 			qcom,vmid = <45>;
-			tlmm-vm-gpio-list = <&tlmm 12 0>;
+			tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
+					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0>;
 		};
 	};
 
