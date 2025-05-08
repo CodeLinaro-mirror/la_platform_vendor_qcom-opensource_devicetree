@@ -42,6 +42,8 @@
 		ufshc1 = &ufshc_mem;
 	};
 
+	ddr-regions { };
+
 	reserved_memory: reserved-memory { };
 
 	firmware: firmware {
@@ -2407,6 +2409,46 @@
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+	};
+
+	soccp_pas: remoteproc-soccp@a3380000 {
+		compatible = "qcom,alor-soccp-pas";
+		reg = <0x0 0xa3380000 0x0 0x10000>;
+		status = "ok";
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_LOW_SVS 0>;
+		mx-supply = <&VDD_MX_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_LOW_SVS 0>;
+		reg-names = "cx", "mx";
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "xo";
+
+		firmware-name = "soccp.mbn", "soccp_dtb.mbn";
+
+		memory-region = <&soccp_mem &soccp_dtb_mem>;
+
+		/* Inputs from SOCCP */
+		interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
+					<&soccp_smp2p_in 0 0>,
+					<&soccp_smp2p_in 1 0>,
+					<&soccp_smp2p_in 3 0>,
+					<&soccp_smp2p_in 2 0>,
+					<&soccp_smp2p_in 9 0>,
+					<&soccp_smp2p_in 10 0>;
+
+		interrupt-names = "wdog",
+				"fatal",
+				"ready",
+				"stop-ack",
+				"handover",
+				"pong",
+				"wake-ack";
+
+		/* Outputs to soccp */
+		qcom,smem-states = <&soccp_smp2p_out 0>, <&soccp_smp2p_out 10>, <&soccp_smp2p_out 9>, <&soccp_smp2p_out 8>;
+		qcom,smem-state-names = "stop", "wakeup", "sleep", "ping";
 	};
 };
 
