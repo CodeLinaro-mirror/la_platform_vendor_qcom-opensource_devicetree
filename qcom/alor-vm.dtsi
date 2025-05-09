@@ -12,7 +12,7 @@
 	interrupt-parent = <&vgic>;
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce";
+		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable memory_hotplug.memmap_on_memory=force rcupdate.rcu_expedited=1 rcu_nocbs=0-1 fw_devlink.strict=1 stack_depot_disable=on";
 	};
 
 	cpus {
@@ -212,6 +212,15 @@
 				peer-default;
 			};
 
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x0000001>;
+			};
+
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
 				generate = "/hypervisor/ddump-shm";
@@ -249,7 +258,7 @@
 	};
 
 	firmware: firmware {
-		scm {
+		qcom_scm: qcom_scm {
 			compatible = "qcom,scm";
 		};
 	};
@@ -345,6 +354,29 @@
 		qcom,secondary;
 	};
 
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
 	qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <9>;
@@ -388,3 +420,6 @@
 		};
 	};
 };
+
+#include "msm-arm-smmu-alor-vm.dtsi"
+#include "alor-vm-dma-heaps.dtsi"
