@@ -222,4 +222,8 @@ pmk8850@0 {
 		nvmem = <&pmk8850_sdam_72>;
 		nvmem-names = "btl-sdam";
 	};
+
+	qcom,power-telemetry-data-share-device {
+		compatible = "qcom,power-telemetry-data-share";
+	};
 };
