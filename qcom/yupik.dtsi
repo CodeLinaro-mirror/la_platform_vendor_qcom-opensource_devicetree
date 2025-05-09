@@ -3471,7 +3471,7 @@
 						<SLEEP_TCS   3>,
 						<WAKE_TCS    3>,
 						<CONTROL_TCS 0>,
-						<FAST_PATH_TCS 1>;
+						<FAST_PATH_TCS 0>;
 			};
 
 			apps_bcm_voter: bcm_voter {
