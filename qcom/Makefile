@@ -57,7 +57,9 @@ ALOR_BOARDS += \
 		alor-mtp-pmih010x-smb1398-overlay.dtbo \
 		alor-mtp-pm7550ba-smb1398-overlay.dtbo \
 		alor-rcm-overlay.dtbo \
-		alor-rcm-peach-overlay.dtbo
+		alor-rcm-peach-overlay.dtbo \
+		alor-qrd-overlay.dtbo \
+		alor-qrd-peach-overlay.dtbo
 
 NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
