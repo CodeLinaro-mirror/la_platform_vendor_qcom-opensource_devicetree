@@ -4,6 +4,7 @@
  */
 
 #include "alor-pmic-overlay.dtsi"
+#include "alor-pmih010x-pmd802x.dtsi"
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 
 &sdhc_2 {
@@ -223,5 +224,39 @@
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 48 0 &tlmm 49 0 &tlmm 50 0
 						&tlmm 51 0 &tlmm 161 0 &tlmm 55 0x2008>;
+	};
+};
+
+&pmic_glink_debug {
+	i2c_pmic:i2c@105 {
+		reg = <0x105>;  /* I2C instance 5 in ADSP for SE4 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		qcom,bus-type = "i2c";
+
+		i2c_pmic_smb1500_1: qcom,smb1500@68 {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x68>;
+			qcom,can-sleep;
+		};
+	};
+};
+
+&pmic_glink_adc {
+	status = "ok";
+
+	smb1500_1_iin {
+		reg = <0x1056801>;
+		label = "smb1500_1_iin";
+	};
+
+	smb1500_1_ichg {
+		reg = <0x1056802>;
+		label = "smb1500_1_ichg";
+	};
+
+	smb1500_1_die_temp {
+		reg = <0x1056803>;
+		label = "smb1500_1_die_temp";
 	};
 };
