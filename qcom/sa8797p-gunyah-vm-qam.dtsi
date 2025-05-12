@@ -6,16 +6,36 @@
 #include "sa8797p-gunyah-vm.dtsi"
 #include "sa8797p-gunyah-vm-qupv3.dtsi"
 
+/ {
+	aliases {
+		hsuart0 = &qupv3_se17_4uart;
+	};
+};
+
 &vm_config {
 	/* Pass through regions */
 	iomemory-ranges = <
 		/* MPROC NS1 IPCC region */
 		0x0 0x9008000 0x0 0x9008000 0x0 0x1000 0x0
+		/* QUPv3 Tile 2 read-only region */
+		0x0 0x8C0000 0x0 0x8C0000 0x0 0x2000 0x1
+		/* QUPv3 SE17 region */
+		0x0 0x88C000 0x0 0x88C000 0x0 0x3000 0x0
 	>;
 
 	/* Pass through IRQs */
 	gic-irq-ranges = <
 		/* MPROC NS1 IPCC GIC IRQ */
 		471 471
+		/* QUPv3 SE17 GIC IRQ */
+		617 617
 	>;
+};
+
+&qupv3_2 {
+	status = "ok";
+};
+
+&qupv3_se17_4uart {
+	status = "ok";
 };
