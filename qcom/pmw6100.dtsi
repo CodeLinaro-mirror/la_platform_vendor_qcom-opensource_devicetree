@@ -90,8 +90,8 @@
 			};
 		};
 
-		pmw6100_sdam_3: sdam@7200 {
-			compatible = "qcom,spmi-sdam";
+		pmic_lpm: qti,pmic-lpm@7200 {
+			compatible = "qti,pmw6100-pmic-lpm";
 			reg = <0x7200>;
 		};
 
