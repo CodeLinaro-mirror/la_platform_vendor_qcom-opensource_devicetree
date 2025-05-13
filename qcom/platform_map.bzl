@@ -74,6 +74,8 @@ _platform_map = {
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
             {"name": "alor-rcm-overlay.dtbo"},
             {"name": "alor-rcm-peach-overlay.dtbo"},
+            {"name": "alor-qrd-overlay.dtbo"},
+            {"name": "alor-qrd-peach-overlay.dtbo"},
             {"name": "alor-rumi-overlay.dtbo"},
         ],
     },
