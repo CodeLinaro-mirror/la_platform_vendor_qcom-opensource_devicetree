@@ -40,6 +40,7 @@ properties:
       - qcom,parrot-videocc
       - qcom,canoe-videocc
       - qcom,alor-videocc
+      - qcom,canoe-videocc-v2
 
   clocks:
     items:
