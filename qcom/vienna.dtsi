@@ -2290,6 +2290,11 @@
 	status = "ok";
 };
 
+&uart6 {
+	qcom,auto-suspend-disable;
+	status = "ok";
+};
+
 &pmic_glink_debug {
 	spmi@0 {
 		reg = <0>;
