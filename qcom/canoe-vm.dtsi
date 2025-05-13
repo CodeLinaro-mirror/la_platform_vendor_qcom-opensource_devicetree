@@ -773,6 +773,7 @@
 
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
+		peer = <4>;
 		msgq-label = <3>;
 	};
 
