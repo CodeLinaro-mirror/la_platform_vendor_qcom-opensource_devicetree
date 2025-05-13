@@ -291,6 +291,12 @@ _platform_map = {
                 "name": "katmaip-fp2p5.dtb",
                 "apq": True,
             },
+            {"name": "yupik.dtb"},
+            {"name": "yupik-hsp.dtb"},
+            {
+                "name": "yupikp-hsp.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
@@ -322,6 +328,18 @@ _platform_map = {
             {"name": "katmaip-fp2p5-hsp-pm7250b-overlay.dtbo"},
             {"name": "katmaip-fp3-hsp-overlay.dtbo"},
             {"name": "katmaip-fp3-hsp-pm7250b-overlay.dtbo"},
+            {"name": "yupik-rumi-overlay.dtbo"},
+            {"name": "yupik-idp-overlay.dtbo"},
+            {"name": "yupik-qrd-overlay.dtbo"},
+            {"name": "yupik-idp-pm7250b-overlay.dtbo"},
+            {"name": "yupik-idps-amoled-overlay.dtbo"},
+            {"name": "yupikp-idp-overlay.dtbo"},
+            {"name": "yupikp-qrd-overlay.dtbo"},
+            {"name": "yupikp-idps-amoled-overlay.dtbo"},
+            {"name": "yupik-atp-overlay.dtbo"},
+            {"name": "yupikp-atp-overlay.dtbo"},
+            {"name": "yupik-idp-hsp-overlay.dtbo"},
+            {"name": "yupikp-idp-hsp-overlay.dtbo"},
         ],
     },
     "hamoa": {

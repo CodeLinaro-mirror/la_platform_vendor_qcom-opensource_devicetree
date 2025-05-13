@@ -177,8 +177,8 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
-YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
-YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb
+YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
+YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
 
 YUPIK_BOARDS += \
 		yupikp-iot-idp-overlay.dtbo \
@@ -194,7 +194,13 @@ YUPIK_BOARDS += \
 		katmaip-fp2p5-hsp-overlay.dtbo \
 		katmaip-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmaip-fp3-hsp-overlay.dtbo \
-		katmaip-fp3-hsp-pm7250b-overlay.dtbo
+		katmaip-fp3-hsp-pm7250b-overlay.dtbo \
+		yupikp-idp-overlay.dtbo \
+		yupikp-qrd-overlay.dtbo \
+		yupikp-idps-amoled-overlay.dtbo \
+		yupikp-atp-overlay.dtbo \
+		yupikp-idp-hsp-overlay.dtbo
+
 
 NOAPQ_YUPIK_BOARDS += \
 		yupik-iot-idp-overlay.dtbo \
@@ -210,7 +216,14 @@ NOAPQ_YUPIK_BOARDS += \
 		katmai-fp2p5-hsp-overlay.dtbo \
 		katmai-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmai-fp3-hsp-overlay.dtbo \
-		katmai-fp3-hsp-pm7250b-overlay.dtbo
+		katmai-fp3-hsp-pm7250b-overlay.dtbo \
+		yupik-rumi-overlay.dtbo \
+		yupik-idp-overlay.dtbo \
+		yupik-qrd-overlay.dtbo \
+		yupik-idp-pm7250b-overlay.dtbo \
+		yupik-idps-amoled-overlay.dtbo \
+		yupik-atp-overlay.dtbo \
+		yupik-idp-hsp-overlay.dtbo
 
 lahaina-dtb-$(CONFIG_ARCH_YUPIK) += \
 	$(call add-overlays, $(NOAPQ_YUPIK_BOARDS),$(YUPIK_BASE_DTB)) \
