@@ -3,6 +3,7 @@
  * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,cambistmclkcc-canoe.h>
 #include <dt-bindings/clock/qcom,alor-camcc.h>
 #include <dt-bindings/clock/qcom,dispcc-canoe.h>
@@ -93,10 +94,7 @@
 	};
 
 	firmware: firmware {
-		qcom_scm: qcom_scm {
-			compatible = "qcom,scm";
-			qcom,dload-mode = <&tcsr 0x19000>;
-		};
+		qcom_scm: qcom_scm { };
 	};
 
 	cpus {
@@ -381,6 +379,76 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x400000>;
 	};
+
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+};
+
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x19000>;
+	};
+
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
+
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
+
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+		qcom,vmid-cp-camera-preview-ro;
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
+	};
 };
 
 &soc {
@@ -654,7 +722,13 @@
 		#mbox-cells = <2>;
 	};
 
-	qcom_tzlog: tz-log@0 {
+	qcom_tzlog: tz-log@14680720 {
+		compatible = "qcom,tz-log";
+		reg = <0x0 0x14680720 0x0 0x3000>;
+		qcom,hyplog-enabled;
+		hyplog-address-offset = <0x410>;
+		hyplog-size-offset = <0x414>;
+		tmecrashdump-address-offset = <0x81CA0000>;
 	};
 
 	eud: qcom,msm-eud@88e0000 {
@@ -899,6 +973,14 @@
 		priority = <0>;
 		mbox-desc-offset = <0x0>;
 		#mbox-cells = <1>;
+	};
+
+	qcom,tmecom-qmp-client {
+		compatible = "qcom,tmecom-qmp-client";
+		mboxes = <&qmp_tme 0>;
+		mbox-names = "tmecom";
+		label = "tmecom";
+		depends-on-supply = <&qmp_tme>;
 	};
 
 	qcom,smp2p-adsp {
@@ -2302,6 +2384,57 @@
 		};
 	};
 
+	qcom_cedev: qcedev@1de0000 {
+		compatible = "qcom,qcedev";
+		reg = <0x0 0x1de0000 0x0 0x20000>,
+			<0x0 0x1dc4000 0x0 0x22000>;
+		reg-names = "crypto-base","crypto-bam-base";
+		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 274 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "bam-irq", "core-irq";
+		qcom,bam-pipe-pair = <2>;
+		qcom,offload-ops-support;
+		qcom,use-key-index;
+		qcom,bam-pipe-offload-cpb-hlos = <1>;
+		qcom,bam-pipe-offload-hlos-cpb = <3>;
+		qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
+		qcom,bam-pipe-offload-hlos-hlos = <4>;
+		qcom,bam-pipe-offload-hlos-hlos-1 = <9>;
+		qcom,ce-hw-instance = <0>;
+		qcom,ce-device = <0>;
+		qcom,ce-hw-shared;
+		qcom,bam-ee = <0>;
+		qcom,smmu-s1-enable;
+		qcom,no-clock-support;
+		interconnect-names = "data_path";
+		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		iommus = <&apps_smmu 0x00C0 0x0>,
+			<&apps_smmu 0x00C1 0x0>;
+		qcom,iommu-dma = "atomic";
+		dma-coherent;
+
+		qcom_cedev_ns_cb {
+			compatible = "qcom,qcedev,context-bank";
+			label = "ns_context";
+			iommus = <&apps_smmu 0x00C1 0x0>;
+			dma-coherent;
+		};
+
+		qcom_cedev_s_cb {
+			compatible = "qcom,qcedev,context-bank";
+			label = "secure_context";
+			iommus = <&apps_smmu 0x00C3 0x0>;
+			qcom,iommu-vmid = <0x9>;
+			qcom,secure-context-bank;
+			dma-noncoherent;
+		};
+	};
+
+	rng: rng@10c3000 {
+		compatible = "qcom,trng";
+		reg = <0x0 0x10c3000 0x0 0x1000>;
+	};
+
 	ufshc_dma_resv: ufshc_dma_resv_region {
 		/*
 		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
@@ -2341,8 +2474,9 @@
 
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
-		reg = <0x0 0x1d84000 0x0 0x3000>;
-		reg-names = "ufs_mem";
+		reg = <0x0 0x1d84000 0x0 0x3000>,
+		      <0x0 0x1d88000 0x0 0x18000>;
+		reg-names = "ufs_mem", "ice";
 
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;

@@ -3,6 +3,7 @@
  * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 
@@ -350,6 +351,41 @@
 		clock-frequency = <19200000>;
 	};
 
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-receiver";
+	};
+
+	qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x1830 0x20>,
+			 <&apps_smmu 0x1C10 0x0>,
+			 <&apps_smmu 0x18F0 0x0>;
+		dma-coherent;
+	};
+
+	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
+		qcom,iommu-defer-smr-config;
+		memory-region = <&smmu_proxy_iommu_region>;
+		iommus = <&apps_smmu 0x801 0x0>;
+		dma-coherent;
+	};
+
+	qti,smmu-proxy-eva-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_EVA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x1927 0x0>;
+		dma-coherent;
+	};
+
+	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
+		iommu-addresses = <&smmu_proxy_display_cb 0x0 0x20000>;
+	};
+
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x4>;
@@ -391,6 +427,20 @@
 		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
 		qcom,block-size = <0x400000>;
 		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <64>;
+		qcom,support-hypervisor;
 	};
 
 	qcom,gunyah-panic-notifier {
