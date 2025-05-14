@@ -1444,14 +1444,11 @@
 		};
 	};
 
-	etm@12c21000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete0 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU0>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1553,14 +1550,11 @@
 		};
 	};
 
-	etm@12d21000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete1 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU1>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1662,14 +1656,11 @@
 		};
 	};
 
-	etm@12e21000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete2 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU2>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1771,14 +1762,11 @@
 		};
 	};
 
-	etm@12f21000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete3 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU3>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1880,14 +1868,11 @@
 		};
 	};
 
-	etm@13021000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete4 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU4>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1989,14 +1974,11 @@
 		};
 	};
 
-	etm@13121000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete5 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU5>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2414,14 +2396,11 @@
 		};
 	};
 
-	etm@13521000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete6 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU6>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2523,14 +2502,11 @@
 		};
 	};
 
-	etm@13621000 {
-		compatible = "arm,coresight-etm4x-sysreg";
+	ete7 {
+		compatible = "arm,embedded-trace-extension";
 		cpu = <&CPU7>;
 
 		qcom,skip-power-up;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
