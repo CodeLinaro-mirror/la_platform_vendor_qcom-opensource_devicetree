@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
@@ -1025,8 +1025,8 @@
 		L4G: L4G_E0: pmh0110_g_l4: regulator-pmh0110-g-l4 {
 			regulator-name = "pmh0110_g_l4";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <880000>;
-			regulator-max-microvolt = <920000>;
+			regulator-min-microvolt = <912000>;
+			regulator-max-microvolt = <912000>;
 			qcom,init-voltage = <912000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
 		};
