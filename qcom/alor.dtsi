@@ -2521,11 +2521,11 @@
 			};
 
 			qcom,pmic_glink_rpmsg {
-				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
+				qcom,glink-channels = "PMIC_RTR_SOCCP_APPS";
 			};
 
 			qcom,pmic_glink_log_rpmsg {
-				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
+				qcom,glink-channels = "PMIC_LOGS_SOCCP_APPS";
 				qcom,intents = <0x800 5
 						0xc00 3
 						0x2000 1>;
@@ -2806,6 +2806,54 @@
 				#size-cells = <0>;
 				qcom,can-sleep;
 			};
+		};
+	};
+
+	pmic-glink {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_RTR_SOCCP_APPS";
+		depends-on-supply = <&ipcc_mproc>;
+		qcom,subsys-name = "soccp";
+
+		battery_charger: battery-charger {
+			compatible = "qcom,battery-charger";
+		};
+
+		ucsi: ucsi-glink {
+			compatible = "qcom,ucsi-glink";
+		};
+
+		altmode: altmode-glink {
+			compatible = "qcom,altmode-glink";
+			#altmode-cells = <1>;
+		};
+	};
+
+	pmic-glink-log {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_LOGS_SOCCP_APPS";
+
+		battery-debug {
+			compatible = "qcom,battery-debug";
+		};
+
+		charger-ulog-glink {
+			compatible = "qcom,charger-ulog-glink";
+		};
+
+		pmic_glink_debug: pmic-glink-debug {
+			compatible = "qcom,pmic-glink-debug";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			depends-on-supply = <&spmi1_bus>;
+		};
+
+		pmic_glink_adc: glink-adc {
+			compatible = "qcom,glink-adc";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#io-channel-cells = <1>;
+			status = "disabled";
 		};
 	};
 };
