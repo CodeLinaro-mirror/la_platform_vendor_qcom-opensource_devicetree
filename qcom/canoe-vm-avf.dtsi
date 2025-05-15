@@ -215,7 +215,7 @@
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
-				qcom,label = <0x10A>;
+				qcom,label = <0x10a>;
 			};
 
 			qrtr-shm {
@@ -387,7 +387,7 @@
 
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,canoe-vm-tlmm";
-		reg = <0x0 0x0F000000 0x0 0x0202000>;
+		reg = <0x0 0x0f000000 0x0 0x0202000>;
 		interrupts-extended = <&vm_tlmm_irq 1 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
 		#gpio-cells = <2>;

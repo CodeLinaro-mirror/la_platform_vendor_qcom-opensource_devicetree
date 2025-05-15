@@ -140,7 +140,7 @@
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
-				qcom,label = <0x000010C>;
+				qcom,label = <0x000010c>;
 			};
 
 			qrtr-shm {
@@ -298,8 +298,8 @@
 		compatible = "qcom,msm-watchdog";
 		reg = <0x0 0x17600000 0x0 0x1000>;
 		reg-names = "wdt-base";
-		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-				<GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 0x3a0 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 0x3a1 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bark-time = <11000>;
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
