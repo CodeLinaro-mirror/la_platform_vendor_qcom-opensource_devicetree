@@ -2704,6 +2704,8 @@
 		qcom,smem-state-names = "stop", "wakeup", "sleep", "ping";
 	};
 
+	thermal_zones: thermal-zones {};
+
 	pmic_arbiter: arbiter@c400000 {
 		compatible = "qcom,canoe-spmi-pmic-arb";
 		reg = <0x0 0xc400000 0x0 0x3000>,
