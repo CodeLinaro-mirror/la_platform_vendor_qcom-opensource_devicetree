@@ -8,8 +8,9 @@
 &qupv3_se19_i2c  {
 	status = "ok";
 	qcom,touch-active = "st,fts";
+	required-subnodes = <&st_fts_49>;
 
-	st_fts@49 {
+	st_fts_49: st_fts@49 {
 		compatible = "st,fts";
 		reg = <0x49>;
 		st,irq-gpio = <&tlmm 158 0x2008>;
