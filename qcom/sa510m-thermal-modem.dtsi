@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -67,6 +67,40 @@
 				temperature = <125000>;
 				hysteresis = <1000>;
 				type = "passive";
+			};
+
+			pa_config0: pa-config0 {
+				temperature = <115000>;
+				hysteresis = <3000>;
+				type = "active";
+			};
+
+			pa_config1: pa-config1 {
+				temperature = <135000>;
+				hysteresis = <5000>;
+				type = "active";
+			};
+		};
+
+		cooling-maps {
+			pa_lte_cdev0 {
+				trip = <&pa_config0>;
+				cooling-device = <&pa_lte_sdr0_dsc 5 5>;
+			};
+
+			pa_nr_cdev0 {
+				trip = <&pa_config0>;
+				cooling-device = <&pa_nr_sdr0_dsc 5 5>;
+			};
+
+			pa_lte_cdev1 {
+				trip = <&pa_config1>;
+				cooling-device = <&pa_lte_sdr0_dsc 255 255>;
+			};
+
+			pa_nr_cdev1 {
+				trip = <&pa_config1>;
+				cooling-device = <&pa_nr_sdr0_dsc 255 255>;
 			};
 		};
 	};

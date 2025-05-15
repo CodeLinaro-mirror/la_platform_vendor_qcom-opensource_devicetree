@@ -13,12 +13,14 @@ description: |+
   The EUD (Embedded USB Debugger) is a mini-USB hub implemented
   on chip to support the USB-based debug and trace capabilities.
 
+unevaluatedProperties: false
+
 properties:
   compatible:
-    items:
-      - enum:
-         - qcom,msm-eud-sdxpinn
-      - const: qcom,msm-eud
+    enum:
+      - qcom,msm-eud-sdxpinn
+      - qcom,msm-eud-sa510m
+      - qcom,msm-eud
 
   reg:
     items:
@@ -52,7 +54,7 @@ required:
   - interrupts
   - interrupt-names
 
-example:
+examples:
   - |
     eud: qcom,msm-eud@88e0000 {
        compatible = "qcom,msm-eud";
@@ -62,7 +64,6 @@ example:
        reg-names = "eud_base";
     };
 
-client-example:
   - |
     usb3 {
        extcon = <&eud>;
