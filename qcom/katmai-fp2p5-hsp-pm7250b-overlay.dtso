@@ -11,8 +11,7 @@
 / {
 	model = "Qualcomm Technologies, Inc. Katmai FP2P5 IOT HSP + PM7250B";
 	compatible = "qcom,yupik-iot-idp", "qcom,yupik-iot", "qcom,idp";
-	qcom,msm-id = <497 0x10000>, <575 0x10000>, <576 0x10000>;
+	qcom,msm-id = <0x200001F1 0x10000>, <0x2000023F 0x10000>, <0x20000240 0x10000>;
 	qcom,board-id = <34 1>;
-	qcom,softsku-id = <8>;
 };
 
