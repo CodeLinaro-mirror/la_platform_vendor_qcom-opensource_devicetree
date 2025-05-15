@@ -5,6 +5,7 @@
 
 #include "sa8797p-gunyah-vm.dtsi"
 #include "sa8797p-gunyah-vm-qupv3.dtsi"
+#include "sa8797p-vm-usb.dtsi"
 
 / {
 	aliases {
@@ -21,6 +22,9 @@
 		0x0 0x8C0000 0x0 0x8C0000 0x0 0x2000 0x1
 		/* QUPv3 SE17 region */
 		0x0 0x88C000 0x0 0x88C000 0x0 0x3000 0x0
+		/* USB2 region */
+		0x0 0x88e0000 0x0 0x88e0000 0x0 0x1000 0x0
+		0x0 0xa200000 0x0 0xa200000 0x0 0x200000 0x0
 	>;
 
 	/* Pass through IRQs */
@@ -29,6 +33,11 @@
 		471 471
 		/* QUPv3 SE17 GIC IRQ */
 		617 617
+		/*USB2 IRQs*/
+		784 784
+		785 785
+		939 939
+		942 942
 	>;
 };
 
@@ -37,5 +46,13 @@
 };
 
 &qupv3_se17_4uart {
+	status = "ok";
+};
+
+&usb2 {
+	status = "ok";
+};
+
+&eusb2_phy2 {
 	status = "ok";
 };
