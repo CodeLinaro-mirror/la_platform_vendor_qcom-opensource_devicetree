@@ -3064,13 +3064,11 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x111c4000 0x0 0x1000>;
 		reg-names = "tpdm-base";
-		qcom,dsb-msrs-num = <32>;
 
 		device-name = "tpdm_eva";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
