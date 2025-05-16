@@ -2457,6 +2457,11 @@
 		tlmm-vm-gpio-list = <&tlmm 12 0>;
 	};
 
+	adsp_sleepmon: adsp-sleepmon {
+		compatible = "qcom,adsp-sleepmon";
+		qcom,rproc-handle = <&adsp_pas>;
+	};
+
 	modem_pas: remoteproc-mss@04080000 {
 		compatible = "qcom,alor-modem-pas";
 		reg = <0x0 0x4080000 0x0 0x10000>;
@@ -2603,6 +2608,12 @@
 				qcom,intents = <0x800 5
 						0xc00 3
 						0x2000 1>;
+			};
+
+			qcom,msm_adspsleepmon_rpmsg {
+				compatible = "qcom,msm-adspsleepmon-rpmsg";
+				qcom,glink-channels = "sleepmonglink-apps-adsp";
+				qcom,intents = <0x1000 8>;
 			};
 		};
 	};
