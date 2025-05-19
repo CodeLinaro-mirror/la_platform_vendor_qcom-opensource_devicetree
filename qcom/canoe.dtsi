@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: BSD-3-Clause
+
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
+
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,cambistmclkcc-canoe.h>
@@ -3016,6 +3018,10 @@
 	google,debug-kinfo {
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
+	};
+
+	microdump_modem {
+		compatible = "qcom,microdump-modem";
 	};
 
 	mini_dump_mode {
