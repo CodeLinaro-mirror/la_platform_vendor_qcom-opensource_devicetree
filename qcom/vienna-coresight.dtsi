@@ -1623,18 +1623,10 @@
 	};
 
 	tpdm_dpm1: tpdm@11185000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11185000 0x1000>;
-		reg-names = "tpdm-base";
+		compatible = "qcom,coresight-static-tpdm";
+		device-name = "tpdm_dpm1";
 		qcom,cmb-element-bits = <64>;
 		qcom,cmb-msrs-num = <1>;
-
-		device-name = "tpdm_dpm1";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1647,18 +1639,10 @@
 	};
 
 	tpdm_dmp2: tpdm@11186000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0e00>;
-		reg = <0x11186000 0x1000>;
-		reg-names = "tpdm-base";
+		compatible = "qcom,coresight-static-tpdm";
+		device-name = "tpdm_dpm2";
 		qcom,cmb-element-bits = <64>;
 		qcom,cmb-msrs-num = <1>;
-
-		device-name = "tpdm_dpm2";
-
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
