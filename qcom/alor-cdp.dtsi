@@ -4,6 +4,7 @@
  */
 
 #include "alor-pmic-overlay.dtsi"
+#include <dt-bindings/clock/qcom,alor-gcc.h>
 
 &qupv3_se4_i2c {
 	#address-cells = <1>;
@@ -67,4 +68,34 @@
 		goodix,touch-type = "primary";
 		goodix,qts_en;
 	};
+};
+
+&sdhc_2 {
+	vdd-supply = <&L9B>;
+	qcom,vdd-voltage-level = <2950000 2960000>;
+	qcom,vdd-current-level = <33 977000>;
+
+	vdd-io-supply = <&L8B>;
+	qcom,vdd-io-voltage-level = <1800000 2960000>;
+	qcom,vdd-io-current-level = <0 5830>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc2_on>;
+	pinctrl-1 = <&sdc2_off>;
+
+	cd-gpios = <&tlmm 84 GPIO_ACTIVE_LOW>;
+
+	resets = <&gcc GCC_SDCC2_BCR>;
+	reset-names = "core_reset";
+
+	/*
+	 * By default, the Alor reference platforms use Level Shifter
+	 * devices with its Feedback Clock signal connects to the MSM.
+	 * Without the external feedback clock, the HS50 mode works at
+	 * reduced frequency at 37.5MHz.
+	 */
+	qcom,uses_level_shifter;
+	qcom,external-fb-clk;
+
+	status = "ok";
 };
