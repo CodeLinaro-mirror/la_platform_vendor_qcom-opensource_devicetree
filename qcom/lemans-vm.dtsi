@@ -14,6 +14,7 @@
 
 	aliases {
 		hsuart0 = &qupv3_se17_4uart;
+		hsuart1 = &qupv3_se3_4uart;
 		ufshc2 = &ufshc2_mem;
 	};
 
@@ -631,7 +632,6 @@
 		regulator-name = "usb0_vbus_boost_vregulator";
 		enable-active-high;
 		gpios = <&pm8775_3_gpios 3 0>;
-
 		pinctrl-names = "default";
 		pinctrl-0 = <&usb20_vbus_boost_default>;
 	};
@@ -667,6 +667,10 @@
 
 &usb2 {
 	vbus_dwc3-supply = <&usb2_vbus_boost_regulator>;
+};
+
+&qupv3_0 {
+	qcom,iommu-dma = "bypass";
 };
 
 &qupv3_1 {
