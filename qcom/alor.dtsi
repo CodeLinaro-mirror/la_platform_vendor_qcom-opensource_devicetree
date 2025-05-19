@@ -435,6 +435,11 @@
 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	show_resume_irqs@17000000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x0 0x17000000 0x0 0x10000>;	/* GICD */
+	};
+
 	memtimer: timer@17810000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -2312,9 +2317,10 @@
 	};
 
 	cpuss-sleep-stats@18870000 {
-		compatible = "qcom,cpuss-sleep-stats-v4";
+		compatible = "qcom,cpuss-sleep-stats-v6";
 		reg = <0x0 0x18870000 0x0 0x4000>;
 		reg-names = "base";
+		num-clusters = <2>;
 	};
 
 	sys-pm-vx@c320000 {
