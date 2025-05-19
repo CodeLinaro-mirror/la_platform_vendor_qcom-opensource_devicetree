@@ -117,6 +117,14 @@
 	status = "ok";
 };
 
+&xpcs1 {
+	status = "okay";
+};
+
+&ethernet1 {
+	status = "okay";
+};
+
 &pcie2 {
 	status = "ok";
 };
