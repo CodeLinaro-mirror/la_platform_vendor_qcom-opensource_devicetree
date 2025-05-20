@@ -252,7 +252,7 @@
 	status = "ok";
 };
 
-&pm8350c_pwm_2 {
+&pm8350c_pwm {
 	status = "ok";
 };
 

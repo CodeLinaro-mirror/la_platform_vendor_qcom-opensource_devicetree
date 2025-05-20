@@ -12,7 +12,7 @@
 	interrupt-parent = <&vgic>;
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce";
+		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable memory_hotplug.memmap_on_memory=force";
 	};
 
 	cpus {
@@ -65,6 +65,7 @@
 		vm-uri = "vmuid/oemvm";
 		vm-guid = "847bfe26-0b12-5728-812a-06103f6bdec0";
 
+		vwdog = &wdog;
 		vm-attrs = "context-dump", "crash-restart";
 
 		memory {
@@ -154,6 +155,15 @@
 				};
 			};
 
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x000000C>;
+			};
+
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-oemvm";
@@ -209,6 +219,18 @@
 		      <0x17080000 0x200000>;    /* GICR * 8 */
 	};
 
+	wdog: qcom,wdt@17600000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17600000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bark-time = <11000>;
+		qcom,pet-time = <9360>;
+		qcom,ipi-ping;
+		qcom,wakeup-enable;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		always-on;
@@ -238,4 +260,28 @@
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
 	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x1 0x00000000>; /* 4GB IPA space for dmabuf */
+		qcom,vmid = <49>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "oem_vm";
+	};
+
+	virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
 };

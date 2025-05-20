@@ -26,11 +26,12 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "earlycon=qcom_geni,0xa90000 kasan=off nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 cpufreq.default_governor=performance";
+		bootargs = "android_arch_task_struct_size=512 earlycon=qcom_geni,0xa90000 kasan=off kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1";
 	};
 
 	aliases {
 		serial0 = &uart4;
+		hsuart1 = &uart6;
 		i2c0 = &i2c0;
 		i2c1 = &i2c1;
 		i2c2 = &i2c2_a;
@@ -318,6 +319,7 @@
 		qcom,hyplog-enabled;
 		hyplog-address-offset = <0x410>;
 		hyplog-size-offset = <0x414>;
+		tmecrashdump-address-offset = <0x81CA0000>;
 	};
 
 	memtimer: timer@17420000 {
@@ -376,6 +378,29 @@
 			reg = <0x1742d000 0x1000>;
 			status = "disabled";
 		};
+	};
+
+	wdog: qcom,wdt@17410000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17410000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bark-time = <11000>;
+		qcom,pet-time = <9360>;
+		qcom,ipi-ping;
+		qcom,wakeup-enable;
+		status = "ok";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+		status = "ok";
 	};
 
 	apps_rsc: rsc@17a00000 {
@@ -650,6 +675,11 @@
 		reg-names = "eud_base", "eud_mode_mgr2";
 		qcom,secure-eud-en;
 		status = "ok";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
 	};
 
 	cache-controller@24800000 {
@@ -1313,7 +1343,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	mc_virt: interconnect@1 {
@@ -1321,7 +1350,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	aggre_noc: interconnect@16E0000 {
@@ -1330,7 +1358,10 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		clocks = <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+			 <&gcc GCC_SDCC1_AHB_CLK>,
+			 <&gcc GCC_SDCC2_AHB_CLK>,
+			 <&rpmhcc RPMH_IPA_CLK>;
 	};
 
 	gem_noc: interconnect@24100000 {
@@ -1339,7 +1370,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1780000 {
@@ -1348,7 +1378,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	nsp_noc: interconnect@320C0000 {
@@ -1357,7 +1386,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	system_noc: interconnect@1680000 {
@@ -1366,7 +1394,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_lpiaon_noc: interconnect@22000000 {
@@ -1375,7 +1402,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_lpicx_noc: interconnect@22020000 {
@@ -1384,7 +1410,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_ag_noc: interconnect@23E40000 {
@@ -1393,7 +1418,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	config_noc: interconnect@1600000 {
@@ -1402,7 +1426,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	cnoc_main: interconnect@1500000 {
@@ -1411,7 +1434,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	pcie_noc: interconnect@16C0000 {
@@ -1420,7 +1442,8 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
 	};
 
 	qcom,msm-adsprpc-mem {
@@ -1506,10 +1529,9 @@
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		//mx-supply = <&VDD_MODEM_LEVEL>;
-		//mx-uV-uA = <RPMH_REGULATOR_LEVEL_NOM_L1 1000000>;
-		//reg-names = "cx", "mx";
-		reg-names = "cx";
+		mx-supply = <&VDD_MXC_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		reg-names = "cx", "mx";
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
@@ -1582,7 +1604,9 @@
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 		mx-supply = <&VDD_MXC_LEVEL>;
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		reg-names = "cx", "mx";
+		nsp-supply = <&VDD_NSP_LEVEL>;
+		nsp-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		reg-names = "cx","mx","nsp";
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
@@ -1655,7 +1679,7 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "adsp";
+			label = "lpass";
 			qcom,glink-label = "wm";
 		};
 
@@ -1670,7 +1694,7 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "adsp";
+			label = "lpass";
 			qcom,glink-label = "am";
 		};
 	};
@@ -1736,6 +1760,42 @@
 				qcom,glinkpkt-edge = "wm";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_WM";
 				qcom,glinkpkt-dev-name = "glink_pkt_data_wm";
+		};
+
+		qcom,glinkpkt-am-diag-cntl {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_CNTL";
+			qcom,glinkpkt-dev-name = "am_cntl";
+		};
+
+		qcom,glinkpkt-am-diag-cmd {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_CMD";
+			qcom,glinkpkt-dev-name = "am_cmd";
+		};
+
+		qcom,glinkpkt-am-diag-data {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "DIAG_AM_DATA";
+			qcom,glinkpkt-dev-name = "am_data";
+		};
+
+		qcom,glinkpkt-wm-diag-cntl {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_CNTL";
+			qcom,glinkpkt-dev-name = "wm_cntl";
+		};
+
+		qcom,glinkpkt-wm-diag-cmd {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_CMD";
+			qcom,glinkpkt-dev-name = "wm_cmd";
+		};
+
+		qcom,glinkpkt-wm-diag-data {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "DIAG_WM_DATA";
+			qcom,glinkpkt-dev-name = "wm_data";
 		};
 
 		qcom,glinkpkt-at-mdm0 {
@@ -1985,7 +2045,7 @@
 			ddrqos_dcvs_sp: sp {
 				compatible = "qcom,dcvs-path";
 				qcom,dcvs-path-type = <0>;
-				interconnects = <&mc_virt MASTER_APPSS_PROC
+				interconnects = <&gem_noc MASTER_APPSS_PROC
 						&mc_virt SLAVE_EBI1>;
 			};
 		};
@@ -2032,7 +2092,8 @@
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
-					< 1958000 3187200 >;
+					< 1363200 200000 >,
+					< 1958000 547200 >;
 			};
 
 			gold-compute {
@@ -2042,7 +2103,7 @@
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
 					< 1785000  547200 >,
-					< 2122000 4224000 >;
+					< 2122000 1353600 >;
 			};
 		};
 
@@ -2080,7 +2141,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1958000 1612800 >;
+					< 1478400 902400 >,
+					< 1958000 1209600 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -2089,8 +2151,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1785600  249600 >,
-					< 2112000 1401600 >;
+					< 1785600  902400 >,
+					< 2112000 1305600 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -2165,6 +2227,14 @@
 		qcom,log-type = <0>;
 	};
 
+	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
+		qcom,iommu-msi-size = <0x1000>;
+		qcom,iommu-geometry = <0x24000000 0x98010000>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-pagetable = "coherent";
+		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
+	};
+
 };
 
 #include "vienna-dma-heaps.dtsi"
@@ -2219,6 +2289,11 @@
 };
 
 &uart4 {
+	status = "ok";
+};
+
+&uart6 {
+	qcom,auto-suspend-disable;
 	status = "ok";
 };
 

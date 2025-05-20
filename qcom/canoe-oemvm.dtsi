@@ -158,14 +158,14 @@
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-oemvm";
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 
 			test-dbl-oemvm-source {
 				vdevice-type = "doorbell-source";
 				generate = "/hypervisor/test-dbl-oemvm-source";
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 
@@ -174,7 +174,7 @@
 				generate = "/hypervisor/test-msgq-oemvm-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 
@@ -183,7 +183,7 @@
 				generate = "/hypervisor/test-large-dmabuf-oemvm-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
-				qcom,label = <0xe>;
+				qcom,label = <0x10e>;
 				peer-default;
 			};
 
@@ -193,7 +193,7 @@
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
 				peer = "vm-name:qcom,trustedvm";
-				qcom,label = <0x3>;
+				qcom,label = <0x103>;
 			};
 
 			swiotlb-shm {
@@ -215,7 +215,7 @@
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
-				qcom,label = <0x000000C>;
+				qcom,label = <0x000010C>;
 			};
 
 			qrtr-shm {
@@ -224,7 +224,7 @@
 				push-compatible = "qcom,qrtr-gunyah-gen";
 				peer-default;
 				memory {
-					qcom,label = <0x8>;
+					qcom,label = <0x108>;
 					allocate-base;
 				};
 			};
@@ -243,6 +243,12 @@
 		#size-cells = <2>;
 		ranges;
 	};
+
+	/* Techpack dtbos will target this node for adding required-subnodes property
+	 * For Canoe VMs DTB will be replaced by a DTBO.
+	 * Add this until DTB build is deprecated.
+	 */
+	non_devices_common: non-devices-common { };
 };
 
 &reserved_memory {
@@ -323,23 +329,24 @@
 
 	qcom,test-dbl-oemvm {
 		compatible = "qcom,gh-dbl";
-		qcom,label = <0x5>;
+		qcom,label = <0x105>;
 	};
 
 	qcom,test-msgq-oemvm {
 		compatible = "qcom,gh-msgq-test";
-		gunyah-label = <0x5>;
+		gunyah-label = <0x105>;
 		affinity = <0>;
 	};
 
 	qcom,test-large-dmabuf-oemvm {
 		compatible = "qcom,gh-large-dmabuf-test";
-		gunyah-label = <0xe>;
+		gunyah-label = <0x10e>;
 	};
 
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
-		msgq-label = <3>;
+		peer = <2>;
+		msgq-label = <0x103>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
@@ -358,7 +365,7 @@
 
 	qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
-		gunyah-label = <8>;
+		gunyah-label = <0x108>;
 	};
 
 	google,debug-kinfo {

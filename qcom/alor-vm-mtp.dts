@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+/dts-v1/;
+
+#include "alor-vm.dtsi"
+#include "alor-vm-mtp.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Alor SVM MTP";
+	compatible = "qcom,alor-mtp", "qcom,alor", "qcom,alorp-mtp",
+			"qcom,alorp", "qcom,mtp";
+	qcom,board-id = <0x10008 0>;
+};

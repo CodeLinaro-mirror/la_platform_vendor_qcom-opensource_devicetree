@@ -9,7 +9,7 @@
 		#size-cells = <1>;
 		ranges;
 
-		cycle-cntr@17d91000 {
+		qcom,cycle-cntr {
 			compatible = "qcom,epss";
 			reg = <0x17D91000 0x1000>,
 				<0x17D92000 0x1000>;

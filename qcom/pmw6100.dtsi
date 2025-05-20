@@ -79,6 +79,10 @@
 				reg = <0x48 0x1>;
 				bits = <1 7>;
 			};
+
+			fmd_set: fmd-set@9a {
+				reg = <0x9a 0x1>;
+			};
 		};
 
 		pmw6100_sdam_3: sdam@7200 {
