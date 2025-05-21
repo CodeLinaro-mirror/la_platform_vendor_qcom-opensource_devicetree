@@ -40,12 +40,20 @@
 	idle-states {
 		CPU_PWR_DWN: c4 {  /* Using Gold C4 latencies */
 			compatible = "arm,idle-state";
-			status = "disabled";
+			idle-state-name = "ret";
+			entry-latency-us = <93>;
+			exit-latency-us = <129>;
+			min-residency-us = <560>;
+			arm,psci-suspend-param = <0x00000004>;
 		};
 
 		CLUSTER_PWR_DWN: d4 { /* C4+D4 */
 			compatible = "arm,idle-state";
-			status = "disabled";
+			idle-state-name = "ret-pll-off";
+			entry-latency-us = <1964>;
+			exit-latency-us = <1901>;
+			min-residency-us = <24511>;
+			arm,psci-suspend-param = <0x0000B354>;
 		};
 	};
 
