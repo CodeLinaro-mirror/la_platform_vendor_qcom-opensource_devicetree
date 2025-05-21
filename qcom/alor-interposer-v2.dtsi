@@ -3,12 +3,11 @@
  * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
-#include "canoe.dtsi"
+#include "canoe-v2.dtsi"
 #include "alor-interposer-common.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Alor Interposer";
+	model = "Qualcomm Technologies, Inc. Alor Interposer v2 SoC";
 	compatible = "qcom,alor";
-	qcom,msm-id = <704 0x10000>, <0x10002C0 0x10000>;
+	qcom,msm-id = <704 0x20000>, <0x10002C0 0x20000>;
 };
-
