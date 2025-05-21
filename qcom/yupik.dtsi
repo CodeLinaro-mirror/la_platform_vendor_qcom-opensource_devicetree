@@ -455,11 +455,6 @@
 		reg = <0x0 0x8ad00000 0x0 0x500000>;
 	};
 
-	pil_video_mem: cvp@8b200000 {
-		no-map;
-		reg = <0x0 0x8b200000 0x0 0x500000>;
-	};
-
 	pil_ipa_fw_mem: ipa_fw@8b700000 {
 		no-map;
 		reg = <0x0 0x8b700000 0x0 0x10000>;
@@ -508,6 +503,11 @@
 	chan1_shbuf: neuron_block@1 {
 		no-map;
 		reg = <0x0 0xd7f80000 0x0 0x80000>;
+	};
+
+	video_mem: video_region@85b00000 {
+		no-map;
+		reg = <0x0 0x85b00000 0x0 0x700000>;
 	};
 
 	user_contig_mem: user_contig_region {
