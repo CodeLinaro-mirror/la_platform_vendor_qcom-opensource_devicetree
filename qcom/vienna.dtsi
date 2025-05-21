@@ -510,8 +510,8 @@
 		compatible = "qcom,sdhci-msm-v5";
 		status = "disabled";
 
-		reg = <0x08804000 0x1000>,<0x08805000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0x08804000 0x1000>,<0x08805000 0x1000>,<0x08808000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x0120 0x0>;
 		qcom,iommu-dma = "fastmap";
@@ -553,6 +553,7 @@
 		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
 		qcom,dll-hsr-list = <0x000F44EC 0x0 0x01 0x290106C0 0x80040868>;
 
+		qcom,ice-use-hwkm;
 		bus-width = <8>;
 
 		supports-cqe;
