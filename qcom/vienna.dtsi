@@ -1682,6 +1682,51 @@
 
 			label = "lpass";
 			qcom,glink-label = "wm";
+
+			qcom,glinkpkt-wm-qsh-0 {
+				qcom,glink-channels = "qsh_2_0";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-1 {
+				qcom,glink-channels = "qsh_2_1";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-2 {
+				qcom,glink-channels = "qsh_2_2";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-3 {
+				qcom,glink-channels = "qsh_2_3";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-4 {
+				qcom,glink-channels = "qsh_2_4";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-5 {
+				qcom,glink-channels = "qsh_2_5";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-6 {
+				qcom,glink-channels = "qsh_2_6";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-7 {
+				qcom,glink-channels = "qsh_2_7";
+				qcom,intents = <0x1000 1>;
+			};
+
+			qcom,glinkpkt-wm-qsh-8 {
+				qcom,glink-channels = "qsh_2_8";
+				qcom,intents = <0x1000 1>;
+			};
 		};
 
 		glink_am: am {
@@ -1867,6 +1912,69 @@
 			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
 			qcom,intents = <0x1000 10>;
+		};
+
+		qcom,glinkpkt-wm-qsh-0 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_0";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_0";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-1 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_1";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_1";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-2 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_2";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_2";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-3 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_3";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_3";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-4 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_4";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_4";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-5 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_5";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_5";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-6 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_6";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_6";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-7 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_7";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_7";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-wm-qsh-8 {
+			qcom,glinkpkt-edge = "wm";
+			qcom,glinkpkt-ch-name = "qsh_2_8";
+			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_8";
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 
