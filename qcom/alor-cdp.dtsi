@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
@@ -95,6 +95,14 @@
 					remote-endpoint = <&usb_port0>;
 				};
 			};
+
+			port@1 {
+				reg = <1>;
+
+				ucsi_audio_mux: endpoint {
+					remote-endpoint = <&wcd_usbss_mux>;
+				};
+			};
 		};
 	};
 };
@@ -178,3 +186,21 @@
 
 	status = "ok";
 };
+
+&wcd_usbss {
+	status = "ok";
+	interrupt-parent = <&spmi0_bus>;
+	interrupts = <0x0 0xb6 0x1 IRQ_TYPE_EDGE_BOTH>;
+	interrupt-names = "usb_wcd";
+	nvmem-cells = <&usb_mode>;
+	nvmem-cell-names = "usb_mode";
+
+	mode-switch;
+
+	port {
+		wcd_usbss_mux: endpoint {
+			remote-endpoint = <&ucsi_audio_mux>;
+		};
+	};
+};
+
