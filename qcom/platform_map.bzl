@@ -74,6 +74,8 @@ _platform_map = {
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
             {"name": "alor-rcm-overlay.dtbo"},
             {"name": "alor-rcm-peach-overlay.dtbo"},
+            {"name": "alor-qrd-overlay.dtbo"},
+            {"name": "alor-qrd-peach-overlay.dtbo"},
             {"name": "alor-rumi-overlay.dtbo"},
         ],
     },
@@ -169,6 +171,16 @@ _platform_map = {
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
         ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "canoe-vm-mtp-overlay.dtbo"},
+            {"name": "canoe-vm-qrd-overlay.dtbo"},
+            {"name": "canoe-vm-rcm-overlay.dtbo"},
+            {"name": "canoe-vm-cdp-overlay.dtbo"},
+            {"name": "alor-interposer-vm-mtp-overlay.dtbo"},
+            {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
+            {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
+        ],
         "binary_compatible_with": ["alor-vm"],
     },
     "canoe-oemvm": {
@@ -190,6 +202,16 @@ _platform_map = {
             {"name": "canoe-vm-qrd.dtb"},
             {"name": "canoe-vm-rcm.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "canoe-oemvm-mtp-overlay.dtbo"},
+            {"name": "canoe-oemvm-qrd-overlay.dtbo"},
+            {"name": "canoe-oemvm-rcm-overlay.dtbo"},
+            {"name": "canoe-oemvm-cdp-overlay.dtbo"},
+            {"name": "alor-interposer-oemvm-mtp-overlay.dtbo"},
+            {"name": "alor-interposer-oemvm-qrd-overlay.dtbo"},
+            {"name": "alor-interposer-oemvm-rcm-overlay.dtbo"},
         ],
         "binary_compatible_with": ["alor-oemvm"],
     },

@@ -1150,13 +1150,13 @@
 
 	qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
-		gunyah-label = <0xd>;
+		gunyah-label = <0x10d>;
 		qcom,primary;
 	};
 
 	qcom,test-large-dmabuf-oemvm {
 		compatible = "qcom,gh-large-dmabuf-test";
-		gunyah-label = <0xe>;
+		gunyah-label = <0x10e>;
 		qcom,primary;
 	};
 
@@ -2856,7 +2856,7 @@
 	qcom,qrtr-gunyah-oemvm {
 		compatible = "qcom,qrtr-gunyah";
 		qcom,master;
-		gunyah-label = <8>;
+		gunyah-label = <0x108>;
 		peer-name = <4>;
 	};
 
@@ -3103,30 +3103,30 @@
 
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
-		qcom,label = <0x4>;
+		qcom,label = <0x104>;
 	};
 
 	qcom,test-dbl-oemvm {
 		compatible = "qcom,gh-dbl";
-		qcom,label = <0x5>;
+		qcom,label = <0x105>;
 	};
 
 	qcom,test-msgq-tuivm {
 		compatible = "qcom,gh-msgq-test";
-		gunyah-label = <0x4>;
+		gunyah-label = <0x104>;
 		qcom,primary;
 	};
 
 	qcom,test-msgq-oemvm {
 		compatible = "qcom,gh-msgq-test";
-		gunyah-label = <0x5>;
+		gunyah-label = <0x105>;
 		qcom,primary;
 	};
 
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
 		qcom,master;
-		gunyah-label = <3>;
+		gunyah-label = <0x103>;
 		peer-name = <2>;
 	};
 
@@ -3800,7 +3800,7 @@
 	qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		qcom,primary-vm;
-		gunyah-label = <9>;
+		gunyah-label = <0x109>;
 		peer-name = <2>;
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
@@ -3809,7 +3809,7 @@
 	dmesg-dump {
 		compatible = "qcom,dmesg-dump";
 		qcom,primary-vm;
-		gunyah-label = <7>;
+		gunyah-label = <0x107>;
 		peer-name = <2>;
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
