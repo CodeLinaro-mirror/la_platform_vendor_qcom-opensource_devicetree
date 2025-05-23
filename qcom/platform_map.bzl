@@ -83,6 +83,7 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "alor-interposer.dtb"},
+            {"name": "alor-interposer-v2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
