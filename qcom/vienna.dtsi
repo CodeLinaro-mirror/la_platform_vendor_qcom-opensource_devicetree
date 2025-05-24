@@ -1742,6 +1742,11 @@
 
 			label = "lpass";
 			qcom,glink-label = "am";
+
+			qcom,glinkpkt-am-touch {
+			qcom,glink-channels = "touch-ctrl";
+			qcom,intents = <0x200 1>;
+			};
 		};
 	};
 
