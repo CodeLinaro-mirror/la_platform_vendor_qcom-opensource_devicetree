@@ -104,10 +104,18 @@
 	};
 
 	/* GDSCs in Camera CC */
+	titan_top_gdsc: qcom,gdsc@ad0b134 {
+		compatible = "qcom,gdsc";
+		reg = <0xad0b134 0x4>;
+		regulator-name = "titan_top_gdsc";
+		status = "disabled";
+	};
+
 	bps_gdsc: qcom,gdsc@ad06004 {
 		compatible = "qcom,gdsc";
 		reg = <0xad06004 0x4>;
 		regulator-name = "bps_gdsc";
+		parent-supply = <&titan_top_gdsc>;
 		status = "disabled";
 	};
 
@@ -115,6 +123,7 @@
 		compatible = "qcom,gdsc";
 		reg = <0xad09004 0x4>;
 		regulator-name = "ife_0_gdsc";
+		parent-supply = <&titan_top_gdsc>;
 		status = "disabled";
 	};
 
@@ -122,6 +131,7 @@
 		compatible = "qcom,gdsc";
 		reg = <0xad0a004 0x4>;
 		regulator-name = "ife_1_gdsc";
+		parent-supply = <&titan_top_gdsc>;
 		status = "disabled";
 	};
 
@@ -129,13 +139,7 @@
 		compatible = "qcom,gdsc";
 		reg = <0xad07004 0x4>;
 		regulator-name = "ipe_0_gdsc";
-		status = "disabled";
-	};
-
-	titan_top_gdsc: qcom,gdsc@ad0b134 {
-		compatible = "qcom,gdsc";
-		reg = <0xad0b134 0x4>;
-		regulator-name = "titan_top_gdsc";
+		parent-supply = <&titan_top_gdsc>;
 		status = "disabled";
 	};
 

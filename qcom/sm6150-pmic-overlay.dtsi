@@ -34,27 +34,32 @@
 };
 
 &pm6150_adc_tm {
-	io-channels = <&pm6150_vadc ADC5_XO_THERM_100K_PU>,
-			<&pm6150_vadc ADC5_AMUX_THM2_100K_PU>,
-			<&pm6150_vadc ADC5_AMUX_THM4_100K_PU>;
-
 	/* Channel nodes */
 	xo_therm {
-		reg = <ADC5_XO_THERM_100K_PU>;
+		reg = <0>;
+		io-channels = <&pm6150_vadc ADC5_XO_THERM_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 
 	sdm_therm {
-		reg = <ADC5_AMUX_THM2_100K_PU>;
+		reg = <1>;
+		io-channels = <&pm6150_vadc ADC5_AMUX_THM2_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 
 	conn_therm {
-		reg = <ADC5_AMUX_THM4_100K_PU>;
+		reg = <2>;
+		io-channels = <&pm6150_vadc ADC5_AMUX_THM4_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
+	};
+};
+
+&pm6150l_4 {
+	qcom,power-on@800 {
+		status = "disabled";
 	};
 };
 
@@ -101,34 +106,33 @@
 };
 
 &pm6150l_adc_tm {
-	io-channels = <&pm6150l_vadc ADC5_AMUX_THM1_100K_PU>,
-			<&pm6150l_vadc ADC5_AMUX_THM2_100K_PU>,
-			<&pm6150l_vadc ADC5_GPIO1_100K_PU>,
-			<&pm6150l_vadc ADC5_GPIO4_100K_PU>;
-
 	/* Channel nodes */
 	emmc_ufs_therm {
-		reg = <ADC5_AMUX_THM1_100K_PU>;
+		reg = <0>;
+		io-channels = <&pm6150l_vadc ADC5_AMUX_THM1_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 
 	rf_pa0_therm {
-		reg = <ADC5_AMUX_THM2_100K_PU>;
+		reg = <1>;
+		io-channels = <&pm6150l_vadc ADC5_AMUX_THM2_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 
 	camera_flash_therm {
-		reg = <ADC5_GPIO1_100K_PU>;
+		reg = <2>;
+		io-channels = <&pm6150l_vadc ADC5_GPIO1_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 
 	quiet_therm {
-		reg = <ADC5_GPIO4_100K_PU>;
+		reg = <3>;
+		io-channels = <&pm6150l_vadc ADC5_GPIO4_100K_PU>;
 		qcom,ratiometric;
-		qcom,hw-settle-time = <200>;
+		qcom,hw-settle-time-us = <200>;
 	};
 };
 
@@ -162,7 +166,7 @@
 
 &pm6150_gpios {
 	wcd934x_mclk {
-		wcd934x_mclk_default: wcd934x_mclk_default{
+		wcd934x_mclk_default: wcd934x_mclk_default {
 			pins = "gpio8";
 			function = "func1";
 			qcom,drive-strength = <2>;

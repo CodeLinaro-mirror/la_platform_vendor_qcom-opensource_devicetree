@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
 
-//&msm_gpu {
-//	#cooling-cells = <2>;
-//};
+&msm_gpu {
+	#cooling-cells = <2>;
+};
 
 &soc {
 	tsens0: tsens@c222000 {
@@ -293,16 +293,17 @@
 				type = "passive";
 			};
 		};
+
 		cooling-maps {
 			gpu_cdev {
 				trip = <&gpu_trip>;
-				//cooling-device = <&msm_gpu THERMAL_NO_LIMIT
-				//	THERMAL_NO_LIMIT>;
+				cooling-device = <&msm_gpu THERMAL_NO_LIMIT
+					THERMAL_NO_LIMIT>;
 			};
 
 			gpu-cx-cdev0 {
 				trip = <&gpu_cx_mon>;
-				//cooling-device = <&msm_gpu 4 4>;
+				cooling-device = <&msm_gpu 4 4>;
 			};
 
 			gpu-cx-cdev1 {
@@ -634,7 +635,7 @@
 
 			hvx-cx-cdev0 {
 				trip = <&q6_hvx_cx_mon>;
-				//cooling-device = <&msm_gpu 4 4>;
+				cooling-device = <&msm_gpu 4 4>;
 			};
 
 			hvx-cx-cdev1 {

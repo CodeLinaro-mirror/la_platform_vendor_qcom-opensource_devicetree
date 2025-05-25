@@ -39,8 +39,7 @@
 
 		qcom,core-clk-rate = <200000000>;
 		qcom,core-clk-rate-hs = <66666667>;
-		qcom,dwc-usb3-msm-tx-fifo-size = <21288>;
-		qcom,pm-qos-latency = <61>;
+		qcom,pm-qos-latency = <2>;
 		interconnect-names = "usb-ddr", "ddr-usb";
 		interconnects = <&aggre1_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
@@ -61,7 +60,6 @@
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&qusb_phy0>, <&usb_qmp_phy>;
 			tx-fifo-resize;
-			snps,disable-clk-gating;
 			snps,dis_u2_susphy_quirk;
 			snps,dis_u3_susphy_quirk;
 			snps,dis_enblslpm_quirk;
@@ -106,7 +104,7 @@
 				qcom,descriptor-fifo-offset = <0x1800>;
 				qcom,descriptor-fifo-size = <0x800>;
 			};
-                };
+		};
 	};
 
 	/* Primary USB port related High Speed PHY */

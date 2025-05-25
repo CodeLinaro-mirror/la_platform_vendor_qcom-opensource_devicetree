@@ -24,7 +24,7 @@
 
 		qcom,qseecom { /* QSEECOM HEAP */
 			qcom,dma-heap-name = "qcom,qseecom";
-			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
 			memory-region = <&qseecom_mem>;
 		};
 
@@ -49,7 +49,7 @@
 
 		qcom,secure_cdsp { /* SECURE CARVEOUT HEAP */
 			qcom,dma-heap-name = "qcom,cma-secure-cdsp";
-			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
 			memory-region = <&cdsp_sec_mem>;
 			qcom,token = <0x20000000>;
 		};

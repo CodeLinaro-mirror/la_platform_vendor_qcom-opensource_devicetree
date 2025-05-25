@@ -244,7 +244,7 @@
 			compatible = "qcom,iommu-debug-usecase";
 			iommus = <&apps_smmu 0x23 0x0>;
 		};
- 
+
 		usecase2_kgsl {
 			compatible = "qcom,iommu-debug-usecase";
 			iommus = <&kgsl_smmu 0x7 0x0>;
