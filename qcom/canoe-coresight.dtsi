@@ -4826,8 +4826,10 @@
 		reg = <0x0 0x11305000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&cpucp_scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"atclk";
 
 		in-ports {
 			port {
@@ -5072,8 +5074,10 @@
 		interrupts = <GIC_SPI 738 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "byte-cntr-irq";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&cpucp_scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"atclk";
 
 		in-ports {
 			port {
@@ -5105,8 +5109,10 @@
 		interrupts = <GIC_SPI 737 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "byte-cntr-irq";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
+		clocks = <&aoss_qmp>,
+			<&cpucp_scmi_clk 0>;
+		clock-names = "apb_pclk",
+				"atclk";
 
 		in-ports {
 			port {
