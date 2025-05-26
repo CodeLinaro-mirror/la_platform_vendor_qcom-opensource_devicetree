@@ -354,6 +354,17 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
 
+SA8797P_LA_GVM_BOARDS += \
+		sa8797p-sdp8-vm-la-overlay.dtbo
+
+SA8797P_LA_GVM_BASE_DTB += sa8797p-sdp8-vm-la.dtb
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
+
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 
 endif
