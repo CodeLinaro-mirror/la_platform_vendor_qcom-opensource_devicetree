@@ -1223,7 +1223,16 @@
 		read-only;
 		ranges;
 	};
-	wpss_pas: remoteproc-wpss@a23c0000 {
+
+	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
+		qcom,iommu-msi-size = <0x1000>;
+		qcom,iommu-geometry = <0x0 0x18000000 0x0 0x98010000>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-pagetable = "coherent";
+		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
+	};
+
+	wpss_pas: remoteproc-wpss@99f00000 {
 		compatible = "qcom,alor-wpss-pas";
 		reg = <0x0 0x99f00000 0x0 0x10000>;
 		status = "ok";
