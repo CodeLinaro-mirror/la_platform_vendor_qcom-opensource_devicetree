@@ -151,6 +151,9 @@
 			USB3_DP_COM_TYPEC_CTRL
 			USB3_DP_PCS_AON_CLAMP_ENABLE>;
 
+		pinctrl-names = "default";
+		pinctrl-0 = <&usb3phy_portselect_default>;
+
 		qcom,qmp-phy-init-seq =
 			/* <reg_offset, value> based on tsmcn3e_USB3_Gen2_Seq v1.10 */
 			<USB3_DP_QSERDES_COM_SSC_STEP_SIZE1_MODE1 0xC0
@@ -321,4 +324,11 @@
 			USB3_DP_PCS_USB3_RCVR_DTCT_DLY_U3_H 0x00>;
 	};
 
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu 0x100b 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0xb>;
+		qcom,usb-audio-intr-num = <2>;
+	};
 };
