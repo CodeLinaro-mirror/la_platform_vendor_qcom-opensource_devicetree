@@ -212,6 +212,7 @@
 	};
 
 	ethqos_hw: qcom,ethernet@00020000 {
+		status = "disabled";
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
