@@ -658,6 +658,18 @@
 			#hwlock-cells = <1>;
 		};
 
+		pdc: interrupt-controller@b220000 {
+			compatible = "qcom,x1e80100-pdc", "qcom,pdc";
+			reg = <0x0 0x0b220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
+
+			qcom,pdc-ranges = <0 480 42>, <42 251 5>,
+					  <47 522 52>, <99 609 32>,
+					  <131 717 12>, <143 816 19>;
+			#interrupt-cells = <2>;
+			interrupt-parent = <&intc>;
+			interrupt-controller;
+		};
+
 		qcom_tzlog: tz-log@0x146aa720 {
 			compatible = "qcom,tz-log";
 			reg = <0x0 0x146aa720 0x0 0x3000>;
