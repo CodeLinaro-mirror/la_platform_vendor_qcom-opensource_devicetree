@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -11,7 +11,7 @@
 			vsmmu@15000000 {
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0x15000000>;
-				num-cbs = <0x6>;
+				num-cbs = <0x7>;
 				num-smrs = <0xe>;
 				patch = "/soc/apps-smmu@15000000";
 			};
