@@ -83,18 +83,18 @@
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
-				qcom,label = <0x000000C>;
+				qcom,label = <0x10c>;
 			};
 
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 
 			test-dbl-oemvm-source {
 				vdevice-type = "doorbell-source";
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 
@@ -102,7 +102,7 @@
 				vdevice-type = "message-queue-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
-				qcom,label = <0x5>;
+				qcom,label = <0x105>;
 				peer-default;
 			};
 		};
@@ -157,12 +157,12 @@
 
 	qcom_test_dbl_oemvm: qcom,test-dbl-oemvm {
 		compatible = "qcom,gh-dbl";
-		qcom,label = <0x5>;
+		qcom,label = <0x105>;
 	};
 
 	qcom_test_msgq_oemvm: qcom,test-msgq-oemvm {
 		compatible = "qcom,gh-msgq-test";
-		gunyah-label = <0x5>;
+		gunyah-label = <0x105>;
 		affinity = <0>;
 	};
 
