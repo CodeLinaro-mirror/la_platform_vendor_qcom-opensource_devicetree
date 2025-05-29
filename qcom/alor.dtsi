@@ -112,6 +112,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -130,6 +131,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -144,6 +146,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -158,6 +161,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -172,6 +176,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD4>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -186,6 +191,7 @@
 			cpu-idle-states = <&MEDIUM_OFF_C4>;
 			power-domains = <&CPU_PD5>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
@@ -200,6 +206,7 @@
 			cpu-idle-states = <&LARGE_OFF_C4>;
 			power-domains = <&CPU_PD6>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 1>;
 			capacity-dmips-mhz = <1208>;
 			dynamic-power-coefficient = <271>;
@@ -218,6 +225,7 @@
 			cpu-idle-states = <&LARGE_OFF_C4>;
 			power-domains = <&CPU_PD7>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			clocks = <&pdp_scmi_perf 1>;
 			capacity-dmips-mhz = <1208>;
 			dynamic-power-coefficient = <271>;
@@ -3188,6 +3196,7 @@
 #include "alor-qupv3.dtsi"
 #include "alor-usb.dtsi"
 #include "alor-walt.dtsi"
+#include "alor-thermal.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
