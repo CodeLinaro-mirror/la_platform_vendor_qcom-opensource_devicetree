@@ -3098,10 +3098,10 @@
 		};
 	};
 
-	tn_mdss: tn@11100000 {
+	tn_mdss: tn@11460000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0c00>;
-		reg = <0x0 0x11100000 0x0 0x1000>;
+		reg = <0x0 0x11460000 0x0 0x1000>;
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_mdss";
@@ -3171,6 +3171,28 @@
 		};
 	};
 
+	funnel_gfx: funnel@11163000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+		reg = <0x0 0x11163000 0x0 0x1000>;
+		reg-names = "funnel-base";
+
+		device-name = "funnel_gfx";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+
+		out-ports {
+			port {
+				funnel_gfx_out_tn_gpu: endpoint {
+				remote-endpoint =
+					<&tn_gpu_in_funnel_gfx>;
+				};
+			};
+		};
+	};
+
 	tn_gpu: tn@11100000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0c00>;
@@ -3181,7 +3203,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		in-ports {
 			#address-cells = <1>;
@@ -3192,6 +3213,13 @@
 				tn_gpu_in_tpdm_gpu: endpoint {
 					remote-endpoint =
 					<&tpdm_gpu_out_tn_gpu>;
+				};
+			};
+			port@1 {
+				reg = <1>;
+				tn_gpu_in_funnel_gfx: endpoint {
+					remote-endpoint =
+					<&funnel_gfx_out_tn_gpu>;
 				};
 			};
 		};
