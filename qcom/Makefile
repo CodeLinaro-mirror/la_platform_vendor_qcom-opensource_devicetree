@@ -192,6 +192,8 @@ sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-atp.dtb \
 				sdxkova-rcm-mbb-v2.dtb \
 				sdxkova-rcm-mbb-v3.dtb
 
+sdxkova-cpe-tarang-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe-v7.dtb
+
 sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v2.dtb \
 				sdxkova-idp-cpe-v3.dtb \
