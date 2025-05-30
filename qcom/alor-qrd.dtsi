@@ -128,7 +128,12 @@
 };
 
 &usb0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio>;
+	gpios = <&tlmm 60 0>;
 	usb-role-switch;
+
+	ssusb_redriver = <&redriver>;
 
 	port {
 		usb_port0: endpoint {
