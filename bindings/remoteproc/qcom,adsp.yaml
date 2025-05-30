@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/remoteproc/qcom,adsp.yaml#
@@ -84,6 +84,8 @@ properties:
       - qcom,alor-cdsp-pas
       - qcom,alor-modem-pas
       - qcom,alor-soccp-pas
+      - qcom,x1e80100-adsp-pas
+      - qcom,x1e80100-cdsp-pas
 
   reg:
     maxItems: 1
