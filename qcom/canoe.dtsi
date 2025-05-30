@@ -342,6 +342,11 @@
 	qtee_shmbridge {
 		compatible = "qcom,tee-shared-memory-bridge";
 	};
+
+	sdei {
+		compatible = "arm,sdei-1.0";
+		method = "hvc";
+	};
 };
 
 &soc {
@@ -2862,6 +2867,10 @@
 
 	vendor_hooks: qcom,cpu-vendor-hooks {
 		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	qcom,sdei {
+		compatible = "qcom,sdei";
 	};
 
 	ufshc_opp_table: ufshc-opp-table {
