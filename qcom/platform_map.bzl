@@ -42,6 +42,7 @@ _platform_map = {
             {"name": "canoe-atp-overlay.dtbo"},
             {"name": "canoe-cdp-kiwi-overlay.dtbo"},
             {"name": "canoe-cdp-overlay.dtbo"},
+            {"name": "canoe-cdp-st54l-pandeiro-i2s-overlay.dtbo"},
             {"name": "canoe-cdp-st54l-pandeiro-overlay.dtbo"},
             {"name": "canoe-mtp-3.5mm-overlay.dtbo"},
             {"name": "canoe-mtp-kiwi-overlay.dtbo"},
