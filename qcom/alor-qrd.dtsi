@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "alor-pmic-overlay.dtsi"
@@ -84,4 +84,79 @@
 	qcom,vccq-parent-max-microamp = <8176000>;
 
 	status = "ok";
+};
+
+&qupv3_se20_i2c {
+	status = "ok";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	redriver: redriver@1c {
+		compatible = "onnn,redriver";
+		reg = <0x1c>;
+
+		vdd-supply = <&L15B>;
+
+		lane-channel-swap;
+
+		eq = /bits/ 8 <
+				/* Parameters for USB */
+				0x4 0x4 0x4 0x4
+				/* Parameters for DP */
+				0x5 0x7 0x7 0x5>;
+		flat-gain = /bits/ 8 <
+				/* Parameters for USB */
+				0x3 0x1 0x1 0x3
+				/* Parameters for DP */
+				0x0 0x3 0x3 0x0>;
+		output-comp = /bits/ 8 <
+				/* Parameters for USB */
+				0x3 0x3 0x3 0x3
+				/* Parameters for DP */
+				0x3 0x3 0x3 0x3>;
+		loss-match = /bits/ 8 <
+				/* Parameters for USB */
+				0x1 0x3 0x3 0x1
+				/* Parameters for DP */
+				0x3 0x3 0x3 0x3>;
+	};
+};
+
+&usb_qmp_dp_phy {
+	pinctrl-names = "unused";
+};
+
+&usb0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio>;
+	gpios = <&tlmm 60 0>;
+	usb-role-switch;
+
+	ssusb_redriver = <&redriver>;
+
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		compatible = "usb-c-connector";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				usb_port0_connector: endpoint {
+					remote-endpoint = <&usb_port0>;
+				};
+			};
+		};
+	};
 };
