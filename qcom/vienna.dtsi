@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,gcc-vienna.h>
@@ -668,8 +668,8 @@
 	eud: qcom,msm-eud@88e0000 {
 		compatible = "qcom,msm-eud";
 		interrupt-names = "eud_irq";
-		/*interrupt-parent = <&pdc>;*/
-		interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-parent = <&pdc>;
+		interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
 		reg = <0x88e0000 0x2000>,
 			<0x88e2000 0x1000>;
 		reg-names = "eud_base", "eud_mode_mgr2";
