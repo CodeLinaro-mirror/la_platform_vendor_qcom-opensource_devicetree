@@ -1986,6 +1986,20 @@
 			qcom,glinkpkt-dev-name = "glinkpkt_wm_qsh_2_8";
 			qcom,glinkpkt-enable-ch-close;
 		};
+
+		qcom,glinkpkt-contexthub-hal-app-mgr-chnl {
+			qcom,glinkpkt-edge = "am";
+			qcom,glinkpkt-ch-name = "contexthub_hal_app_mgr_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_app_mgr_chnl";
+			qcom,intents = <0x1000 10>;
+		};
+
+		qcom,glinkpkt-contexthub-hal-offload-mgr-chnl {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "contexthub_hal_offload_mgr_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_offload_mgr_chnl";
+			qcom,intents = <0x1000 10>;
+		};
 	};
 
 	thermal_zones: thermal-zones {};
