@@ -44,25 +44,6 @@
 		bias-high-impedance;
 	};
 
-	cam_sensor_1p8_rst0_active: cam-sensor-1p8-rst0-active-state {
-		pins = "gpio4";
-		function = "normal";
-		qcom,drive-strength = <2>;
-		input-disable;
-		output-enable;
-		output-high;
-		power-source = <0>; /* 1.8 V */
-	};
-
-	cam_sensor_1p8_rst0_suspend: cam-sensor-1p8-rst0-suspend-state {
-		pins = "gpio4";
-		function = "normal";
-		qcom,drive-strength = <2>;
-		input-disable;
-		output-enable;
-		output-low;
-	};
-
 	pmh0101_bidir_lvl_shifter1_active: pmh0101-bidir-lvl-shifter1-state {
 		pins = "gpio11", "gpio12";
 		function = "normal";
@@ -85,27 +66,6 @@
 		pins = "gpio17", "gpio18";
 		function = "normal";
 		bias-high-impedance;
-	};
-};
-
-&pmh0110_i_gpios {
-	cam_sensor_1p8_rst1_active: cam-sensor-1p8-rst1-active-state {
-		pins = "gpio12";
-		function = "normal";
-		qcom,drive-strength = <2>;
-		input-disable;
-		output-enable;
-		output-high;
-		power-source = <0>; /* 1.8 V */
-	};
-
-	cam_sensor_1p8_rst1_suspend: cam-sensor-1p8-rst1-suspend-state {
-		pins = "gpio12";
-		function = "normal";
-		qcom,drive-strength = <2>;
-		input-disable;
-		output-enable;
-		output-low;
 	};
 };
 
