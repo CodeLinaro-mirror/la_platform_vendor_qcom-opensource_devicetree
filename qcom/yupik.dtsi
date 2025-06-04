@@ -30,7 +30,7 @@
 	#size-cells = <2>;
 
 	chosen: chosen {
-		bootargs = "loglevel=6 log_buf_len=512K earlycon=qcom_geni,0x994000 rcupdate.rcu_expedited=1  printk.console_no_auto_verbose=1 rcu_nocbs=0-7 kpti=0 cpufreq.default_governor=performance printk.devkmsg=on androidboot.first_stage_console=1 fw_devlink.strict=1 android_arch_task_struct_size=512";
+		bootargs = "loglevel=6 log_buf_len=512K earlycon=qcom_geni,0x994000 rcupdate.rcu_expedited=1  printk.console_no_auto_verbose=1 rcu_nocbs=0-7 kpti=0 cpufreq.default_governor=performance printk.devkmsg=on pcie_ports=compat androidboot.first_stage_console=1 fw_devlink.strict=1 android_arch_task_struct_size=512";
 		stdout-path = "/soc/qcom,qupv3_0_geni_se@9c0000/qcom,qup_uart@994000:115200n8";
 	};
 
@@ -455,11 +455,6 @@
 		reg = <0x0 0x8ad00000 0x0 0x500000>;
 	};
 
-	pil_video_mem: cvp@8b200000 {
-		no-map;
-		reg = <0x0 0x8b200000 0x0 0x500000>;
-	};
-
 	pil_ipa_fw_mem: ipa_fw@8b700000 {
 		no-map;
 		reg = <0x0 0x8b700000 0x0 0x10000>;
@@ -508,6 +503,11 @@
 	chan1_shbuf: neuron_block@1 {
 		no-map;
 		reg = <0x0 0xd7f80000 0x0 0x80000>;
+	};
+
+	video_mem: video_region@85b00000 {
+		no-map;
+		reg = <0x0 0x85b00000 0x0 0x700000>;
 	};
 
 	user_contig_mem: user_contig_region {
@@ -2686,8 +2686,18 @@
 		qcom,videocc = <&videocc>;
 		qcom,apsscc = <&apsscc>;
 		qcom,mccc = <&mccc>;
-		clocks = <&rpmhcc RPMH_CXO_CLK>;
-		clock-names = "xo_clk_src";
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&camcc 0>,
+			 <&dispcc 0>,
+			 <&gcc 0>,
+			 <&gpucc 0>,
+			 <&videocc 0>;
+		clock-names = "xo_clk_src",
+			      "camcc",
+			      "dispcc",
+			      "gcc",
+			      "gpucc",
+			      "videocc";
 		#clock-cells = <1>;
 	};
 
@@ -3527,6 +3537,11 @@
 		reg = <0x0c3f0000 0x400>;
 	};
 
+	cluster-device {
+		compatible = "qcom,lpm-cluster-dev";
+		power-domains = <&CLUSTER_PD>;
+	};
+
 	spmi_bus: qcom,spmi@c440000 {
 		compatible = "qcom,spmi-pmic-arb";
 		reg = <0xc440000 0x1100>,
@@ -3912,7 +3927,6 @@
 
 		firmware-name = "qca6750/wpss.mdt";
 		memory-region = <&pil_wpss_mem>;
-		qcom,signal-aop;
 
 		/* Inputs from wpss */
 		interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
@@ -4212,10 +4226,11 @@
 		memory-region = <&pil_mpss_mem>;
 		firmware-name = "modem.mdt";
 
-		qcom,signal-aop;
 		qcom,qmp = <&aoss_qmp>;
 
-		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		/* Inputs from mss */
 		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
@@ -4282,8 +4297,11 @@
 		firmware-name = "adsp.mdt";
 		memory-region = <&pil_adsp_mem>;
 
-		qcom,signal-aop;
 		qcom,qmp = <&aoss_qmp>;
+
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		/* Inputs from lpass */
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
@@ -4358,10 +4376,11 @@
 		firmware-name = "cdsp.mdt";
 		memory-region = <&pil_cdsp_mem>;
 
-		qcom,signal-aop;
 		qcom,qmp = <&aoss_qmp>;
 
-		interconnects = <&nsp_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>;
+		interconnects = <&nsp_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>,
+				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		/* Inputs from turing */
 		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
@@ -4987,6 +5006,7 @@
 #include "yupik-qupv3.dtsi"
 #include "msm-rdbg.dtsi"
 #include "yupik-thermal.dtsi"
+#include "yupik-walt.dtsi"
 
 /* HS UART */
 &qupv3_se7_4uart {
