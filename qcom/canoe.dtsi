@@ -4043,22 +4043,22 @@
 
 	dcp_dtb_mem: dcp_dtb_region@a0050000 {
 		no-map;
-		reg = <0x0 0xa0050000 0x0 0x80000>;
+		reg = <0x0 0xa0050000 0x0 0xb0000>;
 	};
 
-	dcp_mem: dcp_region@a00d0000 {
+	dcp_mem: dcp_region@a0100000 {
 		no-map;
-		reg = <0x0 0xa00d0000 0x0 0x300000>;
+		reg = <0x0 0xa0100000 0x0 0x600000>;
 	};
 
-	soccp_mem: soccp_region@a03d0000 {
+	soccp_mem: soccp_region@a0700000 {
 		no-map;
-		reg = <0x0 0xa03d0000 0x0 0x500000>;
+		reg = <0x0 0xa0700000 0x0 0x500000>;
 	};
 
-	soccp_dtb_mem: soccp_dtb_region@a08d0000 {
+	soccp_dtb_mem: soccp_dtb_region@a0c00000 {
 		no-map;
-		reg = <0x0 0xa08d0000 0x0 0x40000>;
+		reg = <0x0 0xa0c00000 0x0 0x40000>;
 	};
 
 	q6_adsp_dtb_mem: q6_adsp_dtb_region@a1380000 {
