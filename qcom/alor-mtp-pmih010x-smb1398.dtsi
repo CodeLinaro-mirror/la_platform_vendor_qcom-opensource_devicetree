@@ -6,6 +6,12 @@
 #include "alor-mtp.dtsi"
 #include "alor-pmih010x-pmd802x.dtsi"
 
+&S3D_E0 {
+	regulator-min-microvolt = <400000>;
+	regulator-max-microvolt = <1004000>;
+	qcom,init-voltage = <400000>;
+};
+
 &pmic_glink_debug {
 	/* SPMI bridge bus 1 with SMB1510 device */
 	spmi_pmic:spmi@200 {
