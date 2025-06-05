@@ -40,11 +40,10 @@
 		qcom,core-clk-rate-hs = <66666667>;
 		qcom,core-clk-rate-disconnected = <133333333>;
 
-
-		interconnect-names = "usb-ddr", "ddr-usb";
+		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
 		interconnects = <&aggre1_noc MASTER_USB3 &mc_virt SLAVE_EBI1>,
-			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
-
+				<&aggre1_noc MASTER_USB3 &config_noc SLAVE_IPA_CFG>,
+				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
 
 		qcom,num-gsi-evt-buffs = <0x3>;
 		qcom,gsi-reg-offset =
