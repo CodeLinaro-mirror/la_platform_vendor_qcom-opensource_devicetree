@@ -24,3 +24,6 @@
 &pdc {
 	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
 };
+
+#include "x1p42100-pcie.dtsi"
+
