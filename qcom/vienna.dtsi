@@ -1679,8 +1679,8 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "lpass";
-			qcom,glink-label = "wm";
+			label = "wm";
+			qcom,ssr-label = "lpass";
 
 			qcom,glinkpkt-wm-qsh-0 {
 				qcom,glink-channels = "qsh_2_0";
@@ -1739,8 +1739,8 @@
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
-			label = "lpass";
-			qcom,glink-label = "am";
+			label = "am";
+			qcom,ssr-label = "lpass";
 
 			qcom,glinkpkt-am-touch {
 			qcom,glink-channels = "touch-ctrl";
@@ -1749,7 +1749,7 @@
 		};
 	};
 
-	qcom,glinkpkt {
+	qcom_glinkpkt: qcom,glinkpkt {
 		compatible = "qcom,glinkpkt";
 
 		qcom,glinkpkt-ctrl-cdsp {
