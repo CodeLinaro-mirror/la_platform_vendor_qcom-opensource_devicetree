@@ -22,11 +22,11 @@ properties:
   qcom,pdp-type:
     $ref: /schemas/types.yaml#/definitions/uint32
     description:
-      PDP type for which dynamic hardware thermal trip needs to be set.
+      CPU cluster type for which dynamic hardware thermal trip needs to be set.
 
 required:
   - compatible
-  - qcom,pdp-type
+  - qcom,cpu-cluster-type
 
 additionalProperties: false
 
@@ -34,6 +34,11 @@ examples:
   - |
     qcom,dynamic-thermal-trip@0 {
       compatible = "qcom,thermal-hw-trip";
-      qcom,pdp-type = <0>;
+      qcom,cpu-cluster-type = <0>;
+    };
+
+    qcom,dynamic-thermal-trip@1 {
+      compatible = "qcom,thermal-hw-trip";
+      qcom,cpu-cluster-type = <1>;
     };
 ...
