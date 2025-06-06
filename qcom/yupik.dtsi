@@ -3434,7 +3434,9 @@
 		qcom,count-unit = <0x10000>;
 	};
 
-	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+	msm_gpu: qcom,kgsl-3d0@3d00000 {
+		#cooling-cells = <2>;
+	};
 
 	cpucp: qcom,cpucp@17C00000 {
 		compatible = "qcom,cpucp";
