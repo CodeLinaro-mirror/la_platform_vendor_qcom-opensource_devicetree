@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &reserved_memory {
@@ -150,14 +150,14 @@
 		reg = <0x0 0x93600000 0x0 0x3700000>;
 	};
 
-	wear_microcontroller_m55_mem: wear_microcontroller_m55_region@96E80000 {
+	wear_microcontroller_m55_mem: wear_microcontroller_m55_region@96e80000 {
 		no-map;
-		reg = <0x0 0x96e80000 0x0 0x500000>;
+		reg = <0x0 0x96e80000 0x0 0x400000>;
 	};
 
-	ambient_microcontroller_m55_mem: ambient_microcontroller_m55_region@97380000 {
+	ambient_microcontroller_m55_mem: ambient_microcontroller_m55_region@97280000 {
 		no-map;
-		reg = <0x0 0x97380000 0x0 0x500000>;
+		reg = <0x0 0x97280000 0x0 0x600000>;
 	};
 
 	ml_model_mem: ml_model_region@97880000 {
