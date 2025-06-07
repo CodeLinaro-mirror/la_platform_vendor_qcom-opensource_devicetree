@@ -153,6 +153,14 @@ _platform_map = {
             {"name": "katmaip-fp3-hsp-pm7250b-overlay.dtbo"},
         ],
     },
+    "x1p42100": {
+        "dtb_list": [
+            {"name": "x1p42100.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "x1p42100-crd-overlay.dtbo"},
+        ],
+    },
     "canoe-tuivm": {
         "dtb_list": [
             # keep sorted

@@ -219,6 +219,16 @@ vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
 vienna-overlays-dtb-$(CONFIG_ARCH_VIENNA) += $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS) $(VIENNA_BASE_DTB) $(VIENNA_APQ_BASE_DTB)
 dtb-y += $(vienna-dtb-y)
 
+X1P42100_BASE_DTB += x1p42100.dtb
+
+X1P42100_BOARDS += \
+		   x1p42100-crd-overlay.dtbo
+
+x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
+	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
+x1p42100-overlays-dtb-$(CONFIG_ARCH_X1P42100) += $(X1P42100_BOARDS) $(X1P42100_BASE_DTB)
+dtb-y += $(x1p42100-dtb-y)
+
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
