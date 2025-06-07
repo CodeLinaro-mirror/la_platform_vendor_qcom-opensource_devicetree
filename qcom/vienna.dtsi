@@ -1794,6 +1794,12 @@
 				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_am";
 		};
 
+		qcom,glinkpkt-disp-ctrl-am {
+				qcom,glinkpkt-edge = "am";
+				qcom,glinkpkt-ch-name = "disp-ctrl";
+				qcom,glinkpkt-dev-name = "glink_pkt_am_display_ctrl";
+		};
+
 		qcom,glinkpkt-data-am {
 				qcom,glinkpkt-edge = "am";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_AM";
