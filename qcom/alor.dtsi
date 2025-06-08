@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
@@ -3356,6 +3356,16 @@
 
 &qupv3_se7_2uart {
 	status = "ok";
+};
+
+&qupv3_se3_i2c {
+	status = "ok";
+	wcd_usbss: wcd939x_i2c@e {
+		status = "disabled";
+		compatible = "qcom,wcd939x-i2c";
+		reg = <0xe>;
+		vdd-usb-cp-supply = <&L15B>;
+	};
 };
 
 #include "ipcc-test-canoe.dtsi"
