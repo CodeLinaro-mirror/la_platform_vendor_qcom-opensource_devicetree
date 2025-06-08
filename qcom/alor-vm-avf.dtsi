@@ -3,7 +3,6 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 
@@ -11,55 +10,183 @@
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
 	qcom,msm-id = <685 0x10000>;
-	interrupt-parent = <&vgic>;
 
-	chosen {
-		bootargs = "nokaslr log_buf_len=256K console=hvc0 loglevel=8 swiotlb=noforce memhp_default_state=online_movable memory_hotplug.memmap_on_memory=force rcupdate.rcu_expedited=1 rcu_nocbs=0-1 fw_devlink.strict=1 stack_depot_disable=on";
-	};
-
-	cpus {
+	host {
 		#address-cells = <0x2>;
-		#size-cells = <0x0>;
-		CPU0: cpu@0 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x0>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN
-					   &CLUSTER_PWR_DWN>;
+		#size-cells = <0x2>;
+
+		non-devices-common {
+			reg = <0x0 0x0 0x0 0x0>;
+			android,pvmfw,target = <&non_devices_common>;
 		};
 
-		CPU1: cpu@100 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x100>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN
-					   &CLUSTER_PWR_DWN>;
+		vm-tlmm-irq@0 {
+			reg = <0x0 0x0 0x0 0x0>;
+			android,pvmfw,target = <&vm_tlmm_irq>;
+		};
+
+		qcom,wdt@17600000 {
+			reg = <0x0 0x17600000 0x0 0x1000>;
+			android,pvmfw,target = <&wdog>;
+		};
+
+		pinctrl@f000000 {
+			reg = <0x0 0x0f000000 0x0 0x0202000>;
+			android,pvmfw,target = <&tlmm>;
+		};
+
+		qcom,gpi-dma@a00000 {
+			reg = <0x0 0xa00000 0x0 0x60000>;
+			android,pvmfw,target = <&gpi_dma1>;
+		};
+
+		qcom,qupv3_1_geni_se@ac0000 {
+			reg = <0x0 0xac0000 0x0 0x2000>;
+			android,pvmfw,target = <&qupv3_1>;
+		};
+
+		qcom,gpi-dma@1900000 {
+			reg = <0x0 0x1900000 0x0 0x60000>;
+			android,pvmfw,target = <&gpi_dma3>;
+		};
+
+		qcom,qupv3_3_geni_se@19c0000 {
+			reg = <0x0 0x19c0000 0x0 0x2000>;
+			android,pvmfw,target = <&qupv3_3>;
+		};
+
+		qcom,gh-qtimer@1781b000 {
+			reg = <0x0 0x1781b000 0x0 0x1000>;
+			android,pvmfw,target = <&qcom_gh_qtimer>;
 		};
 	};
 
-	idle-states {
-		CPU_PWR_DWN: c4 {  /* Using Gold C4 latencies */
-			compatible = "arm,idle-state";
-			idle-state-name = "ret";
-			entry-latency-us = <93>;
-			exit-latency-us = <129>;
-			min-residency-us = <560>;
-			arm,psci-suspend-param = <0x00000004>;
+	qcom,vm-config {
+		compatible = "qcom,vm-1.0";
+		vm-type = "aarch64-guest";
+		boot-config = "fdt,unified";
+		os-type = "linux";
+		kernel-entry-segment = "kernel";
+		kernel-entry-offset = <0x0 0x0>;
+		vendor = "QTI";
+		image-name = "qcom,trustedvm";
+		qcom,pasid = <0x0 0x1c>;
+		qcom,qtee-config-info = "p=3,9,39,77,78,7C,8F,97,C8,FE,11B,159,199,47E,7F1,CDF;";
+		qcom,secdomain-ids = <45>;
+		qcom,primary-vm-index = <0>;
+		vm-uri = "vmuid/trusted-ui";
+		vm-guid = "598085da-c516-5b25-a9c1-927a02819770";
+		qcom,sensitive;
+
+		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
+
+		iomemory-ranges = <0x0 0xa24000 0x0 0xa24000 0x0 0x4000 0x0
+				0x0 0x1924000 0x0 0x1924000 0x0 0x4000 0x0>;
+
+		/*
+		 * Allow VMMIO traps. Currently doesn't include
+		 * PVTIME, VIRTFREQ and GIC virtual devices.
+		 * GIC is emulated by Gunyah.
+		 */
+		vmmio-ranges = <0x00 0x2e8 0x00 0x08            /* Serial[3] */
+				0x00 0x2f8 0x00 0x08            /* Serial[1] */
+				0x00 0x3e8 0x00 0x08            /* Serial[2] */
+				0x00 0x3f8 0x00 0x08            /* Serial[0] */
+				0x00 0x2000 0x00 0x1000         /* RTC */
+				0x00 0x3000 0x00 0x1000         /* VMWDT */
+				0x00 0x2c000000 0x00 0x2000000  /* PCI BAR */
+				0x00 0x2e000000 0x00 0x1000000>;/* PCI CAM */
+
+		/* For LEVM por usecases is QUP1_SE4 and QUP3_SE1.
+		 * QUP1_SE4: GPII5 : IRQ_873
+		 * QUP3_SE1: GPII5 : IRQ_625
+		 */
+		gic-irq-ranges = <873 873  /* PVM->SVM IRQ transfer */
+				  625 625>;
+
+		segments {
+			ramdisk = <2>;
 		};
 
-		CLUSTER_PWR_DWN: d4 { /* C4+D4 */
-			compatible = "arm,idle-state";
-			idle-state-name = "ret-pll-off";
-			entry-latency-us = <1964>;
-			exit-latency-us = <1901>;
-			min-residency-us = <24511>;
-			arm,psci-suspend-param = <0x0000B354>;
+		vcpus {
+			affinity = "proxy";
+		};
+
+		vdevices {
+
+			minidump {
+				vdevice-type = "minidump";
+				push-compatible = "qcom,minidump_rm";
+				minidump_allowed;
+			};
+
+			test-dbl-tuivm {
+				vdevice-type = "doorbell";
+				qcom,label = <0x104>;
+				peer-default;
+			};
+
+			test-dbl-tuivm-source {
+				vdevice-type = "doorbell-source";
+				qcom,label = <0x104>;
+				peer-default;
+			};
+
+			test-msgq-tuivm {
+				vdevice-type = "message-queue-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x104>;
+				peer-default;
+			};
+
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
+			};
+
+			ddump-shm {
+				vdevice-type = "shm-doorbell";
+				push-compatible = "qcom,ddump-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x107>;
+					#address-cells = <0x2>;
+					base = <0x00 0x64016000>;
+				};
+			};
+
+			gunyah-panic-notifier-shm {
+				vdevice-type = "shm-doorbell";
+				push-compatible = "qcom,gunyah-panic-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x109>;
+					#address-cells = <0x2>;
+					base = <0x00 0x64015000>;
+				};
+			};
+
+			gpiomem0 {
+				vdevice-type = "iomem";
+				patch = "/soc/tlmm-vm-mem-access";
+				push-compatible = "qcom,tlmm-vm-mem-access";
+				peer-default;
+				memory {
+					qcom,label = <0x8>;
+					qcom,mem-info-tag = <0x3>;
+					allocate-base;
+				};
+			};
 		};
 	};
+};
 
-	dmesg-dump {
+&{/} {
+	dmesg_dump: dmesg-dump {
 		compatible = "qcom,dmesg-dump";
 		gunyah-label = <0x107>;
 		ddump-pubkey-size = <270>;
@@ -82,191 +209,6 @@
 				0xd7 0x61 0x84 0x11 0xca 0x2d 0x22 0xb3 0x29 0x02 0x03 0x01 0x00 0x01>;
 	};
 
-	qcom,vm-config {
-		compatible = "qcom,vm-1.0";
-		vm-type = "aarch64-guest";
-		boot-config = "fdt,unified";
-		os-type = "linux";
-		kernel-entry-segment = "kernel";
-		kernel-entry-offset = <0x0 0x0>;
-		vendor = "QTI";
-		image-name = "qcom,trustedvm";
-		qcom,pasid = <0x0 0x1c>;
-		qcom,qtee-config-info = "p=3,9,39,77,78,7C,8F,97,C8,FE,11B,159,199,47E,7F1,CDF;";
-		qcom,secdomain-ids = <45>;
-		qcom,primary-vm-index = <0>;
-		vm-uri = "vmuid/trusted-ui";
-		vm-guid = "598085da-c516-5b25-a9c1-927a02819770";
-		qcom,sensitive;
-
-		vwdog = &wdog;
-		vm-attrs = "context-dump", "crash-restart";
-
-		iomemory-ranges = <0x0 0xa24000 0x0 0xa24000 0x0 0x4000 0x0
-				0x0 0x1924000 0x0 0x1924000 0x0 0x4000 0x0>;
-
-		/* For LEVM por usecases is QUP1_SE4 and QUP3_SE1.
-		 * QUP1_SE4: GPII5 : IRQ_873
-		 * QUP3_SE1: GPII5 : IRQ_625
-		 */
-		gic-irq-ranges = <873 873  /* PVM->SVM IRQ transfer */
-				  625 625>;
-
-		memory {
-			#address-cells = <0x2>;
-			#size-cells = <0x0>;
-			/*
-			 * IPA address linux image is loaded at. Must be within
-			 * first 1GB due to memory hotplug requirement.
-			 */
-			base-address = <0x0 0x88800000 >;
-		};
-
-		segments {
-			ramdisk = <2>;
-		};
-
-		vcpus {
-			config = "/cpus";
-			affinity = "proxy";
-			affinity-map = <0x0 0x0>;
-			sched-priority = <0>;       /* relative to PVM */
-			sched-timeslice = <2000>;   /* in ms */
-		};
-
-		interrupts {
-			config = &vgic;
-		};
-
-		vdevices {
-			generate = "/hypervisor";
-
-			minidump {
-				vdevice-type = "minidump";
-				push-compatible = "qcom,minidump_rm";
-				minidump_allowed;
-			};
-
-			rm-rpc {
-				vdevice-type = "rm-rpc";
-				generate = "/hypervisor/qcom,resource-mgr";
-				console-dev;
-				message-size = <0x000000f0>;
-				queue-depth = <0x00000008>;
-				qcom,label = <0x1>;
-			};
-
-			virtio-mmio@0 {
-				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
-				peer-default;
-				vqs-num = <0x1>;
-				push-compatible = "virtio,mmio";
-				dma-coherent;
-				dma_base = <0x0 0x0>;
-				memory {
-					qcom,label = <0x11>;			//for persist.img
-					#address-cells = <0x2>;
-					allocate-base;
-				};
-			};
-
-			virtio-mmio@1 {
-				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
-				peer-default;
-				vqs-num = <0x2>;
-				push-compatible = "virtio,mmio";
-				dma-coherent;
-				dma_base = <0x0 0x4000>;
-				memory {
-					qcom,label = <0x10>;			//for system.img
-					#address-cells = <0x2>;
-					allocate-base;
-				};
-			};
-
-			swiotlb-shm {
-				vdevice-type = "shm";
-				generate = "/swiotlb";
-				push-compatible = "swiotlb";
-				peer-default;
-				dma_base = <0x0 0x8000>;
-				memory {
-					qcom,label = <0x12>;
-					#address-cells = <0x2>;
-					allocate-base;
-				};
-			};
-
-			test-dbl-tuivm {
-				vdevice-type = "doorbell";
-				generate = "/hypervisor/test-dbl-tuivm";
-				qcom,label = <0x104>;
-				peer-default;
-			};
-
-			test-dbl-tuivm-source {
-				vdevice-type = "doorbell-source";
-				generate = "/hypervisor/test-dbl-tuivm-source";
-				qcom,label = <0x104>;
-				peer-default;
-			};
-
-			test-msgq-tuivm {
-				vdevice-type = "message-queue-pair";
-				generate = "/hypervisor/test-msgq-tuivm-pair";
-				message-size = <0xf0>;
-				queue-depth = <0x8>;
-				qcom,label = <0x104>;
-				peer-default;
-			};
-
-			mem-buf-message-queue-pair {
-				vdevice-type = "message-queue-pair";
-				generate = "/hypervisor/membuf-msgq-pair";
-				message-size = <0x000000f0>;
-				queue-depth = <0x00000008>;
-				peer-default;
-				qcom,label = <0x101>;
-			};
-
-			ddump-shm {
-				vdevice-type = "shm-doorbell";
-				generate = "/hypervisor/ddump-shm";
-				push-compatible = "qcom,ddump-gunyah-gen";
-				peer-default;
-				memory {
-					qcom,label = <0x107>;
-					allocate-base;
-				};
-			};
-
-			gunyah-panic-notifier-shm {
-				vdevice-type = "shm-doorbell";
-				generate = "/hypervisor/gpn-shm";
-				push-compatible = "qcom,gunyah-panic-gen";
-				peer-default;
-				memory {
-					qcom,label = <0x109>;
-					allocate-base;
-				};
-			};
-
-			gpiomem0 {
-				vdevice-type = "iomem";
-				patch = "/soc/tlmm-vm-mem-access";
-				push-compatible = "qcom,tlmm-vm-mem-access";
-				peer-default;
-				memory {
-					qcom,label = <0x8>;
-					qcom,mem-info-tag = <0x3>;
-					allocate-base;
-				};
-			};
-		};
-	};
-
 	firmware: firmware {
 		qcom_scm: qcom_scm {
 			compatible = "qcom,scm";
@@ -274,13 +216,38 @@
 	};
 
 	soc: soc { };
+
+	reserved_memory: reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+	};
 };
 
 &soc {
-	#address-cells = <1>;
-	#size-cells = <1>;
-	ranges = <0 0 0 0xffffffff>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges;
 	compatible = "simple-bus";
+
+	/* Refer all non device nodes which are already not referred by a device node
+	 * Some of the non device nodes might be already a dependency.
+	 * So they are not added in this.
+	 */
+	non_devices_common: non-devices-common {
+		reg = <0x0 0x0 0x0 0x0>;
+		required-subnodes = <&qcom_scm
+			&dmesg_dump
+			&tlmm_vm_mem_access
+			&tlmm_vm_test
+			&qcom_test_dbl_tuivm
+			&qcom_test_msgq_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
+			&virtio_mem_device
+			&qcom_gunyah_panic_notifier
+			&qcom_dma_heaps>;
+	};
 
 	gcc: clock-controller@100000 {
 		compatible = "qcom,dummycc";
@@ -289,14 +256,9 @@
 		#reset-cells = <1>;
 	};
 
-	psci {
-		compatible = "arm,psci-1.0";
-		method = "smc";
-	};
-
 	vm_tlmm_irq: vm-tlmm-irq@0 {
 		compatible = "qcom,tlmm-vm-irq";
-		reg = <0x0 0x0>;
+		reg = <0x0 0x0 0x0 0x0>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
@@ -313,91 +275,36 @@
 		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71>;
 	};
 
-	tlmm-vm-mem-access {
+	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
 					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0>;
 	};
 
-	vgic: interrupt-controller@17000000 {
-		compatible = "arm,gic-v3";
-		interrupt-controller;
-		#interrupt-cells = <0x3>;
-		#redistributor-regions = <1>;
-		redistributor-stride = <0x0 0x40000>;
-		reg = <0x17000000 0x10000>,     /* GICD */
-		      <0x17080000 0x200000>;    /* GICR * 8 */
-	};
-
 	wdog: qcom,wdt@17600000 {
 		compatible = "qcom,msm-watchdog";
-		reg = <0x17600000 0x1000>;
+		reg = <0x0 0x17600000 0x0 0x1000>;
 		reg-names = "wdt-base";
-		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-			<GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 0x3a0 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 0x3a1 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bark-time = <11000>;
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
 	};
 
-	arch_timer: timer {
-		compatible = "arm,armv8-timer";
-		always-on;
-		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-		clock-frequency = <19200000>;
-	};
-
-	qti,smmu-proxy {
-		compatible = "smmu-proxy-receiver";
-	};
-
-	qti,smmu-proxy-camera-cb {
-		compatible = "smmu-proxy-cb";
-		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
-		qcom,iommu-defer-smr-config;
-		iommus = <&apps_smmu 0x1830 0x20>,
-			 <&apps_smmu 0x1C10 0x0>,
-			 <&apps_smmu 0x18F0 0x0>;
-		dma-coherent;
-	};
-
-	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
-		compatible = "smmu-proxy-cb";
-		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
-		qcom,iommu-defer-smr-config;
-		memory-region = <&smmu_proxy_iommu_region>;
-		iommus = <&apps_smmu 0x801 0x0>;
-		dma-coherent;
-	};
-
-	qti,smmu-proxy-eva-cb {
-		compatible = "smmu-proxy-cb";
-		qti,cb-id = <QTI_SMMU_PROXY_EVA_CB>;
-		qcom,iommu-defer-smr-config;
-		iommus = <&apps_smmu 0x1927 0x0>;
-		dma-coherent;
-	};
-
-	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
-		iommu-addresses = <&smmu_proxy_display_cb 0x0 0x20000>;
-	};
-
-	qcom,test-dbl-tuivm {
+	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
 	};
 
-	qcom,test-msgq-tuivm {
+	qcom_test_msgq_tuivm: qcom,test-msgq-tuivm {
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
 	};
 
-	qcom,gh-qtimer@1781b000 {
+	qcom_gh_qtimer: qcom,gh-qtimer@1781b000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x1781b000 0x0 0x1000>;
 		reg-names = "qtmr-base";
@@ -406,7 +313,7 @@
 		qcom,secondary;
 	};
 
-	qcom,mem-buf {
+	qcom_mem_buf: qcom,mem-buf {
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "consumer";
 		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
@@ -419,7 +326,7 @@
 		qcom,msgq-names = "trusted_vm";
 	};
 
-	virtio_mem_device {
+	virtio_mem_device: virtio_mem_device {
 		compatible = "qcom,virtio-mem";
 		depends-on-supply = <&mem_buf_msgq>;
 		/* Must be memory_block_size_bytes() aligned */
@@ -429,26 +336,12 @@
 		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
-	qcom_smcinvoke {
-		compatible = "qcom,smcinvoke";
-	};
-
-	qcom_mem_object {
-		compatible = "qcom,mem-object";
-	};
-
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-		qcom,custom-bridge-size = <64>;
-		qcom,support-hypervisor;
-	};
-
-	qcom,gunyah-panic-notifier {
+	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <0x109>;
 	};
 
-	tlmm-vm-test {
+	tlmm_vm_test: tlmm-vm-test {
 		compatible = "qcom,tlmm-vm-test";
 		pinctrl-names = "active", "sleep";
 		pinctrl-0 = <&qupv3_se1_7i2c_active>;
@@ -457,14 +350,22 @@
 	};
 
 	pinctrl@f000000 {
+		required-subnodes = <&qupv3_se1_7i2c_pins
+				&qupv3_se1_7i2c_active
+				&qupv3_se1_7i2c_active_mux
+				&qupv3_se1_7i2c_active_config
+				&qupv3_se1_7i2c_sleep
+				&qupv3_se1_7i2c_sleep_mux
+				&qupv3_se1_7i2c_sleep_config>;
+
 		qupv3_se1_7i2c_pins: qupv3_se1_7i2c_pins {
 			qupv3_se1_7i2c_active: qupv3_se1_7i2c_active {
-				mux {
+				qupv3_se1_7i2c_active_mux: mux {
 					pins = "gpio12";
 					function = "qup2_se3_l0";
 				};
 
-				config {
+				qupv3_se1_7i2c_active_config: config {
 					pins = "gpio12";
 					drive-strength = <2>;
 					bias-pull-up;
@@ -472,12 +373,12 @@
 			};
 
 			qupv3_se1_7i2c_sleep: qupv3_se1_7i2c_sleep {
-				mux {
+				qupv3_se1_7i2c_sleep_mux: mux {
 					pins = "gpio12";
 					function = "gpio";
 				};
 
-				config {
+				qupv3_se1_7i2c_sleep_config: config {
 					pins = "gpio12";
 					drive-strength = <2>;
 					bias-disable;
@@ -491,17 +392,17 @@
 	 * QUP3 : SE1 - Secondary touch
 	 */
 	qup_iommu_group: qup_common_iommu_group {
-		iommu-addresses = <&gpi_dma1 0x00000000 0x00020000>,
-				<&qupv3_1 0x00000000 0x00020000>,
-				<&gpi_dma3 0x00000000 0x00020000>,
-				<&qupv3_3 0x00000000 0x00020000>;
+		iommu-addresses = <&gpi_dma1 0x00000000 0x00000000 0x00000000 0x00020000>,
+				<&qupv3_1 0x00000000 0x00000000 0x00000000 0x00020000>,
+				<&gpi_dma3 0x00000000 0x00000000 0x00000000 0x00020000>,
+				<&qupv3_3 0x00000000 0x00000000 0x00000000 0x00020000>;
 	};
 
 	/* GPI Instance */
 	gpi_dma1: qcom,gpi-dma@a00000 {
 		compatible = "qcom,gpi-dma";
 		#dma-cells = <5>;
-		reg = <0xa00000 0x60000>;
+		reg = <0x0 0xa00000 0x0 0x60000>;
 		reg-names = "gpi-top";
 		iommus = <&apps_smmu 0xb8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
@@ -531,7 +432,7 @@
 	/* QUPv3_1 wrapper instance */
 	qupv3_1: qcom,qupv3_1_geni_se@ac0000 {
 		compatible = "qcom,geni-se-qup";
-		reg = <0xac0000 0x2000>;
+		reg = <0x0 0xac0000 0x0 0x2000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 		clock-names = "m-ahb", "s-ahb";
@@ -543,6 +444,7 @@
 		dma-coherent;
 		ranges;
 		status = "disabled";
+		required-subnodes = <&qupv3_se4_i2c &qupv3_se4_spi>;
 
 		/* Touchscreen I2C Instance */
 		qupv3_se4_i2c: i2c@a90000 {
@@ -577,7 +479,7 @@
 	gpi_dma3: qcom,gpi-dma@1900000 {
 		compatible = "qcom,gpi-dma";
 		#dma-cells = <5>;
-		reg = <0x1900000 0x60000>;
+		reg = <0x0 0x1900000 0x0 0x60000>;
 		reg-names = "gpi-top";
 		iommus = <&apps_smmu 0x4d8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
@@ -607,7 +509,7 @@
 	/* QUPv3_3 wrapper instance */
 	qupv3_3: qcom,qupv3_3_geni_se@19c0000 {
 		compatible = "qcom,geni-se-qup";
-		reg = <0x19c0000 0x2000>;
+		reg = <0x0 0x19c0000 0x0 0x2000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 		clock-names = "m-ahb", "s-ahb";
@@ -619,6 +521,7 @@
 		dma-coherent;
 		ranges;
 		status = "ok";
+		required-subnodes = <&qupv3_se17_i2c &qupv3_se17_spi>;
 
 		/* Touchscreen I2C Instance */
 		qupv3_se17_i2c: i2c@1984000 {
@@ -650,5 +553,6 @@
 	};
 };
 
-#include "msm-arm-smmu-alor-vm.dtsi"
-#include "alor-vm-dma-heaps.dtsi"
+#include "msm-arm-smmu-alor-vm-avf.dtsi"
+#include "alor-vm-dma-heaps-avf.dtsi"
+#include "alor-vm-rm-info-avf.dtsi"
