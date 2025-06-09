@@ -201,6 +201,10 @@
 			<GCC_SDCC1_ICE_CORE_CLK_SRC>;
 };
 
+&gpucc {
+	compatible = "qcom,x1p42100-gpucc", "syscon";
+};
+
 &camcc {
 	interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
 	interconnect-names = "cam-to-ddr";

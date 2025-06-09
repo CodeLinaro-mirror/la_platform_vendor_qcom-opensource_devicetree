@@ -1971,7 +1971,7 @@
 		};
 
 		gpucc: clock-controller@3d90000 {
-			compatible = "qcom,x1p42100-gpucc", "syscon";
+			compatible = "qcom,x1e80100-gpucc", "syscon";
 			reg = <0x0 0x03d90000 0x0 0xa000>;
 			reg-name = "cc_base";
 			vdd_cx-supply = <&VDD_CX_LEVEL>;
