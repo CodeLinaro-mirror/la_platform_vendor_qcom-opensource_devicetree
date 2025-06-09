@@ -11,6 +11,7 @@
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,x1p42100-gcc.h>
 #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
+#include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -1873,6 +1874,21 @@
 			reg-name = "cc_base";
 			#clock-cells = <1>;
 			#reset-cells = <1>;
+		};
+
+		dispcc: clock-controller@af00000 {
+			compatible = "qcom,x1e80100-dispcc", "syscon";
+			reg = <0x0 0xaf00000 0x0 0x20000>;
+			reg-name = "cc_base";
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>,
+				 <&gcc GCC_DISP_AHB_CLK>;
+			clock-names = "bi_tcxo", "sleep_clk", "iface";
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
 		};
 
 		qcom,secure-buffer {
