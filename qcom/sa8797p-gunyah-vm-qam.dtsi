@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "sa8797p-gunyah-vm.dtsi"
@@ -54,6 +54,8 @@
 		0x0 0x8DA4000 0x0 0x8DA4000 0x0 0x1000 0x1
 		/* MDSS 1 VA_TRAN VQ region */
 		0x0 0x8DA5000 0x0 0x8DA5000 0x0 0x10000 0x0
+		/* QRNG region */
+		0x0 0x10cd000 0x0 0x10cd000 0x0 0x1000 0x0
 	>;
 
 	/* Pass through IRQs */
