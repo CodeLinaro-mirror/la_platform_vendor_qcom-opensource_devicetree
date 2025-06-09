@@ -1526,7 +1526,7 @@
 	};
 
 	evacc: clock-controller@24f0000 {
-		compatible = "qcom,canoe-evacc", "syscon";
+		compatible = "qcom,alor-evacc", "syscon";
 		reg = <0x0 0x24f0000 0x0 0x10000>;
 		reg-name = "cc_base";
 		vdd_mm-supply = <&VDD_MM_LEVEL>;
@@ -1571,7 +1571,7 @@
 	};
 
 	gpucc: clock-controller@3d90000 {
-		compatible = "qcom,canoe-gpucc", "syscon";
+		compatible = "qcom,alor-gpucc", "syscon";
 		reg = <0x0 0x3d90000 0x0 0x9800>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
