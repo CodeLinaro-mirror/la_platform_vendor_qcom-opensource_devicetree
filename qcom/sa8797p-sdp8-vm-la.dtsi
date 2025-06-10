@@ -24,6 +24,9 @@
 					"vendor_boot_a", "init_boot_b", "init_boot_a";
 		};
 	};
+	aliases: aliases {
+		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
+	};
 };
 
 &virt_scmi {
@@ -31,6 +34,14 @@
 };
 
 &scmi {
+	status = "ok";
+};
+
+&qupv3_2 {
+	status = "ok";
+};
+
+&qupv3_se17_4uart {
 	status = "ok";
 };
 

@@ -14,7 +14,7 @@
 &{/} {
 	chosen: chosen {
 		bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1 fw_devlink.strict=1 driver_async_probe=arm-scmi";
-		bootconfig = "androidboot.usbcontroller=a200000.dwc3 androidboot.dtbo_idx=4";
+		bootconfig = "androidboot.dtbo_idx=4";
 	};
 
 	reserved_memory: reserved-memory {
@@ -166,6 +166,34 @@
 			scmi_reset: protocol@16 {
 				reg = <0x16>;
 				#reset-cells = <1>;
+			};
+		};
+
+		qcom,msm-imem@14680000 {
+			compatible = "qcom,msm-imem";
+			reg = <0x14680000 0x1000>;
+			ranges = <0x0 0x14680000 0x1000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			boot_stats@6b0 {
+				compatible = "qcom,msm-imem-boot_stats";
+				reg = <0x6b0 0x20>;
+			};
+
+			mem_dump_table@10 {
+				compatible = "qcom,msm-imem-mem_dump_table";
+				reg = <0x10 0x8>;
+			};
+
+			dload_type@1c {
+				compatible = "qcom,msm-imem-dload-type";
+				reg = <0x1c 0x4>;
+			};
+
+			diag_dload@c8 {
+				compatible = "qcom,msm-imem-diag-dload";
+				reg = <0xc8 0xc8>;
 			};
 		};
 	};
