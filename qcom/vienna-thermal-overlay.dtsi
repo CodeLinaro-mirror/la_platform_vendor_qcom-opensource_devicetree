@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -8,60 +8,48 @@
 &thermal_zones {
 	pmw6100-tz {
 		cooling-maps {
-			trip0_cpu0 {
-				trip = <&pmw6100_trip0>;
-				cooling-device =
-					<&CPU0 THERMAL_NO_LIMIT
-						THERMAL_NO_LIMIT>;
-			};
-
 			trip1_cpu1 {
 				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu1_pause 1 1>;
+				cooling-device = <&cpu1_pause 0 1>;
 			};
 
 			trip1_cpu2 {
 				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu2_pause 1 1>;
+				cooling-device = <&cpu2_pause 0 1>;
 			};
 
 			trip1_cpu3 {
 				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu3_pause 1 1>;
+				cooling-device = <&cpu3_pause 0 1>;
 			};
 
 			trip1_cpu4 {
 				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu4_pause 1 1>;
+				cooling-device = <&cpu4_pause 0 1>;
 			};
 		};
 	};
 
 	socd {
 		cooling-maps {
-			socd_cpu0 {
-				trip = <&socd_trip>;
-				cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-			};
-
 			soc_cpu1 {
 				trip = <&socd_trip>;
-				cooling-device = <&cpu1_pause 1 1>;
+				cooling-device = <&cpu1_pause 0 1>;
 			};
 
 			soc_cpu2 {
 				trip = <&socd_trip>;
-				cooling-device = <&cpu2_pause 1 1>;
+				cooling-device = <&cpu2_pause 0 1>;
 			};
 
 			soc_cpu3 {
 				trip = <&socd_trip>;
-				cooling-device = <&cpu3_pause 1 1>;
+				cooling-device = <&cpu3_pause 0 1>;
 			};
 
 			soc_cpu4 {
 				trip = <&socd_trip>;
-				cooling-device = <&cpu4_pause 1 1>;
+				cooling-device = <&cpu4_pause 0 1>;
 			};
 		};
 	};

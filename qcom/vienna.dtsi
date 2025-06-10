@@ -2456,3 +2456,4 @@
 /delete-node/ &ipcc_self_ping_slpi;
 
 #include "vienna-thermal.dtsi"
+#include "vienna-thermal-overlay.dtsi"
