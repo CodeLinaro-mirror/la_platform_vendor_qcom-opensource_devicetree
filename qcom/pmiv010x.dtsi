@@ -36,6 +36,11 @@ pmiv010x_7: qcom,pmiv010x@7 {
 		qcom,disable-overdrive;
 	};
 
+	pmiv010x_eusb2_repeater: eusb2-repeater@fd00 {
+		compatible = "qcom,pmic-eusb2-repeater";
+		reg = <0xfd00>;
+	};
+
 	pmiv010x_amoled: qcom,amoled {
 		compatible = "qcom,amoled-regulator";
 		#address-cells = <1>;
