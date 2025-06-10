@@ -54,6 +54,12 @@
 	io-channel-names = "thermal";
 };
 
+&pmk8550_sdam_2 {
+	bob1_off_mode_enable: bob1-off-mode-enable@50 {
+		reg = <0x50 0x1>;
+	};
+};
+
 &spmi0_bus {
 	#address-cells = <2>;
 	#size-cells = <0>;
