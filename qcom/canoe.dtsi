@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
@@ -2065,6 +2065,17 @@
 		};
 	};
 
+	spmi-err@c426000 {
+		compatible = "qcom,spmi-pmic-err-debug";
+		reg = <0x0 0xc426000 0x0 0x4000>,
+		      <0x0 0xc425000 0x0 0x4c>;
+		reg-names = "cnfg", "geni";
+		interrupts-extended = <&pdc 23 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "protocol_irq";
+		nvmem-cells = <&tz_dbg_en>;
+		nvmem-cell-names = "tz_dbg";
+	};
+
 	pmic-arb-debug@11314000 {
 		compatible = "qcom,spmi-pmic-arb-debug-v8";
 		reg = <0x0 0x11314000 0x0 0x64>,
@@ -3712,6 +3723,11 @@
 		#size-cells = <1>;
 		read-only;
 		ranges;
+
+		tz_dbg_en: tz_dbg_en@781 {
+			reg = <0x781 0x1>;
+			bits = <2 1>;
+		};
 
 		ssip_config: ssip_config@148 {
 			reg = <0x148 0x2>;
