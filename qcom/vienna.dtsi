@@ -2366,7 +2366,6 @@
 #include "msm-arm-smmu-vienna.dtsi"
 #include "vienna-qupv3.dtsi"
 #include "vienna-usb.dtsi"
-#include "vienna-thermal-overlay.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -2457,3 +2456,4 @@
 /delete-node/ &ipcc_self_ping_slpi;
 
 #include "vienna-thermal.dtsi"
+#include "vienna-thermal-overlay.dtsi"
