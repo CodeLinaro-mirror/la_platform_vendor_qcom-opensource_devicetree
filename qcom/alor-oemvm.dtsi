@@ -164,6 +164,17 @@
 				qcom,label = <0x10c>;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x108>;
+					allocate-base;
+				};
+			};
+
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-oemvm";
@@ -259,6 +270,16 @@
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	qcom,qrtr {
+		compatible = "qcom,qrtr";
+		qcom,node-id = <21>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x108>;
 	};
 
 	qcom,mem-buf {
