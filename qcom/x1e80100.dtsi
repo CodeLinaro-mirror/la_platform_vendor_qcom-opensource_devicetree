@@ -262,6 +262,7 @@
 	firmware {
 		qcom_scm {
 			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x19000>;
 		};
 	};
 
@@ -633,6 +634,15 @@
 		#size-cells = <2>;
 		dma-ranges = <0 0 0 0 0x10 0>;
 		ranges = <0 0 0 0 0x10 0>;
+
+		dload_mode {
+			compatible = "qcom,dload-mode";
+		};
+
+		tcsr: syscon@1fc0000 {
+			compatible = "syscon";
+			reg = <0x0 0x1fc0000 0x0 0x30000>;
+		};
 
 		tlmm: pinctrl@f100000 {
 			compatible = "qcom,x1e80100-tlmm";
