@@ -2802,6 +2802,27 @@
 		qcom,rproc-handle = <&adsp_pas>;
 	};
 
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1103>;
+		qcom,net-id = <0>;
+		qcom,low-latency;
+	};
+
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1107>;
+		qcom,net-id = <1>;
+		qcom,low-latency;
+	};
+
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x110E>;
+		qcom,net-id = <0>;
+		qcom,low-latency;
+	};
+
 	modem_pas: remoteproc-mss@04080000 {
 		compatible = "qcom,alor-modem-pas";
 		reg = <0x0 0x4080000 0x0 0x10000>;
