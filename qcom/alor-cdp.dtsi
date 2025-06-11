@@ -4,6 +4,7 @@
  */
 
 #include "alor-pmic-overlay.dtsi"
+#include "alor-pmiv010x.dtsi"
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 
 &qupv3_se4_i2c {

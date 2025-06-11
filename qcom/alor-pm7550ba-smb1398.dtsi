@@ -3,30 +3,9 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "alor-mtp.dtsi"
-#include "alor-pmih010x-pmd802x.dtsi"
-
-&S3D_E0 {
-	regulator-min-microvolt = <400000>;
-	regulator-max-microvolt = <1004000>;
-	qcom,init-voltage = <400000>;
-};
+#include "alor-pm7550ba-pmd802x.dtsi"
 
 &pmic_glink_debug {
-	/* SPMI bridge bus 1 with SMB1510 device */
-	spmi_pmic:spmi@200 {
-		reg = <0x200>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		qcom,bus-type = "spmi";
-
-		spmi_pmic_smb1510: qcom,smb1510@d {
-			compatible = "qcom,spmi-pmic";
-			reg = <13 SPMI_USID>;
-			qcom,can-sleep;
-		};
-	};
-
 	i2c_pmic:i2c@105 {
 		reg = <0x105>;  /* I2C instance 5 in ADSP for SE4 */
 		#address-cells = <1>;
