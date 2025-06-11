@@ -142,6 +142,15 @@
 				};
 			};
 
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x103>;
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
@@ -261,6 +270,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x105>;
 		affinity = <0>;
+	};
+
+	qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
 	};
 
 	qcom,gh-qtimer@1781b000 {

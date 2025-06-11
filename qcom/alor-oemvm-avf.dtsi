@@ -117,6 +117,15 @@
 				qcom,label = <0x105>;
 				peer-default;
 			};
+
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x103>;
+			};
 		};
 	};
 };
@@ -153,6 +162,7 @@
 				&virtio_mem_device
 				&qcom_test_dbl_oemvm
 				&qcom_test_msgq_oemvm
+				&qmsgq_gunyah
 				&qcom_qrtr
 				&qrtr_gunyah
 				>;
@@ -179,6 +189,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x105>;
 		affinity = <0>;
+	};
+
+	qmsgq_gunyah: msgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
 	};
 
 	gh_qtimer: qcom,gh-qtimer@1781b000 {
