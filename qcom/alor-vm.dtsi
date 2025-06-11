@@ -199,6 +199,17 @@
 				};
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					allocate-base;
+				};
+			};
+
 			test-dbl-tuivm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-tuivm";
@@ -405,6 +416,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
