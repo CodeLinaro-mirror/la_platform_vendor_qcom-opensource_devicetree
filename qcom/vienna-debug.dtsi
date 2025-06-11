@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/soc/qcom,dcc_v2.h>
@@ -11,7 +11,7 @@
 	ranges;
 
 	dump_mem: dump_mem_region {
-		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		alloc-ranges = <0x0 0x80000000 0xfffffffe 0xffffffff>;
 		size = <0x0 0xc00000>;
 	};
 };
