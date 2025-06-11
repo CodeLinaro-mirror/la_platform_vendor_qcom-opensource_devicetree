@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
@@ -1487,6 +1487,10 @@
 	qcom,fdcvs {
 		compatible = "qcom,fdcvs";
 		qcom,qmp = <&aoss_qmp>;
+	};
+
+	qcom,qlpmm {
+		compatible = "qcom,lpmm";
 	};
 
 	ram@c3f0000 {
