@@ -6,6 +6,7 @@
 #include "alor-pmic-overlay.dtsi"
 #include "alor-pmih010x-pmd802x.dtsi"
 #include <dt-bindings/clock/qcom,alor-gcc.h>
+#include "alor-thermal-overlay.dtsi"
 
 &sdhc_2 {
 	vdd-supply = <&L9B>;
