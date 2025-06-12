@@ -39,6 +39,11 @@ qcom,pm7550ba@7 {
 		reg = <0x7300>;
 	};
 
+	pm7550ba_eusb2_repeater: eusb2-repeater@fd00 {
+		compatible = "qcom,pmic-eusb2-repeater";
+		reg = <0xfd00>;
+	};
+
 	pm7550ba_gpios: pinctrl@8800 {
 		compatible = "qcom,pm7550ba-gpio";
 		reg = <0x8800>;
