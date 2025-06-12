@@ -339,6 +339,13 @@
 		linux,cma-default;
 	};
 
+	lcp_dare_pool: lcp_dare_region {
+		compatible = "shared-dma-pool";
+		reg = <0x8 0x80000000 0x0 0x6000000>;
+		reusable;
+		alignment = <0x0 0x400000>;
+	};
+
 	kinfo_mem: debug_kinfo_region {
 		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
 		size = <0x0 0x1000>;
@@ -2669,6 +2676,12 @@
 		compatible = "gunyah-cma-vm-mem";
 		memory-region = <&trust_ui_vm_mem &oem_vm_mem>;
 		memory-region-names = "trustedvm_cma" , "oemvm_cma";
+	};
+
+	qcom,lcp-dare-dare-pool {
+		compatible = "qcom,mem-prot-pool";
+		memory-region = <&lcp_dare_pool>;
+		qcom,lcp-dare;
 	};
 
 	gh_secure_vm_loader0: gh-secure-vm-loader@0 {
