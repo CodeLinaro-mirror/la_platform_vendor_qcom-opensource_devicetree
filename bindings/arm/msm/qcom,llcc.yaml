@@ -53,13 +53,35 @@ properties:
     maxItems: 1
 
   child-node:
-    description: Container of llcc_perfmon node
+    description: |
+      - Container of llcc_perfmon node
+      - Container of slc_perfmon node
     type: object
     properties:
-        compatible:
-            const: qcom,llcc-perfmon
+      compatible:
+        items:
+          - const: qcom,llcc-perfmon
+          - const: qcom,slc-perfmon
+
+      reg:
+        description: |
+          MPAM Memory base address
+        minItems: 1
+        maxItems: 2
+      reg-names:
+        minItems: 1
+        maxItems: 2
+      perfmon_offset:
+        description: |
+          Offset to access perfmon memory
+        minItems: 1
+        maxItems: 2
+
+    required:
+      - compatible
 
     additionalProperties: false
+
 required:
   - compatible
   - reg
