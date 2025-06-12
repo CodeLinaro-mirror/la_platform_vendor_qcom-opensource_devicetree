@@ -59,7 +59,7 @@ _platform_map = {
             {"name": "canoe-rcm-st54l-pandeiro-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
     },
     "alor": {
         "dtb_list": [
@@ -91,6 +91,16 @@ _platform_map = {
             {"name": "alor-interposer-mtp-overlay.dtbo"},
             {"name": "alor-interposer-rcm-overlay.dtbo"},
             {"name": "alor-interposer-qrd-st54l-pandeiro-overlay.dtbo"},
+        ],
+    },
+    "chora": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "chora.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "chora-rumi-overlay.dtbo"},
         ],
     },
     "lahaina": {

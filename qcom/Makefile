@@ -69,6 +69,15 @@ canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
 
+CHORA_BASE_DTB += chora.dtb
+
+NOAPQ_CHORA_BOARDS += \
+		chora-rumi-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_CHORA) += \
+	$(call add-overlays, $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
+
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
 YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
