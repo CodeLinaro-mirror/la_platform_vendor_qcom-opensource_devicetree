@@ -142,6 +142,15 @@
 				};
 			};
 
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x103>;
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
@@ -162,6 +171,17 @@
 				queue-depth = <0x00000008>;
 				peer-default;
 				qcom,label = <0x10c>;
+			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x108>;
+					allocate-base;
+				};
 			};
 
 			test-dbl-oemvm {
@@ -252,6 +272,11 @@
 		affinity = <0>;
 	};
 
+	qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+	};
+
 	qcom,gh-qtimer@1781b000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x1781b000 0x0 0x1000>;
@@ -259,6 +284,16 @@
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	qcom,qrtr {
+		compatible = "qcom,qrtr";
+		qcom,node-id = <21>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x108>;
 	};
 
 	qcom,mem-buf {

@@ -199,6 +199,17 @@
 				};
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					allocate-base;
+				};
+			};
+
 			test-dbl-tuivm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-tuivm";
@@ -229,6 +240,15 @@
 				queue-depth = <0x00000008>;
 				peer-default;
 				qcom,label = <0x101>;
+			};
+
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
 			};
 
 			smmu-proxy-message-queue-pair {
@@ -405,6 +425,16 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
+	};
+
+	qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
