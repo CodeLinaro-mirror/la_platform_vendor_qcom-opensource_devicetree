@@ -2623,6 +2623,10 @@
 					qcom,qos-maxhold-ms = <20>;
 				};
 			};
+
+			qcom,cdsp_mpam_rpmsg {
+				qcom,glink-channels = "mpam-glink-apps-dsp";
+			};
 		};
 	};
 
@@ -3357,6 +3361,7 @@
 		nsp {
 			qcom,client-id = <0x100>;
 			qcom,client-name = "nsp";
+			qcom,support-bw-limit;
 		};
 	};
 
