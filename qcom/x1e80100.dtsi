@@ -625,6 +625,12 @@
 			alignment = <0x0 0x400000>;
 			size = <0x0 0xC00000>;
 		};
+
+		kinfo_mem: debug_kinfo_region {
+			alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+			size = <0x0 0x1000>;
+			no-map;
+		};
 	};
 
 	soc: soc {
@@ -637,6 +643,16 @@
 
 		dload_mode {
 			compatible = "qcom,dload-mode";
+		};
+
+		google,debug-kinfo {
+			compatible = "google,debug-kinfo";
+			memory-region = <&kinfo_mem>;
+		};
+
+		mini_dump_mode {
+			compatible = "qcom,minidump";
+			status = "ok";
 		};
 
 		vendor_hooks: qcom,cpu-vendor-hooks {
