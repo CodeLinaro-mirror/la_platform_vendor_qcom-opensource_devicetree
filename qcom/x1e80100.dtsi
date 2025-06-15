@@ -639,6 +639,10 @@
 			compatible = "qcom,dload-mode";
 		};
 
+		vendor_hooks: qcom,cpu-vendor-hooks {
+			compatible = "qcom,cpu-vendor-hooks";
+		};
+
 		tcsr: syscon@1fc0000 {
 			compatible = "syscon";
 			reg = <0x0 0x1fc0000 0x0 0x30000>;
