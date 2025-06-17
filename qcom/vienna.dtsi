@@ -1998,6 +1998,13 @@
 			qcom,intents = <0x1000 10>;
 		};
 
+		qcom,glinkpkt-gatt-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
+			qcom,intents = <0x1000 10>;
+		 };
+
 		qcom,glinkpkt-wm-qsh-0 {
 			qcom,glinkpkt-edge = "wm";
 			qcom,glinkpkt-ch-name = "qsh_2_0";
