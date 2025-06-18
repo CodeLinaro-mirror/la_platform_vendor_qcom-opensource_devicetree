@@ -3396,6 +3396,7 @@
 
 	qcom_slc_mpam: qcom,slc_mpam {
 		compatible = "qcom,mpam-slc";
+		qcom,client-level-mon;
 		qcom,msc-name = "slc";
 		apps {
 			qcom,client-id = <0>;
