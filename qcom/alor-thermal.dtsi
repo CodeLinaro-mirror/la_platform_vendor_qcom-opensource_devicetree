@@ -268,6 +268,16 @@
 		};
 	};
 
+	qcom,dynamic-thermal-tripi@0 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <0>;
+	};
+
+	qcom,dynamic-thermal-tripi@1 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <1>;
+	};
+
 	qmi_tmd: qmi-tmd-devices {
 		cdsp {
 			qcom,instance-id = <QMI_CDSP_INST_ID>;
