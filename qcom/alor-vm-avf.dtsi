@@ -36,6 +36,11 @@
 			android,pvmfw,target = <&tlmm>;
 		};
 
+		qcom,ipcc@1107000 {
+			reg = <0x0 0x1107000 0x0 0x1000>;
+			android,pvmfw,target = <&ipcc_mproc_ns1>;
+		};
+
 		qcom,gpi-dma@a00000 {
 			reg = <0x0 0xa00000 0x0 0x60000>;
 			android,pvmfw,target = <&gpi_dma1>;
@@ -81,7 +86,8 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		iomemory-ranges = <0x0 0xa24000 0x0 0xa24000 0x0 0x4000 0x0
+		iomemory-ranges = <0x0 0x1107000 0x0 0x1107000 0x0 0x1000 0x0
+				0x0 0xa24000 0x0 0xa24000 0x0 0x4000 0x0
 				0x0 0x1924000 0x0 0x1924000 0x0 0x4000 0x0>;
 
 		/*
@@ -102,8 +108,9 @@
 		 * QUP1_SE4: GPII5 : IRQ_873
 		 * QUP3_SE1: GPII5 : IRQ_625
 		 */
-		gic-irq-ranges = <873 873  /* PVM->SVM IRQ transfer */
-				  625 625>;
+		gic-irq-ranges = <279 279
+				  873 873
+				  625 625>; /* PVM->SVM IRQ transfer */
 
 		segments {
 			ramdisk = <2>;
@@ -331,6 +338,15 @@
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
+	};
+
+	ipcc_mproc_ns1: qcom,ipcc@1107000 {
+		compatible = "qcom,ipcc";
+		reg = <0x0 0x1107000 0x0 0x1000>; /* size */
+		interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 
 	qti_smmu_proxy: qti,smmu-proxy {
