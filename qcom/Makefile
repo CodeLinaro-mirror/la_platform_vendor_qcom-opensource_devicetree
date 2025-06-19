@@ -37,6 +37,7 @@ CANOE_BOARDS += \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
+		canoep-hdk-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
 		alor-interposer-rcm-overlay.dtbo \
 		alor-interposer-qrd-st54l-pandeiro-overlay.dtbo
@@ -276,11 +277,13 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-vm-cdp.dtb \
 				canoe-vm-qrd.dtb \
 				canoe-vm-rcm.dtb \
+				canoep-vm-hdk.dtb \
 				canoe-oemvm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
 				canoe-oemvm-rcm.dtb \
+				canoep-oemvm-hdk.dtb \
 				alor-interposer-vm-mtp.dtb \
 				alor-interposer-vm-rcm.dtb \
 				alor-interposer-oemvm-mtp.dtb \

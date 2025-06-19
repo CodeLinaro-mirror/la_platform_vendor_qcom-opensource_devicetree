@@ -101,6 +101,8 @@ properties:
               - qcom,qrd
               - qcom,canoep-rcm
               - qcom,rcm
+              - qcom,canoep-hdk
+              - qcom,hdk
           - const: qcom,canoep
 
       - description: Qualcomm Technologies, Inc. ALOR
