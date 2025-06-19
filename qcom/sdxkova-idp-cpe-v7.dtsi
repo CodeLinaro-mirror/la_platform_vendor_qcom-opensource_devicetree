@@ -3,8 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "sdxkova-idp-lga.dtsi"
-#include "sdxkova-qcn9224.dtsi"
+#include "sdxkova-idp-cpe.dtsi"
 
 &soc {
 };

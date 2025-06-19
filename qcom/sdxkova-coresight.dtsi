@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &soc {
@@ -855,6 +855,57 @@
 		};
 	};
 
+	gladiator {
+		compatible = "arm,coresight-dummy-source";
+		device-name = "coresight-gladiator";
+		atid = <96>;
+
+		out-ports {
+			port {
+				gladiator_out_funnel_ddr_dl1: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_dl1_in_gladiator>;
+				};
+			};
+		};
+	};
+
+	funnel_ddr_dl1: funnel@24d0a000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+
+		reg = <0x0 0x24d0a000 0x0 0x1000>;
+		reg-names = "funnel-base";
+
+		coresight-name = "coresight-funnel-ddr_dl1";
+
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@3 {
+				reg = <3>;
+				funnel_ddr_dl1_in_gladiator: endpoint {
+					remote-endpoint =
+					<&gladiator_out_funnel_ddr_dl1>;
+				};
+			};
+		};
+
+		out-ports {
+
+			port {
+				funnel_ddr_dl1_out_funnel_ddr0: endpoint {
+					remote-endpoint =
+					<&funnel_ddr0_in_funnel_ddr_dl1>;
+				};
+			};
+		};
+	};
 
 	funnel_ddr0: funnel@24d03000 {
 		compatible = "arm,primecell";
@@ -886,6 +937,14 @@
 				funnel_ddr0_in_tpdm_ddr: endpoint {
 					remote-endpoint =
 					<&tpdm_ddr_out_funnel_ddr0>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_ddr0_in_funnel_ddr_dl1: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_dl1_out_funnel_ddr0>;
 				};
 			};
 		};
