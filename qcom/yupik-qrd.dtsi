@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/gpio/gpio.h>
@@ -234,10 +234,9 @@
 };
 
 &thermal_zones {
-	conn-therm-usr {
+	conn-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm PM8350B_ADC7_AMUX_THM4_100K_PU>;
 		wake-capable-sensor;
 		trips {
@@ -249,10 +248,9 @@
 		};
 	};
 
-	charger-therm-usr {
+	charger-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm PM8350B_ADC7_GPIO2_100K_PU>;
 		wake-capable-sensor;
 		trips {
@@ -264,10 +262,9 @@
 		};
 	};
 
-	modem-sub6-pa1-step {
+	modem-sub6-pa1 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_INST_ID+QMI_PA)>;
 		trips {
@@ -293,25 +290,24 @@
 		cooling-maps {
 			pa_fr1_cdev0 {
 				trip = <&sub6_pa1_trip0>;
-				cooling-device = <&modem_pa_fr1 1 1>;
+				cooling-device = <&modem_pa_fr1 0 1>;
 			};
 
 			pa_fr1_cdev1 {
 				trip = <&sub6_pa1_trip1>;
-				cooling-device = <&modem_pa_fr1 2 2>;
+				cooling-device = <&modem_pa_fr1 0 2>;
 			};
 
 			pa_fr1_cdev2 {
 				trip = <&sub6_pa1_trip2>;
-				cooling-device = <&modem_pa_fr1 3 3>;
+				cooling-device = <&modem_pa_fr1 0 3>;
 			};
 		};
 	};
 
-	modem-lte-pa2-step {
+	modem-lte-pa2 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_INST_ID+QMI_PA_1)>;
 		trips {
@@ -337,25 +333,24 @@
 		cooling-maps {
 			pa_cdev0 {
 				trip = <&sub6_pa2_trip0>;
-				cooling-device = <&modem_pa 1 1>;
+				cooling-device = <&modem_pa 0 1>;
 			};
 
 			pa_cdev1 {
 				trip = <&sub6_pa2_trip1>;
-				cooling-device = <&modem_pa 2 2>;
+				cooling-device = <&modem_pa 0 2>;
 			};
 
 			pa_cdev2 {
 				trip = <&sub6_pa2_trip2>;
-				cooling-device = <&modem_pa 3 3>;
+				cooling-device = <&modem_pa 0 3>;
 			};
 		};
 	};
 
-	quiet-therm-step {
+	quiet-therm {
 		polling-delay-passive = <2000>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
 		thermal-sensors = <&pmk8350_adc_tm PM7325_ADC7_AMUX_THM1_100K_PU>;
 
 		trips {
@@ -435,70 +430,66 @@
 			cpu_silver_cdev:cpu-silver-cdev {
 				trip = <&quiet_silver_trip>;
 				/* throttle to 1516800KHz */
-				cooling-device = <&CPU0 THERMAL_NO_LIMIT
-						(THERMAL_MAX_LIMIT-6)>;
+				cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 			};
 
 			gpu-cdev_0 {
 				trip = <&quiet_gpu_trip>;
 				/* throttle to 555000000Hz */
-				cooling-device = <&msm_gpu THERMAL_NO_LIMIT
-						(THERMAL_MAX_LIMIT-2)>;
+				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
 			};
 
 			gpu-cdev_1 {
 				trip = <&quiet_cx_trip>;
 				/* throttle to 315000000Hz */
-				cooling-device = <&msm_gpu THERMAL_MAX_LIMIT
-						THERMAL_MAX_LIMIT>;
+				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
 			};
 
 			cdsp-cdev {
 				trip = <&quiet_cx_trip>;
-				cooling-device = <&cdsp_sw 4 4>;
+				cooling-device = <&cdsp_sw 0 4>;
 			};
 
 			skin-cdev0 {
 				trip = <&quiet_skin_trip0>;
-				cooling-device = <&modem_skin 1 1>;
+				cooling-device = <&modem_skin 0 1>;
 			};
 
 			skin-cdev1 {
 				trip = <&quiet_skin_trip1>;
-				cooling-device = <&modem_skin 2 2>;
+				cooling-device = <&modem_skin 0 2>;
 			};
 
 			skin-cdev2 {
 				trip = <&quiet_skin_trip2>;
-				cooling-device = <&modem_skin 3 3>;
+				cooling-device = <&modem_skin 0 3>;
 			};
 
 			batt-cdev0 {
 				trip = <&quiet_batt_trip0>;
-				cooling-device = <&battery_charger 4 4>;
+				cooling-device = <&battery_charger 0 4>;
 			};
 
 			batt-cdev1 {
 				trip = <&quiet_batt_trip1>;
-				cooling-device = <&battery_charger 8 8>;
+				cooling-device = <&battery_charger 0 8>;
 			};
 
 			batt-cdev2 {
 				trip = <&quiet_batt_trip2>;
-				cooling-device = <&battery_charger 12 12>;
+				cooling-device = <&battery_charger 0 12>;
 			};
 
 			batt-cdev3 {
 				trip = <&quiet_batt_trip3>;
-				cooling-device = <&battery_charger 16 16>;
+				cooling-device = <&battery_charger 0 16>;
 			};
 		};
 	};
 
-	modem-mmw-pa1-step {
+	modem-mmw-pa1 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_INST_ID+QMI_MMW_PA1)>;
 		trips {
@@ -524,25 +515,24 @@
 		cooling-maps {
 			mmw_skin1_cdev0 {
 				trip = <&mmw_pa1_trip0>;
-				cooling-device = <&modem_mmw_skin1 1 1>;
+				cooling-device = <&modem_mmw_skin1 0 1>;
 			};
 
 			mmw_skin1_cdev1 {
 				trip = <&mmw_pa1_trip1>;
-				cooling-device = <&modem_mmw_skin1 2 2>;
+				cooling-device = <&modem_mmw_skin1 0 2>;
 			};
 
 			mmw_skin1_cdev2 {
 				trip = <&mmw_pa1_trip2>;
-				cooling-device = <&modem_mmw_skin1 3 3>;
+				cooling-device = <&modem_mmw_skin1 0 3>;
 			};
 		};
 	};
 
-	modem-mmw-pa2-step {
+	modem-mmw-pa2 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_INST_ID+QMI_MMW_PA2)>;
 		trips {
@@ -568,22 +558,22 @@
 		cooling-maps {
 			mmw_skin2_cdev0 {
 				trip = <&mmw_pa2_trip0>;
-				cooling-device = <&modem_mmw_skin2 1 1>;
+				cooling-device = <&modem_mmw_skin2 0 1>;
 			};
 
 			mmw_skin2_cdev1 {
 				trip = <&mmw_pa2_trip1>;
-				cooling-device = <&modem_mmw_skin2 2 2>;
+				cooling-device = <&modem_mmw_skin2 0 2>;
 			};
 
 			mmw_skin2_cdev2 {
 				trip = <&mmw_pa2_trip2>;
-				cooling-device = <&modem_mmw_skin2 3 3>;
+				cooling-device = <&modem_mmw_skin2 0 3>;
 			};
 		};
 	};
 
-	modem-mmw-pa3-step {
+	modem-mmw-pa3 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "step_wise";
@@ -612,17 +602,17 @@
 		cooling-maps {
 			mmw_skin0_cdev0 {
 				trip = <&mmw_pa3_trip0>;
-				cooling-device = <&modem_mmw_skin0 1 1>;
+				cooling-device = <&modem_mmw_skin0 0 1>;
 			};
 
 			mmw_skin0_cdev1 {
 				trip = <&mmw_pa3_trip1>;
-				cooling-device = <&modem_mmw_skin0 2 2>;
+				cooling-device = <&modem_mmw_skin0 0 2>;
 			};
 
 			mmw_skin0_cdev2 {
 				trip = <&mmw_pa3_trip2>;
-				cooling-device = <&modem_mmw_skin0 3 3>;
+				cooling-device = <&modem_mmw_skin0 0 3>;
 			};
 		};
 	};

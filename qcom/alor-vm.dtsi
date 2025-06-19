@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
@@ -61,7 +61,7 @@
 
 	dmesg-dump {
 		compatible = "qcom,dmesg-dump";
-		gunyah-label = <7>;
+		gunyah-label = <0x107>;
 		ddump-pubkey-size = <270>;
 		ddump-pubkey = /bits/ 8 <0x30 0x82 0x01 0x0a 0x02 0x82 0x01 0x01 0x00 0xe6 0x4b 0x31 0x82 0x61 0x14 0xf2
 				0xbe 0xd1 0xe4 0xde 0xe7 0xed 0xba 0x8f 0x3b 0x23 0x5f 0x7a 0xb8 0x16 0x40 0x96
@@ -199,17 +199,28 @@
 				};
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					allocate-base;
+				};
+			};
+
 			test-dbl-tuivm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-tuivm";
-				qcom,label = <0x4>;
+				qcom,label = <0x104>;
 				peer-default;
 			};
 
 			test-dbl-tuivm-source {
 				vdevice-type = "doorbell-source";
 				generate = "/hypervisor/test-dbl-tuivm-source";
-				qcom,label = <0x4>;
+				qcom,label = <0x104>;
 				peer-default;
 			};
 
@@ -218,7 +229,7 @@
 				generate = "/hypervisor/test-msgq-tuivm-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
-				qcom,label = <0x4>;
+				qcom,label = <0x104>;
 				peer-default;
 			};
 
@@ -228,7 +239,25 @@
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
-				qcom,label = <0x0000001>;
+				qcom,label = <0x101>;
+			};
+
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
+			};
+
+			smmu-proxy-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/smmu-proxy-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x10A>;
 			};
 
 			ddump-shm {
@@ -237,7 +266,7 @@
 				push-compatible = "qcom,ddump-gunyah-gen";
 				peer-default;
 				memory {
-					qcom,label = <0x7>;
+					qcom,label = <0x107>;
 					allocate-base;
 				};
 			};
@@ -248,7 +277,7 @@
 				push-compatible = "qcom,gunyah-panic-gen";
 				peer-default;
 				memory {
-					qcom,label = <0x9>;
+					qcom,label = <0x109>;
 					allocate-base;
 				};
 			};
@@ -310,13 +339,14 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71>;
+		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71 87 100 128>;
 	};
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
-					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0>;
+					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0 &tlmm 87 0
+					&tlmm 100 0 &tlmm 128 0>;
 	};
 
 	vgic: interrupt-controller@17000000 {
@@ -388,13 +418,23 @@
 
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
-		qcom,label = <0x4>;
+		qcom,label = <0x104>;
 	};
 
 	qcom,test-msgq-tuivm {
 		compatible = "qcom,gh-msgq-test";
-		gunyah-label = <0x4>;
+		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
+	};
+
+	qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
@@ -445,7 +485,7 @@
 
 	qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
-		gunyah-label = <9>;
+		gunyah-label = <0x109>;
 	};
 
 	tlmm-vm-test {

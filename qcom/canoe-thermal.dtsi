@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -270,6 +270,16 @@
 		cpu-cluster1 {
 			qcom,cpus = <&CPU6 &CPU7>;
 		};
+	};
+
+	qcom,dynamic-thermal-tripi@0 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <0>;
+	};
+
+	qcom,dynamic-thermal-tripi@1 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <1>;
 	};
 
 	qmi_tmd: qmi-tmd-devices {

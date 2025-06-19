@@ -153,6 +153,14 @@ _platform_map = {
             {"name": "katmaip-fp3-hsp-pm7250b-overlay.dtbo"},
         ],
     },
+    "x1p42100": {
+        "dtb_list": [
+            {"name": "x1p42100.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "x1p42100-crd-overlay.dtbo"},
+        ],
+    },
     "canoe-tuivm": {
         "dtb_list": [
             # keep sorted
@@ -233,6 +241,14 @@ _platform_map = {
             {"name": "alor-vm-rcm.dtb"},
             {"name": "alor-vm-rumi.dtb"},
         ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "alor-vm-atp-overlay.dtbo"},
+            {"name": "alor-vm-cdp-overlay.dtbo"},
+            {"name": "alor-vm-mtp-overlay.dtbo"},
+            {"name": "alor-vm-qrd-overlay.dtbo"},
+            {"name": "alor-vm-rcm-overlay.dtbo"},
+        ],
     },
     "alor-oemvm": {
         "dtb_list": [
@@ -249,6 +265,14 @@ _platform_map = {
             {"name": "alor-vm-qrd.dtb"},
             {"name": "alor-vm-rcm.dtb"},
             {"name": "alor-vm-rumi.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "alor-oemvm-atp-overlay.dtbo"},
+            {"name": "alor-oemvm-cdp-overlay.dtbo"},
+            {"name": "alor-oemvm-mtp-overlay.dtbo"},
+            {"name": "alor-oemvm-qrd-overlay.dtbo"},
+            {"name": "alor-oemvm-rcm-overlay.dtbo"},
         ],
     },
     "gen3auto": {

@@ -219,6 +219,16 @@ vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
 vienna-overlays-dtb-$(CONFIG_ARCH_VIENNA) += $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS) $(VIENNA_BASE_DTB) $(VIENNA_APQ_BASE_DTB)
 dtb-y += $(vienna-dtb-y)
 
+X1P42100_BASE_DTB += x1p42100.dtb
+
+X1P42100_BOARDS += \
+		   x1p42100-crd-overlay.dtbo
+
+x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
+	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
+x1p42100-overlays-dtb-$(CONFIG_ARCH_X1P42100) += $(X1P42100_BOARDS) $(X1P42100_BASE_DTB)
+dtb-y += $(x1p42100-dtb-y)
+
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
@@ -380,7 +390,17 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-rumi.dtb \
 				alor-oemvm-mtp.dtb \
 				alor-oemvm-qrd.dtb \
 				alor-oemvm-cdp.dtb \
-				alor-oemvm-rcm.dtb
+				alor-oemvm-rcm.dtb \
+				alor-vm-atp-overlay.dtbo \
+				alor-vm-mtp-overlay.dtbo \
+				alor-vm-qrd-overlay.dtbo \
+				alor-vm-rcm-overlay.dtbo \
+				alor-vm-cdp-overlay.dtbo \
+				alor-oemvm-atp-overlay.dtbo \
+				alor-oemvm-mtp-overlay.dtbo \
+				alor-oemvm-qrd-overlay.dtbo \
+				alor-oemvm-rcm-overlay.dtbo \
+				alor-oemvm-cdp-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif

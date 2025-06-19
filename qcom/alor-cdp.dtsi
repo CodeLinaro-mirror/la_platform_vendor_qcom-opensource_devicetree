@@ -1,10 +1,12 @@
-// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "alor-pmic-overlay.dtsi"
+#include "alor-pmiv010x.dtsi"
 #include <dt-bindings/clock/qcom,alor-gcc.h>
+#include "alor-thermal-overlay.dtsi"
 
 &qupv3_se4_i2c {
 	#address-cells = <1>;
@@ -17,13 +19,13 @@
 		compatible = "st,fts";
 		reg = <0x49>;
 		interrupt-parent = <&tlmm>;
-		interrupts = <88 0x2008>;
+		interrupts = <55 0x2008>;
 		vdd-supply = <&L4B>;
 		avdd-supply = <&L14B>;
 		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
 		pinctrl-0 = <&ts_active>;
 		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
-		st,irq-gpio = <&tlmm 88 0x2008>;
+		st,irq-gpio = <&tlmm 55 0x2008>;
 		st,irq-flags = <8>;
 		st,reset-gpio = <&tlmm 161 0x00>;
 		st,regulator_dvdd = "vdd";
@@ -34,11 +36,11 @@
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "pvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <755>;
+		qts,trusted-touch-spi-irq = <538>;
 		qts,trusted-touch-io-bases = <0xA90000>;
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 48 0 &tlmm 49 0 &tlmm 50 0
-						&tlmm 51 0 &tlmm 161 0 &tlmm 88 0x2008>;
+						&tlmm 51 0 &tlmm 161 0 &tlmm 55 0x2008>;
 	};
 
 	goodix-berlin@5d {
@@ -46,9 +48,9 @@
 		compatible = "goodix,gt9916";
 		reg = <0x5d>;
 		interrupt-parent = <&tlmm>;
-		interrupts = <88 0x2008>;
+		interrupts = <55 0x2008>;
 		goodix,reset-gpio = <&tlmm 161 0x00>;
-		goodix,irq-gpio = <&tlmm 88 0x2008>;
+		goodix,irq-gpio = <&tlmm 55 0x2008>;
 		goodix,irq-flags = <2>;
 		goodix,panel-max-x = <1080>;
 		goodix,panel-max-y = <2400>;
@@ -93,6 +95,14 @@
 
 				usb_port0_connector: endpoint {
 					remote-endpoint = <&usb_port0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				ucsi_audio_mux: endpoint {
+					remote-endpoint = <&wcd_usbss_mux>;
 				};
 			};
 		};
@@ -178,3 +188,21 @@
 
 	status = "ok";
 };
+
+&wcd_usbss {
+	status = "ok";
+	interrupt-parent = <&spmi0_bus>;
+	interrupts = <0x0 0xb6 0x1 IRQ_TYPE_EDGE_BOTH>;
+	interrupt-names = "usb_wcd";
+	nvmem-cells = <&usb_mode>;
+	nvmem-cell-names = "usb_mode";
+
+	mode-switch;
+
+	port {
+		wcd_usbss_mux: endpoint {
+			remote-endpoint = <&ucsi_audio_mux>;
+		};
+	};
+};
+

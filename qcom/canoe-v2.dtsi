@@ -43,3 +43,6 @@
 	};
 };
 
+&videocc {
+	compatible = "qcom,canoe-videocc-v2", "syscon";
+};
