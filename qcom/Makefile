@@ -60,7 +60,8 @@ ALOR_BOARDS += \
 		alor-rcm-overlay.dtbo \
 		alor-rcm-peach-overlay.dtbo \
 		alor-qrd-overlay.dtbo \
-		alor-qrd-peach-overlay.dtbo
+		alor-qrd-peach-overlay.dtbo \
+		alor-qrd-ufcs-overlay.dtbo
 
 NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
