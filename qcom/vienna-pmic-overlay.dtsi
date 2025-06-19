@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
  /*
-  * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
   */
 #include <dt-bindings/gpio/gpio.h>
 #include "pmw6100.dtsi"
@@ -185,7 +185,7 @@
 };
 
 &battery_charger {
-	qcom,thermal-mitigation-step = <500000>;
+	qcom,thermal-mitigation-step = <790000 690000 590000 490000 390000 290000 190000>;
 	#cooling-cells = <2>;
 	qcom,ship-mode-immediate;
 	qcom,wireless-fw-name = "cps4061.bin";
