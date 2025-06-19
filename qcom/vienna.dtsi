@@ -2219,7 +2219,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					<  249600  200000 >,
 					<  460800  451200 >,
-					< 1036800  547200 >,
+					<  595200  547200 >,
 					< 1363200  681000 >,
 					< 1478400  768000 >,
 					< 1747200 1353600 >,
@@ -2231,7 +2231,8 @@
 				qcom,cpulist = <&CPU4>;
 				qcom,sampling-enabled;
 				qcom,cpufreq-memfreq-tbl =
-					<  960000  547200 >,
+					<  268800  451200 >,
+					<  508800  547200 >,
 					< 1190000  768000 >,
 					< 1440000 1353600 >,
 					< 1612000 1555200 >,
@@ -2246,7 +2247,7 @@
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
 					< 1363200 200000 >,
-					< 1958000 547200 >;
+					< 1958400 451200 >;
 			};
 
 			gold-compute {
@@ -2255,8 +2256,8 @@
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
-					< 1785000  547200 >,
-					< 2122000 1353600 >;
+					< 1785000 547200 >,
+					< 2122000 768000 >;
 			};
 		};
 
@@ -2270,6 +2271,10 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
+					<  249600  249600 >,
+					<  460800  403200 >,
+					<  595200  537600 >,
+					<  902400  806400 >,
 					< 1036800  902400 >,
 					< 1363200 1209600 >,
 					< 1478400 1305600 >,
@@ -2282,6 +2287,10 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
+					<  268800  249600 >,
+					<  508800  403200 >,
+					<  614400  537600 >,
+					<  960000  806400 >,
 					< 1190400  902400 >,
 					< 1440000 1209600 >,
 					< 1612800 1305600 >,
@@ -2294,8 +2303,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1478400 902400 >,
-					< 1958000 1209600 >;
+					<  249600 249600 >,
+					< 1958000 403200 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -2304,8 +2313,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1785600  902400 >,
-					< 2112000 1305600 >;
+					<  268800 249600 >,
+					< 2112000 403200 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -2322,7 +2331,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
-					< 3206400 4700000 >;
+					< 1190400 0 >,
+					< 2112000 1 >;
 				qcom,sampling-enabled;
 			};
 
@@ -2330,7 +2340,8 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU4>;
 				qcom,cpufreq-memfreq-tbl =
-					< 3206400 4700000 >;
+					< 1612800 0 >,
+					< 2112000 1 >;
 				qcom,sampling-enabled;
 			};
 		};
