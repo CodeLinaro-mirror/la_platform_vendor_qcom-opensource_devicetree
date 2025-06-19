@@ -33,6 +33,7 @@ properties:
       - qcom,sun-dispcc
       - qcom,sun-dispcc_mx
       - qcom,canoe-dispcc
+      - qcom,canoe-dispcc_mx
       - qcom,alor-dispcc
 
   clocks:
