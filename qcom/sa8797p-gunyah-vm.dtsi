@@ -1364,6 +1364,14 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 	};
+
+	qcom_rng_ee13: qrng@10cd000 {
+		compatible = "qcom,msm-rng";
+		reg = <0x10cd000 0x1000>;
+		qcom,no-qrng-config;
+		qcom,no-clock-support;
+		status = "ok";
+	};
 };
 
 / {
