@@ -15,7 +15,9 @@
 	#address-cells = <2>;
 	#size-cells = <2>;
 
-	chosen { };
+	chosen {
+		bootargs = "firmware_class.path=/vendor/firmware_mnt/image";
+	};
 
 	aliases { };
 
