@@ -3763,6 +3763,11 @@
 			reg = <0x73 0x1>;
 			bits = <1 1>;
 		};
+
+		gpu_speed_bin: gpu_speed_bin@142 {
+			reg = <0x142 0x2>;
+			bits = <3 9>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
