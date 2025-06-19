@@ -2046,11 +2046,11 @@
 
 	spmi0_debug_bus: qcom,spmi-debug@11314000 {
 		compatible = "qcom,spmi-pmic-arb-debug";
-		reg = <0x11314000 0x60>, <0x351c8784 0x4>;
+		reg = <0x11314000 0x60>, <0x351c8780 0x4>;
 		reg-names = "core", "fuse";
 		clocks = <&aoss_qmp>;
 		clock-names = "core_clk";
-		qcom,fuse-enable-bit = <18>;
+		qcom,fuse-enable-bit = <14>;
 		#address-cells = <2>;
 		#size-cells = <0>;
 		depends-on-supply = <&spmi_bus>;
