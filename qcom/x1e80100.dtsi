@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -897,6 +898,31 @@
 			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
 		};
 
+		apps_rsc: rsc@17500000 {
+			label = "apps_rsc";
+			compatible = "qcom,rpmh-rsc";
+			reg = <0x0 0x17500000 0x0 0x10000>,
+			      <0x0 0x17510000 0x0 0x10000>,
+			      <0x0 0x17520000 0x0 0x10000>;
+			reg-names = "drv-0", "drv-1", "drv-2";
+			qcom,drv-count = <3>;
+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+
+			apps_rsc_drv2: drv@2 {
+				qcom,drv-id = <2>;
+				qcom,tcs-offset = <0xd00>;
+				qcom,tcs-distance = <0x2a0>;
+				channel@0 {
+					qcom,tcs-config = <ACTIVE_TCS    2>,
+							  <SLEEP_TCS     3>,
+							  <WAKE_TCS      3>,
+							  <CONTROL_TCS   0>,
+							  <FAST_PATH_TCS 0>;
+				};
+			};
+		};
 
 		system-cache-controller@25000000 {
 			compatible = "qcom,x1e80100-llcc";
