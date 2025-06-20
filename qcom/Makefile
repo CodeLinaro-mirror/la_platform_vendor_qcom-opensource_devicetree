@@ -467,6 +467,45 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+LEMANS_MULTI_GVM_BASE_DTB += \
+                lemans-vm-la-mt.dtb
+
+LEMANS_MULTI_GVM_BOARDS += \
+                lemans-vm-la-mt-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(call add-overlays, $(LEMANS_MULTI_GVM_BOARDS),$(LEMANS_MULTI_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(LEMANS_MULTI_GVM_BOARDS) $(LEMANS_MULTI_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_MONACO_AUTO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+LEMANS_MULTI_GVM_BASE_DTB += \
+                monaco-vm-la-mt.dtb
+
+LEMANS_MULTI_GVM_BOARDS += \
+                monaco-vm-la-mt-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(call add-overlays, $(MONACO_MULTI_GVM_BOARDS),$(MONACO_MULTI_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(MONACO_MULTI_GVM_BOARDS) $(MONACO_MULTI_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
 clean-files     := *.dtb *.dtbo

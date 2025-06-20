@@ -9,6 +9,8 @@ _platform_map = {
             {"name": "monaco-vm-lv-mt.dtb"},
             {"name": "monaco-vm-flex-lv-mt.dtb"},
             {"name": "sa8797p-sdp8-vm-la.dtb"},
+            {"name": "lemans-vm-la-mt.dtb"},
+            {"name": "monaco-vm-la-mt.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -19,6 +21,8 @@ _platform_map = {
             {"name": "monaco-vm-lv-mt-overlay.dtbo"},
             {"name": "monaco-vm-flex-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
+            {"name": "lemans-vm-la-mt-overlay.dtbo"},
+            {"name": "monaco-vm-la-mt-overlay.dtbo"},
         ],
     },
     "canoe": {
