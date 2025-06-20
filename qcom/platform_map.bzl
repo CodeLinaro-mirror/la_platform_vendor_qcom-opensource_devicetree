@@ -5,12 +5,14 @@ _platform_map = {
             {"name": "lemans-vm-la.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
             {"name": "monaco-vm-la.dtb"},
+            {"name": "sa8797p-sdp8-vm-la.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
             {"name": "lemans-vm-la-overlay.dtbo"},
             {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},
             {"name": "monaco-vm-la-overlay.dtbo"},
+            {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
         ],
     },
     "canoe": {
