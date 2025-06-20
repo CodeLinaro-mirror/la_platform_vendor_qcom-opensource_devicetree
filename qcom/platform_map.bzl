@@ -80,6 +80,7 @@ _platform_map = {
             {"name": "alor-rcm-peach-overlay.dtbo"},
             {"name": "alor-qrd-overlay.dtbo"},
             {"name": "alor-qrd-peach-overlay.dtbo"},
+            {"name": "alor-qrd-ufcs-overlay.dtbo"},
             {"name": "alor-rumi-overlay.dtbo"},
         ],
     },
