@@ -58,7 +58,6 @@
 &usb1 {
 	vbus_dwc3-supply = <&usb2_vbus_boost_reg>;
 	qcom,default-mode-none;
-	status = "ok";
 };
 
 &usb2_phy1 {

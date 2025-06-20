@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &soc {
@@ -3715,13 +3715,13 @@
 		};
 	};
 
-	tpdm_nps_dsb: tpdm@113c7000 {
+	tpdm_nsp_dsb: tpdm@113c7000 {
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x113c7000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-msrs-num = <32>;
 
-		device-name = "tpdm_nps_dsb";
+		device-name = "tpdm_nsp_dsb";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";

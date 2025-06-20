@@ -85,6 +85,11 @@
 		reg = <0x0 0x82700000 0x0 0x100000>;
 	};
 
+	ac_db_mem: ac_db_region@82B00000 {
+		no-map;
+		reg = <0x0 0x82B00000 0x0 0x300000>;
+	};
+
 	deepsleep_backup_mem: deepsleep_backup_region@82e00000 {
 		no-map;
 		reg = <0x0 0x82e00000 0x0 0x100000>;
@@ -167,9 +172,19 @@
 		reg = <0x0 0xb8000000 0x0 0x1c0000>;
 	};
 
-	tz_smmu_pt: tz_smmu_pt_region@0xd7c00000 {
+	tz_smmu_pt_mem: tz_smmu_pt_region@0x84700000 {
 		no-map;
-		reg = <0x0 0xd7c00000 0x0 0x400000>;
+		reg = <0x0 0x84700000 0x0 0x400000>;
+	};
+
+	hyp_carveout_mem: hyp_carveout_region@0x84B00000 {
+		no-map;
+		reg = <0x0 0x84B00000 0x0 0x2D00000>;
+	};
+
+	thermisto_ramdump_mem: thermisto_ramdump_region@0xB81C0000 {
+		no-map;
+		reg = <0x0 0xB81C0000 0x0 0x40000>;
 	};
 
 	xbl_sc_mem: xbl_sc_region@d8000000 {

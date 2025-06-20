@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -112,7 +112,7 @@
 		cdsp {
 			qcom,instance-id = <QMI_CDSP_INST_ID>;
 
-			cdsp_sw: cdsp {
+			cdsp_sw: cdsp_sw {
 				qcom,qmi-dev-name = "cdsp_sw";
 				#cooling-cells = <2>;
 			};
@@ -244,22 +244,33 @@
 				type = "passive";
 			};
 
+			cpu00_config_1: cpu00-config-1 {
+				temperature = <112000>;
+				hysteresis = <10000>;
+				type = "passive";
+			};
+
 		};
 
 		cooling-maps {
 			cpu00_cdev0 {
 				trip = <&cpu00_config>;
-				cooling-device = <&cpu1_pause 1 1>;
+				cooling-device = <&cpu1_pause 0 1>;
 			};
 
 			cpu00_cdev1 {
 				trip = <&cpu00_config>;
-				cooling-device = <&cpu2_pause 1 1>;
+				cooling-device = <&cpu2_pause 0 1>;
 			};
 
 			cpu00_cdev2 {
 				trip = <&cpu00_config>;
-				cooling-device = <&cpu3_pause 1 1>;
+				cooling-device = <&cpu3_pause 0 1>;
+			};
+
+			cpu00_cdev3 {
+				trip = <&cpu00_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
 			};
 		};
 	};
@@ -293,22 +304,33 @@
 				type = "passive";
 			};
 
+			cpu01_config_1: cpu01-config-1 {
+				temperature = <112000>;
+				hysteresis = <10000>;
+				type = "passive";
+			};
+
 		};
 
 		cooling-maps {
 			cpu01_cdev0 {
 				trip = <&cpu01_config>;
-				cooling-device = <&cpu1_pause 1 1>;
+				cooling-device = <&cpu1_pause 0 1>;
 			};
 
 			cpu01_cdev1 {
 				trip = <&cpu01_config>;
-				cooling-device = <&cpu2_pause 1 1>;
+				cooling-device = <&cpu2_pause 0 1>;
 			};
 
 			cpu01_cdev2 {
 				trip = <&cpu01_config>;
-				cooling-device = <&cpu3_pause 1 1>;
+				cooling-device = <&cpu3_pause 0 1>;
+			};
+
+			cpu01_cdev3 {
+				trip = <&cpu01_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
 			};
 		};
 	};
@@ -342,12 +364,23 @@
 				type = "passive";
 			};
 
+			cpu10_config_1: cpu10-config-1 {
+				temperature = <112000>;
+				hysteresis = <10000>;
+				type = "passive";
+			};
+
 		};
 
 		cooling-maps {
 			cpu10_cdev0 {
 				trip = <&cpu10_config>;
-				cooling-device = <&cpu4_pause 1 1>;
+				cooling-device = <&cpu4_pause 0 1>;
+			};
+
+			cpu10_cdev1 {
+				trip = <&cpu10_config_1>;
+				cooling-device = <&cpu4_hotplug 0 1>;
 			};
 		};
 	};
@@ -381,12 +414,28 @@
 				type = "passive";
 			};
 
+			cpu11_config_1: cpu11-config-1 {
+				temperature = <112000>;
+				hysteresis = <10000>;
+				type = "passive";
+			};
+
 		};
 
 		cooling-maps {
 			cpu11_cdev0 {
 				trip = <&cpu11_config>;
-				cooling-device = <&cpu4_pause 1 1>;
+				cooling-device = <&cpu4_pause 0 1>;
+			};
+
+			cpu11_cdev1 {
+				trip = <&cpu11_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
+			};
+
+			cpu11_cdev2 {
+				trip = <&cpu11_config_1>;
+				cooling-device = <&cpu4_hotplug 0 1>;
 			};
 		};
 	};

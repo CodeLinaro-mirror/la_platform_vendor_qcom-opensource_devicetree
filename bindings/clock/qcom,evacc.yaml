@@ -18,7 +18,9 @@ description: |
 
 properties:
   compatible:
-    const: qcom,canoe-evacc
+    enum:
+      - qcom,canoe-evacc
+      - qcom,alor-evacc
 
   clocks:
     items:

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- *Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -67,6 +67,15 @@
 			reg = <0x7000>;
 			#address-cells = <1>;
 			#size-cells = <1>;
+
+			ocp_log: ocp-log@76 {
+				reg = <0x76 0x6>;
+			};
+
+			alarm_log: alarm-log@a2 {
+				reg = <0xA2 0x6>;
+			};
+
 		};
 
 		pmw6100_sdam_2: sdam@7100 {
@@ -297,7 +306,7 @@
 
 			b_bcl_lvl0: b-bcl-lvl0 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -305,7 +314,7 @@
 		cooling-maps {
 			lbat_lvl0 {
 				trip = <&b_bcl_lvl0>;
-				cooling-device = <&msm_gpu 1 1>;
+				cooling-device = <&msm_gpu 0 1>;
 			};
 		};
 	};
@@ -330,7 +339,7 @@
 
 			b_bcl_lvl1: b-bcl-lvl1 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -338,7 +347,7 @@
 		cooling-maps {
 			lbat_lvl1 {
 				trip = <&b_bcl_lvl1>;
-				cooling-device = <&msm_gpu 1 1>;
+				cooling-device = <&msm_gpu 0 1>;
 			};
 		};
 	};
@@ -363,7 +372,7 @@
 
 			b_bcl_lvl2: b-bcl-lvl2 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -371,7 +380,7 @@
 		cooling-maps {
 			lbat_lvl2 {
 				trip = <&b_bcl_lvl2>;
-				cooling-device = <&msm_gpu 3 3>;
+				cooling-device = <&msm_gpu 0 3>;
 			};
 		};
 	};

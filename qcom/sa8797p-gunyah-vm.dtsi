@@ -57,6 +57,31 @@
 			no-map;
 			qcom,label = <0x61>;
 		};
+
+		glink_cma_mem3: glink-cma-region@3 {
+			no-map;
+			qcom,label = <0x62>;
+		};
+
+		glink_cma_mem4: glink-cma-region@4 {
+			no-map;
+			qcom,label = <0x63>;
+		};
+
+		glink_cma_mem5: glink-cma-region@5 {
+			no-map;
+			qcom,label = <0x64>;
+		};
+
+		glink_cma_mem6: glink-cma-region@6 {
+			no-map;
+			qcom,label = <0x65>;
+		};
+
+		glink_cma_mem7: glink-cma-region@7 {
+			no-map;
+			qcom,label = <0x66>;
+		};
 	};
 
 	cpus {
@@ -1265,6 +1290,16 @@
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
 		status = "ok";
+	};
+
+	tlmm: pinctrl@f000000 {
+		compatible = "qcom,sa8797p-tlmm";
+		reg = <0xf000000 0x1000000>;
+		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
 	};
 };
 
