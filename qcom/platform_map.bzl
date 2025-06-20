@@ -27,6 +27,23 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sdxkova.cpe.min": {
+        "dtb_list": [
+            # keep sorted
+            # From sdxkova.cpe.wkk
+            {"name": "sdxkova-idp-cpe.dtb"},
+            {"name": "sdxkova-idp-cpe-v2.dtb"},
+            {"name": "sdxkova-idp-cpe-v3.dtb"},
+            {"name": "sdxkova-idp-cpe-v4.dtb"},
+            {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v2.dtb"},
+            # From sdxkova.cpe.tarang
+            {"name": "sdxkova-idp-cpe-v7.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sdxkova.cpe.tarang": {
         "dtb_list": [
             # keep sorted
