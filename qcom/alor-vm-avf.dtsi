@@ -113,7 +113,8 @@
 				  625 625>; /* PVM->SVM IRQ transfer */
 
 		segments {
-			ramdisk = <2>;
+			fallback-dtb = <2>;
+			ramdisk = <3>;
 		};
 
 		vcpus {
