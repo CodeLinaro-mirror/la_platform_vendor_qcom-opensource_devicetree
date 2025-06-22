@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -1082,6 +1082,34 @@
 				num-smrs = <0x8>;
 				patch = "/soc/apps-smmu@15e00000";
 			};
+
+			hab-virq5-dbl {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab-virq5-dbl";
+				qcom,label = <0x5>;
+				peer-default;
+			};
+
+			hab-virq5-dbl-source {
+				vdevice-type = "doorbell-source";
+				generate = "/hypervisor/hab-virq5-dbl-source";
+				qcom,label = <0x5>;
+				peer-default;
+			};
+
+			hab-virq6-dbl {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab-virq6-dbl";
+				qcom,label = <0x6>;
+				peer-default;
+			};
+
+			hab-virq6-dbl-source {
+				vdevice-type = "doorbell-source";
+				generate = "/hypervisor/hab-virq6-dbl-source";
+				qcom,label = <0x6>;
+				peer-default;
+			};
 		};
 	};
 
@@ -1204,6 +1232,7 @@
 	hab: qcom,hab {
 		compatible = "qcom,hab";
 		vmid = <2>;
+		virt-irq = <0x5 0x6>;
 
 		mmidgrp100: mmidgrp100 {
 			grp-start-id = <100>;
