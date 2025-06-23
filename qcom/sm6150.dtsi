@@ -637,24 +637,7 @@
 		dma-names = "rx", "tx";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		status = "ok";
-
-		ngd@1 {
-			reg = <1>;
-			#address-cells = <1>;
-			#size-cells = <1>;
-			//slimbus child nodes
-			slimbus: btfmslim-driver {
-				compatible = "slim217,221";
-				reg = <1 0>;
-				/* BT SLIM EP address*/
-				qcom,btslim-address  = <0x0>;
-				/* slimbus FM_Tx, SCO_Tx channels*/
-				qcom,btslimtx-channels = <159 160>;
-				/* slimbus SCO_A2DP_Rx A2DP_Rx */
-				qcom,btslimrx-channels = <157 158>;
-			};
-		};
+		status = "disabled";
 	};
 
 	apps_rsc: rsc@18200000 {

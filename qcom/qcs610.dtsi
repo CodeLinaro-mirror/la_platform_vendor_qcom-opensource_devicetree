@@ -260,6 +260,8 @@
 		qcom,rgmii-config-loopback;
 		phy-mode = "rgmii";
 		eth-c22-mdio-probe;
+		gdsc-off-on-suspend;
+
 		ethqos_emb_smmu: ethqos_emb_smmu {
 			compatible = "qcom,emac-smmu-embedded";
 			iommus = <&apps_smmu 0x1C0 0x0>;
