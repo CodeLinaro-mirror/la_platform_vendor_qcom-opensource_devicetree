@@ -68,13 +68,13 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_0: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
 
 				L3_0: l3-cache {
-				      compatible = "arm,arch-cache";
+				      compatible = "cache";
 				      cache-size = <0x100000>;
 				      cache-level = <3>;
 				};
@@ -96,7 +96,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_100: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -119,7 +119,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_200: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -141,7 +141,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_300: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -163,7 +163,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_400: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -185,7 +185,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 0 6>;
 			L2_500: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x10000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -207,7 +207,7 @@
 			qcom,freq-domain = <&cpufreq_hw 1 2>;
 			#cooling-cells = <2>;
 			L2_600: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x40000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -229,7 +229,7 @@
 			#cooling-cells = <2>;
 			qcom,freq-domain = <&cpufreq_hw 1 2>;
 			L2_700: l2-cache {
-			      compatible = "arm,arch-cache";
+			      compatible = "cache";
 			      cache-size = <0x40000>;
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
@@ -1292,13 +1292,11 @@
 		compatible = "qcom,ufshc";
 		reg = <0x1d84000 0x3000>,
 			<0x1d90000 0x8000>;
-		reg-names = "ufs_mem", "ufs_ice";
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
-
-		qcom,ice-use-hwkm;
 
 		lanes-per-direction = <1>;
 		limit-phy-submode = <0>;
@@ -1419,7 +1417,7 @@
 	sdhc_1: sdhci@7c4000 {
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x7c4000 0x1000>, <0x7c5000 0x1000>, <0x7C8000 0x8000>;
-		reg-names = "hc", "cqhci", "cqhci_ice";
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH>;
@@ -1464,7 +1462,6 @@
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 		boot_device_type = <0x0>;
-		qcom,ice-use-hwkm;
 
 		cap-mmc-hw-reset;
 
@@ -2371,6 +2368,8 @@
 #include "sm6150-usb.dtsi"
 #include "sm6150-dma-heaps.dtsi"
 #include "sm6150-walt.dtsi"
+#include "sm6150-coresight.dtsi"
+#include "sm6150-debug.dtsi"
 
 &tlmm {
 	status = "okay";
