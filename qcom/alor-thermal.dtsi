@@ -256,6 +256,20 @@
 		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
 	};
 
+	qcom,devfreq-cdev {
+		compatible = "qcom,devfreq-cdev";
+		qcom,devfreq = <&msm_gpu>;
+	};
+
+	qcom,lmh-stats@0 {
+		compatible = "qcom,lmh-stats";
+		qcom,cpu = <&CPU0>;
+	};
+
+	qcom,lmh-stats@6 {
+		compatible = "qcom,lmh-stats";
+		qcom,cpu = <&CPU6>;
+	};
 
 	qcom,cpufreq-cdev {
 		compatible = "qcom,cpufreq-cdev";
@@ -266,6 +280,16 @@
 		cpu-cluster1 {
 			qcom,cpus = <&CPU6 &CPU7>;
 		};
+	};
+
+	qcom,dynamic-thermal-tripi@0 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <0>;
+	};
+
+	qcom,dynamic-thermal-tripi@1 {
+		compatible = "qcom,thermal-hw-trip";
+		qcom,cpu-cluster-type = <1>;
 	};
 
 	qmi_tmd: qmi-tmd-devices {
