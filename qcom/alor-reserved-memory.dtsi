@@ -36,7 +36,7 @@
 
 	xbl_dtlog_mem: xbl_dtlog_region@81a00000 {
 		no-map;
-		reg = <0x0 0x81a00000 0x0 0x40000>;
+		reg = <0x0 0x81a00000 0x0 0x60000>;
 	};
 
 	aop_image_mem: aop_image_region@81c00000 {
