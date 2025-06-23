@@ -50,6 +50,8 @@
 				<&aggre1_noc MASTER_USB3 &config_noc SLAVE_IPA_CFG>,
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
 
+		qcom,pm-qos-latency = <2>;
+
 		qcom,num-gsi-evt-buffs = <0x3>;
 		qcom,gsi-reg-offset =
 			<0x0fc /* GSI_GENERAL_CFG */
