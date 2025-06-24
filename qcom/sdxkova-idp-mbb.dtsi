@@ -6,6 +6,7 @@
 #include "sdxkova-pmic-overlay.dtsi"
 #include "pm7550ba.dtsi"
 #include <dt-bindings/gpio/gpio.h>
+#include "sdxkova-qpic-display.dtsi"
 
 &qnand_1 {
 	status = "ok";
