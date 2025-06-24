@@ -178,6 +178,7 @@ sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-atp.dtb \
 				sdxkova-idp-cpe-v3.dtb \
 				sdxkova-idp-cpe-v4.dtb \
 				sdxkova-idp-cpe-v5.dtb \
+				sdxkova-idp-cpe-v6.dtb \
 				sdxkova-idp-lga.dtb \
 				sdxkova-idp-lga-v2.dtb \
 				sdxkova-idp-m2.dtb \
@@ -203,6 +204,7 @@ sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v3.dtb \
 				sdxkova-idp-cpe-v4.dtb \
 				sdxkova-idp-cpe-v5.dtb \
+				sdxkova-idp-cpe-v6.dtb \
 				sdxkova-idp-lga-v2.dtb
 
 sdxkova-512-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-512mb.dtb \
