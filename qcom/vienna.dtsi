@@ -779,6 +779,12 @@
 		qcom,dll-hsr-list = <0x0007442C 0x0 0x10 0x290106C0 0x80040868>;
 
 		bus-width = <4>;
+		cap-sd-highspeed;
+		sd-uhs-sdr12;
+		sd-uhs-sdr25;
+		sd-uhs-sdr50;
+		sd-uhs-ddr50;
+		max-frequency = <86000000>;
 
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "bypass";
