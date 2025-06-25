@@ -1473,3 +1473,5 @@
 		pinctrl-0 = <&wlan_tps_3v3_enable_state>;
 	};
 };
+
+#include "x1e80100-dma-heaps.dtsi"
