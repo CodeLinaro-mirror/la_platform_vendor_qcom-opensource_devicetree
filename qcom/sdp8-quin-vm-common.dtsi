@@ -9,9 +9,11 @@
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
+#define GIC_ESPI 0x2
+
 &{/} {
 	chosen: chosen {
-		bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1 fw_devlink.strict=1";
+		bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1 fw_devlink.strict=1 driver_async_probe=arm-scmi";
 		bootconfig = "androidboot.usbcontroller=a200000.dwc3 androidboot.dtbo_idx=4";
 	};
 
@@ -136,6 +138,35 @@
 		show_resume_irqs@17100000 {
 			compatible = "qcom,show-resume-irqs";
 			reg = <0x2f000000 0x112000>;
+		};
+
+		virt_scmi: virtio_scmi@1c900000 {
+			compatible = "virtio,mmio";
+			reg = <0x1c900000 0x1000>;
+			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+		};
+
+		scmi: scmi {
+			compatible = "arm,scmi-virtio";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+
+			scmi_power: protocol@11 {
+				reg = <0x11>;
+				#power-domain-cells = <1>;
+			};
+
+			scmi_perf: protocol@13 {
+				reg = <0x13>;
+				#power-domain-cells = <1>;
+			};
+
+			scmi_reset: protocol@16 {
+				reg = <0x16>;
+				#reset-cells = <1>;
+			};
 		};
 	};
 };
