@@ -394,19 +394,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_ALOR), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-rumi.dtb \
-				alor-vm-atp.dtb \
-				alor-vm-mtp.dtb \
-				alor-vm-qrd.dtb \
-				alor-vm-cdp.dtb \
-				alor-vm-rcm.dtb \
-				alor-oemvm-rumi.dtb \
-				alor-oemvm-atp.dtb \
-				alor-oemvm-mtp.dtb \
-				alor-oemvm-qrd.dtb \
-				alor-oemvm-cdp.dtb \
-				alor-oemvm-rcm.dtb \
-				alor-vm-atp-overlay.dtbo \
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-atp-overlay.dtbo \
 				alor-vm-mtp-overlay.dtbo \
 				alor-vm-qrd-overlay.dtbo \
 				alor-vm-rcm-overlay.dtbo \

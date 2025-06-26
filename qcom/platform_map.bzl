@@ -234,21 +234,6 @@ _platform_map = {
         "binary_compatible_with": ["alor-oemvm"],
     },
     "alor-vm": {
-        "dtb_list": [
-            # keep sorted
-            {"name": "alor-oemvm-atp.dtb"},
-            {"name": "alor-oemvm-cdp.dtb"},
-            {"name": "alor-oemvm-mtp.dtb"},
-            {"name": "alor-oemvm-qrd.dtb"},
-            {"name": "alor-oemvm-rcm.dtb"},
-            {"name": "alor-oemvm-rumi.dtb"},
-            {"name": "alor-vm-atp.dtb"},
-            {"name": "alor-vm-cdp.dtb"},
-            {"name": "alor-vm-mtp.dtb"},
-            {"name": "alor-vm-qrd.dtb"},
-            {"name": "alor-vm-rcm.dtb"},
-            {"name": "alor-vm-rumi.dtb"},
-        ],
         "dtbo_list": [
             # keep sorted
             {"name": "alor-vm-atp-overlay.dtbo"},
@@ -259,21 +244,6 @@ _platform_map = {
         ],
     },
     "alor-oemvm": {
-        "dtb_list": [
-            # keep sorted
-            {"name": "alor-oemvm-atp.dtb"},
-            {"name": "alor-oemvm-cdp.dtb"},
-            {"name": "alor-oemvm-mtp.dtb"},
-            {"name": "alor-oemvm-qrd.dtb"},
-            {"name": "alor-oemvm-rcm.dtb"},
-            {"name": "alor-oemvm-rumi.dtb"},
-            {"name": "alor-vm-atp.dtb"},
-            {"name": "alor-vm-cdp.dtb"},
-            {"name": "alor-vm-mtp.dtb"},
-            {"name": "alor-vm-qrd.dtb"},
-            {"name": "alor-vm-rcm.dtb"},
-            {"name": "alor-vm-rumi.dtb"},
-        ],
         "dtbo_list": [
             # keep sorted
             {"name": "alor-oemvm-atp-overlay.dtbo"},
