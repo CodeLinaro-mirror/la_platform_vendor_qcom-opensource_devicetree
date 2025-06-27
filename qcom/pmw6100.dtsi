@@ -72,10 +72,6 @@
 				reg = <0x76 0x6>;
 			};
 
-			alarm_log: alarm-log@a2 {
-				reg = <0xA2 0x6>;
-			};
-
 		};
 
 		pmw6100_sdam_2: sdam@7100 {
