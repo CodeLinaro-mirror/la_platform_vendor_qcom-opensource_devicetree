@@ -538,4 +538,17 @@
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
+
+	rpmh-regulator-smpk1 {
+		compatible = "qcom,rpmh-vrm-regulator";
+		qcom,resource-name = "smpk1";
+
+		S1K: pmg1110_s1: regulator-pmg1110-s1 {
+			regulator-name = "pmg1110_s1";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			regulator-min-microvolt = <800000>;
+			regulator-max-microvolt = <1000000>;
+			qcom,init-voltage = <916000>;
+		};
+	};
 };
