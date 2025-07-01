@@ -261,16 +261,6 @@
 		qcom,devfreq = <&msm_gpu>;
 	};
 
-	qcom,lmh-stats@0 {
-		compatible = "qcom,lmh-stats";
-		qcom,cpu = <&CPU0>;
-	};
-
-	qcom,lmh-stats@6 {
-		compatible = "qcom,lmh-stats";
-		qcom,cpu = <&CPU6>;
-	};
-
 	qcom,cpufreq-cdev {
 		compatible = "qcom,cpufreq-cdev";
 		cpu-cluster0 {
