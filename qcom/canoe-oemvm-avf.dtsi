@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -286,7 +286,7 @@
 
 	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
-		gunyah-label = <0x108>;
+		gunyah-label = <108>;
 	};
 
 	google_debug_kinfo: google,debug-kinfo {
