@@ -3286,11 +3286,6 @@
 			reg = <0x13>;
 			#clock-cells = <1>;
 		};
-
-		pdp_scmi_qcom: protocol@80 {
-			reg = <0x80>;
-			#clock-cells = <1>;
-		};
 	};
 
 	cpucp_fast: qcom,cpucp_fast {
