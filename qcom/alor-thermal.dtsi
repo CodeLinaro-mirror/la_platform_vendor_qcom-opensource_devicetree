@@ -256,10 +256,6 @@
 		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
 	};
 
-	qcom,devfreq-cdev {
-		compatible = "qcom,devfreq-cdev";
-		qcom,devfreq = <&msm_gpu>;
-	};
 
 	qcom,cpufreq-cdev {
 		compatible = "qcom,cpufreq-cdev";
