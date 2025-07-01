@@ -261,14 +261,3 @@
 		label = "smb1500_1_die_temp";
 	};
 };
-
-&pmih010x_eusb2_repeater {
-	status = "ok";
-	vdd18-supply = <&L15B_E0>;
-	vdd3-supply = <&L5B_E0>;
-};
-
-&eusb2_phy0 {
-	dummy-supply = <&pmih010x_eusb2_repeater>;
-	usb-repeater = <&pmih010x_eusb2_repeater>;
-};
