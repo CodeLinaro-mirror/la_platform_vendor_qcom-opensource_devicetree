@@ -187,6 +187,17 @@ properties:
       - qcom,canoe-lpass_ag_noc
       - qcom,canoe-lpass_lpiaon_noc
       - qcom,canoe-lpass_lpicx_noc
+      - qcom,chora-aggre1_noc
+      - qcom,chora-clk_virt
+      - qcom,chora-cnoc_cfg
+      - qcom,chora-cnoc_main
+      - qcom,chora-gem_noc
+      - qcom,chora-lpass_ag_noc
+      - qcom,chora-mc_virt
+      - qcom,chora-mmss_noc_hf
+      - qcom,chora-mmss_noc_sf
+      - qcom,chora-pcie_anoc
+      - qcom,chora-system_noc
       - qcom,vienna-aggre_noc
       - qcom,vienna-clk_virt
       - qcom,vienna-cnoc_cfg
