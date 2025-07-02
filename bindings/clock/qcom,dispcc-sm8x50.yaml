@@ -21,6 +21,7 @@ description: |
     dt-bindings/clock/qcom,dispcc-sun.h
     dt-bindings/clock/qcom,dispcc-canoe.h
     dt-bindings/clock/qcom,alor-dispcc.h
+    dt-bindings/clock/qcom,chora-dispcc.h
 
 properties:
   compatible:
@@ -35,6 +36,7 @@ properties:
       - qcom,canoe-dispcc
       - qcom,canoe-dispcc_mx
       - qcom,alor-dispcc
+      - qcom,chora-dispcc
 
   clocks:
     items:

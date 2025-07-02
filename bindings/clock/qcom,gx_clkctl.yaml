@@ -22,6 +22,7 @@ properties:
     enum:
       - qcom,sun-gx_clkctl
       - qcom,canoe-gx_clkctl
+      - qcom,chora-gx_clkctl
 
   reg:
     maxItems: 1
