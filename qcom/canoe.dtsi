@@ -84,6 +84,7 @@
 		spi15 = &qupv3_se15_spi;
 		spi16 = &qupv3_se16_spi;
 		spi17 = &qupv3_se17_spi;
+		spi18 = &qupv3_se18_spi;
 		spi19 = &qupv3_se19_spi;
 		spi20 = &qupv3_se20_spi;
 		spi21 = &qupv3_se21_spi;
