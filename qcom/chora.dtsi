@@ -22,7 +22,9 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se5_2uart;
+	};
 
 	chosen: chosen {
 		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 earlycon=qcom_geni,0x00a94000";
@@ -594,3 +596,8 @@
 
 #include "chora-pinctrl.dtsi"
 #include "chora-stub-regulators.dtsi"
+#include "chora-qupv3.dtsi"
+
+&qupv3_se5_2uart {
+	status = "ok";
+};
