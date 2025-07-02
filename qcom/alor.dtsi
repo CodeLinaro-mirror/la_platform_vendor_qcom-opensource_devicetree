@@ -36,7 +36,7 @@
 
 
 	chosen: chosen {
-		bootargs = "loglevel=6 kpti=0 loop.max_part=7 log_buf_len=512K kernel.panic_on_rcu_stall=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops cpufreq.default_governor=performance printk.console_no_auto_verbose=1 irqaffinity=0-1 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false fw_devlink.strict=1 kasan=off can.stats_timer=0 android_arch_task_struct_size=512 pcie_ports=compat sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc sysctl.vm.mem_profiling=1,compressed";
+		bootargs = "loglevel=6 kpti=0 loop.max_part=7 log_buf_len=512K kernel.panic_on_rcu_stall=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops cpufreq.default_governor=performance printk.console_no_auto_verbose=1 irqaffinity=0-1 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false fw_devlink.strict=1 kasan=off can.stats_timer=0 android_arch_task_struct_size=512 pcie_ports=compat sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc sysctl.vm.mem_profiling=1,compressed pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x1 androidboot.usbcontroller=a600000.dwc3";
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
@@ -489,7 +489,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
-		qcom,gpios-reserved = <36 37 38 39 46 74 75 148 149>;
+		qcom,gpios-reserved = <36 37 38 39 46 72 73 74 75 148 149 56 57 58 59>;
 	};
 
 	slimbam: bamdma@6c04000 {
@@ -621,38 +621,145 @@
 		clock-frequency = <19200000>;
 	};
 
+	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <5>;
+	};
+
+	disp_crm_hw_0_bcm_voter: bcm_voter@1 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_1_bcm_voter: bcm_voter@2 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <1>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_2_bcm_voter: bcm_voter@3 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <2>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_3_bcm_voter: bcm_voter@4 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <3>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_4_bcm_voter: bcm_voter@5 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <4>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_5_bcm_voter: bcm_voter@6 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <5>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_6_bcm_voter: bcm_voter@7 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <6>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_7_bcm_voter: bcm_voter@8 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <7>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_hw_8_bcm_voter: bcm_voter@9 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-client-idx = <8>;
+		qcom,crm-pwr-states = <2>;
+	};
+
+	disp_crm_sw_0_bcm_voter: bcm_voter@10 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "disp_crm";
+		qcom,crm-sw-client;
+		qcom,crm-client-idx = <1>;
+		qcom,crm-pwr-states = <1>;
+	};
+
 	clk_virt: interconnect@0 {
 		compatible = "qcom,alor-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		qcom,bcm-voter-names = "hlos",
+				       "pcie_crm_hw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>;
 	};
 
 	mc_virt: interconnect@1 {
 		compatible = "qcom,alor-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "pcie_crm_hw_0",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
+				       "disp_crm_sw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&disp_crm_hw_0_bcm_voter>,
+				  <&disp_crm_hw_1_bcm_voter>,
+				  <&disp_crm_hw_2_bcm_voter>,
+				  <&disp_crm_hw_3_bcm_voter>,
+				  <&disp_crm_hw_4_bcm_voter>,
+				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
+				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
 	aggre1_noc: interconnect@16e0000 {
 		compatible = "qcom,alor-aggre1_noc";
 		reg = <0x0 0x16e0000 0x0 0x16400>;
 		#interconnect-cells = <1>;
+		clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+			 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	aggre2_noc: interconnect@1700000 {
 		compatible = "qcom,alor-aggre2_noc";
 		reg = <0x0 0x1700000 0x0 0x22400>;
 		#interconnect-cells = <1>;
+		clocks = <&rpmhcc RPMH_IPA_CLK>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	config_noc: interconnect@1600000 {
@@ -661,7 +768,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	cnoc_main: interconnect@1500000 {
@@ -670,16 +776,42 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	gem_noc: interconnect@31100000 {
 		compatible = "qcom,alor-gem_noc";
 		reg = <0x0 0x31100000 0x0 0x153080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "pcie_crm_hw_0",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
+				       "disp_crm_sw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&disp_crm_hw_0_bcm_voter>,
+				  <&disp_crm_hw_1_bcm_voter>,
+				  <&disp_crm_hw_2_bcm_voter>,
+				  <&disp_crm_hw_3_bcm_voter>,
+				  <&disp_crm_hw_4_bcm_voter>,
+				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
+				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@7f40000 {
@@ -688,7 +820,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_lpiaon_noc: interconnect@7400000 {
@@ -697,7 +828,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_lpicx_noc: interconnect@7420000 {
@@ -706,16 +836,40 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1780000 {
 		compatible = "qcom,alor-mmss_noc";
 		reg = <0x0 0x1780000 0x0 0x7d400>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		qcom,bcm-voter-names = "hlos",
+				       "cam_ife_0",
+				       "cam_ife_1",
+				       "cam_ife_2",
+				       "disp_crm_hw_0",
+				       "disp_crm_hw_1",
+				       "disp_crm_hw_2",
+				       "disp_crm_hw_3",
+				       "disp_crm_hw_4",
+				       "disp_crm_hw_5",
+				       "disp_crm_hw_6",
+				       "disp_crm_hw_7",
+				       "disp_crm_hw_8",
+				       "disp_crm_sw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&cam_bcm_voter0>,
+				  <&cam_bcm_voter1>,
+				  <&cam_bcm_voter2>,
+				  <&disp_crm_hw_0_bcm_voter>,
+				  <&disp_crm_hw_1_bcm_voter>,
+				  <&disp_crm_hw_2_bcm_voter>,
+				  <&disp_crm_hw_3_bcm_voter>,
+				  <&disp_crm_hw_4_bcm_voter>,
+				  <&disp_crm_hw_5_bcm_voter>,
+				  <&disp_crm_hw_6_bcm_voter>,
+				  <&disp_crm_hw_7_bcm_voter>,
+				  <&disp_crm_hw_8_bcm_voter>,
+				  <&disp_crm_sw_0_bcm_voter>;
 	};
 
 	nsp_noc: interconnect@260c0000 {
@@ -724,16 +878,18 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	pcie_anoc: interconnect@16c0000 {
 		compatible = "qcom,alor-pcie_anoc";
 		reg = <0x0 0x16c0000 0x0 0x11400>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
+		qcom,bcm-voter-names = "hlos",
+				       "pcie_crm_hw_0";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>;
 	};
 
 	system_noc: interconnect@1680000 {
@@ -742,7 +898,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	ipcc_mproc: qcom,ipcc@1106000 {
@@ -1530,6 +1685,15 @@
 		#clock-cells = <1>;
 		#power-domain-cells = <1>;
 		#reset-cells = <1>;
+
+		dispcc_mx: clock-controller@9ba4000 {
+			compatible = "qcom,canoe-dispcc_mx";
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>;
+			clock-names = "bi_tcxo",
+				      "sleep_clk";
+			#clock-cells = <1>;
+		};
 	};
 
 	evacc: clock-controller@24f0000 {
@@ -2244,6 +2408,11 @@
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
 			};
+
+			cam_bcm_voter0: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
+			};
 		};
 
 		cam_rsc_drv1: drv@1 {
@@ -2265,6 +2434,11 @@
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
 			};
+
+			cam_bcm_voter1: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
+			};
 		};
 
 		cam_rsc_drv2: drv@2 {
@@ -2285,6 +2459,11 @@
 						  <SLEEP_TCS     1>,
 						  <CONTROL_TCS   0>,
 						  <FAST_PATH_TCS 0>;
+			};
+
+			cam_bcm_voter2: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,no-amc;
 			};
 		};
 	};

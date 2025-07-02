@@ -37,6 +37,7 @@ CANOE_BOARDS += \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
+		canoep-hdk-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
 		alor-interposer-rcm-overlay.dtbo \
 		alor-interposer-qrd-st54l-pandeiro-overlay.dtbo
@@ -60,7 +61,8 @@ ALOR_BOARDS += \
 		alor-rcm-overlay.dtbo \
 		alor-rcm-peach-overlay.dtbo \
 		alor-qrd-overlay.dtbo \
-		alor-qrd-peach-overlay.dtbo
+		alor-qrd-peach-overlay.dtbo \
+		alor-qrd-ufcs-overlay.dtbo
 
 NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
@@ -276,11 +278,13 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-vm-cdp.dtb \
 				canoe-vm-qrd.dtb \
 				canoe-vm-rcm.dtb \
+				canoep-vm-hdk.dtb \
 				canoe-oemvm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
 				canoe-oemvm-rcm.dtb \
+				canoep-oemvm-hdk.dtb \
 				alor-interposer-vm-mtp.dtb \
 				alor-interposer-vm-rcm.dtb \
 				alor-interposer-oemvm-mtp.dtb \
@@ -353,6 +357,17 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
+
+SA8797P_LA_GVM_BOARDS += \
+		sa8797p-sdp8-vm-la-overlay.dtbo
+
+SA8797P_LA_GVM_BASE_DTB += sa8797p-sdp8-vm-la.dtb
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 

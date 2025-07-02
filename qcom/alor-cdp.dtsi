@@ -189,6 +189,18 @@
 	status = "ok";
 };
 
+&pmiv010x_eusb2_repeater {
+	status = "ok";
+	vdd18-supply = <&L15B_E0>;
+	vdd3-supply = <&L5B_E0>;
+};
+
+&eusb2_phy0 {
+	dummy-supply = <&pmiv010x_eusb2_repeater>;
+	usb-repeater = <&pmiv010x_eusb2_repeater>;
+};
+
+
 &wcd_usbss {
 	status = "ok";
 	interrupt-parent = <&spmi0_bus>;

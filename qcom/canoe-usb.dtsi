@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,gcc-canoe.h>
@@ -18,7 +18,7 @@
 		#size-cells = <2>;
 		ranges;
 
-		USB3_GDSC-supply = <&gcc_usb30_prim_gdsc>;
+		power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
 		clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
 			<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
 			<&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
@@ -80,6 +80,7 @@
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
 			num-hc-interrupters = /bits/ 16 <3>;
+			xhci-skip-phy-init-quirk;
 			dr_mode = "otg";
 			maximum-speed = "super-speed-plus";
 			usb-role-switch;
@@ -125,12 +126,12 @@
 		qcom,vdd-max-load-uA = <47000>;
 		core-supply = <&pmh0110_d_l1>;
 
-		usb3_dp_phy_gdsc-supply = <&gcc_usb3_phy_gdsc>;
+		power-domains = <&gcc GCC_USB3_PHY_GDSC>;
 		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
 			<&usb3_phy_wrapper_gcc_usb30_pipe_clk>,
-			<&rpmhcc RPMH_CXO_PAD_CLK>,
+			<&rpmhcc RPMH_CXO_CLK>,
 			<&tcsrcc TCSR_USB3_CLKREF_EN>,
 			<&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
 		clock-names = "aux_clk", "pipe_clk", "pipe_clk_mux",

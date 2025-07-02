@@ -30,7 +30,7 @@
 	#size-cells = <2>;
 
 	chosen: chosen {
-		bootargs = "loglevel=6 log_buf_len=512K earlycon=qcom_geni,0x994000 rcupdate.rcu_expedited=1  printk.console_no_auto_verbose=1 rcu_nocbs=0-7 kpti=0 cpufreq.default_governor=performance printk.devkmsg=on pcie_ports=compat fw_devlink.strict=1 android_arch_task_struct_size=512";
+		bootargs = "loglevel=6 log_buf_len=512K earlycon=qcom_geni,0x994000 rcupdate.rcu_expedited=1  printk.console_no_auto_verbose=1 rcu_nocbs=0-7 kpti=0 cpufreq.default_governor=performance printk.devkmsg=on pcie_ports=compat fw_devlink.strict=1 android_arch_task_struct_size=512 androidboot.usbcontroller=a600000.dwc3";
 		stdout-path = "/soc/qcom,qupv3_0_geni_se@9c0000/qcom,qup_uart@994000:115200n8";
 	};
 
@@ -575,6 +575,13 @@
 		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
 		size = <0x0 0x1000>;
 		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
 	};
 
 	audio_cma_mem: audio_cma_region {
@@ -1387,6 +1394,21 @@
 		memory-region = <&kinfo_mem>;
 	};
 
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+		status = "ok";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+		status = "ok";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	kryo-erp {
 		compatible = "arm,arm64-kryo-cpu-erp";
 		interrupts = <GIC_PPI 0 IRQ_TYPE_LEVEL_HIGH>,
@@ -1510,15 +1532,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-	};
-
-	epss_l3_cpu: l3_cpu@18590000 {
-		reg = <0x18590000 0x4000>;
-		compatible = "qcom,lahaina-epss-l3-cpu";
-		#interconnect-cells = <1>;
-		clock-names = "xo", "alternate";
-		clocks = <&rpmhcc RPMH_CXO_CLK>,
-			<&gcc GCC_GPLL0>;
 	};
 
 	llcc_pmu: llcc-pmu@9095000 {
@@ -1977,6 +1990,8 @@
 	sram@c3f0000 {
 		compatible = "qcom,rpmh-stats";
 		reg = <0x0c3f0000 0x400>;
+		ss-name = "modem", "adsp", "adsp_island",
+			  "cdsp", "apss";
 	};
 
 	cluster-device {
@@ -2453,11 +2468,6 @@
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "supplier";
 		qcom,vmid = <3>;
-	};
-
-	pil_scm_pas {
-		compatible = "qcom,pil-tz-scm-pas";
-		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 	};
 
 	sdhc1_opp_table: sdhc1-opp-table {

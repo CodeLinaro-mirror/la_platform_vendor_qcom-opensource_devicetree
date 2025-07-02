@@ -33,9 +33,9 @@
 		cooling-maps {
 			socd_map {
 				trip = <&socd_trip>;
-				cooling-device = <&APC1_MX_CX_PAUSE 1 1
-					&cdsp_sw 4 4
-					&msm_gpu 4 4>;
+				cooling-device = <&APC1_MX_CX_PAUSE 0 1>,
+						 <&cdsp_sw 0 4>,
+						 <&msm_gpu 0 4>;
 			};
 		};
 	};
@@ -91,8 +91,8 @@
 		cooling-maps {
 			lbat_lvl0 {
 				trip = <&b_bcl_lvl0>;
-				cooling-device = <&modem_bcl 1 1
-					&msm_gpu 1 1>;
+				cooling-device = <&modem_bcl 0 1>,
+						 <&msm_gpu 0 1>;
 			};
 		};
 	};
@@ -124,8 +124,8 @@
 		cooling-maps {
 			lbat_lvl1 {
 				trip = <&b_bcl_lvl1>;
-				cooling-device = <&modem_bcl 2 2
-					&msm_gpu 2 2>;
+				cooling-device = <&modem_bcl 0 2>,
+						 <&msm_gpu 0 2>;
 			};
 		};
 	};
@@ -157,7 +157,7 @@
 		cooling-maps {
 			lbat_gpu2 {
 				trip = <&b_bcl_lvl2>;
-				cooling-device = <&msm_gpu 3 3>;
+				cooling-device = <&msm_gpu 0 3>;
 			};
 		};
 	};
@@ -177,8 +177,8 @@
 		cooling-maps {
 			vph_lvl0 {
 				trip = <&bcl_lvl0>;
-				cooling-device = <&modem_bcl 1 1
-					&msm_gpu 1 1>;
+				cooling-device = <&modem_bcl 0 1>,
+						 <&msm_gpu 0 1>;
 			};
 		};
 	};
@@ -198,8 +198,8 @@
 		cooling-maps {
 			vph_lvl1 {
 				trip = <&bcl_lvl1>;
-				cooling-device = <&modem_bcl 2 2
-					&msm_gpu 2 2>;
+				cooling-device = <&modem_bcl 0 2>,
+						 <&msm_gpu 0 2>;
 			};
 		};
 	};
@@ -219,7 +219,7 @@
 		cooling-maps {
 			vph_gpu2 {
 				trip = <&bcl_lvl2>;
-				cooling-device = <&msm_gpu 3 3>;
+				cooling-device = <&msm_gpu 0 3>;
 			};
 		};
 	};
