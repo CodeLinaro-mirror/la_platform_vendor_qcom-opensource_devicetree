@@ -278,12 +278,14 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-vm-cdp.dtb \
 				canoe-vm-qrd.dtb \
 				canoe-vm-rcm.dtb \
+				canoe-vm-base.dtb \
 				canoep-vm-hdk.dtb \
 				canoe-oemvm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
 				canoe-oemvm-rcm.dtb \
+				canoe-oemvm-base.dtb \
 				canoep-oemvm-hdk.dtb \
 				alor-interposer-vm-mtp.dtb \
 				alor-interposer-vm-rcm.dtb \
