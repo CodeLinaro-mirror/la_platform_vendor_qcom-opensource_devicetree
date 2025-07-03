@@ -4,3 +4,9 @@
  */
 
 #include "alor-cdp.dtsi"
+
+&S3D_E0 {
+	regulator-min-microvolt = <400000>;
+	regulator-max-microvolt = <1004000>;
+	qcom,init-voltage = <400000>;
+};
