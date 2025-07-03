@@ -364,6 +364,11 @@
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
 	};
+
+	vm_restart: restart {
+		compatible = "qcom,vm-restart";
+		status = "ok";
+	};
 };
 
 #include "sa8797p-pinctrl.dtsi"
