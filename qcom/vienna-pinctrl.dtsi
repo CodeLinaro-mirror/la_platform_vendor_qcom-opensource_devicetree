@@ -2657,6 +2657,7 @@
 					drive-strength = <2>;
 					bias-pull-up;
 					qcom,i2c_pull;
+					qcom,apps;
 				};
 			};
 
@@ -2671,6 +2672,7 @@
 					drive-strength = <2>;
 					bias-pull-up;
 					qcom,i2c_pull;
+					qcom,apps;
 				};
 			};
 
@@ -2683,6 +2685,7 @@
 				config {
 					pins = "gpio28", "gpio29";
 					drive-strength = <2>;
+					qcom,remote;
 				};
 			};
 		};
