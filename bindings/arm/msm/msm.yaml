@@ -122,6 +122,13 @@ properties:
               - qcom,rumi
           - const: qcom,alor
 
+      - description: Qualcomm Technologies, Inc. Chora
+        items:
+          - enum:
+              - qcom,chora-rumi
+              - qcom,rumi
+          - const: qcom,chora
+
       - description: Qualcomm Technologies, Inc. PARROT
         items:
           - enum:
