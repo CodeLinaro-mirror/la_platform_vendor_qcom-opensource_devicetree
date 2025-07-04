@@ -68,7 +68,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
     },
     "alor": {
         "dtb_list": [
@@ -112,6 +112,17 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "chora-rumi-overlay.dtbo"},
+        ],
+    },
+    "malabar": {
+        "dtb_list": [
+            {"name": "malabar.dtb"},
+        ],
+        "dtbo_list": [
+            {
+                "name": "malabar-rumi-overlay.dtbo",
+                "apq": False,
+            },
         ],
     },
     "lahaina": {
