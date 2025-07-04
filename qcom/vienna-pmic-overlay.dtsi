@@ -187,7 +187,6 @@
 &battery_charger {
 	qcom,thermal-mitigation-step = <790000 690000 590000 490000 390000 290000 190000>;
 	#cooling-cells = <2>;
-	qcom,ship-mode-immediate;
 	qcom,wireless-fw-name = "cps4061.bin";
 };
 
