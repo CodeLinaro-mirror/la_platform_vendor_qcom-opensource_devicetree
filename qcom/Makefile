@@ -55,6 +55,7 @@ ALOR_BASE_DTB += alor.dtb
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
 		alor-cdp-overlay.dtbo \
+		alor-cdp-peach-overlay.dtbo \
 		alor-mtp-overlay.dtbo \
 		alor-mtp-pmih010x-smb1398-overlay.dtbo \
 		alor-mtp-pm7550ba-smb1398-overlay.dtbo \

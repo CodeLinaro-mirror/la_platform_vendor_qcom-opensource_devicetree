@@ -79,6 +79,7 @@ _platform_map = {
             # keep sorted
             {"name": "alor-atp-overlay.dtbo"},
             {"name": "alor-cdp-overlay.dtbo"},
+            {"name": "alor-cdp-peach-overlay.dtbo"},
             {"name": "alor-mtp-overlay.dtbo"},
             {"name": "alor-mtp-pm7550ba-smb1398-overlay.dtbo"},
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
