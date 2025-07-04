@@ -1150,6 +1150,8 @@
 			memory-region = <&adsp_mem_heap>;
 			restrict-access;
 		};
+
+		msm_gpu: qcom,kgsl-3d0@3d00000 { };
 	};
 
 	arch_timer: timer {
