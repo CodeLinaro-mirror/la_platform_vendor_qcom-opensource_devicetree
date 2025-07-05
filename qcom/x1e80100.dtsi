@@ -30,6 +30,7 @@
 			power-domains = <&cpu_pd0>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 
 			L2_0: l2-cache {
 				compatible = "cache";
@@ -47,6 +48,7 @@
 			power-domains = <&cpu_pd1>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU2: cpu@200 {
@@ -58,6 +60,7 @@
 			power-domains = <&cpu_pd2>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU3: cpu@300 {
@@ -69,6 +72,7 @@
 			power-domains = <&cpu_pd3>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU4: cpu@10000 {
@@ -80,6 +84,7 @@
 			power-domains = <&cpu_pd4>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 
 			L2_1: l2-cache {
 				compatible = "cache";
@@ -97,6 +102,7 @@
 			power-domains = <&cpu_pd5>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU6: cpu@10200 {
@@ -108,6 +114,7 @@
 			power-domains = <&cpu_pd6>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU7: cpu@10300 {
@@ -119,6 +126,7 @@
 			power-domains = <&cpu_pd7>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU8: cpu@20000 {
@@ -130,6 +138,7 @@
 			power-domains = <&cpu_pd8>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 
 			L2_2: l2-cache {
 				compatible = "cache";
@@ -147,6 +156,7 @@
 			power-domains = <&cpu_pd9>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU10: cpu@20200 {
@@ -158,6 +168,7 @@
 			power-domains = <&cpu_pd10>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		CPU11: cpu@20300 {
@@ -169,6 +180,7 @@
 			power-domains = <&cpu_pd11>;
 			power-domain-names = "psci";
 			cpu-idle-states = <&cluster_c4>;
+			clocks = <&scmi_dvfs 1>;
 		};
 
 		cpu-map {
@@ -261,6 +273,21 @@
 	};
 
 	firmware {
+
+		scmi {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "arm,scmi";
+			mboxes = <&cpucp 0>, <&cpucp 2>;
+			mbox-names = "tx", "rx";
+			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
+
+			scmi_dvfs: protocol@13 {
+				reg = <0x13>;
+				#clock-cells = <1>;
+			};
+		};
+
 		qcom_scm {
 			compatible = "qcom,scm";
 		};
@@ -624,6 +651,25 @@
 			reusable;
 			alignment = <0x0 0x400000>;
 			size = <0x0 0xC00000>;
+		};
+	};
+
+	mmio_sram: mmio-sram@18b4e000 {
+		compatible = "mmio-sram";
+		reg = <0x0 0x18b4e000 0x0 0x400>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0x0 0x0 0x18b4e000 0x400>;
+
+		cpu_scp_lpri0: scmi-shmem@0 {
+			compatible = "arm,scmi-shmem";
+			reg = <0x0 0x200>;
+		};
+
+		cpu_scp_lpri1: scmi-shmem@200 {
+			compatible = "arm,scmi-shmem";
+			reg = <0x200 0x200>;
 		};
 	};
 
@@ -1076,6 +1122,15 @@
 
 				status = "disabled";
 			};
+		};
+
+		cpucp: qcom,cpucp@18830000 {
+			compatible = "qcom,cpucp-v2";
+			reg = <0x0 0x17430000 0x0 0x10000>,
+				<0x0 0x18830000 0x0 0x10000>;
+			reg-names = "rx", "tx";
+			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+			#mbox-cells = <1>;
 		};
 
 		qcom,wdt@1c840000 {
