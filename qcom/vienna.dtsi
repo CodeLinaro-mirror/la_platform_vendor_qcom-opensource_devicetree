@@ -1885,13 +1885,6 @@
 				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_wm";
 		};
 
-		qcom,glinkpkt-swm-fs-wm {
-				qcom,glinkpkt-edge = "wm";
-				qcom,glinkpkt-ch-name = "swm-fs";
-				qcom,glinkpkt-dev-name = "glink_pkt_swm_fs";
-				qcom,glinkpkt-fragmented-read;
-		};
-
 		qcom,glinkpkt-data-wm {
 				qcom,glinkpkt-edge = "wm";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_WM";
