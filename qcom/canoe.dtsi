@@ -1749,6 +1749,28 @@
 		reg = <0x0 0x15214c 0x0 0x4>;
 	};
 
+	/* GCC GDSCs */
+	gcc_usb30_prim_gdsc: qcom,gdsc@139004 {
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x139004 0x0 0x4>;
+		regulator-name = "gcc_usb30_prim_gdsc";
+		proxy-supply = <&gcc_usb30_prim_gdsc>;
+		qcom,proxy-consumer-enable;
+		qcom,retain-regs;
+		qcom,support-cfg-gdscr;
+	};
+
+	gcc_usb3_phy_gdsc: qcom,gdsc@150018 {
+		compatible = "qcom,gdsc";
+		reg = <0x0 0x150018 0x0 0x4>;
+		regulator-name = "gcc_usb3_phy_gdsc";
+		parent-supply = <&VDD_MX_LEVEL>;
+		proxy-supply = <&gcc_usb3_phy_gdsc>;
+		qcom,proxy-consumer-enable;
+		qcom,retain-regs;
+		qcom,support-cfg-gdscr;
+	};
+
 	/* GPU_CC GDSCs */
 	gpu_cc_cx_gdsc_hw_ctrl: syscon@3d99094 {
 		compatible = "syscon";
