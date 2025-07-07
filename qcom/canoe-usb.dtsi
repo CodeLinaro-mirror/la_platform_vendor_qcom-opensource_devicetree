@@ -18,7 +18,7 @@
 		#size-cells = <2>;
 		ranges;
 
-		power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
+		USB3_GDSC-supply = <&gcc_usb30_prim_gdsc>;
 		clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
 			<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
 			<&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
@@ -126,7 +126,7 @@
 		qcom,vdd-max-load-uA = <47000>;
 		core-supply = <&pmh0110_d_l1>;
 
-		power-domains = <&gcc GCC_USB3_PHY_GDSC>;
+		usb3_dp_phy_gdsc-supply = <&gcc_usb3_phy_gdsc>;
 		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
