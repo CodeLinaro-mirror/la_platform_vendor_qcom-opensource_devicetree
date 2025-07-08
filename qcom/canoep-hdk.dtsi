@@ -5,6 +5,10 @@
 
 #include "canoe-qrd-st54l-pandeiro.dtsi"
 
+&sdhc_2 {
+	cd-gpios = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+};
+
 &qupv3_se19_spi {
 	#address-cells = <1>;
 	#size-cells = <0>;
