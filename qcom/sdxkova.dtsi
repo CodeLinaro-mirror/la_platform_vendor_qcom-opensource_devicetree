@@ -2508,6 +2508,10 @@ qcom_cedev: qcedev@1de0000 {
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_NOM_L1 100000>;
 		reg-names = "cx", "mx";
 
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+				<&system_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "rproc_ddr","crypto_ddr";
+
 		qcom,signal-aop;
 		qcom,qmp = <&aoss_qmp>;
 		memory-region = <&mpssadsp_mem>,
