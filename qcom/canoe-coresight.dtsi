@@ -3024,7 +3024,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -3045,7 +3044,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -3066,7 +3064,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -3089,30 +3086,29 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			port@0 {
-				reg = <0>;
+			port@1 {
+				reg = <1>;
 				tn_mdss_in_tpdm_mdss: endpoint {
 					remote-endpoint =
 					<&tpdm_mdss_out_tn_mdss>;
 				};
 			};
 
-			port@1 {
-				reg = <1>;
+			port@2 {
+				reg = <2>;
 				tn_mdss_in_tpdm_mdss_rscc: endpoint {
 					remote-endpoint =
 					<&tpdm_mdss_rscc_out_tn_mdss>;
 				};
 			};
 
-			port@2 {
-				reg = <2>;
+			port@3 {
+				reg = <3>;
 				tn_mdss_in_tpdm_mdss_dcp: endpoint {
 					remote-endpoint =
 					<&tpdm_mdss_dcp_out_tn_mdss>;
