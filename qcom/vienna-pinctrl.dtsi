@@ -3039,7 +3039,7 @@
 
 				config {
 					pins = "gpio85";
-					drive-strength = <8>; /* 8 MA */
+					drive-strength = <4>; /* 4 MA */
 					bias-disable; /* NO pull */
 				};
 			};
