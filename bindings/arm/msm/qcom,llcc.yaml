@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/arm/msm/qcom,llcc.yaml#
@@ -65,17 +65,20 @@ properties:
 
       reg:
         description: |
-          MPAM Memory base address
+          MPAM Memory base address and PERFMON regmaps
         minItems: 1
-        maxItems: 2
+        maxItems: 6
       reg-names:
         minItems: 1
-        maxItems: 2
+        maxItems: 6
       perfmon_offset:
         description: |
           Offset to access perfmon memory
         minItems: 1
         maxItems: 2
+      llcc-scid-status-snapshot:
+        description:
+          Snapshot-based SCID capacity dump
 
     required:
       - compatible
