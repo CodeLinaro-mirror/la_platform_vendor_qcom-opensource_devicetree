@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &soc {
@@ -907,7 +907,6 @@
 		reg = <0x10800000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
-		qcom,cmb-element-bits = <64>;
 
 		device-name = "coresight-tpdm-modem-0";
 
@@ -926,6 +925,7 @@
 
 	tpdm_modem1: tpdm@10801000 {
 		compatible = "qcom,coresight-static-tpdm";
+		qcom,cmb-element-bits = <64>;
 
 		device-name = "coresight-tpdm-modem-1";
 
