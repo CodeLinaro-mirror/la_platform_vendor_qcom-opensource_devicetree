@@ -4123,10 +4123,10 @@
 
 	adspslpi_mem: adspslpi_region@a1400000 {
 		no-map;
-		reg = <0x0 0xa1400000 0x0 0x3700000>;
+		reg = <0x0 0xa1400000 0x0 0x4600000>;
 	};
 
-	/* UEFI region at 0xa5000000 is reclaimed by Linux */
+	/* UEFI region at 0xc4800000 is reclaimed by Linux */
 
 	/* Linux kernel image is loaded at 0xc7800000 */
 
