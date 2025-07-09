@@ -153,6 +153,7 @@
 &firmware {
 	scm {
 		compatible = "qcom,scm";
+		qcom,scm-hab;
 	};
 };
 
@@ -418,6 +419,10 @@
 		compatible = "qcom,trng";
 		reg = <0x10d3000 0x1000>;
 		status = "disabled";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
 	};
 
 	usb3_phy_wrapper_gcc_usb30_prim_pipe_clk: usb3_phy_wrapper_gcc_usb30_prim_pipe_clk {
