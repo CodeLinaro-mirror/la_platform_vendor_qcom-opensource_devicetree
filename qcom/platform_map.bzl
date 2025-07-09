@@ -96,6 +96,13 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sa510m.1g": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "sa510m-idp.dtb"},
+            {"name": "sa510m-idp-wlan-over-sdio.dtb"},
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
