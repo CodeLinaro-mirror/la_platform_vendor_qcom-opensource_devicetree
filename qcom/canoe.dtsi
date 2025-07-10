@@ -1097,13 +1097,6 @@
 		cap-based-alloc-and-pwr-collapse;
 		ranges;
 
-		llcc_perfmon {
-			compatible = "qcom,llcc-perfmon";
-			clocks = <&aoss_qmp QDSS_CLK>;
-			clock-names = "qdss_clk";
-			llcc-scid-status-snapshot;
-		};
-
 		scid_heuristics {
 			compatible = "qcom,scid-heuristics";
 			qcom,heuristics-scid = <28>;
