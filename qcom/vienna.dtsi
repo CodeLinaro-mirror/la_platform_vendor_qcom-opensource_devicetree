@@ -994,12 +994,12 @@
 			#interrupt-cells = <2>;
 		};
 
-		sleepstate_smp2p_out: sleepstate-out {
+		adsp_sleepstate_smp2p_out: sleepstate-out {
 			qcom,entry-name = "sleepstate";
 			#qcom,smem-state-cells = <1>;
 		};
 
-		sleepstate_smp2p_in: qcom,sleepstate-in {
+		adsp_sleepstate_smp2p_in: qcom,sleepstate-in {
 			qcom,entry-name = "sleepstate_see";
 			interrupt-controller;
 			#interrupt-cells = <2>;
@@ -1137,6 +1137,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		wm_sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		wm_sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
 	};
 
 	qcom,smp2p-am {
@@ -1161,11 +1172,21 @@
 		};
 	};
 
-	qcom,smp2p_sleepstate {
+	qcom,smp2p_sleepstate_adsp {
 		compatible = "qcom,smp2p-sleepstate";
-		qcom,smem-states = <&sleepstate_smp2p_out 0>;
-		interrupt-parent = <&sleepstate_smp2p_in>;
+		qcom,smem-states = <&adsp_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&adsp_sleepstate_smp2p_in>;
 		interrupts = <0 0>;
+		label = "adsp";
+		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+	qcom,smp2p_sleepstate_wm {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&wm_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&wm_sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		label = "wm";
 		interrupt-names = "smp2p-sleepstate-in";
 	};
 
