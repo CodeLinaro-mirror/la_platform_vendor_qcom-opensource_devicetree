@@ -172,6 +172,7 @@
 };
 
 #include "chora-reserved-memory.dtsi"
+#include "msm-arm-smmu-chora.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -471,8 +472,6 @@
 			label = "modem";
 		};
 	};
-
-	apps_smmu: smmu {};
 
 	clocks {
 		xo_board: xo_board {
