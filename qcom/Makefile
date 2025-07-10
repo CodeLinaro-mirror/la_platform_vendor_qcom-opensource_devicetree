@@ -220,12 +220,6 @@ YUPIK_BOARDS += \
 		yupikp-iot-idps-amoled-overlay.dtbo \
 		katmaip-hsp-overlay.dtbo \
 		katmaip-hsp-pm7250b-overlay.dtbo \
-		katmaip-fp2-hsp-overlay.dtbo \
-		katmaip-fp2-hsp-pm7250b-overlay.dtbo \
-		katmaip-fp2p5-hsp-overlay.dtbo \
-		katmaip-fp2p5-hsp-pm7250b-overlay.dtbo \
-		katmaip-fp3-hsp-overlay.dtbo \
-		katmaip-fp3-hsp-pm7250b-overlay.dtbo \
 		yupikp-idp-overlay.dtbo \
 		yupikp-qrd-overlay.dtbo \
 		yupikp-idps-amoled-overlay.dtbo \
@@ -242,12 +236,6 @@ NOAPQ_YUPIK_BOARDS += \
 		yupik-iot-idps-amoled-overlay.dtbo \
 		katmai-hsp-overlay.dtbo \
 		katmai-hsp-pm7250b-overlay.dtbo \
-		katmai-fp2-hsp-overlay.dtbo \
-		katmai-fp2-hsp-pm7250b-overlay.dtbo \
-		katmai-fp2p5-hsp-overlay.dtbo \
-		katmai-fp2p5-hsp-pm7250b-overlay.dtbo \
-		katmai-fp3-hsp-overlay.dtbo \
-		katmai-fp3-hsp-pm7250b-overlay.dtbo \
 		yupik-rumi-overlay.dtbo \
 		yupik-idp-overlay.dtbo \
 		yupik-qrd-overlay.dtbo \
