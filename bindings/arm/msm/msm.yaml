@@ -129,6 +129,13 @@ properties:
               - qcom,rumi
           - const: qcom,chora
 
+      - description: Qualcomm Technologies, Inc. Malabar
+        items:
+          - enum:
+              - qcom,malabar-rumi
+              - qcom,rumi
+          - const: qcom,malabar
+
       - description: Qualcomm Technologies, Inc. PARROT
         items:
           - enum:
