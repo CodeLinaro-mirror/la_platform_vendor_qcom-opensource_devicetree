@@ -1456,8 +1456,7 @@
 
 		snps,tso;
 
-		snps,pbl = <4>;
-		snps,no-pbl-x8;
+		snps,pbl = <0x10>;
 		dma-coherent;
 
 		rx-fifo-depth = <98304>;
