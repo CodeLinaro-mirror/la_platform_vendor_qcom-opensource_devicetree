@@ -369,6 +369,15 @@
 		compatible = "qcom,vm-restart";
 		status = "ok";
 	};
+
+	pdc: interrupt-controller@b220000 {
+		compatible = "qcom,pdc";
+		reg = <0xb220000 0x10000>;
+		qcom,pdc-ranges = <7 752 2>;
+		#interrupt-cells = <2>;
+		interrupt-parent = <&qvm_vdev_gic>;
+		interrupt-controller;
+	};
 };
 
 #include "sa8797p-pinctrl.dtsi"
