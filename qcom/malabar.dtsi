@@ -244,3 +244,5 @@
 
 	apps_smmu: smmu {};
 };
+
+#include "malabar-stub-regulators.dtsi"
