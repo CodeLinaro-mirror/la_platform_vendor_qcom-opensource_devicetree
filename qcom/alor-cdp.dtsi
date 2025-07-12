@@ -74,6 +74,7 @@
 
 &usb0 {
 	usb-role-switch;
+	qcom,wcd_usbss = <&wcd_usbss>;
 
 	port {
 		usb_port0: endpoint {
