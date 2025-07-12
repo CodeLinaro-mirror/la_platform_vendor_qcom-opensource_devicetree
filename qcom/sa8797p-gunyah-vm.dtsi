@@ -1562,7 +1562,7 @@
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,pdc";
 		reg = <0xb220000 0x10000>;
-		qcom,pdc-ranges = <7 752 2>;
+		qcom,pdc-ranges = <7 752 2>, <12 757 2>, <41 786 1>;
 		#interrupt-cells = <2>;
 		interrupt-parent = <&intc>;
 		interrupt-controller;
