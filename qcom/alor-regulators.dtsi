@@ -487,6 +487,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L10B>;
 
 		L10B: L10B_E0: pm_humu_l10: vreg-pm-humu-l10 {
 			regulator-name = "pm_humu_l10";
@@ -495,6 +496,8 @@
 			regulator-max-microvolt = <1950000>;
 			qcom,init-voltage = <1650000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <154000>;
 		};
 	};
 
@@ -506,6 +509,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L11B>;
 
 		L11B: L11B_E0: pm_humu_l11: vreg-pm-humu-l11 {
 			regulator-name = "pm_humu_l11";
@@ -514,6 +518,8 @@
 			regulator-max-microvolt = <1100000>;
 			qcom,init-voltage = <1030000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <220000>;
 		};
 	};
 
@@ -544,6 +550,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		proxy-supply = <&L13B>;
 
 		L13B: L13B_E0: pm_humu_l13: vreg-pm-humu-l13 {
 			regulator-name = "pm_humu_l13";
@@ -552,6 +559,8 @@
 			regulator-max-microvolt = <3544000>;
 			qcom,init-voltage = <2650000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <10000>;
 		};
 	};
 
@@ -1226,6 +1235,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L2F>;
 
 		L2F: L2F_E0:
 		pm8550ve_f_l2: vreg-pm8550ve-f-l2 {
@@ -1235,6 +1245,8 @@
 			regulator-max-microvolt = <1320000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <16600>;
 		};
 	};
 
@@ -1370,6 +1382,7 @@
 			<RPMH_REGULATOR_MODE_RET
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		proxy-supply = <&L2I>;
 
 		L2I: L2I_E0:
 		pm8550ve_i_l2: vreg-pm8550ve-i-l2 {
@@ -1379,6 +1392,8 @@
 			regulator-max-microvolt = <950000>;
 			qcom,init-voltage = <880000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <98000>;
 		};
 	};
 
