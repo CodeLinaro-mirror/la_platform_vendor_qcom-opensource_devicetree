@@ -206,6 +206,15 @@
 				qcom,label = <0x105>;
 				peer-default;
 			};
+
+			test-large-dmabuf-oemvm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-oemvm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10e>;
+				peer-default;
+			};
 		};
 	};
 
@@ -270,6 +279,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x105>;
 		affinity = <0>;
+	};
+
+	qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
 	};
 
 	qmsgq-gunyah {

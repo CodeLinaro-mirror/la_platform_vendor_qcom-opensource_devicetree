@@ -990,6 +990,18 @@
 		qcom,msgq-names = "trusted_vm", "oem_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
+	qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
+		qcom,primary;
+	};
+
 	psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
