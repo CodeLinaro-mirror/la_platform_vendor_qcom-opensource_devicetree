@@ -9,6 +9,7 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v3.dtb"},
             {"name": "sdxkova-idp-cpe-v4.dtb"},
             {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
             {"name": "sdxkova-idp-m2.dtb"},
@@ -27,10 +28,33 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sdxkova.cpe.min": {
+        "dtb_list": [
+            # keep sorted
+            # From sdxkova.cpe.wkk
+            {"name": "sdxkova-idp-cpe.dtb"},
+            {"name": "sdxkova-idp-cpe-v2.dtb"},
+            {"name": "sdxkova-idp-cpe-v3.dtb"},
+            {"name": "sdxkova-idp-cpe-v4.dtb"},
+            {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v2.dtb"},
+            # From sdxkova.cpe.tarang
+            {"name": "sdxkova-idp-cpe-v7.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sdxkova.cpe.tarang": {
         "dtb_list": [
             # keep sorted
+            {"name": "sdxkova-idp-cpe.dtb"},
+            {"name": "sdxkova-idp-cpe-v2.dtb"},
+            {"name": "sdxkova-idp-cpe-v3.dtb"},
+            {"name": "sdxkova-idp-cpe-v4.dtb"},
+            {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-cpe-v7.dtb"},
+            {"name": "sdxkova-idp-lga-v2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -44,6 +68,7 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v3.dtb"},
             {"name": "sdxkova-idp-cpe-v4.dtb"},
             {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
         ],
         "dtbo_list": [
