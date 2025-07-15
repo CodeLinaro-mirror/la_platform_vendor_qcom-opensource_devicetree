@@ -364,3 +364,5 @@
 &qupv3_se8_2uart {
 	status = "ok";
 };
+
+#include "malabar-usb.dtsi"
