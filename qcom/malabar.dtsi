@@ -7,6 +7,8 @@
 #include <dt-bindings/clock/qcom,malabar-dispcc.h>
 #include <dt-bindings/clock/qcom,malabar-gcc.h>
 #include <dt-bindings/clock/qcom,malabar-gpucc.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
+#include <dt-bindings/interconnect/qcom,malabar.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Malabar";
@@ -354,6 +356,48 @@
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
+	};
+
+	clk_virt: interconnect {
+		compatible = "qcom,malabar-clk_virt";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+	};
+
+	mmnrt_virt: interconnect1@1880000 {
+		reg = <0x01880000 0x57600>;
+		compatible = "qcom,malabar-mmnrt_virt";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <142>;
+		qcom,keepalive;
+	};
+
+	mmrt_virt: interconnect2@1880000 {
+		reg = <0x01880000 0x57600>;
+		compatible = "qcom,malabar-mmrt_virt";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <142>;
+		qcom,keepalive;
+	};
+
+	system_noc: interconnect@1880000 {
+		reg = <0x01880000 0x57600>;
+		compatible = "qcom,malabar-system_noc";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+	};
+
+	config_noc: interconnect@1900000 {
+		compatible = "qcom,malabar-config_noc";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+	};
+
+	bimc: interconnect@4480000 {
+		compatible = "qcom,malabar-bimc";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <151>;
+		qcom,keepalive;
 	};
 };
 
