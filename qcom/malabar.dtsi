@@ -242,5 +242,15 @@
 		};
 	};
 
+	tlmm: pinctrl@400000 {
+		compatible = "qcom,malabar-pinctrl";
+		reg = <0x400000 0x1000000>;
+		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+
 	apps_smmu: smmu {};
 };
