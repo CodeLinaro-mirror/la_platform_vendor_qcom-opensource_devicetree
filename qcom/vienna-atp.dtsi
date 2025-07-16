@@ -92,3 +92,12 @@
 	periph-c45-supply = <&L6M>;
 	periph-c46-supply = <&L7M>;
 };
+
+&soc {
+	st54spi_gpio {
+		status = "ok";
+		compatible = "st,st54spi_gpio";
+		/* gpio used as SE_nRESET */
+		gpio-power_nreset = <&pmw6100_gpios 18 0x00>;
+	};
+};
