@@ -71,6 +71,7 @@
 		};
 
 		vdevices {
+			generate = "/hypervisor";
 
 			minidump {
 				vdevice-type = "minidump";
@@ -78,8 +79,18 @@
 				minidump_allowed;
 			};
 
+			rm-rpc {
+				vdevice-type = "rm-rpc";
+				generate = "/hypervisor/qcom,resource-mgr";
+				console-dev;
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				qcom,label = <0x1>;
+			};
+
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
@@ -100,18 +111,21 @@
 
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
+				generate = "/hypervisor/test-dbl-oemvm";
 				qcom,label = <0x105>;
 				peer-default;
 			};
 
 			test-dbl-oemvm-source {
 				vdevice-type = "doorbell-source";
+				generate = "/hypervisor/test-dbl-oemvm-source";
 				qcom,label = <0x105>;
 				peer-default;
 			};
 
 			test-msgq-oemvm {
 				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-msgq-oemvm-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
 				qcom,label = <0x105>;

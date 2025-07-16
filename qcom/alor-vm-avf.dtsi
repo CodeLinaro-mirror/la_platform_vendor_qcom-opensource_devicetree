@@ -121,6 +121,7 @@
 		};
 
 		vdevices {
+			generate = "/hypervisor";
 
 			minidump {
 				vdevice-type = "minidump";
@@ -128,20 +129,32 @@
 				minidump_allowed;
 			};
 
+			rm-rpc {
+				vdevice-type = "rm-rpc";
+				generate = "/hypervisor/qcom,resource-mgr";
+				console-dev;
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				qcom,label = <0x1>;
+			};
+
 			test-dbl-tuivm {
 				vdevice-type = "doorbell";
+				generate = "/hypervisor/test-dbl-tuivm";
 				qcom,label = <0x104>;
 				peer-default;
 			};
 
 			test-dbl-tuivm-source {
 				vdevice-type = "doorbell-source";
+				generate = "/hypervisor/test-dbl-tuivm-source";
 				qcom,label = <0x104>;
 				peer-default;
 			};
 
 			test-msgq-tuivm {
 				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-msgq-tuivm-pair";
 				message-size = <0xf0>;
 				queue-depth = <0x8>;
 				qcom,label = <0x104>;
@@ -162,6 +175,7 @@
 
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
@@ -179,6 +193,7 @@
 
 			smmu-proxy-message-queue-pair {
 				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/smmu-proxy-msgq-pair";
 				message-size = <0x000000f0>;
 				queue-depth = <0x00000008>;
 				peer-default;
@@ -187,6 +202,7 @@
 
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/ddump-shm";
 				push-compatible = "qcom,ddump-gunyah-gen";
 				peer-default;
 				memory {
@@ -198,6 +214,7 @@
 
 			gunyah-panic-notifier-shm {
 				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/gpn-shm";
 				push-compatible = "qcom,gunyah-panic-gen";
 				peer-default;
 				memory {
