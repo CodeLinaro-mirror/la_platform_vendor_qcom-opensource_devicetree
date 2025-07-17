@@ -4065,7 +4065,7 @@
 	wpss_etm: wpss_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "wpss-etm0";
+		device-name = "wpss_etm0";
 		qcom,inst-id = <3>;
 		atid = <44>;
 
