@@ -2465,6 +2465,13 @@
 		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
 	};
 
+	qcom,power-state {
+		compatible = "qcom,power-state";
+		qcom,subsys-name = "lpass", "cdsp", "mpss";
+		qcom,rproc-handle = <&adsp_pas>, <&cdsp_pas>, <&modem_pas>;
+	};
+
+
 };
 
 #include "vienna-dma-heaps.dtsi"
