@@ -84,6 +84,11 @@
 			no-map;
 			qcom,label = <0x66>;
 		};
+
+		soccp_fe_vm_1: soccp_fe_vm_1 {
+			no-map;
+			qcom,label = <0x80>;
+		};
 	};
 
 	cpus {
