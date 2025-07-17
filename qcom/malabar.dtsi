@@ -18,7 +18,9 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se8_2uart;
+	 };
 
 	chosen: chosen {
 		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7";
@@ -356,3 +358,9 @@
 };
 
 #include "malabar-stub-regulators.dtsi"
+#include "malabar-pinctrl.dtsi"
+#include "malabar-qupv3.dtsi"
+
+&qupv3_se8_2uart {
+	status = "ok";
+};
