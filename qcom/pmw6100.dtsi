@@ -100,6 +100,21 @@
 			reg = <0x7400>;
 		};
 
+		pmw6100_sdam_25: sdam@8800 {
+			compatible = "qcom,spmi-sdam";
+			reg = <0x8800>;
+		};
+
+		pmw6100_sdam_26: sdam@8900 {
+			compatible = "qcom,spmi-sdam";
+			reg = <0x8900>;
+		};
+
+		pmw6100_sdam_27: sdam@8a00 {
+			compatible = "qcom,spmi-sdam";
+			reg = <0x8a00>;
+		};
+
 		pmw6100_eusb2_repeater: qcom,eusb2-repeater@fd00 {
 			compatible = "qcom,pmic-eusb2-repeater";
 			reg = <0xfd00>;
@@ -196,6 +211,20 @@
 		bcl_soc: bcl-soc {
 			compatible = "qcom,msm-bcl-soc";
 			#thermal-sensor-cells = <0>;
+		};
+
+		pmw6100_qpt: qcom,power-telemetry-device {
+			compatible = "qcom,power-telemetry";
+			status = "disabled";
+			interrupts = <0x0 0x8a 0x1 IRQ_TYPE_EDGE_RISING>,
+				<0x0 0x89 0x1 IRQ_TYPE_EDGE_RISING>;
+			nvmem = <&pmw6100_sdam_25>,
+					<&pmw6100_sdam_26>,
+					<&pmw6100_sdam_27>;
+			nvmem-names = "qpt-config-sdam",
+					"qpt-frac-sdam",
+					"qpt-data-sdam";
+			#powerzone-cells = <1>;
 		};
 	};
 };
