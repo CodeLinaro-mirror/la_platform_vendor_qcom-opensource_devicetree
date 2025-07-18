@@ -185,6 +185,15 @@ _platform_map = {
             {"name": "katmaip-fp3-hsp-pm7250b-overlay.dtbo"},
         ],
     },
+    "hamoa": {
+        "dtb_list": [
+            {"name": "x1e80100.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "x1e80100-crd-overlay.dtbo"},
+        ],
+        "binary_compatible_with": ["x1p42100"],
+    },
     "x1p42100": {
         "dtb_list": [
             {"name": "x1p42100.dtb"},

@@ -231,19 +231,19 @@
 
 			cpu_map_cluster2: cluster2 {
 				core0 {
-					cpu = <&cpu8>;
+					cpu = <&CPU8>;
 				};
 
 				core1 {
-					cpu = <&cpu9>;
+					cpu = <&CPU9>;
 				};
 
 				core2 {
-					cpu = <&cpu10>;
+					cpu = <&CPU10>;
 				};
 
 				core3 {
-					cpu = <&cpu11>;
+					cpu = <&CPU11>;
 				};
 
 			};
