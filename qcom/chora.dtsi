@@ -25,7 +25,8 @@
 	aliases { };
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0";
+		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 earlycon=qcom_geni,0x00a94000";
+		stdout-path = "serial0:115200n8";
 	};
 
 	cpus {
