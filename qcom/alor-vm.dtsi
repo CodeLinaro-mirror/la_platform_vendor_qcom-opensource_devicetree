@@ -446,6 +446,7 @@
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <0x103>;
+		peer = <4>;
 	};
 
 	qcom,gh-qtimer@1781b000 {
