@@ -63,7 +63,8 @@
 			0x00 0x2e000000 0x00 0x1000000>;                /* PCI CAM */
 
 		segments {
-			ramdisk = <2>;
+			fallback-dtb = <2>;
+			ramdisk = <3>;
 		};
 
 		vcpus {
