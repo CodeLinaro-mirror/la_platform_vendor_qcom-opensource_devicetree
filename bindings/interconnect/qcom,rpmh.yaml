@@ -226,6 +226,25 @@ properties:
       - qcom,yupik-mmss_noc
       - qcom,yupik-nsp_noc
       - qcom,yupik-system_noc
+      - qcom,x1p42100-aggre1_noc
+      - qcom,x1p42100-aggre2_noc
+      - qcom,x1p42100-clk_virt
+      - qcom,x1p42100-cnoc_cfg
+      - qcom,x1p42100-cnoc_main
+      - qcom,x1p42100-gem_noc
+      - qcom,x1p42100-lpass_ag_noc
+      - qcom,x1p42100-lpass_lpiaon_noc
+      - qcom,x1p42100-lpass_lpicx_noc
+      - qcom,x1p42100-mc_virt
+      - qcom,x1p42100-mmss_noc
+      - qcom,x1p42100-nsp_noc
+      - qcom,x1p42100-pcie_center_anoc
+      - qcom,x1p42100-pcie_north_anoc
+      - qcom,x1p42100-pcie_south_anoc
+      - qcom,x1p42100-system_noc
+      - qcom,x1p42100-usb_center_anoc
+      - qcom,x1p42100-usb_north_anoc
+      - qcom,x1p42100-usb_south_anoc
 
   '#interconnect-cells': true
 
