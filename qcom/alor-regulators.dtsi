@@ -62,9 +62,9 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "ebi.lvl";
 		VDD_EBI_LEVEL:
-		S6F_LEVEL: S6F_E0_LEVEL:
-		pm8550ve_f_s6_level: vreg-pm8550ve-f-s6-level {
-			regulator-name = "pm8550ve_f_s6_level";
+		S1C_LEVEL: S1C_E0_LEVEL:
+		pmg1110_c_s1_level: vreg-pmg1110-c-s1-level {
+			regulator-name = "pmg1110_c_s1_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
 				<RPMH_REGULATOR_LEVEL_RETENTION>;
@@ -97,7 +97,7 @@
 		qcom,resource-name = "nsp.lvl";
 		VDD_NSP1_LEVEL:
 		S5D_LEVEL: S5D_E0_LEVEL:
-		pm850ve_d_s5_level: vreg-pm8550ve-d-s5-level {
+		pm8550ve_d_s5_level: vreg-pm8550ve-d-s5-level {
 			regulator-name = "pm8550ve_d_s5_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
@@ -657,22 +657,9 @@
 		};
 	};
 
-	rpmh-regulator-s1c-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "S1C_E0";
-
-		S1C: S1C_E0: pmg1110_c_s1: vreg-pmg1110-c-s1 {
-			regulator-name = "pmg1110_c_s1";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <320000>;
-			regulator-max-microvolt = <1352000>;
-			qcom,init-voltage = <776000>;
-		};
-	};
-
 	rpmh-regulator-s1j-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "smpj1";
+		qcom,resource-name = "S1J_E0";
 
 		S1J: S1J_E0: pmg1110_j_s1: vreg-pmg1110-j-s1 {
 			regulator-name = "pmg1110_j_s1";
@@ -1013,7 +1000,7 @@
 			regulator-name = "pmr735_d_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1050000>;
-			regulator-max-microvolt = <2000000>;
+			regulator-max-microvolt = <1200000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};

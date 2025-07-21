@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/clock/qcom,rpmhcc.yaml#
@@ -37,6 +37,7 @@ properties:
       - qcom,canoe-rpmh-clk
       - qcom,vienna-rpmh-clk
       - qcom,alor-rpmh-clk
+      - qcom,x1e80100-rpmh-clk
 
   clocks:
     maxItems: 1

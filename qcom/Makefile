@@ -55,6 +55,7 @@ ALOR_BASE_DTB += alor.dtb
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
 		alor-cdp-overlay.dtbo \
+		alor-cdp-peach-overlay.dtbo \
 		alor-mtp-overlay.dtbo \
 		alor-mtp-pmih010x-smb1398-overlay.dtbo \
 		alor-mtp-pm7550ba-smb1398-overlay.dtbo \
@@ -70,6 +71,24 @@ NOAPQ_ALOR_BOARDS += \
 canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
+
+CHORA_BASE_DTB += chora.dtb
+
+NOAPQ_CHORA_BOARDS += \
+		chora-rumi-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_CHORA) += \
+	$(call add-overlays, $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
+
+MALABAR_BASE_DTB += malabar.dtb
+
+NOAPQ_MALABAR_BOARDS += \
+		malabar-rumi-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_MALABAR) += \
+	$(call add-overlays,$(NOAPQ_MALABAR_BOARDS), $(MALABAR_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
@@ -278,12 +297,14 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
 				canoe-vm-cdp.dtb \
 				canoe-vm-qrd.dtb \
 				canoe-vm-rcm.dtb \
+				canoe-vm-base.dtb \
 				canoep-vm-hdk.dtb \
 				canoe-oemvm-rumi.dtb \
 				canoe-oemvm-mtp.dtb \
 				canoe-oemvm-cdp.dtb \
 				canoe-oemvm-qrd.dtb \
 				canoe-oemvm-rcm.dtb \
+				canoe-oemvm-base.dtb \
 				canoep-oemvm-hdk.dtb \
 				alor-interposer-vm-mtp.dtb \
 				alor-interposer-vm-rcm.dtb \
@@ -318,11 +339,18 @@ LEMANS_LA_GVM_BASE_DTB += lemans-vm-la.dtb
 LEMANS_LA_GVM_BOARDS += \
 		lemans-vm-la-overlay.dtbo
 
+LEMANS_MULTI_GVM_BASE_DTB += lemans-vm-lv-mt.dtb
+
+LEMANS_MULTI_GVM_BOARDS += \
+		lemans-vm-lv-mt-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
-	$(call add-overlays, $(LEMANS_LA_GVM_BOARDS),$(LEMANS_LA_GVM_BASE_DTB))
+	$(call add-overlays, $(LEMANS_LA_GVM_BOARDS),$(LEMANS_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(LEMANS_MULTI_GVM_BOARDS),$(LEMANS_MULTI_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
-	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB)
+	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB) \
+	$(LEMANS_MULTI_GVM_BOARDS) $(LEMANS_MULTI_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
 
@@ -381,11 +409,27 @@ MONACO_LA_GVM_BASE_DTB += monaco-vm-la.dtb
 MONACO_LA_GVM_BOARDS += \
 		monaco-vm-la-overlay.dtbo
 
+MONACO_FLEX_MULTI_GVM_BASE_DTB += \
+		monaco-vm-flex-lv-mt.dtb
+
+MONACO_FLEX_MULTI_GVM_BOARDS += \
+		monaco-vm-flex-lv-mt-overlay.dtbo
+
+MONACO_MULTI_GVM_BASE_DTB += \
+		monaco-vm-lv-mt.dtb
+
+MONACO_MULTI_GVM_BOARDS += \
+		monaco-vm-lv-mt-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
-	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB))
+	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(MONACO_FLEX_MULTI_GVM_BOARDS),$(MONACO_FLEX_MULTI_GVM_BASE_DTB)) \
+	$(call add-overlays, $(MONACO_MULTI_GVM_BOARDS),$(MONACO_MULTI_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
-	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB)
+	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB) \
+	$(MONACO_FLEX_MULTI_GVM_BOARDS) $(MONACO_FLEX_MULTI_GVM_BASE_DTB) \
+	$(MONACO_MULTI_GVM_BOARDS) $(MONACO_MULTI_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
 
@@ -394,19 +438,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_ALOR), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-rumi.dtb \
-				alor-vm-atp.dtb \
-				alor-vm-mtp.dtb \
-				alor-vm-qrd.dtb \
-				alor-vm-cdp.dtb \
-				alor-vm-rcm.dtb \
-				alor-oemvm-rumi.dtb \
-				alor-oemvm-atp.dtb \
-				alor-oemvm-mtp.dtb \
-				alor-oemvm-qrd.dtb \
-				alor-oemvm-cdp.dtb \
-				alor-oemvm-rcm.dtb \
-				alor-vm-atp-overlay.dtbo \
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-atp-overlay.dtbo \
 				alor-vm-mtp-overlay.dtbo \
 				alor-vm-qrd-overlay.dtbo \
 				alor-vm-rcm-overlay.dtbo \

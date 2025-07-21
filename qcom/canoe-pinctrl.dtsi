@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &tlmm {
@@ -162,6 +162,88 @@
 				drive-strength = <2>;
 				bias-disable;
 			};
+		};
+	};
+
+	qupv3_se18_spi_pins: qupv3_se18_spi_pins {
+		qupv3_se18_spi_miso_active: qupv3_se18_spi_miso_active {
+			mux {
+				pins = "gpio24";
+				function = "qup3_se5_l0";
+			};
+
+			config {
+				pins = "gpio24";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se18_spi_mosi_active: qupv3_se18_spi_mosi_active {
+			mux {
+				pins = "gpio25";
+				function = "qup3_se5_l1";
+			};
+
+			config {
+				pins = "gpio25";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se18_spi_clk_active: qupv3_se18_spi_clk_active {
+			mux {
+				pins = "gpio26";
+				function = "qup3_se5_l2";
+			};
+
+			config {
+				pins = "gpio26";
+				drive-strength = <6>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se18_spi_cs_active: qupv3_se18_spi_cs_active {
+			mux {
+				pins = "gpio27";
+				function = "qup3_se5_l3";
+			};
+
+			config {
+				pins = "gpio27";
+				drive-strength = <6>;
+				bias-pull-up;
+			};
+		};
+
+		qupv3_se18_spi_sleep: qupv3_se18_spi_sleep {
+			mux {
+				pins = "gpio24", "gpio25",
+					"gpio26";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio24", "gpio25",
+					"gpio26";
+				drive-strength = <2>;
+				bias-disable;
+			};
+
+		qupv3_se18_spi_cs_sleep: qupv3_se18_spi_cs_sleep {
+			mux {
+				pins = "gpio27";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio27";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
 		};
 	};
 

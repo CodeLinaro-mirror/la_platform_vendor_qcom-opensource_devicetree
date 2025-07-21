@@ -3,7 +3,6 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include <dt-bindings/clock/qcom,gcc-canoe.h>
 #include <dt-bindings/clock/qcom,alor-gcc.h>
 #include <dt-bindings/gpio/gpio.h>
 

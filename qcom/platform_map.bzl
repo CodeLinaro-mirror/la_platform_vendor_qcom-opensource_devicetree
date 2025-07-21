@@ -3,15 +3,21 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "lemans-vm-la.dtb"},
+            {"name": "lemans-vm-lv-mt.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
             {"name": "monaco-vm-la.dtb"},
+            {"name": "monaco-vm-lv-mt.dtb"},
+            {"name": "monaco-vm-flex-lv-mt.dtb"},
             {"name": "sa8797p-sdp8-vm-la.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
             {"name": "lemans-vm-la-overlay.dtbo"},
+            {"name": "lemans-vm-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},
             {"name": "monaco-vm-la-overlay.dtbo"},
+            {"name": "monaco-vm-lv-mt-overlay.dtbo"},
+            {"name": "monaco-vm-flex-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
         ],
     },
@@ -62,7 +68,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
     },
     "alor": {
         "dtb_list": [
@@ -73,6 +79,7 @@ _platform_map = {
             # keep sorted
             {"name": "alor-atp-overlay.dtbo"},
             {"name": "alor-cdp-overlay.dtbo"},
+            {"name": "alor-cdp-peach-overlay.dtbo"},
             {"name": "alor-mtp-overlay.dtbo"},
             {"name": "alor-mtp-pm7550ba-smb1398-overlay.dtbo"},
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
@@ -95,6 +102,27 @@ _platform_map = {
             {"name": "alor-interposer-mtp-overlay.dtbo"},
             {"name": "alor-interposer-rcm-overlay.dtbo"},
             {"name": "alor-interposer-qrd-st54l-pandeiro-overlay.dtbo"},
+        ],
+    },
+    "chora": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "chora.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "chora-rumi-overlay.dtbo"},
+        ],
+    },
+    "malabar": {
+        "dtb_list": [
+            {"name": "malabar.dtb"},
+        ],
+        "dtbo_list": [
+            {
+                "name": "malabar-rumi-overlay.dtbo",
+                "apq": False,
+            },
         ],
     },
     "lahaina": {
@@ -174,12 +202,14 @@ _platform_map = {
             {"name": "alor-interposer-vm-mtp.dtb"},
             {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
+            {"name": "canoe-oemvm-base.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
             {"name": "canoe-oemvm-qrd.dtb"},
             {"name": "canoe-oemvm-rcm.dtb"},
             {"name": "canoep-oemvm-hdk.dtb"},
             {"name": "canoe-oemvm-rumi.dtb"},
+            {"name": "canoe-vm-base.dtb"},
             {"name": "canoe-vm-cdp.dtb"},
             {"name": "canoe-vm-mtp.dtb"},
             {"name": "canoe-vm-qrd.dtb"},
@@ -208,18 +238,20 @@ _platform_map = {
             {"name": "alor-interposer-vm-mtp.dtb"},
             {"name": "alor-interposer-vm-qrd.dtb"},
             {"name": "alor-interposer-vm-rcm.dtb"},
+            {"name": "canoe-oemvm-base.dtb"},
             {"name": "canoe-oemvm-cdp.dtb"},
             {"name": "canoe-oemvm-mtp.dtb"},
             {"name": "canoe-oemvm-qrd.dtb"},
             {"name": "canoe-oemvm-rcm.dtb"},
             {"name": "canoe-oemvm-rumi.dtb"},
             {"name": "canoep-oemvm-hdk.dtb"},
+            {"name": "canoe-vm-base.dtb"},
             {"name": "canoe-vm-cdp.dtb"},
             {"name": "canoe-vm-mtp.dtb"},
             {"name": "canoe-vm-qrd.dtb"},
             {"name": "canoe-vm-rcm.dtb"},
-            {"name": "canoep-vm-hdk.dtb"},
             {"name": "canoe-vm-rumi.dtb"},
+            {"name": "canoep-vm-hdk.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -234,21 +266,6 @@ _platform_map = {
         "binary_compatible_with": ["alor-oemvm"],
     },
     "alor-vm": {
-        "dtb_list": [
-            # keep sorted
-            {"name": "alor-oemvm-atp.dtb"},
-            {"name": "alor-oemvm-cdp.dtb"},
-            {"name": "alor-oemvm-mtp.dtb"},
-            {"name": "alor-oemvm-qrd.dtb"},
-            {"name": "alor-oemvm-rcm.dtb"},
-            {"name": "alor-oemvm-rumi.dtb"},
-            {"name": "alor-vm-atp.dtb"},
-            {"name": "alor-vm-cdp.dtb"},
-            {"name": "alor-vm-mtp.dtb"},
-            {"name": "alor-vm-qrd.dtb"},
-            {"name": "alor-vm-rcm.dtb"},
-            {"name": "alor-vm-rumi.dtb"},
-        ],
         "dtbo_list": [
             # keep sorted
             {"name": "alor-vm-atp-overlay.dtbo"},
@@ -259,21 +276,6 @@ _platform_map = {
         ],
     },
     "alor-oemvm": {
-        "dtb_list": [
-            # keep sorted
-            {"name": "alor-oemvm-atp.dtb"},
-            {"name": "alor-oemvm-cdp.dtb"},
-            {"name": "alor-oemvm-mtp.dtb"},
-            {"name": "alor-oemvm-qrd.dtb"},
-            {"name": "alor-oemvm-rcm.dtb"},
-            {"name": "alor-oemvm-rumi.dtb"},
-            {"name": "alor-vm-atp.dtb"},
-            {"name": "alor-vm-cdp.dtb"},
-            {"name": "alor-vm-mtp.dtb"},
-            {"name": "alor-vm-qrd.dtb"},
-            {"name": "alor-vm-rcm.dtb"},
-            {"name": "alor-vm-rumi.dtb"},
-        ],
         "dtbo_list": [
             # keep sorted
             {"name": "alor-oemvm-atp-overlay.dtbo"},

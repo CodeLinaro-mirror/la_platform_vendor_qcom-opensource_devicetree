@@ -94,6 +94,8 @@
 			compatible = "qcom,kryo";
 			reg = <0x0 0x0>;
 			enable-method = "psci";
+			d-cache-size = <0x8000>;
+			i-cache-size = <0x8000>;
 			cpu-idle-states = <&SILVER_RAIL_OFF>;
 			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
@@ -104,6 +106,16 @@
 			#cooling-cells = <2>;
 			L2_0: l2-cache {
 			      cache-level = <2>;
+			      compatible = "cache";
+			      cache-size = <0x10000>;
+			};
+
+			L1_I_0: l1-icache {
+			      compatible = "cache";
+			};
+
+			L1_D_0: l1-dcache {
+			      compatible = "cache";
 			};
 		};
 
@@ -112,6 +124,8 @@
 			compatible = "qcom,kryo";
 			reg = <0x0 0x100>;
 			enable-method = "psci";
+			d-cache-size = <0x8000>;
+			i-cache-size = <0x8000>;
 			cpu-idle-states = <&SILVER_RAIL_OFF>;
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
@@ -120,6 +134,14 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+
+			L1_I_1: l1-icache {
+			      compatible = "cache";
+			};
+
+			L1_D_1: l1-dcache {
+			      compatible = "cache";
+			};
 		};
 
 		CPU2: cpu@200 {
@@ -127,6 +149,8 @@
 			compatible = "qcom,kryo";
 			reg = <0x0 0x200>;
 			enable-method = "psci";
+			d-cache-size = <0x8000>;
+			i-cache-size = <0x8000>;
 			cpu-idle-states = <&SILVER_RAIL_OFF>;
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
@@ -135,6 +159,14 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+
+			L1_I_2: l1-icache {
+			      compatible = "cache";
+			};
+
+			L1_D_2: l1-dcache {
+			      compatible = "cache";
+			};
 		};
 
 		CPU3: cpu@300 {
@@ -142,6 +174,8 @@
 			compatible = "qcom,kryo";
 			reg = <0x0 0x300>;
 			enable-method = "psci";
+			d-cache-size = <0x8000>;
+			i-cache-size = <0x8000>;
 			cpu-idle-states = <&SILVER_RAIL_OFF>;
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
@@ -150,6 +184,14 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+
+			L1_I_3: l1-icache {
+			      compatible = "cache";
+			};
+
+			L1_D_3: l1-dcache {
+			      compatible = "cache";
+			};
 		};
 
 		CPU4: cpu@400 {
@@ -157,6 +199,8 @@
 			compatible = "qcom,kryo";
 			reg = <0x0 0x400>;
 			enable-method = "psci";
+			d-cache-size = <0x8000>;
+			i-cache-size = <0x8000>;
 			cpu-idle-states = <&GOLD_OFF &GOLD_RAIL_OFF>;
 			power-domains = <&CPU_PD4>;
 			power-domain-names = "psci";
@@ -167,6 +211,16 @@
 			#cooling-cells = <2>;
 			L2_1: l2-cache {
 			      cache-level = <2>;
+			      compatible = "cache";
+			      cache-size = <0x40000>;
+			};
+
+			L1_I_4: l1-icache {
+			      compatible = "cache";
+			};
+
+			L1_D_4: l1-dcache {
+			      compatible = "cache";
 			};
 		};
 
@@ -779,6 +833,12 @@
 		qcom,dll-hsr-list = <0x0007442C 0x0 0x10 0x290106C0 0x80040868>;
 
 		bus-width = <4>;
+		cap-sd-highspeed;
+		sd-uhs-sdr12;
+		sd-uhs-sdr25;
+		sd-uhs-sdr50;
+		sd-uhs-ddr50;
+		max-frequency = <86000000>;
 
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "bypass";
@@ -1476,6 +1536,7 @@
 		firmware-name = "adsp.mdt", "adsp_dtb.mdt";
 
 		memory-region = <&adspslpi_mem &q6_adsp_dtb_mem>;
+		subdev-memory-region = <&wear_microcontroller_m55_mem &ambient_microcontroller_m55_mem>;
 
 		/* Inputs from ssc */
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
@@ -1825,13 +1886,6 @@
 				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_wm";
 		};
 
-		qcom,glinkpkt-swm-fs-wm {
-				qcom,glinkpkt-edge = "wm";
-				qcom,glinkpkt-ch-name = "swm-fs";
-				qcom,glinkpkt-dev-name = "glink_pkt_swm_fs";
-				qcom,glinkpkt-fragmented-read;
-		};
-
 		qcom,glinkpkt-data-wm {
 				qcom,glinkpkt-edge = "wm";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_WM";
@@ -1841,37 +1895,37 @@
 		qcom,glinkpkt-am-diag-cntl {
 			qcom,glinkpkt-edge = "am";
 			qcom,glinkpkt-ch-name = "DIAG_AM_CNTL";
-			qcom,glinkpkt-dev-name = "am_cntl";
+			qcom,glinkpkt-dev-name = "diag_am_cntl";
 		};
 
 		qcom,glinkpkt-am-diag-cmd {
 			qcom,glinkpkt-edge = "am";
 			qcom,glinkpkt-ch-name = "DIAG_AM_CMD";
-			qcom,glinkpkt-dev-name = "am_cmd";
+			qcom,glinkpkt-dev-name = "diag_am_cmd";
 		};
 
 		qcom,glinkpkt-am-diag-data {
 			qcom,glinkpkt-edge = "am";
 			qcom,glinkpkt-ch-name = "DIAG_AM_DATA";
-			qcom,glinkpkt-dev-name = "am_data";
+			qcom,glinkpkt-dev-name = "diag_am_data";
 		};
 
 		qcom,glinkpkt-wm-diag-cntl {
 			qcom,glinkpkt-edge = "wm";
 			qcom,glinkpkt-ch-name = "DIAG_WM_CNTL";
-			qcom,glinkpkt-dev-name = "wm_cntl";
+			qcom,glinkpkt-dev-name = "diag_wm_cntl";
 		};
 
 		qcom,glinkpkt-wm-diag-cmd {
 			qcom,glinkpkt-edge = "wm";
 			qcom,glinkpkt-ch-name = "DIAG_WM_CMD";
-			qcom,glinkpkt-dev-name = "wm_cmd";
+			qcom,glinkpkt-dev-name = "diag_wm_cmd";
 		};
 
 		qcom,glinkpkt-wm-diag-data {
 			qcom,glinkpkt-edge = "wm";
 			qcom,glinkpkt-ch-name = "DIAG_WM_DATA";
-			qcom,glinkpkt-dev-name = "wm_data";
+			qcom,glinkpkt-dev-name = "diag_wm_data";
 		};
 
 		qcom,glinkpkt-at-mdm0 {
@@ -1935,6 +1989,7 @@
 			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
 			qcom,intents = <0x1000 10>;
+			qcom,glinkpkt-enable-ch-close;
 		};
 
 		qcom,glinkpkt-socket-offload {
@@ -1942,7 +1997,16 @@
 			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
 			qcom,intents = <0x1000 10>;
+			qcom,glinkpkt-enable-ch-close;
 		};
+
+		qcom,glinkpkt-gatt-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
+			qcom,intents = <0x1000 10>;
+			qcom,glinkpkt-enable-ch-close;
+		 };
 
 		qcom,glinkpkt-wm-qsh-0 {
 			qcom,glinkpkt-edge = "wm";
@@ -2012,6 +2076,7 @@
 			qcom,glinkpkt-ch-name = "contexthub_hal_app_mgr_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_app_mgr_chnl";
 			qcom,intents = <0x1000 10>;
+			qcom,glinkpkt-enable-ch-close;
 		};
 
 		qcom,glinkpkt-contexthub-hal-offload-mgr-chnl {
@@ -2019,6 +2084,7 @@
 			qcom,glinkpkt-ch-name = "contexthub_hal_offload_mgr_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_offload_mgr_chnl";
 			qcom,intents = <0x1000 10>;
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 

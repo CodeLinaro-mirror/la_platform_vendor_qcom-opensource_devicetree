@@ -35,6 +35,7 @@
 		#global-interrupts = <2>;
 		dma-coherent;
 		qcom,skip-init;
+		qcom,reset-stream-mapping-groups;
 		qcom,handoff-smrs = <0x0 0xffff>;
 		qcom,multi-match-handoff-smr;
 		interrupts = <GIC_SPI 0x376 IRQ_TYPE_LEVEL_HIGH>,
@@ -145,6 +146,7 @@
 		#global-interrupts = <2>;
 		dma-coherent;
 		qcom,skip-init;
+		qcom,reset-stream-mapping-groups;
 		qcom,handoff-smrs = <0x0 0xffff>;
 		qcom,multi-match-handoff-smr;
 		interrupts = <GIC_SPI  0x372 IRQ_TYPE_LEVEL_HIGH>,
@@ -255,6 +257,7 @@
 		#global-interrupts = <2>;
 		dma-coherent;
 		qcom,skip-init;
+		qcom,reset-stream-mapping-groups;
 		qcom,handoff-smrs = <0x0 0xffff>;
 		qcom,multi-match-handoff-smr;
 		interrupts = <GIC_SPI  0x36D IRQ_TYPE_LEVEL_HIGH>,
@@ -361,7 +364,22 @@
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
 	};
+
+	vm_restart: restart {
+		compatible = "qcom,vm-restart";
+		status = "ok";
+	};
+
+	pdc: interrupt-controller@b220000 {
+		compatible = "qcom,pdc";
+		reg = <0xb220000 0x10000>;
+		qcom,pdc-ranges = <7 752 2>;
+		#interrupt-cells = <2>;
+		interrupt-parent = <&qvm_vdev_gic>;
+		interrupt-controller;
+	};
 };
 
 #include "sa8797p-pinctrl.dtsi"
+#include "sa8797p-vm-qupv3.dtsi"
 #include "sa8797p-vm-usb.dtsi"

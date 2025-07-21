@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- *Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ *Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &soc {
@@ -14,7 +14,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
-		qcom,gpios-reserved = <0 1 2 3 14 15 73 74>;
+		qcom,gpios-reserved = <0 1 2 3 14 15 73 74 88>;
 
 		qupv3_se0_4uart_pins: qupv3_se0_4uart_pins {
 			qupv3_se0_default_cts: qupv3_se0_default_cts {
@@ -2657,6 +2657,7 @@
 					drive-strength = <2>;
 					bias-pull-up;
 					qcom,i2c_pull;
+					qcom,apps;
 				};
 			};
 
@@ -2671,6 +2672,7 @@
 					drive-strength = <2>;
 					bias-pull-up;
 					qcom,i2c_pull;
+					qcom,apps;
 				};
 			};
 
@@ -2683,6 +2685,7 @@
 				config {
 					pins = "gpio28", "gpio29";
 					drive-strength = <2>;
+					qcom,remote;
 				};
 			};
 		};
@@ -3036,7 +3039,7 @@
 
 				config {
 					pins = "gpio85";
-					drive-strength = <8>; /* 8 MA */
+					drive-strength = <4>; /* 4 MA */
 					bias-disable; /* NO pull */
 				};
 			};
@@ -3122,6 +3125,7 @@
 					pins = "gpio113";
 					drive-strength = <8>;
 					bias-pull-up;
+					qcom,apps;
 				};
 			};
 		};
@@ -3137,6 +3141,7 @@
 					pins = "gpio113";
 					drive-strength = <2>;
 					bias-pull-down;
+					qcom,remote;
 				};
 			};
 		};
@@ -3152,6 +3157,7 @@
 					pins = "gpio114";
 					drive-strength = <8>;
 					bias-pull-up;
+					qcom,apps;
 				};
 			};
 		};
@@ -3167,6 +3173,7 @@
 					pins = "gpio114";
 					drive-strength = <2>;
 					bias-pull-down;
+					qcom,remote;
 				};
 			};
 		};

@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: BSD-3-Clause
+
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
+
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,cambistmclkcc-canoe.h>
@@ -82,6 +84,7 @@
 		spi15 = &qupv3_se15_spi;
 		spi16 = &qupv3_se16_spi;
 		spi17 = &qupv3_se17_spi;
+		spi18 = &qupv3_se18_spi;
 		spi19 = &qupv3_se19_spi;
 		spi20 = &qupv3_se20_spi;
 		spi21 = &qupv3_se21_spi;
@@ -1095,13 +1098,6 @@
 		cap-based-alloc-and-pwr-collapse;
 		ranges;
 
-		llcc_perfmon {
-			compatible = "qcom,llcc-perfmon";
-			clocks = <&aoss_qmp QDSS_CLK>;
-			clock-names = "qdss_clk";
-			llcc-scid-status-snapshot;
-		};
-
 		scid_heuristics {
 			compatible = "qcom,scid-heuristics";
 			qcom,heuristics-scid = <28>;
@@ -1116,11 +1112,17 @@
 		slc_perfmon: qcom,slc_perfmon {
 			compatible = "qcom,slc-perfmon";
 			/* Use mpam memory with the offset of 512B and size of 512B */
-			reg = <0x0 0x1d83a800 0x0 0x400>;
-			reg-names = "perfmon_base";
+			reg = <0x0 0x1d83a800 0x0 0x400>,
+				<0x0 0x31800000 0x0 0x60000>, <0x0 0x32800000 0x0 0x60000>,
+				<0x0 0x31C00000 0x0 0x60000>, <0x0 0x32C00000 0x0 0x60000>,
+				<0x0 0x34800000 0x0 0x60000>;
+			reg-names = "perfmon_base",
+				"trp_0_base", "trp_1_base", "trp_2_base", "trp_3_base",
+				"trp_or_bcast_base";
 			perfmon_offset = <0x300>;
 			clocks = <&aoss_qmp QDSS_CLK>;
 			clock-names = "qdss_clk";
+			slc-scid-status-snapshot;
 		};
 	};
 
@@ -3005,6 +3007,10 @@
 		memory-region = <&kinfo_mem>;
 	};
 
+	microdump_modem {
+		compatible = "qcom,microdump-modem";
+	};
+
 	mini_dump_mode {
 		compatible = "qcom,minidump";
 		status = "ok";
@@ -4111,10 +4117,10 @@
 
 	adspslpi_mem: adspslpi_region@a1400000 {
 		no-map;
-		reg = <0x0 0xa1400000 0x0 0x3700000>;
+		reg = <0x0 0xa1400000 0x0 0x4600000>;
 	};
 
-	/* UEFI region at 0xa5000000 is reclaimed by Linux */
+	/* UEFI region at 0xc4800000 is reclaimed by Linux */
 
 	/* Linux kernel image is loaded at 0xc7800000 */
 
