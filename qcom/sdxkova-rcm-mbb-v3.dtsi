@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "sdxkova-rcm-mbb.dtsi"
-
+#include "sdxkova-qpic-display.dtsi"
 &qnand_1 {
 	status = "disabled";
 };
