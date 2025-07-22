@@ -2517,6 +2517,8 @@
 		bus-width = <4>;
 		no-sdio;
 		no-mmc;
+		qcom,restore-after-cx-collapse;
+		qcom,uses_level_shifter;
 
 		clocks = <&gcc GCC_SDCC2_AHB_CLK>,
 			 <&gcc GCC_SDCC2_APPS_CLK>;
