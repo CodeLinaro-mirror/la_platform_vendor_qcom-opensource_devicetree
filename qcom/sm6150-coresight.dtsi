@@ -135,20 +135,20 @@
 	};
 
 	turing-qmi {
- 		compatible = "qcom,coresight-qmi";
- 
- 		coresight-name = "coresight-qmi-turing";
- 		qcom,inst-id = <13>;
- 
- 		in-ports {
- 			port {
- 				qmi_in_turing_etm0: endpoint {
- 					remote-endpoint =
- 						<&turing_etm0_out_qmi>;
- 				};
- 			};
- 		};
- 	};
+		compatible = "qcom,coresight-qmi";
+
+		coresight-name = "coresight-qmi-turing";
+		qcom,inst-id = <13>;
+
+		in-ports {
+			port {
+				qmi_in_turing_etm0: endpoint {
+					remote-endpoint =
+						<&turing_etm0_out_qmi>;
+				};
+			};
+		};
+	};
 
 	tmc_etf: tmc@6047000 {
 		compatible = "arm,primecell";
@@ -446,7 +446,7 @@
 	};
 
 	tpdm_wcss: tpdm@699c000 {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-source";
 		arm,primecell-periphid = <0x0003b968>;
 		coresight-name = "coresight-tpdm-wcss";
 		qcom,dummy-source;
@@ -695,6 +695,7 @@
 						<&funnel_monaq_1_in_modem_etm0>;
 				};
 			};
+
 			port@1 {
 				reg = <1>;
 				modem_etm0_out_qmi: endpoint {
@@ -736,6 +737,7 @@
 						<&funnel_monaq_1_in_audio_etm0>;
 				};
 			};
+
 			port@1 {
 				reg = <1>;
 				audio_etm0_out_qmi: endpoint {
@@ -910,10 +912,9 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		coresight-name = "coresight-turing-etm0";
-		qcom,atid-num = <2>;
-		atid = <38 39>;
+		atid = <38>;
 		trace-name = "turing-etm0";
-		
+
 		out-ports {
 			port@0 {
 				reg = <0>;
@@ -1359,7 +1360,7 @@
 	};
 
 	dummy_eud: dummy_sink {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-sink";
 
 		coresight-name = "coresight-eud";
 		qcom,dummy-sink;
@@ -1603,6 +1604,8 @@
 
 		coresight-name = "coresight-cti-titan";
 
+		status = "disabled";
+
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -1614,6 +1617,8 @@
 		reg-names = "cti-base";
 
 		coresight-name = "coresight-cti-venus-arm9";
+
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2517,28 +2522,6 @@
 				};
 			};
 		};
-	};
-
-	hwevent: hwevent@91866f0 {
-		compatible = "qcom,coresight-hwevent";
-		reg = <0x091866f0 0x4>,
-			<0x91966f0 0x4>,
-			<0x9186038 0x4>,
-			<0x9196038 0x4>,
-			<0x17e00034 0x4>,
-			<0x18200050 0x80>,
-			<0x02c8d050 0x80>,
-			<0x0af20050 0x80>;
-		reg-names = "ddr-ch0-cfg", "ddr-ch23-cfg", "ddr-ch0-ctrl",
-			    "ddr-ch23-ctrl", "apss-testbus-mux-cfg",
-			    "apss-rsc-hwevent-mux0-select",
-			    "gpu-rsc-hwevent-mux0-select",
-			    "sde-rsc-hwevent-mux0-select";
-
-		coresight-name = "coresight-hwevent";
-		coresight-csr = <&csr>;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
 	};
 
 	ipcb_tgu: tgu@6b0c000 {

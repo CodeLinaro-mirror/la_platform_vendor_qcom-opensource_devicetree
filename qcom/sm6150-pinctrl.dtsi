@@ -763,7 +763,6 @@
 			};
 		};
 
-
 	wcd9xxx_intr:	wcd9xxx_intr {
 			wcd_intr_default: wcd_intr_default {
 				mux {
@@ -810,7 +809,7 @@
 			};
 		};
 
-	emac:	emac {
+	emac: emac {
 			emac_mdc: emac_mdc {
 				mux {
 					pins = "gpio113";
