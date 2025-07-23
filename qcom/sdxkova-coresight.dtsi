@@ -855,9 +855,9 @@
 		};
 	};
 
-	gladiator {
+	gladiator: gladiator {
 		compatible = "arm,coresight-dummy-source";
-		device-name = "coresight-gladiator";
+		coresight-name = "coresight-gladiator";
 		atid = <96>;
 
 		out-ports {
@@ -968,6 +968,15 @@
 					remote-endpoint =
 					<&tpda_dl_center_11_in_funnel_ddr0>;
 					source = <&tpdm_ddr>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_ddr0_out_funnel_dl_center: endpoint {
+					remote-endpoint =
+					<&funnel_dl_center_in_funnel_ddr0>;
+					source = <&gladiator>;
 				};
 			};
 		};
@@ -1756,6 +1765,14 @@
 				funnel_dl_center_in_tpda_dl_center: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_out_funnel_dl_center>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_dl_center_in_funnel_ddr0: endpoint {
+					remote-endpoint =
+					<&funnel_ddr0_out_funnel_dl_center>;
 				};
 			};
 		};
