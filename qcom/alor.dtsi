@@ -1910,21 +1910,21 @@
 		};
 	};
 
-	pdp_sram: pdp-sram@0x81f08000 {
+	pdp_sram: pdp-sram@81f08000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "mmio-sram";
-		reg = <0x0 0x81f08000 0x0 0x180>;
-		ranges = <0 0x0 0x81f08000 0x180>;
+		reg = <0x0 0x81f08000 0x0 0x200>;
+		ranges = <0 0x0 0x81f08000 0x200>;
 
 		pdp_rx: scmi-shmem@0 {
 			compatible = "arm,scmi-shmem";
-			reg = <0x0 0x60>;
+			reg = <0x0 0x80>;
 		};
 
-		pdp_tx: scmi-shmem@c0 {
+		pdp_tx: scmi-shmem@100 {
 			compatible = "arm,scmi-shmem";
-			reg = <0xc0 0x60>;
+			reg = <0x100 0x80>;
 		};
 	};
 
@@ -2517,6 +2517,8 @@
 		bus-width = <4>;
 		no-sdio;
 		no-mmc;
+		qcom,restore-after-cx-collapse;
+		qcom,uses_level_shifter;
 
 		clocks = <&gcc GCC_SDCC2_AHB_CLK>,
 			 <&gcc GCC_SDCC2_APPS_CLK>;
