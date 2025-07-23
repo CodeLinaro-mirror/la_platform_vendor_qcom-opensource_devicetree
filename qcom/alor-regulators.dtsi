@@ -62,9 +62,9 @@
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "ebi.lvl";
 		VDD_EBI_LEVEL:
-		S1C_LEVEL: S1C_E0_LEVEL:
-		pmg1110_c_s1_level: vreg-pmg1110-c-s1-level {
-			regulator-name = "pmg1110_c_s1_level";
+		S6F_LEVEL: S6F_E0_LEVEL:
+		pm8550ve_f_s6_level: vreg-pm8550ve-f-s6-level {
+			regulator-name = "pm8550ve_f_s6_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt =
 				<RPMH_REGULATOR_LEVEL_RETENTION>;
@@ -354,6 +354,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			 RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L3B: L3B_E0: pm_humu_l3: vreg-pm-humu-l3 {
 			regulator-name = "pm_humu_l3";
@@ -669,6 +670,7 @@
 	rpmh-regulator-s1j-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S1J_E0";
+		status = "disabled";
 
 		S1J: S1J_E0: pmg1110_j_s1: vreg-pmg1110-j-s1 {
 			regulator-name = "pmg1110_j_s1";
@@ -682,6 +684,7 @@
 	rpmh-regulator-s1l-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S1L_E0";
+		status = "disabled";
 
 		S1L: S1L_E0: pmg1110_l_s1: vreg-pmg1110-l-s1 {
 			regulator-name = "pmg1110_l_s1";
@@ -776,6 +779,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L5M: L5M_E0: pm8010_m_l5: vreg-pm8010-m-l5 {
 			regulator-name = "pm8010_m_l5";
@@ -909,6 +913,7 @@
 			<RPMH_REGULATOR_MODE_LPM
 			RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 10000>;
+		status = "disabled";
 
 		L5N: L5N_E0: pm8010_n_l5: regulator-pm8010-n-l5 {
 			regulator-name = "pm8010_n_l5";
@@ -1111,7 +1116,7 @@
 
 		S2D: S2D_E0:
 		pm8550ve_d_s2: vreg-pm8550ve-d-s2 {
-			regulator-name = "pm8550ve_d_s3";
+			regulator-name = "pm8550ve_d_s2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <864000>;
 			regulator-max-microvolt = <1100000>;
