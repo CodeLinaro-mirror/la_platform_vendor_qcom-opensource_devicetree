@@ -18,7 +18,10 @@ description: |
 
 properties:
   compatible:
-    const: qti,pmic-lpm
+    items:
+      - enum:
+          - qti,pmic-lpm
+          - qti,pmw6100-pmic-lpm
 
   reg:
     description: Base address of the SDAM peripheral.
