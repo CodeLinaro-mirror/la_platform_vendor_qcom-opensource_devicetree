@@ -152,6 +152,7 @@
 	pinctrl-0 = <&usb3phy_portselect_gpio>;
 	gpios = <&tlmm 60 0>;
 	usb-role-switch;
+	qcom,wcd_usbss = <&wcd_usbss>;
 
 	ssusb_redriver = <&redriver>;
 
