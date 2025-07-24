@@ -18,3 +18,7 @@
 		gh_watchdog: qcom,gh-watchdog { };
 	};
 };
+
+&pdc {
+	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
+};
