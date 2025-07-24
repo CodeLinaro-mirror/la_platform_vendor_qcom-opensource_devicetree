@@ -71,3 +71,14 @@
 &eusb2_phy2 {
 	status = "ok";
 };
+
+&pcie2 {
+	interrupt-parent = <&qvm_vdev_gic>;
+	status = "ok";
+};
+
+&pcie3 {
+	interrupt-parent = <&qvm_vdev_gic>;
+	status = "ok";
+};
+
