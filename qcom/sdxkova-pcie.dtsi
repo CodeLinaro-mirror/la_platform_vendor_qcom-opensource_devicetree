@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,sdx75-gcc.h>
@@ -128,6 +128,8 @@
 		qcom,l1-2-th-value = <150>;
 		qcom,ep-latency = <10>;
 		qcom,num-parf-testbus-sel = <0xb9>;
+		qcom,bdf-halt-dis;
+		qcom,pcie-halt-feature-dis;
 
 		qcom,pcie-phy-ver = <111>;
 		qcom,phy-status-offset = <0x1214>;
@@ -446,6 +448,8 @@
 		qcom,l1-2-th-value = <150>;
 		qcom,ep-latency = <10>;
 		qcom,num-parf-testbus-sel = <0xb9>;
+		qcom,bdf-halt-dis;
+		qcom,pcie-halt-feature-dis;
 
 		qcom,pcie-phy-ver = <112>;
 		qcom,phy-status-offset = <0x214>;
@@ -709,6 +713,8 @@
 		qcom,l1-2-th-value = <150>;
 		qcom,ep-latency = <10>;
 		qcom,num-parf-testbus-sel = <0xb9>;
+		qcom,bdf-halt-dis;
+		qcom,pcie-halt-feature-dis;
 
 		qcom,pcie-phy-ver = <105>;
 		qcom,phy-status-offset = <0x214>;
