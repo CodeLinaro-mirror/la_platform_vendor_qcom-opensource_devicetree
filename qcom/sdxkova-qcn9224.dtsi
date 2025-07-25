@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &reserved_memory {
@@ -152,7 +152,7 @@
 	vreg-3p3-supply = <&pinn_wkk0_vreg>;
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
-	qcom,wr-halt-size = <0x1e>;
+	qcom,pcie-halt-feature-dis;
 	dma-coherent;
 	status = "ok";
 };
@@ -179,7 +179,7 @@
 	vreg-3p3-supply = <&pinn_wkk1_vreg>;
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
-	qcom,wr-halt-size = <0x1e>;
+	qcom,pcie-halt-feature-dis;
 	dma-coherent;
 	status = "ok";
 };
@@ -206,7 +206,7 @@
 	vreg-3p3-supply = <&pinn_wkk2_vreg>;
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
-	qcom,wr-halt-size = <0x1e>;
+	qcom,pcie-halt-feature-dis;
 	dma-coherent;
 	status = "ok";
 };
