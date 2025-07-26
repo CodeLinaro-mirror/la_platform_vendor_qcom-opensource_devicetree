@@ -8,6 +8,7 @@
 #include <dt-bindings/input/linux-event-codes.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/spmi/spmi.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen3-pmc8380.h>
 
 &spmi0_bus {
 	#include "pmk8550.dtsi"
@@ -87,6 +88,48 @@
 	};
 };
 
+&pm8550_tz {
+	io-channels = <&pmk8550_vadc PM8550_ADC5_GEN3_DIE_TEMP>;
+	io-channel-names = "thermal";
+};
+
+
+&pm8550ve_c_tz {
+	io-channels = <&pmk8550_vadc PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+	io-channel-names = "thermal";
+};
+
+&pm8550ve_i_tz {
+	io-channels = <&pmk8550_vadc PM8550VX_ADC5_GEN3_DIE_TEMP(8)>;
+	io-channel-names = "thermal";
+};
+
+&pm8550ve_j_tz {
+	io-channels = <&pmk8550_vadc PM8550VX_ADC5_GEN3_DIE_TEMP(9)>;
+	io-channel-names = "thermal";
+};
+
+
+&pmc8380_d_tz {
+	io-channels = <&pmk8550_vadc PMC8380_ADC5_GEN3_DIE_TEMP(3)>;
+	io-channel-names = "thermal";
+};
+
+&pmc8380_e_tz {
+	io-channels = <&pmk8550_vadc PMC8380_ADC5_GEN3_DIE_TEMP(4)>;
+	io-channel-names = "thermal";
+};
+
+&pmc8380_f_tz {
+	io-channels = <&pmk8550_vadc PMC8380_ADC5_GEN3_DIE_TEMP(5)>;
+	io-channel-names = "thermal";
+};
+
+&pmc8380_g_tz {
+	io-channels = <&pmk8550_vadc PMC8380_ADC5_GEN3_DIE_TEMP(6)>;
+	io-channel-names = "thermal";
+};
+
 &pmk8550_vadc {
 	pm8550_sys_therm_0 {
 		reg = <PM8550_ADC5_GEN3_AMUX1_GPIO3_100K_PU>;
@@ -149,6 +192,48 @@
 		qcom,hw-settle-time = <200>;
 		qcom,pre-scaling = <1 1>;
 		qcom,adc-tm-type = <1>;
+	};
+
+	pm8550ve_c_die_temp {
+		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+		label = "pm8550ve_c_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pm8550ve_i_die_temp {
+		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(8)>;
+		label = "pm8550ve_i_die_temp";
+		qom,pre-scaling = <1 1>;
+	};
+
+	pm8550ve_j_die_temp {
+		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(9)>;
+		label = "pm8550ve_j_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmc8380_d_die_temp {
+		reg = <PMC8380_ADC5_GEN3_DIE_TEMP(3)>;
+		label = "pmc8380_d_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmc8380_e_die_temp {
+		reg = <PMC8380_ADC5_GEN3_DIE_TEMP(4)>;
+		label = "pmc8380_e_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmc8380_f_die_temp {
+		reg = <PMC8380_ADC5_GEN3_DIE_TEMP(5)>;
+		label = "pmc8380_f_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmc8380_g_die_temp {
+		reg = <PMC8380_ADC5_GEN3_DIE_TEMP(6)>;
+		label = "pmc8380_g_die_temp";
+		qcom,pre-scaling = <1 1>;
 	};
 };
 
