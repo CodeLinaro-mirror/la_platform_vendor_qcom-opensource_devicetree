@@ -20,7 +20,9 @@
 
 	chosen { };
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se21_2uart;
+	};
 
 	cpus {
 		#address-cells = <2>;
@@ -1930,3 +1932,9 @@
 };
 
 #include "x1e80100-dma-heaps.dtsi"
+#include "x1e80100-pinctrl.dtsi"
+#include "x1p42100-qupv3.dtsi"
+
+&qupv3_se21_2uart {
+	status = "ok";
+};
