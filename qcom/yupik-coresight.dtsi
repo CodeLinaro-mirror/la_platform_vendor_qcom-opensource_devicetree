@@ -1083,7 +1083,8 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "coresight-turing-etm0";
-		qcom,inst-id = <13>;
+		qcom,atid-num = <2>;
+		atid = <38 39>;
 		trace-name = "turing-etm0";
 
 		out-ports {
@@ -1479,7 +1480,9 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "coresight-modem2-etm0";
-		qcom,inst-id = <11>;
+		qcom,atid-num = <1>;
+		atid = <39>;
+		trace-name = "modem2-etm0";
 
 		out-ports {
 			port {
@@ -1591,7 +1594,9 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "coresight-modem-etm0";
-		qcom,inst-id = <2>;
+		qcom,atid-num = <2>;
+		atid = <36 37>;
+		trace-name = "modem-etm0";
 
 		out-ports {
 			port {
@@ -2191,7 +2196,9 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "coresight-wpss-etm0";
-		qcom,inst-id = <3>;
+		qcom,atid-num = <1>;
+		trace-name = "wpss-etm0";
+		atid = <44>;
 
 		out-ports {
 			port {
@@ -2712,7 +2719,9 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "coresight-audio-etm0";
-		qcom,inst-id = <5>;
+		qcom,atid-num = <2>;
+		trace-name = "audio-etm0";
+		atid = <40 41>;
 
 		out-ports {
 			port {
