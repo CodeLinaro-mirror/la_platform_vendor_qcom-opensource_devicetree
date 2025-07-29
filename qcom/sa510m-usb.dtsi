@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024,2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/clock/qcom,gcc-sdxbaagha.h>
@@ -58,7 +58,12 @@
 			qcom,iommu-dma-addr-pool = <0x90000000 0x60000000>;
 			usb-phy = <&usb2_phy0>,<&usb_nop_phy>;
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+			snps,has-lpm-erratum;
+			snps,hird-threshold = /bits/ 8 <0x0>;
+			snps,is-utmi-l1-suspend;
+			snps,usb2-gadget-lpm-disable;
 			imod-interval-ns = <1000000>;
+			snps,runtime-suspend-on-usb-suspend;
 			/* tx-fifo-resize not required since RAM_DEPTH is 0*/
 			maximum-speed = "high-speed";
 			dr_mode = "otg";
