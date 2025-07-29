@@ -3301,7 +3301,6 @@
 				pins = "gpio122";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
@@ -3331,7 +3330,6 @@
 				pins = "gpio125";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
@@ -3374,7 +3372,6 @@
 				pins = "gpio123";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
@@ -3404,7 +3401,6 @@
 				pins = "gpio124";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
@@ -3550,7 +3546,6 @@
 				pins = "gpio122";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
@@ -3580,7 +3575,6 @@
 				pins = "gpio125";
 				drive-strength = <8>;   /* 8 mA */
 				bias-disable;           /* NO PULL */
-				output-high;
 			};
 		};
 	};
