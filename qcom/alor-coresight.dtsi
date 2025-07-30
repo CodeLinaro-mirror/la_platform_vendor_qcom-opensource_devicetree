@@ -9,10 +9,9 @@
 		arm,primecell-periphid = <0x000bb999>;
 		reg = <0x0 0x11301000 0x0 0x1000>;
 		reg-names = "tgu-base";
-		tgu-steps = <4>;
+		tgu-steps = <3>;
 		tgu-conditions = <4>;
-		tgu-regs = <16>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <17>;
 
 		device-name = "tgu_rpmh";
 
@@ -25,10 +24,9 @@
 		arm,primecell-periphid = <0x000bb999>;
 		reg = <0x0 0x1130e000 0x0 0x1000>;
 		reg-names = "tgu-base";
-		tgu-steps = <3>;
+		tgu-steps = <2>;
 		tgu-conditions = <4>;
 		tgu-regs = <4>;
-		tgu-timer-counters = <8>;
 
 		device-name = "tgu_ipcb";
 
@@ -45,8 +43,7 @@
 
 		tgu-steps = <3>;
 		tgu-conditions = <4>;
-		tgu-regs = <9>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <8>;
 
 		device-name = "tgu_spmi0";
 
@@ -61,10 +58,9 @@
 		reg = <0x0 0x11310000 0x0 0x1000>;
 		reg-names = "tgu-base";
 
-		tgu-steps = <3>;
+		tgu-steps = <2>;
 		tgu-conditions = <4>;
-		tgu-regs = <9>;
-		tgu-timer-counters = <8>;
+		tgu-regs = <8>;
 
 		device-name = "tgu_spmi1";
 
@@ -4287,7 +4283,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			port@4 {
+			port@3 {
 				reg = <3>;
 				tpda_dl2_4_in_funnel_wpss: endpoint {
 					remote-endpoint =
@@ -4295,7 +4291,7 @@
 				};
 			};
 
-			port@5 {
+			port@4 {
 				reg = <4>;
 				tpda_dl2_5_in_funnel_wpss: endpoint {
 					remote-endpoint =
