@@ -1989,7 +1989,6 @@
 			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
 			qcom,intents = <0x1000 10>;
-			qcom,glinkpkt-enable-ch-close;
 		};
 
 		qcom,glinkpkt-socket-offload {
@@ -1997,7 +1996,6 @@
 			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
 			qcom,intents = <0x1000 10>;
-			qcom,glinkpkt-enable-ch-close;
 		};
 
 		qcom,glinkpkt-gatt-offload {
@@ -2005,7 +2003,6 @@
 			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
 			qcom,intents = <0x1000 10>;
-			qcom,glinkpkt-enable-ch-close;
 		 };
 
 		qcom,glinkpkt-wm-qsh-0 {
@@ -2076,7 +2073,6 @@
 			qcom,glinkpkt-ch-name = "contexthub_hal_app_mgr_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_app_mgr_chnl";
 			qcom,intents = <0x1000 10>;
-			qcom,glinkpkt-enable-ch-close;
 		};
 
 		qcom,glinkpkt-contexthub-hal-offload-mgr-chnl {
@@ -2084,7 +2080,6 @@
 			qcom,glinkpkt-ch-name = "contexthub_hal_offload_mgr_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_offload_mgr_chnl";
 			qcom,intents = <0x1000 10>;
-			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 
