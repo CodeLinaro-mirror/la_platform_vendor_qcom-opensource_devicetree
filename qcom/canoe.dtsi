@@ -3749,8 +3749,7 @@
 		ranges;
 
 		ssip_config: ssip_config@148 {
-			reg = <0x148 0x2>;
-			bit = <3 3>;
+			reg = <0x148 0x4>;
 		};
 
 		disp_qultiv_fuse:disp_qultiv_fuse@144 {
