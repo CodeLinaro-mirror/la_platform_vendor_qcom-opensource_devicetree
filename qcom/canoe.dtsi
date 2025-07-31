@@ -3766,6 +3766,11 @@
 			reg = <0x142 0x2>;
 			bits = <3 9>;
 		};
+
+		cpr_gfx_rc: cpr_gfx_rc@999 {
+			reg = <0x999 0x1>;
+			bits = <0 3>;
+		};
 	};
 
 	cnss_audio_iommu_group0: cnss_audio_iommu_group0 {
