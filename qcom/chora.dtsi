@@ -276,6 +276,56 @@
 		/* TODO: Add qcom,gpios-reserved */
 	};
 
+	qcom,memshare {
+		compatible = "qcom,memshare";
+
+		qcom,client_gps {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "gps";
+			qcom,peripheral-size = <0x0>;
+			qcom,client-id = <0>;
+			qcom,allocate-boot-time;
+			label = "modem";
+		};
+
+		qcom,client_ftm {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "ftm";
+			qcom,peripheral-size = <0x0>;
+			qcom,client-id = <2>;
+			label = "modem";
+		};
+
+		qcom,client_diag {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "diag";
+			qcom,peripheral-size = <0x500000>;
+			qcom,client-id = <1>;
+			qcom,allocate-on-request;
+			label = "modem";
+		};
+
+		qcom,client_ims_1 {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "ims_1";
+			qcom,peripheral-size = <0x100000>;
+			qcom,client-id = <7>;
+			qcom,allocate-on-request;
+			qcom,shared;
+			label = "modem";
+		};
+
+		qcom,client_ims_2 {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "ims_2";
+			qcom,peripheral-size = <0x100000>;
+			qcom,client-id = <8>;
+			qcom,allocate-on-request;
+			qcom,shared;
+			label = "modem";
+		};
+	};
+
 	apps_smmu: smmu {};
 };
 
