@@ -317,7 +317,6 @@
 	};
 
 	soc: soc { };
-	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 };
 
 #include "alor-reserved-memory.dtsi"
@@ -3672,6 +3671,8 @@
 			qcom,glinkpkt-dev-name = "bt_cp_ctrl";
 		};
 	};
+
+	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 };
 
 #include "alor-debug.dtsi"
