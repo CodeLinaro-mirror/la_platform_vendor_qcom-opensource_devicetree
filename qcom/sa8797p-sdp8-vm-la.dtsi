@@ -83,17 +83,17 @@
 };
 
 &usb1 {
-	power-domains = <&scmi_power 13>, <&scmi_power 14>;
 	interrupts-extended = <&qvm_vdev_gic GIC_SPI 918 IRQ_TYPE_LEVEL_HIGH>,
 			<&pdc 41 IRQ_TYPE_LEVEL_HIGH>,
 			<&pdc 13 IRQ_TYPE_EDGE_RISING>,
 			<&pdc 12 IRQ_TYPE_EDGE_RISING>;
+	status = "ok";
 };
 
 &usb_1_qmp_combo_phy {
-	power-domains = <&scmi_power 18>, <&scmi_power 17>;
+	status = "ok";
 };
 
 &eusb2_phy1 {
-	power-domains = <&scmi_power 16>, <&scmi_power 15>;
+	status = "ok";
 };
