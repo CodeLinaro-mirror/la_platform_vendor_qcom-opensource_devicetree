@@ -2473,6 +2473,11 @@
 		qcom,vmid = <3>;
 	};
 
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
 	sdhc1_opp_table: sdhc1-opp-table {
 		compatible = "operating-points-v2";
 
