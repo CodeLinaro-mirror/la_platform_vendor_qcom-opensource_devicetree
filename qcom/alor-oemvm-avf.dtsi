@@ -164,6 +164,14 @@
 	};
 };
 
+&reserved_memory {
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+};
+
 &soc {
 	#address-cells = <2>;
 	#size-cells = <2>;
@@ -180,6 +188,8 @@
 				&qmsgq_gunyah
 				&qcom_qrtr
 				&qrtr_gunyah
+				&google_debug_kinfo
+				&kinfo_mem
 				>;
 	};
 
@@ -254,6 +264,10 @@
 		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
+	google_debug_kinfo: google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
 };
 
 #include "alor-oemvm-rm-info-avf.dtsi"
