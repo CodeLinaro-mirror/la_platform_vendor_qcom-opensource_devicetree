@@ -378,6 +378,12 @@
 		interrupt-parent = <&qvm_vdev_gic>;
 		interrupt-controller;
 	};
+
+	qcom_rng_ee13: qrng@10cd000 {
+		compatible = "qcom,trng";
+		reg = <0x10cd000 0x1000>;
+		status = "ok";
+	};
 };
 
 &firmware {
