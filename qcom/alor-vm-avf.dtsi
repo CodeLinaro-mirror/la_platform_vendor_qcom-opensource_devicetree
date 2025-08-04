@@ -279,6 +279,14 @@
 	};
 };
 
+&reserved_memory {
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+};
+
 &soc {
 	#address-cells = <2>;
 	#size-cells = <2>;
@@ -293,6 +301,7 @@
 		reg = <0x0 0x0 0x0 0x0>;
 		required-subnodes = <&qcom_scm
 			&dmesg_dump
+			&kinfo_mem
 			&tlmm_vm_mem_access
 			&tlmm_vm_test
 			&qcom_test_dbl_tuivm
@@ -303,6 +312,7 @@
 			&mem_buf_msgq
 			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
+			&google_debug_kinfo
 			&qcom_dma_heaps
 			&qcom_smcinvoke
 			&qcom_mem_object
@@ -474,6 +484,11 @@
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <0x109>;
+	};
+
+	google_debug_kinfo: google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
 	};
 
 	tlmm_vm_test: tlmm-vm-test {
