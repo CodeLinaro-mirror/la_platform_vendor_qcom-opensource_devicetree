@@ -1387,6 +1387,9 @@
 					#clock-cells = <1>;
 				};
 
+				apps_bcm_voter: bcm_voter {
+					compatible = "qcom,bcm-voter";
+				};
 			};
 		};
 
