@@ -420,7 +420,6 @@
 	qmsgq_gunyah: qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <0x103>;
-		peer = <4>;
 	};
 
 	qcom_gh_qtimer: qcom,gh-qtimer@1781b000 {

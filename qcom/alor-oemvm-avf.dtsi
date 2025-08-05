@@ -208,7 +208,6 @@
 	qmsgq_gunyah: msgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <0x103>;
-		peer = <2>;
 	};
 
 	gh_qtimer: qcom,gh-qtimer@1781b000 {
