@@ -884,9 +884,9 @@
 		out-ports {
 			port@0 {
 				reg = <0>;
-				turing_etm0_out_funnel_turing_dup: endpoint {
+				turing_etm0_out_funnel_turing_dup1: endpoint {
 					remote-endpoint =
-						<&funnel_turing_dup_in_turing_etm0>;
+						<&funnel_turing_dup1_in_turing_etm0>;
 				};
 			};
 
@@ -900,14 +900,14 @@
 		};
 	};
 
-	funnel_turing_dup: funnel@1114c000 {
+	funnel_turing_dup1: funnel@1118a000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb908>;
-		reg = <0x0 0x1114c000 0x0 0x1000>,
+		reg = <0x0 0x1118a000 0x0 0x1000>,
 			<0x0 0x11189000 0x0 0x1000>;
 		reg-names = "funnel-base-dummy", "funnel-base-real";
 
-		device-name = "funnel_turing_dup";
+		device-name = "funnel_turing_dup1";
 
 		qcom,duplicate-funnel;
 		clocks = <&aoss_qmp>;
@@ -918,18 +918,88 @@
 			#size-cells = <0>;
 			port@3 {
 				reg = <3>;
-				funnel_turing_dup_in_turing_etm0: endpoint {
+				funnel_turing_dup1_in_turing_etm0: endpoint {
 					remote-endpoint =
-					<&turing_etm0_out_funnel_turing_dup>;
+					<&turing_etm0_out_funnel_turing_dup1>;
 				};
 			};
 		};
 
 		out-ports {
 			port {
-				funnel_turing_dup_out_funnel_turing: endpoint {
+				funnel_turing_dup1_out_funnel_turing_dup2: endpoint {
 					remote-endpoint =
-					<&funnel_turing_in_funnel_turing_dup>;
+					<&funnel_turing_dup2_in_funnel_turing_dup1>;
+				};
+			};
+		};
+	};
+
+	funnel_turing_dup2: funnel@1118b000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+		reg = <0x0 0x1118b000 0x0 0x1000>,
+			<0x0 0x11189000 0x0 0x1000>;
+		reg-names = "funnel-base-dummy", "funnel-base-real";
+
+		device-name = "funnel_turing_dup2";
+
+		qcom,duplicate-funnel;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@4 {
+				reg = <4>;
+				funnel_turing_dup2_in_funnel_turing_dup1: endpoint {
+					remote-endpoint =
+					<&funnel_turing_dup1_out_funnel_turing_dup2>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				funnel_turing_dup2_out_funnel_turing_dup3: endpoint {
+					remote-endpoint =
+					<&funnel_turing_dup3_in_funnel_turing_dup2>;
+				};
+			};
+		};
+	};
+
+	funnel_turing_dup3: funnel@1118c000 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb908>;
+		reg = <0x0 0x1118c000 0x0 0x1000>,
+			<0x0 0x11189000 0x0 0x1000>;
+		reg-names = "funnel-base-dummy", "funnel-base-real";
+
+		device-name = "funnel_turing_dup3";
+
+		qcom,duplicate-funnel;
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@5 {
+				reg = <5>;
+				funnel_turing_dup3_in_funnel_turing_dup2: endpoint {
+					remote-endpoint =
+					<&funnel_turing_dup2_out_funnel_turing_dup3>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				funnel_turing_dup3_out_funnel_turing: endpoint {
+					remote-endpoint =
+					<&funnel_turing_in_funnel_turing_dup3>;
 				};
 			};
 		};
@@ -957,11 +1027,11 @@
 				};
 			};
 
-			port@4 {
-				reg = <4>;
-				funnel_turing_in_funnel_turing_dup: endpoint {
+			port@6 {
+				reg = <6>;
+				funnel_turing_in_funnel_turing_dup3: endpoint {
 					remote-endpoint =
-					<&funnel_turing_dup_out_funnel_turing>;
+					<&funnel_turing_dup3_out_funnel_turing>;
 				};
 			};
 		};
