@@ -934,6 +934,34 @@
 			"llcc_broadcast_and_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
+		ranges;
+
+		scid_heuristics {
+			compatible = "qcom,scid-heuristics";
+			qcom,heuristics-scid = <28>;
+			/* Need to update different value for V2 device */
+			qcom,freq-threshold-idx = <1065600>, <1065600>, <1065600>, <1065600>,
+					<1065600>, <1065600>, <1255680>, <1255680>;
+			qcom,frequency-threshold-residency = <1500>, <1500>, <1500>, <1500>,
+					<1500>, <1500>, <1500>, <1500>;
+			qcom,scid-heuristics-enabled;
+		};
+
+		slc_perfmon: qcom,slc_perfmon {
+			compatible = "qcom,slc-perfmon";
+			/* Use mpam memory with the offset of 512B and size of 512B */
+			reg = <0x0 0x1d83a800 0x0 0x400>,
+				<0x0 0x31800000 0x0 0x60000>, <0x0 0x32800000 0x0 0x60000>,
+				<0x0 0x31C00000 0x0 0x60000>, <0x0 0x32C00000 0x0 0x60000>,
+				<0x0 0x34800000 0x0 0x60000>;
+			reg-names = "perfmon_base",
+				"trp_0_base", "trp_1_base", "trp_2_base", "trp_3_base",
+				"trp_or_bcast_base";
+			perfmon_offset = <0x300>;
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			slc-scid-status-snapshot;
+		};
 	};
 
 	gic-interrupt-router {
