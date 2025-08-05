@@ -2816,6 +2816,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_lpass";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2871,6 +2872,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_soccp";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2927,6 +2929,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_video";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2983,6 +2986,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_eva";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3081,6 +3085,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_mdss";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3176,6 +3181,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_gpu";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3412,6 +3418,7 @@
 		reg-names = "traceNoc-base";
 
 		device-name = "tracenoc_ddr";
+		qcom,interconnect-trace-noc;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3868,6 +3875,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		qcom,trace-noc-v2;
 
 		in-ports {
 			#address-cells = <1>;
