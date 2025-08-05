@@ -335,15 +335,14 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71 87 100 128 146 86 88 161 55>;
+		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71 87 100 128>;
 	};
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
 					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0 &tlmm 87 0
-					&tlmm 100 0 &tlmm 128 0 &tlmm 146 0 &tlmm 86 0 &tlmm 88 0
-					&tlmm 161 0 &tlmm 55 0>;
+					&tlmm 100 0 &tlmm 128 0>;
 	};
 
 	wdog: qcom,wdt@17600000 {
