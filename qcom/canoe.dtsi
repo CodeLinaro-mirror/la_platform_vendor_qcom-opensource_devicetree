@@ -2330,6 +2330,13 @@
 		qcom,low-latency;
 	};
 
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1111>;
+		qcom,net-id = <1>;
+		qcom,low-latency;
+	};
+
 	soccp_pas: remoteproc-soccp@a3380000 {
 		compatible = "qcom,canoe-soccp-pas";
 		reg = <0x0 0xa3380000 0x0 0x10000>;
