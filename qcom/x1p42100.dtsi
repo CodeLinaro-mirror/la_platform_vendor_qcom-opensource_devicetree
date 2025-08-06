@@ -222,5 +222,4 @@
 	qcom,num-qtb-ports = <2>;
 };
 
-#include "x1p42100-pcie.dtsi"
 

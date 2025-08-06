@@ -28,7 +28,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat";
 	};
 
 	aliases {
@@ -2622,6 +2622,7 @@
 #include "x1e80100-dma-heaps.dtsi"
 #include "x1e80100-pinctrl.dtsi"
 #include "x1e80100-qupv3.dtsi"
+#include "x1e80100-pcie.dtsi"
 
 &qupv3_se21_2uart {
 	status = "ok";
