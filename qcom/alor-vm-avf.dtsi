@@ -113,7 +113,8 @@
 				  625 625>; /* PVM->SVM IRQ transfer */
 
 		segments {
-			ramdisk = <2>;
+			fallback-dtb = <2>;
+			ramdisk = <3>;
 		};
 
 		vcpus {
@@ -335,14 +336,15 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71 87 100 128>;
+		gpios = /bits/ 16 <12 48 49 50 51 68 69 70 71 87 100 128 146 86 88 161 55>;
 	};
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0 &tlmm 51 0
 					&tlmm 68 0 &tlmm 69 0 &tlmm 70 0 &tlmm 71 0 &tlmm 87 0
-					&tlmm 100 0 &tlmm 128 0>;
+					&tlmm 100 0 &tlmm 128 0 &tlmm 146 0 &tlmm 86 0 &tlmm 88 0
+					&tlmm 161 0 &tlmm 55 0>;
 	};
 
 	wdog: qcom,wdt@17600000 {
@@ -420,6 +422,7 @@
 	qmsgq_gunyah: qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <0x103>;
+		peer = <4>;
 	};
 
 	qcom_gh_qtimer: qcom,gh-qtimer@1781b000 {
@@ -558,7 +561,7 @@
 		qcom,ev-factor = <1>;
 		qcom,gpi-ee-offset = <0x10000>;
 		qcom,le-vm;
-		status = "disabled";
+		status = "ok";
 	};
 
 	/* QUPv3_1 wrapper instance */
@@ -575,7 +578,7 @@
 		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		ranges;
-		status = "disabled";
+		status = "ok";
 		required-subnodes = <&qupv3_se4_i2c &qupv3_se4_spi>;
 
 		/* Touchscreen I2C Instance */

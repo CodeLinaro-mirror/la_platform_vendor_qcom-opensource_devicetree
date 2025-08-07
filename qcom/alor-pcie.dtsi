@@ -74,6 +74,9 @@
 		reset-names = "pcie_0_core_reset",
 				"pcie_0_phy_reset";
 
+		power-domains = <&gcc GCC_PCIE_0_PHY_GDSC>;
+		power-domain-names = "gdsc-phy-vdd";
+
 		dma-coherent;
 		qcom,smmu-sid-base = <0x1400>;
 		iommu-map = <0x0 &apps_smmu 0x1400 0x1>,

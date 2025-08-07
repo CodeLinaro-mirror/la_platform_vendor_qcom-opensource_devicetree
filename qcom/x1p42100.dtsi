@@ -6,6 +6,9 @@
 /* X1P42100 is heavily based on X1E80100, with some meaningful differences */
 #include "x1e80100.dtsi"
 #include "x1p42100-regulators.dtsi"
+#include "x1e80100-pmic-overlay.dtsi"
+#include "x1e80100-thermal-overlay.dtsi"
+#include "x1p42100-debug.dtsi"
 
 /delete-node/ &CPU8;
 /delete-node/ &CPU9;
@@ -18,3 +21,10 @@
 		gh_watchdog: qcom,gh-watchdog { };
 	};
 };
+
+&pdc {
+	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
+};
+
+#include "x1p42100-pcie.dtsi"
+

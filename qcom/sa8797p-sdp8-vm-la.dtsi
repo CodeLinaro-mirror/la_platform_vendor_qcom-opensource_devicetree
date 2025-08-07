@@ -3,6 +3,10 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/mailbox/qcom-ipcc-sa8797p.h>
+
 &{/} {
 	rename_devices: rename_devices {
 		compatible = "qcom,rename-devices";
@@ -26,6 +30,18 @@
 	};
 	aliases: aliases {
 		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
+	};
+};
+
+&soc {
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
 	};
 };
 
@@ -54,4 +70,30 @@
 
 &eusb2_phy2 {
 	status = "ok";
+};
+
+&pcie2 {
+	interrupt-parent = <&qvm_vdev_gic>;
+	status = "ok";
+};
+
+&pcie3 {
+	interrupt-parent = <&qvm_vdev_gic>;
+	status = "ok";
+};
+
+&usb1 {
+	power-domains = <&scmi_power 13>, <&scmi_power 14>;
+	interrupts-extended = <&qvm_vdev_gic GIC_SPI 918 IRQ_TYPE_LEVEL_HIGH>,
+			<&pdc 41 IRQ_TYPE_LEVEL_HIGH>,
+			<&pdc 13 IRQ_TYPE_EDGE_RISING>,
+			<&pdc 12 IRQ_TYPE_EDGE_RISING>;
+};
+
+&usb_1_qmp_combo_phy {
+	power-domains = <&scmi_power 18>, <&scmi_power 17>;
+};
+
+&eusb2_phy1 {
+	power-domains = <&scmi_power 16>, <&scmi_power 15>;
 };

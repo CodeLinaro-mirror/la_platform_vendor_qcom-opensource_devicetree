@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
@@ -55,6 +55,7 @@ properties:
           - qcom,pm8994-gpio
           - qcom,pm8998-gpio
           - qcom,pma8084-gpio
+          - qcom,pmc8380-gpio
           - qcom,pmd802x-gpio
           - qcom,pmh0101-gpio
           - qcom,pmh0104-gpio
@@ -226,6 +227,7 @@ allOf:
               - qcom,pm8150-gpio
               - qcom,pm8350-gpio
               - qcom,pmc8180-gpio
+              - qcom,pmc8380-gpio
               - qcom,pmi8994-gpio
               - qcom,pmm8155au-gpio
               - qcom,pmiv010x-gpio
@@ -474,6 +476,7 @@ $defs:
                  - gpio1-gpio22 for pm8994
                  - gpio1-gpio26 for pm8998
                  - gpio1-gpio22 for pma8084
+                 - gpio1-gpio10 for pmc8380
                  - gpio1-gpio4 for pmd802x
                  - gpio1-gpio18 for pmh0101
                  - gpio1-gpio8 for pmh0104

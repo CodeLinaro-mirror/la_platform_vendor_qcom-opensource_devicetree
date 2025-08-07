@@ -122,6 +122,14 @@ properties:
               - qcom,rumi
           - const: qcom,alor
 
+      - description: Qualcomm Technologies, Inc. WHALE
+        items:
+          - const: qcom,whale
+
+      - description: Qualcomm Technologies, Inc. WHALEP
+        items:
+          - const: qcom,whalep
+
       - description: Qualcomm Technologies, Inc. Chora
         items:
           - enum:

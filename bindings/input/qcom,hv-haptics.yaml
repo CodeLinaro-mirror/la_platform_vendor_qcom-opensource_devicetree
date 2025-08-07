@@ -81,6 +81,18 @@ properties:
     enum: [0, 1, 2, 3]
     default: 3  # AUTO brake mode
 
+  qcom,swr-brake-vmax-mv:
+    description: |
+      The maximum allowed output voltage in millivolts for the brake patterns
+      played after SWR mode play. The value will be rounded to the closest
+      multiple of 50 mV. This value overrides the value specified in either
+      main device node "qcom,vmax-mv" property or effect sub-node
+      "qcom,wf-vmax-mv" property before triggering a SWR mode play. This is
+      only applicable for HAP530_HV haptics module and above.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    minimum: 0
+    maximum: 11000
+
   qcom,swr-brake-pattern:
     description: |
       Brake pattern byte array for SWR play. The array needs to be specified as
@@ -422,6 +434,12 @@ allOf:
     else:
       required:
         - qcom,lra-period-us
+  - if:
+      required:
+        - qcom,swr-brake-mode
+    then:
+      properties:
+        qcom,swr-brake-vmax-mv: true
 
 additionalProperties: false
 

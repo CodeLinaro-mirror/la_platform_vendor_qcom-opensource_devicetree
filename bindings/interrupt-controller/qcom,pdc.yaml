@@ -41,6 +41,7 @@ properties:
           - qcom,alor-pdc
           - qcom,yupik-pdc
           - qcom,x1e80100-pdc
+          - qcom,x1p42100-pdc
       - const: qcom,pdc
 
   reg:

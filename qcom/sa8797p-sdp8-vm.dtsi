@@ -373,13 +373,31 @@
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,pdc";
 		reg = <0xb220000 0x10000>;
-		qcom,pdc-ranges = <7 752 2>;
+		qcom,pdc-ranges = <7 752 2>, <12 757 2>, <41 786 1>;
 		#interrupt-cells = <2>;
 		interrupt-parent = <&qvm_vdev_gic>;
 		interrupt-controller;
 	};
 };
 
+&firmware {
+	scm {
+		compatible = "qcom,scm";
+		qcom,scm-hab;
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <512>;
+		qcom,support-hypervisor;
+	};
+};
+
 #include "sa8797p-pinctrl.dtsi"
 #include "sa8797p-vm-qupv3.dtsi"
 #include "sa8797p-vm-usb.dtsi"
+#include "sa8797p-sdp8-vm-pcie.dtsi"
