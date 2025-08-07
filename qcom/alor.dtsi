@@ -1360,6 +1360,10 @@
 		interrupt-names = "smp2p-sleepstate-in";
 	};
 
+	qcom,glink {
+		compatible = "qcom,glink";
+	};
+
 	qcom,msm-imem@14680000 {
 		compatible = "qcom,msm-imem";
 		reg = <0x0 0x14680000 0x0 0x1000>;
