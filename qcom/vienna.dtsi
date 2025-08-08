@@ -2188,7 +2188,13 @@
 		depends-on-supply = <&ipcc_mproc>;
 
 		battery_charger: qcom,battery_charger {
-			compatible = "qcom,battery-charger";
+			compatible = "qcom,pmw6100-battery-charger";
+
+			nfc_vreg: qcom,nfc-vreg {
+				regulator-name = "nfc-vreg";
+				regulator-min-microvolt = <4100000>;
+				regulator-max-microvolt = <5600000>;
+			};
 		};
 
 		ucsi: qcom,ucsi {
