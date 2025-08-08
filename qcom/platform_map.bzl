@@ -632,6 +632,16 @@ _platform_map = {
             {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },
+    "pikachu": {
+        "dtb_list": [
+            {"name": "pikachu.dtb"},
+        ],
+        "dtbo_list": [
+            {
+                "name": "pikachu-rumi-overlay.dtbo",
+            },
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):
