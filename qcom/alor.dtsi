@@ -2167,10 +2167,11 @@
 	qcom_pmu: qcom,pmu {
 		compatible = "qcom,pmu";
 		qcom,long-counter;
+		qcom,ignore-llcc-setup;
 		qcom,pmu-events-tbl =
 			< 0x0008 0xFF 0x02 0x02 >,
 			< 0x0011 0xFF 0x01 0x00 >,
-			< 0x0017 0xFF 0xFF 0x04 >,
+			< 0x0017 0xFF 0xFF 0x05 >,
 			< 0x1000 0xFF 0xFF 0x08 >;
 	};
 
@@ -2271,7 +2272,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 			qcom,sampling-path = <&ddr_dcvs_fp>;
-			qcom,miss-ev = <0x1000>;
+			qcom,miss-ev = <0x17>;
 
 			gold {
 				compatible = "qcom,memlat-mon";
@@ -2283,7 +2284,7 @@
 					< 1555200 2092000 >,
 					< 2611200 3187000 >,
 					< 3321600 3686000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			prime {
@@ -2297,7 +2298,7 @@
 					< 2841600 3686000 >,
 					< 3072000 4224000 >,
 					< 3430000 4780000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			gold-compute {
@@ -2306,7 +2307,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 1996800  547000 >,
 					< 2611200 2092000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 				qcom,compute-mon;
 			};
 
@@ -2316,7 +2317,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 2841600  547000 >,
 					< 3072000 4224000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 		};
 
@@ -2335,7 +2336,7 @@
 					< 1747200  533000 >,
 					< 2611200  806000 >,
 					< 3321600  933000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			prime {
@@ -2349,7 +2350,7 @@
 					< 2841600  933000 >,
 					< 3072000 1066000 >,
 					< 3430000 1350000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			gold-compute {
@@ -2358,7 +2359,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 1996800  282000 >,
 					< 2611200  533000 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 				qcom,compute-mon;
 			};
 		};
@@ -2367,7 +2368,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
 			qcom,sampling-path = <&ddrqos_dcvs_sp>;
-			qcom,miss-ev = <0x1000>;
+			qcom,miss-ev = <0x17>;
 
 			ddrqos_gold_lat: gold {
 				compatible = "qcom,memlat-mon";
@@ -2375,7 +2376,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 1900000 0 >,
 					< 2800000 1 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			ddrqos_prime_lat: prime {
@@ -2384,7 +2385,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 1497000 0 >,
 					< 3200000 1 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 
 			ddrqos_prime_latfloor: prime-latfloor {
@@ -2393,7 +2394,7 @@
 				qcom,cpufreq-memfreq-tbl =
 					< 2112000 0 >,
 					< 3200000 1 >;
-				qcom,sampling-enabled;
+				qcom,cpucp-enabled;
 			};
 		};
 	};
