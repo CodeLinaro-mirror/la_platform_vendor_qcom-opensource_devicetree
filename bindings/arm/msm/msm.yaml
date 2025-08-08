@@ -253,6 +253,13 @@ properties:
               - qcom,wrd
           - const: qcom,viennap
 
+      - description: Qualcomm Technologies, Inc. X1E80100
+        items:
+          - enum:
+              - qcom,x1e80100-crd
+              - qcom,crd
+          - const: qcom,x1e80100
+
       - description: Qualcomm Technologies, Inc. X1P42100
         items:
           - enum:
