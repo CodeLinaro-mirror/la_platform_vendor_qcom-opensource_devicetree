@@ -17,6 +17,7 @@ description: |
   - dt-bindings/clock/qcom,tcsrcc-pineapple.h
   - dt-bindings/clock/qcom,tcsrcc-sun.h
   - dt-bindings/clock/qcom,tcsrcc-canoe.h
+  - dt-bindings/clock/qcom,tcsrcc-chora.h
 
 properties:
   compatible:
@@ -24,6 +25,7 @@ properties:
       - qcom,pineapple-tcsrcc
       - qcom,sun-tcsrcc
       - qcom,canoe-tcsrcc
+      - qcom,chora-tcsrcc
 
 required:
   - compatible
