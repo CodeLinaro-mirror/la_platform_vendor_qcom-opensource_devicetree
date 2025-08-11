@@ -2367,6 +2367,7 @@
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
+					< 1190000  451200 >,
 					< 1785000  547200 >,
 					< 2112000 1353600 >;
 			};
