@@ -64,6 +64,14 @@ qcom,pmk8550@0 {
 		fmd_cnt2_stop: fmd-cnt2-stop@a2 {
 			reg = <0xa2 0x1>;
 		};
+
+		bob1_off_mode_enable: bob1-off-mode-enable@50 {
+			reg = <0x50 0x1>;
+		};
+
+		xo_calib_data: xo_calib-data@59 {
+			reg = <0x59 0x1>;
+		};
 	};
 
 	pmk8550_sdam_5: sdam@7400 {
