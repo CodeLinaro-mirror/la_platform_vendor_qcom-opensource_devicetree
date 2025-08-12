@@ -20,6 +20,7 @@
 #include <dt-bindings/clock/qcom,x1p42100-camcc.h>
 #include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 #include <dt-bindings/clock/qcom,x1p42100-av1ecc.h>
+#include <dt-bindings/clock/qcom,sm8650-videocc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -2259,8 +2260,8 @@
 		};
 
 		videocc: clock-controller@aaf0000 {
-			compatible = "qcom,x1p42100-videocc", "syscon";
-			reg = <0x0 0xaaf0000 0x0 0x10000>;
+			compatible = "qcom,x1e80100-videocc", "syscon";
+			reg = <0x0 0x0aaf0000 0x0 0x10000>;
 			reg-name = "cc_base";
 			vdd_mm-supply = <&VDD_MM_LEVEL>;
 			vdd_mxc-supply = <&VDD_MXC_LEVEL>;
