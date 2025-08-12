@@ -305,6 +305,10 @@
 		};
 	};
 
+	hypervisor: hypervisor {
+		gh_watchdog: qcom,gh-watchdog { };
+	};
+
 	memory@80000000 {
 		device_type = "memory";
 		/* We expect the bootloader to fill in the size */
