@@ -51,6 +51,7 @@ canoe-dtb-$(CONFIG_ARCH_CANOE) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS) $(CANOE_BASE_DTB) $(CANOE_APQ_BASE_DTB)
 
 ALOR_BASE_DTB += alor.dtb
+ALOR_APQ_BASE_DTB += alorp.dtb
 
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
@@ -69,8 +70,9 @@ NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_ALOR) += \
-	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
+	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))\
+	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB)
 
 CHORA_BASE_DTB += chora.dtb
 

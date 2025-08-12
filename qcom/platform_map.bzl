@@ -74,6 +74,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "alor.dtb"},
+            {
+                "name": "alorp.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
