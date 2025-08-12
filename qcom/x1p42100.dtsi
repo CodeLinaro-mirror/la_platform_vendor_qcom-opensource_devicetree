@@ -205,8 +205,7 @@
 };
 
 &camcc {
-	interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
-	interconnect-names = "cam-to-ddr";
+	compatible = "qcom,x1p42100-camcc", "syscon";
 };
 
 &videocc {
