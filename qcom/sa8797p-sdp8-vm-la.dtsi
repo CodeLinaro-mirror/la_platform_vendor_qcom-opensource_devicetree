@@ -102,3 +102,35 @@
 &eusb2_phy1 {
 	status = "ok";
 };
+
+&remoteproc_cdsp_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <0>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp1_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <1>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp2_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <2>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp3_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <3>;
+		dsp-type = <1>;
+	};
+};
