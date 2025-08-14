@@ -219,3 +219,11 @@
 	dummy-supply = <&pmih010x_eusb2_repeater>;
 	usb-repeater = <&pmih010x_eusb2_repeater>;
 };
+
+&pmk8550_vadc {
+	/delete-node/ pm8550_sys_therm_12;
+};
+
+&thermal_zones {
+	/delete-node/ sys-therm-12;
+};
