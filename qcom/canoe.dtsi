@@ -2330,6 +2330,13 @@
 		qcom,low-latency;
 	};
 
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1111>;
+		qcom,net-id = <1>;
+		qcom,low-latency;
+	};
+
 	soccp_pas: remoteproc-soccp@a3380000 {
 		compatible = "qcom,canoe-soccp-pas";
 		reg = <0x0 0xa3380000 0x0 0x10000>;
@@ -2720,6 +2727,18 @@
 				qcom,glinkpkt-edge = "cdsp";
 				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_CDSP";
 				qcom,glinkpkt-dev-name = "glink_pkt_data_cdsp";
+		};
+
+		qcom,glinkpkt-ctrl-soccp {
+				qcom,glinkpkt-edge = "soccp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_SOCCP";
+				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_soccp";
+		};
+
+		qcom,glinkpkt-data-soccp {
+				qcom,glinkpkt-edge = "soccp";
+				qcom,glinkpkt-ch-name = "LOOPBACK_DATA_SOCCP";
+				qcom,glinkpkt-dev-name = "glink_pkt_data_soccp";
 		};
 
 		qcom,glinkpkt-ctrl-lpass {
@@ -3765,8 +3784,7 @@
 		};
 
 		ssip_config: ssip_config@148 {
-			reg = <0x148 0x2>;
-			bit = <3 3>;
+			reg = <0x148 0x4>;
 		};
 
 		disp_qultiv_fuse:disp_qultiv_fuse@144 {

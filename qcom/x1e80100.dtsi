@@ -11,6 +11,7 @@
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,x1p42100-gcc.h>
 #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
+#include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -231,19 +232,19 @@
 
 			cpu_map_cluster2: cluster2 {
 				core0 {
-					cpu = <&cpu8>;
+					cpu = <&CPU8>;
 				};
 
 				core1 {
-					cpu = <&cpu9>;
+					cpu = <&CPU9>;
 				};
 
 				core2 {
-					cpu = <&cpu10>;
+					cpu = <&CPU10>;
 				};
 
 				core3 {
-					cpu = <&cpu11>;
+					cpu = <&CPU11>;
 				};
 
 			};
@@ -663,6 +664,14 @@
 			size = <0x0 0xC00000>;
 		};
 
+		cdsp_secure_heap_cma: secure_cdsp_region { /* Secure DSP */
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+			reusable;
+			alignment = <0x0 0x400000>;
+			size = <0x0 0x4800000>;
+		};
+
 		kinfo_mem: debug_kinfo_region {
 			alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
 			size = <0x0 0x1000>;
@@ -800,6 +809,12 @@
 			compatible = "qcom,tcsr-mutex";
 			syscon = <&tcsr_mutex_block 0 0x1000>;
 			#hwlock-cells = <1>;
+		};
+
+		qcom,mpm2-sleep-counter@c221000 {
+			compatible = "qcom,mpm2-sleep-counter";
+			reg = <0x0 0xc221000 0x0 0x1000>;
+			clock-frequency = <32768>;
 		};
 
 		aoss_qmp: power-controller@c300000 {
@@ -1387,6 +1402,9 @@
 					#clock-cells = <1>;
 				};
 
+				apps_bcm_voter: bcm_voter {
+					compatible = "qcom,bcm-voter";
+				};
 			};
 		};
 
@@ -1873,6 +1891,21 @@
 			reg-name = "cc_base";
 			#clock-cells = <1>;
 			#reset-cells = <1>;
+		};
+
+		dispcc: clock-controller@af00000 {
+			compatible = "qcom,x1e80100-dispcc", "syscon";
+			reg = <0x0 0xaf00000 0x0 0x20000>;
+			reg-name = "cc_base";
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>,
+				 <&gcc GCC_DISP_AHB_CLK>;
+			clock-names = "bi_tcxo", "sleep_clk", "iface";
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
 		};
 
 		qcom,secure-buffer {

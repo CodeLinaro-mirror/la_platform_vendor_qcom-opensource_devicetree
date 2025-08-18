@@ -51,6 +51,7 @@ canoe-dtb-$(CONFIG_ARCH_CANOE) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS) $(CANOE_BASE_DTB) $(CANOE_APQ_BASE_DTB)
 
 ALOR_BASE_DTB += alor.dtb
+ALOR_APQ_BASE_DTB += alorp.dtb
 
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
@@ -69,8 +70,9 @@ NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_ALOR) += \
-	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB)
+	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))\
+	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB)
 
 CHORA_BASE_DTB += chora.dtb
 
@@ -249,6 +251,16 @@ x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
 x1p42100-overlays-dtb-$(CONFIG_ARCH_X1P42100) += $(X1P42100_BOARDS) $(X1P42100_BASE_DTB)
 dtb-y += $(x1p42100-dtb-y)
+
+X1E80100_BASE_DTB += x1e80100.dtb
+
+X1E80100_BOARDS += \
+		   x1e80100-crd-overlay.dtbo
+
+x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
+	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB))
+x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
+dtb-y += $(x1e80100-dtb-y)
 
 endif
 

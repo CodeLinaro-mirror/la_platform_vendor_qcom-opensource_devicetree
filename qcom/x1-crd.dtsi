@@ -2,9 +2,3 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
-#include "x1-crd.dtsi"
-
-&soc {
-
-};

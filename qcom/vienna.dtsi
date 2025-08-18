@@ -26,7 +26,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "android_arch_task_struct_size=512 kasan=off kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 hibernate=nocompress irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 androidboot.usbcontroller=a600000.dwc3";
+		bootargs = "android_arch_task_struct_size=512 kasan=off kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 hibernate=nocompress irqaffinity=0-1 cpufreq.default_governor=performance fw_devlink.strict=1 printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 androidboot.usbcontroller=a600000.dwc3";
 	};
 
 	aliases {
@@ -848,7 +848,25 @@
 		max-frequency = <86000000>;
 
 		iommus = <&apps_smmu 0x140 0x0>;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
+
+		/*
+		 * iommu-addresses - Indicate the range of data addresses which will be
+		 * used in dma allocation.
+		 *
+		 * iommu-geometry -  This is specific for fastmap which Allow clients
+		 * to save SMMU page table memory.
+		 *
+		 * The 2nd parameter indicates size of the smmu page table memory.
+		 * If its exceeds beyond this size, last unused entry from page table
+		 * memory will be invalidated.
+		 *
+		 * It's better to provide range of dma address, hence provide
+		 * iommu-dma-addr-pool property along with iommu-geometry property.
+		 */
+
+		qcom,iommu-addresses = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		qos0 {
 			mask = <0x10>;
@@ -1001,12 +1019,12 @@
 			#interrupt-cells = <2>;
 		};
 
-		sleepstate_smp2p_out: sleepstate-out {
+		adsp_sleepstate_smp2p_out: sleepstate-out {
 			qcom,entry-name = "sleepstate";
 			#qcom,smem-state-cells = <1>;
 		};
 
-		sleepstate_smp2p_in: qcom,sleepstate-in {
+		adsp_sleepstate_smp2p_in: qcom,sleepstate-in {
 			qcom,entry-name = "sleepstate_see";
 			interrupt-controller;
 			#interrupt-cells = <2>;
@@ -1144,6 +1162,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		wm_sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		wm_sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
 	};
 
 	qcom,smp2p-am {
@@ -1168,11 +1197,21 @@
 		};
 	};
 
-	qcom,smp2p_sleepstate {
+	qcom,smp2p_sleepstate_adsp {
 		compatible = "qcom,smp2p-sleepstate";
-		qcom,smem-states = <&sleepstate_smp2p_out 0>;
-		interrupt-parent = <&sleepstate_smp2p_in>;
+		qcom,smem-states = <&adsp_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&adsp_sleepstate_smp2p_in>;
 		interrupts = <0 0>;
+		label = "adsp";
+		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+	qcom,smp2p_sleepstate_wm {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&wm_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&wm_sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		label = "wm";
 		interrupt-names = "smp2p-sleepstate-in";
 	};
 
@@ -2149,7 +2188,13 @@
 		depends-on-supply = <&ipcc_mproc>;
 
 		battery_charger: qcom,battery_charger {
-			compatible = "qcom,battery-charger";
+			compatible = "qcom,pmw6100-battery-charger";
+
+			nfc_vreg: qcom,nfc-vreg {
+				regulator-name = "nfc-vreg";
+				regulator-min-microvolt = <4100000>;
+				regulator-max-microvolt = <5600000>;
+			};
 		};
 
 		ucsi: qcom,ucsi {
@@ -2288,10 +2333,9 @@
 					<  249600  200000 >,
 					<  460800  451200 >,
 					<  595200  547200 >,
-					< 1363200  681000 >,
-					< 1478400  768000 >,
-					< 1747200 1353600 >,
-					< 1958400 1555200 >;
+					< 1036800 1353600 >,
+					< 1478400 2092800 >,
+					< 1958400 3187200 >;
 			};
 
 			gold {
@@ -2301,11 +2345,10 @@
 				qcom,cpufreq-memfreq-tbl =
 					<  268800  451200 >,
 					<  508800  547200 >,
-					< 1190000  768000 >,
-					< 1440000 1353600 >,
-					< 1612000 1555200 >,
-					< 1785000 1708800 >,
-					< 2122000 2092800 >;
+					<  960000 1353600 >,
+					< 1440000 2092800 >,
+					< 1785600 3187200 >,
+					< 2112000 4224000 >;
 			};
 
 			silver-compute {
@@ -2324,8 +2367,9 @@
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
-					< 1785000 547200 >,
-					< 2122000 768000 >;
+					< 1190000  451200 >,
+					< 1785000  547200 >,
+					< 2112000 1353600 >;
 			};
 		};
 

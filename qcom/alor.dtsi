@@ -37,7 +37,7 @@
 
 
 	chosen: chosen {
-		bootargs = "loglevel=6 kpti=0 loop.max_part=7 log_buf_len=512K kernel.panic_on_rcu_stall=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops cpufreq.default_governor=performance printk.console_no_auto_verbose=1 irqaffinity=0-1 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false fw_devlink.strict=1 kasan=off can.stats_timer=0 android_arch_task_struct_size=512 pcie_ports=compat sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x1 androidboot.usbcontroller=a600000.dwc3";
+		bootargs = "loglevel=6 kpti=0 loop.max_part=7 log_buf_len=512K kernel.panic_on_rcu_stall=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops cpufreq.default_governor=performance printk.console_no_auto_verbose=1 irqaffinity=0-1 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false fw_devlink.strict=1 kasan=off can.stats_timer=0 android_arch_task_struct_size=512 pcie_ports=compat sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x1 androidboot.usbcontroller=a600000.dwc3";
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
@@ -934,6 +934,34 @@
 			"llcc_broadcast_and_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
+		ranges;
+
+		scid_heuristics {
+			compatible = "qcom,scid-heuristics";
+			qcom,heuristics-scid = <28>;
+			/* Need to update different value for V2 device */
+			qcom,freq-threshold-idx = <1065600>, <1065600>, <1065600>, <1065600>,
+					<1065600>, <1065600>, <1255680>, <1255680>;
+			qcom,frequency-threshold-residency = <1500>, <1500>, <1500>, <1500>,
+					<1500>, <1500>, <1500>, <1500>;
+			qcom,scid-heuristics-enabled;
+		};
+
+		slc_perfmon: qcom,slc_perfmon {
+			compatible = "qcom,slc-perfmon";
+			/* Use mpam memory with the offset of 512B and size of 512B */
+			reg = <0x0 0x1d83a800 0x0 0x400>,
+				<0x0 0x31800000 0x0 0x60000>, <0x0 0x32800000 0x0 0x60000>,
+				<0x0 0x31C00000 0x0 0x60000>, <0x0 0x32C00000 0x0 0x60000>,
+				<0x0 0x34800000 0x0 0x60000>;
+			reg-names = "perfmon_base",
+				"trp_0_base", "trp_1_base", "trp_2_base", "trp_3_base",
+				"trp_or_bcast_base";
+			perfmon_offset = <0x300>;
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			slc-scid-status-snapshot;
+		};
 	};
 
 	gic-interrupt-router {
@@ -1358,6 +1386,10 @@
 		interrupt-parent = <&sleepstate_smp2p_in>;
 		interrupts = <0 0>;
 		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+	qcom,glink {
+		compatible = "qcom,glink";
 	};
 
 	qcom,msm-imem@14680000 {

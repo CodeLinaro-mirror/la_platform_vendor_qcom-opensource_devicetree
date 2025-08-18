@@ -122,6 +122,19 @@ properties:
               - qcom,rumi
           - const: qcom,alor
 
+      - description: Qualcomm Technologies, Inc. ALORP
+        items:
+          - enum:
+              - qcom,alorp-atp
+              - qcom,atp
+              - qcom,alorp-cdp
+              - qcom,cdp
+              - qcom,alorp-mtp
+              - qcom,mtp
+              - qcom,alorp-rcm
+              - qcom,rcm
+          - const: qcom,alorp
+
       - description: Qualcomm Technologies, Inc. WHALE
         items:
           - const: qcom,whale
@@ -252,6 +265,13 @@ properties:
               - qcom,viennap-wrd
               - qcom,wrd
           - const: qcom,viennap
+
+      - description: Qualcomm Technologies, Inc. X1E80100
+        items:
+          - enum:
+              - qcom,x1e80100-crd
+              - qcom,crd
+          - const: qcom,x1e80100
 
       - description: Qualcomm Technologies, Inc. X1P42100
         items:
