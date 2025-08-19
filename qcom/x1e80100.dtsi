@@ -1955,6 +1955,13 @@
 			};
 		};
 	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v4";
+		reg = <0x0 0x0c3f0000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+		ss-name = "adsp", "adsp_island", "cdsp", "apss";
+	};
 };
 
 &tlmm {
