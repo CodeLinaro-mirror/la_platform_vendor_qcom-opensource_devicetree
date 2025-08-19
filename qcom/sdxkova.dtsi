@@ -2171,6 +2171,10 @@
 		};
 	};
 
+	microdump_modem {
+		compatible = "qcom,microdump-modem";
+	};
+
 	mini_dump_mode {
 		compatible = "qcom,minidump";
 	};
