@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
-$id: http://devicetree.org/schemas/pinctrl/qcom,sa510-pinctrl.yaml#
+$id: http://devicetree.org/schemas/pinctrl/qcom,sa510m-pinctrl.yaml#
 $schema: http://devicetree.org/meta-schemas/core.yaml#
 
 title: Qualcomm Technologies, Inc. SA510 TLMM block
@@ -15,7 +15,7 @@ description: |
 
 properties:
   compatible:
-    const: qcom,sa510-pinctrl
+    const: qcom,sa510m-pinctrl
 
   reg:
     description: Specifies the base address and size of the TLMM register space
@@ -137,7 +137,7 @@ examples:
   - |
         #include <dt-bindings/interrupt-controller/arm-gic.h>
         tlmm: pinctrl@1f00000 {
-                compatible = "qcom,sa510-pinctrl";
+                compatible = "qcom,sa510m-pinctrl";
                 reg = <0x0f100000 0x300000>;
                 gpio-controller;
                 #gpio-cells = <2>;
