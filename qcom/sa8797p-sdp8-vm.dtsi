@@ -583,5 +583,6 @@
 
 #include "sa8797p-pinctrl.dtsi"
 #include "sa8797p-vm-qupv3.dtsi"
+#include "sa8797p-la-vm-bt.dtsi"
 #include "sa8797p-vm-usb.dtsi"
 #include "sa8797p-sdp8-vm-pcie.dtsi"
