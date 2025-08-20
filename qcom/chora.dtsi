@@ -533,3 +533,4 @@
 };
 
 #include "chora-pinctrl.dtsi"
+#include "chora-stub-regulators.dtsi"
