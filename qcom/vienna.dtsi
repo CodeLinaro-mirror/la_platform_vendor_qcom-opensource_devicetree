@@ -2637,3 +2637,4 @@
 
 #include "vienna-thermal.dtsi"
 #include "vienna-thermal-overlay.dtsi"
+#include "vienna-qpt-overlay.dtsi"
