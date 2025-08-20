@@ -117,11 +117,6 @@
 				#cooling-cells = <2>;
 			};
 
-			cdsp_sw_hvx: cdsp_sw_hvx {
-				qcom,qmi-dev-name = "cdsp_sw_hvx";
-				#cooling-cells = <2>;
-			};
-
 			cdsp_hw: cdsp_hw {
 				qcom,qmi-dev-name = "cdsp_hw";
 				#cooling-cells = <2>;
