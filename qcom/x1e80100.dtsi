@@ -2022,3 +2022,4 @@
 &qupv3_se21_2uart {
 	status = "ok";
 };
+#include "x1e80100-regulators.dtsi"
