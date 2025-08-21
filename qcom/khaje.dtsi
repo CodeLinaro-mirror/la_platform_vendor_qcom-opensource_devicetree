@@ -4168,6 +4168,7 @@ tpdm_turing_llm: tpdm@8861000 {
 
 #include "bengal-thermal.dtsi"
 #include "msm-rdbg.dtsi"
+#include "khaje-walt.dtsi"
 
 &cxip_cdev {
 	status = "disabled";
