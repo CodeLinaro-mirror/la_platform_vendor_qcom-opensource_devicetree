@@ -73,9 +73,6 @@
 		reset-names = "pcie_0_core_reset",
 				"pcie_0_phy_reset";
 
-		power-domains = <&gcc GCC_PCIE_0_PHY_GDSC>;
-		power-domain-names = "gdsc-phy-vdd";
-
 		dma-coherent;
 		qcom,smmu-sid-base = <0x1400>;
 		iommu-map = <0x0 &apps_smmu 0x1400 0x1>,
@@ -108,10 +105,12 @@
 				"pcie_pipe_clk_ext_src", "pcie_phy_aux_clk",
 				"pcie_0_pipe_div2_clk";
 		qcom,pcie-clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>, <0>, <0>,
-				<100000000>, <0>, <0>, <0>, <0>, <0>, <0>;
+				<100000000>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
 		clock-suppressible = <0>, <0>, <0>, <0>, <0>, <0>, <1>, <0>,
 				<0>, <0>, <0>, <1>, <0>, <0>, <0>, <0>;
 
+		power-domains = <&gcc GCC_PCIE_0_GDSC>, <&gcc GCC_PCIE_0_PHY_GDSC>;
+		power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
 		vreg-1p2-supply = <&L2F_E0>;
 		vreg-0p9-supply = <&L2I_E0>;
 		vreg-qref-supply = <&L2I_E0>;
