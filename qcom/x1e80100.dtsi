@@ -13,6 +13,7 @@
 #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
 #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
 #include <dt-bindings/clock/qcom,x1e80100-gpucc.h>
+#include <dt-bindings/clock/qcom,x1p42100-camcc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -1975,6 +1976,23 @@
 			clock-names = "bi_tcxo",
 				      "gpll0_out_main",
 				      "gpll0_out_main_div";
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		camcc: clock-controller@ade0000 {
+			compatible = "qcom,x1p42100-camcc", "syscon";
+			reg = <0x0 0x0ade0000 0x0 0x20000>;
+			reg-name = "cc_base";
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+			vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>,
+				 <&gcc GCC_CAMERA_AHB_CLK>;
+			clock-names = "bi_tcxo", "sleep_clk", "iface";
 			#clock-cells = <1>;
 			#reset-cells = <1>;
 			#power-domain-cells = <1>;

@@ -194,5 +194,10 @@
 
 };
 
+&camcc {
+	interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
+	interconnect-names = "cam-to-ddr";
+};
+
 #include "x1p42100-pcie.dtsi"
 
