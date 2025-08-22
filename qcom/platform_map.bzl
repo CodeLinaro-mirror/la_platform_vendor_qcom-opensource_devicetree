@@ -481,6 +481,32 @@ _platform_map = {
             {"name": "vienna-wrd-overlay.dtbo"},
         ],
     },
+    "vienna-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "vienna.dtb"},
+            {
+                "name": "viennap.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "vienna-atp-no-cam-overlay.dtbo"},
+            {"name": "vienna-atp-overlay.dtbo"},
+            {"name": "vienna-idp-no-cam-overlay.dtbo"},
+            {"name": "vienna-idp-overlay.dtbo"},
+            {"name": "vienna-rcm-no-cam-overlay.dtbo"},
+            {"name": "vienna-rcm-overlay.dtbo"},
+            {"name": "vienna-rumi-overlay.dtbo"},
+            {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-ddsip-overlay.dtbo"},
+            {"name": "vienna-wdp-overlay.dtbo"},
+            {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-ddsip-overlay.dtbo"},
+            {"name": "vienna-wrd-overlay.dtbo"},
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):
