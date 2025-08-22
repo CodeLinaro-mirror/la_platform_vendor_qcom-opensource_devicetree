@@ -106,7 +106,7 @@
 					<0>, <0>, <0>, <0>;
 
 		clock-suppressible = <0>, <0>, <0>, <0>, <0>, <0>, <1>, <0>,
-				<0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
+				<0>, <0>, <0>, <0>, <0>, <1>, <0>, <0>;
 
 		resets = <&gcc GCC_PCIE_0_BCR>,
 			<&gcc GCC_PCIE_0_PHY_BCR>;
@@ -118,12 +118,12 @@
 		iommu-map = <0x0 &apps_smmu 0x1C00 0x1>,
 			<0x100 &apps_smmu 0x1C01 0x1>;
 
+		qcom,drv-name = "lpass";
+
 		qcom,boot-option = <0x1>;
 		qcom,drv-l1ss-timeout-us = <10000>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,no-l0s-supported;
-		qcom,no-l1-supported;
-		qcom,no-l1ss-supported;
 		qcom,l1-2-th-scale = <2>;
 		qcom,l1-2-th-value = <70>;
 		qcom,ep-latency = <10>;
