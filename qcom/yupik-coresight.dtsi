@@ -10,7 +10,7 @@
 		reg = <0x6046000 0x1000>;
 		reg-names = "replicator-base";
 
-		device-name = "coresight-replicator-qdss";
+		device-name = "replicator_qdss";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -43,7 +43,7 @@
 		reg = <0x6b06000 0x1000>;
 		reg-names = "replicator-base";
 
-		device-name = "coresight-replicator-swao";
+		device-name = "replicator_swao";
 
 		qcom,replicator-loses-context;
 		clocks = <&aoss_qmp>;
@@ -87,7 +87,7 @@
 	dummy_eud: dummy_sink {
 		compatible = "arm,coresight-dummy-sink";
 
-		device-name = "coresight-eud";
+		device-name = "eud";
 
 		in-ports {
 			port {
@@ -106,7 +106,7 @@
 		reg = <0x6b05000 0x1000>;
 		reg-names = "tmc-base";
 
-		device-name = "coresight-tmc-etf";
+		device-name = "tmc_etf0";
 		coresight-csr = <&swao_csr>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -138,7 +138,7 @@
 		reg = <0x6048000 0x1000>;
 		reg-names = "tmc-base";
 
-		device-name = "coresight-tmc-etr";
+		device-name = "tmc_etr0";
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x04a0 0>,
@@ -175,10 +175,89 @@
 		};
 	};
 
+	turing-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_turing";
+		qcom,inst-id = <13>;
+
+		in-ports {
+			port {
+				qmi_in_turing_etm0: endpoint {
+					remote-endpoint =
+						<&turing_etm0_out_qmi>;
+				};
+			};
+		};
+	};
+
+	audio-qmi {
+		compatible = "qcom,coresight-qmi";
+		device-name = "coresight-qmi-auido";
+		qcom,inst-id = <5>;
+
+		in-ports {
+			port {
+				qmi_in_audio_etm0: endpoint {
+					remote-endpoint =
+						<&audio_etm0_out_qmi>;
+				};
+			};
+		};
+	};
+
+	modem0-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem0";
+		qcom,inst-id = <2>;
+
+		in-ports {
+			port {
+				qmi_in_modem_etm0: endpoint {
+					remote-endpoint =
+						<&modem_etm0_out_qmi>;
+				};
+			};
+		};
+	};
+
+	modem2-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem2";
+		qcom,inst-id = <11>;
+
+		in-ports {
+			port {
+				qmi_in_modem2_etm0: endpoint {
+					remote-endpoint =
+						<&modem2_etm0_out_qmi>;
+				};
+			};
+		};
+	};
+
+	wpss_qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_wpss";
+		qcom,inst-id = <3>;
+
+		in-ports {
+			port {
+				qmi_in_wpss_etm0: endpoint {
+					remote-endpoint =
+						<&wpss_etm0_out_qmi>;
+				};
+			};
+		};
+	};
+
 	tpdm_lpass_lpi: tpdm@6b46000 {
 		compatible = "arm,coresight-dummy-source";
 
-		device-name = "coresight-tpdm-lpass-lpi";
+		device-name = "tpdm_lpass_lpi";
 
 		trace-name = "tpda-lpass-lpi";
 
@@ -196,7 +275,7 @@
 
 	funnel_lpass_lpi: funnel@6b44000 {
 		compatible = "arm,coresight-static-funnel";
-		device-name = "coresight-funnel-lpass_lpi";
+		device-name = "funnel_lpass_lpi";
 
 		out-ports {
 			port {
@@ -236,7 +315,7 @@
 		reg = <0x6b04000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-swao";
+		device-name = "funnel_swao";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -284,14 +363,9 @@
 		compatible = "qcom,coresight-tpda", "arm,primecell";
 		reg = <0x6b08000 0x1000>;
 		reg-names = "tpda-base";
-		device-name = "coresight-tpda-swao";
+		device-name = "tpda_swao";
 
 		qcom,tpda-atid = <71>;
-		qcom,cmb-elem-size = <0 64>,
-				     <1 64>,
-				     <2 64>,
-				     <3 64>;
-		qcom,dsb-elem-size = <4 32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -358,8 +432,9 @@
 		reg = <0x6b09000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-swao-prio-0";
+		device-name = "tpdm_swao_prio_0";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -380,8 +455,9 @@
 		reg = <0x6b0a000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-swao-prio-1";
+		device-name = "tpdm_swao_prio_1";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -402,8 +478,9 @@
 		reg = <0x6b0b000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-swao-prio-2";
+		device-name = "tpdm_swao_prio_2";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -424,8 +501,9 @@
 		reg = <0x6b0c000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-swao-prio-3";
+		device-name = "tpdm_swao_prio-3";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -445,8 +523,9 @@
 		reg = <0x6b0d000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-swao-1";
+		device-name = "tpdm_swao_1";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -467,7 +546,7 @@
 		reg = <0x6045000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-merg";
+		device-name = "funnel_merg";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -503,14 +582,15 @@
 	};
 
 	stm: stm@6002000 {
-		compatible = "arm,coresight-stm", "arm,primecell";
+		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb962>;
 
 		reg = <0x6002000 0x1000>,
 		      <0x16280000 0x180000>;
 		reg-names = "stm-base", "stm-stimulus-base";
 
-		device-name = "coresight-stm";
+		device-name = "stm0";
+		atid = <16>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -529,7 +609,7 @@
 		reg = <0x6001000 0x1000>;
 		reg-names = "csr-base";
 
-		device-name = "coresight-csr";
+		device-name = "csr";
 		qcom,hwctrl-set-support;
 		qcom,set-byte-cntr-support;
 
@@ -542,7 +622,7 @@
 		      <0x6b0f0f8 0x50>;
 		reg-names = "csr-base", "msr-base";
 
-		device-name = "coresight-swao-csr";
+		device-name = "swao_csr";
 		qcom,timestamp-support;
 		qcom,msr-support;
 
@@ -559,7 +639,7 @@
 		reg = <0x6041000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-in0";
+		device-name = "funnel_in0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -608,7 +688,7 @@
 		reg = <0x6005000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-qatb";
+		device-name = "funnel_qatb";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -650,7 +730,7 @@
 		reg = <0x6042000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-in1";
+		device-name = "funnel_in1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -700,7 +780,7 @@
 		reg = <0x6c38000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-dlct5";
+		device-name = "funnel_dlct5";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -739,21 +819,9 @@
 		compatible = "qcom,coresight-tpda", "arm,primecell";
 		reg = <0x6c37000 0x1000>;
 		reg-names = "tpda-base";
-		device-name = "coresight-tpda-dlct_5";
+		device-name = "tpda_dlct_5";
 
 		qcom,tpda-atid = <78>;
-		qcom,cmb-elem-size = <11 64>,
-				     <12 64>,
-				     <15 32>,
-				     <21 32>,
-				     <22 64>,
-				     <28 64>;
-		qcom,dsb-elem-size = <4 32>,
-				     <5 32>,
-				     <8 32>,
-				     <14 32>,
-				     <19 32>,
-				     <27 32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -877,7 +945,7 @@
 		reg = <0x6846000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-lpass";
+		device-name = "funnel_lpass";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -909,7 +977,7 @@
 		reg = <0x6844000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-lpass";
+		device-name = "tpdm_lpass";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -929,8 +997,9 @@
 		reg = <0x6c08000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-dl-south";
+		device-name = "tpdm_dl_south";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -949,8 +1018,9 @@
 		reg = <0x6c60000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-mdss";
+		device-name = "tpdm_mdss";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -969,7 +1039,7 @@
 		reg = <0x6ac0000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-rdpm";
+		device-name = "tpdm_rdpm";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -989,7 +1059,7 @@
 		reg = <0x6ac1000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-rdpm-mx";
+		device-name = "tpdm_rdpm_mx";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1011,8 +1081,9 @@
 		reg = <0x6ac2000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-dlct-1";
+		device-name = "funnel_dlct_1";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1064,7 +1135,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 
-		device-name = "coresight-tpdm-turing";
+		device-name = "tpdm_turing";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1082,16 +1153,25 @@
 	turing_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "coresight-turing-etm0";
+		device-name = "turing_etm0";
 		qcom,atid-num = <2>;
 		atid = <38 39>;
 		trace-name = "turing-etm0";
 
 		out-ports {
-			port {
+			port@0 {
+				reg = <0>;
 				turing_etm_out_funnel_dup_turing: endpoint {
 					remote-endpoint =
 					<&funnel_dup_turing_in_turing_etm>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				turing_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_turing_etm0>;
 				};
 			};
 		};
@@ -1100,7 +1180,7 @@
 	tpdm_llm_turing: tpdm@69810000 {
 		compatible = "qcom,coresight-tpdm", "qcom,coresight-dummy";
 
-		device-name = "coresight-tpdm-turing-llm";
+		device-name = "tpdm_turing_llm";
 
 		out-ports {
 			port {
@@ -1119,8 +1199,10 @@
 		reg = <0x6985000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-turing";
+		device-name = "funnel_turing";
 
+		qcom,cmb-element-bits = <32>;
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1191,7 +1273,7 @@
 			<0x6985000 0x1000>;
 		reg-names = "funnel-base-dummy", "funnel-base-real";
 
-		devices-name = "coresight-funnel-turing_dup";
+		devices-name = "funnel_turing_dup";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1224,7 +1306,7 @@
 		reg = <0x06e10000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-ddr-ch01";
+		device-name = "tpdm_ddr_ch01";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1244,7 +1326,7 @@
 		reg = <0x06e00000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-ddr";
+		device-name = "tpdm_ddr";
 
 		status = "disabled";
 		clocks = <&aoss_qmp>;
@@ -1265,7 +1347,7 @@
 		reg = <0x06e01000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-shrm";
+		device-name = "tpdm_shrm";
 
 		status = "disabled";
 		clocks = <&aoss_qmp>;
@@ -1288,8 +1370,10 @@
 		reg = <0x6e05000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-ddr-0";
+		device-name = "funnel_ddr_0";
 
+		qcom,cmb-element-bits = <32>;
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1359,7 +1443,7 @@
 		reg = <0x6e12000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-ddr-ch01";
+		device-name = "funnel_ddr_ch01";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1391,8 +1475,9 @@
 		reg = <0x06c30000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-dlct";
+		device-name = "tpdm_dlct";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1411,8 +1496,9 @@
 		reg = <0x06c31000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-ipcc";
+		device-name = "tpdm_ipcc";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1433,7 +1519,7 @@
 		reg = <0x6804000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-modem";
+		device-name = "funnel_modem";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1479,16 +1565,25 @@
 	modem2_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "coresight-modem2-etm0";
+		device-name = "modem2_etm0";
 		qcom,atid-num = <1>;
 		atid = <39>;
 		trace-name = "modem2-etm0";
 
 		out-ports {
-			port {
+			port@0 {
+				reg = <0>;
 				modem2_etm0_out_funnel_modem: endpoint {
 					remote-endpoint =
 						<&funnel_modem_in_modem2_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem2_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_modem2_etm0>;
 				};
 			};
 		};
@@ -1501,16 +1596,16 @@
 		reg = <0x680c000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-modem-q6";
+		device-name = "funnel_modem_q6";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
-				funnel_modem_q6_out_funnel_mq6_dup: endpoint {
+				funnel_mq6_dup_out_funnel_modem: endpoint {
 					remote-endpoint =
-					<&funnel_mq6_dup_in_funnel_modem_q6>;
+					<&funnel_modem_in_funnel_mq6_dup>;
 				};
 			};
 		};
@@ -1520,9 +1615,9 @@
 			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
-				funnel_modem_q6_in_modem_etm0: endpoint {
+				funnel_modem_q6_in_funnel_mq6_dup: endpoint {
 					remote-endpoint =
-					<&modem_etm0_out_funnel_modem_q6>;
+					<&funnel_mq6_dup_out_funnel_modem_q6>;
 				};
 			};
 		};
@@ -1537,7 +1632,7 @@
 
 		reg-names = "funnel-base-dummy", "funnel-base-real";
 
-		device-name = "coresight-funnel-modem-q6_dup";
+		device-name = "funnel_modem_q6_dup";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1545,9 +1640,9 @@
 
 		out-ports {
 			port {
-				funnel_mq6_dup_out_funnel_modem: endpoint {
+				funnel_mq6_dup_out_funnel_modem_q6: endpoint {
 					remote-endpoint =
-					<&funnel_modem_in_funnel_mq6_dup>;
+					<&funnel_modem_q6_in_funnel_mq6_dup>;
 				};
 			};
 		};
@@ -1557,9 +1652,9 @@
 			#size-cells = <0>;
 			port@1 {
 				reg = <1>;
-				funnel_mq6_dup_in_funnel_modem_q6: endpoint {
+				funnel_mq6_dup_in_modem_etm0: endpoint {
 					remote-endpoint =
-					<&funnel_modem_q6_out_funnel_mq6_dup>;
+					<&modem_etm0_out_funnel_mq6_dup>;
 				};
 			};
 
@@ -1576,7 +1671,8 @@
 	modem_diag: dummy_source {
 		compatible = "qcom,coresight-dummy";
 
-		device-name = "coresight-modem-diag";
+		device-name = "modem_diag";
+		atid = <50>;
 		qcom,dummy-source;
 
 
@@ -1593,16 +1689,25 @@
 	modem_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "coresight-modem-etm0";
+		device-name = "modem_etm0";
 		qcom,atid-num = <2>;
 		atid = <36 37>;
 		trace-name = "modem-etm0";
 
 		out-ports {
-			port {
-				modem_etm0_out_funnel_modem_q6: endpoint {
+			port@0 {
+				reg = <0>;
+				modem_etm0_out_funnel_mq6_dup: endpoint {
 					remote-endpoint =
-						<&funnel_modem_q6_in_modem_etm0>;
+					<&funnel_mq6_dup_in_modem_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_modem_etm0>;
 				};
 			};
 		};
@@ -1613,11 +1718,9 @@
 		reg = <0x6803000 0x1000>;
 		reg-names = "tpda-base";
 
-		device-name = "coresight-tpda-modem";
+		device-name = "tpda_modem";
 
 		qcom,tpda-atid = <67>;
-		qcom,dsb-elem-size = <0 32>;
-		qcom,cmb-elem-size = <0 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1657,8 +1760,10 @@
 		reg = <0x6800000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-modem-0";
+		device-name = "tpdm_modem_0";
 
+		qcom,cmb-element-bits = <64>;
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1676,7 +1781,7 @@
 		reg = <0x6801000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-modem-1";
+		device-name = "tpdm_modem_1";
 
 		status = "disabled";
 		clocks = <&aoss_qmp>;
@@ -1698,7 +1803,7 @@
 		reg = <0x7810000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-apss-merg";
+		device-name = "funnel_apss_merg";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1736,13 +1841,13 @@
 
 	etm0: etm@7040000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7040000 0x1000>;
 		cpu = <&CPU0>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm0";
+		device-name = "etm0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1759,13 +1864,13 @@
 
 	etm1: etm@7140000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7140000 0x1000>;
 		cpu = <&CPU1>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm1";
+		device-name = "etm1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1782,13 +1887,13 @@
 
 	etm2: etm@7240000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7240000 0x1000>;
 		cpu = <&CPU2>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm2";
+		device-name = "etm2";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1805,13 +1910,13 @@
 
 	etm3: etm@7340000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7340000 0x1000>;
 		cpu = <&CPU3>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm3";
+		device-name = "etm3";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1828,13 +1933,13 @@
 
 	etm4: etm@7440000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7440000 0x1000>;
 		cpu = <&CPU4>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm4";
+		device-name = "etm4";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1851,13 +1956,13 @@
 
 	etm5: etm@7540000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7540000 0x1000>;
 		cpu = <&CPU5>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm5";
+		device-name = "etm5";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1874,13 +1979,13 @@
 
 	etm6: etm@7640000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7640000 0x1000>;
 		cpu = <&CPU6>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm6";
+		device-name = "etm6";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1897,13 +2002,13 @@
 
 	etm7: etm@7740000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb95d>;
+		arm,primecell-periphid = <0x000bb908>;
 
 		reg = <0x7740000 0x1000>;
 		cpu = <&CPU7>;
 
 		qcom,tupwr-disable;
-		device-name = "coresight-etm7";
+		device-name = "etm7";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1925,7 +2030,7 @@
 		reg = <0x7800000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-apss";
+		device-name = "funnel_apss";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2011,7 +2116,7 @@
 	hwevent {
 		compatible = "qcom,coresight-hwevent";
 
-		device-name = "coresight-hwevent";
+		device-name = "hwevent";
 		coresight-csr = <&csr>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2020,7 +2125,7 @@
 	snoc: snoc {
 		compatible = "qcom,coresight-dummy";
 
-		device-name = "coresight-snoc";
+		device-name = "snoc";
 		qcom,dummy-source;
 
 		port {
@@ -2037,25 +2142,9 @@
 		reg = <0x6004000 0x1000>;
 		reg-names = "tpda-base";
 
-		device-name = "coresight-tpda";
+		device-name = "tpda";
 
 		qcom,tpda-atid = <65>;
-		qcom,bc-elem-size = <25 32>,
-				    <31 32>;
-		qcom,tc-elem-size = <31 32>;
-		qcom,dsb-elem-size = <10 32>,
-				     <21 32>,
-				     <25 32>,
-				     <26 64>,
-				     <31 32>;
-		qcom,cmb-elem-size = <5 32>,
-				     <6 32>,
-				     <23 32>,
-				     <24 32>,
-				     <27 32>,
-				     <28 32>,
-				     <29 32>,
-				     <31 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2177,7 +2266,7 @@
 		reg = <0x6c70000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-wpss";
+		device-name = "tpdm_wpss";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2195,16 +2284,25 @@
 	wpss_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "coresight-wpss-etm0";
+		device-name = "wpss_etm0";
 		qcom,atid-num = <1>;
 		trace-name = "wpss-etm0";
 		atid = <44>;
 
 		out-ports {
-			port {
+			port@0 {
+				reg = <0>;
 				wpss_etm0_out_funnel_wpss: endpoint {
 					remote-endpoint =
 					<&funnel_wpss_in_wpss_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				wpss_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_wpss_etm0>;
 				};
 			};
 		};
@@ -2217,8 +2315,9 @@
 		reg = <0x6c73000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-wpss";
+		device-name = "funnel_wpss";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2272,8 +2371,11 @@
 		reg = <0x6c2e000 0x1000>;
 		reg-names = "funnel-base";
 
-		device-name = "coresight-funnel-dlet";
+		device-name = "funnel_dlet";
 
+		qcom,dsb-element-bits = <32>;
+		qcom,cmb-element-bits = <0 32>,
+					<1 32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2344,7 +2446,7 @@
 		qcom,cmb-msr-skip;
 
 		status = "disabled";
-		device-name = "coresight-tpdm-sdcc-1";
+		device-name = "tpdm_sdcc_1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2367,7 +2469,7 @@
 		qcom,cmb-msr-skip;
 
 		status = "disabled";
-		device-name = "coresight-tpdm-sdcc-4";
+		device-name = "tpdm_sdcc_4";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2387,7 +2489,7 @@
 		reg = <0x6c28000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-dl-east";
+		device-name = "tpdm_dl_east";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2407,10 +2509,11 @@
 		reg = <0x6870000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-dcc";
+		device-name = "tpdm_dcc";
 
 		qcom,hw-enable-check;
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2429,8 +2532,9 @@
 		reg = <0x6841000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-prng";
+		device-name = "tpdm_prng";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2449,8 +2553,9 @@
 		reg = <0x69d0000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-qm";
+		device-name = "tpdm_qm";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2469,8 +2574,9 @@
 		reg = <0x682c000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-gcc";
+		device-name = "tpdm_gcc";
 
+		qcom,dsb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2490,8 +2596,9 @@
 		reg-names = "tpdm-base";
 
 		status = "disabled";
-		device-name = "coresight-tpdm-vsense";
+		device-name = "tpdm_vsense";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2511,8 +2618,9 @@
 		reg = <0x600f000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-spdm";
+		device-name = "tpdm_spdm";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2533,8 +2641,9 @@
 		qcom,cmb-msr-skip;
 
 		status = "disabled";
-		device-name = "coresight-tpdm-sdcc-2";
+		device-name = "tpdm_sdcc_2";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2554,8 +2663,10 @@
 		reg = <0x6850000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-pimem";
+		device-name = "tpdm_pimem";
 
+		qcom,dsb-element-bits = <32>;
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2574,13 +2685,9 @@
 		reg = <0x7863000 0x1000>;
 		reg-names = "tpda-base";
 
-		device-name = "coresight-tpda-apss";
+		device-name = "tpda_apss";
 
 		qcom,tpda-atid = <66>;
-		qcom,dsb-elem-size = <3 32>;
-		qcom,cmb-elem-size = <0 32>,
-				     <1 32>,
-				     <2 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2637,8 +2744,9 @@
 		reg = <0x78a0000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-llm-silver";
+		device-name = "tpdm_llm_silver";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2658,8 +2766,9 @@
 		reg = <0x78b0000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-llm-gold";
+		device-name = "tpdm_llm_gold";
 
+		qcom,cmb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2679,8 +2788,9 @@
 		reg = <0x7860000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-actpm";
+		device-name = "tpdm_actpm";
 
+		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2700,8 +2810,9 @@
 		reg = <0x7861000 0x1000>;
 		reg-names = "tpdm-base";
 
-		device-name = "coresight-tpdm-apss";
+		device-name = "tpdm_apss";
 
+		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2718,16 +2829,25 @@
 	audio_etm0 {
 		compatible = "qcom,coresight-remote-etm";
 
-		device-name = "coresight-audio-etm0";
+		device-name = "audio_etm0";
 		qcom,atid-num = <2>;
 		trace-name = "audio-etm0";
 		atid = <40 41>;
 
 		out-ports {
-			port {
+			port@0 {
+				reg = <0>;
 				audio_etm0_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_audio_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				audio_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_audio_etm0>;
 				};
 			};
 		};
@@ -2743,7 +2863,7 @@
 		tgu-regs = <4>;
 		tgu-timer-counters = <8>;
 
-		device-name = "coresight-tgu-ipcb";
+		device-name = "tgu_ipcb";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2755,7 +2875,7 @@
 		reg = <0x78e0000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-apss_cti0";
+		device-name = "cti_apss_cti0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2767,7 +2887,7 @@
 		reg = <0x78f0000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-apss_cti1";
+		device-name = "cti_apss_cti1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2779,7 +2899,7 @@
 		reg = <0x7900000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-apss_cti2";
+		device-name = "cti_apss_cti2";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2791,7 +2911,7 @@
 		reg = <0x6010000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti0";
+		device-name = "cti0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2804,7 +2924,7 @@
 		reg = <0x6011000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti1";
+		device-name = "cti1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2817,7 +2937,7 @@
 		reg = <0x6012000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti2";
+		device-name = "cti2";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2829,7 +2949,7 @@
 		reg = <0x6013000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti3";
+		device-name = "cti3";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2842,7 +2962,7 @@
 		reg = <0x6014000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti4";
+		device-name = "cti4";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2855,7 +2975,7 @@
 		reg = <0x6015000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti5";
+		device-name = "cti5";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2868,7 +2988,7 @@
 		reg = <0x6016000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti6";
+		device-name = "cti6";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2881,7 +3001,7 @@
 		reg = <0x6017000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti7";
+		device-name = "cti7";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2894,7 +3014,7 @@
 		reg = <0x6018000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti8";
+		device-name = "cti8";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2907,7 +3027,7 @@
 		reg = <0x6019000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti9";
+		device-name = "cti9";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2920,7 +3040,7 @@
 		reg = <0x601a000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti10";
+		device-name = "cti10";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2933,7 +3053,7 @@
 		reg = <0x601b000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti11";
+		device-name = "cti11";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2946,7 +3066,7 @@
 		reg = <0x601c000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti12";
+		device-name = "cti12";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2959,7 +3079,7 @@
 		reg = <0x601d000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti13";
+		device-name = "cti13";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2972,7 +3092,7 @@
 		reg = <0x601e000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti14";
+		device-name = "cti14";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2985,7 +3105,7 @@
 		reg = <0x601f000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti15";
+		device-name = "cti15";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2998,7 +3118,7 @@
 		reg = <0x6e11000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-ddr_ch01_dl_cti_0";
+		device-name = "cti_ddr_ch01_dl_cti_0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3010,7 +3130,7 @@
 		reg = <0x6e02000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-ddr_dl_0_cti_0";
+		device-name = "cti_ddr_dl_0_cti_0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3022,7 +3142,7 @@
 		reg = <0x6e0c000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-ddr_dl_1_cti_0";
+		device-name = "cti_ddr_dl_1_cti_0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3034,7 +3154,7 @@
 		reg = <0x6e0d000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-ddr_dl_1_cti_1";
+		device-name = "cti_ddr_dl_1_cti_1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3046,7 +3166,7 @@
 		reg = <0x6e0e000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-ddr_dl_1_cti_2";
+		device-name = "cti_ddr_dl_1_cti_2";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3059,7 +3179,7 @@
 		reg-names = "cti-base";
 
 		status = "disabled";
-		device-name = "coresight-cti-gpu_isdb_cti";
+		device-name = "cti_gpu_isdb_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3071,7 +3191,7 @@
 		reg = <0x6845000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-lpass_dl_cti";
+		device-name = "cti_lpass_dl_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3084,7 +3204,7 @@
 		reg-names = "cti-base";
 
 		status = "disabled";
-		device-name = "coresight-cti_lpass_lpi_cti";
+		device-name = "cti_lpass_lpi_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3097,7 +3217,7 @@
 		reg-names = "cti-base";
 
 		status = "disabled";
-		device-name = "coresight-cti-lpass_q6_cti";
+		device-name = "cti_lpass_q6_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3109,7 +3229,7 @@
 		reg = <0x6c61000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-mdss_dl_cti";
+		device-name = "cti_mdss_dl_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3122,7 +3242,7 @@
 		reg-names = "cti-base";
 
 		status = "disabled";
-		device-name = "coresight-cti_mss_q6_cti";
+		device-name = "cti_mss_q6_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3135,7 +3255,7 @@
 		reg-names = "cti-base";
 
 		status = "disabled";
-		device-name = "coresight-cti-mss_vq6_cti";
+		device-name = "cti_mss_vq6_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3147,7 +3267,7 @@
 		reg = <0x6c13000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-sierra_a6_cti";
+		device-name = "cti_sierra_a6_cti";
 		status = "disabled";
 
 		clocks = <&aoss_qmp>;
@@ -3160,7 +3280,7 @@
 		reg = <0x6b00000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-swao_cti0";
+		device-name = "cti_swao_cti0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3172,7 +3292,7 @@
 		reg = <0x6b01000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-swao_cti1";
+		device-name = "cti_swao_cti1";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3184,7 +3304,7 @@
 		reg = <0x6b03000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-swao_cti3";
+		device-name = "cti_swao_cti3";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3196,7 +3316,7 @@
 		reg = <0x6982000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-turing_dl_cti";
+		device-name = "cti_turing_dl_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3208,7 +3328,7 @@
 		reg = <0x698b000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-turing_q6_cti";
+		device-name = "cti_turing_q6_cti";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3220,7 +3340,7 @@
 		reg = <0x7020000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu0";
+		device-name = "cti_cpu0";
 		cpu = <&CPU0>;
 
 		clocks = <&aoss_qmp>;
@@ -3234,7 +3354,7 @@
 		reg = <0x7120000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu1";
+		device-name = "cti_cpu1";
 		cpu = <&CPU1>;
 
 		clocks = <&aoss_qmp>;
@@ -3247,7 +3367,7 @@
 		reg = <0x7220000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu2";
+		device-name = "cti_cpu2";
 		cpu = <&CPU2>;
 
 		clocks = <&aoss_qmp>;
@@ -3260,7 +3380,7 @@
 		reg = <0x7320000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu3";
+		device-name = "cti_cpu3";
 		cpu = <&CPU3>;
 
 		clocks = <&aoss_qmp>;
@@ -3273,7 +3393,7 @@
 		reg = <0x7420000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu4";
+		device-name = "cti_cpu4";
 		cpu = <&CPU4>;
 
 		clocks = <&aoss_qmp>;
@@ -3286,7 +3406,7 @@
 		reg = <0x7520000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu5";
+		device-name = "cti_cpu5";
 		cpu = <&CPU5>;
 
 		clocks = <&aoss_qmp>;
@@ -3299,7 +3419,7 @@
 		reg = <0x7620000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu6";
+		device-name = "cti_cpu6";
 		cpu = <&CPU6>;
 
 		clocks = <&aoss_qmp>;
@@ -3312,7 +3432,7 @@
 		reg = <0x7720000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-cpu7";
+		device-name = "cti_cpu7";
 		cpu = <&CPU7>;
 
 		clocks = <&aoss_qmp>;
@@ -3325,7 +3445,7 @@
 		reg = <0x7862000 0x1000>;
 		reg-names = "cti-base";
 
-		device-name = "coresight-cti-apss_dl_cti0";
+		device-name = "cti_apss_dl_cti0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
