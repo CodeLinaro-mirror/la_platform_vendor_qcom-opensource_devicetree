@@ -1730,11 +1730,11 @@
 #include "chora-pinctrl.dtsi"
 #include "chora-coresight.dtsi"
 #include "chora-debug.dtsi"
-#include "chora-stub-regulators.dtsi"
 #include "chora-qupv3.dtsi"
 #include "chora-usb.dtsi"
 #include "chora-thermal.dtsi"
 #include "chora-walt.dtsi"
+#include "chora-regulators.dtsi"
 
 &qupv3_se5_2uart {
 	status = "ok";
