@@ -1626,6 +1626,26 @@
 
 				qcom,no-wake-svc = <0x190>;
 			};
+
+			qcom,glinkpkt-hci-aribter {
+				qcom,glink-channels = "hci_arbiter_chnl";
+				qcom,intents = <0x1000 10>;
+			};
+
+			qcom,glinkpkt-socket-offload {
+				qcom,glink-channels = "bt_socket_hal_chnl";
+				qcom,intents = <0x1000 10>;
+			};
+
+			qcom,glinkpkt-gatt-offload {
+				qcom,glink-channels = "gatt_offload_chnl";
+				qcom,intents = <0x1000 10>;
+			};
+
+			qcom,glinkpkt-contexthub-hal-offload-mgr-chnl {
+				qcom,glink-channels = "contexthub_hal_offload_mgr_chnl";
+				qcom,intents = <0x1000 10>;
+			};
 		};
 	};
 
@@ -1866,6 +1886,10 @@
 			qcom,glink-channels = "touch-ctrl";
 			qcom,intents = <0x200 1>;
 			};
+			qcom,glinkpkt-contexthub-hal-app-mgr-chnl {
+				qcom,glinkpkt-ch-name = "contexthub_hal_app_mgr_chnl";
+				qcom,intents = <0x1000 10>;
+			};
 		};
 	};
 
@@ -2034,21 +2058,18 @@
 			qcom,glinkpkt-edge = "lpass";
 			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
-			qcom,intents = <0x1000 10>;
 		};
 
 		qcom,glinkpkt-socket-offload {
 			qcom,glinkpkt-edge = "lpass";
 			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
-			qcom,intents = <0x1000 10>;
 		};
 
 		qcom,glinkpkt-gatt-offload {
 			qcom,glinkpkt-edge = "lpass";
 			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
-			qcom,intents = <0x1000 10>;
 		 };
 
 		qcom,glinkpkt-wm-qsh-0 {
@@ -2125,7 +2146,6 @@
 			qcom,glinkpkt-edge = "lpass";
 			qcom,glinkpkt-ch-name = "contexthub_hal_offload_mgr_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_contexthub_hal_offload_mgr_chnl";
-			qcom,intents = <0x1000 10>;
 		};
 	};
 
