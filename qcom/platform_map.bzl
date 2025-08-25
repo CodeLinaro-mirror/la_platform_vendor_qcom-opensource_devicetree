@@ -44,6 +44,11 @@ _platform_map = {
             {"name": "canoe-tp.dtb"},
             {"name": "canoe-tp-v2.dtb"},
             {"name": "canoe-v2.dtb"},
+            {"name": "whale.dtb"},
+            {
+                "name": "whalep.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
