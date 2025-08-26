@@ -2274,3 +2274,4 @@
 	status = "ok";
 };
 #include "x1e80100-regulators.dtsi"
+#include "x1e80100-debug.dtsi"
