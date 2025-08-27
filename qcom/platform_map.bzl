@@ -82,6 +82,7 @@ _platform_map = {
     "sa510m": {
         "dtb_list": [
             # keep sorted
+            {"name": "sa510m-atp.dtb"},
             {"name": "sa510m-idp.dtb"},
             {"name": "kuno-idp.dtb"},
             {"name": "sa510m-idp-wlan-over-sdio.dtb"},
