@@ -2878,6 +2878,7 @@
 		reset-names = "rst";
 
 		qcom,bypass-pbl-rst-wa;
+		qcom,enforce-high-irq-cpus;
 		qcom,max-cpus = <8>;
 		status = "disabled";
 
