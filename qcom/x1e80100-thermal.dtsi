@@ -264,6 +264,22 @@
 			#cooling-cells = <2>;
 		};
 	};
+
+	qmi_tmd: qmi-tmd-devices {
+		compatible = "qcom,qmi-cooling-devices";
+		cdsp {
+			qcom,instance-id = <QMI_CDSP_INST_ID>;
+			cdsp_sw: cdsp {
+				qcom,qmi-dev-name = "cdsp_sw";
+				#cooling-cells = <2>;
+			};
+
+			cdsp_hw: cdsp_hw {
+				qcom,qmi-dev-name = "cdsp_hw";
+				#cooling-cells = <2>;
+			};
+		};
+	};
 };
 
 &thermal_zones {
@@ -1558,6 +1574,7 @@
 	};
 
 	nsp-0-thermal {
+		polling-delay-passive = <10>;
 		thermal-sensors = <&tsens3 1>;
 		trips {
 			thermal-engine-config {
@@ -1572,15 +1589,29 @@
 				type = "passive";
 			};
 
+			nsp_0_trip: nsp-0-trip {
+				temperature = <95000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cdsp_cdev {
+				trip = <&nsp_0_trip>;
+				cooling-device = <&cdsp_sw 0 THERMAL_NO_LIMIT>;
+			};
+		};
 	};
 
 	nsp-1-thermal {
+		polling-delay-passive = <10>;
 		thermal-sensors = <&tsens3 2>;
 		trips {
 			thermal-engine-config {
@@ -1595,15 +1626,29 @@
 				type = "passive";
 			};
 
+			nsp_1_trip: nsp-1-trip {
+				temperature = <95000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cdsp_cdev {
+				trip = <&nsp_1_trip>;
+				cooling-device = <&cdsp_sw 0 THERMAL_NO_LIMIT>;
+			};
+		};
 	};
 
 	nsp-2-thermal {
+		polling-delay-passive = <10>;
 		thermal-sensors = <&tsens3 3>;
 		trips {
 			thermal-engine-config {
@@ -1618,15 +1663,29 @@
 				type = "passive";
 			};
 
+			nsp_2_trip: nsp-2-trip {
+				temperature = <95000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cdsp_cdev {
+				trip = <&nsp_2_trip>;
+				cooling-device = <&cdsp_sw 0 THERMAL_NO_LIMIT>;
+			};
+		};
 	};
 
 	nsp-3-thermal {
+		polling-delay-passive = <10>;
 		thermal-sensors = <&tsens3 4>;
 		trips {
 			thermal-engine-config {
@@ -1641,10 +1700,23 @@
 				type = "passive";
 			};
 
+			nsp_3_trip: nsp-3-trip {
+				temperature = <95000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			cdsp_cdev {
+				trip = <&nsp_3_trip>;
+				cooling-device = <&cdsp_sw 0 THERMAL_NO_LIMIT>;
 			};
 		};
 	};
