@@ -1889,7 +1889,7 @@
 		};
 
 		gcc: clock-controller@100000 {
-			compatible = "qcom,x1p42100-gcc", "syscon";
+			compatible = "qcom,x1e80100-gcc", "syscon";
 			reg = <0x0 0x00100000 0x0 0x200000>;
 			reg-name = "cc_base";
 			vdd_cx-supply = <&VDD_CX_LEVEL>;
@@ -1984,9 +1984,6 @@
 				"usb4_1_phy_gcc_usb4rtr_max_pipe_clk",
 				"usb4_2_phy_gcc_usb4_pcie_pipe_clk",
 				"usb4_2_phy_gcc_usb4rtr_max_pipe_clk";
-			protected-clocks = <GCC_SDCC1_AHB_CLK>, <GCC_SDCC1_APPS_CLK>,
-					<GCC_SDCC1_APPS_CLK_SRC>, <GCC_SDCC1_ICE_CORE_CLK>,
-					<GCC_SDCC1_ICE_CORE_CLK_SRC>;
 			#clock-cells = <1>;
 			#reset-cells = <1>;
 			#power-domain-cells = <1>;
