@@ -128,6 +128,12 @@
 			#cooling-cells = <2>;
 		};
 
+		APC1_APC2_MX_CX_PAUSE: apc1-apc2-mx-cx-pause {
+			qcom,cpus = <&CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,cdev-alias = "thermal-pause-apc1-apc2";
+			#cooling-cells = <2>;
+		};
+
 		/* Thermal-engine cooling devices */
 		pause-cpu0 {
 			qcom,cpus = <&CPU0>;

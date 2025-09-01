@@ -7,7 +7,6 @@
 #include "x1e80100.dtsi"
 #include "x1p42100-regulators.dtsi"
 #include "x1e80100-pmic-overlay.dtsi"
-#include "x1e80100-thermal-overlay.dtsi"
 #include "x1p42100-debug.dtsi"
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,x1p42100.h>
