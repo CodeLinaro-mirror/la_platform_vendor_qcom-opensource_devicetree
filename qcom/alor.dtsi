@@ -2136,6 +2136,7 @@
 		nsp {
 			qcom,client-id = <0x100>;
 			qcom,client-name = "nsp";
+			qcom,support-bw-limit;
 		};
 	};
 
