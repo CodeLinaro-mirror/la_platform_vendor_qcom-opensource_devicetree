@@ -188,6 +188,26 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
+BENGAL_BASE_DTB += bengal.dtb bengalp.dtb bengal-1gb.dtb bengal-2gb.dtb
+
+BENGAL_BOARDS += \
+		bengal-idp-overlay.dtbo\
+		bengal-rumi-overlay.dtbo \
+		bengal-qrd-overlay.dtbo \
+		bengal-idp-nopmi-overlay.dtbo \
+		bengal-idp-usbc-overlay.dtbo \
+		bengalp-idp-overlay.dtbo \
+		bengal-idp-1gb-overlay.dtbo \
+		bengal-idp-2gb-overlay.dtbo \
+		bengal-idp-usbc-1gb-overlay.dtbo \
+		bengal-idp-usbc-2gb-overlay.dtbo
+
+bengal-dtb-$(CONFIG_ARCH_BENGAL) += \
+        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB))
+bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
+
+dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
+
 YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
 YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
 

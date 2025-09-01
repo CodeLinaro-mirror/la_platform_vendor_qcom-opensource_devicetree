@@ -207,6 +207,10 @@ _platform_map = {
             {"name": "khajeq.dtb"},
             {"name": "khajeg.dtb"},
             {"name": "khaje-3gb.dtb"},
+            {"name": "bengal.dtb"},
+            {"name": "bengalp.dtb"},
+            {"name": "bengal-1gb.dtb"},
+            {"name": "bengal-2gb.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -249,6 +253,16 @@ _platform_map = {
             {"name": "khajeg-idp-usbc-overlay.dtbo"},
             {"name": "khajeg-idp-pm8010-overlay.dtbo"},
             {"name": "khajeg-idps-display-90hz-overlay.dtbo"},
+            {"name": "bengal-idp-overlay.dtbo"},
+            {"name": "bengal-rumi-overlay.dtbo"},
+            {"name": "bengal-qrd-overlay.dtbo"},
+            {"name": "bengal-idp-nopmi-overlay.dtbo"},
+            {"name": "bengal-idp-usbc-overlay.dtbo"},
+            {"name": "bengalp-idp-overlay.dtbo"},
+            {"name": "bengal-idp-1gb-overlay.dtbo"},
+            {"name": "bengal-idp-2gb-overlay.dtbo"},
+            {"name": "bengal-idp-usbc-1gb-overlay.dtbo"},
+            {"name": "bengal-idp-usbc-2gb-overlay.dtbo"},
         ],
     },
     "monaco": {
