@@ -1519,6 +1519,7 @@
 
 	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		qcom,hgy-secure-heap;
 
 		qcom,qseecom {
 			qcom,dma-heap-name = "qcom,qseecom";
