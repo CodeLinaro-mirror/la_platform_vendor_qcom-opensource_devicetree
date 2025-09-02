@@ -2095,7 +2095,7 @@
 
 		cx-supply = <&L3A_LEVEL>;
 		reg-names = "cx", "mx";
-		qcom,vdd_lpi_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
 		mx-supply = <&L2A_LEVEL>;
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
 
@@ -2104,6 +2104,7 @@
 
 		memory-region = <&pil_adsp_mem>;
 
+		firmware-name = "adsp.mdt";
 		/* Inputs from lpass */
 		interrupts-extended = <&intc 0 282 1>,
 				      <&adsp_smp2p_in 0 0>,
@@ -2157,7 +2158,7 @@
 		reg = <0xb300000 0x100000>;
 
 		cx-supply = <&VDD_CX_LEVEL>;
-		reg-names = "vdd_cx";
+		reg-names = "cx";
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
@@ -2165,6 +2166,7 @@
 
 		memory-region = <&pil_cdsp_mem>;
 
+		firmware-name = "cdsp.mdt";
 		/* Inputs from turing */
 		interrupts-extended = <&intc 0 265 1>,
 				      <&cdsp_smp2p_in 0 0>,
@@ -3375,10 +3377,11 @@
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		reg-names = "vdd_cx";
+		reg-names = "cx";
 
 		memory-region = <&pil_modem_mem>;
 
+		firmware-name = "modem.mdt";
 		/* Inputs from mss */
 		interrupts-extended = <&intc 0 307 1>,
 				<&modem_smp2p_in 0 0>,
