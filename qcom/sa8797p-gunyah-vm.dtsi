@@ -1560,30 +1560,35 @@
 			grp-start-id = <100>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp200: mmidgrp200 {
 			grp-start-id = <200>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp300: mmidgrp300 {
 			grp-start-id = <300>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp400: mmidgrp400 {
 			grp-start-id = <400>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp500: mmidgrp500 {
 			grp-start-id = <500>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp600: mmidgrp600 {
@@ -1614,18 +1619,21 @@
 			grp-start-id = <1700>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp1800: mmidgrp1800 {
 			grp-start-id = <1800>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 
 		mmidgrp1900: mmidgrp1900 {
 			grp-start-id = <1900>;
 			role = "fe";
 			remote-vmids = <0>;
+			dma-coherent;
 		};
 	};
 
