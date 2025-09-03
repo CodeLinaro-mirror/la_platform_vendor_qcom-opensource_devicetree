@@ -1659,6 +1659,11 @@
 			};
 		};
 
+		show_resume_irqs@17000000 {
+			compatible = "qcom,show-resume-irqs";
+			reg = <0x0 0x17000000 0x0 0x10000>;	/* GICD */
+		};
+
 		timer@17800000 {
 			compatible = "arm,armv7-timer-mem";
 			reg = <0x0 0x17800000 0x0 0x1000>;
@@ -2588,6 +2593,12 @@
 		reg = <0x0 0x0c3f0000 0x0 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 		ss-name = "adsp", "adsp_island", "cdsp", "apss";
+	};
+
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-x1e80100";
+		reg = <0x0 0xc320000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
 	};
 };
 
