@@ -19,6 +19,7 @@ description: |
   - dt-bindings/clock/qcom,alor-gcc.h
   - dt-bindings/clock/qcom,x1p42100-gcc.h
   - dt-bindings/clock/qcom,chora-gcc.h
+  - dt-bindings/clock/qcom,pikachu-gcc.h
 
 properties:
   compatible:
@@ -28,6 +29,7 @@ properties:
       - qcom,alor-gcc
       - qcom,x1p42100-gcc
       - qcom,chora-gcc
+      - qcom,pikachu-gcc
 
   clocks:
     items:
