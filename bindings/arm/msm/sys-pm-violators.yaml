@@ -29,6 +29,7 @@ properties:
       - qcom,sys-pm-canoe
       - qcom,sys-pm-vienna
       - qcom,sys-pm-alor
+      - qcom,sys-pm-x1e80100
 
   reg:
     maxItems: 1
