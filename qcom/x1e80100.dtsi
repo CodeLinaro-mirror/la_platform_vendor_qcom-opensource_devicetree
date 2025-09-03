@@ -26,7 +26,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "firmware_class.path=/vendor/firmware_mnt/image";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image";
 	};
 
 	aliases {
