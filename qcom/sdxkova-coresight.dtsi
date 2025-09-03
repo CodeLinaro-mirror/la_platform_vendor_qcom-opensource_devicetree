@@ -1768,8 +1768,8 @@
 				};
 			};
 
-			port@4 {
-				reg = <4>;
+			port@5 {
+				reg = <5>;
 				funnel_dl_center_in_funnel_ddr0: endpoint {
 					remote-endpoint =
 					<&funnel_ddr0_out_funnel_dl_center>;
