@@ -1659,6 +1659,11 @@
 			};
 		};
 
+		show_resume_irqs@17000000 {
+			compatible = "qcom,show-resume-irqs";
+			reg = <0x0 0x17000000 0x0 0x10000>;	/* GICD */
+		};
+
 		timer@17800000 {
 			compatible = "arm,armv7-timer-mem";
 			reg = <0x0 0x17800000 0x0 0x1000>;
