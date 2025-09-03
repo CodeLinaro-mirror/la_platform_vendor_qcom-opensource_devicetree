@@ -224,11 +224,13 @@ VIENNA_BOARDS += \
 		 vienna-atp-no-cam-overlay.dtbo \
 		 vienna-idp-overlay.dtbo \
 		 vienna-idp-no-cam-overlay.dtbo \
+		 vienna-idp-se8-overlay.dtbo \
 		 vienna-rcm-overlay.dtbo \
 		 vienna-rcm-no-cam-overlay.dtbo \
 		 vienna-wdp-overlay.dtbo \
 		 vienna-wdp-ddsip-overlay.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wdp-se8-overlay.dtbo \
 		 vienna-wrd-overlay.dtbo \
 		 vienna-wrd-ddsip-overlay.dtbo \
 		 vienna-wrd-no-cam-overlay.dtbo
