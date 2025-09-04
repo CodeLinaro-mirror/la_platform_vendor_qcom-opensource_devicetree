@@ -45,6 +45,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd0>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -63,6 +64,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd1>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -75,6 +77,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd2>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -87,6 +90,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd3>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -99,6 +103,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd4>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -117,6 +122,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd5>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -129,6 +135,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd6>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -141,6 +148,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd7>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -153,6 +161,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd8>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -171,6 +180,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd9>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -183,6 +193,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd10>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -195,6 +206,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd11>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -2636,7 +2648,6 @@
 #include "x1e80100-dma-heaps.dtsi"
 #include "x1e80100-pinctrl.dtsi"
 #include "x1p42100-qupv3.dtsi"
-#include "x1e80100-thermal.dtsi"
 
 &qupv3_se21_2uart {
 	status = "ok";

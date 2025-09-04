@@ -5,6 +5,10 @@
 
 #include <dt-bindings/thermal/thermal_qti.h>
 
+&msm_gpu {
+	#cooling-cells = <2>;
+};
+
 &soc {
 	tsens0: tsens0@c271000 {
 		compatible = "qcom,tsens-v2";
@@ -100,6 +104,30 @@
 			#cooling-cells = <2>;
 		};
 
+		cpu8_pause: cpu8-pause {
+			qcom,cpus = <&CPU8>;
+			qcom,cdev-alias = "thermal-pause-100";
+			#cooling-cells = <2>;
+		};
+
+		cpu9_pause: cpu9-pause {
+			qcom,cpus = <&CPU9>;
+			qcom,cdev-alias = "thermal-pause-200";
+			#cooling-cells = <2>;
+		};
+
+		cpu10_pause: cpu10-pause {
+			qcom,cpus = <&CPU10>;
+			qcom,cdev-alias = "thermal-pause-400";
+			#cooling-cells = <2>;
+		};
+
+		cpu11_pause: cpu11-pause {
+			qcom,cpus = <&CPU11>;
+			qcom,cdev-alias = "thermal-pause-800";
+			#cooling-cells = <2>;
+		};
+
 		/* Thermal-engine cooling devices */
 		pause-cpu0 {
 			qcom,cpus = <&CPU0>;
@@ -139,6 +167,26 @@
 		pause-cpu7 {
 			qcom,cpus = <&CPU7>;
 			qcom,cdev-alias = "pause-cpu7";
+		};
+
+		pause-cpu8 {
+			qcom,cpus = <&CPU8>;
+			qcom,cdev-alias = "pause-cpu8";
+		};
+
+		pause-cpu9 {
+			qcom,cpus = <&CPU9>;
+			qcom,cdev-alias = "pause-cpu9";
+		};
+
+		pause-cpu10 {
+			qcom,cpus = <&CPU10>;
+			qcom,cdev-alias = "pause-cpu10";
+		};
+
+		pause-cpu11 {
+			qcom,cpus = <&CPU11>;
+			qcom,cdev-alias = "pause-cpu11";
 		};
 	};
 
@@ -189,6 +237,30 @@
 		cpu7_hotplug: cpu7-hotplug {
 			qcom,cpu = <&CPU7>;
 			qcom,cdev-alias = "cpu-hotplug7";
+			#cooling-cells = <2>;
+		};
+
+		cpu8_hotplug: cpu8-hotplug {
+			qcom,cpu = <&CPU8>;
+			qcom,cdev-alias = "cpu-hotplug8";
+			#cooling-cells = <2>;
+		};
+
+		cpu9_hotplug: cpu9-hotplug {
+			qcom,cpu = <&CPU9>;
+			qcom,cdev-alias = "cpu-hotplug9";
+			#cooling-cells = <2>;
+		};
+
+		cpu10_hotplug: cpu10-hotplug {
+			qcom,cpu = <&CPU10>;
+			qcom,cdev-alias = "cpu-hotplug10";
+			#cooling-cells = <2>;
+		};
+
+		cpu11_hotplug: cpu11-hotplug {
+			qcom,cpu = <&CPU11>;
+			qcom,cdev-alias = "cpu-hotplug11";
 			#cooling-cells = <2>;
 		};
 	};
@@ -1103,6 +1175,18 @@
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cpu200_cdev {
+				trip = <&cpu8_emerg0>;
+				cooling-device = <&cpu8_pause 1 1>;
+			};
+
+			cpu200_cdev1 {
+				trip = <&cpu8_emerg0_1>;
+				cooling-device = <&cpu8_hotplug 1 1>;
+			};
+		};
 	};
 
 	cpu-2-0-1-thermal {
@@ -1136,6 +1220,18 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			cpu201_cdev {
+				trip = <&cpu8_emerg1>;
+				cooling-device = <&cpu8_pause 1 1>;
+			};
+
+			cpu201_cdev1 {
+				trip = <&cpu8_emerg1_1>;
+				cooling-device = <&cpu8_hotplug 1 1>;
 			};
 		};
 	};
@@ -1173,6 +1269,18 @@
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cpu210_cdev {
+				trip = <&cpu9_emerg0>;
+				cooling-device = <&cpu9_pause 1 1>;
+			};
+
+			cpu210_cdev1 {
+				trip = <&cpu9_emerg0_1>;
+				cooling-device = <&cpu9_hotplug 1 1>;
+			};
+		};
 	};
 
 	cpu-2-1-1-thermal {
@@ -1206,6 +1314,18 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			cpu211_cdev {
+				trip = <&cpu9_emerg1>;
+				cooling-device = <&cpu9_pause 1 1>;
+			};
+
+			cpu211_cdev1 {
+				trip = <&cpu9_emerg1_1>;
+				cooling-device = <&cpu9_hotplug 1 1>;
 			};
 		};
 	};
@@ -1243,6 +1363,18 @@
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cpu220_cdev {
+				trip = <&cpu10_emerg0>;
+				cooling-device = <&cpu10_pause 1 1>;
+			};
+
+			cpu220_cdev1 {
+				trip = <&cpu10_emerg0_1>;
+				cooling-device = <&cpu10_hotplug 1 1>;
+			};
+		};
 	};
 
 	cpu-2-2-1-thermal {
@@ -1276,6 +1408,18 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			cpu221_cdev {
+				trip = <&cpu10_emerg1>;
+				cooling-device = <&cpu10_pause 1 1>;
+			};
+
+			cpu221_cdev1 {
+				trip = <&cpu10_emerg1_1>;
+				cooling-device = <&cpu10_hotplug 1 1>;
 			};
 		};
 	};
@@ -1313,6 +1457,18 @@
 				type = "hot";
 			};
 		};
+
+		cooling-maps {
+			cpu230_cdev {
+				trip = <&cpu11_emerg0>;
+				cooling-device = <&cpu11_pause 1 1>;
+			};
+
+			cpu230_cdev1 {
+				trip = <&cpu11_emerg0_1>;
+				cooling-device = <&cpu11_hotplug 1 1>;
+			};
+		};
 	};
 
 	cpu-2-3-1-thermal {
@@ -1346,6 +1502,18 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			cpu231_cdev {
+				trip = <&cpu11_emerg1>;
+				cooling-device = <&cpu11_pause 1 1>;
+			};
+
+			cpu231_cdev1 {
+				trip = <&cpu11_emerg1_1>;
+				cooling-device = <&cpu11_hotplug 1 1>;
 			};
 		};
 	};
