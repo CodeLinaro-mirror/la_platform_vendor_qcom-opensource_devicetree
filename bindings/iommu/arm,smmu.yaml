@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
@@ -319,6 +319,26 @@ properties:
         Pagetables may be saved in the system cache is used, and
         write-allocate hint is disabled.
 
+  qcom,prehypassigned:
+    type: boolean
+    description: |
+      Indicates that the reserved memory area that is used to setup a custom
+      page allocator for SMMU devices programmed for secure use cases is
+      pre hyp-assigned to the HLOS and the secure domain.
+
+      This property is mandatory if a custom page allocator needs to be used
+      to setup the s1 page table for secure use cases.
+
+  secure_mem_pool:
+    $ref: /schemas/types.yaml#/definitions/phandle
+    description: |
+      A phandle to the reserved memory node that is pre hyp-assigned to HLOS.
+
+      If this property is specified in the SMMU device node and the flag
+      "qcom,prehypassigned" is specified in the reserved memory node, the SMMU
+      page table allocation APIs would use a custom allocator to setup
+      the S1 page tables for SMMU devices programmed for secure use cases.
+
   qcom,iommu-earlymap:
     type: boolean
     description: |
@@ -406,6 +426,7 @@ patternProperties:
         description: |
           Specifies the number of ports that a QTB has for incoming
           transactions.
+    additionalProperties: false
 
 required:
   - compatible
