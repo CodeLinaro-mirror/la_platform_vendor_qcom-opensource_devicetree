@@ -255,6 +255,27 @@ _platform_map = {
             {"name": "khajeg-idps-display-90hz-overlay.dtbo"},
         ],
     },
+    "monaco": {
+        "dtb_list": [
+            {"name": "monaco.dtb"},
+            {"name": "monacop.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "monaco-idp-v1-overlay.dtbo"},
+            {"name": "monaco-idp-v1.1-overlay.dtbo"},
+            {"name": "monaco-standalone-idp-v1-overlay.dtbo"},
+            {"name": "monaco-idp-v2-overlay.dtbo"},
+            {"name": "monaco-standalone-idp-v2-overlay.dtbo"},
+            {"name": "monaco-idp-v3-overlay.dtbo"},
+            {"name": "monaco-standalone-idp-v3-overlay.dtbo"},
+            {"name": "monaco-wdp-v1-overlay.dtbo"},
+            {"name": "monaco-wdp-v1.1-overlay.dtbo"},
+            {"name": "monaco-standalone-wdp-v1-overlay.dtbo"},
+            {"name": "monaco-atp-v1-overlay.dtbo"},
+            {"name": "monaco-standalone-atp-v1-overlay.dtbo"},
+        ],
+    },
     "lahaina": {
         "dtb_list": [
             {"name": "yupik-iot.dtb"},
