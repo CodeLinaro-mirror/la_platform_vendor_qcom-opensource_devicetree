@@ -206,6 +206,15 @@
 				qcom,label = <0x105>;
 				peer-default;
 			};
+
+			test-large-dmabuf-oemvm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-oemvm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10e>;
+				peer-default;
+			};
 		};
 	};
 
@@ -272,6 +281,11 @@
 		affinity = <0>;
 	};
 
+	qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
+	};
+
 	qmsgq-gunyah {
 		compatible = "qcom,qmsgq-gh";
 		msgq-label = <0x103>;
@@ -295,6 +309,20 @@
 	qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x108>;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <512>;
+		qcom,support-hypervisor;
 	};
 
 	qcom,mem-buf {

@@ -18,12 +18,6 @@
 /delete-node/ &CPU11;
 /delete-node/ &cpu_map_cluster2;
 
-/ {
-	hypervisor: hypervisor {
-		gh_watchdog: qcom,gh-watchdog { };
-	};
-};
-
 &pdc {
 	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
 };
@@ -198,6 +192,11 @@
 		qcom,skip-qos;
 	};
 
+};
+
+&camcc {
+	interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
+	interconnect-names = "cam-to-ddr";
 };
 
 #include "x1p42100-pcie.dtsi"

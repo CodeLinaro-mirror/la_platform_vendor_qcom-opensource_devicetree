@@ -17,7 +17,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=6 driver_async_probe=arm-scmi";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi";
 	};
 
 	reserved_memory: reserved-memory {
@@ -89,6 +89,12 @@
 			no-map;
 			qcom,label = <0x80>;
 		};
+
+		kinfo_mem: debug_kinfo_region {
+			alloc-ranges = <0x0 0x0 0xffffffff 0xffffffff>;
+			size = <0x0 0x1000>;
+			no-map;
+		};
 	};
 
 	cpus {
@@ -127,7 +133,7 @@
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU4: cpu@10000 {
+		CPU4: cpu@400 {
 			compatible = "arm,armv8";
 			reg = <0x0 0x400>;
 			device_type = "cpu";
@@ -135,9 +141,89 @@
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU5: cpu@10100 {
+		CPU5: cpu@500 {
 			compatible = "arm,armv8";
 			reg = <0x0 0x500>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU6: cpu@10000 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10000>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU7: cpu@10100 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10100>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU8: cpu@10200 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10200>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU9: cpu@10300 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10300>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU10: cpu@10400 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10400>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU11: cpu@10500 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10500>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU12: cpu@20000 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x20000>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU13: cpu@20100 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x20100>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU14: cpu@20200 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x20200>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU15: cpu@20300 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x20300>;
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
@@ -169,17 +255,61 @@
 					cpu = <&CPU5>;
 				};
 			};
+
+			cluster1 {
+				core0 {
+					cpu = <&CPU6>;
+				};
+
+				core1 {
+					cpu = <&CPU7>;
+				};
+
+				core2 {
+					cpu = <&CPU8>;
+				};
+
+				core3 {
+					cpu = <&CPU9>;
+				};
+
+				core4 {
+					cpu = <&CPU10>;
+				};
+
+				core5 {
+					cpu = <&CPU11>;
+				};
+			};
+
+			cluster2 {
+				core0 {
+					cpu = <&CPU12>;
+				};
+
+				core1 {
+					cpu = <&CPU13>;
+				};
+
+				core2 {
+					cpu = <&CPU14>;
+				};
+
+				core3 {
+					cpu = <&CPU15>;
+				};
+			};
 		};
 	};
 
 	idle-states {
 		CPU_PWR_DWN: c4 { /* C4 */
 			compatible = "arm,idle-state";
-			idle-state-name = "rail-pc";
-			entry-latency-us = <702>;
-			exit-latency-us = <1061>;
-			min-residency-us = <4488>;
-			arm,psci-suspend-param = <0x40000004>;
+			idle-state-name = "ret";
+			entry-latency-us = <93>;
+			exit-latency-us = <129>;
+			min-residency-us = <560>;
+			arm,psci-suspend-param = <0x00000003>;
 			local-timer-stop;
 		};
 	};
@@ -307,7 +437,7 @@
 		qcom,qtee-config-info = "p=3,16,57,77,78,7A,7C,8F,97,159,199,47E,7F1,10C;ta=keymaster64,widevine,pr_3_0,she_gvm,auto_test_a,auto_test_b,auto_test_c,auto_test_d,auto_test_e,auto_test_f,auto_test_g,auto_test_h,auto_test_i,auto_test_j,auto_test_k,auto_test_l,auto_test_m,auto_test_n,auto_test_o,auto_test_p,auto_test_320,auto_test_321,auto_test_322,auto_test_323,auto_test_324,apttestapp,apttestapp64,aptcryptotestapp,aptcryptotestapp64,smplserv,tzecotestapp,tzecotestappcbo1,smci_auto_test_1,smci_auto_test_2,smci_auto_test_3,smci_auto_test_4,smci_auto_test_5,smci_auto_test_6,smci_auto_test_7,smci_auto_test_8,smci_auto_test_9,smci_auto_test_10,smci_auto_test_11,smci_auto_test_12,smci_auto_test_13,smci_auto_test_14,smci_auto_test_15,smci_auto_test_16,smci_auto_test_init_crash,smci_auto_test_restartable,smci_auto_test_shutdown_crash,fsp_test_1,fsp_test_2,fsp_test_3,bintestapp64,tzecotestapp1,crypto_testapp,sst_testapp,autosst_testapp,auto_test_unpermitted,FD02C9DA-306C-48C7-A49C-BBD827AE86EE,5AF8C3E6-D9DF-446E-4FF2-D4D58E8CA49B,19CE19B9-FD73-4262-8553-E5CAC40C895A,C02CAC07-2639-4EF0-BC12-C4AF1FB3E276,15C6B6E4-D083-48E4-8744-4D90A8FF1EF2,CAD10542-34E4-452D-6156-E979AA6E61BC,23914957-C174-4EA6-54D1-DA820F77B4B0,5AF8C3E6-D9DF-446E-4FF2-C3C47D7B938A,CAD10542-34E4-452D-6156-E979AA6E6132,5AF8C3E6-D9DF-446E-4FF2-B2B36C6A8279,smplap64;";
 		qcom,secdomain-ids = <52 9 10>;
 		qcom,primary-vm-index = <0>;
-		vm-attrs = "guest-ram-dump";
+		vm-attrs = "guest-ram-dump" ,"vpm-virq", "allow-unprotected";
 
 		memory {
 			#address-cells = <0x2>;
@@ -323,8 +453,7 @@
 
 		vcpus {
 			config = "/cpus";
-			affinity = "static";
-			affinity-map = <0x5 0x4 0x3 0x2 0x1 0x0>;
+			affinity = "pinned";
 			sched-priority = <0>;       /* relative to PVM */
 			sched-timeslice = <5000>;   /* in ms */
 		};
@@ -335,6 +464,12 @@
 
 		vdevices {
 			generate = "/hypervisor";
+
+			minidump {
+				vdevice-type = "minidump";
+				push-compatible = "qcom,minidump_rm";
+				minidump_allowed;
+			};
 
 			rm-rpc {
 				vdevice-type = "rm-rpc";
@@ -870,7 +1005,7 @@
 			/* Virtio input 1 device */
 			virtio-mmio@32 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/virtio_input_keyboard@1c150000";
 				virtio,device-type = <18>;
 				peer-default;
 				vqs-num = <0x2>;
@@ -1336,7 +1471,7 @@
 		#redistributor-regions = <1>;
 		redistributor-stride = <0x0 0x20000>;
 		reg = <0x17a00000 0x10000>,     /* GICD */
-		      <0x17a60000 0x100000>;    /* GICR * 8 */
+		      <0x17a60000 0x240000>;    /* GICR * 18 */
 	};
 
 	arch_timer: timer {
@@ -1471,6 +1606,24 @@
 
 		mmidgrp1600: mmidgrp1600 {
 			grp-start-id = <1600>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1700: mmidgrp1700 {
+			grp-start-id = <1700>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1800: mmidgrp1800 {
+			grp-start-id = <1800>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1900: mmidgrp1900 {
+			grp-start-id = <1900>;
 			role = "fe";
 			remote-vmids = <0>;
 		};
@@ -1753,6 +1906,15 @@
 		interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
 	};
 };
 

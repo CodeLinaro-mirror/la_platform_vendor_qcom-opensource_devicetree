@@ -245,6 +245,25 @@ properties:
       - qcom,x1p42100-usb_center_anoc
       - qcom,x1p42100-usb_north_anoc
       - qcom,x1p42100-usb_south_anoc
+      - qcom,x1e80100-aggre1-noc
+      - qcom,x1e80100-aggre2-noc
+      - qcom,x1e80100-clk-virt
+      - qcom,x1e80100-cnoc-cfg
+      - qcom,x1e80100-cnoc-main
+      - qcom,x1e80100-gem-noc
+      - qcom,x1e80100-lpass-ag-noc
+      - qcom,x1e80100-lpass-lpiaon-noc
+      - qcom,x1e80100-lpass-lpicx-noc
+      - qcom,x1e80100-mc-virt
+      - qcom,x1e80100-mmss-noc
+      - qcom,x1e80100-nsp-noc
+      - qcom,x1e80100-pcie-center-anoc
+      - qcom,x1e80100-pcie-north-anoc
+      - qcom,x1e80100-pcie-south-anoc
+      - qcom,x1e80100-system-noc
+      - qcom,x1e80100-usb-center-anoc
+      - qcom,x1e80100-usb-north-anoc
+      - qcom,x1e80100-usb-south-anoc
 
   '#interconnect-cells': true
 
