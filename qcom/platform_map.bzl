@@ -20,6 +20,7 @@ _platform_map = {
             {"name": "sdxkova-idp-mbb-v2.dtb"},
             {"name": "sdxkova-idp-mbb-v3.dtb"},
             {"name": "sdxkova-idp-mbb-v4.dtb"},
+            {"name": "sdxkova-rcm-m2.dtb"},
             {"name": "sdxkova-rcm-mbb.dtb"},
             {"name": "sdxkova-rcm-mbb-v2.dtb"},
             {"name": "sdxkova-rcm-mbb-v3.dtb"},
