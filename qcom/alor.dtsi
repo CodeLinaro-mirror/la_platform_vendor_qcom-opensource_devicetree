@@ -389,11 +389,6 @@
 		size = <0x0 0x800000>;
 	};
 
-	hwfence_shbuf: hwfence-shmem {
-		no-map;
-		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
-	};
-
 	non_secure_display_memory: non_secure_display_region {
 		compatible = "shared-dma-pool";
 		reusable;
