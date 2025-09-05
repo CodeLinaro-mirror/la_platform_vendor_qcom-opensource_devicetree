@@ -165,6 +165,12 @@
 	soc: soc { };
 };
 
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
+};
+
 &soc {
 	#address-cells = <2>;
 	#size-cells = <2>;
