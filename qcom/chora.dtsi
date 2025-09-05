@@ -531,6 +531,19 @@
 		#power-domain-cells = <1>;
 	};
 
+	adsp_pas: remoteproc-adsp@3000000 {
+		compatible = "qcom,chora-adsp-pas";
+		reg = <0x0 0x03000000 0x0 0x10000>;
+
+		status = "disabled";
+	};
+
+	modem_pas: remoteproc-mss@4080000 {
+		compatible = "qcom,chora-modem-pas";
+		reg = <0x0 0x04080000 0x0 0x10000>;
+
+		status = "disabled";
+	};
 };
 
 #include "chora-pinctrl.dtsi"
