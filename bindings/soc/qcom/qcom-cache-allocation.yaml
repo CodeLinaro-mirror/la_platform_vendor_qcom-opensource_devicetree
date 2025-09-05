@@ -19,6 +19,7 @@ properties:
   compatible:
     enum:
       - qcom,cache-allocation-canoe
+      - qcom,cache-allocation-alor
 
   reg:
     description: |
