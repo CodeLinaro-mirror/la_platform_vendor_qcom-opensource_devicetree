@@ -1669,12 +1669,10 @@
 	};
 
 	modem_diag: dummy_source {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-source";
 
 		device-name = "modem_diag";
 		atid = <50>;
-		qcom,dummy-source;
-
 
 		out-ports {
 			port {
