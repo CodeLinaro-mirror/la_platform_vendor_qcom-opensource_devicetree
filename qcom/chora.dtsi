@@ -165,6 +165,12 @@
 	soc: soc { };
 };
 
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
+};
+
 &soc {
 	#address-cells = <2>;
 	#size-cells = <2>;
@@ -376,6 +382,23 @@
 		reg = <0x0 0x1fc0000 0x0 0x30000>;
 	};
 
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,chora-qfprom", "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
 	qcom,memshare {
 		compatible = "qcom,memshare";
 
@@ -531,6 +554,19 @@
 		#power-domain-cells = <1>;
 	};
 
+	adsp_pas: remoteproc-adsp@3000000 {
+		compatible = "qcom,chora-adsp-pas";
+		reg = <0x0 0x03000000 0x0 0x10000>;
+
+		status = "disabled";
+	};
+
+	modem_pas: remoteproc-mss@4080000 {
+		compatible = "qcom,chora-modem-pas";
+		reg = <0x0 0x04080000 0x0 0x10000>;
+
+		status = "disabled";
+	};
 };
 
 #include "chora-pinctrl.dtsi"
