@@ -644,6 +644,16 @@ _platform_map = {
             },
         ],
     },
+    "colibri": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "colibri.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "colibri-rumi-overlay.dtbo"},
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):
