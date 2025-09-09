@@ -231,6 +231,7 @@
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
 	qcom,pcie-halt-feature-dis;
+	msi-parent = <&pcie0_msi_spi>;
 	qcom,pcie-phy-ver = <115>;
 	qcom,phy-sequence = <0x1240 0x03 0x0
 				0x0030 0x18 0x0
@@ -472,6 +473,7 @@
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
 	qcom,pcie-halt-feature-dis;
+	msi-parent = <&pcie1_msi_spi>;
 	qcom,pcie-phy-ver = <113>;
 	qcom,phy-sequence = <0x0240 0x03 0x0
 				0x00c0 0x01 0x0
@@ -660,6 +662,7 @@
 	qcom,boot-option = <0x0>;
 	qcom,bdf-halt-dis;
 	qcom,pcie-halt-feature-dis;
+	msi-parent = <&pcie2_msi_spi>;
 	qcom,pcie-phy-ver = <115>;
 	qcom,phy-sequence = <0x0240 0x03 0x0
 				0x0000 0x4c 0x0
