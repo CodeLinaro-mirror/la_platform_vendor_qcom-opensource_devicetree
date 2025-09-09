@@ -15,7 +15,7 @@
 		trips {
 			bcl_lvl0: bcl-lvl0 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -38,7 +38,7 @@
 		trips {
 			bcl_lvl1: bcl-lvl1 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -61,7 +61,7 @@
 		trips {
 			bcl_lvl2: bcl-lvl2 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
