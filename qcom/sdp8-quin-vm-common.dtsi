@@ -289,5 +289,14 @@
 			clock-frequency = <32768>;
 		};
 
+		mem_dump {
+			compatible = "qcom,mem-dump";
+			memory-region = <&dump_mem>;
+
+			misc_data {
+				qcom,dump-size = <0x1000>;
+				qcom,dump-id = <0xe8>;
+			};
+		};
 	};
 };
