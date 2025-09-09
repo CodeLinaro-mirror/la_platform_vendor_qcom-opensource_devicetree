@@ -16,7 +16,7 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
 CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb alor-interposer.dtb alor-interposer-v2.dtb whale.dtb
-CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb whalep.dtb
+CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb whalep.dtb canoep-sg.dtb canoep-sg-v2.dtb
 
 CANOE_BOARDS += \
 		canoe-mtp-3.5mm-overlay.dtbo \
