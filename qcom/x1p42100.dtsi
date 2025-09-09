@@ -210,5 +210,18 @@
 	interconnect-names = "cam-to-ddr";
 };
 
+&adreno_smmu {
+	qcom,actlr =
+		<0x0000 0x0000 0x0000032b>,
+		<0x0002 0x0000 0x0000032b>,
+		<0x0004 0x0000 0x0000032b>,
+		<0x0005 0x0000 0x0000032b>,
+		<0x0007 0x0000 0x0000032b>;
+};
+
+&gpu_qtb {
+	qcom,num-qtb-ports = <2>;
+};
+
 #include "x1p42100-pcie.dtsi"
 
