@@ -227,3 +227,4 @@
 };
 
 #include "colibri-pinctrl.dtsi"
+#include "colibri-reserved-memory.dtsi"
