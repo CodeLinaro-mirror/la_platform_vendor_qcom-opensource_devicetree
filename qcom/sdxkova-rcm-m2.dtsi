@@ -87,3 +87,34 @@
 &pmic_glink_log {
 	status = "ok";
 };
+
+&pm7550ba_eusb2_repeater {
+	vdd18-supply = <&pmx75_l5>;
+	vdd3-supply = <&pmx75_l10>;
+	status = "ok";
+};
+
+&eusb2_phy {
+	dummy-supply = <&pm7550ba_eusb2_repeater>;
+	usb-repeater = <&pm7550ba_eusb2_repeater>;
+};
+
+&usb {
+	extcon = <&eud>;
+	usb-role-switch;
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		port {
+			usb_port0_connector: endpoint {
+				remote-endpoint = <&usb_port0>;
+			};
+		};
+	};
+};
