@@ -30,7 +30,9 @@
 
 	reserved_memory: reserved-memory {};
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se11_2uart;
+	 };
 
 	firmware: firmware {
 		qcom_scm: qcom_scm { };
@@ -502,3 +504,8 @@
 #include "pikachu-pinctrl.dtsi"
 #include "pikachu-stub-regulators.dtsi"
 #include "pikachu-dma-heaps.dtsi"
+#include "pikachu-qupv3.dtsi"
+
+&qupv3_se11_2uart {
+	status = "ok";
+};
