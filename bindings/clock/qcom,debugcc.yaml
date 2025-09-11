@@ -26,6 +26,7 @@ properties:
       - qcom,vienna-debugcc
       - qcom,alor-debugcc
       - qcom,debugcc-sc7280
+      - qcom,khaje-debugcc
 
   clocks:
     items:
