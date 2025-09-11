@@ -581,6 +581,7 @@
 	};
 };
 
+#include "nordy-sde-hwvirt.dtsi"
 #include "sa8797p-pinctrl.dtsi"
 #include "sa8797p-vm-qupv3.dtsi"
 #include "sa8797p-la-vm-bt.dtsi"
