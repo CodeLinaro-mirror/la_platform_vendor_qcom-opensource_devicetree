@@ -227,3 +227,8 @@
 &thermal_zones {
 	/delete-node/ sys-therm-12;
 };
+
+&battery_charger {
+	qcom,ship-mode-immediate;
+	qcom,wireless-fw-name = "cps4061.bin";
+};
