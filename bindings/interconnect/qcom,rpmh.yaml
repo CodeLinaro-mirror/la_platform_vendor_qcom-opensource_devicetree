@@ -264,6 +264,18 @@ properties:
       - qcom,x1e80100-usb-center-anoc
       - qcom,x1e80100-usb-north-anoc
       - qcom,x1e80100-usb-south-anoc
+      - qcom,pikachu-clk_virt
+      - qcom,pikachu-cnoc_cfg
+      - qcom,pikachu-cnoc_main
+      - qcom,pikachu-gem_noc
+      - qcom,pikachu-lpass_ag_noc
+      - qcom,pikachu-lpass_lpiaon_noc
+      - qcom,pikachu-lpass_lpicx_noc
+      - qcom,pikachu-mc_virt
+      - qcom,pikachu-mmss_noc
+      - qcom,pikachu-nsp_noc
+      - qcom,pikachu-pcie_anoc
+      - qcom,pikachu-system_noc
 
   '#interconnect-cells': true
 
