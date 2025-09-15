@@ -3508,14 +3508,6 @@
 				qcom,can-sleep;
 			};
 
-			pmg1110@2 {
-				compatible = "qcom,spmi-pmic";
-				reg = <2 SPMI_USID>;
-				#address-cells = <2>;
-				#size-cells = <0>;
-				qcom,can-sleep;
-			};
-
 			pm8550ve@3 {
 				compatible = "qcom,spmi-pmic";
 				reg = <3 SPMI_USID>;
@@ -3548,25 +3540,9 @@
 				qcom,can-sleep;
 			};
 
-			pmg1110@9 {
-				compatible = "qcom,spmi-pmic";
-				reg = <9 SPMI_USID>;
-				#address-cells = <2>;
-				#size-cells = <0>;
-				qcom,can-sleep;
-			};
-
 			pmr735d@a {
 				compatible = "qcom,spmi-pmic";
 				reg = <10 SPMI_USID>;
-				#address-cells = <2>;
-				#size-cells = <0>;
-				qcom,can-sleep;
-			};
-
-			pmg1110@b {
-				compatible = "qcom,spmi-pmic";
-				reg = <11 SPMI_USID>;
 				#address-cells = <2>;
 				#size-cells = <0>;
 				qcom,can-sleep;

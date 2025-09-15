@@ -86,27 +86,6 @@
 	};
 };
 
-&spmi0_bus {
-	#address-cells = <2>;
-	#size-cells = <0>;
-	interrupt-controller;
-	#interrupt-cells = <4>;
-
-	qcom,pmg1110@9 {
-		compatible = "qcom,spmi-pmic";
-		reg = <9 SPMI_USID>;
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		pmg1110_tz: qcom,temp-alarm@a00 {
-			compatible = "qcom,spmi-temp-alarm";
-			reg = <0xa00>;
-			interrupts = <0x9 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-			#thermal-sensor-cells = <0>;
-		};
-	};
-};
-
 &pm8550_led_flash {
 	status = "ok";
 };
@@ -232,31 +211,6 @@
 };
 
 &thermal_zones {
-	pmg1110_temp_alarm: pmg1110_tz {
-		polling-delay-passive = <100>;
-		thermal-sensors = <&pmg1110_tz>;
-
-		trips {
-			trip0 {
-				temperature = <95000>;
-				hysteresis = <0>;
-				type = "passive";
-			};
-
-			trip1 {
-				temperature = <115000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
-
-			trip2 {
-				temperature = <145000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
-		};
-	};
-
 	pm8550_temp_alarm: pm8550_tz {
 		polling-delay-passive = <100>;
 		thermal-sensors = <&pm8550_tz>;
