@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/interconnect/qcom,rpm.yaml#
@@ -43,6 +43,12 @@ properties:
       - qcom,sdm660-gnoc
       - qcom,sdm660-mnoc
       - qcom,sdm660-snoc
+      - qcom,bengal-bimc
+      - qcom,bengal-clk_virt
+      - qcom,bengal-config_noc
+      - qcom,bengal-mmnrt_virt
+      - qcom,bengal-mmrt_virt
+      - qcom,bengal-system_noc
 
   '#interconnect-cells':
     description: |
@@ -96,6 +102,12 @@ allOf:
               - qcom,sdm660-cnoc
               - qcom,sdm660-gnoc
               - qcom,sdm660-snoc
+              - qcom,bengal-bimc
+              - qcom,bengal-clk_virt
+              - qcom,bengal-config_noc
+              - qcom,bengal-mmnrt_virt
+              - qcom,bengal-mmrt_virt
+              - qcom,bengal-system_noc
 
     then:
       properties:
