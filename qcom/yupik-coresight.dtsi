@@ -978,6 +978,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_lpass";
+		qcom,dsb-element-bits = <64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1019,6 +1020,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_mdss";
+		qcom,cmb-element-bits = <32>;
 
 		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
@@ -1040,6 +1042,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_rdpm";
+		qcom,cmb-element-bits = <64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1060,6 +1063,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_rdpm_mx";
+		qcom,cmb-element-bits = <64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1083,27 +1087,14 @@
 
 		device-name = "funnel_dlct_1";
 
-		qcom,cmb-element-bits = <64>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
 		out-ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			port@0 {
-				reg = <0>;
-				funnel_dlct_1_11_out_tpda_dlct5: endpoint {
+			port {
+				funnel_dlct_1_out_replicator_dlct_1: endpoint {
 					remote-endpoint =
-					    <&tpda_dlct5_in_funnel_dlct_1_11>;
-					source = <&tpdm_rdpm>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				funnel_dlct_1_12_out_tpda_dlct5: endpoint {
-					remote-endpoint =
-					    <&tpda_dlct5_in_funnel_dlct_1_12>;
+					<&replicator_dlct_1_in_funnel_dlct_1>;
 				};
 			};
 		};
@@ -1124,6 +1115,43 @@
 				funnel_dlct_1_1_in_tpdm_rdpm_mx: endpoint {
 					remote-endpoint =
 					    <&tpdm_rdpm_mx_out_funnel_dlct_1_1>;
+				};
+			};
+		};
+	};
+
+	dlct_1_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_dlct_1";
+
+		in-ports {
+			port {
+				replicator_dlct_1_in_funnel_dlct_1: endpoint {
+					remote-endpoint =
+					<&funnel_dlct_1_out_replicator_dlct_1>;
+				};
+			};
+		};
+
+		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				funnel_dlct_1_11_out_tpda_dlct5: endpoint {
+					remote-endpoint =
+						<&tpda_dlct5_in_funnel_dlct_1_11>;
+					filter-source = <&tpdm_rdpm>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_dlct_1_12_out_tpda_dlct5: endpoint {
+					remote-endpoint =
+						<&tpda_dlct5_in_funnel_dlct_1_12>;
+					filter-source = <&tpdm_rdpm_mx>;
 				};
 			};
 		};
@@ -1307,6 +1335,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_ddr_ch01";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2265,6 +2294,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_wpss";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2315,7 +2345,6 @@
 
 		device-name = "funnel_wpss";
 
-		qcom,dsb-element-bits = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2488,6 +2517,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_dl_east";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
