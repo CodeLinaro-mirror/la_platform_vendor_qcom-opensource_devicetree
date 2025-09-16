@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 / {
 	model = "Qualcomm Technologies, Inc. Pikachu";
 	compatible = "qcom,pikachu";
@@ -198,3 +199,4 @@
 };
 
 #include "pikachu-pinctrl.dtsi"
+#include "pikachu-stub-regulators.dtsi"
