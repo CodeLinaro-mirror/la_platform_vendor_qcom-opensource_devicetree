@@ -343,12 +343,11 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 		compatible = "mmio-sram";
-		no-memory-wc;
 		reg = <0x0 0x18509400 0x0 0x400>;
 		ranges = <0x0 0x0 0x0 0x18509400 0x0 0x400>;
 
-		cpu_scp_lpri: scp-shmem@0 {
-			compatible = "arm,scp-shmem";
+		cpu_scmi_lpri: scmi-shmem@0 {
+			compatible = "arm,scmi-shmem";
 			reg = <0x0 0x0 0x0 0x80>;
 		};
 	};
@@ -1955,7 +1954,7 @@
 		compatible = "arm,scmi";
 		mboxes = <&cpucp 0>;
 		mbox-names = "tx";
-		shmem = <&cpu_scp_lpri>;
+		shmem = <&cpu_scmi_lpri>;
 
 		scmi_memlat: protocol@80 {
 			reg = <0x80>;
@@ -1973,6 +1972,7 @@
 		reg = <0x18509C00 0x200>,
 			<0x18509E00 0x200>;
 		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
 	};
 
 	apps_rsc: rsc@18200000 {
