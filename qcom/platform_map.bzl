@@ -79,6 +79,60 @@ _platform_map = {
         ],
         "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
     },
+    "canoe-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "canoe.dtb"},
+            {
+                "name": "canoep.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-tp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-tp-v2.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-v2.dtb",
+                "apq": True,
+            },
+            {"name": "canoe-tp.dtb"},
+            {"name": "canoe-tp-v2.dtb"},
+            {"name": "canoe-v2.dtb"},
+            {"name": "whale.dtb"},
+            {
+                "name": "whalep.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "canoe-atp-overlay.dtbo"},
+            {"name": "canoe-cdp-kiwi-overlay.dtbo"},
+            {"name": "canoe-cdp-overlay.dtbo"},
+            {"name": "canoe-cdp-st54l-pandeiro-i2s-overlay.dtbo"},
+            {"name": "canoe-cdp-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-mtp-3.5mm-overlay.dtbo"},
+            {"name": "canoe-mtp-kiwi-overlay.dtbo"},
+            {"name": "canoe-mtp-mango-overlay.dtbo"},
+            {"name": "canoe-mtp-overlay.dtbo"},
+            {"name": "canoe-mtp-pdm-mic-overlay.dtbo"},
+            {"name": "canoe-mtp-pictor-overlay.dtbo"},
+            {"name": "canoe-mtp-qmp1000-overlay.dtbo"},
+            {"name": "canoe-mtp-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-qrd-st54l-kundu-overlay.dtbo"},
+            {"name": "canoe-qrd-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-rcm-kiwi-overlay.dtbo"},
+            {"name": "canoe-rcm-overlay.dtbo"},
+            {"name": "canoe-rcm-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoep-hdk-overlay.dtbo"},
+            {"name": "canoe-rumi-overlay.dtbo"},
+        ],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
+    },
     "alor": {
         "dtb_list": [
             # keep sorted
