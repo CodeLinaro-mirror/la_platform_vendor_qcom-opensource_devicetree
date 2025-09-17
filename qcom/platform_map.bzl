@@ -125,7 +125,6 @@ _platform_map = {
             {"name": "sunp-hdk-overlay.dtbo"},
             {"name": "sun-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["tuna", "kera"],
     },
     "qcs610": {
         "dtb_list": [
@@ -169,8 +168,21 @@ _platform_map = {
     "kera": {
         "dtb_list": [
             {"name": "kera.dtb"},
+            {"name": "kera-iot.dtb"},
             {
                 "name": "kerap.dtb",
+                "apq": True,
+            },
+            {
+                "name": "kerap-iot.dtb",
+                "apq": True,
+            },
+            {
+                "name": "kera-qmb.dtb",
+                "apq": False,
+            },
+            {
+                "name": "kerap-qna.dtb",
                 "apq": True,
             },
         ],
@@ -191,6 +203,7 @@ _platform_map = {
             {"name": "kera-cdp-qca6750-ufs4-overlay.dtbo"},
             {"name": "kera-iot-cdp-qca6750-ufs4-overlay.dtbo"},
             {"name": "kera-cdp-qca6750-ufs4-slt-overlay.dtbo"},
+            {"name": "kera-cdp-emmc-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs4-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs2-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs3-overlay.dtbo"},
@@ -228,6 +241,7 @@ _platform_map = {
             {"name": "kera-cdp-qca6750-ufs4-overlay.dtbo"},
             {"name": "kera-iot-cdp-qca6750-ufs4-overlay.dtbo"},
             {"name": "kera-cdp-qca6750-ufs4-slt-overlay.dtbo"},
+            {"name": "kera-cdp-emmc-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs4-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs2-overlay.dtbo"},
             {"name": "kera-qrd-wcn7750-ufs3-overlay.dtbo"},
