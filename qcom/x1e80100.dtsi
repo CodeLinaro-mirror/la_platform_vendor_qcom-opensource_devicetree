@@ -8,6 +8,7 @@
 #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/phy/phy-qcom-qmp.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/spmi/spmi.h>
@@ -25,7 +26,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "firmware_class.path=/vendor/firmware_mnt/image";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image";
 	};
 
 	aliases {
@@ -44,6 +45,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd0>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -62,6 +64,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd1>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -74,6 +77,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd2>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -86,6 +90,7 @@
 			next-level-cache = <&L2_0>;
 			power-domains = <&cpu_pd3>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -98,6 +103,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd4>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -116,6 +122,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd5>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -128,6 +135,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd6>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -140,6 +148,7 @@
 			next-level-cache = <&L2_1>;
 			power-domains = <&cpu_pd7>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -152,6 +161,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd8>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 
@@ -170,6 +180,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd9>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -182,6 +193,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd10>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -194,6 +206,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd11>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
 			clocks = <&scmi_dvfs 1>;
 		};
@@ -802,6 +815,7 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 
+			wakeup-parent = <&pdc>;
 			gpio-ranges = <&tlmm 0 0 239>;
 			gpio-reserved-ranges = <34 2>, <44 4>, <238 1>;
 		};
@@ -961,7 +975,7 @@
 
 		pdc: interrupt-controller@b220000 {
 			compatible = "qcom,x1e80100-pdc", "qcom,pdc";
-			reg = <0x0 0x0b220000 0x0 0x10000>, <0x0 0x174000f0 0x0 0x64>;
+			reg = <0x0 0x0b220000 0x0 0x10000>, <0x0 0x174400f0 0x0 0xf8>;
 			qcom,pdc-ranges = <0 480 42>, <42 251 5>,
 					  <47 522 52>, <99 609 32>,
 					  <131 717 12>, <143 816 19>;
@@ -1357,6 +1371,278 @@
 			};
 		};
 
+		usb0: ssusb@a600000 {
+			compatible = "qcom,dwc-usb3-msm";
+			reg = <0x0 0xa600000 0x0 0x100000>;
+			reg-names = "core_base";
+
+			#address-cells = <2>;
+			#size-cells = <2>;
+			ranges;
+
+			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
+			clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+				<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+				<&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+				<&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+				<&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_NORTH_AHB_CLK>,
+				<&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+				<&gcc GCC_SYS_NOC_USB_AXI_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>,
+				<&gcc GCC_AGGRE_NOC_USB_NORTH_AXI_CLK>,
+				<&gcc GCC_AGGRE_NOC_USB_SOUTH_AXI_CLK>;
+			clock-names = "core_clk", "iface_clk", "bus_aggr_clk",
+					"utmi_clk", "sleep_clk", "noc_aggr_north_ahb_clk",
+					"noc_aggr_clk", "noc_sys_clk", "cfg_noc_clk",
+					"noc_aggr_south_ahb_clk", "noc_aggr_north_axi_clk",
+					"noc_aggr_south_axi_clk";
+
+			resets = <&gcc GCC_USB30_PRIM_BCR>;
+			reset-names = "core_reset";
+
+			interrupts-extended = <&intc GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "pwr_event_irq";
+			qcom,use-pdc-interrupts;
+			qcom,use-eusb2-phy;
+
+			qcom,dis-sending-cm-l1-quirk;
+			qcom,core-clk-rate = <200000000>;
+			qcom,core-clk-rate-hs = <66666667>;
+			qcom,core-clk-rate-disconnected = <133333333>;
+
+			interconnect-names = "usb-ddr", "ddr-usb";
+			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+
+			/*
+			 * Establish dependency on smmu driver so that depopulate path of
+			 * deferred probe doesn't run into existing bug in smmu driver.
+			 */
+			dummy-supply = <&apps_smmu>;
+
+			dwc3_0: dwc3@a600000 {
+				compatible = "snps,dwc3";
+				reg = <0x0 0xa600000 0x0 0xd93c>;
+
+				iommus = <&apps_smmu 0x1420 0x0>;
+				qcom,iommu-dma = "atomic";
+				memory-region = <&dwc3_mem_region>;
+				dma-coherent;
+
+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+				phys = <&usb2_phy_0>, <&usb3_phy_0 QMP_USB43DP_USB3_PHY>;
+				phy-names = "usb2-phy", "usb3-phy";
+				snps,disable-clk-gating;
+				snps,has-lpm-erratum;
+				snps,hird-threshold = /bits/ 8 <0x0>;
+				snps,is-utmi-l1-suspend;
+				snps,dis-u1-entry-quirk;
+				snps,dis-u2-entry-quirk;
+				snps,dis_u2_susphy_quirk;
+				snps,ssp-u3-u0-quirk;
+				tx-fifo-resize;
+				num-hc-interrupters = /bits/ 16 <3>;
+				xhci-skip-phy-init-quirk;
+				dr_mode = "otg";
+				maximum-speed = "super-speed-plus";
+				usb-role-switch;
+			};
+		};
+
+		dwc3_mem_region: dwc3_mem_region {
+			iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
+					<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+		};
+
+		/* Generic eUSB2 Phy */
+		usb2_phy_0: phy@fd3000 {
+			compatible = "qcom,sm8550-snps-eusb2-phy";
+			reg = <0x0 0x00fd3000 0x0 0x154>;
+
+			vdd-supply = <&L3J>;
+			vdda12-supply = <&L2J>;
+
+			clocks = <&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+			clock-names = "ref";
+
+			#phy-cells = <0>;
+			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+			status = "disabled";
+		};
+
+		/* Generic QMP Phy */
+		usb3_phy_0: phy@fd5000 {
+			compatible = "qcom,x1e80100-qmp-usb3-dp-phy";
+			reg = <0x0 0xfd5000 0x0 0x4000>;
+			reg-names = "qmp_phy_base";
+
+			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK>,
+				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
+				 <&usb3_phy_0_wrapper_gcc_usb30_pipe_clk>,
+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+			clock-names = "aux",
+				      "ref",
+				      "ref_en",
+				      "com_aux",
+				      "pipe_clk_mux",
+				      "pipe_clk_ext_src",
+				      "usb3_pipe";
+			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+				 <&gcc GCC_USB4_0_DP0_PHY_PRIM_BCR>;
+			reset-names = "phy",
+				      "common";
+
+			power-domains = <&gcc GCC_USB_0_PHY_GDSC>;
+
+			#clock-cells = <1>;
+			#phy-cells = <1>;
+
+			vdda-phy-supply = <&L2J>;
+			vdda-pll-supply = <&L1J>;
+			status = "disabled";
+		};
+
+		usb1: ssusb@a800000 {
+			compatible = "qcom,dwc-usb3-msm";
+			reg = <0x0 0xa800000 0x0 0x100000>;
+			reg-names = "core_base";
+
+			#address-cells = <2>;
+			#size-cells = <2>;
+			ranges;
+
+			power-domains = <&gcc GCC_USB30_SEC_GDSC>;
+			clocks = <&gcc GCC_USB30_SEC_MASTER_CLK>,
+				<&gcc GCC_CFG_NOC_USB3_SEC_AXI_CLK>,
+				<&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
+				<&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
+				<&gcc GCC_USB30_SEC_SLEEP_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_NORTH_AHB_CLK>,
+				<&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
+				<&gcc GCC_SYS_NOC_USB_AXI_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
+				<&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>,
+				<&gcc GCC_AGGRE_NOC_USB_NORTH_AXI_CLK>,
+				<&gcc GCC_AGGRE_NOC_USB_SOUTH_AXI_CLK>;
+			clock-names = "core_clk", "iface_clk", "bus_aggr_clk",
+						"utmi_clk", "sleep_clk", "noc_aggr_north_ahb_clk",
+						"noc_aggr_clk", "noc_sys_clk", "cfg_noc_clk",
+						"noc_aggr_south_ahb_clk", "noc_aggr_north_axi_clk",
+						"noc_aggr_south_axi_clk";
+
+			resets = <&gcc GCC_USB30_SEC_BCR>;
+			reset-names = "core_reset";
+
+			interrupts-extended = <&intc GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "pwr_event_irq";
+			qcom,use-pdc-interrupts;
+			qcom,use-eusb2-phy;
+
+			qcom,dis-sending-cm-l1-quirk;
+			qcom,core-clk-rate = <200000000>;
+			qcom,core-clk-rate-hs = <66666667>;
+			qcom,core-clk-rate-disconnected = <133333333>;
+
+			interconnect-names = "usb-ddr", "ddr-usb";
+			interconnects = <&usb_south_anoc MASTER_USB3_1 QCOM_ICC_TAG_ALWAYS &usb_south_anoc MASTER_USB3_1 QCOM_ICC_TAG_ALWAYS>,
+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS &config_noc SLAVE_USB3_1 QCOM_ICC_TAG_ALWAYS>;
+
+			/*
+			 * Establish dependency on smmu driver so that depopulate path of
+			 * deferred probe doesn't run into existing bug in smmu driver.
+			 */
+			dummy-supply = <&apps_smmu>;
+
+			dwc3_1: dwc3@a800000 {
+				compatible = "snps,dwc3";
+				reg = <0x0 0xa800000 0x0 0xd93c>;
+
+				iommus = <&apps_smmu 0x1460 0x0>;
+				qcom,iommu-dma = "atomic";
+				memory-region = <&dwc3_1_mem_region>;
+				dma-coherent;
+
+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+				phys = <&usb2_phy_1>, <&usb3_phy_1 QMP_USB43DP_USB3_PHY>;
+				phy-names = "usb2-phy", "usb3-phy";
+				snps,disable-clk-gating;
+				snps,has-lpm-erratum;
+				snps,hird-threshold = /bits/ 8 <0x0>;
+				snps,is-utmi-l1-suspend;
+				snps,dis-u1-entry-quirk;
+				snps,dis-u2-entry-quirk;
+				snps,dis_u2_susphy_quirk;
+				snps,ssp-u3-u0-quirk;
+				tx-fifo-resize;
+				num-hc-interrupters = /bits/ 16 <3>;
+				xhci-skip-phy-init-quirk;
+				dr_mode = "otg";
+				maximum-speed = "super-speed-plus";
+				usb-role-switch;
+			};
+		};
+
+		dwc3_1_mem_region: dwc3_1_mem_region {
+			iommu-addresses = <&dwc3_1 0x0 0x0 0x0 0x90000000>,
+						<&dwc3_1 0x0 0xf0000000 0xffffffff 0x10000000>;
+		};
+
+		/* Generic eUSB2 Phy */
+		usb2_phy_1: phy@fd9000 {
+			compatible = "qcom,sm8550-snps-eusb2-phy";
+			reg = <0x0 0x00fd9000 0x0 0x154>;
+
+			vdd-supply = <&L3J>;
+			vdda12-supply = <&L2J>;
+
+			clocks = <&tcsrcc TCSR_USB2_2_CLKREF_EN>;
+			clock-names = "ref";
+
+			#phy-cells = <0>;
+			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
+			status = "disabled";
+		};
+
+		/* Generic QMP Phy */
+		usb3_phy_1: phy@fda000 {
+			compatible = "qcom,x1e80100-qmp-usb3-dp-phy";
+			reg = <0x0 0xfda000 0x0 0x4000>;
+			reg-names = "qmp_phy_base";
+
+			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK>,
+				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
+				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
+				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK_SRC>,
+				 <&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,
+				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
+			clock-names = "aux",
+					  "ref",
+					  "ref_en",
+					  "com_aux",
+					  "pipe_clk_mux",
+					  "pipe_clk_ext_src",
+					  "usb3_pipe";
+			resets = <&gcc GCC_USB3_PHY_SEC_BCR>,
+				 <&gcc GCC_USB4_1_DP0_PHY_SEC_BCR>;
+			reset-names = "phy",
+					  "common";
+
+			power-domains = <&gcc GCC_USB_1_PHY_GDSC>;
+
+			#clock-cells = <1>;
+			#phy-cells = <1>;
+
+			vdda-phy-supply = <&L2J>;
+			vdda-pll-supply = <&L2D>;
+			status = "disabled";
+		};
+
 		intc: interrupt-controller@17000000 {
 			compatible = "arm,gic-v3";
 			reg = <0x0 0x17000000 0x0 0x10000>,     /* GICD */
@@ -1383,6 +1669,11 @@
 
 				status = "disabled";
 			};
+		};
+
+		show_resume_irqs@17000000 {
+			compatible = "qcom,show-resume-irqs";
+			reg = <0x0 0x17000000 0x0 0x10000>;	/* GICD */
 		};
 
 		timer@17800000 {
@@ -1889,7 +2180,7 @@
 		};
 
 		gcc: clock-controller@100000 {
-			compatible = "qcom,x1p42100-gcc", "syscon";
+			compatible = "qcom,x1e80100-gcc", "syscon";
 			reg = <0x0 0x00100000 0x0 0x200000>;
 			reg-name = "cc_base";
 			vdd_cx-supply = <&VDD_CX_LEVEL>;
@@ -1984,9 +2275,6 @@
 				"usb4_1_phy_gcc_usb4rtr_max_pipe_clk",
 				"usb4_2_phy_gcc_usb4_pcie_pipe_clk",
 				"usb4_2_phy_gcc_usb4rtr_max_pipe_clk";
-			protected-clocks = <GCC_SDCC1_AHB_CLK>, <GCC_SDCC1_APPS_CLK>,
-					<GCC_SDCC1_APPS_CLK_SRC>, <GCC_SDCC1_ICE_CORE_CLK>,
-					<GCC_SDCC1_ICE_CORE_CLK_SRC>;
 			#clock-cells = <1>;
 			#reset-cells = <1>;
 			#power-domain-cells = <1>;
@@ -2016,7 +2304,7 @@
 		};
 
 		gpucc: clock-controller@3d90000 {
-			compatible = "qcom,x1p42100-gpucc", "syscon";
+			compatible = "qcom,x1e80100-gpucc", "syscon";
 			reg = <0x0 0x03d90000 0x0 0xa000>;
 			reg-name = "cc_base";
 			vdd_cx-supply = <&VDD_CX_LEVEL>;
@@ -2317,6 +2605,12 @@
 		reg = <0x0 0x0c3f0000 0x0 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 		ss-name = "adsp", "adsp_island", "cdsp", "apss";
+	};
+
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-x1e80100";
+		reg = <0x0 0xc320000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
 	};
 };
 
