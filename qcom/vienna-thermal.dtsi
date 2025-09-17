@@ -168,6 +168,16 @@
 		};
 	};
 
+	qmi_sensor: qmi-ts-sensors {
+		compatible = "qcom,qmi-sensors";
+		#thermal-sensor-cells = <1>;
+
+		modem {
+			qcom,instance-id = <QMI_MODEM_INST_ID>;
+			qcom,qmi-sensor-names = "sdr0";
+		};
+	};
+
 	qcom,devfreq-cdev {
 		compatible = "qcom,devfreq-cdev";
 		qcom,devfreq = <&msm_gpu>;
