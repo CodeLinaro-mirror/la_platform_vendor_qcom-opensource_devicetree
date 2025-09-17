@@ -1086,6 +1086,11 @@
 		/* Voting for max b/w on PNOC bus for now */
 			<1057800 725760>;
 
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+		qcom,boot_dev_bits = <0x4>;
+		qcom,nand_boot = <0x0 0x2 0x3>;
+
 		iommus = <&apps_smmu 0x160 0x3>;
 		qcom,iommu-dma = "atomic";
 
