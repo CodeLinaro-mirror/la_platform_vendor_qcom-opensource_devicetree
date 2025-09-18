@@ -641,7 +641,7 @@
 			emac_mdc_inactive: emac_mdc_inactive {
 				mux {
 					pins = "gpio98";
-					function = "emac_mdc";
+					function = "gpio";
 				};
 
 				config {
@@ -667,7 +667,7 @@
 			emac_mdio_inactive: emac_mdio_inactive {
 				mux {
 					pins = "gpio99";
-					function = "emac_mdio";
+					function = "gpio";
 				};
 
 				config {
