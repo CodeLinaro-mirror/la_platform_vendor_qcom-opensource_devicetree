@@ -53,6 +53,14 @@ _platform_map = {
                 "name": "whalep.dtb",
                 "apq": True,
             },
+            {
+                "name": "canoep-sg.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-sg-v2.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
