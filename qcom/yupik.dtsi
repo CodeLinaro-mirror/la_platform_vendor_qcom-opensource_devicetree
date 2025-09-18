@@ -1632,7 +1632,6 @@
 			compatible = "qcom,dcvs-hw";
 			qcom,dcvs-hw-type = <2>;
 			qcom,bus-width = <32>;
-			qcom,ftbl-row-size = <0x20>;
 			reg = <0x18590000 0x4000>, <0x18590100 0xa0>;
 			reg-names = "l3-base", "l3tbl-base";
 
