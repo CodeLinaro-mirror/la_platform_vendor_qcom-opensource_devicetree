@@ -1728,22 +1728,35 @@
 			config {
 				pins = "gpio164";
 				drive-strength = <6>;
-				bias-disable;
+				bias-pull-up;
 			};
 		};
 
 		qupv3_se12_spi_sleep: qupv3_se12_spi_sleep {
 			mux {
 				pins = "gpio117", "gpio118",
-					"gpio119", "gpio164";
+					"gpio109";
 				function = "gpio";
 			};
 
 			config {
 				pins = "gpio117", "gpio118",
-					"gpio119", "gpio164";
+					"gpio109";
 				drive-strength = <2>;
 				bias-disable;
+			};
+		};
+
+		qupv3_se12_spi_cs_sleep: qupv3_se12_spi_cs_sleep {
+			mux {
+				pins = "gpio164";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio164";
+				drive-strength = <2>;
+				bias-pull-up;
 			};
 		};
 	};
