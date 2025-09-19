@@ -670,7 +670,6 @@
 	rpmh-regulator-s1j-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S1J_E0";
-		status = "disabled";
 
 		S1J: S1J_E0: pmg1110_j_s1: vreg-pmg1110-j-s1 {
 			regulator-name = "pmg1110_j_s1";
@@ -684,7 +683,6 @@
 	rpmh-regulator-s1l-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "S1L_E0";
-		status = "disabled";
 
 		S1L: S1L_E0: pmg1110_l_s1: vreg-pmg1110-l-s1 {
 			regulator-name = "pmg1110_l_s1";
