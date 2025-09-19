@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 %YAML 1.2
 ---
 $id: http://devicetree.org/schemas/arm/qcom.yaml#
@@ -84,6 +84,7 @@ description: |
         hk10-c1
         hk10-c2
         idp
+        atp
         liquid
         mtp
         qrd
@@ -755,6 +756,7 @@ properties:
       - items:
           - enum:
               - qcom,sa510m-idp
+              - qcom,sa510m-atp
           - const: qcom,sa510m
 
       - items:

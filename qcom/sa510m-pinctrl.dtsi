@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 &soc {
 	tlmm: pinctrl@f000000 {
-		compatible = "qcom,sa510-pinctrl";
+		compatible = "qcom,sa510m-pinctrl";
 		reg = <0xf000000 0x400000>;
 		interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
@@ -1096,5 +1096,56 @@
 				bias-pull-down; /* pull down */
 			};
 		};
+
+		sdc4_on: sdc4_on {
+			clk {
+				pins = "gpio103";
+				function = "sdc4_clk";
+				bias-disable;
+				drive-strength = <12>;
+			};
+
+			cmd {
+				pins = "gpio102";
+				function = "sdc4_cmd";
+				bias-pull-up;
+				drive-strength = <12>;
+			};
+
+			data {
+				pins = "gpio104", "gpio105",
+					"gpio106", "gpio107";
+				function = "sdc4_data";
+				bias-pull-up;
+				drive-strength = <12>;
+			};
+
+		};
+
+		sdc4_off: sdc4_off {
+			clk {
+				pins = "gpio103";
+				function = "sdc4_clk";
+				bias-disable;
+				drive-strength = <2>;
+			};
+
+			cmd {
+				pins = "gpio102";
+				function = "sdc4_cmd";
+				bias-pull-up;
+				drive-strength = <2>;
+			};
+
+			data {
+				pins = "gpio104", "gpio105",
+					"gpio106", "gpio107";
+				function = "sdc4_data";
+				bias-pull-up;
+				drive-strength = <2>;
+			};
+
+		};
+
 	};
 };

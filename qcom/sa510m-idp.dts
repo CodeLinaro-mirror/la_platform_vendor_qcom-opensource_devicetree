@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 /dts-v1/;
@@ -37,4 +37,34 @@
 		qcom,timestamp-conf = <1>;
 		qcom,support-can-fd;
 	};
+};
+
+&sdhc_4 {
+	status = "ok";
+
+	non-removable;
+	no-sd;
+	no-sdio;
+	cap-mmc-hw-reset;
+
+	mmc-ddr-1_8v;
+	mmc-hs200-1_8v;
+
+	/* Add dt entry for gcc hw reset */
+	resets = <&gcc GCC_SDCC4_BCR>;
+	reset-names = "core_reset";
+
+	vdd-supply = <&vreg_sdc4_emmc_sd_vdd>;
+	qcom,vdd-voltage-level = <2950000 2950000>;
+	qcom,vdd-current-level = <0 800000>;
+	qcom,vdd-always-on;
+
+	vdd-io-supply = <&L6A>;
+	qcom,vdd-io-voltage-level = <1800000 1800000>;
+	qcom,vdd-io-current-level = <0 20000>;
+	qcom,vdd-io-always-on;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc4_on>;
+	pinctrl-1 = <&sdc4_off>;
 };

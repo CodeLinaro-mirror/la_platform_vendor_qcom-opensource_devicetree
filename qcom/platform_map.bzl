@@ -20,6 +20,7 @@ _platform_map = {
             {"name": "sdxkova-idp-mbb-v2.dtb"},
             {"name": "sdxkova-idp-mbb-v3.dtb"},
             {"name": "sdxkova-idp-mbb-v4.dtb"},
+            {"name": "sdxkova-rcm-m2.dtb"},
             {"name": "sdxkova-rcm-mbb.dtb"},
             {"name": "sdxkova-rcm-mbb-v2.dtb"},
             {"name": "sdxkova-rcm-mbb-v3.dtb"},
@@ -69,6 +70,21 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sdxkova.prpl": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "sdxkova-idp-cpe.dtb"},
+            {"name": "sdxkova-idp-cpe-v2.dtb"},
+            {"name": "sdxkova-idp-cpe-v3.dtb"},
+            {"name": "sdxkova-idp-cpe-v4.dtb"},
+            {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-cpe-v6.dtb"},
+            {"name": "sdxkova-idp-lga-v2.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sdxkova.512": {
         "dtb_list": [
             # keep sorted
@@ -82,6 +98,7 @@ _platform_map = {
     "sa510m": {
         "dtb_list": [
             # keep sorted
+            {"name": "sa510m-atp.dtb"},
             {"name": "sa510m-idp.dtb"},
             {"name": "kuno-idp.dtb"},
             {"name": "sa510m-idp-wlan-over-sdio.dtb"},

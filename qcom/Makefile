@@ -189,6 +189,7 @@ sdxkova-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-atp.dtb \
 				sdxkova-idp-mbb-v2.dtb \
 				sdxkova-idp-mbb-v3.dtb \
 				sdxkova-idp-mbb-v4.dtb \
+				sdxkova-rcm-m2.dtb \
 				sdxkova-rcm-mbb.dtb \
 				sdxkova-rcm-mbb-v2.dtb \
 				sdxkova-rcm-mbb-v3.dtb
@@ -207,6 +208,7 @@ sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v6.dtb \
 				sdxkova-idp-lga-v2.dtb
 
+sdxkova-prpl-dtb-$(CONFIG_ARCH_SDXKOVA) += $(sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA))
 sdxkova-512-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-512mb.dtb \
 				sdxkova-idp-m2-v6.dtb
 
@@ -217,7 +219,9 @@ endif
 ifeq ($(CONFIG_ARCH_SA510M), y)
 $(MSM_ARCH)-dtb-$(CONFIG_ARCH_SA510M) += kuno-idp.dtb \
 				sa510m-idp-wlan-over-sdio.dtb \
-				sa510m-idp.dtb
+				sa510m-idp.dtb \
+				sa510m-atp.dtb
+
 
 dtb-y += $($(MSM_ARCH)-dtb-y)
 

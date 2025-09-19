@@ -6,13 +6,13 @@
 /dts-v1/;
 
 #include "sdxkova.dtsi"
-#include "sdxkova-idp-mbb-v3.dtsi"
+#include "sdxkova-rcm-m2.dtsi"
 #include "sdxkova-reserved-memory.dtsi"
-/ {
-	model = "Qualcomm Technologies, Inc. SDXKOVA IDP MBB V3";
-	compatible = "qcom,sdxkova-idp",
-			"qcom,sdxkova", "qcom,idp";
-	qcom,msm-id = <677 0x10000>, <678 0x10000>, <679 0x10000>;
-	qcom,board-id = <0x30022 0x300>, <0x30022 0x400>;
-};
 
+/ {
+	model = "Qualcomm Technologies, Inc. SDXKOVA RCM M2";
+	compatible = "qcom,sdxkova-rcm",
+			"qcom,sdxkova", "qcom,rcm";
+	qcom,msm-id = <677 0x10000>, <678 0x10000>, <679 0x10000>;
+	qcom,board-id = <0x2010015 0x302>;
+};
