@@ -10,3 +10,39 @@
 	regulator-max-microvolt = <1004000>;
 	qcom,init-voltage = <400000>;
 };
+
+&pmg1110c {
+	status = "ok";
+};
+
+&pmg1110j {
+	status = "ok";
+};
+
+&pmg1110l {
+	status = "ok";
+};
+
+&pmg1110c_debug {
+	status = "ok";
+};
+
+&pmg1110j_debug {
+	status = "ok";
+};
+
+&pmg1110l_debug {
+	status = "ok";
+};
+
+&pmg1110c_temp_alarm {
+	status = "ok";
+};
+
+&pmg1110j_temp_alarm {
+	status = "ok";
+};
+
+&pmg1110l_temp_alarm {
+	status = "ok";
+};
