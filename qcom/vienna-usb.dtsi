@@ -51,7 +51,8 @@
 
 		extcon = <&eud>;
 
-		qcom,default-bus-vote = <2>; /* use svs bus voting */
+		qcom,default-bus-vote = <1>; /* use nominal bus voting */
+		qcom,pm-qos-latency = <2>;
 
 		dummy-supply = <&apps_smmu>;
 
