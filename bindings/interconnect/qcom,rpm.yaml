@@ -49,6 +49,12 @@ properties:
       - qcom,bengal-mmnrt_virt
       - qcom,bengal-mmrt_virt
       - qcom,bengal-system_noc
+      - qcom,monaco-bimc
+      - qcom,monaco-system_noc
+      - qcom,monaco-config_noc
+      - qcom,monaco-clk_virt
+      - qcom,monaco-mmnrt_virt
+      - qcom,monaco-mmrt_virt
 
   '#interconnect-cells':
     description: |
