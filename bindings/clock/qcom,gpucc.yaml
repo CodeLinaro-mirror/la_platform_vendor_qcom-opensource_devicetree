@@ -28,6 +28,7 @@ description: |
     dt-bindings/clock/qcom,gpucc-vienna.h
     dt-bindings/clock/qcom,gpucc-chora.h
     dt-bindings/clock/qcom,gpucc-khaje.h
+    dt-bindings/clock/qcom,gpucc-monaco.h
 
 properties:
   compatible:
@@ -49,6 +50,7 @@ properties:
       - qcom,alor-gpucc
       - qcom,chora-gpucc
       - qcom,khaje-gpucc
+      - qcom,monaco-gpucc
 
   clocks:
     items:
