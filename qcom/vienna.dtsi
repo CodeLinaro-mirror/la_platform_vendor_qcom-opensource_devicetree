@@ -566,9 +566,20 @@
 		};
 	};
 
+	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_1 0x0 0x0 0x0 0x40000000>,
+						  <&sdhc_1 0x0 0x50000000 0xffffffff 0xb0000000>;
+	};
+
 	sdhc_1: sdhci@8804000 {
 		compatible = "qcom,sdhci-msm-v5";
 		status = "disabled";
+		#address-cells = <2>;
+		#size-cells = <2>;
 
 		reg = <0x08804000 0x1000>,<0x08805000 0x1000>,<0x08808000 0x18000>;
 		reg-names = "hc", "cqhci", "ice";
@@ -577,8 +588,8 @@
 		qcom,iommu-dma = "fastmap";
 
 		/*
-		 * iommu-addresses - Indicate the range of data addresses which will be
-		 * used in dma allocation.
+		 * iommu-addresses - Indicate the range of data addresses which will NOT
+		 * be used in dma allocation.
 		 *
 		 * iommu-geometry -  This is specific for fastmap which Allow clients
 		 * to save SMMU page table memory.
@@ -591,8 +602,8 @@
 		 * iommu-dma-addr-pool property along with iommu-geometry property.
 		 */
 
-		qcom,iommu-addresses = <0x40000000 0x10000000>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		memory-region = <&sdhc_1_dma_resv>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
@@ -818,9 +829,20 @@
 		};
 	};
 
+	sdhc_3_dma_resv: sdhc_3_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC3 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_3 0x0 0x0 0x0 0x40000000>,
+						  <&sdhc_3 0x0 0x50000000 0xffffffff 0xb0000000>;
+	};
+
 	sdhc_3: sdhci@8844000 {
 		compatible = "qcom,sdhci-msm-v5";
 		status = "disabled";
+		#address-cells = <2>;
+		#size-cells = <2>;
 		reg = <0x08844000 0x1000>;
 		reg-names = "hc";
 
@@ -851,8 +873,8 @@
 		qcom,iommu-dma = "fastmap";
 
 		/*
-		 * iommu-addresses - Indicate the range of data addresses which will be
-		 * used in dma allocation.
+		 * iommu-addresses - Indicate the range of data addresses which will NOT
+		 * be used in dma allocation.
 		 *
 		 * iommu-geometry -  This is specific for fastmap which Allow clients
 		 * to save SMMU page table memory.
@@ -865,8 +887,9 @@
 		 * iommu-dma-addr-pool property along with iommu-geometry property.
 		 */
 
-		qcom,iommu-addresses = <0x40000000 0x10000000>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		dma-coherent;
+		memory-region = <&sdhc_3_dma_resv>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		qos0 {
 			mask = <0x10>;
