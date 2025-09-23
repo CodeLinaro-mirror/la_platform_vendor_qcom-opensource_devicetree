@@ -1588,8 +1588,8 @@
 
 	ddrqos_freq_table: ddrqos-freq-table {
 		qcom,freq-tbl =
-			< 0 >,
-			< 1 >;
+			< 1 >,
+			< 2 >;
 	};
 
 	qcom_dcvs: qcom,dcvs {
@@ -1884,7 +1884,7 @@
 
 			ddrqos_gold_lat: gold {
 				compatible = "qcom,memlat-mon";
-				qcom,cpulist = <&CPU4 &CPU5 &CPU6 &CPU7>;
+				qcom,cpulist = <&CPU4 &CPU5 &CPU6>;
 				qcom,cpufreq-memfreq-tbl =
 					<  300000 1 >,
 					< 3000000 2 >;
