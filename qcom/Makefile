@@ -83,16 +83,18 @@ canoe-dtb-$(CONFIG_ARCH_CHORA) += \
 	$(call add-overlays, $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
 
+dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
+
 MALABAR_BASE_DTB += malabar.dtb
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
 
-canoe-dtb-$(CONFIG_ARCH_MALABAR) += \
+malabar-dtb-$(CONFIG_ARCH_MALABAR) += \
 	$(call add-overlays,$(NOAPQ_MALABAR_BOARDS), $(MALABAR_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
+malabar-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
 
-dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
+dtb-y += $(malabar-dtb-y) $(malabar-overlays-dtb-y)
 
 KHAJE_BASE_DTB += khaje.dtb khajep.dtb khajeq.dtb khajeg.dtb khaje-3gb.dtb
 
