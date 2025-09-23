@@ -8,24 +8,20 @@
 &thermal_zones {
 	pmw6100_tz {
 		cooling-maps {
-			trip1_cpu1 {
-				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu1_pause 0 1>;
-			};
 
-			trip1_cpu2 {
-				trip = <&pmw6100_trip0>;
-				cooling-device = <&cpu2_pause 0 1>;
-			};
-
-			trip1_cpu3 {
+			trip0_cpu3 {
 				trip = <&pmw6100_trip0>;
 				cooling-device = <&cpu3_pause 0 1>;
 			};
 
-			trip1_cpu4 {
+			trip0_cpu4 {
 				trip = <&pmw6100_trip0>;
 				cooling-device = <&cpu4_pause 0 1>;
+			};
+
+			trip0_gpu {
+				trip = <&pmw6100_trip0>;
+				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
 			};
 		};
 	};
