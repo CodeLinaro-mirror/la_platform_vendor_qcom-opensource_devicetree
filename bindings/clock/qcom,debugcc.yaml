@@ -27,6 +27,7 @@ properties:
       - qcom,alor-debugcc
       - qcom,debugcc-sc7280
       - qcom,khaje-debugcc
+      - qcom,x1p42100-debugcc
 
   clocks:
     items:
