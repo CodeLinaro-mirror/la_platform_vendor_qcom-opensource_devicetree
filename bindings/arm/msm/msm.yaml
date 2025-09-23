@@ -341,4 +341,11 @@ properties:
               - qcom,qrd
           - const: qcom,yupikp-iot
 
+      - description: Qualcomm Technologies, Inc. PIKACHU RUMI
+        items:
+          - enum:
+              - qcom,pikachu-rumi
+              - qcom,rumi
+          - const: qcom,pikachu
+
 additionalProperties: true
