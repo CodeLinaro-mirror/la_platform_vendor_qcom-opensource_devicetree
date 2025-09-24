@@ -2450,6 +2450,16 @@
 					< 3200000 1 >;
 				qcom,cpucp-enabled;
 			};
+
+			ddrqos_prime_compute: prime-compute {
+				compatible = "qcom,memlat-mon";
+				qcom,cpulist = <&CPU6 &CPU7>;
+				qcom,cpufreq-memfreq-tbl =
+						< 3513600 0 >,
+						< 4185600 1 >;
+				qcom,cpucp-enabled;
+				qcom,compute-mon;
+			};
 		};
 	};
 
