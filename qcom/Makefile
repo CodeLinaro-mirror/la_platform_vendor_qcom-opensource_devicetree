@@ -76,6 +76,17 @@ canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB)
 
+PIKACHU_BASE_DTB += pikachu.dtb
+
+NOAPQ_PIKACHU_BOARDS += \
+                  pikachu-rumi-overlay.dtbo
+
+pikachu-dtb-$(CONFIG_ARCH_PIKACHU) += \
+	$(call add-overlays, $(PIKACHU_BOARDS) $(NOAPQ_PIKACHU_BOARDS),$(PIKACHU_BASE_DTB))\
+	$(call add-overlays, $(PIKACHU_BOARDS) $(APQ_PIKACHU_BOARDS),$(PIKACHU_APQ_BASE_DTB))
+pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB) $(PIKACHU_APQ_BASE_DTB)
+dtb-y += $(pikachu-dtb-y)
+
 CHORA_BASE_DTB += chora.dtb
 
 NOAPQ_CHORA_BOARDS += \
