@@ -3,7 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "canoe.dtsi"
+#include "canoe-v2.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Whale SoC";
