@@ -51,6 +51,7 @@ properties:
       - qcom,chora-gpucc
       - qcom,khaje-gpucc
       - qcom,monaco-gpucc
+      - qcom,whale-gpucc
 
   clocks:
     items:

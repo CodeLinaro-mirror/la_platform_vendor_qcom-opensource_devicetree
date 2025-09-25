@@ -45,6 +45,7 @@ properties:
       - qcom,canoe-videocc-v2
       - qcom,chora-videocc
       - qcom,x1p42100-videocc
+      - qcom,whale-videocc
 
   clocks:
     items:
