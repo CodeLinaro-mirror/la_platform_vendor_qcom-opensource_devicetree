@@ -10,3 +10,23 @@
 	compatible = "qcom,whale";
 	qcom,msm-id = <722 0x30000>;
 };
+
+&camcc {
+	compatible = "qcom,whale-camcc", "syscon";
+};
+
+&dispcc {
+	compatible = "qcom,alor-dispcc", "syscon";
+};
+
+&evacc {
+	compatible = "qcom,alor-evacc", "syscon";
+};
+
+&gpucc {
+	compatible = "qcom,whale-gpucc", "syscon";
+};
+
+&videocc {
+	compatible = "qcom,whale-videocc", "syscon";
+};
