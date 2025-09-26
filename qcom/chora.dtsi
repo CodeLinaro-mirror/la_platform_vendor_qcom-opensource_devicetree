@@ -156,6 +156,8 @@
 		};
 	};
 
+	ddr_regions: ddr-regions { };
+
 	firmware: firmware { };
 
 	reserved_memory: reserved-memory { };
