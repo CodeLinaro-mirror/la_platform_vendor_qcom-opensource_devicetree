@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
 %YAML 1.2
 ---
@@ -103,6 +103,10 @@ properties:
       Should specify sleep pin control groups used for this controller.
 
   resets:
+    maxItems: 1
+
+  qcom,dat1-gpio:
+    description: GPIO used to toggle SDIO DAT1 line.
     maxItems: 1
 
   qcom,ddr-config:

@@ -3030,6 +3030,21 @@
 			};
 		};
 
+		/* Define SDIO pin states */
+		sdc3_dat1_gpio_pin: sdc3-dat1-gpio-state {
+			mux {
+				pins = "gpio82";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio82";
+				drive-strength = <2>;
+				bias-disable;
+				output-high; /* Initially high */
+			};
+		};
+
 		pmx_sdc3_clk {
 			sdc3_clk_on: sdc3_clk_on {
 				mux {
