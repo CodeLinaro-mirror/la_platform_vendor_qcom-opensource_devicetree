@@ -5,6 +5,7 @@ _platform_map = {
             {"name": "lemans-vm-la.dtb"},
             {"name": "lemans-vm-lv-mt.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
+            {"name": "sa8797p-v2-gunyah-vm-qam.dtb"},
             {"name": "monaco-vm-la.dtb"},
             {"name": "monaco-vm-lv-mt.dtb"},
             {"name": "monaco-vm-flex-lv-mt.dtb"},

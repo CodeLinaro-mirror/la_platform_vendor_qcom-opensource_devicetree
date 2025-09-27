@@ -457,7 +457,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_NORD), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb
+SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb sa8797p-v2-gunyah-vm-qam.dtb
 SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
