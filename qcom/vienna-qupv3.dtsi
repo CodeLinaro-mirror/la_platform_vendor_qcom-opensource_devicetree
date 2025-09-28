@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 &soc {
@@ -52,6 +52,9 @@
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
+		qcom,geni-to-core-vote = <50000 50000 100000 150000 200000 200000>;
+		qcom,cpu-to-geni-vote = <74300 74300 148600 148600 299600 426300>;
+		qcom,geni-to-ddr-vote = <76800 2386800 2388000 7455600 11938800 16000000>;
 		ranges;
 		status = "ok";
 
@@ -81,6 +84,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -163,6 +167,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -245,6 +250,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -327,6 +333,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -409,6 +416,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -491,6 +499,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -564,6 +573,7 @@
 			pinctrl-1 = <&qupv3_se4_2uart_sleep>;
 			pinctrl-names = "default",
 					"sleep";
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -638,6 +648,7 @@
 			pinctrl-1 = <&qupv3_se5_2uart_sleep_a>;
 			pinctrl-names = "default",
 					"sleep";
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -772,6 +783,7 @@
 			       <&gpi_dma1 1 6 QCOM_GPI_UART 64 0>;
 			dma-names = "tx",
 				    "rx";
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -854,6 +866,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -936,6 +949,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -1018,6 +1032,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -1100,6 +1115,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
@@ -1182,6 +1198,7 @@
 					"sleep",
 					"shutdown";
 			qcom,suspend-ignore-children;
+			qcom,vote-index = <0 0 0>;
 			status = "disabled";
 		};
 
