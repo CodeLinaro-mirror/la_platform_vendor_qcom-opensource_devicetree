@@ -228,6 +228,7 @@
 					      RPMH_REGULATOR_LEVEL_SVS 0>;
 
 		clocks = <&gcc GCC_PCIE_6A_PIPE_CLK>,
+			<&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_PCIE_6A_AUX_CLK>,
 			<&gcc GCC_PCIE_6A_CFG_AHB_CLK>,
 			<&gcc GCC_PCIE_6A_MSTR_AXI_CLK>,
@@ -245,7 +246,7 @@
 			<&gcc GCC_PCIE_6A_PHY_AUX_CLK_SRC>,
 			<&gcc GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK>,
 			<&gcc GCC_CFG_NOC_PCIE_ANOC_SOUTH_AHB_CLK>;
-		clock-names = "pcie_pipe_clk",
+		clock-names = "pcie_pipe_clk", "pcie_ref_clk_src",
 			"pcie_aux_clk", "pcie_cfg_ahb_clk",
 			"pcie_mstr_axi_clk", "pcie_slv_axi_clk",
 			"pcie_clkref_en", "pcie_slv_q2a_axi_clk",
@@ -259,9 +260,9 @@
 			"gcc_pcie_6a_phy_aux_clk_src",
 			"gcc_cfg_noc_pcie_anoc_north_ahb_clk",
 			"gcc_cfg_noc_pcie_anoc_south_ahb_clk";
-		qcom,pcie-clock-frequency = <0>, <19200000>, <0>, <0>, <0>, <0>, <0>,
+		qcom,pcie-clock-frequency = <0>, <0>, <19200000>, <0>, <0>, <0>, <0>, <0>,
 					    <100000000>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
-		clock-suppressible = <0>, <0>, <0>, <0>, <0>, <0>, <0>,
+		clock-suppressible = <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>,
 				     <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
 
 		qcom,bw-scale = /* Gen1 */
