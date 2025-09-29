@@ -209,6 +209,10 @@
 	interconnect-names = "cam-to-ddr";
 };
 
+&videocc {
+	compatible = "qcom,x1p42100-videocc", "syscon";
+};
+
 &adreno_smmu {
 	qcom,actlr =
 		<0x0000 0x0000 0x0000032b>,
