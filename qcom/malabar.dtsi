@@ -159,6 +159,7 @@
 
 #include "malabar-reserved-memory.dtsi"
 #include "msm-arm-smmu-malabar.dtsi"
+#include "malabar-dma-heaps.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
