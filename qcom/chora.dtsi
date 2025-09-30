@@ -1258,6 +1258,8 @@
 		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_CAMERA_AHB_CLK>;
 		clock-names = "bi_tcxo", "iface";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -1353,6 +1355,8 @@
 				"bi_tcxo_ao",
 				"iface",
 				"sleep_clk";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
