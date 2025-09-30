@@ -348,4 +348,11 @@ properties:
               - qcom,rumi
           - const: qcom,pikachu
 
+      - description: Qualcomm Technologies, Inc. COLIBRI
+        items:
+          - enum:
+              - qcom,colibri-rumi
+              - qcom,rumi
+          - const: qcom,colibri
+
 additionalProperties: true
