@@ -610,6 +610,7 @@
 #include "chora-pinctrl.dtsi"
 #include "chora-stub-regulators.dtsi"
 #include "chora-qupv3.dtsi"
+#include "chora-usb.dtsi"
 
 &qupv3_se5_2uart {
 	status = "ok";
