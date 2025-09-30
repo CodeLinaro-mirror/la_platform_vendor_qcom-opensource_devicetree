@@ -6,6 +6,39 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 &soc {
+	kgsl_smmu: kgsl-smmu@0x59a0000 {
+		compatible = "qcom,qsmmu-v500", "qcom,adreno-smmu";
+		reg = <0x59a0000 0x10000>,
+			<0x59C2000 0x20>;
+		reg-names = "base", "tcu-base";
+		#iommu-cells = <2>;
+		qcom,use-3-lvl-tables;
+		#global-interrupts = <1>;
+		#size-cells = <1>;
+		#address-cells = <1>;
+		ranges;
+
+		interrupts =	<GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
+
+		gfx_0_tbu: gfx_0_tbu@0x59c5000 {
+			compatible = "qcom,qsmmuv500-tbu";
+			reg = <0x59c5000 0x1000>,
+				<0x59c2200 0x8>;
+			reg-names = "base", "status-reg";
+			qcom,stream-id-range = <0x0 0x400>;
+			qcom,iova-width = <49>;
+		};
+
+	};
+
 	apps_smmu: apps-smmu@0xc600000 {
 		compatible = "qcom,qsmmu-v500";
 		reg = <0xc600000 0x80000>,
@@ -149,6 +182,17 @@
 			compatible = "qcom,iommu-debug-usecase";
 			iommus = <&apps_smmu 0x1e0 0x1>;
 			qcom,iommu-vmid = <0xa>; /* VMID_CP_PIXEL */
+		};
+
+		usecase5_kgsl {
+			compatible = "qcom,iommu-debug-usecase";
+			iommus = <&kgsl_smmu 0x7 0x0>, <&kgsl_smmu 0x407 0x0>;
+		};
+
+		usecase6_kgsl_dma {
+			compatible = "qcom,iommu-debug-usecase";
+			iommus = <&kgsl_smmu 0x7 0x0>, <&kgsl_smmu 0x407 0x0>;
+			dma-coherent;
 		};
 	};
 };
