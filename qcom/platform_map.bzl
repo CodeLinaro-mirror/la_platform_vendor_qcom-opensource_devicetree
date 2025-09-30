@@ -9,6 +9,8 @@ _platform_map = {
             {"name": "monaco-vm-lv-mt.dtb"},
             {"name": "monaco-vm-flex-lv-mt.dtb"},
             {"name": "sa8797p-sdp8-vm-la.dtb"},
+            {"name": "lemans-vm-la-mt.dtb"},
+            {"name": "monaco-vm-la-mt.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -19,9 +21,73 @@ _platform_map = {
             {"name": "monaco-vm-lv-mt-overlay.dtbo"},
             {"name": "monaco-vm-flex-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
+            {"name": "lemans-vm-la-mt-overlay.dtbo"},
+            {"name": "monaco-vm-la-mt-overlay.dtbo"},
         ],
     },
     "canoe": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "canoe.dtb"},
+            {
+                "name": "canoep.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-tp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-tp-v2.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-v2.dtb",
+                "apq": True,
+            },
+            {"name": "canoe-tp.dtb"},
+            {"name": "canoe-tp-v2.dtb"},
+            {"name": "canoe-v2.dtb"},
+            {"name": "whale.dtb"},
+            {
+                "name": "whalep.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-sg.dtb",
+                "apq": True,
+            },
+            {
+                "name": "canoep-sg-v2.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "canoe-atp-overlay.dtbo"},
+            {"name": "canoe-cdp-kiwi-overlay.dtbo"},
+            {"name": "canoe-cdp-overlay.dtbo"},
+            {"name": "canoe-cdp-st54l-pandeiro-i2s-overlay.dtbo"},
+            {"name": "canoe-cdp-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-mtp-3.5mm-overlay.dtbo"},
+            {"name": "canoe-mtp-kiwi-overlay.dtbo"},
+            {"name": "canoe-mtp-mango-overlay.dtbo"},
+            {"name": "canoe-mtp-overlay.dtbo"},
+            {"name": "canoe-mtp-pdm-mic-overlay.dtbo"},
+            {"name": "canoe-mtp-pictor-overlay.dtbo"},
+            {"name": "canoe-mtp-qmp1000-overlay.dtbo"},
+            {"name": "canoe-mtp-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-qrd-st54l-kundu-overlay.dtbo"},
+            {"name": "canoe-qrd-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoe-rcm-kiwi-overlay.dtbo"},
+            {"name": "canoe-rcm-overlay.dtbo"},
+            {"name": "canoe-rcm-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoep-hdk-overlay.dtbo"},
+            {"name": "canoe-rumi-overlay.dtbo"},
+        ],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
+    },
+    "canoe-le": {
         "dtb_list": [
             # keep sorted
             {"name": "canoe.dtb"},
@@ -73,7 +139,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
     },
     "alor": {
         "dtb_list": [
@@ -132,6 +198,58 @@ _platform_map = {
                 "name": "malabar-rumi-overlay.dtbo",
                 "apq": False,
             },
+        ],
+    },
+    "bengal": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "khaje.dtb"},
+            {"name": "khajep.dtb"},
+            {"name": "khajeq.dtb"},
+            {"name": "khajeg.dtb"},
+            {"name": "khaje-3gb.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "khaje-idp-overlay.dtbo"},
+            {"name": "khaje-qrd-overlay.dtbo"},
+            {"name": "khaje-qrd-nowcd9375-overlay.dtbo"},
+            {"name": "khaje-idp-nopmi-overlay.dtbo"},
+            {"name": "khaje-qrd-nopmi-overlay.dtbo"},
+            {"name": "khaje-idps-display-90hz-overlay.dtbo"},
+            {"name": "khaje-atp-overlay.dtbo"},
+            {"name": "khaje-idp-usbc-overlay.dtbo"},
+            {"name": "khaje-idp-pm8010-overlay.dtbo"},
+            {"name": "khajep-atp-overlay.dtbo"},
+            {"name": "khajep-qrd-overlay.dtbo"},
+            {"name": "khajep-qrd-hvdcp3p5-overlay.dtbo"},
+            {"name": "khajep-qrd-nowcd9375-overlay.dtbo"},
+            {"name": "khajep-qrd-nopmi-overlay.dtbo"},
+            {"name": "khajep-idp-overlay.dtbo"},
+            {"name": "khajep-idp-nopmi-overlay.dtbo"},
+            {"name": "khajep-idp-usbc-overlay.dtbo"},
+            {"name": "khajep-idp-pm8010-overlay.dtbo"},
+            {"name": "khajep-idps-display-90hz-overlay.dtbo"},
+            {"name": "khajeq-atp-overlay.dtbo"},
+            {"name": "khajeq-qrd-overlay.dtbo"},
+            {"name": "khajeq-qrd-hvdcp3p5-overlay.dtbo"},
+            {"name": "khajeq-qrd-nowcd9375-overlay.dtbo"},
+            {"name": "khajeq-qrd-nopmi-overlay.dtbo"},
+            {"name": "khajeq-idp-overlay.dtbo"},
+            {"name": "khajeq-idp-nopmi-overlay.dtbo"},
+            {"name": "khajeq-idp-usbc-overlay.dtbo"},
+            {"name": "khajeq-idp-pm8010-overlay.dtbo"},
+            {"name": "khajeq-idps-display-90hz-overlay.dtbo"},
+            {"name": "khajeg-atp-overlay.dtbo"},
+            {"name": "khajeg-qrd-overlay.dtbo"},
+            {"name": "khajeg-qrd-hvdcp3p5-overlay.dtbo"},
+            {"name": "khajeg-qrd-nowcd9375-overlay.dtbo"},
+            {"name": "khajeg-qrd-nopmi-overlay.dtbo"},
+            {"name": "khajeg-idp-overlay.dtbo"},
+            {"name": "khajeg-idp-nopmi-overlay.dtbo"},
+            {"name": "khajeg-idp-usbc-overlay.dtbo"},
+            {"name": "khajeg-idp-pm8010-overlay.dtbo"},
+            {"name": "khajeg-idps-display-90hz-overlay.dtbo"},
         ],
     },
     "lahaina": {
@@ -483,6 +601,32 @@ _platform_map = {
             {"name": "vienna-wdp-no-cam-overlay.dtbo"},
             {"name": "vienna-wdp-overlay.dtbo"},
             {"name": "vienna-wdp-se8-overlay.dtbo"},
+            {"name": "vienna-wrd-no-cam-overlay.dtbo"},
+            {"name": "vienna-wrd-ddsip-overlay.dtbo"},
+            {"name": "vienna-wrd-overlay.dtbo"},
+        ],
+    },
+    "vienna-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "vienna.dtb"},
+            {
+                "name": "viennap.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "vienna-atp-no-cam-overlay.dtbo"},
+            {"name": "vienna-atp-overlay.dtbo"},
+            {"name": "vienna-idp-no-cam-overlay.dtbo"},
+            {"name": "vienna-idp-overlay.dtbo"},
+            {"name": "vienna-rcm-no-cam-overlay.dtbo"},
+            {"name": "vienna-rcm-overlay.dtbo"},
+            {"name": "vienna-rumi-overlay.dtbo"},
+            {"name": "vienna-wdp-no-cam-overlay.dtbo"},
+            {"name": "vienna-wdp-ddsip-overlay.dtbo"},
+            {"name": "vienna-wdp-overlay.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay.dtbo"},
             {"name": "vienna-wrd-ddsip-overlay.dtbo"},
             {"name": "vienna-wrd-overlay.dtbo"},

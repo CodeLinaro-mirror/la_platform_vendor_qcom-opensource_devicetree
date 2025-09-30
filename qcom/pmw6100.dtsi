@@ -88,6 +88,14 @@
 			fmd_set: fmd-set@9a {
 				reg = <0x9a 0x1>;
 			};
+
+			fmd_cnt2_stop: fmd-cnt2-stop@9b {
+				reg = <0x9b 0x1>;
+			};
+
+			fmd_chg_pon: fmd-chg-pon@9f {
+				reg = <0x9f 0x1>;
+			};
 		};
 
 		pmic_lpm: qti,pmic-lpm@7200 {
@@ -418,6 +426,12 @@
 
 		trips {
 			socd_trip:socd-trip {
+				temperature = <90>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			socd_hal_trip:socd-hal-trip {
 				temperature = <90>;
 				hysteresis = <0>;
 				type = "passive";

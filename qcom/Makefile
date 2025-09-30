@@ -16,7 +16,7 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
 CANOE_BASE_DTB += canoe.dtb canoe-v2.dtb canoe-tp.dtb canoe-tp-v2.dtb alor-interposer.dtb alor-interposer-v2.dtb whale.dtb
-CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb whalep.dtb
+CANOE_APQ_BASE_DTB += canoep.dtb canoep-v2.dtb canoep-tp.dtb canoep-tp-v2.dtb whalep.dtb canoep-sg.dtb canoep-sg-v2.dtb
 
 CANOE_BOARDS += \
 		canoe-mtp-3.5mm-overlay.dtbo \
@@ -83,16 +83,69 @@ canoe-dtb-$(CONFIG_ARCH_CHORA) += \
 	$(call add-overlays, $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
 
+dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
+
 MALABAR_BASE_DTB += malabar.dtb
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
 
-canoe-dtb-$(CONFIG_ARCH_MALABAR) += \
+malabar-dtb-$(CONFIG_ARCH_MALABAR) += \
 	$(call add-overlays,$(NOAPQ_MALABAR_BOARDS), $(MALABAR_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
+malabar-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
 
-dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
+dtb-y += $(malabar-dtb-y) $(malabar-overlays-dtb-y)
+
+KHAJE_BASE_DTB += khaje.dtb khajep.dtb khajeq.dtb khajeg.dtb khaje-3gb.dtb
+
+
+KHAJE_BOARDS += \
+		khaje-idp-overlay.dtbo \
+		khaje-qrd-overlay.dtbo \
+		khaje-qrd-hvdcp3p5-overlay.dtbo \
+		khaje-qrd-nowcd9375-overlay.dtbo \
+		khaje-idp-nopmi-overlay.dtbo \
+		khaje-qrd-nopmi-overlay.dtbo \
+		khaje-idps-display-90hz-overlay.dtbo \
+		khaje-atp-overlay.dtbo \
+		khaje-idp-usbc-overlay.dtbo \
+		khaje-idp-pm8010-overlay.dtbo \
+		khajep-atp-overlay.dtbo \
+		khajep-qrd-overlay.dtbo \
+		khajep-qrd-hvdcp3p5-overlay.dtbo \
+		khajep-qrd-nowcd9375-overlay.dtbo \
+		khajep-qrd-nopmi-overlay.dtbo \
+		khajep-idp-overlay.dtbo \
+		khajep-idp-nopmi-overlay.dtbo \
+		khajep-idp-usbc-overlay.dtbo \
+		khajep-idp-pm8010-overlay.dtbo \
+		khajep-idps-display-90hz-overlay.dtbo \
+		khajeq-atp-overlay.dtbo \
+		khajeq-qrd-overlay.dtbo \
+		khajeq-qrd-hvdcp3p5-overlay.dtbo \
+		khajeq-qrd-nowcd9375-overlay.dtbo \
+		khajeq-qrd-nopmi-overlay.dtbo \
+		khajeq-idp-overlay.dtbo \
+		khajeq-idp-nopmi-overlay.dtbo \
+		khajeq-idp-usbc-overlay.dtbo \
+		khajeq-idp-pm8010-overlay.dtbo \
+		khajeq-idps-display-90hz-overlay.dtbo \
+		khajeg-atp-overlay.dtbo \
+		khajeg-qrd-overlay.dtbo \
+		khajeg-qrd-hvdcp3p5-overlay.dtbo \
+		khajeg-qrd-nowcd9375-overlay.dtbo \
+		khajeg-qrd-nopmi-overlay.dtbo \
+		khajeg-idp-overlay.dtbo \
+		khajeg-idp-nopmi-overlay.dtbo \
+		khajeg-idp-usbc-overlay.dtbo \
+		khajeg-idp-pm8010-overlay.dtbo \
+		khajeg-idps-display-90hz-overlay.dtbo
+
+bengal-dtb-$(CONFIG_ARCH_KHAJE) += \
+        $(call add-overlays, $(KHAJE_BOARDS) ,$(KHAJE_BASE_DTB))
+bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
+
+dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
 YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
 YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb
@@ -466,6 +519,45 @@ dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
 endif
+
+ifeq ($(CONFIG_ARCH_LEMANS), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+LEMANS_MULTI_GVM_BASE_DTB += \
+                lemans-vm-la-mt.dtb
+
+LEMANS_MULTI_GVM_BOARDS += \
+                lemans-vm-la-mt-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(call add-overlays, $(LEMANS_MULTI_GVM_BOARDS),$(LEMANS_MULTI_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(LEMANS_MULTI_GVM_BOARDS) $(LEMANS_MULTI_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_MONACO_AUTO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+LEMANS_MULTI_GVM_BASE_DTB += \
+                monaco-vm-la-mt.dtb
+
+LEMANS_MULTI_GVM_BOARDS += \
+                monaco-vm-la-mt-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(call add-overlays, $(MONACO_MULTI_GVM_BOARDS),$(MONACO_MULTI_GVM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+                $(MONACO_MULTI_GVM_BOARDS) $(MONACO_MULTI_GVM_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)

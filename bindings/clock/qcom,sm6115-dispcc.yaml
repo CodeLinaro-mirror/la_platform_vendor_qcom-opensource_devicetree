@@ -15,11 +15,13 @@ description: |
 
   See also:
     include/dt-bindings/clock/qcom,sm6115-dispcc.h
+    include/dt-bindings/clock/qcom,dispcc-khaje.h
 
 properties:
   compatible:
     enum:
       - qcom,sm6115-dispcc
+      - qcom,khaje-dispcc
 
   clocks:
     items:

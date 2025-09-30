@@ -24,6 +24,7 @@ description: |
     dt-bindings/clock/qcom,videocc-parrot.h
     dt-bindings/clock/qcom,videocc-canoe.h
     dt-bindings/clock/qcom,chora-videocc.h
+    dt-bindings/clock/qcom,x1p42100-videocc.h
 
 properties:
   compatible:
@@ -43,6 +44,7 @@ properties:
       - qcom,alor-videocc
       - qcom,canoe-videocc-v2
       - qcom,chora-videocc
+      - qcom,x1p42100-videocc
 
   clocks:
     items:

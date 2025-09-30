@@ -7,7 +7,6 @@
 #include "x1e80100.dtsi"
 #include "x1p42100-regulators.dtsi"
 #include "x1e80100-pmic-overlay.dtsi"
-#include "x1e80100-thermal-overlay.dtsi"
 #include "x1p42100-debug.dtsi"
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,x1p42100.h>
@@ -210,5 +209,17 @@
 	interconnect-names = "cam-to-ddr";
 };
 
-#include "x1p42100-pcie.dtsi"
+&adreno_smmu {
+	qcom,actlr =
+		<0x0000 0x0000 0x0000032b>,
+		<0x0002 0x0000 0x0000032b>,
+		<0x0004 0x0000 0x0000032b>,
+		<0x0005 0x0000 0x0000032b>,
+		<0x0007 0x0000 0x0000032b>;
+};
+
+&gpu_qtb {
+	qcom,num-qtb-ports = <2>;
+};
+
 

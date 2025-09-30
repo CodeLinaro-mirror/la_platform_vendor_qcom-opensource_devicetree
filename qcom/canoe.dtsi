@@ -1649,10 +1649,12 @@
 		vdd_mx-supply = <&VDD_MX_LEVEL>;
 		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-			 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+			 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>,
+			 <&gcc GCC_GPU_GEMNOC_GFX_CLK>;
 		clock-names = "bi_tcxo",
 			      "gpll0_out_main",
-			      "gpll0_out_main_div";
+			      "gpll0_out_main_div",
+			      "gcc_gpu_gemnoc_gfx_clk";
 
 		#clock-cells = <1>;
 		#reset-cells = <1>;

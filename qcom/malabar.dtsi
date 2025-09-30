@@ -158,6 +158,7 @@
 };
 
 #include "malabar-reserved-memory.dtsi"
+#include "msm-arm-smmu-malabar.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -270,7 +271,6 @@
 		#interrupt-cells = <2>;
 	};
 
-	apps_smmu: smmu {};
 };
 
 #include "malabar-stub-regulators.dtsi"
