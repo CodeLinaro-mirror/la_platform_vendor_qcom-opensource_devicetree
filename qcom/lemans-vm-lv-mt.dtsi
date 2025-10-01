@@ -52,15 +52,15 @@
 &usb1 {
 	/delete-property/ qcom,host-poweroff-in-pm-suspend;
 	/delete-property/ qcom,default-mode-host;
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie_smmu {
