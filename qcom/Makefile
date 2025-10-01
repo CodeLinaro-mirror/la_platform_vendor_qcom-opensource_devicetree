@@ -330,6 +330,15 @@ x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
 x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
 
+COLIBRI_BASE_DTB += colibri.dtb
+
+NOAPQ_COLIBRI_BOARDS += \
+		 colibri-rumi-overlay.dtbo
+
+colibri-dtb-$(CONFIG_ARCH_COLIBRI) += \
+	$(call add-overlays, $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS),$(COLIBRI_BASE_DTB))
+colibri-overlays-dtb-$(CONFIG_ARCH_COLIBRI) += $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS) $(COLIBRI_BASE_DTB)
+dtb-y += $(colibri-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
