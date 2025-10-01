@@ -281,6 +281,11 @@
 		#interrupt-cells = <2>;
 	};
 
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+		qcom,vmid-cp-camera-preview-ro;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
