@@ -1469,8 +1469,8 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&usb_south_anoc MASTER_USB3_1 QCOM_ICC_TAG_ALWAYS &usb_south_anoc MASTER_USB3_1 QCOM_ICC_TAG_ALWAYS>,
-					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS &config_noc SLAVE_USB3_1 QCOM_ICC_TAG_ALWAYS>;
+			interconnects = <&usb_south_anoc MASTER_USB3_1 &usb_south_anoc MASTER_USB3_1>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_1>;
 
 			/*
 			 * Establish dependency on smmu driver so that depopulate path of
