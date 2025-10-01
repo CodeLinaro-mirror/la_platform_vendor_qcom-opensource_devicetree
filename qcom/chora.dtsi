@@ -158,9 +158,9 @@
 		};
 	};
 
-	firmware: firmware {
-		qcom_scm: qcom_scm { };
-	};
+	ddr_regions: ddr-regions { };
+
+	firmware: firmware { };
 
 	reserved_memory: reserved-memory { };
 
@@ -170,6 +170,7 @@
 &firmware {
 	qcom_scm {
 		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x19000>;
 	};
 };
 
