@@ -146,6 +146,16 @@ properties:
       - description: Qualcomm Technologies, Inc. Chora
         items:
           - enum:
+              - qcom,chora-atp
+              - qcom,atp
+              - qcom,chora-cdp
+              - qcom,cdp
+              - qcom,chora-mtp
+              - qcom,mtp
+              - qcom,chora-qrd
+              - qcom,qrd
+              - qcom,chora-rcm
+              - qcom,rcm
               - qcom,chora-rumi
               - qcom,rumi
           - const: qcom,chora
