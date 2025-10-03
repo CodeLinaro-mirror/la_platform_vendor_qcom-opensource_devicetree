@@ -83,3 +83,6 @@
 		};
 	};
 };
+&vreg_sdc1_sd_ls_vccb {
+       /delete-property/ enable-gpio;
+};
