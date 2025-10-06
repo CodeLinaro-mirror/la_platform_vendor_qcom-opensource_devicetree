@@ -21,6 +21,7 @@
 #include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 #include <dt-bindings/clock/qcom,x1p42100-av1ecc.h>
 #include <dt-bindings/clock/qcom,sm8650-videocc.h>
+#include <dt-bindings/clock/qcom,x1e80100-camcc.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -2243,7 +2244,7 @@
 		};
 
 		camcc: clock-controller@ade0000 {
-			compatible = "qcom,x1p42100-camcc", "syscon";
+			compatible = "qcom,x1e80100-camcc", "syscon";
 			reg = <0x0 0x0ade0000 0x0 0x20000>;
 			reg-name = "cc_base";
 			vdd_mm-supply = <&VDD_MM_LEVEL>;
@@ -2254,6 +2255,8 @@
 				 <&sleep_clk>,
 				 <&gcc GCC_CAMERA_AHB_CLK>;
 			clock-names = "bi_tcxo", "sleep_clk", "iface";
+			interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
+			interconnect-names = "cam-to-ddr";
 			#clock-cells = <1>;
 			#reset-cells = <1>;
 			#power-domain-cells = <1>;
