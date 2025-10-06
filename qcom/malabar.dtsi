@@ -14,15 +14,11 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
+	aliases { };
+
 	chosen: chosen {
 		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7";
 	};
-
-	reserved_memory: reserved-memory {};
-
-	firmware: firmware {};
-
-	aliases { };
 
 	cpus {
 		#address-cells = <2>;
@@ -153,6 +149,14 @@
 			};
 		};
 	};
+
+	ddr_regions: ddr-regions { };
+
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
+
+	reserved_memory: reserved-memory { };
 
 	soc: soc { };
 };
