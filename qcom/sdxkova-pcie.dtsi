@@ -6,6 +6,14 @@
 #include <dt-bindings/clock/qcom,sdx75-gcc.h>
 
 &soc {
+
+#ifdef __WLAN_UD__
+	wsi: wsi {
+		status = "disabled";
+	};
+
+#endif
+
 	pcie0: qcom,pcie@1bf0000 {
 		compatible = "qcom,pci-msm";
 		device_type = "pci";
