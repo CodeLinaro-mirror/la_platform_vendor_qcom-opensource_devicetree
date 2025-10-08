@@ -26,6 +26,7 @@ properties:
       - qcom,alor-camcc
       - qcom,chora-camcc
       - qcom,x1p42100-camcc
+      - qcom,whale-camcc
 
   clocks:
     items:
