@@ -303,6 +303,17 @@ pineapple-dtb-$(CONFIG_ARCH_PINEAPPLE) += \
 pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_PINEAPPLE_BOARDS) $(PINEAPPLE_BASE_DTB) $(PINEAPPLE_APQ_BASE_DTB)
 dtb-y += $(pineapple-dtb-y)
 
+SERAPH_BASE_DTB += seraph.dtb
+
+NOAPQ_SERAPH_BOARDS += \
+                  seraph-rumi-overlay.dtbo
+
+seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
+	$(call add-overlays, $(SERAPH_BOARDS) $(NOAPQ_SERAPH_BOARDS),$(SERAPH_BASE_DTB))\
+	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
+seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
+dtb-y += $(seraph-dtb-y)
+
 VIENNA_BASE_DTB += vienna.dtb
 VIENNA_APQ_BASE_DTB += viennap.dtb
 

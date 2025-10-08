@@ -461,6 +461,13 @@ _platform_map = {
             {"name": "sa8155p-adp-star-overlay.dtbo"},
         ],
     },
+    "seraph": {
+        "dtb_list": [
+            {"name": "seraph.dtb"},
+        ],
+        "dtbo_list": [
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
