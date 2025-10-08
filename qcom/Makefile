@@ -27,11 +27,9 @@ CANOE_BOARDS += \
 		canoe-mtp-pictor-overlay.dtbo \
 		canoe-mtp-qmp1000-overlay.dtbo \
 		canoe-mtp-st54l-pandeiro-overlay.dtbo \
-		canoe-cdp-kiwi-no-l3k-overlay.dtbo \
 		canoe-cdp-kiwi-overlay.dtbo \
 		canoe-cdp-overlay.dtbo \
 		canoe-cdp-st54l-pandeiro-i2s-overlay.dtbo \
-		canoe-cdp-st54l-pandeiro-no-l3k-overlay.dtbo \
 		canoe-cdp-st54l-pandeiro-overlay.dtbo \
 		canoe-qrd-st54l-kundu-overlay.dtbo \
 		canoe-qrd-st54l-pandeiro-overlay.dtbo \
