@@ -2848,7 +2848,7 @@
 		qcom,subsys-name = "soccp";
 
 		battery_charger: battery-charger {
-			compatible = "qcom,battery-charger";
+			compatible = "qcom,canoe-battery-charger";
 		};
 
 		ucsi: ucsi-glink {
