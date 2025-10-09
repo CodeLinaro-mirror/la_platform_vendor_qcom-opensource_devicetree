@@ -365,4 +365,24 @@ properties:
               - qcom,rumi
           - const: qcom,colibri
 
+      - description: Qualcomm Technologies, Inc. SERAPH
+        items:
+          - enum:
+            - qcom,seraph-atp
+            - qcom.atp
+            - qcom,seraph-idp
+            - qcom,idp
+            - qcom,seraph-rumi
+            - qcom,rumi
+          - const: qcom,seraph
+
+      - description: Qualcomm Technologies, Inc. SERAPHP
+        items:
+          - enum:
+            - qcom,seraphp-atp
+            - qcom.atp
+            - qcom,seraphp-idp
+            - qcom,idp
+          - const: qcom,seraphp
+
 additionalProperties: true
