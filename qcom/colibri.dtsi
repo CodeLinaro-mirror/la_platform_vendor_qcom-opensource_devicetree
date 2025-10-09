@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Colibri";
@@ -228,4 +229,5 @@
 
 #include "colibri-pinctrl.dtsi"
 #include "colibri-reserved-memory.dtsi"
+#include "colibri-stub-regulators.dtsi"
 #include "msm-arm-smmu-colibri.dtsi"
