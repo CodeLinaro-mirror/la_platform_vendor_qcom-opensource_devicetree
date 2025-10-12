@@ -3,7 +3,13 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&smb2360_0_eusb2_repeater {
+	vdd18-supply = <&L3D>;
+	vdd3-supply = <&L2B>;
+};
+
 &usb2_phy_0 {
+	phys = <&smb2360_0_eusb2_repeater>;
 	status = "okay";
 };
 
@@ -18,8 +24,13 @@
 	};
 };
 
+&smb2360_1_eusb2_repeater {
+	vdd18-supply = <&L3D>;
+	vdd3-supply = <&L14B>;
+};
 
 &usb2_phy_1 {
+	phys = <&smb2360_1_eusb2_repeater>;
 	status = "okay";
 };
 
