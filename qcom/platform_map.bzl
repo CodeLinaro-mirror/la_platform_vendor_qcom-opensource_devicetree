@@ -88,7 +88,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora", "malabar"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
     },
     "canoe-le": {
         "dtb_list": [
