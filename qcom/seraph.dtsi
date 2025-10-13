@@ -34,7 +34,9 @@
 
 	reserved_memory: reserved-memory {};
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se11_2uart;
+	 };
 
 	firmware: firmware {
 		qcom_scm: qcom_scm { };
@@ -873,3 +875,8 @@
 #include "seraph-dma-heaps.dtsi"
 #include "seraph-regulators.dtsi"
 #include "seraph-pinctrl.dtsi"
+#include "seraph-qupv3.dtsi"
+
+&qupv3_se11_2uart {
+	status = "ok";
+};
