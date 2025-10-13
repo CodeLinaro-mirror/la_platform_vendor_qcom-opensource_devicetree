@@ -228,3 +228,4 @@
 
 #include "colibri-pinctrl.dtsi"
 #include "colibri-reserved-memory.dtsi"
+#include "msm-arm-smmu-colibri.dtsi"
