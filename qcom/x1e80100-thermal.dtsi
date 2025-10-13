@@ -128,9 +128,27 @@
 			#cooling-cells = <2>;
 		};
 
+		APC0_MX_CX_PAUSE: apc0-mx-cx-pause {
+			qcom,cpus = <&CPU1 &CPU2 &CPU3>;
+			qcom,cdev-alias = "thermal-pause-E";
+			#cooling-cells = <2>;
+		};
+
+		APC1_MX_CX_PAUSE: apc1-mx-cx-pause {
+			qcom,cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+			qcom,cdev-alias = "thermal-pause-F0";
+			#cooling-cells = <2>;
+		};
+
+		APC2_MX_CX_PAUSE: apc2-mx-cx-pause {
+			qcom,cpus = <&CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,cdev-alias = "thermal-pause-F00";
+			#cooling-cells = <2>;
+		};
+
 		APC1_APC2_MX_CX_PAUSE: apc1-apc2-mx-cx-pause {
 			qcom,cpus = <&CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
-			qcom,cdev-alias = "thermal-pause-apc1-apc2";
+			qcom,cdev-alias = "thermal-pause-FF0";
 			#cooling-cells = <2>;
 		};
 
@@ -268,6 +286,26 @@
 			qcom,cpu = <&CPU11>;
 			qcom,cdev-alias = "cpu-hotplug11";
 			#cooling-cells = <2>;
+		};
+	};
+
+	qcom,devfreq-cdev {
+		compatible = "qcom,devfreq-cdev";
+		qcom,devfreq = <&msm_gpu>;
+	};
+
+	qcom,cpufreq-cdev {
+		compatible = "qcom,cpufreq-cdev";
+		cpu-cluster0 {
+			qcom,cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		};
+
+		cpu-cluster1 {
+			qcom,cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		};
+
+		cpu-cluster2 {
+			qcom,cpus = <&CPU8 &CPU9 &CPU10 &CPU11>;
 		};
 	};
 
