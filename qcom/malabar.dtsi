@@ -1566,7 +1566,7 @@
 #include "malabar-coresight.dtsi"
 #include "malabar-debug.dtsi"
 #include "malabar-gdsc.dtsi"
-#include "malabar-stub-regulators.dtsi"
+#include "malabar-rpm-regulators.dtsi"
 #include "malabar-pinctrl.dtsi"
 #include "malabar-qupv3.dtsi"
 #include "malabar-walt.dtsi"
