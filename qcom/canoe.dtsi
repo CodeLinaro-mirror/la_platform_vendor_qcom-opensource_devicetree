@@ -3927,7 +3927,7 @@
 		reg = <0x0 0x80000000 0x0 0xe00000>;
 	};
 
-	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@80e00000 {
+	reserved: reserved_region@80e00000 {
 		no-map;
 		reg = <0x0 0x80e00000 0x0 0x400000>;
 	};
@@ -4156,6 +4156,11 @@
 	adspslpi_mem: adspslpi_region@a1400000 {
 		no-map;
 		reg = <0x0 0xa1400000 0x0 0x4600000>;
+	};
+
+	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@0xc3dd0000 {
+		no-map;
+		reg = <0x0 0xc3dd0000 0x0 0xa30000>;
 	};
 
 	/* UEFI region at 0xc4800000 is reclaimed by Linux */
