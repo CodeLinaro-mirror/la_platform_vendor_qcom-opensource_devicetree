@@ -72,17 +72,17 @@
 
 		cp_b_pt_mem: cp_b_pt_region {
 			qcom,label = <0x9A>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		cp_p_pt_mem: cp_p_pt_region {
 			qcom,label = <0x9B>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		cp_np_pt_mem: cp_np_pt_region {
 			qcom,label = <0x9C>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		glink_cma_mem1: glink-cma-region@1 {
