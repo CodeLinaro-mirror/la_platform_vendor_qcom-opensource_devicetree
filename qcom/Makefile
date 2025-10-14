@@ -78,6 +78,7 @@ canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(
 
 
 CHORA_BASE_DTB += chora.dtb
+CHORA_APQ_BASE_DTB += chorap.dtb
 
 CHORA_BOARDS += \
 	        chora-atp-overlay.dtbo \
@@ -95,8 +96,9 @@ NOAPQ_CHORA_BOARDS += \
 		chora-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_CHORA) += \
-	$(call add-overlays, $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
+	$(call add-overlays, $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB)) \
+	$(call add-overlays, $(CHORA_BOARDS),$(CHORA_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB) $(CHORA_APQ_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
