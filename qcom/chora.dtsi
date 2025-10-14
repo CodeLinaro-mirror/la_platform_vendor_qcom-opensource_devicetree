@@ -320,6 +320,16 @@
 		};
 	};
 
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		/* keep few silver cores in class0 only to avoid wakeup of gold cores */
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		/* keep gold cores in class1 */
+		qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,gic-runtime-cpu-class-en;
+	};
+
 	qcom,chd {
 		compatible = "qcom,core-hang-detect";
 		label = "core";
