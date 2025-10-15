@@ -160,6 +160,21 @@ properties:
               - qcom,rumi
           - const: qcom,chora
 
+      - description: Qualcomm Technologies, Inc. ChoraP
+        items:
+          - enum:
+              - qcom,chorap-atp
+              - qcom,atp
+              - qcom,chorap-cdp
+              - qcom,cdp
+              - qcom,chorap-mtp
+              - qcom,mtp
+              - qcom,chorap-qrd
+              - qcom,qrd
+              - qcom,chorap-rcm
+              - qcom,rcm
+          - const: qcom,chorap
+
       - description: Qualcomm Technologies, Inc. Malabar
         items:
           - enum:
