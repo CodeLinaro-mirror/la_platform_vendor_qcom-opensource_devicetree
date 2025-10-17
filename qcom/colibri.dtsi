@@ -231,3 +231,4 @@
 #include "colibri-reserved-memory.dtsi"
 #include "colibri-stub-regulators.dtsi"
 #include "msm-arm-smmu-colibri.dtsi"
+#include "colibri-dma-heaps.dtsi"
