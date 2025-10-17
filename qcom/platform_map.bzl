@@ -192,6 +192,16 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "chora-rumi-overlay.dtbo"},
+            {"name": "chora-atp-overlay.dtbo"},
+            {"name": "chora-cdp-overlay.dtbo"},
+            {"name": "chora-cdp-wcn7750-overlay.dtbo"},
+            {"name": "chora-mtp-overlay.dtbo"},
+            {"name": "chora-mtp-lcd-overlay.dtbo"},
+            {"name": "chora-mtp-wcn7750-overlay.dtbo"},
+            {"name": "chora-qrd-overlay.dtbo"},
+            {"name": "chora-qrd-wcn7750-overlay.dtbo"},
+            {"name": "chora-rcm-overlay.dtbo"},
+            {"name": "chora-rcm-wcn7750-overlay.dtbo"},
         ],
     },
     "malabar": {
