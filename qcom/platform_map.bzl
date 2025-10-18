@@ -188,6 +188,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "chora.dtb"},
+            {
+                "name": "chorap.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
