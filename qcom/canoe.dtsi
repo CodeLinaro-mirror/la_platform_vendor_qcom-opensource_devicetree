@@ -91,6 +91,8 @@
 		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 	};
 
+	ddr-regions { };
+
 	firmware: firmware {
 		qcom_scm: qcom_scm { };
 	};
