@@ -18,6 +18,7 @@
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,chora.h>
+#include <dt-bindings/spmi/spmi.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Chora";
@@ -506,6 +507,73 @@
 
 		#power-domain-cells = <1>;
 		#clock-cells = <0>;
+	};
+
+	pmic-arb-debug@10b14000 {
+		compatible = "qcom,spmi-pmic-arb-debug";
+		reg = <0x0 0x10b14000 0x0 0x60>,
+		      <0x0 0x221c8780 0x0 0x4>;
+		reg-names = "core", "fuse";
+		clocks = <&aoss_qmp>;
+		clock-names = "core_clk";
+		qcom,fuse-enable-bit = <14>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		depends-on-supply = <&pmic_arbiter>;
+
+		spmi_debug_bus_0: spmi@0 {
+			reg = <0>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+
+			pmk8550@0 {
+				compatible = "qcom,spmi-pmic";
+				reg = <0 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmxr2230@1 {
+				compatible = "qcom,spmi-pmic";
+				reg = <1 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8550vs@2 {
+				compatible = "qcom,spmi-pmic";
+				reg = <2 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmr735b@5 {
+				compatible = "qcom,spmi-pmic";
+				reg = <5 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8010@c {
+				compatible = "qcom,spmi-pmic";
+				reg = <12 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8010@d {
+				compatible = "qcom,spmi-pmic";
+				reg = <13 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+		};
 	};
 
 	qmp_tme: qcom,qmp-tme {
