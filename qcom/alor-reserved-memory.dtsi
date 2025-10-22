@@ -13,9 +13,9 @@
 		reg = <0x0 0x80000000 0x0 0xe00000>;
 	};
 
-	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@80e00000 {
+	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@D63D0000 {
 		no-map;
-		reg = <0x0 0x80e00000 0x0 0x400000>;
+		reg = <0x0 0xD63D0000 0x0 0x800000>;
 	};
 
 	cpucp_mem: cpucp_region@81200000 {
