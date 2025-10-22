@@ -13,7 +13,7 @@
 		reg = <0x0 0x80000000 0x0 0xe00000>;
 	};
 
-	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@80e00000 {
+	reserved: reserved_region@80e00000 {
 		no-map;
 		reg = <0x0 0x80e00000 0x0 0x400000>;
 	};
@@ -241,6 +241,11 @@
 	xbl_ramdump_mem: xbl_ramdump_region@b8000000 {
 		no-map;
 		reg = <0x0 0xb8000000 0x0 0x1c0000>;
+	};
+
+	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@D63D0000 {
+		no-map;
+		reg = <0x0 0xD63D0000 0x0 0x800000>;
 	};
 
 	wlan_msa_mem: wlan_msa_region@d6e00000 {
