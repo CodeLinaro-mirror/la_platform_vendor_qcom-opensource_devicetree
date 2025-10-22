@@ -576,6 +576,3 @@
 #include "sa8797p-la-vm-bt.dtsi"
 #include "sa8797p-vm-usb.dtsi"
 #include "sa8797p-sdp8-vm-pcie.dtsi"
-#include "sa8797p-sdp8-vm-cnss.dtsi"
-#include "sa8797p-vidc-vm-la.dtsi"
-#include "sa8797p-vm-hsi2s.dtsi"
