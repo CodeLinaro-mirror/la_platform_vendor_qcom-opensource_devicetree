@@ -2359,7 +2359,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		mc_virt: interconnect@1 {
@@ -2367,14 +2366,12 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		config_noc: interconnect@1600000 {
 			compatible = "qcom,x1e80100-cnoc-cfg";
 			reg = <0x0 0x1600000 0x0 0x6600>;
 			#interconnect-cells = <1>;
-			qcom,skip-qos;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
 		};
@@ -2383,7 +2380,6 @@
 			compatible = "qcom,x1e80100-cnoc-main";
 			reg = <0x0 0x1500000 0x0 0x14400>;
 			#interconnect-cells = <1>;
-			qcom,skip-qos;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
 		};
@@ -2394,34 +2390,38 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		pcie_center_anoc: interconnect@16d0000 {
-			compatible = "qcom,x1e80100-pcie_center-anoc";
+			compatible = "qcom,x1e80100-pcie-center-anoc";
 			reg = <0x0 0x16d0000 0x0 0x7000>;
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		pcie_south_anoc: interconnect@16c0000 {
-			compatible = "qcom,x1e80100-pcie_south-anoc";
+			compatible = "qcom,x1e80100-pcie-south-anoc";
 			reg = <0x0 0x16c0000 0x0 0xd080>;
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
+			clocks = <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_2_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_6A_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_6B_MSTR_AXI_CLK>;
 		};
 
 		pcie_north_anoc: interconnect@1740000 {
-			compatible = "qcom,x1e80100-pcie_north-anoc";
+			compatible = "qcom,x1e80100-pcie-north-anoc";
 			reg = <0x0 0x1740000 0x0 0x9080>;
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
+			clocks = <&gcc GCC_PCIE_3_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_4_MSTR_AXI_CLK>,
+				 <&gcc GCC_PCIE_5_MSTR_AXI_CLK>;
 		};
 
 		aggre1_noc: interconnect@16e0000 {
@@ -2430,7 +2430,7 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
+			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>;
 		};
 
 		aggre2_noc: interconnect@1700000 {
@@ -2439,7 +2439,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		mmss_noc: interconnect@1780000 {
@@ -2448,7 +2447,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		gem_noc: interconnect@26400000 {
@@ -2457,7 +2455,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		nsp_noc: interconnect@320c0000 {
@@ -2466,7 +2463,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		lpass_ag_noc: interconnect@7e40000 {
@@ -2475,7 +2471,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		lpass_lpiaon_noc: interconnect@7400000 {
@@ -2484,7 +2479,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		lpass_lpicx_noc: interconnect@7430000 {
@@ -2493,7 +2487,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		usb_center_anoc: interconnect@1750000 {
@@ -2502,7 +2495,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
 		};
 
 		usb_north_anoc: interconnect@1760000 {
@@ -2511,7 +2503,8 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
+			clocks = <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>;
 		};
 
 		usb_south_anoc: interconnect@1770000 {
@@ -2520,7 +2513,12 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			qcom,skip-qos;
+			clocks = <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB3_TERT_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_0_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_1_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_2_AXI_CLK>;
 		};
 
 		remoteproc_cdsp: remoteproc@32300000 {
