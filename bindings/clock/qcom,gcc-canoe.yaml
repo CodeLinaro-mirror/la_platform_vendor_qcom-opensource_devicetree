@@ -21,6 +21,7 @@ description: |
   - dt-bindings/clock/qcom,chora-gcc.h
   - dt-bindings/clock/qcom,pikachu-gcc.h
   - dt-bindings/clock/qcom,gcc-seraph.h
+  - dt-bindings/clock/qcom,shikra-gcc.h
 
 properties:
   compatible:
@@ -32,6 +33,7 @@ properties:
       - qcom,chora-gcc
       - qcom,pikachu-gcc
       - qcom,seraph-gcc
+      - qcom,shikra-gcc
 
   clocks:
     items:
