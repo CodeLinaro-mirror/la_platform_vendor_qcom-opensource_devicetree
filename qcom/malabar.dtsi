@@ -1132,6 +1132,8 @@
 			status = "disabled";
 		};
 	};
+
+	thermal_zones: thermal-zones {};
 };
 
 #include "malabar-coresight.dtsi"
