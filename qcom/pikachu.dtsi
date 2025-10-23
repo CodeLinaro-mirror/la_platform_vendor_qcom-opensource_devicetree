@@ -421,5 +421,6 @@
 
 };
 
+#include "msm-arm-smmu-pikachu.dtsi"
 #include "pikachu-pinctrl.dtsi"
 #include "pikachu-stub-regulators.dtsi"
