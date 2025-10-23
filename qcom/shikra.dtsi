@@ -7,6 +7,8 @@
 #include <dt-bindings/clock/qcom,shikra-dispcc.h>
 #include <dt-bindings/clock/qcom,shikra-gcc.h>
 #include <dt-bindings/clock/qcom,shikra-gpucc.h>
+#include <dt-bindings/interconnect/qcom,shikra.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
@@ -449,6 +451,79 @@
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
+	};
+
+	clk_virt: interconnect@0 {
+		compatible = "qcom,shikra-clk_virt";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_QUP_CLK>,
+			 <&rpmcc RPM_SMD_QUP_A_CLK>;
+	};
+
+	mc_virt: interconnect@1 {
+		reg = <0x04480000 0x80000>;
+		compatible = "qcom,shikra-mc_virt";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <152>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
+			 <&rpmcc RPM_SMD_BIMC_A_CLK>;
+	};
+
+	mem_noc: interconnect@d00000 {
+		reg = <0x00d00000 0x43080>;
+		compatible = "qcom,shikra-mem_noc_core";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <142>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_CPUSS_GNOC_CLK>,
+			 <&rpmcc RPM_SMD_CPUSS_GNOC_A_CLK>;
+	};
+
+	mmnrt_virt: interconnect@1880000 {
+		reg = <0x01880000 0x6a080>;
+		compatible = "qcom,shikra-mmnrt_virt";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <142>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_MMNRT_CLK>,
+			 <&rpmcc RPM_SMD_MMNRT_A_CLK>;
+	};
+
+	mmrt_virt: interconnect@1880000 {
+		reg = <0x01880000 0x6a080>;
+		compatible = "qcom,shikra-mmrt_virt";
+		#interconnect-cells = <1>;
+		qcom,util-factor = <142>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_MMRT_CLK>,
+			 <&rpmcc RPM_SMD_MMRT_A_CLK>;
+	};
+
+	system_noc: interconnect@1880000 {
+		reg = <0x01880000 0x6a080>;
+		compatible = "qcom,shikra-sys_noc";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
+			 <&rpmcc RPM_SMD_SNOC_A_CLK>;
+	};
+
+	config_noc: interconnect@1900000 {
+		reg = <0x01900000 0x8080>;
+		compatible = "qcom,shikra-config_noc";
+		#interconnect-cells = <1>;
+		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
+			 <&rpmcc RPM_SMD_CNOC_A_CLK>;
 	};
 };
 
