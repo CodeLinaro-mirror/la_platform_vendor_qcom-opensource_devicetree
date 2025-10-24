@@ -75,7 +75,7 @@
 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 			reusable;
 			alignment = <0x0 0x400000>;
-			size = <0x0 0x2000000>;
+			size = <0x0 0x3400000>;
 			linux,cma-default;
 		};
 		qseecom_mem: qseecom_region {
@@ -2155,7 +2155,7 @@
 
 		qcom,client_3 {
 			compatible = "qcom,memshare-peripheral";
-			qcom,peripheral-size = <0x0>;
+			qcom,peripheral-size = <0x1400000>;
 			qcom,client-id = <1>;
 			qcom,allocate-on-request;
 			label = "modem";
@@ -2239,6 +2239,17 @@
 		 /* ipa - inbound entry from mss */
 		smp2p_ipa_1_in: qcom,smp2p-ipa-1-in {
 			qcom,entry-name = "ipa";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_smem_mailbox_1_out: qcom,smp2p-smem-mailbox-1-out {
+			qcom,entry-name = "smem-mailbox";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_smem_mailbox_1_in: qcom,smp2p-smem-mailbox-1-in {
+			qcom,entry-name = "smem-mailbox";
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};

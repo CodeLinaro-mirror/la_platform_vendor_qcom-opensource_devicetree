@@ -158,10 +158,58 @@
 
 };
 
+#ifdef __WLAN_UD__
+&wsi {
+	id = <0>;
+	num_chip = <3>;
+	status = "okay";
+	chip_info = <0 2 1 2>,
+		    <1 2 2 0>,
+		    <2 2 0 1>;
+	status = "okay";
+};
+
+#endif
+
 &pcie0_rp {
 	reg = <0 0 0 0 0>;
 	#address-cells = <5>;
 	#size-cells = <0>;
+#ifdef __WLAN_UD__
+	wifi@0 {
+		reg = <0 0 0 0 0>;
+		qcom,iommu-group = <&cnss_pci_iommu_group0>;
+		memory-region = <&qcn9224_0_mem>, <&mlo_global_mem0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		dma-coherent;
+		memory-region-names = "host-ddr-mem", "mlo-global-mem";
+		qcom,board_id = <0x2>;
+		qcom,wsi_index = <1>;
+		qcom,wsi = <&wsi>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				wifi1_wsi_tx: endpoint {
+					remote-endpoint = <&wifi2_wsi_rx>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				wifi1_wsi_rx: endpoint {
+					remote-endpoint = <&wifi3_wsi_tx>;
+				};
+			};
+		};
+	};
+
+#else
 	cnss_pci0: cnss_pci0 {
 		reg = <0 0 0 0 0>;
 		qcom,iommu-group = <&cnss_pci_iommu_group0>;
@@ -170,6 +218,8 @@
 		#size-cells = <1>;
 		dma-coherent;
 	};
+
+#endif
 };
 
 &pcie0 {
@@ -189,6 +239,42 @@
 	reg = <0 0 0 0 0>;
 	#address-cells = <5>;
 	#size-cells = <0>;
+#ifdef __WLAN_UD__
+	wifi@1 {
+		reg = <0 0 0 0 0>;
+		qcom,iommu-group = <&cnss_pci_iommu_group0>;
+		memory-region = <&qcn9224_1_mem>, <&mlo_global_mem0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		dma-coherent;
+		memory-region-names = "host-ddr-mem", "mlo-global-mem";
+		qcom,board_id = <0x4>;
+		qcom,wsi = <&wsi>;
+		qcom,wsi_index = <0>;
+		qcom,wsi-controller;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				wifi2_wsi_tx: endpoint {
+					remote-endpoint = <&wifi3_wsi_rx>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				wifi2_wsi_rx: endpoint {
+					remote-endpoint = <&wifi1_wsi_tx>;
+				};
+			};
+		};
+	};
+
+#else
 	cnss_pci1: cnss_pci1 {
 		reg = <0 0 0 0 0>;
 		qcom,iommu-group = <&cnss_pci_iommu_group0>;
@@ -197,6 +283,8 @@
 		#size-cells = <1>;
 		dma-coherent;
 	};
+
+#endif
 };
 
 &pcie1 {
@@ -216,6 +304,47 @@
 	reg = <0 0 0 0 0>;
 	#address-cells = <5>;
 	#size-cells = <0>;
+#ifdef __WLAN_UD__
+	wifi@2 {
+		reg = <0 0 0 0 0>;
+		qcom,iommu-group = <&cnss_pci_iommu_group0>;
+		memory-region = <&qcn9224_2_mem>, <&mlo_global_mem0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		dma-coherent;
+		memory-region-names = "host-ddr-mem", "mlo-global-mem";
+		qcom,board_id = <0x1>;
+		qcom,wsi = <&wsi>;
+		qcom,wsi_index = <2>;
+		qcom,pta-num = <0>;
+		qcom,coex-mode = <0x2>;
+		qcom,bt-active-time = <0x18>;
+		qcom,bt-priority-time = <0x12>;
+		qcom,coex-algo = <0x2>;
+		qcom,pta-priority = <0x80800505>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				wifi3_wsi_tx: endpoint {
+					remote-endpoint = <&wifi1_wsi_rx>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				wifi3_wsi_rx: endpoint {
+					remote-endpoint = <&wifi2_wsi_tx>;
+				};
+			};
+		};
+	};
+
+#else
 	cnss_pci2: cnss_pci2 {
 		reg = <0 0 0 0 0>;
 		qcom,iommu-group = <&cnss_pci_iommu_group0>;
@@ -224,6 +353,8 @@
 		#size-cells = <1>;
 		dma-coherent;
 	};
+
+#endif
 };
 
 &pcie2 {

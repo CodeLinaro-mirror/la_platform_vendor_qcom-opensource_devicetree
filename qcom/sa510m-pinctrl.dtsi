@@ -641,7 +641,7 @@
 			emac_mdc_inactive: emac_mdc_inactive {
 				mux {
 					pins = "gpio98";
-					function = "emac_mdc";
+					function = "gpio";
 				};
 
 				config {
@@ -667,7 +667,7 @@
 			emac_mdio_inactive: emac_mdio_inactive {
 				mux {
 					pins = "gpio99";
-					function = "emac_mdio";
+					function = "gpio";
 				};
 
 				config {
@@ -1145,6 +1145,36 @@
 				drive-strength = <2>;
 			};
 
+		};
+
+		sdc4_wlan_gpio {
+			sdc4_wlan_gpio_active: sdc4_wlan_gpio_active {
+				mux {
+					pins = "gpio95";
+					function  = "gpio";
+				};
+
+				config {
+					pins  = "gpio95";
+					output-high;
+					drive-strength = <8>;
+					bias-pull-up;
+				};
+			};
+
+			sdc4_wlan_gpio_sleep: sdc4_wlan_gpio_sleep {
+				mux {
+					pins = "gpio95";
+					function  = "gpio";
+				};
+
+				config {
+					pins  = "gpio95";
+					drive-strength = <2>;
+					bias-disable;
+					output-low;
+				};
+			};
 		};
 
 	};
