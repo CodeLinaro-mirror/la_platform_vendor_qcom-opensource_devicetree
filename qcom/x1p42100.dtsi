@@ -10,6 +10,8 @@
 #include "x1p42100-debug.dtsi"
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,x1p42100.h>
+#include <dt-bindings/clock/qcom,x1p42100-gcc.h>
+#include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 
 /delete-node/ &CPU8;
 /delete-node/ &CPU9;
