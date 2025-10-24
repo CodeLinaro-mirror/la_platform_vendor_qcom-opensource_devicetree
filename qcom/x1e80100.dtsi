@@ -2633,6 +2633,34 @@
 		reg = <0x0 0xc320000 0x0 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 	};
+
+	cluster_device0: cluster-device0 {
+		compatible = "qcom,lpm-cluster-dev";
+		power-domains = <&cluster_pd0>;
+		qcom,pred-prem-cnt = <2>;
+		qcom,sample-invalid-time = <40000000>;
+	};
+
+	cluster_device1: cluster-device1 {
+		compatible = "qcom,lpm-cluster-dev";
+		power-domains = <&cluster_pd1>;
+		qcom,pred-prem-cnt = <2>;
+		qcom,sample-invalid-time = <40000000>;
+	};
+
+	cluster_device2: cluster-device2 {
+		compatible = "qcom,lpm-cluster-dev";
+		power-domains = <&cluster_pd2>;
+		qcom,pred-prem-cnt = <2>;
+		qcom,sample-invalid-time = <40000000>;
+	};
+
+	cluster_device3: cluster-device3 {
+		compatible = "qcom,lpm-cluster-dev";
+		power-domains = <&system_pd>;
+		qcom,pred-prem-cnt = <2>;
+		qcom,sample-invalid-time = <40000000>;
+	};
 };
 
 &tlmm {
