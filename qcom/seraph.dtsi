@@ -51,6 +51,7 @@
 			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
 				cache-level = <2>;
@@ -70,6 +71,7 @@
 			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU2: cpu@200 {
@@ -79,6 +81,7 @@
 			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU3: cpu@300 {
@@ -88,6 +91,7 @@
 			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU4: cpu@400 {
@@ -97,6 +101,7 @@
 			enable-method = "psci";
 			cpu-release-addr = <0x0 0x90000000>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 		};
 
 		cpu-map {
@@ -487,6 +492,8 @@
 			 <&sleep_clk>, <&gcc GCC_CAMERA_AHB_CLK>;
 		clock-names = "bi_tcxo",
 			      "sleep_clk", "iface";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
+		interconnect-names = "cam-to-ddr";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -623,6 +630,23 @@
 			      "evacc", "gcc", "gpucc",
 			      "lsrcc", "videocc";
 		#clock-cells = <1>;
+	};
+
+	cpufreq_hw: qcom,cpufreq-hw {
+		compatible = "qcom,cpufreq-epss";
+		reg = <0x17d91000 0x1000>, <0x17d92000 0x1000>;
+		reg-names = "freq-domain0", "freq-domain1";
+		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+		clock-names = "xo", "alternate";
+		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "dcvsh0_int", "dcvsh1_int";
+		#freq-domain-cells = <1>;
+	};
+
+	qcom,cpufreq-hw-debug {
+		compatible = "qcom,cpufreq-hw-epss-debug";
+		qcom,freq-hw-domain = <&cpufreq_hw 0>, <&cpufreq_hw 1>;
 	};
 
 	dcp_cb_group: dcp_cb_group {
