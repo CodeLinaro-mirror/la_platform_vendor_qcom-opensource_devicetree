@@ -87,6 +87,7 @@ _platform_map = {
             {"name": "canoe-rcm-kiwi-overlay.dtbo"},
             {"name": "canoe-rcm-overlay.dtbo"},
             {"name": "canoe-rcm-st54l-pandeiro-overlay.dtbo"},
+            {"name": "canoep-hdk-no-l3k-overlay.dtbo"},
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],

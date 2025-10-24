@@ -39,6 +39,7 @@ CANOE_BOARDS += \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
+		canoep-hdk-no-l3k-overlay.dtbo \
 		canoep-hdk-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
 		alor-interposer-rcm-overlay.dtbo \
