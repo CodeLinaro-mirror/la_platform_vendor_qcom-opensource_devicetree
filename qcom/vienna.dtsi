@@ -2615,7 +2615,6 @@
 };
 
 &uart6 {
-	qcom,auto-suspend-disable;
 	status = "ok";
 };
 
