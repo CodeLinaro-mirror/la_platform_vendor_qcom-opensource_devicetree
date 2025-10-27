@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/thermal/thermal_qti.h>
@@ -64,7 +64,7 @@
 				(QMI_MODEM_INST_ID+QMI_PA)>;
 		trips {
 			thermal-engine-config0 {
-				temperature = <125000>;
+				temperature = <150000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
@@ -112,7 +112,7 @@
 				(QMI_MODEM_INST_ID+QMI_SDR0)>;
 		trips {
 			thermal-engine-config0 {
-				temperature = <125000>;
+				temperature = <150000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
