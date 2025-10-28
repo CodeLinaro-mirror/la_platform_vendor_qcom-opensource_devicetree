@@ -1468,8 +1468,9 @@
 			vdd-supply = <&L3J>;
 			vdda12-supply = <&L2J>;
 
-			clocks = <&tcsrcc TCSR_USB2_1_CLKREF_EN>;
-			clock-names = "ref";
+			clocks = <&xo_board>,
+				<&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
 			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
@@ -1604,8 +1605,9 @@
 			vdd-supply = <&L3J>;
 			vdda12-supply = <&L2J>;
 
-			clocks = <&tcsrcc TCSR_USB2_2_CLKREF_EN>;
-			clock-names = "ref";
+			clocks = <&xo_board>,
+				<&tcsrcc TCSR_USB2_2_CLKREF_EN>;
+			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
 			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
