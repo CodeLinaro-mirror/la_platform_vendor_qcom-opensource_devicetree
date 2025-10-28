@@ -28,6 +28,12 @@
 				<GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
 
+		qcom,actlr =
+			/* GPU */
+			<0x0000 0x0401 0x0000032b>,
+			<0x0002 0x0400 0x0000032b>,
+			<0x0007 0x0400 0x0000032b>;
+
 		gfx_0_tbu: gfx_0_tbu@0x59c5000 {
 			compatible = "qcom,qsmmuv500-tbu";
 			reg = <0x59c5000 0x1000>,
@@ -117,6 +123,23 @@
 				<GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>;
+
+		qcom,actlr =
+			/* Camera */
+			<0x0400 0x0000 0x00000103>,
+			<0x0800 0x0000 0x00000103>,
+			<0x0820 0x0000 0x00000103>,
+			<0x0840 0x0000 0x00000103>,
+
+			/* Display */
+			<0x0420 0x0002 0x00000103>,
+			<0x0421 0x0000 0x00000103>,
+
+			/* Video */
+			<0x0980 0x0020 0x00000103>,
+			<0x0981 0x0004 0x00000103>,
+			<0x0983 0x0000 0x00000103>,
+			<0x0984 0x0020 0x00000103>;
 
 		anoc_1_tbu: anoc_1_tbu@0xc785000 {
 			compatible = "qcom,qsmmuv500-tbu";
