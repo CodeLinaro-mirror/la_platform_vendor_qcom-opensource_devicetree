@@ -264,6 +264,18 @@ properties:
       - qcom,x1e80100-usb-center-anoc
       - qcom,x1e80100-usb-north-anoc
       - qcom,x1e80100-usb-south-anoc
+      - qcom,seraph-clk_virt
+      - qcom,seraph-config_noc_cfg
+      - qcom,seraph-config_noc_main
+      - qcom,seraph-gem_noc
+      - qcom,seraph-lpass_ag_noc
+      - qcom,seraph-lpass_lpiaon_noc
+      - qcom,seraph-lpass_lpicx_noc
+      - qcom,seraph-mc_virt
+      - qcom,seraph-mmss_noc
+      - qcom,seraph-nsp_noc
+      - qcom,seraph-pcie_anoc
+      - qcom,seraph-system_noc
       - qcom,pikachu-clk_virt
       - qcom,pikachu-cnoc_cfg
       - qcom,pikachu-cnoc_main
