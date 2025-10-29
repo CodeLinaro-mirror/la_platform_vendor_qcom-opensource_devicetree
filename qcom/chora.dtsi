@@ -41,6 +41,8 @@
 			reg = <0x0 0x0>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
@@ -60,6 +62,8 @@
 			reg = <0x0 0x100>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU2: cpu@200 {
@@ -68,6 +72,8 @@
 			reg = <0x0 0x200>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU3: cpu@300 {
@@ -76,6 +82,8 @@
 			reg = <0x0 0x300>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU4: cpu@400 {
@@ -84,6 +92,8 @@
 			reg = <0x0 0x400>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 
 			L2_4: l2-cache {
 				compatible = "arm,arch-cache";
@@ -98,6 +108,8 @@
 			reg = <0x0 0x500>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		CPU6: cpu@600 {
@@ -106,6 +118,8 @@
 			reg = <0x0 0x600>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		CPU7: cpu@700 {
@@ -114,6 +128,8 @@
 			reg = <0x0 0x700>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		cpu-map {
