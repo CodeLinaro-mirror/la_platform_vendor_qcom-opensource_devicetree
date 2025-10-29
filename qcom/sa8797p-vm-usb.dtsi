@@ -593,5 +593,16 @@
 	usb_nop_phy: usb_nop_phy {
 		compatible = "usb-nop-xceiv";
 	};
+
+	/* ADSP0 USB client */
+	usb_audio_qmi_dev: usb_audio_qmi_dev@0 {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu_0 0x09e7 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0x7>;
+		qcom,usb-audio-intr-num = <2>;
+
+		status = "disabled";
+	};
 };
 
