@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * All rights reserved.
  */
 
 &soc {
@@ -594,9 +595,7 @@
 	};
 
 	tpdm_modem_1: tpdm@24801000 {
-		compatible = "arm,coresight-dummy-source";
-		qcom,dummy-source;
-		atid = <67>;
+		compatible = "qcom,coresight-static-tpdm";
 		coresight-name = "coresight-tpdm-modem-1";
 		out-ports {
 			port {
@@ -609,10 +608,7 @@
 	};
 
 	tpdm_modem_2: tpdm@24802000 {
-		compatible = "arm,coresight-dummy-source";
-		qcom,dummy-source;
-		atid = <67>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		coresight-name = "coresight-tpdm-modem-2";
 
 		out-ports {
@@ -626,10 +622,7 @@
 	};
 
 	tpdm_modem_3: tpdm@24803000 {
-		compatible = "arm,coresight-dummy-source";
-		qcom,dummy-source;
-		atid = <67>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		coresight-name = "coresight-tpdm-modem-3";
 
 		out-ports {
@@ -643,10 +636,7 @@
 	};
 
 	tpdm_modem_4: tpdm@24804000 {
-		compatible = "arm,coresight-dummy-source";
-		qcom,dummy-source;
-		atid = <67>;
-
+		compatible = "qcom,coresight-static-tpdm";
 		coresight-name = "coresight-tpdm-modem-4";
 
 		out-ports {

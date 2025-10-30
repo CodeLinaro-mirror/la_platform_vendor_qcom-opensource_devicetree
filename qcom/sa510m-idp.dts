@@ -55,7 +55,7 @@
 	reset-names = "core_reset";
 
 	vdd-supply = <&vreg_sdc4_emmc_sd_vdd>;
-	qcom,vdd-voltage-level = <2950000 2950000>;
+	qcom,vdd-voltage-level = <2850000 2850000>;
 	qcom,vdd-current-level = <0 800000>;
 	qcom,vdd-always-on;
 
