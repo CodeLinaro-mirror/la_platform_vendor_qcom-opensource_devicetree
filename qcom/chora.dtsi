@@ -483,7 +483,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-		/* TODO: Add qcom,gpios-reserved */
+		qcom,gpios-reserved = <63>;
 	};
 
 	tcsr_mutex_block: syscon@1f40000 {
