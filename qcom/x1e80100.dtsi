@@ -1356,6 +1356,139 @@
 			};
 		};
 
+		ddr_freq_table: ddr-freq-table {
+			qcom,freq-tbl =
+				<  200000 >,
+				<  547200 >,
+				<  768000 >,
+				< 1555200 >,
+				< 1708800 >,
+				< 2092800 >,
+				< 2736000 >,
+				< 3187200 >,
+				< 3686400 >,
+				< 4224000 >;
+		};
+
+		llcc_freq_table: llcc-freq-table {
+			qcom,freq-tbl =
+				<  300000 >,
+				<  466500 >,
+				<  600000 >,
+				<  806000 >,
+				<  933000 >,
+				< 1066000 >;
+		};
+
+		ddrqos_freq_table: ddrqos-freq-table {
+			qcom,freq-tbl =
+				< 0 >,
+				< 1 >;
+		};
+
+		qcom_dcvs: qcom,dcvs {
+			compatible = "qcom,dcvs";
+
+			qcom_ddr_dcvs_hw: ddr {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <0>;
+				qcom,bus-width = <4>;
+				qcom,freq-tbl = <&ddr_freq_table>;
+
+				ddr_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&mc_virt MASTER_LLCC
+					&mc_virt SLAVE_EBI1>;
+				};
+			};
+
+			qcom_llcc_dcvs_hw: llcc {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <1>;
+				qcom,bus-width = <16>;
+				qcom,freq-tbl = <&llcc_freq_table>;
+
+				llcc_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&gem_noc MASTER_APPSS_PROC
+					&gem_noc SLAVE_LLCC>;
+				};
+			};
+
+			qcom_ddrqos_dcvs_hw: ddrqos {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <3>;
+				qcom,bus-width = <1>;
+				qcom,freq-tbl = <&ddrqos_freq_table>;
+
+				ddrqos_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&mc_virt MASTER_LLCC
+							&mc_virt SLAVE_EBI1>;
+				};
+			};
+		};
+
+		qcom_llcc_ddr_vote: qcom,llcc-ddr-vote {
+			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+			qcom,secondary-map =
+				<  300000  200000 >,
+				<  466500  768000 >,
+				<  600000 1708800 >,
+				<  806000 2736000 >,
+				<  933000 3686400 >,
+				< 1066000 4224000 >;
+		};
+
+		bwmon_llcc_cluster0: qcom,bwmon-llcc-cluster0@240B3300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0 0x240B3400 0x0 0x300>, <0x0 0x240B3300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_llcc_cluster2: qcom,bwmon-llcc-cluster2@240B5300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0 0x240B5400 0x0 0x300>, <0x0 0x240B5300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_llcc_cluster1: qcom,bwmon-llcc-cluster1@240B6300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0 0x240B6400 0x0 0x300>, <0x0 0x240B6300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_ddr: qcom,bwmon-ddr@24091000 {
+			compatible = "qcom,bwmon5";
+			reg = <0x0 0x24091000 0x0 0x1000>;
+			reg-names = "base";
+			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+		};
+
 		qcom,pmic_glink {
 			compatible = "qcom,qti-pmic-glink";
 			qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
