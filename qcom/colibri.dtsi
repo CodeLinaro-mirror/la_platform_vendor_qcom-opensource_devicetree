@@ -238,6 +238,14 @@
 		qcom,wakeup-enable;
 		status = "ok";
 	};
+
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		/* keep a few m cores in class0 only to avoid wakeup of l cores */
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2>;
+		/* keep other cores in class1 */
+		qcom,gic-class1-cpus = <&CPU3>;
+	};
 };
 
 #include "colibri-pinctrl.dtsi"
