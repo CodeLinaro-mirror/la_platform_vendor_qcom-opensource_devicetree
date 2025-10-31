@@ -203,6 +203,90 @@
 		#interrupt-cells = <2>;
 	};
 
+	clk_virt: interconnect-clk-virt {
+		compatible = "qcom,pikachu-clk_virt";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	mc_virt: interconnect-mc-virt {
+		compatible = "qcom,pikachu-mc_virt";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	config_noc: interconnect@1600000 {
+		compatible = "qcom,pikachu-config_noc_cfg";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	cnoc_main: interconnect@1500000 {
+		compatible = "qcom,pikachu-config_noc_main";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	gem_noc: interconnect@24100000 {
+		compatible = "qcom,pikachu-gem_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	lpass_ag_noc: interconnect@8240000 {
+		compatible = "qcom,pikachu-lpass_ag_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	lpass_lpiaon_noc: interconnect@07800000 {
+		compatible = "qcom,pikachu-lpass_lpiaon_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	lpass_lpicx_noc: interconnect@07820000 {
+		compatible = "qcom,pikachu-lpass_lpicx_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	mmss_noc: interconnect@1780000 {
+		compatible = "qcom,pikachu-mmss_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	nsp_noc: interconnect@320C0000 {
+		compatible = "qcom,pikachu-nsp_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	pcie_anoc: interconnect@16C0000 {
+		compatible = "qcom,pikachu-pcie_anoc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
+	system_noc: interconnect@1680000 {
+		compatible = "qcom,pikachu-system_noc";
+		#interconnect-cells = <1>;
+		qcom,stub;
+		qcom,skip-qos;
+	};
+
 };
 
 #include "pikachu-pinctrl.dtsi"
