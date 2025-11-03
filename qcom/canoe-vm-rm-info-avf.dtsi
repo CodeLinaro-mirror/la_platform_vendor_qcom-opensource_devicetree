@@ -16,7 +16,7 @@
 		};
 
 		buffer@810016000 {
-			reg = <0x08 0x10016000 0x00 0x1000>;
+			reg = <0x08 0x10016000 0x00 0x8000>;
 			android,pvmfw,target = <&ddump_buff>;
 		};
 
@@ -69,7 +69,7 @@
 		qcom,label = <0x107>;
 		qcom,rm-mem-handle = <0x09>;
 		qcom,shared-memory;
-		reg = <0x08 0x10016000 0x00 0x1000>;
+		reg = <0x08 0x10016000 0x00 0x8000>;
 	};
 
 };
