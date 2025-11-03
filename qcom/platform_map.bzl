@@ -523,6 +523,11 @@ _platform_map = {
             {"name": "seraph-rumi-overlay.dtbo"},
         ],
     },
+    "seraph-tuivm": {
+        "dtb_list": [
+            {"name": "seraph-vm-base.dtb"},
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
