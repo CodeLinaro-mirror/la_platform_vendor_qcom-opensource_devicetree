@@ -1582,7 +1582,7 @@
 				memory-region = <&dwc3_1_mem_region>;
 				dma-coherent;
 
-				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
 				phys = <&usb2_phy_1>, <&usb3_phy_1 QMP_USB43DP_USB3_PHY>;
 				phy-names = "usb2-phy", "usb3-phy";
 				snps,disable-clk-gating;
