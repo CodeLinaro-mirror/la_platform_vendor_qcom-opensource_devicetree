@@ -1603,6 +1603,7 @@
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		firmware-name = "adsp.mdt", "adsp_dtb.mdt";
+		subdev-firmware-name = "lpai_wm.mdt", "lpai_am.mdt";
 
 		memory-region = <&adspslpi_mem &q6_adsp_dtb_mem>;
 		subdev-memory-region = <&wear_microcontroller_m55_mem &ambient_microcontroller_m55_mem>;
