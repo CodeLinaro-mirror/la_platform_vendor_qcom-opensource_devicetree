@@ -25,6 +25,7 @@ properties:
       - qcom,alor-evacc
       - qcom,pikachu-evacc
       - qcom,seraph-evacc
+      - qcom,whale-evacc
 
   clocks:
     items:
