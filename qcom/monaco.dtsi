@@ -1667,8 +1667,8 @@
 
 	rpm-sleep-stats@4690000 {
 		compatible = "qcom,rpm-stats-v2";
-		reg = <0x04690000 0x400>;
-		ss-name = "modem", "adsp", "adsp_island", "cdsp", "apss";
+		reg = <0x04690000 0x10000>;
+		ss-name = "apss", "modem", "adsp", "cdsp";
 	};
 
 	sdhc1_opp_table: sdhc1-opp-table {
