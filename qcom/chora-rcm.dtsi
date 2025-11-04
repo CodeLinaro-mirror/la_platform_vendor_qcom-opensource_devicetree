@@ -4,3 +4,4 @@
  */
 
 #include "chora-pmic-overlay.dtsi"
+#include "chora-pm7550ba-smb1500.dtsi"
