@@ -1797,6 +1797,11 @@
 		status = "disabled";
 	};
 
+	show_resume_irqs@f200000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0xf200000 0x10000>;     /* GICD */
+	};
+
 	mpm: interrupt-controller@45f01b8 {
 		compatible = "qcom,mpm-monaco", "qcom,mpm";
 		interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
