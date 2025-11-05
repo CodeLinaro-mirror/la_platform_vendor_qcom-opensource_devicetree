@@ -344,26 +344,8 @@ _platform_map = {
     "canoe-tuivm": {
         "dtb_list": [
             # keep sorted
-            {"name": "alor-interposer-oemvm-mtp.dtb"},
-            {"name": "alor-interposer-oemvm-qrd.dtb"},
-            {"name": "alor-interposer-oemvm-rcm.dtb"},
-            {"name": "alor-interposer-vm-mtp.dtb"},
-            {"name": "alor-interposer-vm-qrd.dtb"},
-            {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-base.dtb"},
-            {"name": "canoe-oemvm-cdp.dtb"},
-            {"name": "canoe-oemvm-mtp.dtb"},
-            {"name": "canoe-oemvm-qrd.dtb"},
-            {"name": "canoe-oemvm-rcm.dtb"},
-            {"name": "canoep-oemvm-hdk.dtb"},
-            {"name": "canoe-oemvm-rumi.dtb"},
             {"name": "canoe-vm-base.dtb"},
-            {"name": "canoe-vm-cdp.dtb"},
-            {"name": "canoe-vm-mtp.dtb"},
-            {"name": "canoe-vm-qrd.dtb"},
-            {"name": "canoe-vm-rcm.dtb"},
-            {"name": "canoep-vm-hdk.dtb"},
-            {"name": "canoe-vm-rumi.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -380,26 +362,8 @@ _platform_map = {
     "canoe-oemvm": {
         "dtb_list": [
             # keep sorted
-            {"name": "alor-interposer-oemvm-mtp.dtb"},
-            {"name": "alor-interposer-oemvm-qrd.dtb"},
-            {"name": "alor-interposer-oemvm-rcm.dtb"},
-            {"name": "alor-interposer-vm-mtp.dtb"},
-            {"name": "alor-interposer-vm-qrd.dtb"},
-            {"name": "alor-interposer-vm-rcm.dtb"},
             {"name": "canoe-oemvm-base.dtb"},
-            {"name": "canoe-oemvm-cdp.dtb"},
-            {"name": "canoe-oemvm-mtp.dtb"},
-            {"name": "canoe-oemvm-qrd.dtb"},
-            {"name": "canoe-oemvm-rcm.dtb"},
-            {"name": "canoe-oemvm-rumi.dtb"},
-            {"name": "canoep-oemvm-hdk.dtb"},
             {"name": "canoe-vm-base.dtb"},
-            {"name": "canoe-vm-cdp.dtb"},
-            {"name": "canoe-vm-mtp.dtb"},
-            {"name": "canoe-vm-qrd.dtb"},
-            {"name": "canoe-vm-rcm.dtb"},
-            {"name": "canoe-vm-rumi.dtb"},
-            {"name": "canoep-vm-hdk.dtb"},
         ],
         "dtbo_list": [
             # keep sorted

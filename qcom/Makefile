@@ -441,26 +441,8 @@ endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
-				canoe-vm-mtp.dtb \
-				canoe-vm-cdp.dtb \
-				canoe-vm-qrd.dtb \
-				canoe-vm-rcm.dtb \
-				canoe-vm-base.dtb \
-				canoep-vm-hdk.dtb \
-				canoe-oemvm-rumi.dtb \
-				canoe-oemvm-mtp.dtb \
-				canoe-oemvm-cdp.dtb \
-				canoe-oemvm-qrd.dtb \
-				canoe-oemvm-rcm.dtb \
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-base.dtb \
 				canoe-oemvm-base.dtb \
-				canoep-oemvm-hdk.dtb \
-				alor-interposer-vm-mtp.dtb \
-				alor-interposer-vm-rcm.dtb \
-				alor-interposer-oemvm-mtp.dtb \
-				alor-interposer-oemvm-rcm.dtb \
-				alor-interposer-vm-qrd.dtb \
-				alor-interposer-oemvm-qrd.dtb \
 				canoe-vm-mtp-overlay.dtbo \
 				canoe-vm-qrd-overlay.dtbo \
 				canoe-vm-rcm-overlay.dtbo \
