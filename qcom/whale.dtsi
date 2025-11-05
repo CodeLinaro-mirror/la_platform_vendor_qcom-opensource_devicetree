@@ -3,10 +3,30 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "canoe.dtsi"
+#include "canoe-v2.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Whale SoC";
 	compatible = "qcom,whale";
 	qcom,msm-id = <722 0x30000>;
+};
+
+&camcc {
+	compatible = "qcom,whale-camcc", "syscon";
+};
+
+&dispcc {
+	compatible = "qcom,alor-dispcc", "syscon";
+};
+
+&evacc {
+	compatible = "qcom,alor-evacc", "syscon";
+};
+
+&gpucc {
+	compatible = "qcom,whale-gpucc", "syscon";
+};
+
+&videocc {
+	compatible = "qcom,whale-videocc", "syscon";
 };

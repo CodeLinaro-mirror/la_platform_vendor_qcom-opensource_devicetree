@@ -6,6 +6,7 @@
 /dts-v1/;
 
 #include "x1e80100.dtsi"
+#include "x1e80100-coresight.dtsi"
 #include "x1e80100-thermal.dtsi"
 
 / {

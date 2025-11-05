@@ -5,17 +5,6 @@
 
 #include "sdp8-quin-vm-common.dtsi"
 
-&{/} {
-	model = "Qualcomm Technologies, Inc. SA8797p Single LA  Guest Virtual Machine";
-	compatible = "qcom,sa8797p", "qcom,quinvm";
-	qcom,msm-id = <690 0x10000>, <690 0x20000>, <690 0x10001>;
-	qcom,board-id = <0x0 0x1000001>;
-	qcom,msm-name  = "SA_NORD_IVI";
-
-	#address-cells = <2>;
-	#size-cells = <2>;
-};
-
 &soc {
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,sa8797p-tlmm";
@@ -581,11 +570,7 @@
 	};
 };
 
-#include "nordy-sde-hwvirt.dtsi"
 #include "sa8797p-pinctrl.dtsi"
 #include "sa8797p-vm-qupv3.dtsi"
-#include "sa8797p-la-vm-bt.dtsi"
 #include "sa8797p-vm-usb.dtsi"
 #include "sa8797p-sdp8-vm-pcie.dtsi"
-#include "sa8797p-sdp8-vm-cnss.dtsi"
-#include "sa8797p-vidc-vm-la.dtsi"

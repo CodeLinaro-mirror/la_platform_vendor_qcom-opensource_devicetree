@@ -279,6 +279,13 @@
 				type = "critical";
 			};
 		};
+
+		cooling-maps {
+			pm8550ve_c_cdsp_sw {
+				trip = <&pm8550ve_c_trip0>;
+				cooling-device = <&cdsp_sw 0 4>;
+			};
+		};
 	};
 
 	pmc8380_d_temp_alarm: pmc8380_d_tz {
@@ -302,6 +309,13 @@
 				temperature = <145000>;
 				hysteresis = <0>;
 				type = "critical";
+			};
+		};
+
+		cooling-maps {
+			pmc8380_d_apc2 {
+				trip = <&pmc8380_d_trip0>;
+				cooling-device = <&APC2_MX_CX_PAUSE 1 1>;
 			};
 		};
 	};
@@ -329,6 +343,13 @@
 				type = "critical";
 			};
 		};
+
+		cooling-maps {
+			pmc8380_e_gpu {
+				trip = <&pmc8380_e_trip0>;
+				cooling-device = <&msm_gpu 1 1>;
+			};
+		};
 	};
 
 	pmc8380_f_temp_alarm: pmc8380_f_tz {
@@ -354,6 +375,13 @@
 				type = "critical";
 			};
 		};
+
+		cooling-maps {
+			pmc8380_f_apc1 {
+				trip = <&pmc8380_f_trip0>;
+				cooling-device = <&APC1_MX_CX_PAUSE 1 1>;
+			};
+		};
 	};
 
 	pmc8380_g_temp_alarm: pmc8380_g_tz {
@@ -377,6 +405,13 @@
 				temperature = <145000>;
 				hysteresis = <0>;
 				type = "critical";
+			};
+		};
+
+		cooling-maps {
+			pmc8380_g_apc0 {
+				trip = <&pmc8380_g_trip0>;
+				cooling-device = <&APC0_MX_CX_PAUSE 1 1>;
 			};
 		};
 	};

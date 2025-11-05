@@ -28,6 +28,8 @@ properties:
       - qcom,debugcc-sc7280
       - qcom,khaje-debugcc
       - qcom,x1p42100-debugcc
+      - qcom,monaco-debugcc
+      - qcom,x1e80100-debugcc
 
   clocks:
     items:

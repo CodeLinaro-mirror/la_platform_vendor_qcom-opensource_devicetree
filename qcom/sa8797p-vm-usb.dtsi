@@ -30,6 +30,7 @@
 		qcom,default-mode-host;
 		qcom,use-pdc-interrupts;
 		qcom,disable-host-ssphy-powerdown;
+		qcom,use-eusb2-phy;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
@@ -286,8 +287,9 @@
 				<&pdc 7 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "dp_hs_phy_irq", "pwr_event_irq",
 				"dm_hs_phy_irq";
-		qcom,use-pdc-interrupts;
 
+		qcom,use-pdc-interrupts;
+		qcom,use-eusb2-phy;
 		qcom,disable-wakeup;
 
 		/*

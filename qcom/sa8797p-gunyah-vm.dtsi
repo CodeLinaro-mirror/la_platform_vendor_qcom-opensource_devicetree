@@ -12,7 +12,6 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <690 0x10000>, <690 0x20000>, <690 0x10001>;
 	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 
@@ -73,17 +72,17 @@
 
 		cp_b_pt_mem: cp_b_pt_region {
 			qcom,label = <0x9A>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		cp_p_pt_mem: cp_p_pt_region {
 			qcom,label = <0x9B>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		cp_np_pt_mem: cp_np_pt_region {
 			qcom,label = <0x9C>;
-			qcom,prehypassigned;
+			qcom,secure-pt-reserved;
 		};
 
 		glink_cma_mem1: glink-cma-region@1 {
@@ -1831,10 +1830,16 @@
 			 <&apps_smmu_2 0x11c4 0x3>,
 			 <&apps_smmu_2 0x11c5 0x3>,
 			 <&apps_smmu_2 0x11c6 0x3>,
-			 <&apps_smmu_2 0x11c7 0x3>;
+			 <&apps_smmu_2 0x11c7 0x3>,
+			 <&apps_smmu_2 0x11c8 0x2>,
+			 <&apps_smmu_2 0x11c9 0x8>,
+			 <&apps_smmu_2 0x11ca 0x2>;
 
 		power-domains = <&scmi_power 8>, <&scmi_power 9>, <&scmi_perf 1>, <&scmi_perf 2>;
 		power-domain-names = "power_core", "power_mdio", "perf_serdes", "perf_5g_serdes";
+
+		resets = <&scmi_reset 1>;
+		reset-names = "serdes_reset";
 
 		pinctrl-0 = <&ethernet1_default>;
 		pinctrl-names = "default";
@@ -1856,7 +1861,7 @@
 		qcom-xpcs-handle = <&xpcs1>;
 
 		mtl_rx_setup1: rx-queues-config {
-			snps,rx-queues-to-use = <7>;
+			snps,rx-queues-to-use = <10>;
 			snps,rx-sched-sp;
 
 			queue0 {
@@ -1897,10 +1902,25 @@
 				snps,dcb-algorithm;
 				snps,map-to-dma-channel = <0x6>;
 			};
+
+			queue7 {
+				snps,dcb-algorithm;
+				snps,map-to-dma-channel = <0x7>;
+			};
+
+			queue8 {
+				snps,dcb-algorithm;
+				snps,map-to-dma-channel = <0x8>;
+			};
+
+			queue9 {
+				snps,dcb-algorithm;
+				snps,map-to-dma-channel = <0x9>;
+			};
 		};
 
 		mtl_tx_setup1: tx-queues-config {
-			snps,tx-queues-to-use = <7>;
+			snps,tx-queues-to-use = <10>;
 			snps,tx-sched-sp;
 
 			queue0 {
@@ -1928,6 +1948,18 @@
 			};
 
 			queue6 {
+				snps,dcb-algorithm;
+			};
+
+			queue7 {
+				snps,dcb-algorithm;
+			};
+
+			queue8 {
+				snps,dcb-algorithm;
+			};
+
+			queue9 {
 				snps,dcb-algorithm;
 			};
 		};

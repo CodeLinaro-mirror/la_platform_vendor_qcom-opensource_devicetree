@@ -74,6 +74,7 @@
 	apps_smmu: iommu@15000000 {
 		compatible = "qcom,qsmmu-v500";
 		reg = <0x0 0x15000000 0x0 0x100000>;
+		qcom,handoff-smrs = <0x1c00 0x2>;
 		#iommu-cells = <2>;
 		#global-interrupts = <1>;
 		dma-coherent;

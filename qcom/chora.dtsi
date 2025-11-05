@@ -11,6 +11,8 @@
 #include <dt-bindings/clock/qcom,chora-videocc.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/mailbox/qcom-ipcc-canoe.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Chora";
@@ -22,10 +24,12 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases { };
+	aliases {
+		serial0 = &qupv3_se5_2uart;
+	};
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 earlycon=qcom_geni,0x00a94000";
+		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 earlycon=qcom_geni,0x00a94000 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -39,6 +43,8 @@
 			reg = <0x0 0x0>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
@@ -58,6 +64,8 @@
 			reg = <0x0 0x100>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU2: cpu@200 {
@@ -66,6 +74,8 @@
 			reg = <0x0 0x200>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU3: cpu@300 {
@@ -74,6 +84,8 @@
 			reg = <0x0 0x300>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU4: cpu@400 {
@@ -82,6 +94,8 @@
 			reg = <0x0 0x400>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 
 			L2_4: l2-cache {
 				compatible = "arm,arch-cache";
@@ -96,6 +110,8 @@
 			reg = <0x0 0x500>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		CPU6: cpu@600 {
@@ -104,6 +120,8 @@
 			reg = <0x0 0x600>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		CPU7: cpu@700 {
@@ -112,6 +130,8 @@
 			reg = <0x0 0x700>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			capacity-dmips-mhz = <1864>;
+			dynamic-power-coefficient = <471>;
 		};
 
 		cpu-map {
@@ -156,9 +176,9 @@
 		};
 	};
 
-	firmware: firmware {
-		qcom_scm: qcom_scm { };
-	};
+	ddr_regions: ddr-regions { };
+
+	firmware: firmware { };
 
 	reserved_memory: reserved-memory { };
 
@@ -168,10 +188,12 @@
 &firmware {
 	qcom_scm {
 		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x19000>;
 	};
 };
 
 #include "chora-reserved-memory.dtsi"
+#include "msm-arm-smmu-chora.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -195,6 +217,25 @@
 		size = <0x0 0x2400000>;
 		linux,cma-default;
 	};
+
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	ramoops_mem: ramoops-region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
 };
 
 &soc {
@@ -202,6 +243,21 @@
 	#size-cells = <2>;
 	ranges = <0 0 0 0 0x10 0>;
 	compatible = "simple-bus";
+
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+		qcom,vmid-cp-camera-preview-ro;
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+	};
 
 	psci: psci {
 		compatible = "arm,psci-1.0";
@@ -297,6 +353,46 @@
 		};
 	};
 
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		/* keep few silver cores in class0 only to avoid wakeup of gold cores */
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		/* keep gold cores in class1 */
+		qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,gic-runtime-cpu-class-en;
+	};
+
+	wdog: qcom,wdt@17410000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x0 0x17410000 0x0 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bark-time = <11000>;
+		qcom,pet-time = <9360>;
+		qcom,ipi-ping;
+		qcom,wakeup-enable;
+
+		status = "disabled";
+	};
+
+	kryo-erp {
+		compatible = "arm,arm64-kryo-cpu-erp";
+		interrupts = <GIC_PPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "l1-l2-faultirq","l3-scu-faultirq";
+	};
+
+	qcom,chd {
+		compatible = "qcom,core-hang-detect";
+		label = "core";
+		qcom,threshold-arr = <0x17800058 0x17810058 0x17820058 0x17830058
+			0x17840058 0x17850058 0x17860058 0x17870058>;
+		qcom,config-arr = <0x17800060 0x17810060 0x17820060 0x17830060
+			0x17840060 0x17850060 0x17860060 0x17870060>;
+	};
+
 	ipcc_mproc: qcom,ipcc@404000 {
 		compatible = "qcom,ipcc";
 		reg = <0x0 0x404000 0x0 0x1000>;
@@ -306,6 +402,38 @@
 		#mbox-cells = <2>;
 	};
 
+
+	aoss_qmp: power-controller@c300000 {
+		compatible = "qcom,aoss-qmp";
+		reg = <0xc300000 0x400>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_MPROC_AOP
+			      IPCC_MPROC_SIGNAL_GLINK_QMP
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_MPROC_AOP
+			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+
+		#power-domain-cells = <1>;
+		#clock-cells = <0>;
+	};
+
+	qmp_tme: qcom,qmp-tme {
+		compatible = "qcom,qmp-mbox";
+		qcom,remote-pid = <14>;
+		mboxes = <&ipcc_mproc IPCC_MPROC_TME
+			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+		mbox-names = "tme_qmp";
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_MPROC_TME
+			      IPCC_MPROC_SIGNAL_GLINK_QMP
+			      IRQ_TYPE_EDGE_RISING>;
+
+		label = "tme";
+		qcom,early-boot;
+		priority = <0>;
+		mbox-desc-offset = <0x0>;
+		#mbox-cells = <1>;
+	};
 
 	qcom,glinkpkt {
 		compatible = "qcom,glinkpkt";
@@ -389,7 +517,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-		/* TODO: Add qcom,gpios-reserved */
+		qcom,gpios-reserved = <63>;
 	};
 
 	tcsr_mutex_block: syscon@1f40000 {
@@ -413,12 +541,97 @@
 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0x0 0xc221000 0x0 0x1000>;
+		clock-frequency = <32768>;
+	};
+
 	vendor_hooks: qcom,cpu-vendor-hooks {
 		compatible = "qcom,cpu-vendor-hooks";
 	};
 
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x0 0x14680000 0x0 0x1000>;
+		ranges = <0x0 0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		restart_reason@65c {
+			compatible = "qcom,msm-imem-restart_reason";
+			reg = <0x65c 0x4>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		kaslr_offset@6d0 {
+			compatible = "qcom,msm-imem-kaslr_offset";
+			reg = <0x6d0 0xc>;
+		};
+
+		pil@94c {
+			compatible = "qcom,pil-reloc-info";
+			reg = <0x94c 0xc8>;
+		};
+
+		pil@6dc {
+			compatible = "qcom,msm-imem-pil-disable-timeout";
+			reg = <0x6dc 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+
+		modem_dsm@c98 {
+			compatible = "qcom,msm-imem-mss-dsm";
+			reg = <0xc98 0x10>;
+		};
+
+		sys_dbg@af8 {
+			compatible = "qcom,msm-imem-gpu-dump-skip";
+			reg = <0xb0c 0x4>;
+		};
 	};
 
 	qfprom: qfprom@221c8000 {
@@ -479,8 +692,6 @@
 			label = "modem";
 		};
 	};
-
-	apps_smmu: smmu {};
 
 	clocks {
 		xo_board: xo_board {
@@ -550,8 +761,23 @@
 	};
 
 	gcc: clock-controller@100000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "gcc_clocks";
+		compatible = "qcom,chora-gcc", "syscon";
+		reg = <0x0 0x100000 0x0 0x1f4200>;
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&pcie_0_pipe_clk>,
+			 <&sleep_clk>,
+			 <&ufs_phy_rx_symbol_0_clk>,
+			 <&ufs_phy_rx_symbol_1_clk>,
+			 <&ufs_phy_tx_symbol_0_clk>;
+		clock-names = "bi_tcxo",
+			      "pcie_0_pipe_clk",
+			      "sleep_clk",
+			      "ufs_phy_rx_symbol_0_clk",
+			      "ufs_phy_rx_symbol_1_clk",
+			      "ufs_phy_tx_symbol_0_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -571,15 +797,27 @@
 	};
 
 	tcsrcc: clock-controller@1ff1100 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "tcsrcc_clocks";
+		compatible = "qcom,chora-tcsrcc", "syscon";
+		reg = <0x0 0x1ff1100 0x0 0x20>;
+		reg-name = "cc_base";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
 
 	videocc: clock-controller@aaf0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "videocc_clocks";
+		compatible = "qcom,chora-videocc", "syscon";
+		reg = <0x0 0xaaf0000 0x0 0x10000>;
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&rpmhcc RPMH_CXO_CLK_A>,
+			<&gcc GCC_VIDEO_AHB_CLK>,
+			<&sleep_clk>;
+		clock-names = "bi_tcxo",
+				"bi_tcxo_ao",
+				"iface",
+				"sleep_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -608,3 +846,9 @@
 
 #include "chora-pinctrl.dtsi"
 #include "chora-stub-regulators.dtsi"
+#include "chora-qupv3.dtsi"
+#include "chora-usb.dtsi"
+
+&qupv3_se5_2uart {
+	status = "ok";
+};

@@ -16,6 +16,7 @@
 /delete-node/ &CPU10;
 /delete-node/ &CPU11;
 /delete-node/ &cpu_map_cluster2;
+/delete-node/ &cluster_device2;
 
 &pdc {
 	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
@@ -205,8 +206,11 @@
 };
 
 &camcc {
-	interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
-	interconnect-names = "cam-to-ddr";
+	compatible = "qcom,x1p42100-camcc", "syscon";
+};
+
+&videocc {
+	compatible = "qcom,x1p42100-videocc", "syscon";
 };
 
 &adreno_smmu {

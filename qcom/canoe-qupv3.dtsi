@@ -1129,6 +1129,7 @@
 				<&gpi_dma3 1 4 1 64 0>;
 			dma-names = "tx", "rx";
 			spi-max-frequency = <50000000>;
+			qcom,ipc-size = <30>;
 			status = "disabled";
 		};
 

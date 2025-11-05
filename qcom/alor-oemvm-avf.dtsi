@@ -181,6 +181,9 @@
 	non_devices_common: non-devices-common {
 		reg = <0x0 0x0 0x0 0x0>;
 		required-subnodes = <&qcom_scm
+				&qcom_smcinvoke
+				&qcom_mem_object
+				&qtee_shmbridge
 				&qcom_mem_buf
 				&virtio_mem_device
 				&qcom_test_dbl_oemvm
@@ -191,6 +194,20 @@
 				&google_debug_kinfo
 				&kinfo_mem
 				>;
+	};
+
+	qcom_smcinvoke: qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge: qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <512>;
+		qcom,support-hypervisor;
 	};
 
 	wdog: qcom,wdt@17600000 {

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 &soc {
 	kgsl_smmu: kgsl-smmu@3da0000 {
-		compatible = "qcom,qsmmu-v500";
+		compatible = "qcom,qsmmu-v500", "qcom,adreno-smmu";
 		reg = <0x3da0000 0x20000>,
 			<0x3dd6000 0x20>;
 		reg-names = "base", "tcu-base";

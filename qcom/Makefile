@@ -39,6 +39,7 @@ CANOE_BOARDS += \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
+		canoep-hdk-no-l3k-overlay.dtbo \
 		canoep-hdk-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
 		alor-interposer-rcm-overlay.dtbo \
@@ -76,16 +77,43 @@ canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB)
 
+
 CHORA_BASE_DTB += chora.dtb
+CHORA_APQ_BASE_DTB += chorap.dtb
+
+CHORA_BOARDS += \
+	        chora-atp-overlay.dtbo \
+		chora-cdp-overlay.dtbo \
+		chora-cdp-wcn7750-overlay.dtbo \
+		chora-mtp-overlay.dtbo \
+		chora-mtp-lcd-overlay.dtbo \
+		chora-mtp-wcn7750-overlay.dtbo \
+		chora-qrd-overlay.dtbo \
+		chora-qrd-wcn7750-overlay.dtbo \
+		chora-rcm-overlay.dtbo \
+		chora-rcm-wcn7750-overlay.dtbo
 
 NOAPQ_CHORA_BOARDS += \
 		chora-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_CHORA) += \
-	$(call add-overlays, $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB)
+	$(call add-overlays, $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS),$(CHORA_BASE_DTB)) \
+	$(call add-overlays, $(CHORA_BOARDS),$(CHORA_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB) $(CHORA_APQ_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
+
+
+PIKACHU_BASE_DTB += pikachu.dtb
+
+NOAPQ_PIKACHU_BOARDS += \
+                  pikachu-rumi-overlay.dtbo
+
+pikachu-dtb-$(CONFIG_ARCH_PIKACHU) += \
+	$(call add-overlays, $(PIKACHU_BOARDS) $(NOAPQ_PIKACHU_BOARDS),$(PIKACHU_BASE_DTB))\
+	$(call add-overlays, $(PIKACHU_BOARDS) $(APQ_PIKACHU_BOARDS),$(PIKACHU_APQ_BASE_DTB))
+pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB) $(PIKACHU_APQ_BASE_DTB)
+dtb-y += $(pikachu-dtb-y)
 
 MALABAR_BASE_DTB += malabar.dtb
 
@@ -191,6 +219,27 @@ lahaina-overlays-dtb-$(CONFIG_ARCH_YUPIK) += $(NOAPQ_YUPIK_BOARDS) $(YUPIK_BASE_
 
 dtb-y += $(lahaina-dtb-y) $(lahaina-overlays-dtb-y)
 
+MONACO_BASE_DTB += monaco.dtb monacop.dtb
+
+MONACO_BOARDS += \
+        monaco-idp-v1-overlay.dtbo \
+        monaco-standalone-idp-v1-overlay.dtbo \
+        monaco-idp-v2-overlay.dtbo \
+        monaco-standalone-idp-v2-overlay.dtbo \
+        monaco-idp-v3-overlay.dtbo \
+        monaco-standalone-idp-v3-overlay.dtbo \
+        monaco-idp-v1.1-overlay.dtbo \
+        monaco-wdp-v1-overlay.dtbo \
+        monaco-wdp-v1.1-overlay.dtbo \
+        monaco-standalone-wdp-v1-overlay.dtbo \
+        monaco-atp-v1-overlay.dtbo \
+        monaco-standalone-atp-v1-overlay.dtbo
+
+monaco-dtb-$(CONFIG_ARCH_MONACO) += \
+        $(call add-overlays, $(MONACO_BOARDS) ,$(MONACO_BASE_DTB))
+monaco-overlays-dtb-$(CONFIG_ARCH_MONACO) += $(MONACO_BOARDS) $(MONACO_BASE_DTB)
+dtb-y += $(monaco-dtb-y)
+
 SA8155_BASE_DTB += sa8155.dtb sa8155-v2.dtb
 SA8155P_BASE_DTB += sa8155p.dtb sa8155p-v2.dtb
 
@@ -271,6 +320,28 @@ pineapple-dtb-$(CONFIG_ARCH_PINEAPPLE) += \
 pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_PINEAPPLE_BOARDS) $(PINEAPPLE_BASE_DTB) $(PINEAPPLE_APQ_BASE_DTB)
 dtb-y += $(pineapple-dtb-y)
 
+SERAPH_BASE_DTB += seraph.dtb
+SERAPH_APQ_BASE_DTB += seraphp.dtb
+
+SERAPH_BOARDS += \
+		seraph-atp-overlay.dtbo \
+		seraph-idp-overlay.dtbo \
+		seraph-idp-dtof-overlay.dtbo \
+		seraph-idp-no-display-overlay.dtbo \
+		seraphp-atp-overlay.dtbo \
+		seraphp-idp-overlay.dtbo \
+		seraphp-idp-dtof-overlay.dtbo \
+		seraphp-idp-no-display-overlay.dtbo
+
+NOAPQ_SERAPH_BOARDS += \
+                  seraph-rumi-overlay.dtbo
+
+seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
+	$(call add-overlays, $(SERAPH_BOARDS) $(NOAPQ_SERAPH_BOARDS),$(SERAPH_BASE_DTB))\
+	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
+seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
+dtb-y += $(seraph-dtb-y)
+
 VIENNA_BASE_DTB += vienna.dtb
 VIENNA_APQ_BASE_DTB += viennap.dtb
 
@@ -319,6 +390,15 @@ x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
 x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
 
+COLIBRI_BASE_DTB += colibri.dtb
+
+NOAPQ_COLIBRI_BOARDS += \
+		 colibri-rumi-overlay.dtbo
+
+colibri-dtb-$(CONFIG_ARCH_COLIBRI) += \
+	$(call add-overlays, $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS),$(COLIBRI_BASE_DTB))
+colibri-overlays-dtb-$(CONFIG_ARCH_COLIBRI) += $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS) $(COLIBRI_BASE_DTB)
+dtb-y += $(colibri-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
@@ -446,7 +526,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_NORD), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb
+SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb sa8797p-v2-gunyah-vm-qam.dtb
 SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
@@ -456,9 +536,9 @@ autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
 
 SA8797P_LA_GVM_BOARDS += \
-		sa8797p-sdp8-vm-la-overlay.dtbo
+		sa8797p-sdp8-vm-la-overlay.dtbo sa8797p-v2-sdp8-vm-la-overlay.dtbo
 
-SA8797P_LA_GVM_BASE_DTB += sa8797p-sdp8-vm-la.dtb
+SA8797P_LA_GVM_BASE_DTB += sa8797p-sdp8-vm-la.dtb sa8797p-v2-sdp8-vm-la.dtb
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \

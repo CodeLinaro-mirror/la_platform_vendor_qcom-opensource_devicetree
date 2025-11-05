@@ -146,9 +146,34 @@ properties:
       - description: Qualcomm Technologies, Inc. Chora
         items:
           - enum:
+              - qcom,chora-atp
+              - qcom,atp
+              - qcom,chora-cdp
+              - qcom,cdp
+              - qcom,chora-mtp
+              - qcom,mtp
+              - qcom,chora-qrd
+              - qcom,qrd
+              - qcom,chora-rcm
+              - qcom,rcm
               - qcom,chora-rumi
               - qcom,rumi
           - const: qcom,chora
+
+      - description: Qualcomm Technologies, Inc. ChoraP
+        items:
+          - enum:
+              - qcom,chorap-atp
+              - qcom,atp
+              - qcom,chorap-cdp
+              - qcom,cdp
+              - qcom,chorap-mtp
+              - qcom,mtp
+              - qcom,chorap-qrd
+              - qcom,qrd
+              - qcom,chorap-rcm
+              - qcom,rcm
+          - const: qcom,chorap
 
       - description: Qualcomm Technologies, Inc. Malabar
         items:
@@ -340,5 +365,39 @@ properties:
               - qcom,yupikp-iot-qrd
               - qcom,qrd
           - const: qcom,yupikp-iot
+
+      - description: Qualcomm Technologies, Inc. PIKACHU RUMI
+        items:
+          - enum:
+              - qcom,pikachu-rumi
+              - qcom,rumi
+          - const: qcom,pikachu
+
+      - description: Qualcomm Technologies, Inc. COLIBRI
+        items:
+          - enum:
+              - qcom,colibri-rumi
+              - qcom,rumi
+          - const: qcom,colibri
+
+      - description: Qualcomm Technologies, Inc. SERAPH
+        items:
+          - enum:
+            - qcom,seraph-atp
+            - qcom.atp
+            - qcom,seraph-idp
+            - qcom,idp
+            - qcom,seraph-rumi
+            - qcom,rumi
+          - const: qcom,seraph
+
+      - description: Qualcomm Technologies, Inc. SERAPHP
+        items:
+          - enum:
+            - qcom,seraphp-atp
+            - qcom.atp
+            - qcom,seraphp-idp
+            - qcom,idp
+          - const: qcom,seraphp
 
 additionalProperties: true

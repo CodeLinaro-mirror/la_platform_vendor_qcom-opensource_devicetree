@@ -146,13 +146,10 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		pm6125_pwm: qcom,pwms@b300 {
-			status = "disabled";
-			compatible = "qcom,pwm-lpg";
-			reg = <0xb300>;
-			reg-names = "lpg-base";
-			qcom,num-lpg-channels = <1>;
+		pm6125_pwm: pwm {
+			compatible = "qcom,pm6125-pwm";
 			#pwm-cells = <2>;
+			status = "disabled";
 		};
 	};
 };

@@ -63,6 +63,12 @@ properties:
     type: boolean
     description: When set ignores dependencies on children by PM framework
 
+  qcom,vote-index:
+    description: Index values used for bandwidth voting across interconnect paths.
+    items:
+      type: integer
+    maxItems: 3
+
 required:
   - compatible
   - clocks

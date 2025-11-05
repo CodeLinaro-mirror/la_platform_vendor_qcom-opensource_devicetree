@@ -902,7 +902,7 @@
 
 	gpuss-1 {
 		polling-delay-passive = <10>;
-		polling-delay = <100>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 2>;
 		trips {
 			active-config0 {
