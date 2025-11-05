@@ -405,6 +405,8 @@
 		qcom,secure-component;
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				modem_etm0_out_funnel_modem_q6_dup: endpoint {
@@ -432,6 +434,8 @@
 		trace-name = "modem2-etm0";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				modem2_etm0_out_funnel_modem: endpoint {
@@ -828,6 +832,8 @@
 		trace-name = "turing-etm0";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				turing_etm0_out_funnel_turing_dup1: endpoint {
@@ -2863,6 +2869,8 @@
 		atid = <40 41>;
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				audio_etm0_out_funnel_lpass_lpi: endpoint {
@@ -2888,6 +2896,8 @@
 		atid = <25>;
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				lpass_stm_out_funnel_lpass_lpi_1: endpoint {
@@ -2914,6 +2924,8 @@
 		trace-name = "tpda-lpass-lpi";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				tpdm_lpass_lpi_out_funnel_lpass_lpi_1: endpoint {
@@ -2939,6 +2951,8 @@
 		trace-name = "tpda-lpass-lpi";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				tpdm_lpass_rscc_out_funnel_lpass_lpi_1: endpoint {
@@ -2965,6 +2979,8 @@
 		status = "disabled";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				tpdm_lpass_audio_out_funnel_lpass_lpi_1: endpoint {
@@ -3745,6 +3761,8 @@
 		trace-name = "tracenoc-ddr-lpi";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				tpdm_ddr_lpi_out_funnel_aoss: endpoint {
@@ -4222,6 +4240,8 @@
 		atid = <44>;
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				wpss_etm0_out_funnel_wpss: endpoint {
@@ -5498,6 +5518,8 @@
 		qcom,inst-id = <5>;
 
 		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				qmi_in_audio_etm0: endpoint {
@@ -5555,6 +5577,8 @@
 		qcom,inst-id = <2>;
 
 		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
 			port@0 {
 				reg = <0>;
 				qmi_in_modem_etm0: endpoint {
