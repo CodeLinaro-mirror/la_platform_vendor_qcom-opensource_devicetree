@@ -20,6 +20,10 @@
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cluster_device2;
 
+&gic_router {
+	qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
 &pdc {
 	compatible = "qcom,x1p42100-pdc", "qcom,pdc";
 };
