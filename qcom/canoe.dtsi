@@ -850,10 +850,9 @@
 	tlmm-vm-test {
 		compatible = "qcom,tlmm-vm-test";
 		qcom,master;
-		tlmm-vm-gpio-list = <&tlmm 86 0 &tlmm 87 0 &tlmm 97 0 &tlmm 98 0 &tlmm 48 0
-					&tlmm 49 0 &tlmm 50 0 &tlmm 51 0 &tlmm 158 0 &tlmm 66 0
-					&tlmm 100 0 &tlmm 8 0 &tlmm 9 0 &tlmm 10 0 &tlmm 11 0
-					&tlmm 88 0>;
+		tlmm-vm-gpio-list = <&tlmm 87 0 &tlmm 97 0 &tlmm 48 0 &tlmm 49 0 &tlmm 50 0
+				&tlmm 51 0 &tlmm 158 0 &tlmm 66 0 &tlmm 100 0 &tlmm 8 0
+				&tlmm 9 0 &tlmm 10 0 &tlmm 11 0>;
 	};
 
 	slimbam: bamdma@6C04000 {
