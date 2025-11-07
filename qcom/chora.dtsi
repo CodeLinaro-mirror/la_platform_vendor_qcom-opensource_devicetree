@@ -182,6 +182,13 @@
 
 	reserved_memory: reserved-memory { };
 
+	mem-offline {
+		compatible = "qcom,mem-offline";
+		offline-sizes = <0x2 0xc0000000 0x1 0x0>;
+		granule = <512>;
+		qcom,qmp = <&aoss_qmp>;
+	};
+
 	soc: soc { };
 };
 
@@ -216,6 +223,13 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x2400000>;
 		linux,cma-default;
+	};
+
+	lcp_dare_pool: lcp_dare_region {
+		compatible = "shared-dma-pool";
+		reg = <0x8 0x80000000 0x0 0x6000000>;
+		reusable;
+		alignment = <0x0 0x400000>;
 	};
 
 	kinfo_mem: debug_kinfo_region {
@@ -829,6 +843,12 @@
 		compatible = "qcom,msm-adsprpc-mem-region";
 		memory-region = <&adsp_mem_heap>;
 		restrict-access;
+	};
+
+	qcom,lcp-dare-dare-pool {
+		compatible = "qcom,mem-prot-pool";
+		memory-region = <&lcp_dare_pool>;
+		qcom,lcp-dare;
 	};
 
 	adsp_pas: remoteproc-adsp@3000000 {
