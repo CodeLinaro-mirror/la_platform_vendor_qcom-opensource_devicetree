@@ -30,6 +30,7 @@ properties:
       - qcom,x1p42100-debugcc
       - qcom,monaco-debugcc
       - qcom,x1e80100-debugcc
+      - qcom,pikachu-debugcc
 
   clocks:
     items:

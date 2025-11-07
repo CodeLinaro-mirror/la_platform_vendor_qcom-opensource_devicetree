@@ -38,6 +38,7 @@ properties:
       - qcom,vienna-rpmh-clk
       - qcom,alor-rpmh-clk
       - qcom,x1e80100-rpmh-clk
+      - qcom,pikachu-rpmh-clk
 
   clocks:
     maxItems: 1

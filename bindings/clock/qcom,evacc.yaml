@@ -15,12 +15,14 @@ description: |
 
   See also:
   - dt-bindings/clock/qcom,evacc-canoe.h
+  - dt-bindings/clock/qcom,pikachu-evacc.h
 
 properties:
   compatible:
     enum:
       - qcom,canoe-evacc
       - qcom,alor-evacc
+      - qcom,pikachu-evacc
 
   clocks:
     items:
