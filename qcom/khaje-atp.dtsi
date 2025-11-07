@@ -276,7 +276,3 @@
 	vbus-supply = <&smb5_vbus>;
 	vconn-supply = <&smb5_vconn>;
 };
-
-&usb0 {
-	extcon = <&pm7250b_pdphy>, <&pm7250b_charger>, <&eud>;
-};
