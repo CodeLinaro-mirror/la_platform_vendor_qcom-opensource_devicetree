@@ -199,12 +199,10 @@
 };
 
 &thermal_zones {
-	chg-skin-therm-usr {
+	chg-skin-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pm7250b_adc_tm 0>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -214,12 +212,10 @@
 		};
 	};
 
-	conn-therm-usr {
+	conn-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pm7250b_adc_tm 1>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
