@@ -643,11 +643,6 @@
 		reset-names = "core_reset";
 
 		qos0 {
-			mask = <0x10>;
-			vote = <44>;
-		};
-
-		qos1 {
 			mask = <0x0f>;
 			vote = <44>;
 		};
@@ -892,11 +887,6 @@
 		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		qos0 {
-			mask = <0x10>;
-			vote = <44>;
-		};
-
-		qos1 {
 			mask = <0x0f>;
 			vote = <44>;
 		};
