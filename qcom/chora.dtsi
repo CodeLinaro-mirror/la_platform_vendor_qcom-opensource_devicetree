@@ -867,6 +867,13 @@
 		status = "disabled";
 	};
 
+	wpss_pas: remoteproc-wpss@99300000 {
+		compatible = "qcom,chora-wpss-pas";
+		reg = <0x0 0x99300000 0x0 0x10000>;
+
+		status = "disabled";
+	};
+
 	ufsphy_mem: ufsphy_mem@1d80000 {
 		#address-cells = <2>;
 		#size-cells = <2>;
