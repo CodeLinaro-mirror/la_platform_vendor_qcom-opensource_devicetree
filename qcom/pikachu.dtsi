@@ -423,3 +423,4 @@
 
 #include "pikachu-pinctrl.dtsi"
 #include "pikachu-stub-regulators.dtsi"
+#include "pikachu-dma-heaps.dtsi"
