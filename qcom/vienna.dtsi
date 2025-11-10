@@ -1917,6 +1917,13 @@
 		};
 	};
 
+	lpi_doorbell: lpi-dbl@23e0c000 {
+		compatible = "qcom,lpi-dbl";
+		reg = <0x23e0c000 0x4>;
+		interrupts = <GIC_SPI 371 IRQ_TYPE_EDGE_RISING>;
+		status = "okay";
+	};
+
 	qcom_glinkpkt: qcom,glinkpkt {
 		compatible = "qcom,glinkpkt";
 
