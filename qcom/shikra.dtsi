@@ -7,8 +7,8 @@
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 / {
-	model = "Qualcomm Technologies, Inc. Colibri";
-	compatible = "qcom,colibri";
+	model = "Qualcomm Technologies, Inc. Shikra";
+	compatible = "qcom,shikra";
 	qcom,msm-id = <725 0x10000 >;//TODO - update actual msm-id for shikra
 	interrupt-parent = <&intc>;
 	#address-cells = <2>;
@@ -258,10 +258,11 @@
 		compatible = "arm,armv8-pmuv3";
 		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
 	};
+
 };
 
-#include "colibri-pinctrl.dtsi"
-#include "colibri-reserved-memory.dtsi"
-#include "colibri-stub-regulators.dtsi"
-#include "msm-arm-smmu-colibri.dtsi"
-#include "colibri-dma-heaps.dtsi"
+#include "shikra-pinctrl.dtsi"
+#include "shikra-reserved-memory.dtsi"
+#include "shikra-stub-regulators.dtsi"
+#include "msm-arm-smmu-shikra.dtsi"
+#include "shikra-dma-heaps.dtsi"

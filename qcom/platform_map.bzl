@@ -640,14 +640,14 @@ _platform_map = {
             },
         ],
     },
-    "colibri": {
+    "shikra": {
         "dtb_list": [
             # keep sorted
-            {"name": "colibri.dtb"},
+            {"name": "shikra.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
-            {"name": "colibri-rumi-overlay.dtbo"},
+            {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
 }

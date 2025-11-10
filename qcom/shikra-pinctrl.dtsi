@@ -6,7 +6,7 @@
 &soc {
 
 	tlmm: pinctrl@f000000 {
-		compatible = "qcom,colibri-tlmm";
+		compatible = "qcom,shikra-tlmm";
 		reg = <0x400000 0x800000>;
 		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
