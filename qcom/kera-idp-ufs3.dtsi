@@ -3,4 +3,9 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "ravelin-idp.dtsi"
+#include "kerap-idp.dtsi"
+#include "kera_ufs3.dtsi"
+
+&L11B {
+	/delete-property/ regulator-always-on;
+};
