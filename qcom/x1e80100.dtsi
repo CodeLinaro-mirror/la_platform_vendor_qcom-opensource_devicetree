@@ -406,6 +406,10 @@
 			compatible = "qcom,si-core";
 			interrupts = <GIC_SPI 830 IRQ_TYPE_EDGE_RISING>;
 		};
+
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+		};
 	};
 
 	hypervisor: hypervisor {
