@@ -2841,6 +2841,14 @@
 						0x190>;
 
 			};
+			qcom,apr_tal_rpmsg {
+				qcom,glink-channels = "apr_audio_svc";
+				qcom,intents = <0x200 20>;
+			};
+
+			qcom,adsp_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+			};
 
 			qcom,pmic_glink_rpmsg {
 				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
