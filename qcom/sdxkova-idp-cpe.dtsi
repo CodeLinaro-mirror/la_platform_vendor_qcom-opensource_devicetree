@@ -52,6 +52,13 @@
 	operating-points-v2 = <&sdhc1_opp_table>;
 };
 
+/* Delete enable-gpio for MMC as it is a boot media;
+ * the regulator for boot media should not be toggled.
+ */
+&vreg_sdc1_sd_ls_vccb {
+	/delete-property/ enable-gpio;
+};
+
 &pmx75_eusb2_repeater {
 	vdd18-supply = <&pmx75_l5>;
 	vdd3-supply = <&pmx75_l10>;
