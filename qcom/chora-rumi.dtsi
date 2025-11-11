@@ -55,6 +55,30 @@
 	cpu-release-addr = <0x0 0x90000000>;
 };
 
+&LITTLE_CPU_OFF {
+	status = "disabled";
+};
+
+&LITTLE_CPU_RAIL_OFF {
+	status = "disabled";
+};
+
+&BIG_CPU_OFF {
+	status = "disabled";
+};
+
+&BIG_CPU_RAIL_OFF {
+	status = "disabled";
+};
+
+&CLUSTER_OFF {
+	status = "disabled";
+};
+
+&CX_RET {
+	status = "disabled";
+};
+
 &psci {
 	status = "disabled";
 };
