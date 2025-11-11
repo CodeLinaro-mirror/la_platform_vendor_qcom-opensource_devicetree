@@ -1796,6 +1796,9 @@
 			compatible = "qcom,sm8550-snps-eusb2-phy";
 			reg = <0x0 0x088e0000 0x0 0x154>;
 
+			vdd-supply = <&L2E>;
+			vdda12-supply = <&L3E>;
+
 			clocks = <&xo_board>,
 				<&tcsrcc TCSR_USB2_2_CLKREF_EN>;
 			clock-names = "ref_clk_src", "ref";
