@@ -3906,7 +3906,7 @@
 		gunyah-label = <0x107>;
 		peer-name = <2>;
 		memory-region = <&vm_comm_mem>;
-		shared-buffer-size = <0x1000>;
+		shared-buffer-size = <0x8000>;
 	};
 
 	qcom,cache-allocation {
