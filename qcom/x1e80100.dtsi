@@ -1734,8 +1734,13 @@
 			resets = <&gcc GCC_USB20_PRIM_BCR>;
 			reset-names = "core_reset";
 
-			interrupts-extended = <&intc GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
-			interrupt-names = "pwr_event_irq";
+			interrupts-extended = <&intc GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
+					<&pdc 50 IRQ_TYPE_EDGE_RISING>,
+					<&pdc 49 IRQ_TYPE_EDGE_RISING>;
+			interrupt-names = "pwr_event_irq",
+					"dp_hs_phy_irq",
+					"dm_hs_phy_irq";
+
 			qcom,use-pdc-interrupts;
 			qcom,use-eusb2-phy;
 
@@ -1790,6 +1795,9 @@
 		usb2_phy_4: phy@88e0000 {
 			compatible = "qcom,sm8550-snps-eusb2-phy";
 			reg = <0x0 0x088e0000 0x0 0x154>;
+
+			vdd-supply = <&L2E>;
+			vdda12-supply = <&L3E>;
 
 			clocks = <&xo_board>,
 				<&tcsrcc TCSR_USB2_2_CLKREF_EN>;
