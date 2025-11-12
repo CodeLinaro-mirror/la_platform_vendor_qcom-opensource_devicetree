@@ -241,6 +241,11 @@
 
 	/* Linux kernel image is loaded at 0xa8000000 */
 
+	hwfence_shbuf: hwfence-shmem {
+		no-map;
+		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
+	};
+
 	global_sync_mem: global_sync_region@d7a00000 {
 		no-map;
 		reg = <0x0 0xd7a00000 0x0 0x200000>;
