@@ -6,6 +6,8 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/spmi/spmi.h>
+
 / {
 	model = "Qualcomm Technologies, Inc. Seraph";
 	compatible = "qcom,seraph";
@@ -304,6 +306,80 @@
 	};
 
 	thermal_zones: thermal-zones {};
+
+	pmic_arbiter: arbiter@c400000 {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0xc400000 0x3000>,
+		      <0xc500000 0x400000>,
+		      <0xc440000 0x80000>;
+		reg-names = "core", "chnls", "obsrvr";
+
+		qcom,ee = <0>;
+		qcom,channel = <0>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		spmi0_bus: spmi@c42d000 {
+			reg = <0xc42d000 0x4000>,
+			      <0xc4c0000 0x10000>;
+			reg-names = "cnfg", "intr";
+
+			interrupt-names = "periph_irq";
+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-controller;
+			#interrupt-cells = <4>;
+
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+	};
+
+	spmi0_debug_bus: spmi-debug@11314000 {
+		compatible = "qcom,spmi-pmic-arb-debug";
+		reg = <0x11314000 0x60>, <0x221c8784 0x4>;
+		reg-names = "core", "fuse";
+		clocks = <&aoss_qmp>;
+		clock-names = "core_clk";
+		qcom,fuse-enable-bit = <18>;
+		#address-cells = <2>;
+		#size-cells = <0>;
+		depends-on-supply = <&spmi0_bus>;
+
+		qcom,pmar2230-debug@0 {
+			compatible = "qcom,spmi-pmic";
+			reg = <0 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pmg1110-debug@a {
+			compatible = "qcom,spmi-pmic";
+			reg = <10 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@c {
+			compatible = "qcom,spmi-pmic";
+			reg = <12 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@d {
+			compatible = "qcom,spmi-pmic";
+			reg = <13 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+	};
+
 };
 
 &reserved_memory {
