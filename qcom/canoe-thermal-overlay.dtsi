@@ -36,8 +36,8 @@
 				cooling-device = <&APC1_MX_CX_PAUSE 0 1>,
 						 <&cpu4_pause 0 1>,
 						 <&cpu5_pause 0 1>,
-						 <&cdsp_sw 0 8>,
-						 <&msm_gpu 0 8>;
+						 <&cdsp_sw 0 THERMAL_NO_LIMIT>,
+						 <&msm_gpu 0 THERMAL_NO_LIMIT>;
 			};
 		};
 	};
