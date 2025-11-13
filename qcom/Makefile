@@ -470,6 +470,7 @@ endif
 ifeq ($(CONFIG_ARCH_SERAPH), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += seraph-vm-base.dtb \
+				seraph-vm-atp-overlay.dtbo
 
 dtb-y += $(seraph_tuivm-dtb-y)
 endif

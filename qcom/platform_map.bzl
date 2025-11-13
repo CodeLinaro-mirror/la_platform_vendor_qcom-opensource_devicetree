@@ -527,6 +527,9 @@ _platform_map = {
         "dtb_list": [
             {"name": "seraph-vm-base.dtb"},
         ],
+        "dtbo_list": [
+            {"name": "seraph-vm-atp-overlay.dtbo"},
+        ],
     },
     "sun": {
         "dtb_list": [
