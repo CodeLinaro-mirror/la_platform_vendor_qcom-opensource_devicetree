@@ -874,6 +874,13 @@
 		status = "disabled";
 	};
 
+	qcom,rmtfs_sharedmem@0 {
+		compatible = "qcom,sharedmem-uio";
+		reg = <0x0 0x0 0x0 0x280000>;
+		reg-names = "rmtfs";
+		qcom,client-id = <0x00000001>;
+	};
+
 	ufsphy_mem: ufsphy_mem@1d80000 {
 		#address-cells = <2>;
 		#size-cells = <2>;
