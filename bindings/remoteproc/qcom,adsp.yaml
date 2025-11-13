@@ -78,6 +78,7 @@ properties:
       - qcom,canoe-soccp-pas
       - qcom,chora-adsp-pas
       - qcom,chora-modem-pas
+      - qcom,chora-wpss-pas
       - qcom,vienna-cdsp-pas
       - qcom,vienna-modem-pas
       - qcom,vienna-adsp-pas
