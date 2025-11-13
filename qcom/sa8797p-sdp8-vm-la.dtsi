@@ -145,6 +145,7 @@
 };
 
 &virt_scmi {
+	irq_no_suspend;
 	status = "ok";
 };
 
