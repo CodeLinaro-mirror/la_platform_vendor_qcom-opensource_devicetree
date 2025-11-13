@@ -507,6 +507,20 @@
 		reg = <0x10cd000 0x1000>;
 		status = "ok";
 	};
+
+	wdog: qcom,wdt@17821000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17821000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,wdt-en-offset = <0x00>;
+		qcom,wdt-rst-offset = <0x04>;
+		qcom,wdt-sts-offset = <0x1C>;
+		qcom,wdt-bark-offset = <0x0C>;
+		qcom,wdt-bite-offset = <0x10>;
+		qcom,wdt-hz = <19198242>;
+	};
 };
 
 &firmware {
