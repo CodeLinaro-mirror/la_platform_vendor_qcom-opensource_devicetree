@@ -6,11 +6,11 @@
 /dts-v1/;
 /plugin/;
 
-#include "colibri-rumi.dtsi"
+#include "shikra-rumi.dtsi"
 
 / {
-  model = "Qualcomm Technologies, Inc. Colibri RUMI";
-  compatible = "qcom,colibri-rumi", "qcom,colibri", "qcom,rumi";
+  model = "Qualcomm Technologies, Inc. Shikra RUMI";
+  compatible = "qcom,shikra-rumi", "qcom,shikra", "qcom,rumi";
   qcom,msm-id = <725 0x10000>; //TODO - correct soc id for colibri
   qcom,board-id = <15 0 >;
 };

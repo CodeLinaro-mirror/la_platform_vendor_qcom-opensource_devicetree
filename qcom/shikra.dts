@@ -5,11 +5,11 @@
 
 /dts-v1/;
 
-#include "colibri.dtsi"
+#include "shikra.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Colibri SoC";
-	compatible = "qcom,colibri";
+	model = "Qualcomm Technologies, Inc. Shikra SoC";
+	compatible = "qcom,shikra";
 	qcom,board-id = <0 0>;
 };
 
