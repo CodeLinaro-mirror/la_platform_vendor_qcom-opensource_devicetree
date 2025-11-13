@@ -390,3 +390,9 @@
 		};
 	};
 };
+
+&pmk8550_sdam_1 {
+	wcn_info: wcn_info@ac {
+		reg = <0xac 0x1>;
+	};
+};
