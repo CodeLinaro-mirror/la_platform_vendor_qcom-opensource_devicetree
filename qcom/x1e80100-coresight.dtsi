@@ -834,11 +834,15 @@
 		};
 	};
 
-	ete0 {
-		compatible = "arm,embedded-trace-extension";
+	etm0 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13021000 0x0 0x1000>;
+
 		cpu = <&CPU0>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -852,7 +856,6 @@
 	funnel-etm0 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm0";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -914,11 +917,15 @@
 		};
 	};
 
-	ete1 {
-		compatible = "arm,embedded-trace-extension";
+	etm1 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13121000 0x0 0x1000>;
+
 		cpu = <&CPU1>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -932,7 +939,6 @@
 	funnel-etm1 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm1";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -993,11 +999,15 @@
 		};
 	};
 
-	ete2 {
-		compatible = "arm,embedded-trace-extension";
+	etm2 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13221000 0x0 0x1000>;
+
 		cpu = <&CPU2>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1011,7 +1021,6 @@
 	funnel-etm2 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm2";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1073,10 +1082,14 @@
 	};
 
 	ete3 {
-		compatible = "arm,embedded-trace-extension";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13321000 0x0 0x1000>;
+
 		cpu = <&CPU3>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1090,7 +1103,6 @@
 	funnel-etm3 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm3";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1284,11 +1296,15 @@
 		};
 	};
 
-	ete4 {
-		compatible = "arm,embedded-trace-extension";
+	etm4 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13521000 0x0 0x1000>;
+
 		cpu = <&CPU4>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1302,7 +1318,6 @@
 	funnel-etm4 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm4";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1363,11 +1378,15 @@
 		};
 	};
 
-	ete5 {
-		compatible = "arm,embedded-trace-extension";
+	etm5 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13621000 0x0 0x1000>;
+
 		cpu = <&CPU5>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1381,7 +1400,6 @@
 	funnel-etm5 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm5";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1501,11 +1519,15 @@
 		};
 	};
 
-	ete6 {
-		compatible = "arm,embedded-trace-extension";
+	etm6 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13721000 0x0 0x1000>;
+
 		cpu = <&CPU6>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1519,7 +1541,6 @@
 	funnel-etm6 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm6";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1580,11 +1601,15 @@
 		};
 	};
 
-	ete7 {
-		compatible = "arm,embedded-trace-extension";
+	etm7 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13821000 0x0 0x1000>;
+
 		cpu = <&CPU7>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1598,7 +1623,6 @@
 	funnel-etm7 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm7";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1850,11 +1874,15 @@
 		};
 	};
 
-	ete8 {
-		compatible = "arm,embedded-trace-extension";
+	etm8 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13a21000 0x0 0x1000>;
+
 		cpu = <&CPU8>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1868,7 +1896,6 @@
 	funnel-etm8 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm8";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -1895,7 +1922,7 @@
 	replicator_ncc2_0: replicator@13e90000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb909>;
-		reg = <0x0 0x13490000 0x0 0x1000>;
+		reg = <0x0 0x13e90000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
 		device-name = "replicator_etr0_ncc2";
@@ -1929,11 +1956,15 @@
 		};
 	};
 
-	ete9 {
-		compatible = "arm,embedded-trace-extension";
+	etm9 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13b21000 0x0 0x1000>;
+
 		cpu = <&CPU9>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -1947,7 +1978,6 @@
 	funnel-etm9 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm9";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2008,11 +2038,15 @@
 		};
 	};
 
-	ete10 {
-		compatible = "arm,embedded-trace-extension";
+	etm10 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13c21000 0x0 0x1000>;
+
 		cpu = <&CPU10>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -2026,7 +2060,6 @@
 	funnel-etm10 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm10";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2087,11 +2120,15 @@
 		};
 	};
 
-	ete11 {
-		compatible = "arm,embedded-trace-extension";
+	etm11 {
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb95d>;
+		reg = <0x0 0x13d21000 0x0 0x1000>;
+
 		cpu = <&CPU11>;
 		qcom,skip-power-up;
-		status = "disabled";
+		clocks = <&aoss_qmp>;
+		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
@@ -2105,7 +2142,6 @@
 	funnel-etm11 {
 		compatible = "arm,coresight-static-funnel";
 		device-name = "funnel_etm11";
-		status = "disabled";
 
 		out-ports {
 			port {
@@ -2271,7 +2307,7 @@
 	ncc_etf2: tmc@13e09000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
-		reg = <0x0 0x13409000 0x0 0x1000>;
+		reg = <0x0 0x13e09000 0x0 0x1000>;
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etf_ncc2";
