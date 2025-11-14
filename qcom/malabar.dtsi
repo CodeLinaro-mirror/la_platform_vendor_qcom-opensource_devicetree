@@ -521,7 +521,8 @@
 		qcom,keepalive;
 	};
 };
-
+#include "malabar-coresight.dtsi"
+#include "malabar-debug.dtsi"
 #include "malabar-stub-regulators.dtsi"
 #include "malabar-pinctrl.dtsi"
 #include "malabar-qupv3.dtsi"
