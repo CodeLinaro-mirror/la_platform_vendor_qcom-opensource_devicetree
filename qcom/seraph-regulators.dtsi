@@ -299,7 +299,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L4A: L4A_E0:
@@ -319,7 +319,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L5A: L5A_E0:
@@ -339,7 +339,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L6A: L6A_E0:
@@ -397,7 +397,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L9A: L9A_E0:
@@ -417,7 +417,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L10A: L10A_E0:
@@ -477,7 +477,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L13A: L13A_E0:
@@ -497,7 +497,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 20000>;
 
 		L14A: L14A_E0:
@@ -557,7 +557,7 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
+			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
 		L18A: L18A_E0:
