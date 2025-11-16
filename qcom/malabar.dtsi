@@ -1385,6 +1385,8 @@
 	};
 
 	thermal_zones: thermal-zones {};
+
+	qupv3_se1_i2c: qupv3_se1_i2c {};
 };
 
 #include "malabar-coresight.dtsi"
