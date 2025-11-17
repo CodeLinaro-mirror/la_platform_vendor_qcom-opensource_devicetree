@@ -591,6 +591,22 @@ dtb-y += $(autogvm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+
+LEMANS_GH_LA_GVM_QAM_BASE_DTB += lemans-gh-vm-la-qam-ridesx.dtb
+LEMANS_GH_LA_GVM_QAM_BOARDS += lemans-gh-vm-la-qam-ridesx-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(LEMANS_GH_LA_GVM_QAM_BOARDS),$(LEMANS_GH_LA_GVM_QAM_BASE_DTB)) \
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(LEMANS_GH_LA_GVM_QAM_BOARDS) $(LEMANS_GH_LA_GVM_QAM_BASE_DTB) \
+
+dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_ALOR), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-atp-overlay.dtbo \
