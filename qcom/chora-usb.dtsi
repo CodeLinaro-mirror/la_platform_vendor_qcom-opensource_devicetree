@@ -27,8 +27,16 @@
 		resets = <&gcc GCC_USB20_BCR>;
 		reset-names = "core_reset";
 
-		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "pwr_event_irq";
+		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
+					<&pdc 14 IRQ_TYPE_EDGE_RISING>,
+					<&pdc 15 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pwr_event_irq", "dp_hs_phy_irq",
+				"dm_hs_phy_irq";
+
+		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
+		interconnects = <&aggre_noc MASTER_USB2_0 &mc_virt SLAVE_EBI1>,
+				<&aggre_noc MASTER_USB2_0 &config_noc SLAVE_IPA_CFG>,
+				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB2_0>;
 
 		qcom,dis-sending-cm-l1-quirk;
 		qcom,core-clk-rate = <66666667>;
