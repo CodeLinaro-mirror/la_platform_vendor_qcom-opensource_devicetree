@@ -805,6 +805,7 @@
 		#interrupt-cells = <2>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,gpios-reserved = <27 28 29 30 63 64>;
+		wakeup-parent = <&pdc>;
 	};
 
 	tcsr_mutex_block: syscon@1f40000 {
