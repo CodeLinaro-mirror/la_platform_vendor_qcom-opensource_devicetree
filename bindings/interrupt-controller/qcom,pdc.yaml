@@ -43,6 +43,7 @@ properties:
           - qcom,x1e80100-pdc
           - qcom,x1p42100-pdc
           - qcom,seraph-pdc
+          - qcom,chora-pdc
       - const: qcom,pdc
 
   reg:
