@@ -520,7 +520,15 @@
 		qcom,util-factor = <151>;
 		qcom,keepalive;
 	};
+
+	wpss_pas: remoteproc-wpss@84000000 {
+		compatible = "qcom,malabar-wpss-pas";
+		reg = <0x84000000 0x10000>;
+
+		status = "disabled";
+	};
 };
+
 #include "malabar-coresight.dtsi"
 #include "malabar-debug.dtsi"
 #include "malabar-stub-regulators.dtsi"
