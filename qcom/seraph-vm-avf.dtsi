@@ -441,5 +441,6 @@
 
 };
 
+#include "msm-arm-smmu-seraph-vm-avf.dtsi"
 #include "seraph-vm-rm-info-avf.dtsi"
 #include "seraph-vm-dma-heaps-avf.dtsi"

@@ -15,6 +15,11 @@
 			android,pvmfw,target = <&ddump_buff>;
 		};
 
+		apps-smmu {
+			reg = <0x08 0x200000 0x0 0x100000>;
+			android,pvmfw,target = <&apps_smmu>;
+		};
+
 		tlmm-vm-mem-access {
 			reg = <0x0 0xf10c000 0x0 0x1000>;
 			android,pvmfw,target = <&tlmm_vm_mem_access>;
@@ -100,6 +105,12 @@
 				&gpn_shm
 				&minidump
 				&qcom_gunyah_vm>;
+};
+
+&apps_smmu {
+	#global-interrupts = <0x00>;
+	interrupts = <0x00 0x1a5 0x04 0x00 0x2c3 0x04 0x00 0x1a7 0x04 0x00 0x1a8 0x04 0x00 0x1a9 0x04>;
+	reg = <0x08 0x200000 0x0 0x100000>;
 };
 
 &tlmm_vm_mem_access {
