@@ -1101,7 +1101,7 @@
 			interrupt-controller;
 		};
 
-		remoteproc_adsp: remoteproc@6800000 {
+		adsp_pas: remoteproc-adsp@6800000 {
 			compatible = "qcom,x1e80100-adsp-pas";
 			reg = <0x0 0x06800000 0x0 0x10000>;
 
@@ -2918,7 +2918,7 @@
 				 <&gcc GCC_AGGRE_USB4_2_AXI_CLK>;
 		};
 
-		remoteproc_cdsp: remoteproc@32300000 {
+		cdsp_pas: remoteproc-cdsp@32300000 {
 			compatible = "qcom,x1e80100-cdsp-pas";
 
 			reg = <0x0 0x32300000 0x0 0x10000>;
