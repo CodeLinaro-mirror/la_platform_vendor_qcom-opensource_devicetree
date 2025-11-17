@@ -81,6 +81,7 @@ properties:
       - qcom,vienna-cdsp-pas
       - qcom,vienna-modem-pas
       - qcom,vienna-adsp-pas
+      - qcom,malabar-wpss-pas
       - qcom,alor-wpss-pas
       - qcom,alor-adsp-pas
       - qcom,alor-cdsp-pas
