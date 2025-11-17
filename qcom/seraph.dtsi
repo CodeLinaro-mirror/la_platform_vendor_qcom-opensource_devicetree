@@ -305,6 +305,11 @@
 		qcom,iommu-faults = "non-fatal";
 	};
 
+	qcom,msm-adsprpc-mem {
+		compatible = "qcom,msm-adsprpc-mem-region";
+		memory-region = <&adsp_mem_heap>;
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,seraph-pinctrl";
 		reg = <0xF000000 0x1000000>;
@@ -422,6 +427,14 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x2000000>;
 		linux,cma-default;
+	};
+
+	adsp_mem_heap: adsp_heap_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xC00000>;
 	};
 };
 
