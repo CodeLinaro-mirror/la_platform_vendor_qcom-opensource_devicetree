@@ -1181,6 +1181,7 @@
 		/* Outputs to lpass */
 		qcom,smem-states = <&adsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
@@ -1248,6 +1249,7 @@
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		remoteproc_cdsp_glink: glink-edge {
 			qcom,remote-pid = <5>;
@@ -2151,6 +2153,7 @@
 		/* Outputs to mss */
 		qcom,smem-states = <&modem_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		glink-edge {
 			qcom,remote-pid = <1>;
