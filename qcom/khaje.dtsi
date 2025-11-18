@@ -1317,6 +1317,7 @@
 
 		cap-mmc-hw-reset;
 
+		boot_device_type = <0x0>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
@@ -1466,6 +1467,7 @@
 		limit-phy-submode = <0>;
 		#reset-cells = <1>;
 
+		boot_device_type = <0x4>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
