@@ -498,6 +498,10 @@
 				compatible = "qcom,bcm-voter";
 			};
 
+			rpmhcc: clock-controller {
+				compatible = "qcom,chora-rpmh-clk";
+				#clock-cells = <1>;
+			};
 		};
 	};
 
@@ -1237,13 +1241,6 @@
 		};
 	};
 
-	rpmhcc: clock-controller {
-		compatible = "fixed-clock";
-		clock-output-names = "rpmh_clocks";
-		clock-frequency = <19200000>;
-		#clock-cells = <1>;
-	};
-
 	camcc: clock-controller@ade0000 {
 		compatible = "qcom,chora-camcc", "syscon";
 		reg = <0x0 0xade0000 0x0 0x20000>;
@@ -1351,6 +1348,47 @@
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
+	};
+
+	apsscc: syscon@17a80000 {
+		compatible = "syscon";
+		reg = <0x0 0x17aa0000 0x0 0x1c>;
+	};
+
+	mccc: syscon@240ba000 {
+		compatible = "syscon";
+		reg = <0x0 0x240ba000 0x0 0x54>;
+	};
+
+	gxclkctldebugcc: syscon@3d68000 {
+		compatible = "syscon";
+		reg = <0x0 0x3d68000 0x0 0x1000>;
+	};
+
+	debugcc: clock-controller@0 {
+		compatible = "qcom,chora-debugcc";
+		qcom,apsscc = <&apsscc>;
+		qcom,camcc = <&camcc>;
+		qcom,dispcc = <&dispcc>;
+		qcom,gcc = <&gcc>;
+		qcom,gpucc = <&gpucc>;
+		qcom,gxclkctl = <&gxclkctldebugcc>;
+		qcom,tcsrcc = <&tcsrcc>;
+		qcom,videocc = <&videocc>;
+		qcom,mccc = <&mccc>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&camcc 0>,
+			 <&dispcc 0>,
+			 <&gcc 0>,
+			 <&gpucc 0>,
+			 <&videocc 0>;
+		clock-names = "xo_clk_src",
+			      "camcc",
+			      "dispcc",
+			      "gcc",
+			      "gpucc",
+			      "videocc";
+		#clock-cells = <1>;
 	};
 
 	qcom,msm-adsprpc-mem {
