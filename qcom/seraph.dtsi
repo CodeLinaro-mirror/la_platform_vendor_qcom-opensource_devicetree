@@ -428,3 +428,4 @@
 #include "seraph-reserved-memory.dtsi"
 #include "msm-arm-smmu-seraph.dtsi"
 #include "seraph-regulators.dtsi"
+#include "seraph-pinctrl.dtsi"
