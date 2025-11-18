@@ -55,6 +55,7 @@
 			snps,hird-threshold = /bits/ 8 <0x0>;
 			snps,is-utmi-l1-suspend;
 			snps,usb2-gadget-lpm-disable;
+			num-hc-interrupters = /bits/ 16 <3>;
 			maximum-speed = "super-speed-plus";
 			dr_mode = "otg";
 			usb-role-switch;
@@ -317,6 +318,7 @@
 			snps,ssp-u3-u0-quirk;
 			snps,is-utmi-l1-suspend;
 			snps,usb2-gadget-lpm-disable;
+			num-hc-interrupters = /bits/ 16 <3>;
 			maximum-speed = "super-speed-plus";
 			dr_mode = "otg";
 			usb-role-switch;
