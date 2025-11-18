@@ -460,6 +460,30 @@
 		#mbox-cells = <2>;
 	};
 
+	pmic_arbiter: arbiter@c400000  {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0x0 0xc400000 0x0 0x3000>,
+		      <0x0 0xc500000 0x0 0x400000>,
+		      <0x0 0xc440000 0x0 0x80000>;
+		reg-names = "core", "chnls", "obsrvr";
+		qcom,ee = <0>;
+		qcom,channel = <0>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		spmi0_bus: spmi@c42d000 {
+			reg = <0x0 0xc42d000 0x0 0x4000>,
+			      <0x0 0xc4c0000 0x0 0x10000>;
+			reg-names = "cnfg", "intr";
+			interrupt-names = "periph_irq";
+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+	};
 
 	aoss_qmp: power-controller@c300000 {
 		compatible = "qcom,aoss-qmp";
