@@ -1035,6 +1035,22 @@
 				num-smrs = <0x1>;
 				patch = "/soc/apps-smmu@15e00000";
 			};
+
+			vsmmu@3da0000 {
+				vdevice-type = "vsmmu-v2";
+				smmu-handle = <0x3da0000>;
+				num-cbs = <0x1>;
+				num-smrs = <0x1>;
+				patch = "/soc/kgsl-smmu@3da0000";
+			};
+
+			vsmmu@98a0000 {
+				vdevice-type = "vsmmu-v2";
+				smmu-handle = <0x98a0000>;
+				num-cbs = <0x1>;
+				num-smrs = <0x1>;
+				patch = "/soc/kgsl-smmu@98a0000";
+			};
 		};
 	};
 
@@ -1109,6 +1125,28 @@
 	};
 
 	apps_smmu_2: apps-smmu@15e00000 {
+		/*
+		 * reg, #global-interrupts & interrupts  properties will
+		 * be added dynamically by bootloader.
+		 */
+		compatible = "qcom,qsmmu-v500", "qcom,virt-smmu";
+		#iommu-cells = <2>;
+		qcom,use-3-lvl-tables;
+		dma-coherent;
+	};
+
+	kgsl_smmu_0: kgsl-smmu@3da0000 {
+		/*
+		 * reg, #global-interrupts & interrupts  properties will
+		 * be added dynamically by bootloader.
+		 */
+		compatible = "qcom,qsmmu-v500", "qcom,virt-smmu";
+		#iommu-cells = <2>;
+		qcom,use-3-lvl-tables;
+		dma-coherent;
+	};
+
+	kgsl_smmu_1: kgsl-smmu@98a0000 {
 		/*
 		 * reg, #global-interrupts & interrupts  properties will
 		 * be added dynamically by bootloader.
