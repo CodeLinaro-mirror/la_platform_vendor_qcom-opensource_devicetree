@@ -2245,6 +2245,7 @@
 
 		battery_charger: qcom,battery_charger {
 			compatible = "qcom,pmw6100-battery-charger";
+			qcom,shutdown-voltage = <2700>;
 
 			nfc_vreg: qcom,nfc-vreg {
 				regulator-name = "nfc-vreg";
