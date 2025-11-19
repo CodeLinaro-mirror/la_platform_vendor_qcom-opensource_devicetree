@@ -183,12 +183,20 @@ _platform_map = {
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
+            {
+                "name": "malabarp.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
-            {
-                "name": "malabar-rumi-overlay.dtbo",
-                "apq": False,
-            },
+            {"name": "malabar-atp-overlay.dtbo"},
+            {"name": "malabar-cdp-overlay.dtbo"},
+            {"name": "malabar-cdp-lcd-overlay.dtbo"},
+            {"name": "malabar-mtp-overlay.dtbo"},
+            {"name": "malabar-mtp-wcn3950-overlay.dtbo"},
+            {"name": "malabar-qrd-overlay.dtbo"},
+            {"name": "malabar-rcm-overlay.dtbo"},
+            {"name": "malabar-rumi-overlay.dtbo"},
         ],
     },
     "bengal": {
