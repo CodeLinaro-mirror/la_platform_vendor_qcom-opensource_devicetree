@@ -27,7 +27,9 @@
 
 	aliases { };
 
-	firmware: firmware {};
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
 
 	cpus {
 		#address-cells = <2>;
@@ -407,6 +409,12 @@
 		};
 	};
 
+};
+
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
 };
 
 &reserved_memory {
