@@ -24,8 +24,10 @@
 	};
 
 	smem_mem: smem_region@86000000 {
+		compatible = "qcom,smem";
 		no-map;
 		reg = <0x0 0x86000000 0x0 0x200000>;
+		hwlocks = <&tcsr_mutex 3>;
 	};
 
 	mpss_wlan_mem: mpss_wlan_region@8a900000 {
