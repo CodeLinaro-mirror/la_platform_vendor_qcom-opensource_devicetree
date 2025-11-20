@@ -189,6 +189,10 @@
 		#mbox-cells = <1>;
 	};
 
+	qcom,glink {
+		compatible = "qcom,glink";
+	};
+
 	qmp_aop: qcom,qmp-aop {
 		compatible = "qcom,qmp-mbox";
 		qcom,qmp = <&aoss_qmp>;
