@@ -644,6 +644,23 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_CHORA), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
+				chora-vm-mtp-overlay.dtbo \
+				chora-vm-qrd-overlay.dtbo \
+				chora-vm-rcm-overlay.dtbo \
+				chora-vm-cdp-overlay.dtbo \
+				chora-oemvm-atp-overlay.dtbo \
+				chora-oemvm-mtp-overlay.dtbo \
+				chora-oemvm-qrd-overlay.dtbo \
+				chora-oemvm-rcm-overlay.dtbo \
+				chora-oemvm-cdp-overlay.dtbo
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 LEMANS_MULTI_GVM_BASE_DTB += \
