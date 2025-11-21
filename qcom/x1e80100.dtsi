@@ -511,16 +511,6 @@
 		#size-cells = <2>;
 		ranges;
 
-		gunyah_hyp_mem: gunyah-hyp@80000000 {
-			reg = <0x0 0x80000000 0x0 0x800000>;
-			no-map;
-		};
-
-		hyp_elf_package_mem: hyp-elf-package@80800000 {
-			reg = <0x0 0x80800000 0x0 0x200000>;
-			no-map;
-		};
-
 		ncc_mem: ncc@80a00000 {
 			reg = <0x0 0x80a00000 0x0 0x400000>;
 			no-map;
@@ -582,13 +572,8 @@
 			no-map;
 		};
 
-		uefi_log_mem: uefi-log@81ce4000 {
+		depthcharge_log_mem: depthcharge-log@81ce4000 {
 			reg = <0x0 0x81ce4000 0x0 0x10000>;
-			no-map;
-		};
-
-		secdata_apss_mem: secdata-apss@81cff000 {
-			reg = <0x0 0x81cff000 0x0 0x1000>;
 			no-map;
 		};
 
@@ -597,53 +582,18 @@
 			no-map;
 		};
 
-		gpu_prr_mem: gpu-prr@81f00000 {
-			reg = <0x0 0x81f00000 0x0 0x10000>;
+		tz_stat_mem: tz-stat@81f00000 {
+			reg = <0x0 0x81f00000 0x0 0x100000>;
 			no-map;
 		};
 
-		tpm_control_mem: tpm-control@81f10000 {
-			reg = <0x0 0x81f10000 0x0 0x10000>;
+		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap@82000000 {
+			reg = <0x0 0x82000000 0x0 0x800000>;
 			no-map;
 		};
 
-		usb_ucsi_shared_mem: usb-ucsi-shared@81f20000 {
-			reg = <0x0 0x81f20000 0x0 0x10000>;
-			no-map;
-		};
-
-		pld_pep_mem: pld-pep@81f30000 {
-			reg = <0x0 0x81f30000 0x0 0x6000>;
-			no-map;
-		};
-
-		pld_gmu_mem: pld-gmu@81f36000 {
-			reg = <0x0 0x81f36000 0x0 0x1000>;
-			no-map;
-		};
-
-		pld_pdp_mem: pld-pdp@81f37000 {
-			reg = <0x0 0x81f37000 0x0 0x1000>;
-			no-map;
-		};
-
-		tz_stat_mem: tz-stat@82700000 {
-			reg = <0x0 0x82700000 0x0 0x100000>;
-			no-map;
-		};
-
-		xbl_tmp_buffer_mem: xbl-tmp-buffer@82800000 {
-			reg = <0x0 0x82800000 0x0 0xc00000>;
-			no-map;
-		};
-
-		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap@84b00000 {
-			reg = <0x0 0x84b00000 0x0 0x800000>;
-			no-map;
-		};
-
-		spu_secure_shared_memory_mem: spu-secure-shared-memory@85300000 {
-			reg = <0x0 0x85300000 0x0 0x80000>;
+		wlan_msa_mem: wlan-msa@85380000 {
+			reg = <0x0 0x85380000 0x0 0xc00000>;
 			no-map;
 		};
 
@@ -722,28 +672,33 @@
 			no-map;
 		};
 
-		xbl_sc_mem: xbl-sc@d8000000 {
-			reg = <0x0 0xd8000000 0x0 0x40000>;
+		hyp_ac_config_mem: hyp-ac-config@d8000000 {
+			reg = <0x0 0xd8000000 0x0 0x19000>;
 			no-map;
 		};
 
-		reserved-region@d8040000 {
-			reg = <0x0 0xd8040000 0x0 0xa0000>;
+		tz_ac_config_mem: tz-ac-config@d8019000 {
+			reg = <0x0 0xd8019000 0x0 0x10000>;
 			no-map;
 		};
 
-		qtee_mem: qtee@d80e0000 {
-			reg = <0x0 0xd80e0000 0x0 0x520000>;
+		reserved-region@d8029000 {
+			reg = <0x0 0xd8029000 0x0 0x1000>;
 			no-map;
 		};
 
-		ta_mem: ta@d8600000 {
-			reg = <0x0 0xd8600000 0x0 0x8a00000>;
+		qtee_mem: qtee@d802a000 {
+			reg = <0x0 0xd802a000 0x0 0x540000>;
 			no-map;
 		};
 
-		tags_mem1: tags@e1000000 {
-			reg = <0x0 0xe1000000 0x0 0x26a0000>;
+		tfa_mem: tfa@d856a000 {
+			reg = <0x0 0xd856a000 0x0 0xc8000>;
+			no-map;
+		};
+
+		ta_mem: ta@d8632000 {
+			reg = <0x0 0xd8632000 0x0 0x1000000>;
 			no-map;
 		};
 
