@@ -696,6 +696,26 @@
 			status = "disabled";
 		};
 	};
+
+	spmi_bus: spmi0_bus: qcom,spmi@1c0a700 {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0x1c40000 0x10000>,
+		      <0x1e00000 0x2000000>,
+		      <0x3e00000 0x100000>,
+		      <0x3f00000 0xa0000>,
+		      <0x1c0a700 0x26000>;
+		reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
+		interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "periph_irq";
+		interrupt-controller;
+		#interrupt-cells = <4>;
+		#address-cells = <2>;
+		#size-cells = <0>;
+		cell-index = <0>;
+		qcom,channel = <0>;
+		qcom,ee = <0>;
+		qcom,bus-id = <0>;
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
