@@ -84,7 +84,7 @@
 			snps,usb3_lpm_capable;
 			usb-core-id = <0>;
 			maximum-speed = "super-speed";
-			dr_mode = "otg";
+			dr_mode = "peripheral";
 			usb-role-switch;
 		};
 	};
