@@ -21,6 +21,29 @@
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cluster_device2;
 
+&ddr_clusterX {
+	qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
+&ddr_clusterX_compute {
+	qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
+&ddrqos_clusterX_lat {
+	qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
+&llcc_clusterX {
+	qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
+&qcom_pmu {
+	qcom,pmu-events-tbl =
+		< 0x0008 0xff 0x02 0x02 >,
+		< 0x0011 0xff 0x01 0x00 >,
+		< 0x0017 0xff 0xff 0x05 >;
+};
+
 &gic_router {
 	qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
 };
