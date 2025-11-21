@@ -53,6 +53,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
@@ -74,6 +75,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU2: cpu@200 {
@@ -84,6 +86,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU3: cpu@300 {
@@ -94,6 +97,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU4: cpu@400 {
@@ -104,6 +108,7 @@
 			next-level-cache = <&L2_4>;
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
+			#cooling-cells = <2>;
 
 			L2_4: l2-cache {
 				compatible = "arm,arch-cache";
@@ -120,6 +125,7 @@
 			next-level-cache = <&L2_4>;
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
+			#cooling-cells = <2>;
 		};
 
 		CPU6: cpu@600 {
@@ -130,6 +136,7 @@
 			next-level-cache = <&L2_4>;
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
+			#cooling-cells = <2>;
 		};
 
 		CPU7: cpu@700 {
@@ -140,6 +147,7 @@
 			next-level-cache = <&L2_4>;
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
+			#cooling-cells = <2>;
 		};
 
 		cpu-map {
@@ -1442,12 +1450,16 @@
 
 		status = "disabled";
 	};
+
+	thermal_zones: thermal-zones {
+	};
 };
 
 #include "chora-pinctrl.dtsi"
 #include "chora-stub-regulators.dtsi"
 #include "chora-qupv3.dtsi"
 #include "chora-usb.dtsi"
+#include "chora-thermal.dtsi"
 
 &qupv3_se5_2uart {
 	status = "ok";
