@@ -225,3 +225,7 @@
 					0x62 0x8>;
 	};
 };
+
+&usb_audio_qmi_dev {
+	status = "okay";
+};
