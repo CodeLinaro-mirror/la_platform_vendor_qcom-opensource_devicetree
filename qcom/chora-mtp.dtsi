@@ -3,6 +3,8 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include "chora-pmic-overlay.dtsi"
+
 &sdhc_2 {
 	vdd-supply = <&L13B_E0>;
 	qcom,vdd-voltage-level = <2950000 2960000>;
