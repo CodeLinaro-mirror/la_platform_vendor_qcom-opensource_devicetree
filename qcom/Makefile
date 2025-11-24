@@ -39,6 +39,7 @@ CANOE_BOARDS += \
 		canoe-rcm-overlay.dtbo \
 		canoe-rcm-st54l-pandeiro-overlay.dtbo \
 		canoe-atp-overlay.dtbo \
+		canoep-hdk-no-l3k-overlay.dtbo \
 		canoep-hdk-overlay.dtbo \
 		alor-interposer-mtp-overlay.dtbo \
 		alor-interposer-rcm-overlay.dtbo \
@@ -176,8 +177,8 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
-YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
-YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb
+YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
+YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
 
 YUPIK_BOARDS += \
 		yupikp-iot-idp-overlay.dtbo \
@@ -193,7 +194,13 @@ YUPIK_BOARDS += \
 		katmaip-fp2p5-hsp-overlay.dtbo \
 		katmaip-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmaip-fp3-hsp-overlay.dtbo \
-		katmaip-fp3-hsp-pm7250b-overlay.dtbo
+		katmaip-fp3-hsp-pm7250b-overlay.dtbo \
+		yupikp-idp-overlay.dtbo \
+		yupikp-qrd-overlay.dtbo \
+		yupikp-idps-amoled-overlay.dtbo \
+		yupikp-atp-overlay.dtbo \
+		yupikp-idp-hsp-overlay.dtbo
+
 
 NOAPQ_YUPIK_BOARDS += \
 		yupik-iot-idp-overlay.dtbo \
@@ -209,7 +216,14 @@ NOAPQ_YUPIK_BOARDS += \
 		katmai-fp2p5-hsp-overlay.dtbo \
 		katmai-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmai-fp3-hsp-overlay.dtbo \
-		katmai-fp3-hsp-pm7250b-overlay.dtbo
+		katmai-fp3-hsp-pm7250b-overlay.dtbo \
+		yupik-rumi-overlay.dtbo \
+		yupik-idp-overlay.dtbo \
+		yupik-qrd-overlay.dtbo \
+		yupik-idp-pm7250b-overlay.dtbo \
+		yupik-idps-amoled-overlay.dtbo \
+		yupik-atp-overlay.dtbo \
+		yupik-idp-hsp-overlay.dtbo
 
 lahaina-dtb-$(CONFIG_ARCH_YUPIK) += \
 	$(call add-overlays, $(NOAPQ_YUPIK_BOARDS),$(YUPIK_BASE_DTB)) \
@@ -389,15 +403,15 @@ x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
 x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
 
-COLIBRI_BASE_DTB += colibri.dtb
+SHIKRA_BASE_DTB += shikra.dtb
 
-NOAPQ_COLIBRI_BOARDS += \
-		 colibri-rumi-overlay.dtbo
+NOAPQ_SHIKRA_BOARDS += \
+		 shikra-rumi-overlay.dtbo
 
-colibri-dtb-$(CONFIG_ARCH_COLIBRI) += \
-	$(call add-overlays, $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS),$(COLIBRI_BASE_DTB))
-colibri-overlays-dtb-$(CONFIG_ARCH_COLIBRI) += $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS) $(COLIBRI_BASE_DTB)
-dtb-y += $(colibri-dtb-y)
+shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
+	$(call add-overlays, $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS),$(SHIKRA_BASE_DTB))
+shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB)
+dtb-y += $(shikra-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
@@ -440,26 +454,8 @@ endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
-				canoe-vm-mtp.dtb \
-				canoe-vm-cdp.dtb \
-				canoe-vm-qrd.dtb \
-				canoe-vm-rcm.dtb \
-				canoe-vm-base.dtb \
-				canoep-vm-hdk.dtb \
-				canoe-oemvm-rumi.dtb \
-				canoe-oemvm-mtp.dtb \
-				canoe-oemvm-cdp.dtb \
-				canoe-oemvm-qrd.dtb \
-				canoe-oemvm-rcm.dtb \
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-base.dtb \
 				canoe-oemvm-base.dtb \
-				canoep-oemvm-hdk.dtb \
-				alor-interposer-vm-mtp.dtb \
-				alor-interposer-vm-rcm.dtb \
-				alor-interposer-oemvm-mtp.dtb \
-				alor-interposer-oemvm-rcm.dtb \
-				alor-interposer-vm-qrd.dtb \
-				alor-interposer-oemvm-qrd.dtb \
 				canoe-vm-mtp-overlay.dtbo \
 				canoe-vm-qrd-overlay.dtbo \
 				canoe-vm-rcm-overlay.dtbo \

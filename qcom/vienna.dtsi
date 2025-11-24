@@ -1603,6 +1603,7 @@
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		firmware-name = "adsp.mdt", "adsp_dtb.mdt";
+		subdev-firmware-name = "lpai_wm.mdt", "lpai_am.mdt";
 
 		memory-region = <&adspslpi_mem &q6_adsp_dtb_mem>;
 		subdev-memory-region = <&wear_microcontroller_m55_mem &ambient_microcontroller_m55_mem>;
@@ -1914,6 +1915,13 @@
 				qcom,intents = <0x1000 10>;
 			};
 		};
+	};
+
+	lpi_doorbell: lpi-dbl@23e0c000 {
+		compatible = "qcom,lpi-dbl";
+		reg = <0x23e0c000 0x4>;
+		interrupts = <GIC_SPI 371 IRQ_TYPE_EDGE_RISING>;
+		status = "okay";
 	};
 
 	qcom_glinkpkt: qcom,glinkpkt {
@@ -2237,6 +2245,7 @@
 
 		battery_charger: qcom,battery_charger {
 			compatible = "qcom,pmw6100-battery-charger";
+			qcom,shutdown-voltage = <2700>;
 
 			nfc_vreg: qcom,nfc-vreg {
 				regulator-name = "nfc-vreg";
@@ -2615,7 +2624,6 @@
 };
 
 &uart6 {
-	qcom,auto-suspend-disable;
 	status = "ok";
 };
 

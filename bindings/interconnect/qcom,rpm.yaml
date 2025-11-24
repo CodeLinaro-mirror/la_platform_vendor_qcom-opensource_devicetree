@@ -55,6 +55,12 @@ properties:
       - qcom,monaco-clk_virt
       - qcom,monaco-mmnrt_virt
       - qcom,monaco-mmrt_virt
+      - qcom,malabar-bimc
+      - qcom,malabar-config_noc
+      - qcom,malabar-clk_virt
+      - qcom,malabar-mmnrt_virt
+      - qcom,malabar-mmrt_virt
+      - qcom,malabar-system_noc
 
   '#interconnect-cells':
     description: |

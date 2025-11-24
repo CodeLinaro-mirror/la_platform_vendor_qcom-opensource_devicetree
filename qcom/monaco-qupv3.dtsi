@@ -14,6 +14,11 @@
 	 * Qup0 6: SE 6
 	 * Qup0 7: SE 7
 	 */
+	qup0_gpi_iommu_region: qup0_gpi_iommu_region {
+		iommu-addresses =  <&gpi_dma0 0x0 0x100000>,
+				<&gpi_dma0 0x200000 0xffe00000>;
+
+	};
 
 	/* GPI Instance */
 	gpi_dma0: qcom,gpi-dma@4a00000 {
@@ -37,9 +42,14 @@
 			<GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,gpii-mask = <0xf>;
 		qcom,ev-factor = <2>;
-		qcom,iommu-dma-addr-pool = <0x100000 0x100000>;
+		memory-region = <&qup0_gpi_iommu_region>;
 		qcom,gpi-ee-offset = <0x10000>;
 		status = "ok";
+	};
+
+	qup0_se_iommu_region: qup0_se_iommu_region {
+		iommu-addresses =  <&qupv3_0 0x0 0x40000000>,
+				<&qupv3_0 0x50000000 0xb0000000>;
 	};
 
 	/* QUPv3_0  wrapper  instance */
@@ -52,7 +62,7 @@
 		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
 			<&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
 		iommus = <&apps_smmu 0xe3 0x0>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0xc0000000>;
+		memory-region = <&qup0_se_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "atomic";
 		ranges;

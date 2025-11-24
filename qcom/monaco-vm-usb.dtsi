@@ -49,7 +49,7 @@
 			reg = <0x0 0xa600000 0x0 0xe000>;
 			iommus = <&apps_smmu 0x080 0x0>;
 			qcom,iommu-dma = "atomic";
-			qcom,iommu-dma-addr-pool = <&dwc3_mem_region>;
+			memory-region = <&dwc3_mem_region>;
 			interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy0>, <&usb_qmp_phy0>;
 			snps,disable-clk-gating;
@@ -268,7 +268,7 @@
 			reg = <0x0 0xa400000 0x0 0xe000>;
 			iommus = <&apps_smmu 0x020 0x0>;
 			qcom,iommu-dma = "atomic";
-			qcom,iommu-dma-addr-pool = <&dwc3_mem_region_1>;
+			memory-region = <&dwc3_mem_region_1>;
 			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy2>, <&usb_nop_phy>;
 			snps,disable-clk-gating;

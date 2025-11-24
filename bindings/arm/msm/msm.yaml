@@ -373,12 +373,12 @@ properties:
               - qcom,rumi
           - const: qcom,pikachu
 
-      - description: Qualcomm Technologies, Inc. COLIBRI
+      - description: Qualcomm Technologies, Inc. SHIKRA
         items:
           - enum:
-              - qcom,colibri-rumi
+              - qcom,shikra-rumi
               - qcom,rumi
-          - const: qcom,colibri
+          - const: qcom,shikra
 
       - description: Qualcomm Technologies, Inc. SERAPH
         items:
