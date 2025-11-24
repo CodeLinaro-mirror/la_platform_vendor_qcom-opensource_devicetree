@@ -6,7 +6,7 @@
 /dts-v1/;
 /plugin/;
 
-#include "chora-mtp.dtsi"
+#include "chora-mtp-lcd.dtsi"
 #include "chora-pmiv010x.dtsi"
 
 / {
