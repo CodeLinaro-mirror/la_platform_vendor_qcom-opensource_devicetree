@@ -182,6 +182,7 @@
 				reg = <0>;
 
 				retimer_usb0_ss_out: endpoint {
+					remote-endpoint = <&usb_port0_dwc3_ss>;
 				};
 			};
 
@@ -189,6 +190,7 @@
 				reg = <1>;
 
 				retimer_usb0_ss_in: endpoint {
+					remote-endpoint = <&usb_port0_ssphy_out>;
 				};
 			};
 		};
@@ -212,6 +214,9 @@
 &usb0 {
 	status = "okay";
 	usb-role-switch;
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio_0>;
+	gpios = <&tlmm 121 0>;
 };
 
 &ucsi {
@@ -234,11 +239,18 @@
 			};
 		};
 	};
-
 };
 
 &usb_port0_hs_in {
 	remote-endpoint = <&pmic_glink_port0_hs_in>;
+};
+
+&usb_port0_ssphy_out {
+	remote-endpoint = <&retimer_usb0_ss_in>;
+};
+
+&usb_port0_dwc3_ss {
+	remote-endpoint = <&retimer_usb0_ss_out>;
 };
 
 &smb2360_1_eusb2_repeater {
