@@ -38,7 +38,7 @@
 		no-map;
 	};
 
-	wlan_mem: wlan-region@84000000 {
+	wpss_mem: wpss-region@84000000 {
 		reg = <0x0 0x84000000 0x0 0x1900000>;
 		no-map;
 	};
