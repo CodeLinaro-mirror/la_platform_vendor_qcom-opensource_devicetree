@@ -29,7 +29,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=8 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K  console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false";
+		bootargs = "loglevel=8 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K  console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false";
 	};
 
 	reserved_memory: reserved-memory {};
