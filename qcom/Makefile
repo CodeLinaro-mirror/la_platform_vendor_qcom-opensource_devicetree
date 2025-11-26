@@ -153,6 +153,11 @@ dtb-y += $(parrot-dtb-y)
 
 endif
 
+ifeq ($(CONFIG_ARCH_RAVELIN), y)
+taycan-dtb-$(CONFIG_ARCH_RAVELIN) += taycan-idp-wcn3988-4gb.dtb
+dtb-y += $($(MSM_ARCH)-dtb-y)
+endif
+
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 pineapple_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += pineapple-vm-rumi.dtb \
