@@ -555,11 +555,16 @@ ifeq ($(CONFIG_ARCH_QTI_VM), y)
 SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb sa8797p-v2-gunyah-vm-qam.dtb
 SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
 
+SA8797P_GH_LV_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-lv-qam.dtb
+SA8797P_GH_LV_GVM_QAM_BOARDS += sa8797p-gunyah-vm-lv-qam-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_GH_LA_GVM_QAM_BOARDS),$(SA8797P_GH_LA_GVM_QAM_BASE_DTB)) \
+	$(call add-overlays, $(SA8797P_GH_LV_GVM_QAM_BOARDS),$(SA8797P_GH_LV_GVM_QAM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
+	$(SA8797P_GH_LV_GVM_QAM_BOARDS) $(SA8797P_GH_LV_GVM_QAM_BASE_DTB)
 
 SA8797P_LA_GVM_BOARDS += \
 		sa8797p-sdp8-vm-la-overlay.dtbo sa8797p-v2-sdp8-vm-la-overlay.dtbo
