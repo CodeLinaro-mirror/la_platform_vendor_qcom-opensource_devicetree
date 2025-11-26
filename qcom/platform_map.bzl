@@ -376,6 +376,15 @@ _platform_map = {
             {"name": "ravelin-qrd-4gb-overlay.dtbo"},
         ],
     },
+    "taycan": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "taycan-idp-wcn3988-4gb.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):
