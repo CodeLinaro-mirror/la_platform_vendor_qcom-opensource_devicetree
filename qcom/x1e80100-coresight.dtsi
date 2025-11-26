@@ -180,9 +180,9 @@
 
 		out-ports {
 			port {
-				tpdm_turing_out_tpda_dl_center: endpoint {
+				tpdm_turing_out_funnel_turing: endpoint {
 					remote-endpoint =
-					<&tpda_dl_center_in_tpdm_turing>;
+					<&funnel_turing_in_tpdm_turing>;
 				};
 			};
 		};
@@ -195,9 +195,9 @@
 
 		out-ports {
 			port {
-				tpdm_turing_llm_out_tpda_dl_center: endpoint {
+				tpdm_turing_llm_out_funnel_turing: endpoint {
 					remote-endpoint =
-					<&tpda_dl_center_in_tpdm_turing_llm>;
+					<&funnel_turing_in_tpdm_turing_llm>;
 				};
 			};
 		};
@@ -261,6 +261,21 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
+			port@0 {
+				reg = <0>;
+				funnel_turing_in_tpdm_turing: endpoint {
+					remote-endpoint =
+					<&tpdm_turing_out_funnel_turing>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_turing_in_tpdm_turing_llm: endpoint {
+					remote-endpoint =
+					<&tpdm_turing_llm_out_funnel_turing>;
+				};
+			};
 
 			port@4 {
 				reg = <4>;
@@ -272,14 +287,57 @@
 		};
 
 		out-ports {
+			port {
+				funnel_turing_out_replicator_turing: endpoint {
+					remote-endpoint =
+					<&replicator_turing_in_funnel_turing>;
+				};
+			};
+		};
+	};
+
+	turing_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_turing";
+
+		in-ports {
+			port {
+				replicator_turing_in_funnel_turing: endpoint {
+					remote-endpoint =
+					<&funnel_turing_out_replicator_turing>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
 			port@0 {
 				reg = <0>;
-				funnel_turing_out_funnel_dl_center: endpoint {
-					remote-endpoint =
-					<&funnel_dl_center_in_funnel_turing>;
+				tpdm_turing_out_tpda_dl_center: endpoint {
+				remote-endpoint =
+					<&tpda_dl_center_in_tpdm_turing>;
+				filter-source= <&tpdm_turing>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				tpdm_turing_llm_out_tpda_dl_center: endpoint {
+				remote-endpoint =
+						<&tpda_dl_center_in_tpdm_turing_llm>;
+				filter-source= <&tpdm_turing_llm>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				turing_etm0_out_funnel_dl_center: endpoint {
+				remote-endpoint =
+						<&funnel_dl_center_in_turing_etm0>;
+				filter-source = <&turing_etm0>;
 				};
 			};
 		};
@@ -2881,7 +2939,6 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <4>;
 
 		device-name = "tpdm_dlmm";
 
@@ -2959,7 +3016,6 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <5>;
 
 		device-name = "tpdm_video";
 
@@ -3375,9 +3431,9 @@
 
 		out-ports {
 			port {
-				funnel_ddr_ch_0_2_out_tpda_dlct1: endpoint {
+				funnel_ddr_ch_0_2_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dlct1_in_funnel_ddr_ch_0_2>;
+					<&funnel_ddr_dl0_in_funnel_ddr_ch_0_2>;
 				};
 			};
 		};
@@ -3404,9 +3460,9 @@
 
 		out-ports {
 			port {
-				funnel_ddr_ch_1_3_out_tpda_dlct1: endpoint {
+				funnel_ddr_ch_1_3_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dlct1_in_funnel_ddr_ch_1_3>;
+					<&funnel_ddr_dl0_in_funnel_ddr_ch_1_3>;
 				};
 			};
 		};
@@ -3433,9 +3489,9 @@
 
 		out-ports {
 			port {
-				funnel_ddr_ch_4_6_out_tpda_dlct1: endpoint {
+				funnel_ddr_ch_4_6_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dlct1_in_funnel_ddr_ch_4_6>;
+					<&funnel_ddr_dl0_in_funnel_ddr_ch_4_6>;
 				};
 			};
 		};
@@ -3462,9 +3518,9 @@
 
 		out-ports {
 			port {
-				funnel_ddr_ch_5_7_out_tpda_dlct1: endpoint {
+				funnel_ddr_ch_5_7_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dlct1_in_funnel_ddr_ch_5_7>;
+					<&funnel_ddr_dl0_in_funnel_ddr_ch_5_7>;
 				};
 			};
 		};
@@ -3614,7 +3670,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x0 0x10d0f000 0x0 0x1000>;
 		reg-names = "tpdm-base";
-
+		qcom,cmb-element-bits = <32>;
 		device-name = "tpdm_llcc_7";
 
 		clocks = <&aoss_qmp>;
@@ -3725,7 +3781,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <9>;
+
 		device-name = "tpdm_ddr_ch02";
 
 		clocks = <&aoss_qmp>;
@@ -3747,7 +3803,6 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <10>;
 		device-name = "tpdm_ddr_ch13";
 
 		clocks = <&aoss_qmp>;
@@ -3769,7 +3824,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <11>;
+
 		device-name = "tpdm_ddr_ch46";
 
 		clocks = <&aoss_qmp>;
@@ -3791,7 +3846,7 @@
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <12>;
+
 		device-name = "tpdm_ddr_ch57";
 
 		clocks = <&aoss_qmp>;
@@ -3815,7 +3870,7 @@
 		qcom,cmb-msrs-num = <32>;
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,tpda-input-port = <13>;
+
 		device-name = "tpdm_ddr";
 
 		clocks = <&aoss_qmp>;
@@ -3824,9 +3879,9 @@
 
 		out-ports {
 			port {
-				tpdm_ddr_dl0_out_tpda_dl_center: endpoint {
+				tpdm_ddr_dl0_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dl_center_in_tpdm_ddr_dl0>;
+					<&funnel_ddr_dl0_in_tpdm_ddr_dl0>;
 				};
 			};
 		};
@@ -3838,23 +3893,24 @@
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
 		qcom,cmb-msrs-num = <32>;
-		qcom,tpda-input-port = <14>;
+
 		device-name = "tpdm_shrm";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {
-				tpdm_ddr_dpm_out_tpda_dl_center: endpoint {
+				tpdm_ddr_dpm_out_funnel_ddr_dl0: endpoint {
 					remote-endpoint =
-					<&tpda_dl_center_in_tpdm_ddr_dpm>;
+					<&funnel_ddr_dl0_in_tpdm_ddr_dpm>;
 				};
 			};
 		};
 	};
 
-	gemnoc {
+	gemnoc: gemnoc {
 		compatible = "arm,coresight-dummy-source";
 		device-name = "gemnoc";
 		atid = <95>;
@@ -3869,7 +3925,7 @@
 		};
 	};
 
-	gladiator {
+	gladiator: gladiator {
 		compatible = "arm,coresight-dummy-source";
 		device-name = "gladiator";
 		atid = <96>;
@@ -3947,6 +4003,54 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
+			port@0 {
+				reg = <0>;
+				funnel_ddr_dl0_in_funnel_ddr_ch_0_2: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_ch_0_2_out_funnel_ddr_dl0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_ddr_dl0_in_funnel_ddr_ch_1_3: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_ch_1_3_out_funnel_ddr_dl0>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_ddr_dl0_in_funnel_ddr_ch_4_6: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_ch_4_6_out_funnel_ddr_dl0>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				funnel_ddr_dl0_in_funnel_ddr_ch_5_7: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_ch_5_7_out_funnel_ddr_dl0>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_ddr_dl0_in_tpdm_ddr_dl0: endpoint {
+					remote-endpoint =
+					<&tpdm_ddr_dl0_out_funnel_ddr_dl0>;
+				};
+			};
+
+			port@5 {
+				reg = <5>;
+				funnel_ddr_dl0_in_tpdm_ddr_dpm: endpoint {
+					remote-endpoint =
+					<&tpdm_ddr_dpm_out_funnel_ddr_dl0>;
+				};
+			};
+
 			port@6 {
 				reg = <6>;
 				funnel_ddr_dl0_in_funnel_ddr_dl1: endpoint {
@@ -3958,11 +4062,275 @@
 
 		out-ports {
 			port {
-				funnel_ddr_dl0_out_funnel_dl_center: endpoint {
+				funnel_ddr_dl0_out_replicator_ddr: endpoint {
 					remote-endpoint =
-					<&funnel_dl_center_in_funnel_ddr_dl0>;
+					<&replicator_ddr_in_funnel_ddr_dl0>;
 				};
 			};
+		};
+	};
+
+	ddr_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_ddr";
+
+		in-ports {
+			port {
+				replicator_ddr_in_funnel_ddr_dl0: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_dl0_out_replicator_ddr>;
+				};
+			};
+		};
+
+		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				tpdm_ddr_ch02_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_ch02>;
+					filter-source= <&tpdm_ddr_ch_0_2>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				tpdm_ddr_ch13_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_ch13>;
+					filter-source= <&tpdm_ddr_ch_1_3>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				tpdm_ddr_ch46_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_ch46>;
+					filter-source= <&tpdm_ddr_ch_4_6>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				tpdm_ddr_ch57_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_ch57>;
+					filter-source= <&tpdm_ddr_ch_5_7>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				tpdm_ddr_dl0_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_dl0>;
+					filter-source= <&tpdm_ddr_dl0>;
+				};
+			};
+
+			port@5 {
+				reg = <5>;
+				tpdm_ddr_dpm_out_tpda_dl_center: endpoint {
+					remote-endpoint =
+					<&tpda_dl_center_in_tpdm_ddr_dpm>;
+					filter-source= <&tpdm_ddr_dpm>;
+				};
+			};
+
+			port@6 {
+				reg = <6>;
+				tpdm_llcc0_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc0>;
+					filter-source= <&tpdm_ddr_llcc0>;
+				};
+			};
+
+			port@7 {
+				reg = <7>;
+				tpdm_llcc1_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc1>;
+					filter-source= <&tpdm_ddr_llcc1>;
+				};
+			};
+
+			port@8 {
+				reg = <8>;
+				tpdm_llcc2_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc2>;
+					filter-source= <&tpdm_ddr_llcc2>;
+				};
+			};
+
+			port@9 {
+				reg = <9>;
+				tpdm_llcc3_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc3>;
+					filter-source= <&tpdm_ddr_llcc3>;
+				};
+			};
+
+			port@a {
+				reg = <10>;
+				tpdm_llcc4_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc4>;
+					filter-source= <&tpdm_ddr_llcc4>;
+				};
+			};
+
+			port@b {
+				reg = <11>;
+				tpdm_llcc5_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc5>;
+					filter-source= <&tpdm_ddr_llcc5>;
+				};
+			};
+
+			port@c {
+				reg = <12>;
+				tpdm_llcc6_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc6>;
+					filter-source= <&tpdm_ddr_llcc6>;
+				};
+			};
+
+			port@d {
+				reg = <13>;
+				tpdm_llcc7_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_tpdm_llcc7>;
+					filter-source= <&tpdm_ddr_llcc7>;
+				};
+			};
+
+			port@e {
+				reg = <14>;
+				gemnoc_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_gemnoc>;
+					filter-source= <&gemnoc>;
+				};
+			};
+
+			port@f {
+				reg = <15>;
+				gladiator_out_funnel_ddr: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_in_gladiator>;
+					filter-source= <&gladiator>;
+				};
+			};
+
+		};
+	};
+
+	funnel-ddr {
+		compatible = "arm,coresight-static-funnel";
+		device-name = "funnel_ddr";
+
+		out-ports {
+			port {
+				funnel_ddr_out_funnel_dl_center: endpoint {
+				remote-endpoint = <&funnel_dl_center_in_funnel_ddr>;
+				};
+			};
+		};
+
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				funnel_ddr_in_tpdm_llcc0: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc0_out_funnel_ddr>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				funnel_ddr_in_tpdm_llcc1: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc1_out_funnel_ddr>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_ddr_in_tpdm_llcc2: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc2_out_funnel_ddr>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				funnel_ddr_in_tpdm_llcc3: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc3_out_funnel_ddr>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				funnel_ddr_in_tpdm_llcc4: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc4_out_funnel_ddr>;
+				};
+			};
+
+			port@5 {
+				reg = <5>;
+				funnel_ddr_in_tpdm_llcc5: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc5_out_funnel_ddr>;
+				};
+			};
+
+			port@6 {
+				reg = <6>;
+				funnel_ddr_in_tpdm_llcc6: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc6_out_funnel_ddr>;
+				};
+			};
+
+			port@7 {
+				reg = <7>;
+				funnel_ddr_in_tpdm_llcc7: endpoint {
+					remote-endpoint =
+					<&tpdm_llcc7_out_funnel_ddr>;
+				};
+			};
+
+			port@8 {
+				reg = <8>;
+				funnel_ddr_in_gemnoc: endpoint {
+					remote-endpoint =
+					<&gemnoc_out_funnel_ddr>;
+				};
+			};
+
+			port@9 {
+				reg = <9>;
+				funnel_ddr_in_gladiator: endpoint {
+					remote-endpoint =
+					<&gladiator_out_funnel_ddr>;
+				};
+			};
+
 		};
 	};
 
@@ -4075,33 +4443,33 @@
 
 			port@9 {
 				reg = <9>;
-				tpda_dlct1_in_funnel_ddr_ch_0_2: endpoint {
+				tpda_dl_center_in_tpdm_ddr_ch02: endpoint {
 					remote-endpoint =
-					<&funnel_ddr_ch_0_2_out_tpda_dlct1>;
+					<&tpdm_ddr_ch02_out_tpda_dl_center>;
 				};
 			};
 
 			port@a {
 				reg = <10>;
-				tpda_dlct1_in_funnel_ddr_ch_1_3: endpoint {
+				tpda_dl_center_in_tpdm_ddr_ch13: endpoint {
 					remote-endpoint =
-					<&funnel_ddr_ch_1_3_out_tpda_dlct1>;
+					<&tpdm_ddr_ch13_out_tpda_dl_center>;
 				};
 			};
 
 			port@b {
 				reg = <11>;
-				tpda_dlct1_in_funnel_ddr_ch_4_6: endpoint {
+				tpda_dl_center_in_tpdm_ddr_ch46: endpoint {
 					remote-endpoint =
-					<&funnel_ddr_ch_4_6_out_tpda_dlct1>;
+					<&tpdm_ddr_ch46_out_tpda_dl_center>;
 				};
 			};
 
 			port@c {
 				reg = <12>;
-				tpda_dlct1_in_funnel_ddr_ch_5_7: endpoint {
+				tpda_dl_center_in_tpdm_ddr_ch57: endpoint {
 					remote-endpoint =
-					<&funnel_ddr_ch_5_7_out_tpda_dlct1>;
+					<&tpdm_ddr_ch57_out_tpda_dl_center>;
 				};
 			};
 
@@ -4244,17 +4612,17 @@
 
 			port@5 {
 				reg = <5>;
-				funnel_dl_center_in_funnel_ddr_dl0: endpoint {
+				funnel_dl_center_in_funnel_ddr: endpoint {
 					remote-endpoint =
-					<&funnel_ddr_dl0_out_funnel_dl_center>;
+					<&funnel_ddr_out_funnel_dl_center>;
 				};
 			};
 
 			port@6 {
 				reg = <6>;
-				funnel_dl_center_in_funnel_turing: endpoint {
+				funnel_dl_center_in_turing_etm0: endpoint {
 					remote-endpoint =
-					<&funnel_turing_out_funnel_dl_center>;
+					<&turing_etm0_out_funnel_dl_center>;
 				};
 			};
 
