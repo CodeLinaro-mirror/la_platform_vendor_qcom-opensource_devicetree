@@ -693,6 +693,8 @@
 			      IRQ_TYPE_EDGE_RISING>;
 	};
 
+	msm_gpu: qcom,kgsl-3d0@5900000 { };
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
