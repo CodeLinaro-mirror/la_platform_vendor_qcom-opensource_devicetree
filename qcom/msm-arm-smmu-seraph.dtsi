@@ -17,6 +17,21 @@
 		ranges;
 		dma-coherent;
 
+		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
+
+		clocks = <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+		       <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+		       <&gpucc GPU_CC_AHB_CLK>,
+		       <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+		       <&gpucc GPU_CC_HUB_AON_CLK>;
+
+		clock-names =
+			"gpu_cc_hlos1_vote_gpu_smmu",
+			"gcc_gpu_memnoc_gfx",
+			"gpu_cc_ahb",
+			"gpu_cc_hub_cx_int",
+			"gpu_cc_hub_aon_clk";
+
 		qcom,actlr =
 			/* All CBs of GFX: +15 deep PF */
 			<0x0000 0x0000 0x0000032b>,
