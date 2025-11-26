@@ -4,6 +4,7 @@
  */
 
 #include "chora-pmic-overlay.dtsi"
+#include "chora-pmiv010x.dtsi"
 
 &sdhc_2 {
 	vdd-supply = <&L13B_E0>;
@@ -17,6 +18,12 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&sdc2_on>;
 	pinctrl-1 = <&sdc2_off>;
+};
 
+&pmiv010x_amoled {
+	status = "ok";
+};
+
+&pmiv010x_amoled_ecm {
 	status = "ok";
 };
