@@ -652,6 +652,9 @@
 		reg = <0x84000000 0x10000>;
 
 		status = "disabled";
+
+		memory-region = <&wpss_mem>;
+		firmware-name = "adrastea/wpss.mdt";
 	};
 
 	ufsphy_mem: ufsphy_mem@0x4807000 {
