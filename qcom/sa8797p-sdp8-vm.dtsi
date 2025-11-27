@@ -381,6 +381,8 @@
 		power-domains = <&scmi_power 8>, <&scmi_power 9>, <&scmi_perf 1>, <&scmi_perf 2>;
 		power-domain-names = "power_core", "power_mdio", "perf_serdes", "perf_5g_serdes";
 
+		pinctrl-0 = <&ethernet1_default>;
+		pinctrl-names = "default";
 		phy-mode = "10gbase-r";
 
 		snps,tso;
