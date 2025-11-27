@@ -30,3 +30,9 @@
 	qcom,fs-current-limit = <23000>;
 	status = "ok";
 };
+
+&S6B_E0 {
+	regulator-min-microvolt = <2156000>;
+	regulator-max-microvolt = <2700000>;
+	qcom,init-voltage = <2156000>;
+};
