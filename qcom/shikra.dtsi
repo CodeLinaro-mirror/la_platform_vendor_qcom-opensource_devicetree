@@ -44,6 +44,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_0: l1-icache {
 				compatible = "cache";
@@ -71,6 +72,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_1: l1-icache {
 				compatible = "cache";
@@ -92,6 +94,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_2: l1-icache {
 				compatible = "cache";
@@ -113,6 +116,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L2_3>;
+			#cooling-cells = <2>;
 
 			L1_I_3: l1-icache {
 				compatible = "cache";
@@ -207,6 +211,8 @@
 	};
 
 	soc: soc { };
+
+	thermal_zones: thermal-zones {};
 
 	psci {
 		compatible = "arm,psci-1.0";
@@ -457,6 +463,7 @@
 #include "shikra-stub-regulators.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
+#include "shikra-thermal.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
