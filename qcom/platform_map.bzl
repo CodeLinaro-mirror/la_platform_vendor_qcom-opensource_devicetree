@@ -463,6 +463,36 @@ _platform_map = {
             {"name": "chora-oemvm-rcm-overlay.dtbo"},
         ],
     },
+    "malabar-tuivm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "malabar-oemvm-base.dtb"},
+            {"name": "malabar-vm-base.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "malabar-vm-atp-overlay.dtbo"},
+            {"name": "malabar-vm-mtp-overlay.dtbo"},
+            {"name": "malabar-vm-qrd-overlay.dtbo"},
+            {"name": "malabar-vm-rcm-overlay.dtbo"},
+            {"name": "malabar-vm-cdp-overlay.dtbo"},
+        ],
+    },
+    "malabar-oemvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "malabar-oemvm-base.dtb"},
+            {"name": "malabar-vm-base.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "malabar-oemvm-atp-overlay.dtbo"},
+            {"name": "malabar-oemvm-mtp-overlay.dtbo"},
+            {"name": "malabar-oemvm-qrd-overlay.dtbo"},
+            {"name": "malabar-oemvm-rcm-overlay.dtbo"},
+            {"name": "malabar-oemvm-cdp-overlay.dtbo"},
+        ],
+    },
     "gen3auto": {
         "dtb_list": [
             # keep sorted
