@@ -14,6 +14,10 @@
 	#size-cells = <0x2>;
 	interrupt-parent = <&intc>;
 
+	aliases {
+		hsuart0 = &qupv3_se17_4uart;
+	};
+
 	qcom,mem-buf {
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "consumer";
@@ -1737,8 +1741,22 @@
 };
 
 #include "lemans-pinctrl.dtsi"
+#include "lemans-vm-qupv3.dtsi"
 #include "lemans-vm-usb.dtsi"
 
+&qupv3_1 {
+	status = "disabled";
+};
+
+&qupv3_2 {
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	compatible = "qcom,sa8255p-geni-se-qup";
+	reg = <0x8c0000 0x1000>;
+	iommus = <&apps_smmu 0x5b8 0x0>;
+	qcom,iommu-dma = "default";
+	status = "ok";
+};
 
 &soc {
 	hab: qcom,hab {
@@ -1845,4 +1863,25 @@
 	/delete-property/ clock-names;
 	/delete-property/ resets;
 	/delete-property/ reset-names;
+};
+
+&qupv3_se17_4uart {
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	/delete-property/ interconnects;
+	/delete-property/ interconnect-names;
+	/delete-property/ pinctrl-names;
+	/delete-property/ pinctrl-0;
+	/delete-property/ pinctrl-1;
+	/delete-property/ pinctrl-2;
+	/delete-property/ pinctrl-3;
+	/delete-property/ interrupts-extended;
+	/delete-property/ qcom,wakeup-byte;
+	compatible = "qcom,sa8255p-geni-uart";
+	reg = <0x88c000 0x3000>;
+	interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
+
+	power-domains = <&scmi_power 0>, <&scmi_perf 0>;
+	power-domain-names = "power", "perf";
+	status = "ok";
 };
