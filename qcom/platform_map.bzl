@@ -51,7 +51,9 @@ _platform_map = {
     "sdxkova.cpe.tarang": {
         "dtb_list": [
             # keep sorted
+            {"name": "sdxkova-idp-ap.dtb"},
             {"name": "sdxkova-idp-cpe-v7.dtb"},
+            {"name": "sdxkova-idp-cpe-v8.dtb"},
             {"name": "sdxkova-idp-mbb.dtb"},
         ],
         "dtbo_list": [
