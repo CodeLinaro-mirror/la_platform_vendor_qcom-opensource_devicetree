@@ -31,8 +31,8 @@
 		pmxr2230_s2: vreg-pmxr2230-s2 {
 			regulator-name = "pmxr2230_s2";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1256000>;
-			regulator-max-microvolt = <2100000>;
+			regulator-min-microvolt = <1240000>;
+			regulator-max-microvolt = <1408000>;
 			qcom,init-voltage = <1256000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_RET>;
 		};
@@ -45,8 +45,8 @@
 		pmxr2230_s3: vreg-pmxr2230-s3 {
 			regulator-name = "pmxr2230_s3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <880000>;
-			regulator-max-microvolt = <2744000>;
+			regulator-min-microvolt = <920000>;
+			regulator-max-microvolt = <1100000>;
 			qcom,init-voltage = <952000>;
 		};
 	};
@@ -138,7 +138,7 @@
 		pmxr2230_l1: vreg-pmxr2230-l1 {
 			regulator-name = "pmxr2230_l1";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1100000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <1980000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -244,7 +244,7 @@
 		pmxr2230_l7: vreg-pmxr2230-l7 {
 			regulator-name = "pmxr2230_l7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1080000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <2000000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -736,7 +736,7 @@
 		pmr735b_l5: vreg-pmr735b-l5 {
 			regulator-name = "pmr735b_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1000000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -807,7 +807,7 @@
 		pmr735b_l9: vreg-pmr735b-l9 {
 			regulator-name = "pmr735b_l9";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1080000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
