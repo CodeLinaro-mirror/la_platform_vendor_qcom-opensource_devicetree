@@ -914,7 +914,7 @@
 				};
 			};
 
-			/* reserved 0 */
+			/* VHAB 9 device */
 			virtio-mmio@38 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
@@ -931,8 +931,25 @@
 				};
 			};
 
-			/* reserved 1 */
+			/* VHAB 10 device */
 			virtio-mmio@39 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x4>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x20E000>;
+				memory {
+					qcom,label = <0x127>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* VHAB 11 device */
+			virtio-mmio@40 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
 				peer-default;
@@ -940,9 +957,43 @@
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
-				dma_base = <0x0 0x1E6000>;
+				dma_base = <0x0 0x23E000>;
 				memory {
-					qcom,label = <0x127>;
+					qcom,label = <0x128>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* reserved 0 */
+			virtio-mmio@41 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x26E000>;
+				memory {
+					qcom,label = <0x129>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* reserved 1 */
+			virtio-mmio@42 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x276000>;
+				memory {
+					qcom,label = <0x12A>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
@@ -1037,5 +1088,90 @@
 		compatible = "qcom,tee-shared-memory-bridge";
 		qcom,custom-bridge-size = <512>;
 		qcom,support-hypervisor;
+	};
+
+	hab: qcom,hab {
+		compatible = "qcom,hab";
+		vmid = <3>;
+
+		mmidgrp100: mmidgrp100 {
+			grp-start-id = <100>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp200: mmidgrp200 {
+			grp-start-id = <200>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp300: mmidgrp300 {
+			grp-start-id = <300>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp400: mmidgrp400 {
+			grp-start-id = <400>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp500: mmidgrp500 {
+			grp-start-id = <500>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp600: mmidgrp600 {
+			grp-start-id = <600>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1400: mmidgrp1400 {
+			grp-start-id = <1400>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1500: mmidgrp1500 {
+			grp-start-id = <1500>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1600: mmidgrp1600 {
+			grp-start-id = <1600>;
+			role = "fe";
+			remote-vmids = <0>;
+		};
+
+		mmidgrp1700: mmidgrp1700 {
+			grp-start-id = <1700>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp1800: mmidgrp1800 {
+			grp-start-id = <1800>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
+
+		mmidgrp1900: mmidgrp1900 {
+			grp-start-id = <1900>;
+			role = "fe";
+			remote-vmids = <0>;
+			dma-coherent;
+		};
 	};
 };
