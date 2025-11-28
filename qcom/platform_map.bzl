@@ -401,7 +401,7 @@ _platform_map = {
             {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-vm"],
+        "binary_compatible_with": ["alor-vm", "chora-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -419,7 +419,7 @@ _platform_map = {
             {"name": "alor-interposer-oemvm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-oemvm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-oemvm"],
+        "binary_compatible_with": ["alor-oemvm", "chora-oemvm"],
     },
     "alor-vm": {
         "dtbo_list": [
@@ -439,6 +439,26 @@ _platform_map = {
             {"name": "alor-oemvm-mtp-overlay.dtbo"},
             {"name": "alor-oemvm-qrd-overlay.dtbo"},
             {"name": "alor-oemvm-rcm-overlay.dtbo"},
+        ],
+    },
+    "chora-vm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "chora-vm-atp-overlay.dtbo"},
+            {"name": "chora-vm-cdp-overlay.dtbo"},
+            {"name": "chora-vm-mtp-overlay.dtbo"},
+            {"name": "chora-vm-qrd-overlay.dtbo"},
+            {"name": "chora-vm-rcm-overlay.dtbo"},
+        ],
+    },
+    "chora-oemvm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "chora-oemvm-atp-overlay.dtbo"},
+            {"name": "chora-oemvm-cdp-overlay.dtbo"},
+            {"name": "chora-oemvm-mtp-overlay.dtbo"},
+            {"name": "chora-oemvm-qrd-overlay.dtbo"},
+            {"name": "chora-oemvm-rcm-overlay.dtbo"},
         ],
     },
     "gen3auto": {
