@@ -5687,7 +5687,7 @@
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etr0";
-
+		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x04e0 0x0>;
 		dma-coherent;
 		arm,scatter-gather;
