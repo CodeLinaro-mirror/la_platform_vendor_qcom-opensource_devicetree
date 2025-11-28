@@ -36,6 +36,44 @@
 	};
 };
 
+&pm8550vs_c_tz {
+	io-channels = <&pmk8550_vadc PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+	io-channel-names = "thermal";
+};
+
+&pmk8550_vadc {
+	/* PMXR2230 Channel nodes */
+	pmxr2230_offset_ref {
+		reg = <PMXR2230_ADC5_GEN3_OFFSET_REF>;
+		label = "pmxr2230_offset_ref";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmxr2230_vref_1p25 {
+		reg = <PMXR2230_ADC5_GEN3_1P25VREF>;
+		label = "pmxr2230_vref_1p25";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmxr2230_die_temp {
+		reg = <PMXR2230_ADC5_GEN3_DIE_TEMP>;
+		label = "pmxr2230_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmxr2230_vph_pwr {
+		reg = <PMXR2230_ADC5_GEN3_VPH_PWR>;
+		label = "pmxr2230_vph_pwr";
+		qcom,pre-scaling = <1 3>;
+	};
+
+	pm8550vs_c_die_temp {
+		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+		label = "pm8550vs_c_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+};
+
 &thermal_zones {
 	pmr735b_temp_alarm: pmr735b_tz {
 		polling-delay-passive = <100>;
