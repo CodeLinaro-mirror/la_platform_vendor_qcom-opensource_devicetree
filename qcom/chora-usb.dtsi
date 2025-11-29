@@ -42,6 +42,9 @@
 		qcom,core-clk-rate = <66666667>;
 		qcom,use-eusb2-phy;
 
+		extcon = <&eud>;
+		qcom,pm-qos-latency = <2>;
+
 		qcom,num-gsi-evt-buffs = <0x3>;
 		qcom,gsi-reg-offset =
 			<0x0fc /* GSI_GENERAL_CFG */
