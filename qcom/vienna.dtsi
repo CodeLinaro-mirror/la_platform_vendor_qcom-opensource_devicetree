@@ -935,6 +935,13 @@
 		#mbox-cells = <1>;
 	};
 
+	qmp_aop: qcom,qmp-aop {
+		compatible = "qcom,qmp-mbox";
+		qcom,qmp = <&aoss_qmp>;
+		label = "aop";
+		#mbox-cells = <1>;
+	};
+
 	qcom,tmecom-qmp-client {
 		compatible = "qcom,tmecom-qmp-client";
 		mboxes = <&qmp_tme 0>;
