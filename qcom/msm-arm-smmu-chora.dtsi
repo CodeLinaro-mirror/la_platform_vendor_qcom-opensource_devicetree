@@ -17,6 +17,8 @@
 		ranges;
 		dma-coherent;
 
+		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
+
 		interrupts =	<GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 677 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
