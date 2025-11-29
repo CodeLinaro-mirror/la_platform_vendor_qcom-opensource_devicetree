@@ -80,6 +80,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
@@ -102,6 +103,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU2: cpu@200 {
@@ -113,6 +115,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU3: cpu@300 {
@@ -124,6 +127,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU4: cpu@400 {
@@ -135,6 +139,7 @@
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 
 			L2_4: l2-cache {
 				compatible = "arm,arch-cache";
@@ -152,6 +157,7 @@
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 		};
 
 		CPU6: cpu@600 {
@@ -163,6 +169,7 @@
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 		};
 
 		CPU7: cpu@700 {
@@ -174,6 +181,7 @@
 			capacity-dmips-mhz = <1864>;
 			dynamic-power-coefficient = <471>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 		};
 
 		cpu-map {
@@ -506,6 +514,10 @@
 				compatible = "qcom,bcm-voter";
 			};
 
+			rpmhcc: clock-controller {
+				compatible = "qcom,chora-rpmh-clk";
+				#clock-cells = <1>;
+			};
 		};
 	};
 
@@ -1245,13 +1257,6 @@
 		};
 	};
 
-	rpmhcc: clock-controller {
-		compatible = "fixed-clock";
-		clock-output-names = "rpmh_clocks";
-		clock-frequency = <19200000>;
-		#clock-cells = <1>;
-	};
-
 	camcc: clock-controller@ade0000 {
 		compatible = "qcom,chora-camcc", "syscon";
 		reg = <0x0 0xade0000 0x0 0x20000>;
@@ -1261,6 +1266,8 @@
 		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_CAMERA_AHB_CLK>;
 		clock-names = "bi_tcxo", "iface";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -1356,9 +1363,73 @@
 				"bi_tcxo_ao",
 				"iface",
 				"sleep_clk";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
+	};
+
+	apsscc: syscon@17a80000 {
+		compatible = "syscon";
+		reg = <0x0 0x17aa0000 0x0 0x1c>;
+	};
+
+	mccc: syscon@240ba000 {
+		compatible = "syscon";
+		reg = <0x0 0x240ba000 0x0 0x54>;
+	};
+
+	gxclkctldebugcc: syscon@3d68000 {
+		compatible = "syscon";
+		reg = <0x0 0x3d68000 0x0 0x1000>;
+	};
+
+	debugcc: clock-controller@0 {
+		compatible = "qcom,chora-debugcc";
+		qcom,apsscc = <&apsscc>;
+		qcom,camcc = <&camcc>;
+		qcom,dispcc = <&dispcc>;
+		qcom,gcc = <&gcc>;
+		qcom,gpucc = <&gpucc>;
+		qcom,gxclkctl = <&gxclkctldebugcc>;
+		qcom,tcsrcc = <&tcsrcc>;
+		qcom,videocc = <&videocc>;
+		qcom,mccc = <&mccc>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&camcc 0>,
+			 <&dispcc 0>,
+			 <&gcc 0>,
+			 <&gpucc 0>,
+			 <&videocc 0>;
+		clock-names = "xo_clk_src",
+			      "camcc",
+			      "dispcc",
+			      "gcc",
+			      "gpucc",
+			      "videocc";
+		#clock-cells = <1>;
+	};
+
+	cpufreq_hw: qcom,cpufreq-hw {
+		compatible = "qcom,cpufreq-epss";
+		reg = <0x17d91000 0x1000>,
+		      <0x17d92000 0x1000>;
+		reg-names = "freq-domain0",
+			    "freq-domain1";
+		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+		clock-names = "xo", "alternate";
+		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "dcvsh0_int",
+				  "dcvsh1_int";
+		#freq-domain-cells = <1>;
+	};
+
+	qcom,cpufreq-hw-debug {
+		compatible = "qcom,cpufreq-hw-epss-debug";
+		qcom,freq-hw-domain = <&cpufreq_hw 0>,
+				      <&cpufreq_hw 1>;
 	};
 
 	qcom,msm-adsprpc-mem {
