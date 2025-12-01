@@ -385,6 +385,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "oem_vm";
 	};
 
 	psci: psci {
