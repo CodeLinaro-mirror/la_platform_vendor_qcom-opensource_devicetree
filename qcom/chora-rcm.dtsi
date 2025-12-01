@@ -5,6 +5,7 @@
 
 #include "chora-pmic-overlay.dtsi"
 #include "chora-pm7550ba-smb1500.dtsi"
+#include "chora-thermal-overlay.dtsi"
 
 &qupv3_se4_spi {
 	#address-cells = <1>;

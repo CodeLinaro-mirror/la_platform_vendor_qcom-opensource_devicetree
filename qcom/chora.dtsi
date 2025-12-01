@@ -1954,9 +1954,6 @@
 		};
 	};
 
-	thermal_zones: thermal-zones {
-	};
-
 	gunyah-cma-mem {
 		compatible = "gunyah-cma-vm-mem";
 		memory-region = <&trust_ui_vm_mem &oem_vm_mem>;

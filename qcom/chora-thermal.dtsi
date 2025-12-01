@@ -83,6 +83,12 @@
 			#cooling-cells = <2>;
 		};
 
+		APC0_pause: apc0-pause {
+			qcom,cpus = <&CPU1 &CPU2 &CPU3>;
+			qcom,cdev-alias = "thermal-pause-E";
+			#cooling-cells = <2>;
+		};
+
 		pause-cpu1 {
 			qcom,cpus = <&CPU1>;
 			qcom,cdev-alias = "pause-cpu1";
