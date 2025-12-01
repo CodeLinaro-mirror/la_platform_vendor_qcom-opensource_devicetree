@@ -427,7 +427,9 @@ dtb-y += $(x1p42100-dtb-y)
 X1E80100_BASE_DTB += x1e80100.dtb
 
 X1E80100_BOARDS += \
-		   x1e80100-crd-overlay.dtbo
+		   x1e80100-crd-overlay.dtbo \
+		   x1e80100-qcb-overlay.dtbo \
+		   x1e80100-qcp-overlay.dtbo
 
 x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
 	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB))

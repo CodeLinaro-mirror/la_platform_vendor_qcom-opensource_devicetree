@@ -374,6 +374,8 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "x1e80100-crd-overlay.dtbo"},
+            {"name": "x1e80100-qcb-overlay.dtbo"},
+            {"name": "x1e80100-qcp-overlay.dtbo"},
         ],
         "binary_compatible_with": ["x1p42100"],
     },
