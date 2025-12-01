@@ -671,7 +671,7 @@
 			dcvs_fp: qcom,dcvs-fp {
 				compatible = "qcom,dcvs-fp";
 				qcom,ddr-bcm-name = "MC4";
-                        };
+			};
 		};
 	};
 
