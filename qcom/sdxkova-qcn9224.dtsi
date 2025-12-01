@@ -150,7 +150,7 @@
 	cnss_pci_iommu_group0: cnss_pci_iommu_group {
 			qcom,iommu-msi-size = <0x1000>;
 			qcom,iommu-dma-addr-pool = <0x0 0x70000000 0x0 0x4EC00000>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "fastmap";
 			dma-coherent;
 			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
 					    "non-fatal";
