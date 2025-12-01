@@ -533,6 +533,12 @@
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
 	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+		status = "ok";
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
