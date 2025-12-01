@@ -22,6 +22,46 @@
 	status = "ok";
 };
 
+&ufsphy_mem {
+	compatible = "qcom,ufs-phy-qmp-v4-crow";
+
+	/* VDDA_UFS_CORE */
+	vdda-phy-supply = <&L2B_E0>;
+	vdda-phy-max-microamp = <212340>;
+
+	/* VDDA_UFS_0_1P2 */
+	vdda-pll-supply = <&L3C_E0>;
+	vdda-pll-max-microamp = <18330>;
+
+	/* Qref power supply, Refer Qref diagram */
+	vdda-qref-supply = <&L2B_E0>;
+	vdda-qref-max-microamp = <850>;
+
+	status = "ok";
+};
+
+&ufshc_mem {
+	vcc-supply = <&L12B_E0>;
+	vcc-max-microamp = <800000>;
+
+	vccq-supply = <&L2C_E0>;
+	vccq-max-microamp = <750000>;
+
+	vccq2-supply = <&L2C_E0>;
+	vccq2-max-microamp = <750000>;
+
+	qcom,vccq-proxy-vote-supply = <&L2C_E0>;
+	qcom,vccq-proxy-vote-max-microamp = <750000>;
+
+	qcom,vddp-ref-clk-supply = <&L5F_E0>;
+	qcom,vddp-ref-clk-max-microamp = <100>;
+
+	qcom,vccq-parent-supply = <&S2B_E0>;
+	qcom,vccq-parent-max-microamp = <8176000>;
+
+	status = "ok";
+};
+
 &qupv3_se4_spi {
 	#address-cells = <1>;
 	#size-cells = <0>;
