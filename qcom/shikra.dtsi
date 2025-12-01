@@ -539,6 +539,16 @@
 		memory-region = <&va_md_mem>;
 		status = "ok";
 	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+		status = "ok";
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
