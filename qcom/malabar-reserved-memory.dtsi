@@ -20,6 +20,8 @@
 
 	smem_mem: smem-region@80a00000 {
 		reg = <0x0 0x80a00000 0x0 0x200000>;
+		compatible = "qcom,smem";
+		hwlocks = <&tcsr_mutex 3>;
 		no-map;
 	};
 
