@@ -1527,7 +1527,6 @@
 		      <0x4748000 0x8000>;
 		reg-names = "hc", "cqhci", "cqhci_ice";
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts-extended = <&intc GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
@@ -1541,6 +1540,7 @@
 
 		cap-mmc-hw-reset;
 
+		boot_device_type = <0x0>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
@@ -1613,7 +1613,6 @@
 		reg = <0x4784000 0x1000>;
 		reg-names = "hc";
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
@@ -1684,6 +1683,7 @@
 		lanes-per-direction = <1>;
 		limit-phy-submode = <0>;
 
+		boot_device_type = <0x4>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
