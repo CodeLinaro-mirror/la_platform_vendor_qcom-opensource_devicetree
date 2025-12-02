@@ -2042,6 +2042,10 @@
 #include "chora-thermal.dtsi"
 #include "chora-walt.dtsi"
 #include "chora-regulators.dtsi"
+#include "ipcc-test-chora.dtsi"
+/delete-node/ &ipcc_self_ping_mpss;
+/delete-node/ &ipcc_self_ping_adsp;
+/delete-node/ &ipcc_self_ping_wpss;
 
 &qupv3_se5_2uart {
 	status = "ok";
