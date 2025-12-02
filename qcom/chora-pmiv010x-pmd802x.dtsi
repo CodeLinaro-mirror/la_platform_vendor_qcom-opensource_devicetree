@@ -6,9 +6,13 @@
 #include <dt-bindings/iio/qcom,spmi-vadc.h>
 #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pmiv010x.h>
 
+#include "chora-pmiv010x.dtsi"
+
 &spmi0_bus {
 	#include "pmd802x.dtsi"
 };
+
+/delete-node/ &pmiv010x_amoled;
 
 &pmd802x_amoled {
 	status = "ok";
