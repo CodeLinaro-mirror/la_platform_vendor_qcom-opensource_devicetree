@@ -23,3 +23,13 @@
 
 	status = "ok";
 };
+
+#include "malabar-pmiv010x.dtsi"
+
+&pmiv010x_amoled {
+	status = "ok";
+};
+
+&pmiv010x_amoled_ecm {
+	status = "ok";
+};

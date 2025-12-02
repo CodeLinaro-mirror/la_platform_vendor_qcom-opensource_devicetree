@@ -23,3 +23,5 @@
 
 	status = "ok";
 };
+
+#include "malabar-pmiv010x-smb1355.dtsi"
