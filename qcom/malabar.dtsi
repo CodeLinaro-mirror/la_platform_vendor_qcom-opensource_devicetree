@@ -360,6 +360,19 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
+	mpm: interrupt-controller@45f01b8 {
+		compatible = "qcom,mpm-malabar", "qcom,mpm";
+		reg = <0x045f01b8 0x1000>,
+		      <0x0f40000c 0x4>,  /* MSM_APCS_GCC_BASE 4K */
+		      <0x0f421000 0x1000>;
+		reg-names = "vmpm", "ipc", "timer";
+		interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+		qcom,num-mpm-irqs = <96>;
+		interrupt-controller;
+		interrupt-parent = <&intc>;
+		#interrupt-cells = <2>;
+	};
+
 	intc: interrupt-controller@f200000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
