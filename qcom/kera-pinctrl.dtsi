@@ -1956,7 +1956,7 @@
 			pins = "gpio121";
 			function = "sdc1_clk";
 			bias-disable;
-			drive-strength = <14>;
+			drive-strength = <16>;
 		};
 
 		cmd {
