@@ -130,6 +130,12 @@
 			size = <0x0 0x1000>;
 			no-map;
 		};
+
+		dice_mem0: dice-mem {
+			compatible = "google,open-dice";
+			no-map;
+			qcom,label = <0x67>;
+		};
 	};
 
 	cpus {
