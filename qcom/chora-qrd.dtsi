@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/gpio/gpio.h>
 #include "chora-pmic-overlay.dtsi"
 #include "chora-pmiv010x.dtsi"
 
@@ -64,6 +65,7 @@
 	status = "ok";
 };
 
+
 &pmiv010x_amoled_ecm {
 	status = "ok";
 };
@@ -100,5 +102,13 @@
 		pinctrl-2 = <&ts_release>;
 		goodix,touch-type = "primary";
 		goodix,qts_en;
+	};
+};
+
+&qupv3_se7_i2c {
+	status = "okay";
+	fsa4480: fsa4480@42 {
+		compatible = "qcom,fsa4480-i2c";
+		reg = <0x42>;
 	};
 };
