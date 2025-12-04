@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/firmware/qcom,si-core.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Si-core driver to provide transport between Linux and QTEE.
+
+description: |
+  The Si-core driver facilitates the communication and data transfer between
+  Qualcomm Trusted Execution Environment and Linux OS.
+
+maintainers:
+  - Amirreza Zarrabi <quic_azarrabi@quicinc.com>
+  - Vikas Kumar Sharma <quic_vksharma@quicinc.com>
+
+properties:
+  compatible:
+    const: qcom,si-core
+
+required:
+  - compatible
+
+additionalProperties: false
+
+examples:
+  - |
+    qcom_si_core {
+        compatible = "qcom,si-core";
+    };

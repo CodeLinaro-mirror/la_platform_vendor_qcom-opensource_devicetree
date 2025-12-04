@@ -401,6 +401,11 @@
 			compatible = "qcom,scm";
 			qcom,dload-mode = <&tcsr 0x19000>;
 		};
+
+		qcom_si_core {
+			compatible = "qcom,si-core";
+			interrupts = <GIC_SPI 830 IRQ_TYPE_EDGE_RISING>;
+		};
 	};
 
 	hypervisor: hypervisor {
