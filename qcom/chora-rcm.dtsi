@@ -2,3 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
+
+#include "chora-pmic-overlay.dtsi"
+#include "chora-pm7550ba-smb1500.dtsi"

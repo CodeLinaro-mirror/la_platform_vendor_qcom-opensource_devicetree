@@ -190,10 +190,6 @@
 	status = "ok";
 };
 
-&qupv3_se3_4uart {
-	status = "ok";
-};
-
 &soc {
 	google,debug-kinfo {
 		compatible = "google,debug-kinfo";

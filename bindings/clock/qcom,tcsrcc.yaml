@@ -18,6 +18,8 @@ description: |
   - dt-bindings/clock/qcom,tcsrcc-sun.h
   - dt-bindings/clock/qcom,tcsrcc-canoe.h
   - dt-bindings/clock/qcom,tcsrcc-chora.h
+  - dt-bindings/clock/qcom,pikachu-tcsrcc.h
+  - dt-bindings/clock/qcom,tcsrcc-seraph.h
 
 properties:
   compatible:
@@ -26,6 +28,8 @@ properties:
       - qcom,sun-tcsrcc
       - qcom,canoe-tcsrcc
       - qcom,chora-tcsrcc
+      - qcom,pikachu-tcsrcc
+      - qcom,seraph-tcsrcc
 
 required:
   - compatible

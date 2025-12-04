@@ -56,6 +56,8 @@
 
 		dummy-supply = <&apps_smmu>;
 
+		qcom,disable-force-pull-up-down-quirk;
+
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0xa600000 0x0 0xD800>;

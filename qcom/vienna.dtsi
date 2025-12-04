@@ -643,11 +643,6 @@
 		reset-names = "core_reset";
 
 		qos0 {
-			mask = <0x10>;
-			vote = <44>;
-		};
-
-		qos1 {
 			mask = <0x0f>;
 			vote = <44>;
 		};
@@ -892,11 +887,6 @@
 		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		qos0 {
-			mask = <0x10>;
-			vote = <44>;
-		};
-
-		qos1 {
 			mask = <0x0f>;
 			vote = <44>;
 		};
@@ -1603,6 +1593,7 @@
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		firmware-name = "adsp.mdt", "adsp_dtb.mdt";
+		subdev-firmware-name = "lpai_wm.mdt", "lpai_am.mdt";
 
 		memory-region = <&adspslpi_mem &q6_adsp_dtb_mem>;
 		subdev-memory-region = <&wear_microcontroller_m55_mem &ambient_microcontroller_m55_mem>;
@@ -1914,6 +1905,13 @@
 				qcom,intents = <0x1000 10>;
 			};
 		};
+	};
+
+	lpi_doorbell: lpi-dbl@23e0c000 {
+		compatible = "qcom,lpi-dbl";
+		reg = <0x23e0c000 0x4>;
+		interrupts = <GIC_SPI 371 IRQ_TYPE_EDGE_RISING>;
+		status = "okay";
 	};
 
 	qcom_glinkpkt: qcom,glinkpkt {
@@ -2237,6 +2235,7 @@
 
 		battery_charger: qcom,battery_charger {
 			compatible = "qcom,pmw6100-battery-charger";
+			qcom,shutdown-voltage = <2700>;
 
 			nfc_vreg: qcom,nfc-vreg {
 				regulator-name = "nfc-vreg";
@@ -2380,10 +2379,9 @@
 				qcom,cpufreq-memfreq-tbl =
 					<  249600  200000 >,
 					<  460800  451200 >,
-					<  595200  547200 >,
-					< 1036800 1353600 >,
-					< 1478400 2092800 >,
-					< 1958400 3187200 >;
+					< 1036800  547200 >,
+					< 1478400 1353600 >,
+					< 1958400 2092800 >;
 			};
 
 			gold {
@@ -2392,7 +2390,7 @@
 				qcom,sampling-enabled;
 				qcom,cpufreq-memfreq-tbl =
 					<  268800  451200 >,
-					<  508800  547200 >,
+					<  614400  547200 >,
 					<  960000 1353600 >,
 					< 1440000 2092800 >,
 					< 1785600 3187200 >,

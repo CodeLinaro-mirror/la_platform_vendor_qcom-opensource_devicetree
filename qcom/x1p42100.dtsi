@@ -5,11 +5,14 @@
 
 /* X1P42100 is heavily based on X1E80100, with some meaningful differences */
 #include "x1e80100.dtsi"
+#include "x1p42100-coresight.dtsi"
 #include "x1p42100-regulators.dtsi"
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1p42100-debug.dtsi"
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,x1p42100.h>
+#include <dt-bindings/clock/qcom,x1p42100-gcc.h>
+#include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 
 /delete-node/ &CPU8;
 /delete-node/ &CPU9;
@@ -17,6 +20,10 @@
 /delete-node/ &CPU11;
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cluster_device2;
+
+&gic_router {
+	qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
+};
 
 &pdc {
 	compatible = "qcom,x1p42100-pdc", "qcom,pdc";

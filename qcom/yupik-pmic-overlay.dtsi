@@ -168,12 +168,10 @@
 };
 
 &thermal_zones {
-	quiet-therm-usr {
+	quiet-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm 0>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -189,12 +187,10 @@
 		};
 	};
 
-	camera-therm-usr {
+	camera-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm 1>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -204,12 +200,10 @@
 		};
 	};
 
-	sdm-skin-therm-usr {
+	sdm-skin-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm 2>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -219,12 +213,10 @@
 		};
 	};
 
-	rear-cam-therm-usr {
+	rear-cam-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm 3>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -234,12 +226,10 @@
 		};
 	};
 
-	xo-therm-usr {
+	xo-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
 		thermal-sensors = <&pmk8350_adc_tm 4>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;

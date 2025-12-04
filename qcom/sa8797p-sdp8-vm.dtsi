@@ -381,6 +381,8 @@
 		power-domains = <&scmi_power 8>, <&scmi_power 9>, <&scmi_perf 1>, <&scmi_perf 2>;
 		power-domain-names = "power_core", "power_mdio", "perf_serdes", "perf_5g_serdes";
 
+		pinctrl-0 = <&ethernet1_default>;
+		pinctrl-names = "default";
 		phy-mode = "10gbase-r";
 
 		snps,tso;
@@ -496,7 +498,7 @@
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,pdc";
 		reg = <0xb220000 0x10000>;
-		qcom,pdc-ranges = <7 752 2>, <12 757 2>, <41 786 1>;
+		qcom,pdc-ranges = <7 752 2>, <12 757 2>, <14 759 2>, <17 762 1>, <41 786 1>;
 		#interrupt-cells = <2>;
 		interrupt-parent = <&qvm_vdev_gic>;
 		interrupt-controller;
@@ -506,6 +508,20 @@
 		compatible = "qcom,trng";
 		reg = <0x10cd000 0x1000>;
 		status = "ok";
+	};
+
+	wdog: qcom,wdt@17821000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17821000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,wdt-en-offset = <0x00>;
+		qcom,wdt-rst-offset = <0x04>;
+		qcom,wdt-sts-offset = <0x1C>;
+		qcom,wdt-bark-offset = <0x0C>;
+		qcom,wdt-bite-offset = <0x10>;
+		qcom,wdt-hz = <19198242>;
 	};
 };
 

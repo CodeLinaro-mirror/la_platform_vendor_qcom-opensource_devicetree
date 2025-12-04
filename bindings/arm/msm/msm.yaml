@@ -178,9 +178,34 @@ properties:
       - description: Qualcomm Technologies, Inc. Malabar
         items:
           - enum:
+              - qcom,malabar-atp
+              - qcom,atp
+              - qcom,malabar-cdp
+              - qcom,cdp
+              - qcom,malabar-mtp
+              - qcom,mtp
+              - qcom,malabar-qrd
+              - qcom,qrd
+              - qcom,malabar-rcm
+              - qcom,rcm
               - qcom,malabar-rumi
               - qcom,rumi
           - const: qcom,malabar
+
+      - description: Qualcomm Technologies, Inc. MalabarP
+        items:
+          - enum:
+              - qcom,malabarp-atp
+              - qcom,atp
+              - qcom,malabarp-cdp
+              - qcom,cdp
+              - qcom,malabarp-mtp
+              - qcom,mtp
+              - qcom,malabarp-qrd
+              - qcom,qrd
+              - qcom,malabarp-rcm
+              - qcom,rcm
+          - const: qcom,malabarp
 
       - description: Qualcomm Technologies, Inc. PARROT
         items:
@@ -373,12 +398,12 @@ properties:
               - qcom,rumi
           - const: qcom,pikachu
 
-      - description: Qualcomm Technologies, Inc. COLIBRI
+      - description: Qualcomm Technologies, Inc. SHIKRA
         items:
           - enum:
-              - qcom,colibri-rumi
+              - qcom,shikra-rumi
               - qcom,rumi
-          - const: qcom,colibri
+          - const: qcom,shikra
 
       - description: Qualcomm Technologies, Inc. SERAPH
         items:

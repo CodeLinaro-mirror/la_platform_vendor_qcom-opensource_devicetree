@@ -116,13 +116,24 @@ pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU
 dtb-y += $(pikachu-dtb-y)
 
 MALABAR_BASE_DTB += malabar.dtb
+MALABAR_APQ_BASE_DTB += malabarp.dtb
+
+MALABAR_BOARDS += \
+		malabar-atp-overlay.dtbo \
+		malabar-cdp-overlay.dtbo \
+		malabar-cdp-lcd-overlay.dtbo \
+		malabar-mtp-overlay.dtbo \
+		malabar-mtp-wcn3950-overlay.dtbo \
+		malabar-qrd-overlay.dtbo \
+		malabar-rcm-overlay.dtbo
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
 
 malabar-dtb-$(CONFIG_ARCH_MALABAR) += \
-	$(call add-overlays,$(NOAPQ_MALABAR_BOARDS), $(MALABAR_BASE_DTB))
-malabar-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB)
+	$(call add-overlays, $(MALABAR_BOARDS) $(NOAPQ_MALABAR_BOARDS),$(MALABAR_BASE_DTB)) \
+	$(call add-overlays, $(MALABAR_BOARDS),$(MALABAR_APQ_BASE_DTB))
+malabar-overlays-dtb-$(CONFIG_ARCH_MALABAR) += $(MALABAR_BOARDS) $(NOAPQ_MALABAR_BOARDS) $(MALABAR_BASE_DTB) $(MALABAR_APQ_BASE_DTB)
 
 dtb-y += $(malabar-dtb-y) $(malabar-overlays-dtb-y)
 
@@ -177,8 +188,28 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
-YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb
-YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb
+BENGAL_BASE_DTB += bengal.dtb bengalp.dtb bengal-1gb.dtb bengal-2gb.dtb
+
+BENGAL_BOARDS += \
+		bengal-idp-overlay.dtbo\
+		bengal-rumi-overlay.dtbo \
+		bengal-qrd-overlay.dtbo \
+		bengal-idp-nopmi-overlay.dtbo \
+		bengal-idp-usbc-overlay.dtbo \
+		bengalp-idp-overlay.dtbo \
+		bengal-idp-1gb-overlay.dtbo \
+		bengal-idp-2gb-overlay.dtbo \
+		bengal-idp-usbc-1gb-overlay.dtbo \
+		bengal-idp-usbc-2gb-overlay.dtbo
+
+bengal-dtb-$(CONFIG_ARCH_BENGAL) += \
+        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB))
+bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
+
+dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
+
+YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
+YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
 
 YUPIK_BOARDS += \
 		yupikp-iot-idp-overlay.dtbo \
@@ -194,7 +225,13 @@ YUPIK_BOARDS += \
 		katmaip-fp2p5-hsp-overlay.dtbo \
 		katmaip-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmaip-fp3-hsp-overlay.dtbo \
-		katmaip-fp3-hsp-pm7250b-overlay.dtbo
+		katmaip-fp3-hsp-pm7250b-overlay.dtbo \
+		yupikp-idp-overlay.dtbo \
+		yupikp-qrd-overlay.dtbo \
+		yupikp-idps-amoled-overlay.dtbo \
+		yupikp-atp-overlay.dtbo \
+		yupikp-idp-hsp-overlay.dtbo
+
 
 NOAPQ_YUPIK_BOARDS += \
 		yupik-iot-idp-overlay.dtbo \
@@ -210,7 +247,14 @@ NOAPQ_YUPIK_BOARDS += \
 		katmai-fp2p5-hsp-overlay.dtbo \
 		katmai-fp2p5-hsp-pm7250b-overlay.dtbo \
 		katmai-fp3-hsp-overlay.dtbo \
-		katmai-fp3-hsp-pm7250b-overlay.dtbo
+		katmai-fp3-hsp-pm7250b-overlay.dtbo \
+		yupik-rumi-overlay.dtbo \
+		yupik-idp-overlay.dtbo \
+		yupik-qrd-overlay.dtbo \
+		yupik-idp-pm7250b-overlay.dtbo \
+		yupik-idps-amoled-overlay.dtbo \
+		yupik-atp-overlay.dtbo \
+		yupik-idp-hsp-overlay.dtbo
 
 lahaina-dtb-$(CONFIG_ARCH_YUPIK) += \
 	$(call add-overlays, $(NOAPQ_YUPIK_BOARDS),$(YUPIK_BASE_DTB)) \
@@ -390,15 +434,15 @@ x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
 x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
 
-COLIBRI_BASE_DTB += colibri.dtb
+SHIKRA_BASE_DTB += shikra.dtb
 
-NOAPQ_COLIBRI_BOARDS += \
-		 colibri-rumi-overlay.dtbo
+NOAPQ_SHIKRA_BOARDS += \
+		 shikra-rumi-overlay.dtbo
 
-colibri-dtb-$(CONFIG_ARCH_COLIBRI) += \
-	$(call add-overlays, $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS),$(COLIBRI_BASE_DTB))
-colibri-overlays-dtb-$(CONFIG_ARCH_COLIBRI) += $(COLIBRI_BOARDS) $(NOAPQ_COLIBRI_BOARDS) $(COLIBRI_BASE_DTB)
-dtb-y += $(colibri-dtb-y)
+shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
+	$(call add-overlays, $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS),$(SHIKRA_BASE_DTB))
+shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB)
+dtb-y += $(shikra-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
@@ -441,26 +485,8 @@ endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-rumi.dtb \
-				canoe-vm-mtp.dtb \
-				canoe-vm-cdp.dtb \
-				canoe-vm-qrd.dtb \
-				canoe-vm-rcm.dtb \
-				canoe-vm-base.dtb \
-				canoep-vm-hdk.dtb \
-				canoe-oemvm-rumi.dtb \
-				canoe-oemvm-mtp.dtb \
-				canoe-oemvm-cdp.dtb \
-				canoe-oemvm-qrd.dtb \
-				canoe-oemvm-rcm.dtb \
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += canoe-vm-base.dtb \
 				canoe-oemvm-base.dtb \
-				canoep-oemvm-hdk.dtb \
-				alor-interposer-vm-mtp.dtb \
-				alor-interposer-vm-rcm.dtb \
-				alor-interposer-oemvm-mtp.dtb \
-				alor-interposer-oemvm-rcm.dtb \
-				alor-interposer-vm-qrd.dtb \
-				alor-interposer-oemvm-qrd.dtb \
 				canoe-vm-mtp-overlay.dtbo \
 				canoe-vm-qrd-overlay.dtbo \
 				canoe-vm-rcm-overlay.dtbo \
@@ -529,11 +555,16 @@ ifeq ($(CONFIG_ARCH_QTI_VM), y)
 SA8797P_GH_LA_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-qam.dtb sa8797p-v2-gunyah-vm-qam.dtb
 SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
 
+SA8797P_GH_LV_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-lv-qam.dtb
+SA8797P_GH_LV_GVM_QAM_BOARDS += sa8797p-gunyah-vm-lv-qam-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_GH_LA_GVM_QAM_BOARDS),$(SA8797P_GH_LA_GVM_QAM_BASE_DTB)) \
+	$(call add-overlays, $(SA8797P_GH_LV_GVM_QAM_BOARDS),$(SA8797P_GH_LV_GVM_QAM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_GH_LA_GVM_QAM_BOARDS) $(SA8797P_GH_LA_GVM_QAM_BASE_DTB) \
+	$(SA8797P_GH_LV_GVM_QAM_BOARDS) $(SA8797P_GH_LV_GVM_QAM_BASE_DTB)
 
 SA8797P_LA_GVM_BOARDS += \
 		sa8797p-sdp8-vm-la-overlay.dtbo sa8797p-v2-sdp8-vm-la-overlay.dtbo
@@ -585,6 +616,22 @@ dtb-y += $(autogvm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+
+LEMANS_GH_LA_GVM_QAM_BASE_DTB += lemans-gh-vm-la-qam-ridesx.dtb
+LEMANS_GH_LA_GVM_QAM_BOARDS += lemans-gh-vm-la-qam-ridesx-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(LEMANS_GH_LA_GVM_QAM_BOARDS),$(LEMANS_GH_LA_GVM_QAM_BASE_DTB)) \
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(LEMANS_GH_LA_GVM_QAM_BOARDS) $(LEMANS_GH_LA_GVM_QAM_BASE_DTB) \
+
+dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_ALOR), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-atp-overlay.dtbo \
@@ -597,6 +644,23 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += alor-vm-atp-overlay.dtbo \
 				alor-oemvm-qrd-overlay.dtbo \
 				alor-oemvm-rcm-overlay.dtbo \
 				alor-oemvm-cdp-overlay.dtbo
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_CHORA), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
+				chora-vm-mtp-overlay.dtbo \
+				chora-vm-qrd-overlay.dtbo \
+				chora-vm-rcm-overlay.dtbo \
+				chora-vm-cdp-overlay.dtbo \
+				chora-oemvm-atp-overlay.dtbo \
+				chora-oemvm-mtp-overlay.dtbo \
+				chora-oemvm-qrd-overlay.dtbo \
+				chora-oemvm-rcm-overlay.dtbo \
+				chora-oemvm-cdp-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif

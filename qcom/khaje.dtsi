@@ -580,7 +580,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 console=ttyMSM0,115200n8 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=off export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5";
+		bootargs = "lpm_levels.sleep_disabled=1 console=ttyMSM0,115200n8 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=off export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512";
 	};
 
 	soc: soc { };
@@ -721,6 +721,11 @@
 			qcom,allocate-on-request;
 			label = "modem";
 		};
+	};
+
+	show_resume_irqs@f200000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0xf200000 0x10000>;     /* GICD */
 	};
 
 	mpm: interrupt-controller@45f01b8 {
@@ -1097,18 +1102,10 @@
 		rpm-channel-type = <15>; /* SMD_APPS_RPM */
 	};
 
-	rpm-sleep-stats@4690000 {
-		compatible = "qcom,rpm-sleep-stats";
-		reg = <0x04690000 0x400>;
+	sram@4690000 {
+		compatible = "qcom,rpm-stats-v2";
+		reg = <0x04690000 0x10000>;
 		ss-name = "apss", "modem", "adsp", "cdsp";
-	};
-
-	qcom,rpm-master-stats@45f0150 {
-		compatible = "qcom,rpm-master-stats";
-		reg = <0x45f0150 0x5000>;
-		qcom,masters = "APSS", "MPSS", "ADSP", "CDSP", "TZ";
-		qcom,master-stats-version = <2>;
-		qcom,master-offset = <4096>;
 	};
 
 	qcom,chd {
@@ -1184,6 +1181,7 @@
 		/* Outputs to lpass */
 		qcom,smem-states = <&adsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
@@ -1203,15 +1201,20 @@
 				qcom,no-wake-svc = <0x190>;
 			};
 
-			qcom,msm_fastrpc_rpmsg {
-				compatible = "qcom,msm-fastrpc-rpmsg";
-				qcom,glink-channels = "fastrpcglink-apps-dsp";
-				qcom,intents = <0x64 64>;
-			};
+
 
 			qcom,apr_tal_rpmsg {
 				qcom,glink-channels = "apr_audio_svc";
 				qcom,intents = <0x200 20>;
+			};
+			qcom,pmic_glink_rpmsg {
+				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
+			};
+
+			qcom,pmic_glink_log_rpmsg {
+				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
+				qcom,intents = <0x800 5
+						0xc00 3>;
 			};
 		};
 	};
@@ -1246,6 +1249,7 @@
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		remoteproc_cdsp_glink: glink-edge {
 			qcom,remote-pid = <5>;
@@ -1264,11 +1268,6 @@
 						0x4400 2>;
 			};
 
-			qcom,msm_fastrpc_rpmsg {
-				compatible = "qcom,msm-fastrpc-rpmsg";
-				qcom,glink-channels = "fastrpcglink-apps-dsp";
-				qcom,intents = <0x64 64>;
-			};
 
 			qcom,msm_cdsprm_rpmsg {
 				compatible = "qcom,msm-cdsprm-rpmsg";
@@ -1317,6 +1316,7 @@
 
 		cap-mmc-hw-reset;
 
+		boot_device_type = <0x0>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
@@ -1468,6 +1468,7 @@
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		#reset-cells = <1>;
 
+		boot_device_type = <0x4>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
@@ -2152,6 +2153,7 @@
 		/* Outputs to mss */
 		qcom,smem-states = <&modem_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+		status = "disabled";
 
 		glink-edge {
 			qcom,remote-pid = <1>;

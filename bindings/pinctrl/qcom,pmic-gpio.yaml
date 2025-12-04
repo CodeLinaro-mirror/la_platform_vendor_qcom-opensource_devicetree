@@ -77,6 +77,7 @@ properties:
           - qcom,pmw6100-gpio
           - qcom,pmx55-gpio
           - qcom,pmx65-gpio
+          - qcom,pmar2230-gpio
           - qcom,pmxr2230-gpio
 
       - enum:
@@ -499,6 +500,7 @@ $defs:
                  - gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
                                             and gpio11)
                  - gpio1-gpio16 for pmx65
+                 - gpio1-gpio14 for pmar2230
                  - gpio1-gpio12 for pmxr2230
                  - gpio1-gpio16 for pm5100
 
