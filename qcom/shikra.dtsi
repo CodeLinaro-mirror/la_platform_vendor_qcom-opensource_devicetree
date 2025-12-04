@@ -525,6 +525,14 @@
 		clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
 			 <&rpmcc RPM_SMD_CNOC_A_CLK>;
 	};
+
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
