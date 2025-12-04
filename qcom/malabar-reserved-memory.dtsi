@@ -35,7 +35,7 @@
 		no-map;
 	};
 
-	pvmfw_mem: pvmfw-region@8ie00000 {
+	pvm_fw_mem: pvm_fw-region@81e00000 {
 		reg = <0x0 0x81e00000 0x0 0x100000>;
 		no-map;
 	};
@@ -71,12 +71,12 @@
 	};
 
 	mpss_mem: mpss-region@85f00000 {
-		reg = <0x0 0x85f00000 0x0 0xce00000>;
+		reg = <0x0 0x85f00000 0x0 0xe600000>;
 		no-map;
 	};
 
-	adsp_mem: adsp-region@92d00000 {
-		reg = <0x0 0x92d00000 0x0 0x1e00000>;
+	adsp_mem: adsp-region@94500000 {
+		reg = <0x0 0x94500000 0x0 0x1e00000>;
 		no-map;
 	};
 
