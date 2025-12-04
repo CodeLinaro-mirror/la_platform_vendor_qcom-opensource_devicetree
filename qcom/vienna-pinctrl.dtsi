@@ -2686,6 +2686,8 @@
 					pins = "gpio28", "gpio29";
 					drive-strength = <2>;
 					qcom,remote;
+					bias-disable;
+					output-low;
 				};
 			};
 		};
