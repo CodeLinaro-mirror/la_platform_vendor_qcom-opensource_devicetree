@@ -55,3 +55,7 @@
 &CLUSTER_PWR_DN {
 	status = "disabled";
 };
+
+&tsens0 {
+	status = "disabled";
+};
