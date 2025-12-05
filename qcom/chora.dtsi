@@ -1527,7 +1527,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	mc_virt: interconnect@1 {
@@ -1535,7 +1534,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	aggre_noc: interconnect@1700000 {
@@ -1544,7 +1542,9 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		clocks = <&gcc GCC_USB20_MASTER_CLK>,
+			 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+			 <&rpmhcc RPMH_IPA_CLK>;
 	};
 
 	config_noc: interconnect@1600000 {
@@ -1553,7 +1553,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	cnoc_main: interconnect@1500000 {
@@ -1562,7 +1561,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	gem_noc: interconnect@24100000 {
@@ -1571,7 +1569,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	lpass_ag_noc: interconnect@3C40000 {
@@ -1580,7 +1577,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1400000 {
@@ -1589,7 +1585,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	pcie_anoc: interconnect@16C0000 {
@@ -1598,7 +1593,8 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
+		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
 	};
 
 	system_noc: interconnect@1680000 {
@@ -1607,7 +1603,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-		qcom,skip-qos;
 	};
 
 	wpss_pas: remoteproc-wpss@99300000 {
