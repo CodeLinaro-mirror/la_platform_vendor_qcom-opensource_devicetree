@@ -257,6 +257,7 @@
 			&dmesg_dump
 			&kinfo_mem
 			&tlmm_vm_mem_access
+			&tlmm_vm_test
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_gunyah_panic_notifier
@@ -286,7 +287,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		// Valid Soc dependent pin
-		gpios = /bits/ 16 <0 1 12 19 20 21 22 113>;
+		gpios = /bits/ 16 <0 1 12 19 20 21 22 24 113>;
 	};
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
@@ -302,7 +303,9 @@
 				&tlmm 22 0
 				/* Display gpio pins */
 				&tlmm 12 0
-				&tlmm 133 0>;
+				&tlmm 133 0
+				/* Test gpio pins */
+				&tlmm 24 0>;
 	};
 
 	wdog: qcom,wdt@17410000 {  // Same as PVM
@@ -345,6 +348,52 @@
 	google_debug_kinfo: google,debug-kinfo {
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
+	};
+
+	tlmm_vm_test: tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		pinctrl-names = "active", "sleep";
+		pinctrl-0 = <&qupv3_se1_7i2c_active>;
+		pinctrl-1 = <&qupv3_se1_7i2c_sleep>;
+		tlmm-vm-gpio-list = <&tlmm 24 0>; // Used a pin that is not utilized by PVM
+	};
+
+	pinctrl@f100000 {
+		required-subnodes = <&qupv3_se1_7i2c_pins
+				&qupv3_se1_7i2c_active
+				&qupv3_se1_7i2c_active_mux
+				&qupv3_se1_7i2c_active_config
+				&qupv3_se1_7i2c_sleep
+				&qupv3_se1_7i2c_sleep_mux
+				&qupv3_se1_7i2c_sleep_config>;
+
+		qupv3_se1_7i2c_pins: qupv3_se1_7i2c_pins {
+			qupv3_se1_7i2c_active: qupv3_se1_7i2c_active {
+				qupv3_se1_7i2c_active_mux: mux {
+					pins = "gpio24";
+					function = "qup0_se5_l1";
+				};
+
+				qupv3_se1_7i2c_active_config: config {
+					pins = "gpio24";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+
+			qupv3_se1_7i2c_sleep: qupv3_se1_7i2c_sleep {
+				qupv3_se1_7i2c_sleep_mux: mux {
+					pins = "gpio24";
+					function = "gpio";
+				};
+
+				qupv3_se1_7i2c_sleep_config: config {
+					pins = "gpio24";
+					drive-strength = <2>;
+					bias-disable;
+				};
+			};
+		};
 	};
 };
 
