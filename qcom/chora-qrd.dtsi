@@ -6,6 +6,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include "chora-pmic-overlay.dtsi"
 #include "chora-pmiv010x.dtsi"
+#include "chora-thermal-overlay.dtsi"
 
 &sdhc_2 {
 	vdd-supply = <&L13B_E0>;
