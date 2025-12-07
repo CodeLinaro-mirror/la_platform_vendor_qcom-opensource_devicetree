@@ -309,6 +309,7 @@
 				reg = <0>;
 
 				retimer_usb1_ss_out: endpoint {
+					remote-endpoint = <&usb_port1_dwc3_ss>;
 				};
 			};
 
@@ -316,6 +317,7 @@
 				reg = <1>;
 
 				retimer_usb1_ss_in: endpoint {
+					remote-endpoint = <&usb_port1_ssphy_out>;
 				};
 			};
 		};
@@ -394,6 +396,17 @@
 
 &usb1 {
 	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
+	gpios = <&tlmm 123 0>;
+};
+
+&usb_port1_ssphy_out {
+	remote-endpoint = <&retimer_usb1_ss_in>;
+};
+
+&usb_port1_dwc3_ss {
+	remote-endpoint = <&retimer_usb1_ss_out>;
 };
 
 &usb2_phy_4 {
