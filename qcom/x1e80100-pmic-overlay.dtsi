@@ -58,6 +58,10 @@
 	};
 };
 
+&pmk8550_rtc {
+	qcom,no-alarm; /* alarm owned by ADSP */
+};
+
 &soc {
 	gpio_key {
 		compatible = "gpio-keys";
