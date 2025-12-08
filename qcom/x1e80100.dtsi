@@ -1934,6 +1934,13 @@
 					usb_port0_dwc3_ss: endpoint {
 					};
 				};
+
+				port@2 {
+					reg = <2>;
+
+					usb_port0_configure_out: endpoint {
+					};
+				};
 			};
 		};
 
