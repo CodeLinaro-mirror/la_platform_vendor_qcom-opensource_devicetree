@@ -1004,6 +1004,7 @@
 #include "malabar-stub-regulators.dtsi"
 #include "malabar-pinctrl.dtsi"
 #include "malabar-qupv3.dtsi"
+#include "malabar-walt.dtsi"
 
 &qupv3_se8_2uart {
 	status = "ok";
