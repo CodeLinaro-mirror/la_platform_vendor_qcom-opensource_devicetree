@@ -777,6 +777,9 @@
 		compatible = "qcom,malabar-clk_virt";
 		#interconnect-cells = <1>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_QUP_CLK>,
+			 <&rpmcc RPM_SMD_QUP_A_CLK>;
 	};
 
 	mmnrt_virt: interconnect1@1880000 {
@@ -785,6 +788,9 @@
 		#interconnect-cells = <1>;
 		qcom,util-factor = <142>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_MMNRT_CLK>,
+			 <&rpmcc RPM_SMD_MMNRT_A_CLK>;
 	};
 
 	mmrt_virt: interconnect2@1880000 {
@@ -793,6 +799,9 @@
 		#interconnect-cells = <1>;
 		qcom,util-factor = <142>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_MMRT_CLK>,
+			<&rpmcc RPM_SMD_MMRT_A_CLK>;
 	};
 
 	system_noc: interconnect@1880000 {
@@ -800,12 +809,19 @@
 		compatible = "qcom,malabar-system_noc";
 		#interconnect-cells = <1>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
+			 <&rpmcc RPM_SMD_SNOC_A_CLK>,
+			 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>;
 	};
 
 	config_noc: interconnect@1900000 {
 		compatible = "qcom,malabar-config_noc";
 		#interconnect-cells = <1>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
+			 <&rpmcc RPM_SMD_CNOC_A_CLK>;
 	};
 
 	bimc: interconnect@4480000 {
@@ -813,6 +829,9 @@
 		#interconnect-cells = <1>;
 		qcom,util-factor = <151>;
 		qcom,keepalive;
+		clock-names = "bus", "bus_a";
+		clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
+			 <&rpmcc RPM_SMD_BIMC_A_CLK>;
 	};
 
 	wpss_pas: remoteproc-wpss@84000000 {
