@@ -553,7 +553,7 @@
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
 
-		status = "disabled";
+		status = "ok";
 	};
 
 	kryo-erp {
