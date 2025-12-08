@@ -959,17 +959,18 @@
 		compatible = "qcom,monaco-adsp-pas";
 		reg = <0xab00000 0x00100>;
 
-		vdd_lpi_cx-supply = <&VDD_LPI_CX_LEVEL>;
+		cx-supply = <&VDD_LPI_CX_LEVEL>;
 		reg-names = "vdd_lpi_cx", "vdd_lpi_mx";
-		vdd_lpi_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
-		vdd_lpi_mx-supply = <&VDD_LPI_MX_LEVEL>;
-		vdd_lpi_mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		mx-supply = <&VDD_LPI_MX_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
 
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
 		clock-names = "xo";
 
 		memory-region = <&pil_adsp_mem>;
 
+		firmware-name = "adsp.mdt";
 		/* Inputs from lpass */
 		interrupts-extended = <&intc 0 282 IRQ_TYPE_EDGE_RISING>,
 				      <&adsp_smp2p_in 0 0>,
@@ -990,7 +991,7 @@
 		/* Outputs to lpass */
 		qcom,smem-states = <&adsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
-		glink_edge: glink-edge {
+		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
 			transport = "smem";
 			mboxes = <&apcs_glb 8>;
@@ -1025,6 +1026,7 @@
 
 		memory-region = <&pil_modem_mem>;
 
+		firmware-name = "modem.mdt";
 		/* Inputs from mss */
 		interrupts-extended = <&intc 0 307 1>,
 				<&modem_smp2p_in 0 0>,
