@@ -32,7 +32,9 @@
 		mmc0 = &sdhc_1;
 	};
 
-	firmware: firmware {};
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
 
 	cpus {
 		#address-cells = <2>;
@@ -254,6 +256,25 @@
 	};
 };
 
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x13000>;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
+};
+
 &soc {
 	#address-cells = <1>;
 	#size-cells = <1>;
@@ -378,6 +399,16 @@
 		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2>;
 		/* keep other cores in class1 */
 		qcom,gic-class1-cpus = <&CPU3>;
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
 	};
 
 	kryo-erp {
@@ -998,6 +1029,22 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x1000000>;
 		linux,cma-default;
+	};
+
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
 	};
 };
 
