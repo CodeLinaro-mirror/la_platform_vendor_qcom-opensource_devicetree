@@ -320,6 +320,41 @@
 		qcom,wakeup-enable;
 	};
 
+	qti_smmu_proxy: qti,smmu-proxy {
+		compatible = "smmu-proxy-receiver";
+	};
+
+	qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x14A1 0x20>,
+			 <&apps_smmu 0x1481 0x20>,
+			 <&apps_smmu 0x1001 0x140>,
+			 <&apps_smmu 0x1021 0x100>,
+			 <&apps_smmu 0x1041 0x140>,
+			 <&apps_smmu 0x1061 0x80>,
+			 <&apps_smmu 0x10E1 0x80>,
+			 <&apps_smmu 0x1101 0x140>,
+			 <&apps_smmu 0x1121 0x100>,
+			 <&apps_smmu 0x1141 0x140>,
+			 <&apps_smmu 0x10C2 0x0>;
+		dma-coherent;
+	};
+
+	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
+		qcom,iommu-defer-smr-config;
+		memory-region = <&smmu_proxy_iommu_region>;
+		iommus = <&apps_smmu 0x401 0x0>;
+		dma-coherent;
+	};
+
+	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
+		iommu-addresses = <&smmu_proxy_display_cb 0x0 0x20000>;
+	};
+
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
@@ -338,6 +373,20 @@
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <64>;
+		qcom,support-hypervisor;
 	};
 
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
