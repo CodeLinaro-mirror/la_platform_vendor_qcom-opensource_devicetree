@@ -395,6 +395,11 @@
 				reg = <0x13>;
 				#clock-cells = <1>;
 			};
+
+			cpucp_scmi_qcom: protocol@80 {
+				reg = <0x80>;
+				#clock-cells = <1>;
+			};
 		};
 
 		qcom_scm {
@@ -1468,6 +1473,14 @@
 							&mc_virt SLAVE_EBI1>;
 				};
 			};
+		};
+
+		cpucp_log: qcom,cpucp_log@0x80e10000 {
+			compatible = "qcom,cpucp-log";
+			reg =	<0x0 0x80e10000 0x0 0x10000>,
+				<0x0 0x80e20000 0x0 0x10000>;
+			mboxes = <&cpucp 1>;
+			qcom,log-type = <0>;
 		};
 
 		qcom_memlat: qcom,memlat {
