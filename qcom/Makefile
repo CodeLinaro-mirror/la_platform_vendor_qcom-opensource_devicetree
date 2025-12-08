@@ -673,6 +673,25 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_MALABAR), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+malabar_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += malabar-vm-base.dtb \
+				malabar-vm-atp-overlay.dtbo \
+				malabar-vm-mtp-overlay.dtbo \
+				malabar-vm-qrd-overlay.dtbo \
+				malabar-vm-rcm-overlay.dtbo \
+				malabar-vm-cdp-overlay.dtbo \
+				malabar-oemvm-base.dtb \
+				malabar-oemvm-atp-overlay.dtbo \
+				malabar-oemvm-mtp-overlay.dtbo \
+				malabar-oemvm-qrd-overlay.dtbo \
+				malabar-oemvm-rcm-overlay.dtbo \
+				malabar-oemvm-cdp-overlay.dtbo
+dtb-y += $(malabar_tuivm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 LEMANS_MULTI_GVM_BASE_DTB += \
