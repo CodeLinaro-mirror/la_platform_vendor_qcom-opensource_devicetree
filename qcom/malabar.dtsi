@@ -745,11 +745,17 @@
 	};
 
 	dispcc: clock-controller@5f00000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "dispcc_clocks";
+		compatible = "qcom,malabar-dispcc", "syscon";
+		reg = <0x5f00000 0x20000>;
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&sleep_clk>,
+			 <&gcc GCC_DISP_AHB_CLK>;
+		clock-names = "bi_tcxo", "sleep_clk", "iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
-		#power-domain-cells = <1>;
 	};
 
 	gcc: clock-controller@1400000 {
@@ -1044,6 +1050,20 @@
 };
 
 #include "malabar-usb.dtsi"
+
+&disp_cc_mdss_core_gdsc {
+	clocks = <&gcc GCC_DISP_AHB_CLK>;
+	clock-names = "ahb_clk";
+	parent-supply = <&VDD_CX_LEVEL>;
+	status = "ok";
+};
+
+&disp_cc_mdss_core_int2_gdsc {
+	clocks = <&gcc GCC_DISP_AHB_CLK>;
+	clock-names = "ahb_clk";
+	parent-supply = <&VDD_CX_LEVEL>;
+	status = "ok";
+};
 
 &gcc_camss_top_gdsc {
 	parent-supply = <&VDD_CX_LEVEL>;
