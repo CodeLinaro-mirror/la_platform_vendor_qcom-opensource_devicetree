@@ -29,5 +29,17 @@
 		#iommu-cells = <2>;
 		qcom,use-3-lvl-tables;
 		dma-coherent;
+
+		qcom,actlr =
+			/* TBU_RT: Camera */
+			<0x401 0x0000 0x00000103>,
+
+			/* TBU_NRT: Camera */
+			<0x801 0x0000 0x00000103>,
+			<0x821 0x0000 0x00000103>,
+			<0x841 0x0000 0x00000103>,
+
+			/* TBU_RT: Display */
+			<0x424 0x0002 0x00000103>;
 	};
 };
