@@ -800,6 +800,14 @@
 		firmware-name = "adrastea/wpss.mdt";
 	};
 
+	qcom,rmtfs_sharedmem@0 {
+		compatible = "qcom,sharedmem-uio";
+		reg = <0x0 0x280000>;
+		reg-names = "rmtfs";
+		qcom,client-id = <0x00000001>;
+		qcom,vm-nav-path;
+	};
+
 	ufsphy_mem: ufsphy_mem@0x4807000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
