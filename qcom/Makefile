@@ -391,22 +391,37 @@ VIENNA_APQ_BASE_DTB += viennap.dtb
 
 VIENNA_BOARDS += \
 		 vienna-atp-overlay.dtbo \
+		 vienna-atp-overlay-pmw6100-v2.dtbo \
 		 vienna-atp-no-cam-overlay.dtbo \
+		 vienna-atp-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-overlay.dtbo \
+		 vienna-idp-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-no-cam-overlay.dtbo \
+                 vienna-idp-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-se8-overlay.dtbo \
+		 vienna-idp-se8-overlay-pmw6100-v2.dtbo \
 		 vienna-rcm-overlay.dtbo \
+		 vienna-rcm-overlay-pmw6100-v2.dtbo \
 		 vienna-rcm-no-cam-overlay.dtbo \
+		 vienna-rcm-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-overlay-pmw6100-v2.dtbo \
 		 vienna-wdp-ddsip-overlay.dtbo \
+		 vienna-wdp-ddsip-overlay-pmw6100-v2.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wdp-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-wdp-se8-overlay.dtbo \
+		 vienna-wdp-se8-overlay-pmw6100-v2.dtbo \
 		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-overlay-pmw6100-v2.dtbo \
 		 vienna-wrd-ddsip-overlay.dtbo \
-		 vienna-wrd-no-cam-overlay.dtbo
+		 vienna-wrd-ddsip-overlay-pmw6100-v2.dtbo \
+		 vienna-wrd-no-cam-overlay.dtbo \
+		 vienna-wrd-no-cam-overlay-pmw6100-v2.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
-		 vienna-rumi-overlay.dtbo
+		 vienna-rumi-overlay.dtbo \
+		 vienna-rumi-overlay-pmw6100-v2.dtbo
 
 vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
 	$(call add-overlays, $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS),$(VIENNA_BASE_DTB))\
