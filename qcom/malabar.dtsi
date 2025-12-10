@@ -1524,6 +1524,34 @@
 		compatible = "qcom,glink";
 	};
 
+	apsscc: syscon@faa0000 {
+		compatible = "syscon";
+		reg = <0x0 0xfaa0000 0x0 0x1c>;
+	};
+
+	mccc: syscon@447d200 {
+		compatible = "syscon";
+		reg = <0x0 0x447d200 0x0 0x24>;
+	};
+
+	debugcc: clock-controller@0 {
+		compatible = "qcom,malabar-debugcc";
+		qcom,apsscc = <&apsscc>;
+		qcom,dispcc = <&dispcc>;
+		qcom,gcc = <&gcc>;
+		qcom,gpucc = <&gpucc>;
+		qcom,mccc = <&mccc>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&dispcc 0>,
+			 <&gcc 0>,
+			 <&gpucc 0>;
+		clock-names = "xo_clk_src",
+			      "dispcc",
+			      "gcc",
+			      "gpucc";
+		#clock-cells = <1>;
+	};
+
 	tcsr: syscon@3c0000 {
 		compatible = "syscon";
 		reg = <0x0 0x3c0000 0x0 0x40000>;
