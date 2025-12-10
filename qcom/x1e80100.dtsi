@@ -1566,7 +1566,7 @@
 				< 1066000 4224000 >;
 		};
 
-		bwmon_llcc_cluster0: qcom,bwmon-llcc-cluster0@240B3300 {
+		bwmon_llcc_cluster0: qcom,bwmon-llcc-gold@240B3300 {
 			compatible = "qcom,bwmon4";
 			reg = <0x0 0x240B3400 0x0 0x300>, <0x0 0x240B3300 0x0 0x200>;
 			reg-names = "base", "global_base";
@@ -1578,7 +1578,7 @@
 			qcom,second-vote = <&qcom_llcc_ddr_vote>;
 		};
 
-		bwmon_llcc_cluster2: qcom,bwmon-llcc-cluster2@240B5300 {
+		bwmon_llcc_cluster2: qcom,bwmon-llcc-prime@240B5300 {
 			compatible = "qcom,bwmon4";
 			reg = <0x0 0x240B5400 0x0 0x300>, <0x0 0x240B5300 0x0 0x200>;
 			reg-names = "base", "global_base";
@@ -1590,7 +1590,7 @@
 			qcom,second-vote = <&qcom_llcc_ddr_vote>;
 		};
 
-		bwmon_llcc_cluster1: qcom,bwmon-llcc-cluster1@240B6300 {
+		bwmon_llcc_cluster1: qcom,bwmon-llcc-prime@240B6300 {
 			compatible = "qcom,bwmon4";
 			reg = <0x0 0x240B6400 0x0 0x300>, <0x0 0x240B6300 0x0 0x200>;
 			reg-names = "base", "global_base";
