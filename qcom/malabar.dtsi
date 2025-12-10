@@ -11,6 +11,7 @@
 #include <dt-bindings/interconnect/qcom,malabar.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/spmi/spmi.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Malabar";
@@ -1256,6 +1257,123 @@
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
 	};
+
+	pmic_arbiter: arbiter@1c40000 {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0x1c40000 0x1100>,
+		      <0x1e00000 0x2000000>,
+		      <0x3e00000 0x100000>;
+		reg-names = "core", "chnls", "obsrvr";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		qcom,ee = <0>;
+		qcom,channel = <0>;
+
+		spmi_bus: spmi0_bus: spmi@1c0a000 {
+			reg = <0x1c0a000 0x26000>,
+			      <0x3f00000 0xa0000>;
+			reg-names = "cnfg", "intr";
+			interrupts-extended = <&mpm 86 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+	};
+
+	pmic-arb-debug@8a08000 {
+		compatible = "qcom,spmi-pmic-arb-debug";
+		reg = <0x8a08000 0x60>;
+		reg-names = "core";
+		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
+		clock-names = "qdss_clk";
+		#address-cells = <2>;
+		#size-cells = <0>;
+		depends-on-supply = <&pmic_arbiter>;
+
+		spmi_debug_bus_0: spmi@0 {
+			reg = <0>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+
+			pm6450@0 {
+				compatible = "qcom,spmi-pmic";
+				reg = <0 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pmk8350@1 {
+				compatible = "qcom,spmi-pmic";
+				reg = <1 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+
+			pm8010@4 {
+				compatible = "qcom,spmi-pmic";
+				reg = <4 SPMI_USID>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+				qcom,can-sleep;
+			};
+		};
+	};
+
+	pmic-glink {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
+		qcom,subsys-name = "lpass";
+		qcom,protection-domain = "tms/servreg", "msm/adsp/charger_pd";
+		depends-on-supply = <&ipcc_mproc>;
+
+		battery_charger: battery-charger {
+			compatible = "qcom,battery-charger";
+		};
+
+		ucsi: ucsi-glink {
+			compatible = "qcom,ucsi-glink";
+		};
+
+		altmode: altmode-glink {
+			compatible = "qcom,altmode-glink";
+			#altmode-cells = <1>;
+		};
+	};
+
+	pmic-glink-log {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_LOGS_ADSP_APPS";
+
+		battery-debug {
+			compatible = "qcom,battery-debug";
+		};
+
+		charger-ulog-glink {
+			compatible = "qcom,charger-ulog-glink";
+		};
+
+		pmic_glink_debug: pmic-glink-debug {
+			compatible = "qcom,pmic-glink-debug";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			depends-on-supply = <&spmi0_bus>;
+		};
+
+		pmic_glink_adc: glink-adc {
+			compatible = "qcom,glink-adc";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#io-channel-cells = <1>;
+			status = "disabled";
+		};
+	};
+
+	thermal_zones: thermal-zones {};
 };
 
 #include "malabar-coresight.dtsi"
