@@ -15,6 +15,7 @@ _platform_map = {
             {"name": "lemans-vm-la-mt.dtb"},
             {"name": "monaco-vm-la-mt.dtb"},
             {"name": "lemans-gh-vm-la-qam-ridesx.dtb"},
+            {"name": "lemans-gh-vm-la-flex-qam-ridesx.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -30,6 +31,7 @@ _platform_map = {
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
             {"name": "monaco-vm-la-mt-overlay.dtbo"},
             {"name": "lemans-gh-vm-la-qam-ridesx-overlay.dtbo"},
+            {"name": "lemans-gh-vm-la-flex-qam-ridesx-overlay.dtbo"},
         ],
     },
     "canoe": {
