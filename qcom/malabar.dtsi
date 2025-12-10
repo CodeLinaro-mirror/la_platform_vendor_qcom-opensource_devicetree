@@ -633,6 +633,7 @@
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
+		qcom,gpios-reserved = <73>;
 	};
 
 	ipcc_mproc: qcom,ipcc@208000 {
