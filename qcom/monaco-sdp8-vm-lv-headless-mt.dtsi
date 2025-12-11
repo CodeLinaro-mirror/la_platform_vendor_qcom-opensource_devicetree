@@ -117,3 +117,7 @@
 &virtio_spmi {
 	status = "ok";
 };
+
+&qcom_rng_ee3 {
+	status = "ok";
+};
