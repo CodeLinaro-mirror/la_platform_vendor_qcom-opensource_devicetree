@@ -2985,22 +2985,6 @@
 		};
 	};
 
-	qspi_data3: qspi-data3-state {
-		pins = "gpio131";
-		function = "qspi03";
-	};
-
-	qspi_cs0: qspi-cs0-state {
-		pins = "gpio132";
-		function = "qspi0_cs0";
-	};
-
-	qspi_cs1: qspi-cs1-state {
-		pins = "gpio133";
-		function = "qspi0_cs1";
-	};
-
-
 	i2s0_ws {
 		i2s0_ws_sleep: i2s0_ws_sleep {
 			mux {
@@ -3406,4 +3390,37 @@
 		};
 	};
 
+	qspi_clk: qspi-clk-state {
+		pins = "gpio127";
+		function = "qspi0_clk";
+		bias-pull-down;
+		drive-strength = <6>;
+	};
+
+	qspi_data0: qspi-data0-state {
+		pins = "gpio128";
+		function = "qspi00";
+		bias-pull-down;
+		drive-strength = <6>;
+	};
+
+	qspi_data1: qspi-data1-state {
+		pins = "gpio129";
+		function = "qspi01";
+		bias-pull-down;
+		drive-strength = <6>;
+	};
+
+	qspi_cs0: qspi-cs0-state {
+		pins = "gpio132";
+		function = "qspi0_cs0";
+		bias-disable;
+		drive-strength = <6>;
+	};
+
+	qspi_sleep: qspi-sleep-state {
+		pins = "gpio127", "gpio128", "gpio129", "gpio132";
+		function = "gpio";
+		output-disable;
+	};
 };
