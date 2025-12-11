@@ -16,6 +16,14 @@
 	status = "ok";
 };
 
+&soc {
+	pmic-pon-log {
+		compatible = "qcom,pmic-pon-log";
+		nvmem = <&pmk8350_sdam_5>;
+		nvmem-names = "pon_log0";
+	};
+};
+
 &thermal_zones {
 	pm6450_temp_alarm: pm6450_tz {
 		polling-delay-passive = <100>;
