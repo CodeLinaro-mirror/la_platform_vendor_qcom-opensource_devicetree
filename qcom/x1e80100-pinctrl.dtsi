@@ -2760,4 +2760,40 @@
 			};
 		};
 	};
+
+	qspi_clk: qspi-clk-state {
+		pins = "gpio127";
+		function = "qspi0_clk";
+	};
+
+	qspi_data0: qspi-data0-state {
+		pins = "gpio128";
+		function = "qspi00";
+	};
+
+	qspi_data1: qspi-data1-state {
+		pins = "gpio129";
+		function = "qspi01";
+	};
+
+	qspi_data2: qspi-data2-state {
+		pins = "gpio130";
+		function = "qspi02";
+	};
+
+	qspi_data3: qspi-data3-state {
+		pins = "gpio131";
+		function = "qspi03";
+	};
+
+	qspi_cs0: qspi-cs0-state {
+		pins = "gpio132";
+		function = "qspi0_cs0";
+	};
+
+	qspi_cs1: qspi-cs1-state {
+		pins = "gpio133";
+		function = "qspi0_cs1";
+	};
+
 };
