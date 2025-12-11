@@ -161,7 +161,7 @@
 		pmar2230_a_s7: vreg-pmar2230-a-s7 {
 			regulator-name = "pmar2230_a_s7";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1852000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <2104000>;
 			qcom,init-voltage = <1856000>;
 		};
@@ -175,7 +175,7 @@
 		pmar2230_a_s8: vreg-pmar2230-a-s8 {
 			regulator-name = "pmar2230_a_s8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1256000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <1408000>;
 			qcom,init-voltage = <1304000>;
 		};
