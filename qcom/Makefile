@@ -623,13 +623,28 @@ MONACO_MULTI_GVM_BASE_DTB += \
 MONACO_MULTI_GVM_BOARDS += \
 		monaco-vm-lv-mt-overlay.dtbo
 
+MONACO_LV_GVM_BASE_DTB += monaco-sdp8-vm-lv.dtb
+
+MONACO_LV_GVM_BOARDS += \
+                   monaco-sdp8-vm-lv-overlay.dtbo
+
+MONACO_LV_GVM_HEADLESS_BASE_DTB += \
+		monaco-sdp8-vm-lv-headless-mt.dtb
+
+MONACO_LV_GVM_HEADLESS_BOARDS += \
+		monaco-sdp8-vm-lv-headless-mt-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(MONACO_LV_GVM_BOARDS),$(MONACO_LV_GVM_BASE_DTB)) \
+	$(call add-overlays, $(MONACO_LV_GVM_HEADLESS_BOARDS),$(MONACO_LV_GVM_HEADLESS_BASE_DTB)) \
 	$(call add-overlays, $(MONACO_FLEX_MULTI_GVM_BOARDS),$(MONACO_FLEX_MULTI_GVM_BASE_DTB)) \
 	$(call add-overlays, $(MONACO_MULTI_GVM_BOARDS),$(MONACO_MULTI_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(MONACO_LA_GVM_BOARDS) $(MONACO_LA_GVM_BASE_DTB) \
+	$(MONACO_LV_GVM_BOARDS) $(MONACO_LV_GVM_BASE_DTB) \
+	$(MONACO_LV_GVM_HEADLESS_BOARDS) $(MONACO_LV_GVM_HEADLESS_BASE_DTB) \
 	$(MONACO_FLEX_MULTI_GVM_BOARDS) $(MONACO_FLEX_MULTI_GVM_BASE_DTB) \
 	$(MONACO_MULTI_GVM_BOARDS) $(MONACO_MULTI_GVM_BASE_DTB)
 
