@@ -420,7 +420,7 @@
 			qupv3_se1_7i2c_active: qupv3_se1_7i2c_active {
 				qupv3_se1_7i2c_active_mux: mux {
 					pins = "gpio24";
-					function = "qup0_se5_l1";
+					function = "qup0_se3_l5";
 				};
 
 				qupv3_se1_7i2c_active_config: config {
