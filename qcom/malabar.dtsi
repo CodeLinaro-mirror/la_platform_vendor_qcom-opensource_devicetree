@@ -641,6 +641,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		qcom,gpios-reserved = <73>;
+		wakeup-parent = <&mpm>;
 	};
 
 	ipcc_mproc: qcom,ipcc@208000 {
@@ -750,6 +751,12 @@
 	rpm_msg_ram: memory@045f0000 {
 		compatible = "qcom,rpm-msg-ram";
 		reg = <0x45f0000 0x7000>;
+	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpm-stats-v2";
+		reg = <0x04690000 0x400>;
+		ss-name = "modem", "adsp", "apss";
 	};
 
 	rpm-glink {
