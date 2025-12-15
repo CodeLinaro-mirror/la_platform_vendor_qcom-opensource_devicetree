@@ -16,6 +16,81 @@
 		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
 	};
+
+	qcom,cpu-pause {
+		compatible = "qcom,thermal-pause";
+		cpu0_pause: cpu0-pause {
+			qcom,cpus = <&CPU0>;
+			qcom,cdev-alias = "thermal-pause-1";
+			#cooling-cells = <2>;
+		};
+
+		cpu1_pause: cpu1-pause {
+			qcom,cpus = <&CPU1>;
+			qcom,cdev-alias = "thermal-pause-2";
+			#cooling-cells = <2>;
+		};
+
+		cpu2_pause: cpu2-pause {
+			qcom,cpus = <&CPU2>;
+			qcom,cdev-alias = "thermal-pause-4";
+			#cooling-cells = <2>;
+		};
+
+		cpu3_pause: cpu3-pause {
+			qcom,cpus = <&CPU3>;
+			qcom,cdev-alias = "thermal-pause-8";
+			#cooling-cells = <2>;
+		};
+
+		/* Thermal-engine cooling devices */
+		pause-cpu0 {
+			qcom,cpus = <&CPU0>;
+			qcom,cdev-alias = "pause-cpu0";
+		};
+
+		pause-cpu1 {
+			qcom,cpus = <&CPU1>;
+			qcom,cdev-alias = "pause-cpu1";
+		};
+
+		pause-cpu2 {
+			qcom,cpus = <&CPU2>;
+			qcom,cdev-alias = "pause-cpu2";
+		};
+
+		pause-cpu3 {
+			qcom,cpus = <&CPU3>;
+			qcom,cdev-alias = "pause-cpu3";
+		};
+	};
+
+	qcom,cpu-hotplug {
+		compatible = "qcom,cpu-hotplug";
+		cpu0_hotplug: cpu0-hotplug {
+			qcom,cpu = <&CPU0>;
+			qcom,cdev-alias = "cpu-hotplug0";
+			#cooling-cells = <2>;
+		};
+
+		cpu1_hotplug: cpu1-hotplug {
+			qcom,cpu = <&CPU1>;
+			qcom,cdev-alias = "cpu-hotplug1";
+			#cooling-cells = <2>;
+		};
+
+		cpu2_hotplug: cpu2-hotplug {
+			qcom,cpu = <&CPU2>;
+			qcom,cdev-alias = "cpu-hotplug2";
+			#cooling-cells = <2>;
+		};
+
+		cpu3_hotplug: cpu3-hotplug {
+			qcom,cpu = <&CPU3>;
+			qcom,cdev-alias = "cpu-hotplug3";
+			#cooling-cells = <2>;
+		};
+	};
 };
 
 &thermal_zones {
@@ -41,7 +116,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -79,7 +153,23 @@
 				hysteresis = <10000>;
 				type = "passive";
 			};
+		};
 
+		cooling-maps {
+			cpu00_cdev0 {
+				trip = <&cpu00_config>;
+				cooling-device = <&cpu1_pause 1 1>;
+			};
+
+			cpu00_cdev1 {
+				trip = <&cpu00_config>;
+				cooling-device = <&cpu2_pause 1 1>;
+			};
+
+			cpu00_cdev2 {
+				trip = <&cpu00_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
+			};
 		};
 	};
 
@@ -117,7 +207,23 @@
 				hysteresis = <10000>;
 				type = "passive";
 			};
+		};
 
+		cooling-maps {
+			cpu01_cdev0 {
+				trip = <&cpu01_config>;
+				cooling-device = <&cpu1_pause 1 1>;
+			};
+
+			cpu01_cdev1 {
+				trip = <&cpu01_config>;
+				cooling-device = <&cpu2_pause 1 1>;
+			};
+
+			cpu01_cdev2 {
+				trip = <&cpu01_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
+			};
 		};
 	};
 
@@ -155,7 +261,18 @@
 				hysteresis = <10000>;
 				type = "passive";
 			};
+		};
 
+		cooling-maps {
+			cpu10_cdev0 {
+				trip = <&cpu10_config>;
+				cooling-device = <&cpu3_pause 1 1>;
+			};
+
+			cpu10_cdev1 {
+				trip = <&cpu10_config_1>;
+				cooling-device = <&cpu3_hotplug 0 1>;
+			};
 		};
 	};
 
@@ -193,7 +310,18 @@
 				hysteresis = <10000>;
 				type = "passive";
 			};
+		};
 
+		cooling-maps {
+			cpu11_cdev0 {
+				trip = <&cpu11_config>;
+				cooling-device = <&cpu3_pause 1 1>;
+			};
+
+			cpu11_cdev1 {
+				trip = <&cpu11_config_1>;
+				cooling-device = <&cpu3_hotplug 0 1>;
+			};
 		};
 	};
 
@@ -219,7 +347,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -270,7 +397,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -296,7 +422,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -322,7 +447,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -348,7 +472,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -374,7 +497,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 
@@ -412,7 +534,23 @@
 				hysteresis = <10000>;
 				type = "passive";
 			};
+		};
 
+		cooling-maps {
+			cpu02_cdev0 {
+				trip = <&cpu02_config>;
+				cooling-device = <&cpu1_pause 1 1>;
+			};
+
+			cpu02_cdev1 {
+				trip = <&cpu02_config>;
+				cooling-device = <&cpu2_pause 1 1>;
+			};
+
+			cpu02_cdev2 {
+				trip = <&cpu02_config_1>;
+				cooling-device = <&cpu1_hotplug 0 1>;
+			};
 		};
 	};
 
@@ -438,7 +576,6 @@
 				hysteresis = <5000>;
 				type = "hot";
 			};
-
 		};
 	};
 };
