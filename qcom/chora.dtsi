@@ -524,6 +524,18 @@
 		qcom,msgq-names = "trusted_vm", "oem_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
+	qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
+		qcom,primary;
+	};
+
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
 	thermal_zones: thermal-zones {};

@@ -105,6 +105,15 @@
 				peer-default;
 			};
 
+			test-large-dmabuf-oemvm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-oemvm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10e>;
+				peer-default;
+			};
+
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
 				generate = "/hypervisor/membuf-msgq-pair";
@@ -155,6 +164,7 @@
 		required-subnodes = <&qcom_scm
 				&qcom_test_dbl_oemvm
 				&qcom_test_msgq_oemvm
+				&qcom_test_large_dmabuf_oemvm
 				&google_debug_kinfo
 				&kinfo_mem
 				&virtio_mem_device
@@ -207,6 +217,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x105>;
 		affinity = <0>;
+	};
+
+	qcom_test_large_dmabuf_oemvm: qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
 	};
 
 	gh_qtimer: qcom,gh-qtimer@1742b000 {
