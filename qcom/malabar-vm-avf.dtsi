@@ -74,7 +74,11 @@
 		 * iomemory-ranges <PA IPA SIZE ACCESS>
 		 * Soc dependent
 		 */
-		iomemory-ranges;
+		iomemory-ranges = <
+			/* Display */
+			0x0 0x05e8f000 0x0 0x05e8f000 0x0 0x1000 0x0
+			/* Touch */
+			0x0 0x4a24000 0x0 0x4a24000 0x0 0x4000 0x0>;
 
 		/* Dynamically nominate the vmmio ranges
 		 * Allow VMMIO traps. Currently doesn't include
@@ -87,7 +91,9 @@
 		/* gic-irq-ranges <HWIRQ VIRQ>
 		 * Add based on use cases
 		 */
-		gic-irq-ranges;
+		gic-irq-ranges = <
+			/* PVM->SVM IRQ transfer */
+			372 372>;
 
 		segments {
 			ramdisk = <3>;
@@ -258,6 +264,7 @@
 		required-subnodes = <&qcom_scm
 			&dmesg_dump
 			&kinfo_mem
+			&tlmm_vm_mem_access
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_mem_buf
@@ -283,7 +290,25 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid SOC dependent pins */
-		gpios;
+		gpios = /bits/ 16 <8 9 10 11 12 13 14 23 56 57>;
+	};
+
+	tlmm_vm_mem_access: tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		// Soc dependent
+		tlmm-vm-gpio-list = <
+			/* Touch gpio pins */
+			&tlmm 8 0
+			&tlmm 9 0
+			&tlmm 10 0
+			&tlmm 11 0
+			&tlmm 12 0
+			&tlmm 13 0
+			/* Display gpio pins */
+			&tlmm 14 0
+			&tlmm 23 0
+			&tlmm 56 0
+			&tlmm 57 0>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
