@@ -1332,7 +1332,7 @@
 				};
 			};
 
-			/* Reserved device */
+			/* virtio eavb */
 			virtio-mmio@49 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
@@ -1344,6 +1344,23 @@
 				dma_base = <0x0 0x294000>;
 				memory {
 					qcom,label = <0x52>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* Reserved device */
+			virtio-mmio@50 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x2D4000>;
+				memory {
+					qcom,label = <0x53>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
