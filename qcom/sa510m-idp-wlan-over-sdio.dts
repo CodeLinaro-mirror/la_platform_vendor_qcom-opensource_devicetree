@@ -29,7 +29,7 @@
 
 	mmc-ddr-1_8v;
 	mmc-hs200-1_8v;
-
+	keep-power-in-suspend;
 	/* Add dt entry for gcc hw reset */
 	resets = <&gcc GCC_SDCC4_BCR>;
 	reset-names = "core_reset";

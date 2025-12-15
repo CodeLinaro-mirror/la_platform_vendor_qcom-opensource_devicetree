@@ -78,6 +78,8 @@
 		odrv_en_val  = /bits/ 8 <0x08>;
 		page_addr = /bits/ 8 <0xFC>;
 		page_val  = /bits/ 8 <0x01>;
+		activate = /bits/ 8 <0x01>;
+		gpio_ctl = /bits/ 8 <0x15>;
 	};
 };
 
@@ -92,3 +94,4 @@
 &pcie2 {
 	status = "disabled";
 };
+
