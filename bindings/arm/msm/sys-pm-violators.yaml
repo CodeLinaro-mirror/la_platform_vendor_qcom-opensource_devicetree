@@ -31,6 +31,7 @@ properties:
       - qcom,sys-pm-alor
       - qcom,sys-pm-x1e80100
       - qcom,sys-pm-chora
+      - qcom,sys-pm-pikachu
 
   reg:
     maxItems: 1
@@ -59,6 +60,7 @@ allOf:
               - qcom,sys-pm-parrot
               - qcom,sys-pm-ravelin
               - qcom,sys-pm-chora
+              - qcom,sys-pm-pikachu
     then:
       properties:
         reg:
