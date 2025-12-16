@@ -1769,7 +1769,7 @@
 				config {
 					pins = "gpio117", "gpio118";
 					drive-strength = <2>;
-					bias-pull-down;
+					bias-bus-hold;
 				};
 			};
 		};
