@@ -71,6 +71,13 @@ properties:
       queries.
     $ref: /schemas/types.yaml#/definitions/flag
 
+  qcom,multiport-usb:
+    description: |
+       Indicates number of USB ports present.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    minimum: 2
+    maximum: 2
+
 required:
   - compatible
 
@@ -88,6 +95,20 @@ allOf:
     then:
       properties:
         qcom,thermal-mitigation: false
+
+  - if:
+      required:
+        - qcom,micro-usb
+    then:
+      properties:
+        qcom,multiport-usb: false
+
+  - if:
+      required:
+        - qcom,multiport-usb
+    then:
+      properties:
+        qcom,micro-usb: false
 
 additionalProperties: false
 
