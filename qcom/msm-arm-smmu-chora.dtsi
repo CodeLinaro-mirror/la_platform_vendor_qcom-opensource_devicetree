@@ -250,6 +250,7 @@
 			reg = <0x0 0x171e000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <36>;
+			interconnects = <&system_noc MASTER_A1NOC_SNOC &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 		};
 
@@ -258,6 +259,7 @@
 			reg = <0x0 0x14D0000 0x0 0x1000>;
 			qcom,stream-id-range = <0x400 0x400>;
 			qcom,iova-width = <32>;
+			interconnects = <&mmss_noc MASTER_MDP &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 		};
 
@@ -266,6 +268,7 @@
 			reg = <0x0 0x7bb000 0x0 0x1000>;
 			qcom,stream-id-range = <0x800 0x400>;
 			qcom,iova-width = <32>;
+			interconnects = <&lpass_ag_noc MASTER_LPASS_PROC &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 		};
 
@@ -274,6 +277,7 @@
 			reg = <0x0 0x16ca000 0x0 0x1000>;
 			qcom,stream-id-range = <0xc00 0x400>;
 			qcom,iova-width = <36>;
+			interconnects = <&pcie_anoc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 			qcom,opt-out-tbu-halting;
 		};
@@ -283,6 +287,7 @@
 			reg = <0x0 0x1451000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1000 0x400>;
 			qcom,iova-width = <36>;
+			interconnects = <&mmss_noc MASTER_VIDEO &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 		};
 
@@ -291,6 +296,7 @@
 			reg = <0x0 0x14D2000 0x0 0x1000>;
 			qcom,stream-id-range = <0x1400 0x400>;
 			qcom,iova-width = <36>;
+			interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <1>;
 		};
 	};
