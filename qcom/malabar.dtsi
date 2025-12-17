@@ -9,6 +9,7 @@
 #include <dt-bindings/clock/qcom,malabar-gpucc.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,malabar.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/spmi/spmi.h>
@@ -27,6 +28,23 @@
 		serial0 = &qupv3_se8_2uart;
 		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		hsuart0 = &qupv3_se2_4uart;
+		i2c0 = &qupv3_se0_i2c;
+		i2c1 = &qupv3_se1_i2c;
+		i2c3 = &qupv3_se3_i2c;
+		i2c4 = &qupv3_se4_i2c;
+		i2c5 = &qupv3_se5_i2c;
+		i2c6 = &qupv3_se6_i2c;
+		i2c7 = &qupv3_se7_i2c;
+		i2c9 = &qupv3_se9_i2c;
+		spi0 = &qupv3_se0_spi;
+		spi1 = &qupv3_se1_spi;
+		spi3 = &qupv3_se3_spi;
+		spi4 = &qupv3_se4_spi;
+		spi5 = &qupv3_se5_spi;
+		spi6 = &qupv3_se6_spi;
+		spi7 = &qupv3_se7_spi;
+		spi9 = &qupv3_se9_spi;
 	 };
 
 	chosen: chosen {
@@ -1520,8 +1538,6 @@
 	};
 
 	thermal_zones: thermal-zones {};
-
-	qupv3_se1_i2c: qupv3_se1_i2c {};
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
