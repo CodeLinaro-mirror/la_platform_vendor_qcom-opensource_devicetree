@@ -2358,7 +2358,7 @@
 		reg = <0x0 0x8a03000 0x0 0x1000>;
 		reg-names = "csr-base";
 
-		device-name = "swao-csr";
+		device-name = "swao_csr";
 
 		qcom,timestamp-support;
 		qcom,aodbg-csr-support;
