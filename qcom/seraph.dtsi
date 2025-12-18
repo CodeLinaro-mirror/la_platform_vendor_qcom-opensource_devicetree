@@ -728,7 +728,7 @@
 	};
 
 	gxclkctl: clock-controller@3d68024 {
-		compatible = "qcom,canoe-gx_clkctl";
+		compatible = "qcom,seraph-gxclkctl";
 		reg = <0x3d68024 0x8>;
 		reg-name = "cc_base";
 		power-domains = <&gpucc GPU_CC_CX_GDSC>;
