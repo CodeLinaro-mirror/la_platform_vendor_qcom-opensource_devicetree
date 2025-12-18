@@ -85,10 +85,14 @@ CHORA_BOARDS += \
 	        chora-atp-overlay.dtbo \
 		chora-cdp-overlay.dtbo \
 		chora-cdp-wcn7750-overlay.dtbo \
-		chora-mtp-overlay.dtbo \
+		chora-mtp-bonfish-overlay.dtbo \
 		chora-mtp-lcd-overlay.dtbo \
+		chora-mtp-overlay.dtbo \
+		chora-mtp-wcn7750-bonfish-overlay.dtbo \
 		chora-mtp-wcn7750-overlay.dtbo \
+		chora-qrd-bonfish-overlay.dtbo \
 		chora-qrd-overlay.dtbo \
+		chora-qrd-wcn7750-bonfish-overlay.dtbo \
 		chora-qrd-wcn7750-overlay.dtbo \
 		chora-rcm-overlay.dtbo \
 		chora-rcm-wcn7750-overlay.dtbo
