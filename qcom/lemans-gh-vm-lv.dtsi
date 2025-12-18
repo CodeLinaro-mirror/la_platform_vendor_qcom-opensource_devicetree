@@ -5,12 +5,17 @@
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
 	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
+
+	aliases {
+		ufshc2 = &ufshc2_mem; /* Embedded 2nd UFS slot */
+	};
 
 	chosen {
 		bootargs = "nokaslr log_buf_len=1M console=hvc0 loglevel=4 kasan.page_alloc.sample=10 kasan.stacktrace=on page_owner=on kasan.fault=report";
@@ -302,6 +307,18 @@
 		qcom,secdomain-ids = <53>;
 		qcom,primary-vm-index = <0>;
 		vm-attrs = "guest-ram-dump", "vpm-virq", "allow-unprotected";
+
+		/* Pass through regions */
+		iomemory-ranges = <
+			/* 2nd UFS iomemory region */
+			0x0 0x1DA4000 0x0 0x1DA4000 0x0 0x3000 0x0
+		>;
+
+		/* Pass through IRQs */
+		gic-irq-ranges = <
+			/* 2nd UFS IRQ  */
+			157 157
+		>;
 
 		memory {
 			#address-cells = <0x2>;
@@ -1163,6 +1180,17 @@
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
 	};
+
+	tlmm: pinctrl@f000000 {
+		compatible = "qcom,lemans-pinctrl";
+		reg = <0xf000000 0x1000000>;
+		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+		status = "ok";
+	};
 };
 
 &soc {
@@ -1223,5 +1251,21 @@
 			role = "fe";
 			remote-vmids = <0>;
 		};
+	};
+
+	ufshc2_mem: ufshc2@1da4000 {
+		compatible = "qcom,sa8255p-ufshc", "qcom,ufshc";
+		reg = <0x1da4000 0x3000>;
+		reg-names = "ufs_mem";
+		interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+		lanes-per-direction = <2>;
+		iommus = <&apps_smmu 0x420 0x0>;
+		qcom,iommu-dma = "fastmap";
+		dma-coherent;
+		reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
+		power-domains = <&scmi_power 0>;
+		set-ds-spm-level;
+
+		status = "okay";
 	};
 };
