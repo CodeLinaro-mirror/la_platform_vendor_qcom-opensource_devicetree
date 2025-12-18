@@ -985,7 +985,7 @@
 
 		status = "disabled";
 
-		cx-supply = <&VDD_MODEM_LEVEL>;
+		cx-supply = <&VDD_CX_LEVEL>;
 		mx-supply = <&VDD_MX_LEVEL>;
 		reg-names = "cx", "mx";
 
