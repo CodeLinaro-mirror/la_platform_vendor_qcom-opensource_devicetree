@@ -620,9 +620,9 @@
 	apps_rsc: rsc@17a00000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
-		reg = <0x17a00000 0x10000>,
-		      <0x17a10000 0x10000>,
-		      <0x17a20000 0x10000>;
+		reg = <0x0 0x17a00000 0x0 0x10000>,
+		      <0x0 0x17a10000 0x0 0x10000>,
+		      <0x0 0x17a20000 0x0 0x10000>;
 		reg-names = "drv-0", "drv-1", "drv-2";
 		qcom,drv-count = <3>;
 		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
@@ -656,7 +656,8 @@
 
 	pdc: interrupt-controller@0xb220000 {
 		compatible = "qcom,chora-pdc", "qcom,pdc";
-		reg = <0xb220000 0x10000>, <0x174000f0 0x64>;
+		reg = <0x0 0xb220000 0x0 0x10000>,
+		      <0x0 0x174000f0 0x0 0x64>;
 		qcom,pdc-ranges = <0 480 40>, <40 140 11>, <51 527 47>,
 				  <98 609 31>, <129 63 1>, <130 716 12>,
 				  <142 251 5>;
@@ -1285,10 +1286,11 @@
 
 	cpuss-sleep-stats@17800054 {
 		compatible = "qcom,cpuss-sleep-stats-v4";
-		reg = <0x17800054 0x4>, <0x17810054 0x4>, <0x17820054 0x4>,
-		    <0x17830054 0x4>, <0x17840054 0x4>, <0x17850054 0x4>,
-		    <0x17860054 0x4>, <0x17870054 0x4>, <0x17880098 0x4>,
-		    <0x178C0000 0x10000>;
+		reg = <0x0 0x17800054 0x0 0x4>, <0x0 0x17810054 0x0 0x4>,
+		      <0x0 0x17820054 0x0 0x4>, <0x0 0x17830054 0x0 0x4>,
+		      <0x0 0x17840054 0x0 0x4>, <0x0 0x17850054 0x0 0x4>,
+		      <0x0 0x17860054 0x0 0x4>, <0x0 0x17870054 0x0 0x4>,
+		      <0x0 0x17880098 0x0 0x4>, <0x178C0000 0x10000>;
 		reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
 			  "seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
 			  "seq_lpm_cntr_cfg_cpu4", "seq_lpm_cntr_cfg_cpu5",
@@ -1299,7 +1301,7 @@
 
 	sram@c3f0000 {
 		compatible = "qcom,rpmh-stats-v4";
-		reg = <0xc3f0000 0x400>;
+		reg = <0x0 0xc3f0000 0x0 0x400>;
 		ss-name = "modem", "adsp", "adsp_island",
 			  "cdsp", "apss", "wpss";
 		qcom,qmp = <&aoss_qmp>;
@@ -1307,7 +1309,7 @@
 
 	sys-pm-vx@c320000 {
 		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-chora";
-		reg = <0xc320000 0x0400>;
+		reg = <0x0 0xc320000 0x0 0x0400>;
 		qcom,qmp = <&aoss_qmp>;
 	};
 
