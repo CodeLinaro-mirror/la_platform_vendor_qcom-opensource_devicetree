@@ -467,6 +467,19 @@ dtb-y += $(pineapple_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_SERAPH), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += seraph-vm-base.dtb \
+				seraph-vm-atp-overlay.dtbo \
+				seraph-vm-idp-overlay.dtbo \
+				seraph-vm-idp-no-display-overlay.dtbo \
+				seraph-vm-idp-no-display-no-gpu-overlay.dtbo \
+				seraph-vm-idp-dtof-overlay.dtbo
+
+dtb-y += $(seraph_tuivm-dtb-y)
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_SUN), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 sun_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += sun-vm-rumi.dtb \

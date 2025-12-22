@@ -523,6 +523,18 @@ _platform_map = {
             {"name": "seraph-rumi-overlay.dtbo"},
         ],
     },
+    "seraph-tuivm": {
+        "dtb_list": [
+            {"name": "seraph-vm-base.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "seraph-vm-atp-overlay.dtbo"},
+            {"name": "seraph-vm-idp-overlay.dtbo"},
+            {"name": "seraph-vm-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-vm-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraph-vm-idp-dtof-overlay.dtbo"},
+        ],
+    },
     "sun": {
         "dtb_list": [
             # keep sorted
