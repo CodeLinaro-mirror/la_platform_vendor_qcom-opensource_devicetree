@@ -324,6 +324,14 @@
 					remote-endpoint = <&usb_port1_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb1_configure_in: endpoint {
+					remote-endpoint = <&usb_port1_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -438,6 +446,10 @@
 
 &usb_port1_dwc3_ss {
 	remote-endpoint = <&retimer_usb1_ss_out>;
+};
+
+&usb_port1_configure_out {
+	remote-endpoint = <&retimer_usb1_configure_in>;
 };
 
 &usb2_phy_4 {
