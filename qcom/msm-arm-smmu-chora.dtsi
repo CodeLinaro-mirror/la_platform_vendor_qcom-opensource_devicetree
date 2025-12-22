@@ -19,8 +19,15 @@
 
 		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
 
-		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>;
-		clock-names = "gpu_cc_gpu_smmu_vote_clk";
+		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>,
+			<&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+			<&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+			<&gpucc GPU_CC_AHB_CLK>;
+
+		clock-names = "gpu_cc_gpu_smmu_vote_clk",
+			"gcc_gpu_memnoc_gfx",
+			"gcc_gpu_snoc_dvm_gfx",
+			"gpu_cc_ahb";
 
 		interrupts =	<GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 677 IRQ_TYPE_LEVEL_HIGH>,
