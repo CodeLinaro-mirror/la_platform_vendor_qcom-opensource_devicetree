@@ -605,14 +605,10 @@
 		#dma-cells = <1>;
 		qcom,ee = <1>;
 		qcom,num-ees = <2>;
-		qcom,apps-ch-pipes = <0x0>;
 		iommus = <&apps_smmu 0x17e6 0x0>,
 			<&apps_smmu 0x17ed 0x0>,
 			<&apps_smmu 0x17ee 0x0>,
 			<&apps_smmu 0x17f0 0x1>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
-		qcom,iommu-dma = "fastmap";
 	};
 
 	slim_aud: slim@62dc0000 {
@@ -624,16 +620,10 @@
 		dma-names = "rx", "tx";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		interrupt-names = "slimbus_irq";
-		qcom,apps-ch-pipes = <0x0>;
-		qcom,ea-pc = <0x2f0>;
 		iommus = <&apps_smmu 0x17e6 0x0>,
 			<&apps_smmu 0x17ed 0x0>,
 			<&apps_smmu 0x17ee 0x0>,
 			<&apps_smmu 0x17f0 0x1>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
-		qcom,iommu-dma = "fastmap";
 		status = "disabled";
 	};
 
