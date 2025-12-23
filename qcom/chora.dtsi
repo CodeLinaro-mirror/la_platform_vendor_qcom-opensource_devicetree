@@ -1776,7 +1776,7 @@
 
 	aggre_noc: interconnect@1700000 {
 		compatible = "qcom,chora-aggre1_noc";
-		reg = <0x01700000 0x35400>;
+		reg = <0x0 0x01700000 0x0 0x35400>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1787,7 +1787,7 @@
 
 	config_noc: interconnect@1600000 {
 		compatible = "qcom,chora-cnoc_cfg";
-		reg = <0x01600000 0x7200>;
+		reg = <0x0 0x01600000 0x0 0x7200>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1795,7 +1795,7 @@
 
 	cnoc_main: interconnect@1500000 {
 		compatible = "qcom,chora-cnoc_main";
-		reg = <0x01500000 0x16200>;
+		reg = <0x0 0x01500000 0x0 0x16200>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1803,7 +1803,7 @@
 
 	gem_noc: interconnect@24100000 {
 		compatible = "qcom,chora-gem_noc";
-		reg = <0x24100000 0xff080>;
+		reg = <0x0 0x24100000 0x0 0xff080>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1811,7 +1811,7 @@
 
 	lpass_ag_noc: interconnect@3C40000 {
 		compatible = "qcom,chora-lpass_ag_noc";
-		reg = <0x03c40000 0x17200>;
+		reg = <0x0 0x03c40000 0x0 0x17200>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1819,7 +1819,7 @@
 
 	mmss_noc: interconnect@1400000 {
 		compatible = "qcom,chora-mmss_noc";
-		reg = <0x01400000 0xdb400>;
+		reg = <0x0 0x01400000 0x0 0xdb400>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1827,7 +1827,7 @@
 
 	pcie_anoc: interconnect@16C0000 {
 		compatible = "qcom,chora-pcie_anoc";
-		reg = <0x016c0000 0xf080>;
+		reg = <0x0 0x016c0000 0x0 0xf080>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
@@ -1837,7 +1837,7 @@
 
 	system_noc: interconnect@1680000 {
 		compatible = "qcom,chora-system_noc";
-		reg = <0x01680000 0x1f080>;
+		reg = <0x0 0x01680000 0x0 0x1f080>;
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
