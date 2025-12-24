@@ -27,7 +27,9 @@
 
 	reserved_memory: reserved-memory { };
 
-	aliases { };
+	aliases {
+		serial0 = &uart0;
+	};
 
 	firmware: firmware {};
 
@@ -669,6 +671,31 @@
 			#interrupt-cells = <2>;
 		};
 	};
+
+	qupv3_id_0: geniqup@4ac0000 {
+		compatible = "qcom,geni-se-qup";
+		reg = <0x4ac0000 0x2000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+		clock-names = "m-ahb",
+			      "s-ahb";
+		ranges;
+		status = "okay";
+
+		uart0: serial@4a80000 {
+			compatible = "qcom,geni-debug-uart";
+			reg = <0x4a80000 0x4000>;
+			reg-names = "se_phys";
+			interrupts = <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>;
+			clock-names = "se";
+			clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+			pinctrl-0 = <&qup_uart0_tx>, <&qup_uart0_rx>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
@@ -690,5 +717,17 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x1000000>;
 		linux,cma-default;
+	};
+};
+
+&tlmm {
+	qup_uart0_tx: qup-uart0-tx-state {
+		pins = "gpio0";
+		function = "qup1_se0_l2";
+	};
+
+	qup_uart0_rx: qup-uart0-rx-state {
+		pins = "gpio1";
+		function = "qup1_se0_l3";
 	};
 };
