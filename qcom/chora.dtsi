@@ -1637,6 +1637,8 @@
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_NOM 0>;
 		reg-names = "cx", "mx";
 
+		qcom,qmp = <&aoss_qmp>;
+
 		interconnects = <&lpass_ag_noc MASTER_LPASS_PROC &mc_virt SLAVE_EBI1>,
 				<&aggre_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		interconnect-names = "rproc_ddr", "crypto_ddr";
@@ -1659,8 +1661,11 @@
 				"stop-ack",
 				"shutdown-ack";
 
-		status = "ok";
+		/* Outputs to turing */
+		qcom,smem-states = <&adsp_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
 
+		status = "ok";
 
 		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
@@ -1709,6 +1714,8 @@
 		mss-uV-uA = <RPMH_REGULATOR_LEVEL_NOM_L1 100000>;
 		reg-names = "cx", "mx", "mss";
 
+		qcom,qmp = <&aoss_qmp>;
+
 		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
 				<&aggre_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		interconnect-names = "rproc_ddr", "crypto_ddr";
@@ -1730,6 +1737,10 @@
 				"ready",
 				"stop-ack",
 				"shutdown-ack";
+
+		/* Outputs to turing */
+		qcom,smem-states = <&modem_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
 
 		status = "ok";
 
