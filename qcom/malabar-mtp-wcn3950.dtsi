@@ -4,3 +4,4 @@
  */
 
 #include "malabar-pmic-overlay.dtsi"
+#include "malabar-pmiv010x.dtsi"

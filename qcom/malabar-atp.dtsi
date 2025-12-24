@@ -23,3 +23,5 @@
 
 	status = "ok";
 };
+
+#include "malabar-pm7250b.dtsi"
