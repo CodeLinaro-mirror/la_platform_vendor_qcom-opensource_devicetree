@@ -1901,6 +1901,8 @@
 		compatible = "qcom,xpcs";
 		reg = <0x1a94000 0x5100>;
 		reg-names = "qxpcs";
+		resets = <&scmi_reset 1>;
+		reset-names = "serdes_reset";
 	};
 
 	ethernet1: ethernet@1a80000 {
@@ -1927,9 +1929,6 @@
 
 		power-domains = <&scmi_power 8>, <&scmi_power 9>, <&scmi_perf 1>, <&scmi_perf 2>;
 		power-domain-names = "power_core", "power_mdio", "perf_serdes", "perf_5g_serdes";
-
-		resets = <&scmi_reset 1>;
-		reset-names = "serdes_reset";
 
 		pinctrl-0 = <&ethernet1_default>;
 		pinctrl-names = "default";
