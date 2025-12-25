@@ -35,14 +35,14 @@
 
 		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
 		interconnects = <&aggre_noc MASTER_USB2_0 &mc_virt SLAVE_EBI1>,
-				<&aggre_noc MASTER_USB2_0 &config_noc SLAVE_IPA_CFG>,
+				<&aggre_noc MASTER_USB2_0 &cnoc_main SLAVE_IPA_CFG>,
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB2_0>;
 
 		qcom,dis-sending-cm-l1-quirk;
 		qcom,core-clk-rate = <66666667>;
 		qcom,use-eusb2-phy;
+		qcom,use-pdc-interrupts;
 
-		extcon = <&eud>;
 		qcom,pm-qos-latency = <2>;
 
 		qcom,num-gsi-evt-buffs = <0x3>;
@@ -73,7 +73,7 @@
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
-			dr_mode = "otg";
+			dr_mode = "peripheral";
 			maximum-speed = "high-speed";
 			usb-role-switch;
 		};
@@ -87,7 +87,7 @@
 	/* USB port related High Speed PHY */
 	eusb2_phy0: hsphy@88e3000 {
 		compatible = "qcom,usb-snps-eusb2-phy";
-		reg = <0x0 0x88e3000 0x0 0x150>,
+		reg = <0x0 0x88e3000 0x0 0x154>,
 			<0x0 0x88e2000 0x0 0x4>,
 			<0x0 0x0c278000 0x0 0x4>;
 		reg-names = "eusb2_phy_base",
@@ -98,7 +98,7 @@
 		qcom,vdd-voltage-level = <0 880000 950000>;
 		vdda12-supply = <&L3C_E0>;
 
-		clocks = <&rpmhcc RPMH_CXO_PAD_CLK>,
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&tcsrcc TCSR_USB2_CLKREF_EN>;
 		clock-names = "ref_clk_src", "ref_clk";
 
@@ -108,5 +108,13 @@
 
 	usb_nop_phy: usb_nop_phy {
 		compatible = "usb-nop-xceiv";
+	};
+
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu 0x80b 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0xb>;
+		qcom,usb-audio-intr-num = <2>;
 	};
 };
