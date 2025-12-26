@@ -155,6 +155,87 @@
 		};
 	};
 
+	pcie5 {
+
+		pcie5_perst_default: pcie5_perst_default {
+			mux {
+				pins = "gpio149";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio149";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+
+		pcie5_clkreq_default: pcie5_clkreq_default {
+			mux {
+				pins = "gpio150";
+				function = "pcie5_clk";
+			};
+
+			config {
+				pins = "gpio150";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie5_wake_default: pcie5_wake_default {
+			mux {
+				pins = "gpio151";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio151";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		pcie5_clkreq_sleep: pcie5_clkreq_sleep {
+			mux {
+				pins = "gpio150";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio150";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		sdx_vph_pwr_en: sdx_vph_pwr_en {
+			mux {
+				pins = "gpio221";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio221";
+				drive-strength = <4>;
+				bias-disable;
+			};
+		};
+
+		sdx_vph_pwr_sleep: sdx_vph_pwr_sleep {
+			mux {
+				pins = "gpio221";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio221";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+
 	qupv3_se0_i2c_pins: qupv3_se0_i2c_pins {
 		qupv3_se0_i2c_sda_active: qupv3_se0_i2c_sda_active {
 			mux {
