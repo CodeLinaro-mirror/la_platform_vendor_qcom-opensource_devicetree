@@ -1484,7 +1484,7 @@
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
 
-		power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+		qcom,cluster-mask = <0x3f 0xc0>;
 		lanes-per-direction = <2>;
 
 		clock-names =
@@ -1513,6 +1513,8 @@
 				<&bimc MASTER_AMPSS_M0 &config_noc SLAVE_UFS_MEM_CFG>;
 		interconnect-names = "ufs-ddr", "cpu-ufs";
 
+		/* set the dependency that smmu being probed before ufs */
+		depends-on-supply = <&apps_smmu>;
 		iommus = <&apps_smmu 0x0180 0x0>;
 		qcom,iommu-dma = "fastmap";
 		memory-region = <&ufshc_dma_resv>;
@@ -1524,6 +1526,15 @@
 		qcom,bypass-pbl-rst-wa;
 		qcom,max-cpus = <8>;
 		status = "disabled";
+
+		qos0 {
+			vote = <44>;
+			perf;
+		};
+
+		qos1 {
+			vote = <44>;
+		};
 	};
 
 	qcom_tzlog: tz-log@c125720 {

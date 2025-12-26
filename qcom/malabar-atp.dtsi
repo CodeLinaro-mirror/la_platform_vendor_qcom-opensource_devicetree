@@ -24,4 +24,47 @@
 	status = "ok";
 };
 
+&ufsphy_mem {
+	compatible = "qcom,ufs-phy-qmp-v4-waipio";
+
+	/* VDDA_UFS_CORE */
+	vdda-phy-supply = <&L5B_E0>;
+	vdda-phy-max-microamp = <99590>;
+
+	/* VDDA_UFS_0_1P2 */
+	vdda-pll-supply = <&L16B_E0>;
+	vdda-pll-max-microamp = <18340>;
+
+	/* Qref power supply, Refer Qref diagram */
+	vdda-qref-supply = <&L5B_E0>;
+	vdda-qref-max-microamp = <240>;
+
+	status = "ok";
+};
+
+&ufshc_mem {
+	vdd-hba-supply = <&gcc_ufs_phy_gdsc>;
+
+	vcc-supply = <&L5E_E0>;
+	vcc-max-microamp = <1056000>;
+
+	vccq-supply = <&L13B_E0>;
+	vccq-max-microamp = <750000>;
+
+	vccq2-supply = <&L19B_E0>;
+	vccq2-max-microamp = <750000>;
+
+	/* VDD_PX10 is voted for the ufs_reset_n */
+	qcom,vddp-ref-clk-supply = <&L13B_E0>;
+	qcom,vddp-ref-clk-max-microamp = <100>;
+
+	qcom,vccq-proxy-vote-supply = <&L13B_E0>;
+	qcom,vccq-proxy-vote-max-microamp = <750000>;
+
+	qcom,vccq-parent-supply = <&S8B_E0>;
+	qcom,vccq-parent-max-microamp = <210000>;
+
+	status = "ok";
+};
+
 #include "malabar-pm7250b.dtsi"
