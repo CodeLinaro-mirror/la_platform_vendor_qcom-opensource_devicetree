@@ -2254,6 +2254,7 @@
 /delete-node/ &ipcc_self_ping_mpss;
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_wpss;
+#include "msm-rdbg-monaco.dtsi"
 
 &qupv3_se5_2uart {
 	status = "ok";
