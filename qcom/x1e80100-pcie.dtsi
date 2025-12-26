@@ -206,9 +206,8 @@
 				&pcie6_wake_default
 				&pcie6_nvme_pwr_sleep>;
 
-		/* Enable interconnect handles once ICC driver is avilable */
-		//interconnect-names = "icc_path";
-		//interconnects = <&pcie_south_anoc MASTER_PCIE_6A &mc_virt SLAVE_EBI1>;
+		interconnect-names = "icc_path";
+		interconnects = <&pcie_south_anoc MASTER_PCIE_6A &mc_virt SLAVE_EBI1>;
 
 		power-domains = <&gcc GCC_PCIE_6A_GDSC>, <&gcc GCC_PCIE_6_PHY_GDSC>;
 		power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
@@ -305,6 +304,7 @@
 
 		qcom,target-link-speed = <0x4>;
 		qcom,target-link-width = <0x4>;
+		qcom,no-client-based-bw-voting;
 		qcom,boot-option = <0x2>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
@@ -727,9 +727,8 @@
 				&pcie4_clkreq_sleep
 				&pcie4_wake_default>;
 
-		/* Disabled until ICC driver is up */
-		//interconnect-names = "icc_path";
-		//interconnects = <&pcie_north_anoc MASTER_PCIE_4 &mc_virt SLAVE_EBI1>;
+		interconnect-names = "icc_path";
+		interconnects = <&pcie_north_anoc MASTER_PCIE_4 &mc_virt SLAVE_EBI1>;
 
 		power-domains = <&gcc GCC_PCIE_4_GDSC>, <&gcc GCC_PCIE_4_PHY_GDSC>;
 		power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
