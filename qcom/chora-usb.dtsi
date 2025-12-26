@@ -45,6 +45,7 @@
 		qcom,use-eusb2-phy;
 		qcom,use-pdc-interrupts;
 
+		extcon = <&eud>;
 		qcom,pm-qos-latency = <2>;
 
 		qcom,num-gsi-evt-buffs = <0x3>;
