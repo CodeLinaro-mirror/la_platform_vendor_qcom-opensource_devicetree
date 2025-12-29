@@ -30,7 +30,9 @@
 
 	aliases { };
 
-	firmware: firmware {};
+	firmware: firmware {
+		qcom_scm: qcom_scm { };
+	};
 
 	cpus {
 		#address-cells = <2>;
@@ -415,6 +417,12 @@
 		qcom,skip-qos;
 	};
 
+};
+
+&firmware {
+	qcom_scm {
+		compatible = "qcom,scm";
+	};
 };
 
 #include "pikachu-reserved-memory.dtsi"
