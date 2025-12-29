@@ -13,7 +13,6 @@ _platform_map = {
             {"name": "sdxkova-idp-lga.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
             {"name": "sdxkova-idp-lga-v3.dtb"},
-            {"name": "sdxkova-idp-lga-v4.dtb"},
             {"name": "sdxkova-idp-m2.dtb"},
             {"name": "sdxkova-idp-m2-v2.dtb"},
             {"name": "sdxkova-idp-m2-v3.dtb"},
@@ -41,6 +40,7 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v4.dtb"},
             {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
+            {"name": "sdxkova-idp-lga-v4.dtb"},
             # From sdxkova.cpe.tarang
             {"name": "sdxkova-idp-cpe-v7.dtb"},
         ],
@@ -70,6 +70,7 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
+            {"name": "sdxkova-idp-lga-v4.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
