@@ -403,6 +403,10 @@
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
 		};
+
+		qcom_scm_smcinvoke {
+			compatible = "qcom,scm-smcinvoke";
+		};
 	};
 
 	hypervisor: hypervisor {
