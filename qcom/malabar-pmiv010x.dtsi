@@ -27,6 +27,34 @@
 			bias-high-impedance;
 		};
 	};
+
+	key_vol_up {
+		key_vol_up_default: key_vol_up_default {
+			pins = "gpio8";
+			function = "normal";
+			input-enable;
+			bias-pull-up;
+			power-source = <1>;
+		};
+	};
+};
+
+&soc {
+	gpio_key {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+		vol_up {
+			label = "volume_up";
+			gpios = <&pmiv010x_gpios 8 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <KEY_VOLUMEUP>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
+		};
+	};
 };
 
 &pmk8350_vadc {
