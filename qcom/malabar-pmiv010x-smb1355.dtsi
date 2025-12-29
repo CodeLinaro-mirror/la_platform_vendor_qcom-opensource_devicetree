@@ -16,7 +16,7 @@
 	interrupt-names = "ovp-irq", "pre-flash-irq", "flash-irq";
 	qcom,string-cfg = <2>;
 	qcom,leds-per-string = <8>;
-	qcom,fs-current-limit = <23000>;
+	qcom,fs-current-limit = <22500>;
 	status = "ok";
 };
 
