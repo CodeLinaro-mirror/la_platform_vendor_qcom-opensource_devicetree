@@ -1993,4 +1993,31 @@
 			};
 		};
 	};
+
+	pm8010_reset: pm8010_reset {
+		mux {
+			pins = "gpio112";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio112";
+			bias-pull-up;
+			output-high;
+			drive-strength = <2>;
+		};
+	};
+
+	pm8010_interrupt: pm8010_interrupt {
+		mux {
+			pins = "gpio113";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio113";
+			bias-disable;
+			input-enable;
+		};
+	};
 };
