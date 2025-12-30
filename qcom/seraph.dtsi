@@ -1517,7 +1517,7 @@
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 
-		firmware-name = "soccp.mbn", "soccp_dtb_mbn";
+		firmware-name = "soccp.mbn", "soccp_dtb.mbn";
 
 		memory-region = <&soccp_mem &soccp_dtb_mem>;
 
@@ -1579,6 +1579,7 @@
 &firmware {
 	qcom_scm {
 		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x99000>;
 	};
 };
 
