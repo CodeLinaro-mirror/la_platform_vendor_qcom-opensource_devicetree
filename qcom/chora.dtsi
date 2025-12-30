@@ -1348,7 +1348,6 @@
 		interrupt-names = "bam-irq", "core-irq";
 		qcom,bam-pipe-pair = <2>;
 		qcom,offload-ops-support;
-		qcom,use-key-index;
 		qcom,bam-pipe-offload-cpb-hlos = <1>;
 		qcom,bam-pipe-offload-hlos-cpb = <3>;
 		qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
@@ -2406,14 +2405,14 @@
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
 		reg = <0x0 0x1d84000 0x0 0x3000>,
-			<0x0 0x1d88000 0x0 0x8000>,
-			<0x0 0x1d90000 0x0 0x9000>;
-		reg-names = "ufs_mem", "ufs_ice", "ufs_ice_hwkm";
+			<0x0 0x1d88000 0x0 0x18000>;
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
 
+		qcom,ice-use-hwkm;
 		power-domains = <&gcc GCC_UFS_PHY_GDSC>;
 		lanes-per-direction = <2>;
 		qcom,cluster-mask = <0x0f 0xf0>;
