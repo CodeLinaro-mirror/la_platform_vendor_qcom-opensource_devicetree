@@ -46,6 +46,12 @@
 			size = <0x0 0x1000000>;
 		};
 
+		kinfo_mem: debug_kinfo_region {
+			alloc-ranges = <0x0 0x0 0xffffffff 0xffffffff>;
+			size = <0x0 0x1000>;
+			no-map;
+		};
+
 		tlmm_shared_iomem: tlmm_sh_iomem {
 			no-map;
 			qcom,label = <0x7E>;
@@ -1148,6 +1154,10 @@
 		memory-region = <&system_cma>;
 	};
 
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
 };
 
 &soc {
