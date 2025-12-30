@@ -379,6 +379,9 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "taycan-idp-wcn3988-4gb.dtb"},
+            {"name": "taycan-idp-moselle-4gb.dtb"},
+            {"name": "taycan-idp.dtb"},
+            {"name": "ravelin-qrd.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
