@@ -170,6 +170,13 @@
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	qcom,qrtr-gunyah-tuivm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x103>;
+		peer-name = <2>;
+	};
+
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
 	intc: interrupt-controller@17200000 {

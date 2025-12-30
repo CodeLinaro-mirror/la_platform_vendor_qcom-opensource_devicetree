@@ -160,6 +160,17 @@
 				qcom,label = <0x10a>;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					allocate-base;
+				};
+			};
+
 			gpiomem0 {
 				vdevice-type = "iomem";
 				patch = "/soc/tlmm-vm-mem-access";
@@ -394,6 +405,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
 	};
 
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
