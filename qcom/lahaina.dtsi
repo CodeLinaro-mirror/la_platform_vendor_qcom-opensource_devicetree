@@ -344,10 +344,6 @@ soc: soc { };
 	qcom_mem_object {
 		compatible = "qcom,mem-object";
 	};
-
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-	};
 };
 
 &reserved_memory {
