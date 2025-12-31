@@ -2130,7 +2130,7 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&usb_south_anoc MASTER_USB3_1 &usb_south_anoc MASTER_USB3_1>,
+			interconnects = <&usb_south_anoc MASTER_USB3_1 &mc_virt SLAVE_EBI1>,
 					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_1>;
 
 			/*
