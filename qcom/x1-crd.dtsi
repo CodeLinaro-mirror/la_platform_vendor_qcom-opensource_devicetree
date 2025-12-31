@@ -60,9 +60,6 @@
 
 &usb1 {
 	status = "okay";
-	dwc3@a800000 {
-		dr_mode = "host";
-	};
 };
 
 &usb2_phy_4 {
@@ -71,7 +68,4 @@
 
 &usb4 {
 	status = "okay";
-	dwc3@a200000 {
-		dr_mode = "host";
-	};
 };
