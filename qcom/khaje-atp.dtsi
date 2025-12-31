@@ -230,10 +230,6 @@
 	status = "disabled";
 };
 
-&pm8008_9 {
-	status = "disabled";
-};
-
 &pm6125_pwm {
 	status = "okay";
 };
