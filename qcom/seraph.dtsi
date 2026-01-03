@@ -576,6 +576,13 @@
 					"non-fatal";
 	};
 
+	dload_mode {
+		compatible = "qcom,dload-mode";
+		mmcx-supply = <&VDD_MMCX_LEVEL>;
+		mmcx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		reg-names = "mmcx";
+	};
+
 	apps_rsc: rsc@17a00000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
