@@ -321,6 +321,10 @@ properties:
           - enum:
               - qcom,x1e80100-crd
               - qcom,crd
+              - qcom,x1e80100-qcb
+              - qcom,qcb
+              - qcom,x1e80100-qcp
+              - qcom,qcp
           - const: qcom,x1e80100
 
       - description: Qualcomm Technologies, Inc. X1P42100

@@ -6,6 +6,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pmxr2230.h>
 #include <dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550vx.h>
+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
 
 &spmi0_bus {
 	#include "pmk8550.dtsi"
@@ -36,55 +37,116 @@
 	};
 };
 
-&thermal_zones {
-	pmr735b_temp_alarm: pmr735b_tz {
-		polling-delay-passive = <100>;
-		thermal-sensors = <&pmr735b_tz>;
+&pm8550vs_c_tz {
+	io-channels = <&pmk8550_vadc PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+	io-channel-names = "thermal";
+};
 
-		trips {
-			pmr735b_trip0: trip0 {
-				temperature = <95000>;
-				hysteresis = <0>;
-				type = "passive";
-			};
-
-			pmr735b_trip1: trip1 {
-				temperature = <115000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
-
-			pmr735b_trip2: trip2 {
-				temperature = <145000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
+&pmxr2230_gpios {
+	sys_therm_6_gpio7 {
+		sys_therm_6_gpio7_default: sys_therm_6_gpio7_default {
+			pins = "gpio7";
+			bias-high-impedance;
 		};
 	};
+};
 
-	pmxr2230_temp_alarm: pmxr2230_tz {
-		polling-delay-passive = <100>;
-		thermal-sensors = <&pmxr2230_tz>;
+&pmk8550_vadc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&sys_therm_6_gpio7_default>;
 
-		trips {
-			pmxr2230_trip0: trip0 {
-				temperature = <95000>;
-				hysteresis = <0>;
-				type = "passive";
-			};
+	/* PMXR2230 Channel nodes */
+	pmxr2230_offset_ref {
+		reg = <PMXR2230_ADC5_GEN3_OFFSET_REF>;
+		label = "pmxr2230_offset_ref";
+		qcom,pre-scaling = <1 1>;
+	};
 
-			pmxr2230_trip1: trip1 {
-				temperature = <115000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
+	pmxr2230_vref_1p25 {
+		reg = <PMXR2230_ADC5_GEN3_1P25VREF>;
+		label = "pmxr2230_vref_1p25";
+		qcom,pre-scaling = <1 1>;
+	};
 
-			pmxr2230_trip2: trip2 {
-				temperature = <145000>;
-				hysteresis = <0>;
-				type = "critical";
-			};
-		};
+	pmxr2230_die_temp {
+		reg = <PMXR2230_ADC5_GEN3_DIE_TEMP>;
+		label = "pmxr2230_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmxr2230_vph_pwr {
+		reg = <PMXR2230_ADC5_GEN3_VPH_PWR>;
+		label = "pmxr2230_vph_pwr";
+		qcom,pre-scaling = <1 3>;
+	};
+
+	pm8550vs_c_die_temp {
+		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(2)>;
+		label = "pm8550vs_c_die_temp";
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pmk8550_sys_therm_0 {
+		reg = <PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_100K_PU>;
+		label = "pmk8550_sys_therm_0";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_1 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX_THM5_100K_PU>;
+		label = "pmxr2230_sys_therm_1";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_2 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX_THM1_100K_PU>;
+		label = "pmxr2230_sys_therm_2";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_3 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX_THM4_100K_PU>;
+		label = "pmxr2230_sys_therm_3";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_4 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX_THM2_100K_PU>;
+		label = "pmxr2230_sys_therm_4";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_5 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX_THM3_100K_PU>;
+		label = "pmxr2230_sys_therm_5";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	pmxr2230_sys_therm_6 {
+		reg = <PMXR2230_ADC5_GEN3_AMUX3_GPIO7_100K_PU>;
+		label = "pmxr2230_sys_therm_6";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+		qcom,adc-tm-type = <1>;
 	};
 };
 
@@ -137,6 +199,440 @@
 			output-enable;
 			bias-disable;
 			power-source = <0>;
+		};
+	};
+};
+
+&tlmm {
+	pm8008o_int_default: pm8008o-int-default-state {
+		pins = "gpio23";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	pm8008p_int_default: pm8008p-int-default-state {
+		pins = "gpio13";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+};
+
+&pm8550vs_c_gpios {
+	pm8008o_reset_n_default: pm8008o-reset-n-default-state {
+		pins = "gpio5";
+		function = PMIC_GPIO_FUNC_NORMAL;
+		bias-pull-down;
+	};
+
+	pm8008p_reset_n_default: pm8008p-reset-n-default-state {
+		pins = "gpio6";
+		function = PMIC_GPIO_FUNC_NORMAL;
+		bias-pull-down;
+	};
+};
+
+&qupv3_se1_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+	pm8008o: pmic@8 {
+		compatible = "qcom,pm8008";
+		reg = <0x8>;
+		interrupts-extended = <&tlmm 23 IRQ_TYPE_EDGE_RISING>;
+		reset-gpios = <&pm8550vs_c_gpios 5 GPIO_ACTIVE_LOW>;
+		vdd-l1-l2-supply = <&S2B>;
+		vdd-l3-l4-supply = <&BOB1>;
+		vdd-l5-supply = <&BOB1>;
+		vdd-l6-supply = <&BOB1>;
+		vdd-l7-supply = <&BOB1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pm8008o_int_default>,
+			    <&pm8008o_reset_n_default>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-ranges = <&pm8008o 0 0 2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
+
+		#thermal-sensor-cells = <0>;
+
+		regulators {
+			L1O: pm8008o_l1: ldo1 {
+				regulator-name = "pm8008o_l1";
+				regulator-min-microvolt = <1048000>;
+				regulator-max-microvolt = <1184000>;
+			};
+
+			L2O: pm8008o_l2: ldo2 {
+				regulator-name = "pm8008o_l2";
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1152000>;
+			};
+
+			L3O: pm8008o_l3: ldo3 {
+				regulator-name = "pm8008o_l3";
+				regulator-min-microvolt = <2696000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L4O: pm8008o_l4: ldo4 {
+				regulator-name = "pm8008o_l4";
+				regulator-min-microvolt = <2696000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L5O: pm8008o_l5: ldo5 {
+				regulator-name = "pm8008o_l5";
+				regulator-min-microvolt = <1504000>;
+				regulator-max-microvolt = <3544000>;
+			};
+
+			L6O: pm8008o_l6: ldo6 {
+				regulator-name = "pm8008o_l6";
+				regulator-min-microvolt = <2696000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L7O: pm8008o_l7: ldo7 {
+				regulator-name = "pm8008o_l7";
+				regulator-min-microvolt = <2696000>;
+				regulator-max-microvolt = <3000000>;
+			};
+		};
+	};
+
+	pm8008p: pmic@c {
+		compatible = "qcom,pm8008";
+		reg = <0xc>;
+
+		interrupts-extended = <&tlmm 13 IRQ_TYPE_EDGE_RISING>;
+		reset-gpios = <&pm8550vs_c_gpios 6 GPIO_ACTIVE_LOW>;
+
+		vdd-l1-l2-supply = <&S2B>;
+		vdd-l3-l4-supply = <&S1B>;
+		vdd-l5-supply = <&S1B>;
+		vdd-l6-supply = <&BOB1>;
+		vdd-l7-supply = <&BOB1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pm8008p_int_default>,
+			    <&pm8008p_reset_n_default>;
+
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-ranges = <&pm8008p 0 0 2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
+
+		#thermal-sensor-cells = <0>;
+
+		regulators {
+			L1P: pm8008p_l1: ldo1 {
+				regulator-name = "pm8008p_l1";
+				regulator-min-microvolt = <1048000>;
+				regulator-max-microvolt = <1200000>;
+			};
+
+			L2P: pm8008p_l2: ldo2 {
+				regulator-name = "pm8008p_l2";
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1152000>;
+			};
+
+			L3P: pm8008p_l3: ldo3 {
+				regulator-name = "pm8008p_l3";
+				regulator-min-microvolt = <1696000>;
+				regulator-max-microvolt = <1904000>;
+			};
+
+			L4P: pm8008p_l4: ldo4 {
+				regulator-name = "pm8008p_l4";
+				regulator-min-microvolt = <1696000>;
+				regulator-max-microvolt = <1904000>;
+			};
+
+			L5P: pm8008p_l5: ldo5 {
+				regulator-name = "pm8008p_l5";
+				regulator-min-microvolt = <1616000>;
+				regulator-max-microvolt = <1984000>;
+			};
+
+			L6P: pm8008p_l6: ldo6 {
+				regulator-name = "pm8008p_l6";
+				regulator-min-microvolt = <2696000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L7P: pm8008p_l7: ldo7 {
+				regulator-name = "pm8008p_l7";
+				regulator-min-microvolt = <2496000>;
+				regulator-max-microvolt = <3304000>;
+			};
+		};
+	};
+};
+
+&pmk8550_sdam_1 {
+	wcn_info: wcn_info@ac {
+		reg = <0xac 0x1>;
+	};
+};
+
+&thermal_zones {
+	pmr735b_temp_alarm: pmr735b_tz {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pmr735b_tz>;
+
+		trips {
+			pmr735b_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pmr735b_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pmr735b_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pmxr2230_temp_alarm: pmxr2230_tz {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pmxr2230_tz>;
+
+		trips {
+			pmxr2230_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pmxr2230_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pmxr2230_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pm8008o-thermal {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pm8008o>;
+
+		trips {
+			trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pm8008p-thermal {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pm8008p>;
+
+		trips {
+			trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pm8550vs_c_temp_alarm: pm8550vs_c_tz {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pm8550vs_c_tz>;
+
+		trips {
+			pm8550vs_c_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pm8550vs_c_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pm8550vs_c_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	/* XO_THERM */
+	sys-therm-0 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* GNSS_THERM */
+	sys-therm-1 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX_THM5_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* PA_THERM1 */
+	sys-therm-2 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX_THM1_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* QUIET_THERM */
+	sys-therm-3 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX_THM4_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* UFS_THERM */
+	sys-therm-4 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX_THM2_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* PA_THERM2 */
+	sys-therm-5 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX_THM3_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	/* CAM_THERM */
+	sys-therm-6 {
+		polling-delay-passive = <0>;
+		thermal-sensors = <&pmk8550_vadc PMXR2230_ADC5_GEN3_AMUX3_GPIO7_100K_PU>;
+
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			active-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
 		};
 	};
 };

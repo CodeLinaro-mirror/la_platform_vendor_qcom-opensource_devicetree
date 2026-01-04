@@ -56,6 +56,24 @@
 			power-source = <1>;
 		};
 	};
+
+	sys_therm_0_gpio3 {
+		sys_therm_0_gpio3_default: sys_therm_0_gpio3_default {
+			pins = "gpio3";
+			bias-high-impedance;
+		};
+	};
+
+	sys_therm_1_gpio4 {
+		sys_therm_1_gpio4_default: sys_therm_1_gpio4_default {
+			pins = "gpio4";
+			bias-high-impedance;
+		};
+	};
+};
+
+&pmk8550_rtc {
+	qcom,no-alarm; /* alarm owned by ADSP */
 };
 
 &soc {
@@ -131,6 +149,9 @@
 };
 
 &pmk8550_vadc {
+	pinctrl-0 = <&sys_therm_0_gpio3_default>, <&sys_therm_1_gpio4_default>;
+	pinctrl-names = "default";
+
 	pm8550_sys_therm_0 {
 		reg = <PM8550_ADC5_GEN3_AMUX1_GPIO3_100K_PU>;
 		label = "pm8550_sys_therm_0";
@@ -203,7 +224,7 @@
 	pm8550ve_i_die_temp {
 		reg = <PM8550VX_ADC5_GEN3_DIE_TEMP(8)>;
 		label = "pm8550ve_i_die_temp";
-		qom,pre-scaling = <1 1>;
+		qcom,pre-scaling = <1 1>;
 	};
 
 	pm8550ve_j_die_temp {

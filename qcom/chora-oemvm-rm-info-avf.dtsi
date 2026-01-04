@@ -20,7 +20,7 @@
 };
 
 &non_devices_common {
-		required-subnodes-rm = <&minidump_rm
+		required-subnodes-rm = <&minidump
 					&qcom_gunyah_vm>;
 };
 

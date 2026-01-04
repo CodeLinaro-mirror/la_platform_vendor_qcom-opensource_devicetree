@@ -38,14 +38,16 @@
 
 	reserved_memory: reserved-memory { };
 
+	ddr-regions { };
+
 	mem-offline {
 		compatible = "qcom,mem-offline";
 		offline-sizes = <0x1 0x40000000 0x0 0x40000000>,
 			<0x1 0xc0000000 0x0 0x80000000>,
 			<0x2 0xc0000000 0x1 0x40000000>;
 		granule = <512>;
-		mboxes = <&qmp_aop 0>;
-		status = "disabled";
+		qcom,qmp = <&qmp_aop>;
+		ddr-old-version;
 	};
 
 	aliases: aliases {
@@ -2840,6 +2842,14 @@
 				qcom,no-wake-svc = <0x51
 						0x190>;
 
+			};
+			qcom,apr_tal_rpmsg {
+				qcom,glink-channels = "apr_audio_svc";
+				qcom,intents = <0x200 20>;
+			};
+
+			qcom,adsp_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
 			};
 
 			qcom,pmic_glink_rpmsg {
