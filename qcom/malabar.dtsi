@@ -721,7 +721,7 @@
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
-		qcom,gpios-reserved = <73>;
+		qcom,gpios-reserved = <73 36 37 38 39 21 22>;
 		wakeup-parent = <&mpm>;
 	};
 
