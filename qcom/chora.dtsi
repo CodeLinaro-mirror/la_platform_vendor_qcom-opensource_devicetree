@@ -2201,6 +2201,13 @@
 		qcom,primary;
 	};
 
+	qcom,qrtr-gunyah-tuivm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x103>;
+		peer-name = <2>;
+	};
+
 	qcom,gh-qtimer@1742B000 { // APSS_QTMR0_F5V1_QTMR_V1
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x1742B000 0x0 0x1000>;
