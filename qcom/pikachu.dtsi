@@ -11,6 +11,8 @@
 #include <dt-bindings/clock/qcom,pikachu-gpucc.h>
 #include <dt-bindings/clock/qcom,pikachu-tcsrcc.h>
 #include <dt-bindings/clock/qcom,pikachu-videocc.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
+#include <dt-bindings/interconnect/qcom,pikachu.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 
@@ -169,6 +171,10 @@
 						   <WAKE_TCS      2>,
 						   <CONTROL_TCS   0>,
 						   <FAST_PATH_TCS 1>;
+			};
+
+			apps_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
 			};
 		};
 	};
@@ -390,84 +396,106 @@
 	clk_virt: interconnect-clk-virt {
 		compatible = "qcom,pikachu-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	mc_virt: interconnect-mc-virt {
 		compatible = "qcom,pikachu-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	config_noc: interconnect@1600000 {
 		compatible = "qcom,pikachu-config_noc_cfg";
+		reg = <0x01600000 0x7200>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	cnoc_main: interconnect@1500000 {
 		compatible = "qcom,pikachu-config_noc_main";
+		reg = <0x01500000 0x1a200>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	gem_noc: interconnect@24100000 {
 		compatible = "qcom,pikachu-gem_noc";
+		reg = <0x24100000 0x161080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_ag_noc: interconnect@8240000 {
+	lpass_ag_noc: interconnect@35640000 {
 		compatible = "qcom,pikachu-lpass_ag_noc";
+		reg = <0x35640000 0xe080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_lpiaon_noc: interconnect@07800000 {
+	lpass_lpiaon_noc: interconnect@34800000 {
 		compatible = "qcom,pikachu-lpass_lpiaon_noc";
+		reg = <0x34800000 0x19080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_lpicx_noc: interconnect@07820000 {
+	lpass_lpicx_noc: interconnect@034820000 {
 		compatible = "qcom,pikachu-lpass_lpicx_noc";
+		reg = <0x34820000 0x44080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1780000 {
 		compatible = "qcom,pikachu-mmss_noc";
+		reg = <0x01780000 0x6c000>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	nsp_noc: interconnect@320C0000 {
 		compatible = "qcom,pikachu-nsp_noc";
+		reg = <0x320c0000 0x1f400>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	pcie_anoc: interconnect@16C0000 {
 		compatible = "qcom,pikachu-pcie_anoc";
+		reg = <0x016c0000 0xe800>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	system_noc: interconnect@1680000 {
 		compatible = "qcom,pikachu-system_noc";
+		reg = <0x01680000 0x2e400>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
