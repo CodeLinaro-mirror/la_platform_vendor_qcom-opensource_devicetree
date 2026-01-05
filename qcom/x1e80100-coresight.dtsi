@@ -208,8 +208,8 @@
 
 		device-name = "turing_etm0";
 
-		qcom,atid-num = <4>;
-		atid = <38 39 40 41>;
+		qcom,atid-num = <2>;
+		atid = <38 39>;
 		trace-name = "turing-etm0";
 
 		out-ports {
@@ -1901,7 +1901,7 @@
 		reg = <0x0 0x13e0a000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
-		device-name = "coresight_replicator_uc2";
+		device-name = "replicator_uc2";
 
 		qcom,replicator-loses-context;
 
@@ -5287,8 +5287,8 @@
 	audio-qmi {
 		compatible = "qcom,coresight-qmi";
 
-		device-name = "coresight-qmi-auido";
-		qcom,inst-id = <5>;
+		device-name = "qmi_auido";
+		qcom,inst-id = <2>;
 
 		in-ports {
 			#address-cells = <1>;
@@ -6277,6 +6277,7 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		qcom,extended_cti;
+		status = "disabled";
 	};
 
 	cti@10d31000 {
