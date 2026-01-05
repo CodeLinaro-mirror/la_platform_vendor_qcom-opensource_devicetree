@@ -650,6 +650,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_rdbg5_out: qcom,smp2p-rdbg5-out {
+			qcom,entry-name = "rdbg";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_rdbg5_in: qcom,smp2p-rdbg5-in {
+			qcom,entry-name = "rdbg";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
 	};
 
 	qcom,smp2p-lmcu {
@@ -704,6 +715,7 @@
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"
+#include "msm-rdbg-shikra.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
