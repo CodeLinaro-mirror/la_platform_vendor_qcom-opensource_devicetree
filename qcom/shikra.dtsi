@@ -446,8 +446,27 @@
 	};
 
 	gcc: clock-controller@1400000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "gcc_clocks";
+		compatible = "qcom,shikra-gcc", "syscon";
+		reg = <0x1400000 0x1f0000>;
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&emac0_sgmiiphy_rclk>,
+			 <&emac0_sgmiiphy_tclk>,
+			 <&emac1_sgmiiphy_rclk>,
+			 <&emac1_sgmiiphy_tclk>,
+			 <&pcie_pipe_clk>,
+			 <&sleep_clk>,
+			 <&usb3_phy_wrapper_gcc_usb30_pipe_clk>;
+		clock-names = "bi_tcxo",
+			      "emac0_sgmiiphy_rclk",
+			      "emac0_sgmiiphy_tclk",
+			      "emac1_sgmiiphy_rclk",
+			      "emac1_sgmiiphy_tclk",
+			      "pcie_pipe_clk",
+			      "sleep_clk",
+			      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
