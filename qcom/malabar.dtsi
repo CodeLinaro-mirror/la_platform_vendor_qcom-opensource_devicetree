@@ -437,9 +437,9 @@
 };
 
 &soc {
-	#address-cells = <1>;
-	#size-cells = <1>;
-	ranges = <0 0 0 0xffffffff>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges = <0 0 0 0 0x4 0x80000000>;
 	compatible = "simple-bus";
 
 	rpm_bus: qcom,rpm-smd {
@@ -477,8 +477,8 @@
 		interrupt-controller;
 		#redistributor-regions = <1>;
 		redistributor-stride = <0x0 0x20000>;
-		reg = <0xf200000 0x10000>,     /* GICD */
-		      <0xf240000 0x100000>;    /* GICR * 8 */
+		reg = <0x0 0xf200000 0x0 0x10000>,     /* GICD */
+		      <0x0 0xf240000 0x0 0x100000>;    /* GICR * 8 */
 		interrupts = <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
@@ -623,12 +623,12 @@
 	};
 
 	memtimer: timer@f420000 {
+		compatible = "arm,armv7-timer-mem";
+		reg = <0x0 0x0f420000 0x0 0x1000>;
+		clock-frequency = <19200000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		compatible = "arm,armv7-timer-mem";
-		reg = <0x0f420000 0x1000>;
-		clock-frequency = <19200000>;
 
 		frame@f421000 {
 			frame-number = <0>;
@@ -707,7 +707,7 @@
 
 	tlmm: pinctrl@400000 {
 		compatible = "qcom,malabar-pinctrl";
-		reg = <0x400000 0x1000000>;
+		reg = <0x0 0x400000 0x0 0x1000000>;
 		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
 		#gpio-cells = <2>;
@@ -719,7 +719,7 @@
 
 	ipcc_mproc: qcom,ipcc@208000 {
 		compatible = "qcom,ipcc";
-		reg = <0x208000 0x1000>;
+		reg = <0x0 0x208000 0x0 0x1000>;
 		interrupts = <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-controller;
 		#interrupt-cells = <3>;
@@ -778,10 +778,10 @@
 
 	qcom,msm-imem@c125000 {
 		compatible = "qcom,msm-imem";
-		reg = <0xc125000 0x1000>;
-		ranges = <0x0 0xc125000 0x1000>;
+		reg = <0x0 0xc125000 0x0 0x1000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
+		ranges = <0x0 0x0 0xc125000 0x1000>;
 
 		mem_dump_table@10 {
 			compatible = "qcom,msm-imem-mem_dump_table";
@@ -821,8 +821,10 @@
 
 	restart@440b000 {
 		compatible = "qcom,pshold";
-		reg = <0x440b000 0x4>, <0x03d3000 0x4>;
+		reg = <0x0 0x440b000 0x0 0x4>, <0x0 0x03d3000 0x0 0x4>;
 		reg-names = "pshold-base", "tcsr-boot-misc-detect";
+
+		status = "disabled";
 	};
 
 	dload_mode {
@@ -840,7 +842,7 @@
 
 	qcom,mpm2-sleep-counter@0x4403000 {
 		compatible = "qcom,mpm2-sleep-counter";
-		reg = <0x4403000 0x1000>;
+		reg = <0x0 0x4403000 0x0 0x1000>;
 		clock-frequency = <32768>;
 	};
 
@@ -944,9 +946,9 @@
 		compatible = "qcom,msm-eud";
 		interrupt-names = "eud_irq";
 		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-		reg = <0x1610000 0x1000>,
-			<0x1612000 0x1000>,
-			 <0x3E5018 0x4>;
+		reg = <0x0 0x1610000 0x0 0x1000>,
+		      <0x0 0x1612000 0x0 0x1000>,
+		      <0x0 0x3E5018 0x0 0x4>;
 		reg-names = "eud_base", "eud_mode_mgr2",
 			"eud_tcsr_check_reg";
 		qcom,eud-tcsr-check-enable;
@@ -1016,7 +1018,7 @@
 
 	adsp_pas: remoteproc-adsp@a400000 {
 		compatible = "qcom,malabar-adsp-pas";
-		reg = <0xa400000 0x100>;
+		reg = <0x0 0xa400000 0x0 0x100>;
 
 		status = "disabled";
 
@@ -1085,7 +1087,7 @@
 
 	modem_pas: remoteproc-mss@6080000 {
 		compatible = "qcom,malabar-modem-pas";
-		reg = <0x6080000 0x100>;
+		reg = <0x0 0x6080000 0x0 0x100>;
 
 		status = "disabled";
 
@@ -1194,7 +1196,7 @@
 
 	tcsr: syscon@3c0000 {
 		compatible = "syscon";
-		reg = <0x3c0000 0x40000>;
+		reg = <0x0 0x3c0000 0x0 0x40000>;
 	};
 
 	clk_virt: interconnect {
