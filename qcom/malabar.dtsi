@@ -1206,7 +1206,7 @@
 	};
 
 	mmnrt_virt: interconnect1@1880000 {
-		reg = <0x01880000 0x57600>;
+		reg = <0x0 0x01880000 0x0 0x57600>;
 		compatible = "qcom,malabar-mmnrt_virt";
 		#interconnect-cells = <1>;
 		qcom,util-factor = <142>;
@@ -1217,7 +1217,7 @@
 	};
 
 	mmrt_virt: interconnect2@1880000 {
-		reg = <0x01880000 0x57600>;
+		reg = <0x0 0x01880000 0x0 0x57600>;
 		compatible = "qcom,malabar-mmrt_virt";
 		#interconnect-cells = <1>;
 		qcom,util-factor = <142>;
@@ -1228,7 +1228,7 @@
 	};
 
 	system_noc: interconnect@1880000 {
-		reg = <0x01880000 0x57600>;
+		reg = <0x0 0x01880000 0x0 0x57600>;
 		compatible = "qcom,malabar-system_noc";
 		#interconnect-cells = <1>;
 		qcom,keepalive;
