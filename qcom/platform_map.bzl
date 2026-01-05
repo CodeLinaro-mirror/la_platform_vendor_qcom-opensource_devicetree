@@ -300,6 +300,11 @@ _platform_map = {
             {"name": "bengalp.dtb"},
             {"name": "bengal-1gb.dtb"},
             {"name": "bengal-2gb.dtb"},
+            {"name": "scuba-iot.dtb"},
+            {"name": "scuba-iot-2gb.dtb"},
+            {"name": "scubap-iot.dtb"},
+            {"name": "scubap-iot-idp.dtb"},
+            {"name": "scubap-iot-idp-2gb.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -352,6 +357,11 @@ _platform_map = {
             {"name": "bengal-idp-2gb-overlay.dtbo"},
             {"name": "bengal-idp-usbc-1gb-overlay.dtbo"},
             {"name": "bengal-idp-usbc-2gb-overlay.dtbo"},
+            {"name": "scuba-iot-idp-overlay.dtbo"},
+            {"name": "scuba-iot-idp-usbc-overlay.dtbo"},
+            {"name": "scuba-iot-qrd-eldo-overlay.dtbo"},
+            {"name": "scuba-iot-qrd-non-eldo-overlay.dtbo"},
+            {"name": "scuba-iot-rb1-overlay.dtbo"},
         ],
     },
     "monaco": {

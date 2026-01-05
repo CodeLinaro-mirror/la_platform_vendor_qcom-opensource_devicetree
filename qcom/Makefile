@@ -228,6 +228,22 @@ bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
+SCUBA_BASE_DTB +=  scuba-iot.dtb scuba-iot-2gb.dtb scubap-iot.dtb scubap-iot-idp.dtb scubap-iot-idp-2gb.dtb
+
+SCUBA_BOARDS += \
+                 scuba-iot-idp-overlay.dtbo \
+                 scuba-iot-idp-usbc-overlay.dtbo \
+                 scuba-iot-qrd-eldo-overlay.dtbo \
+                 scuba-iot-qrd-non-eldo-overlay.dtbo \
+                 scuba-iot-rb1-overlay.dtbo
+
+bengal-dtb-$(CONFIG_ARCH_SCUBA) += \
+	$(call add-overlays, $(SCUBA_BOARDS), $(SCUBA_BASE_DTB))
+
+bengal-overlays-dtb-$(CONFIG_ARCH_SCUBA) += $(SCUBA_BOARDS) $(SCUBA_BASE_DTB)
+dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
+
+
 YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
 YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
 
