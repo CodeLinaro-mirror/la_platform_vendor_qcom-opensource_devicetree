@@ -83,11 +83,14 @@ CHORA_APQ_BASE_DTB += chorap.dtb
 
 CHORA_BOARDS += \
 	        chora-atp-overlay.dtbo \
+		chora-atp-st54l-overlay.dtbo \
 		chora-cdp-overlay.dtbo \
+		chora-cdp-st54l-overlay.dtbo \
 		chora-cdp-wcn7750-overlay.dtbo \
 		chora-mtp-bonfish-overlay.dtbo \
 		chora-mtp-lcd-overlay.dtbo \
 		chora-mtp-overlay.dtbo \
+		chora-mtp-st54l-overlay.dtbo \
 		chora-mtp-wcn7750-bonfish-overlay.dtbo \
 		chora-mtp-wcn7750-overlay.dtbo \
 		chora-qrd-bonfish-overlay.dtbo \
@@ -95,6 +98,7 @@ CHORA_BOARDS += \
 		chora-qrd-wcn7750-bonfish-overlay.dtbo \
 		chora-qrd-wcn7750-overlay.dtbo \
 		chora-rcm-overlay.dtbo \
+		chora-rcm-st54l-overlay.dtbo \
 		chora-rcm-wcn7750-overlay.dtbo
 
 NOAPQ_CHORA_BOARDS += \
