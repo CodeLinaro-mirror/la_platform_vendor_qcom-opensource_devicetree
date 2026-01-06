@@ -119,7 +119,7 @@ pikachu-dtb-$(CONFIG_ARCH_PIKACHU) += \
 pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB) $(PIKACHU_APQ_BASE_DTB)
 dtb-y += $(pikachu-dtb-y)
 
-MALABAR_BASE_DTB += malabar.dtb
+MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
 MALABAR_BOARDS += \
@@ -129,7 +129,10 @@ MALABAR_BOARDS += \
 		malabar-mtp-overlay.dtbo \
 		malabar-mtp-wcn3950-overlay.dtbo \
 		malabar-qrd-overlay.dtbo \
-		malabar-rcm-overlay.dtbo
+		malabar-rcm-overlay.dtbo \
+		malabar-cdp-4gb-overlay.dtbo \
+		malabar-qrd-4gb-overlay.dtbo \
+		malabar-mtp-4gb-overlay.dtbo
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
