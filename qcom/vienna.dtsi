@@ -1394,6 +1394,8 @@
 		reg = <0x159004 0x4>;
 		regulator-name = "gcc_usb30_prim_gdsc";
 		parent-supply = <&VDD_CX_LEVEL>;
+		qcom,proxy-consumer-enable;
+		proxy-supply = <&gcc_usb30_prim_gdsc>;
 		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
