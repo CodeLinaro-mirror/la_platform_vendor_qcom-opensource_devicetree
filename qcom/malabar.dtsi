@@ -1276,7 +1276,7 @@
 
 	dispcc: clock-controller@5f00000 {
 		compatible = "qcom,malabar-dispcc", "syscon";
-		reg = <0x5f00000 0x20000>;
+		reg = <0x0 0x5f00000 0x0 0x20000>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
 		vdd_mx-supply = <&VDD_MX_LEVEL>;
@@ -1290,7 +1290,7 @@
 
 	gcc: clock-controller@1400000 {
 		compatible = "qcom,malabar-gcc", "syscon";
-		reg = <0x1400000 0x1f7400>;
+		reg = <0x0 0x1400000 0x0 0x1f7400>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
 		vdd_mx-supply = <&VDD_MX_LEVEL>;
@@ -1312,7 +1312,7 @@
 
 	gpucc: clock-controller@5990000 {
 		compatible = "qcom,malabar-gpucc", "syscon";
-		reg = <0x5990000 0xa000>;
+		reg = <0x0 0x5990000 0x0 0xa000>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
 		vdd_gfx-supply = <&VDD_GFX_LEVEL>;
