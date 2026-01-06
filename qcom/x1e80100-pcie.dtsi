@@ -289,11 +289,9 @@
 
 		dma-coherent;
 
-		/* x1e80100 has SMMUv3, enabled it once pcie_smmu enabled */
-		/*
-		 * iommu-map = <0x0 &pcie_smmu 0x60000 0x1>,
-		 *		<0x100 &pcie_smmu 0x60100 0x1>;
-		 */
+		/* x1e80100 has SMMUv3 */
+		iommu-map = <0x0 &pcie_smmu 0x60000 0x1>,
+			    <0x100 &pcie_smmu 0x60100 0x1>;
 
 		qcom,tcsr = <0x1A000 0x0>;
 
@@ -617,6 +615,10 @@
 
 		dma-coherent;
 
+		/* x1e80100 has SMMUv3 */
+		iommu-map = <0x0 &pcie_smmu 0x40000 0x1>,
+			    <0x100 &pcie_smmu 0x40100 0x1>;
+
 		qcom,boot-option = <0x1>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
@@ -624,6 +626,8 @@
 		qcom,l1-2-th-value = <150>;
 		qcom,ep-latency = <10>;
 		qcom,num-parf-testbus-sel = <0xb9>;
+		/* work around to enable ACS quirk */
+		qcom,device-vendor-id = <0x011517cb>;
 
 		qcom,pcie-phy-ver = <113>;
 		qcom,phy-status-offset = <0x214>;
