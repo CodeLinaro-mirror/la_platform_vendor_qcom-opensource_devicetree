@@ -175,6 +175,7 @@
 
 &eusb2_phy2 {
 	status = "ok";
+	usb-repeater = <&eusb2_repeater_usb2>;
 };
 
 &xpcs1 {
@@ -195,6 +196,7 @@
 
 &eusb2_phy1 {
 	status = "ok";
+	usb-repeater = <&eusb2_repeater_usb1>;
 };
 
 &usb_1_qmp_combo_phy {
@@ -203,4 +205,23 @@
 
 &pcie3 {
 	status = "ok";
+};
+
+&virtio_i2c_9 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	eusb2_repeater_usb1: eusb2_repeater@4f {
+		compatible = "nxp,eusb2-repeater";
+		reg = <0x4f>;
+		qcom,param-override-seq = <0x2 0x7
+					0x62 0x8>;
+	};
+
+	eusb2_repeater_usb2: eusb2_repeater@4b {
+		compatible = "nxp,eusb2-repeater";
+		reg = <0x4b>;
+		qcom,param-override-seq = <0x2 0x7
+					0x62 0x8>;
+	};
 };
