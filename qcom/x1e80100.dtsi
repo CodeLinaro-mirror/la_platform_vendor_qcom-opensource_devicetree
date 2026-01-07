@@ -2047,6 +2047,7 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
 			qcom,core-clk-rate-hs = <66666667>;
@@ -2343,6 +2344,8 @@
 
 			qcom,use-pdc-interrupts;
 			qcom,use-eusb2-phy;
+			qcom,host-poweroff-in-pm-suspend;
+			qcom,default-mode-host;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
