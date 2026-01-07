@@ -1332,15 +1332,15 @@
 		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
 		 * from 0x40000000 - 0x4fffffff.
 		 */
-		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
-				  <&sdhc_1 0x50000000 0xbfffffff>;
+		iommu-addresses = <&sdhc_1 0x0 0x0 0x0 0x40000000>,
+				  <&sdhc_1 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	sdhc_1: sdhci@4744000 {
 		compatible = "qcom,sdhci-msm-v5";
-		#address-cells = <1>;
-		#size-cells = <1>;
-		reg = <0x04744000 0x1000>, <0x04745000 0x1000>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0x04744000 0x0 0x1000>, <0x0 0x04745000 0x0 0x1000>;
 		reg-names = "hc", "cqhci";
 
 		interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
@@ -1383,7 +1383,7 @@
 		iommus = <&apps_smmu 0x0160 0x0>;
 		qcom,iommu-dma = "fastmap";
 		memory-region = <&sdhc_1_dma_resv>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		status = "disabled";
 
@@ -1419,14 +1419,15 @@
 		 * Restrict IOVA mappings for SDHC2 buffers to the 256 MB region
 		 * from 0x40000000 - 0x4fffffff.
 		 */
-		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
-				  <&sdhc_2 0x50000000 0xbfffffff>;
+		iommu-addresses = <&sdhc_2 0x0 0x0 0x0 0x40000000>,
+				  <&sdhc_2 0x0 0x50000000 0xffffffff 0xb0000000>;
 	};
 
 	sdhc_2: sdhci@4784000 {
 		compatible = "qcom,sdhci-msm-v5";
-
-		reg = <0x4784000 0x1000>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0x4784000 0x0 0x1000>;
 		reg-names = "hc";
 
 		interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
@@ -1457,7 +1458,7 @@
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "fastmap";
 		memory-region = <&sdhc_2_dma_resv>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 
 		resets = <&gcc GCC_SDCC2_BCR>;
 		reset-names = "core_reset";
