@@ -1591,8 +1591,8 @@
 
 	cpufreq_hw: qcom,cpufreq-hw {
 		compatible = "qcom,cpufreq-epss";
-		reg = <0x17d91000 0x1000>,
-		      <0x17d92000 0x1000>;
+		reg = <0x0 0x17d91000 0x0 0x1000>,
+		      <0x0 0x17d92000 0x0 0x1000>;
 		reg-names = "freq-domain0",
 			    "freq-domain1";
 		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
