@@ -1780,6 +1780,14 @@
 		method = "smc";
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
 };
 
 &firmware {
@@ -1845,6 +1853,11 @@
 		size = <0x0 0x1000000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
 };
 
 #include "seraph-reserved-memory.dtsi"
