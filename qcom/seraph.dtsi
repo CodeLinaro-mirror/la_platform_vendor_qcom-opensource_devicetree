@@ -1154,7 +1154,7 @@
 		qcom,non-tn-collection-on-crash;
 		qcom,tx-wrapper-cache-max-size = <400>;
 		qcom,ipa-gpi-event-rp-ddr;
-		qcom,max_num_smmu_cb = <5>;
+		qcom,max_num_smmu_cb = <2>;
 		clock-names = "core_clk";
 		clocks = <&rpmhcc RPMH_IPA_CLK>;
 		qcom,throughput-threshold = <2000 4000 8000>;
@@ -1191,10 +1191,24 @@
 		qcom,bus-vector-names = "MIN", "SVS2", "SVS", "NOMINAL",
 			"TURBO";
 
+		#address-cells=<2>;
+		#size-cells=<2>;
+
+		ipa_smmu_ap_partition: ipa_smmu_ap_partition {
+			iommu-addresses = <&ipa_smmu_ap 0x0 0x0 0x0 0x20000000>,
+				<&ipa_smmu_ap 0x0 0x40000000 0xFFFFFFFF 0xC0000000>;
+		};
+
+		ipa_smmu_uc_partition: ipa_smmu_uc_partition {
+			iommu-addresses = <&ipa_smmu_uc 0x0 0x0 0x0 0x20000000>,
+				<&ipa_smmu_uc 0x0 0x40000000 0xFFFFFFFF 0xC0000000>;
+		};
+
 		ipa_smmu_ap: ipa_smmu_ap {
 			compatible = "qcom,ipa-smmu-ap-cb";
 			iommus = <&apps_smmu 0x0A0 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
+			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
+			memory-region = <&ipa_smmu_ap_partition>;
 			qcom,additional-mapping =
 				/* modem tables in IMEM */
 				<0x14683000 0x14683000 0x2000>;
@@ -1203,37 +1217,15 @@
 			dma-coherent;
 		};
 
-		ipa_smmu_wlan: ipa_smmu_wlan {
-			compatible = "qcom,ipa-smmu-wlan-cb";
-			iommus = <&apps_smmu 0x0A1 0x0>;
-			qcom,iommu-group = <&cnss_ipa_wlan_iommu_group0>;
-			qcom,shared-cb;
-			dma-coherent;
-		};
-
 		ipa_smmu_uc: ipa_smmu_uc {
 			compatible = "qcom,ipa-smmu-uc-cb";
 			iommus = <&apps_smmu 0x0A2 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
+			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
+			memory-region = <&ipa_smmu_uc_partition>;
 			/* Map IPCC Fence Protocol Region to uC CB */
 			qcom,ipcc-mapping = <0x504000 0x504000 0x1000>;
 			qcom,iommu-dma = "atomic";
 			dma-coherent;
-		};
-
-		ipa_smmu_rtp: ipa_smmu_rtp {
-			compatible = "qcom,ipa-smmu-rtp-cb";
-			iommus = <&apps_smmu 0x0A3 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
-			qcom,iommu-dma = "atomic";
-			dma-coherent;
-		};
-
-		ipa_smmu_11ad: ipa_smmu_11ad {
-			compatible = "qcom,ipa-smmu-11ad-cb";
-			iommus = <&apps_smmu 0x0A4 0x0>;
-			qcom,shared-cb;
-			qcom,iommu-group = <>;
 		};
 	};
 
