@@ -510,7 +510,7 @@
 
 	tcsr_mutex_block: syscon@340000 {
 		compatible = "syscon";
-		reg = <0x340000 0x40000>;
+		reg = <0x0 0x340000 0x0 0x40000>;
 	};
 
 	tcsr_mutex: hwlock {
@@ -880,7 +880,7 @@
 
 	rpm_msg_ram: memory@045f0000 {
 		compatible = "qcom,rpm-msg-ram";
-		reg = <0x45f0000 0x7000>;
+		reg = <0x0 0x45f0000 0x0 0x7000>;
 	};
 
 	sram@c3f0000 {
