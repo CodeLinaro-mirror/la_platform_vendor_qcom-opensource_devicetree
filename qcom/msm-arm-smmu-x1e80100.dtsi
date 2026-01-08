@@ -178,6 +178,19 @@
 			     <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	pcie_smmu: iommu@15400000 {
+		compatible = "arm,smmu-v3";
+		reg = <0 0x15400000 0 0x80000>;
+		#iommu-cells = <1>;
+		interrupts = <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
+				<GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
+				<GIC_SPI 136 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "eventq",
+				"gerror",
+				"cmdq-sync";
+		dma-coherent;
+	};
+
 	dma_dev {
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
