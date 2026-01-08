@@ -1519,6 +1519,16 @@
 		};
 	};
 
+	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				  <&sdhc_1 0x50000000 0xbfffffff>;
+	};
+
+
 	sdhc_1: sdhci@4744000 {
 		status = "disabled";
 
@@ -1527,7 +1537,6 @@
 		      <0x4748000 0x8000>;
 		reg-names = "hc", "cqhci", "cqhci_ice";
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts-extended = <&intc GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
@@ -1541,6 +1550,7 @@
 
 		cap-mmc-hw-reset;
 
+		boot_device_type = <0x0>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
@@ -1578,6 +1588,7 @@
 
 		iommus = <&apps_smmu 0xC0 0x0>;
 		qcom,iommu-dma = "fastmap";
+		memory-region = <&sdhc_1_dma_resv>;
 
 		qos0 {
 			mask = <0xf0>;
@@ -1606,6 +1617,15 @@
 		};
 	};
 
+	sdhc_2_dma_resv: sdhc_2_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC2 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
+				  <&sdhc_2 0x50000000 0xbfffffff>;
+	};
+
 	sdhc_2: sdhci@4784000 {
 		status = "disabled";
 
@@ -1613,7 +1633,6 @@
 		reg = <0x4784000 0x1000>;
 		reg-names = "hc";
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
@@ -1640,6 +1659,7 @@
 
 		iommus = <&apps_smmu 0x00A0 0x0>;
 		qcom,iommu-dma = "fastmap";
+		memory-region = <&sdhc_2_dma_resv>;
 
 		qos0 {
 			mask = <0xf0>;
@@ -1684,6 +1704,7 @@
 		lanes-per-direction = <1>;
 		limit-phy-submode = <0>;
 
+		boot_device_type = <0x4>;
 		nvmem-cells = <&boot_config>;
 		nvmem-cell-names = "boot_conf";
 
