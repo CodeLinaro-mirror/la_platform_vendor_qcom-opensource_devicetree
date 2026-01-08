@@ -1025,13 +1025,6 @@
 
 		ucsi: ucsi-glink {
 			compatible = "qcom,ucsi-glink";
-			connector {
-				port {
-					usb_port0_connector: endpoint {
-					remote-endpoint = <&usb_port0>;
-					};
-				};
-			};
 
 		};
 
