@@ -371,7 +371,9 @@ SERAPH_BOARDS += \
 		seraphp-atp-overlay.dtbo \
 		seraphp-idp-overlay.dtbo \
 		seraphp-idp-dtof-overlay.dtbo \
-		seraphp-idp-no-display-overlay.dtbo
+		seraphp-idp-no-display-overlay.dtbo \
+		seraphp-qar-camera-audio-overlay.dtbo \
+		seraphp-qar-overlay.dtbo
 
 NOAPQ_SERAPH_BOARDS += \
                   seraph-rumi-overlay.dtbo
