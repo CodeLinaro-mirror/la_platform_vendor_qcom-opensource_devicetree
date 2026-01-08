@@ -349,8 +349,17 @@
 	};
 
 	evacc: clock-controller@a8f0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "evacc_clocks";
+		compatible = "qcom,pikachu-evacc", "syscon";
+		reg = <0xa8f0000 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&sleep_clk>,
+			 <&gcc GCC_EVA_AHB_CLK>;
+		clock-names = "bi_tcxo",
+			      "sleep_clk",
+			      "iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -398,8 +407,17 @@
 	};
 
 	videocc: clock-controller@9cf0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "videocc_clocks";
+		compatible = "qcom,pikachu-videocc", "syscon";
+		reg = <0x9cf0000 0x10000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			<&sleep_clk>,
+			<&gcc GCC_VIDEO_AHB_CLK>;
+		clock-names = "bi_tcxo",
+				"sleep_clk",
+				"iface";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
