@@ -427,6 +427,8 @@ properties:
             - qcom.atp
             - qcom,seraphp-idp
             - qcom,idp
+            - qcom,seraphp-qar
+            - qcom,qar
           - const: qcom,seraphp
 
 additionalProperties: true
