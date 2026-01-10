@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1";
 	};
 
 	reserved_memory: reserved-memory {
@@ -461,6 +461,9 @@
 		virtio_i2c_9: virtio_i2c_9@0 {
 			compatible = "virtio,device22";
 		};
+	};
+
+	virtio_mmio_gpio {
 	};
 
 	vm_config: qcom,vm-config {
@@ -1332,7 +1335,7 @@
 				};
 			};
 
-			/* Reserved device */
+			/* virtio eavb */
 			virtio-mmio@49 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
@@ -1344,6 +1347,41 @@
 				dma_base = <0x0 0x294000>;
 				memory {
 					qcom,label = <0x52>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* GPIO virtio */
+			virtio-mmio@50 {
+				vdevice-type = "virtio-mmio";
+				patch = "/virtio_mmio_gpio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x2D4000>;
+				memory {
+					qcom,label = <0x53>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+
+			/* Reserved device */
+			virtio-mmio@51 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x2D8000>;
+				memory {
+					qcom,label = <0x54>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};

@@ -20,7 +20,7 @@
 };
 
 &evacc {
-	compatible = "qcom,alor-evacc", "syscon";
+	compatible = "qcom,whale-evacc", "syscon";
 };
 
 &gpucc {

@@ -13,26 +13,6 @@
 	clock-frequency = <5000000>;
 };
 
-&CPU0 {
-		enable-method = "spin-table"; /* TODO: Update to psci */
-		cpu-release-addr = <0x0 0x90000000>;
-};
-
-&CPU1 {
-		enable-method = "spin-table"; /* TODO: Update to psci */
-		cpu-release-addr = <0x0 0x90000000>;
-};
-
-&CPU2 {
-		enable-method = "spin-table"; /* TODO: Update to psci */
-		cpu-release-addr = <0x0 0x90000000>;
-};
-
-&CPU3 {
-		enable-method = "spin-table"; /* TODO: Update to psci */
-		cpu-release-addr = <0x0 0x90000000>;
-};
-
 &soc {
 };
 
@@ -54,4 +34,22 @@
 
 &CLUSTER_PWR_DN {
 	status = "disabled";
+};
+
+&tsens0 {
+	status = "disabled";
+};
+
+&qup_uart0_tx {
+	drive-strength = <2>;
+	bias-disable;
+};
+
+&qup_uart0_rx {
+	drive-strength = <2>;
+	bias-disable;
+};
+
+&uart0 {
+	status = "okay";
 };

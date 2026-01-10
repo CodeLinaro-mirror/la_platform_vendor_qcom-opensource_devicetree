@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/phy/qcom,usb3-5nm-qmp-uni.h>
@@ -12,8 +12,8 @@
 		reg = <0xa600000 0x200000>;
 		reg-names = "core_base";
 
-		#address-cells = <1>;
-		#size-cells = <1>;
+		#address-cells = <2>;
+		#size-cells = <2>;
 		ranges;
 
 		interrupts-extended = <&pdc 14 IRQ_TYPE_EDGE_RISING>,
@@ -46,11 +46,18 @@
 		qcom,disable-host-ssphy-powerdown;
 		status = "disabled";
 
-		dwc3@a600000 {
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
+
+		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
-			reg = <0xa600000 0xd93c>;
+			reg = <0x0 0xa600000 0x0 0xd93c>;
 			iommus = <&apps_smmu 0x080 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region>;
 			interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy0>, <&usb_qmp_phy0>;
 			snps,disable-clk-gating;
@@ -66,6 +73,12 @@
 			dr_mode = "otg";
 			usb-role-switch;
 		};
+
+	dwc3_mem_region: dwc3_mem_region {
+		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
+					<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+	};
+
 	};
 
 	/* Primary USB port related High Speed PHY */
@@ -236,8 +249,8 @@
 		reg = <0xa800000 0x200000>;
 		reg-names = "core_base";
 
-		#address-cells = <1>;
-		#size-cells = <1>;
+		#address-cells = <2>;
+		#size-cells = <2>;
 		ranges;
 
 		interrupts-extended = <&pdc 8 IRQ_TYPE_EDGE_RISING>,
@@ -270,12 +283,19 @@
 		qcom,disable-host-ssphy-powerdown;
 		status = "disabled";
 
-		dwc3@a800000 {
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
+
+		dwc3_1: dwc3@a800000 {
 			compatible = "snps,dwc3";
-			reg = <0xa800000 0xd93c>;
+			reg = <0x0 0xa800000 0x0 0xd93c>;
 			interrupts = <GIC_SPI 349 IRQ_TYPE_LEVEL_HIGH>;
 			iommus = <&apps_smmu 0x0A0 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region_1>;
 			usb-phy = <&usb2_phy1>, <&usb_qmp_phy1>;
 			snps,disable-clk-gating;
 			snps,has-lpm-erratum;
@@ -290,6 +310,12 @@
 			dr_mode = "otg";
 			usb-role-switch;
 		};
+
+	dwc3_mem_region_1: dwc3_mem_region_1 {
+		iommu-addresses = <&dwc3_1 0x0 0x0 0x0 0x90000000>,
+					<&dwc3_1 0x0 0xf0000000 0xffffffff 0x10000000>;
+	};
+
 	};
 
 	/* Secondary USB port related High Speed PHY */
@@ -462,8 +488,8 @@
 		reg-names = "core_base";
 
 
-		#address-cells = <1>;
-		#size-cells = <1>;
+		#address-cells = <2>;
+		#size-cells = <2>;
 		ranges;
 
 		interrupts-extended = <&pdc 10 IRQ_TYPE_EDGE_RISING>,
@@ -492,11 +518,18 @@
 
 		status = "disabled";
 
-		dwc3@a400000 {
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
+
+		dwc3_2: dwc3@a400000 {
 			compatible = "snps,dwc3";
-			reg = <0xa400000 0xd800>;
+			reg = <0x0 0xa400000 0x0 0xd800>;
 			iommus = <&apps_smmu 0x020 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region_2>;
 			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy2>, <&usb_nop_phy>;
 			snps,disable-clk-gating;
@@ -508,6 +541,11 @@
 			dr_mode = "otg";
 			usb-role-switch;
 		};
+	};
+
+	dwc3_mem_region_2: dwc3_mem_region_2 {
+		iommu-addresses = <&dwc3_2 0x0 0x0 0x0 0x90000000>,
+					<&dwc3_2 0x0 0xf0000000 0xffffffff 0x10000000>;
 	};
 
 	/* Tertiary USB port related High Speed PHY */

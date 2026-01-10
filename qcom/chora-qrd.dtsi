@@ -3,8 +3,10 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/gpio/gpio.h>
 #include "chora-pmic-overlay.dtsi"
 #include "chora-pmiv010x.dtsi"
+#include "chora-thermal-overlay.dtsi"
 
 &sdhc_2 {
 	vdd-supply = <&L13B_E0>;
@@ -64,7 +66,17 @@
 	status = "ok";
 };
 
+
 &pmiv010x_amoled_ecm {
+	nvmem-names = "amoled-ecm-sdam0", "amoled-ecm-sdam1",
+		      "amoled-ecm-sdam2";
+	nvmem = <&pmk8550_sdam_13>, <&pmk8550_sdam_14>,
+		<&pmk8550_sdam_41>;
+	interrupt-names = "ecm-sdam0", "ecm-sdam1",
+			  "ecm-sdam2";
+	interrupts = <0x7 0x7c 0x1 IRQ_TYPE_EDGE_RISING>,
+		     <0x7 0x7d 0x1 IRQ_TYPE_EDGE_RISING>,
+		     <0x7 0x98 0x1 IRQ_TYPE_EDGE_RISING>;
 	status = "ok";
 };
 
@@ -80,9 +92,9 @@
 		reg = <0>;
 		spi-max-frequency = <1000000>;
 		interrupt-parent = <&tlmm>;
-		interrupts = <1 0x2008>;
-		goodix,reset-gpio = <&tlmm 0 0x00>;
-		goodix,irq-gpio = <&tlmm 1 0x2008>;
+		interrupts = <0 0x2008>;
+		goodix,reset-gpio = <&tlmm 1 0x00>;
+		goodix,irq-gpio = <&tlmm 0 0x2008>;
 		goodix,irq-flags = <2>;
 		goodix,panel-max-x = <1080>;
 		goodix,panel-max-y = <2400>;
@@ -100,5 +112,13 @@
 		pinctrl-2 = <&ts_release>;
 		goodix,touch-type = "primary";
 		goodix,qts_en;
+	};
+};
+
+&qupv3_se7_i2c {
+	status = "okay";
+	fsa4480: fsa4480@42 {
+		compatible = "qcom,fsa4480-i2c";
+		reg = <0x42>;
 	};
 };

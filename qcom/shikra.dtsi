@@ -27,7 +27,9 @@
 
 	reserved_memory: reserved-memory { };
 
-	aliases { };
+	aliases {
+		serial0 = &uart0;
+	};
 
 	firmware: firmware {};
 
@@ -46,6 +48,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_0: l1-icache {
 				compatible = "cache";
@@ -73,6 +76,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_1: l1-icache {
 				compatible = "cache";
@@ -94,6 +98,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L3_0>;
+			#cooling-cells = <2>;
 
 			L1_I_2: l1-icache {
 				compatible = "cache";
@@ -115,6 +120,7 @@
 			d-cache-size = <0x8000>;
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L2_3>;
+			#cooling-cells = <2>;
 
 			L1_I_3: l1-icache {
 				compatible = "cache";
@@ -209,6 +215,8 @@
 	};
 
 	soc: soc { };
+
+	thermal_zones: thermal-zones {};
 
 	psci {
 		compatible = "arm,psci-1.0";
@@ -525,6 +533,189 @@
 		clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
 			 <&rpmcc RPM_SMD_CNOC_A_CLK>;
 	};
+
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+		status = "ok";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+		status = "ok";
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0xc221000 0x1000>;
+		clock-frequency = <32768>;
+	};
+
+	tcsr_mutex_block: syscon@340000 {
+		compatible = "syscon";
+		reg = <0x340000 0x20000>;
+	};
+
+	tcsr_mutex: hwlock {
+		compatible = "qcom,tcsr-mutex";
+		syscon = <&tcsr_mutex_block 0 0x1000>;
+		#hwlock-cells = <1>;
+	};
+
+	rpm_msg_ram: memory@45f0000 {
+		compatible = "qcom,rpm-msg-ram";
+		reg = <0x45f0000 0x7000>;
+	};
+
+	apcs_glb: mailbox@f400000 {
+		compatible = "qcom,shikra-apcs-hmss-global";
+		reg = <0xf400000 0x1000>;
+		#mbox-cells = <1>;
+	};
+
+	rpm-glink {
+		compatible = "qcom,glink-rpm";
+		interrupts = <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>;
+		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+		mboxes = <&apcs_glb 0>;
+	};
+
+	qcom,smp2p-modem {
+		compatible = "qcom,smp2p";
+		qcom,smem = <435>, <428>;
+		interrupts = <GIC_SPI 70 IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&apcs_glb 14>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <1>;
+
+		modem_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		modem_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_ipa_1_out: qcom,smp2p-ipa-1-out {
+			qcom,entry-name = "ipa";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		/* ipa - inbound entry from mss */
+		smp2p_ipa_1_in: qcom,smp2p-ipa-1-in {
+			qcom,entry-name = "ipa";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_wlan_1_in: qcom,smp2p-wlan-1-in {
+			qcom,entry-name = "wlan";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+	};
+
+	qcom,smp2p-cdsp {
+		compatible = "qcom,smp2p";
+		qcom,smem = <94>, <432>;
+		interrupts = <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&apcs_glb 6>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <1>;
+
+		cdsp_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		cdsp_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p-lmcu {
+		compatible = "qcom,smp2p";
+		qcom,smem = <617>, <616>;
+		interrupts = <GIC_SPI 287 IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&apcs_glb 10>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <1>;
+
+		lmcu_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		lmcu_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qupv3_id_0: geniqup@4ac0000 {
+		compatible = "qcom,geni-se-qup";
+		reg = <0x4ac0000 0x2000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+		clock-names = "m-ahb",
+			      "s-ahb";
+		ranges;
+		status = "okay";
+
+		uart0: serial@4a80000 {
+			compatible = "qcom,geni-debug-uart";
+			reg = <0x4a80000 0x4000>;
+			reg-names = "se_phys";
+			interrupts = <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>;
+			clock-names = "se";
+			clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+			pinctrl-0 = <&qup_uart0_tx>, <&qup_uart0_rx>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+	};
+
+	spmi_bus: spmi0_bus: qcom,spmi@1c0a700 {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0x1c40000 0x10000>,
+		      <0x1e00000 0x2000000>,
+		      <0x3e00000 0x100000>,
+		      <0x3f00000 0xa0000>,
+		      <0x1c0a700 0x26000>;
+		reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
+		interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "periph_irq";
+		interrupt-controller;
+		#interrupt-cells = <4>;
+		#address-cells = <2>;
+		#size-cells = <0>;
+		cell-index = <0>;
+		qcom,channel = <0>;
+		qcom,ee = <0>;
+		qcom,bus-id = <0>;
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
@@ -532,6 +723,7 @@
 #include "shikra-stub-regulators.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
+#include "shikra-thermal.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -545,5 +737,17 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x1000000>;
 		linux,cma-default;
+	};
+};
+
+&tlmm {
+	qup_uart0_tx: qup-uart0-tx-state {
+		pins = "gpio0";
+		function = "qup1_se0_l2";
+	};
+
+	qup_uart0_rx: qup-uart0-rx-state {
+		pins = "gpio1";
+		function = "qup1_se0_l3";
 	};
 };

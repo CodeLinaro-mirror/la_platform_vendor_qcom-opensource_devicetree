@@ -102,3 +102,7 @@
 &CLUSTER_PWR_DN {
 	status = "disabled";
 };
+
+&gcc {
+	#power-domain-cells = <1>;
+};

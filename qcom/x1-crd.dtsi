@@ -3,6 +3,26 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&usb_mp_hsphy0 {
+	status = "okay";
+};
+
+&usb_mp_hsphy1 {
+	status = "okay";
+};
+
+&usb_mp_qmpphy0 {
+	status = "okay";
+};
+
+&usb_mp_qmpphy1 {
+	status = "okay";
+};
+
+&usb_mp {
+	status = "okay";
+};
+
 &smb2360_0_eusb2_repeater {
 	vdd18-supply = <&L3D>;
 	vdd3-supply = <&L2B>;
@@ -40,9 +60,6 @@
 
 &usb1 {
 	status = "okay";
-	dwc3@a800000 {
-		dr_mode = "host";
-	};
 };
 
 &usb2_phy_4 {
@@ -51,7 +68,4 @@
 
 &usb4 {
 	status = "okay";
-	dwc3@a200000 {
-		dr_mode = "host";
-	};
 };

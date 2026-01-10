@@ -63,6 +63,8 @@
 	/* secdata region can be reused by apps */
 
 	smem_mem: smem_region@81d00000 {
+		compatible = "qcom,smem";
+		hwlocks = <&tcsr_mutex 3>;
 		no-map;
 		reg = <0x0 0x81d00000 0x0 0x200000>;
 	};
@@ -298,7 +300,7 @@
 
 	trust_ui_vm_mem: trust_ui_vm_region@f3800000 {
 		compatible = "shared-dma-pool";
-		reg = <0x0 0xf3800000 0x0 0x4400000>;
+		reg = <0x0 0xf3800000 0x0 0x4000000>;
 		reusable;
 		alignment = <0x0 0x400000>;
 	};
