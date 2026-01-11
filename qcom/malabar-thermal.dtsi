@@ -8,8 +8,8 @@
 &soc {
 	tsens0: tsens0@04411000 {
 		compatible = "qcom,tsens-v2";
-		reg = <0x04411000 0x1ff>, /* TM */
-		      <0x04410000 0x1ff>; /* SROT */
+		reg = <0x0 0x04411000 0x0 0x1ff>, /* TM */
+		      <0x0 0x04410000 0x0 0x1ff>; /* SROT */
 		#qcom,sensors = <15>;
 		interrupts = <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
@@ -19,8 +19,8 @@
 
 	tsens1: tsens1@04413000 {
 		compatible = "qcom,tsens-v2";
-		reg = <0x04413000 0x1ff>, /* TM */
-		      <0x04412000 0x1ff>; /* SROT */
+		reg = <0x0 0x04413000 0x0 0x1ff>, /* TM */
+		      <0x0 0x04412000 0x0 0x1ff>; /* SROT */
 		#qcom,sensors = <7>;
 		interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
