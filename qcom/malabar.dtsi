@@ -418,7 +418,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -1566,7 +1566,8 @@
 		compatible = "qcom,ufshc";
 		#address-cells = <1>;
 		#size-cells = <1>;
-		reg = <0x4804000 0x3000>, <0x4810000 0x8000>;
+		reg = <0x0 0x4804000 0x0 0x3000>, <0x0 0x4810000 0x0 0x8000>;
+
 		reg-names = "ufs_mem", "ufs_ice";
 
 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
@@ -1629,7 +1630,7 @@
 
 	qcom_tzlog: tz-log@c125720 {
 		compatible = "qcom,tz-log";
-		reg = <0xc125720 0x3000>;
+		reg = <0x0 0xc125720 0x0 0x3000>;
 		qcom,hyplog-enabled;
 		hyplog-address-offset = <0x410>;
 		hyplog-size-offset = <0x414>;
@@ -1638,16 +1639,17 @@
 
 	qcom_cedev: qcedev@1b20000 {
 		compatible = "qcom,qcedev";
-		reg = <0x1b20000 0x20000>,
-			<0x1b04000 0x24000>;
+		reg = <0x0 0x1b20000 0x0 0x20000>,
+			<0x0 0x1b04000 0x0 0x24000>;
 		reg-names = "crypto-base","crypto-bam-base";
-		interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 245 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "bam-irq", "core-irq";
 		qcom,bam-pipe-pair = <3>;
 		qcom,ce-hw-instance = <0>;
 		qcom,ce-device = <0>;
 		qcom,ce-hw-shared;
 		qcom,bam-ee = <0>;
-		qcom,ce-opp-freq = <192000000>;
 		qcom,smmu-s1-enable;
 		qcom,no-clock-support;
 		interconnect-names = "data_path";
@@ -1685,7 +1687,7 @@
 
 	qcom_rng: qrng@19D3000 {
 		compatible = "qcom,msm-rng";
-		reg = <0x019D3000 0x1000>;
+		reg = <0x0 0x019D3000 0x0 0x1000>;
 		qcom,no-qrng-config;
 		qcom,no-clock-support;
 	};
