@@ -1955,7 +1955,7 @@
 		real-name = "tmc_etr1";
 		qdss,buffer-size = <0x2000000>;
 		qcom,secure-component;
-	//	memory-region = <&qdss_apps_mem>;
+		memory-region = <&qdss_apps_mem>;
 		coresight-csr = <&csr>;
 		csr-atid-offset = <0x108>;
 		csr-irqctrl-offset = <0x70>;
@@ -2408,7 +2408,7 @@
 		};
 	};
 
-	funnel_modem_q6_dup: funnel@1080c000 {
+	funnel_modem_q6_dup: funnel@1080d000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb908>;
 		reg = <0x0 0x1080d000 0x0 0x1000>,
@@ -3029,7 +3029,7 @@
 	etm1 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb95d>;
-		reg = <0x0 0x12140000 0x1000>;
+		reg = <0x0 0x12140000 0x0 0x1000>;
 		cpu = <&CPU1>;
 
 		qcom,skip-power-up;
@@ -3164,7 +3164,7 @@
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb908>;
 
-		reg = <0x12800000 0x1000>;
+		reg = <0x0 0x12800000 0x0 0x1000>;
 		reg-names = "funnel-base";
 
 		device-name = "funnel-etm";
