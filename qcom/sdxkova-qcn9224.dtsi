@@ -150,11 +150,7 @@
 	cnss_pci_iommu_group0: cnss_pci_iommu_group {
 			qcom,iommu-msi-size = <0x1000>;
 			qcom,iommu-dma-addr-pool = <0x0 0x70000000 0x0 0x4EC00000>;
-#ifdef __WLAN_UD__
-			qcom,iommu-dma = "bypass";
-#else
 			qcom,iommu-dma = "fastmap";
-#endif
 			dma-coherent;
 			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
 					    "non-fatal";
@@ -189,6 +185,8 @@
 		dma-coherent;
 		memory-region-names = "host-ddr-mem", "mlo-global-mem";
 		qcom,board_id = <0x2>;
+		smmu_reg = <0x0 0xc0000000 0x0 0x10000>;
+		smmu_reg-names = "smmu_iova_ipa";
 		qcom,wsi_index = <1>;
 		qcom,wsi = <&wsi>;
 		ports {
@@ -430,6 +428,8 @@
 		dma-coherent;
 		memory-region-names = "host-ddr-mem", "mlo-global-mem";
 		qcom,board_id = <0x4>;
+		smmu_reg = <0x0 0xc0020000 0x0 0x10000>;
+		smmu_reg-names = "smmu_iova_ipa";
 		qcom,wsi = <&wsi>;
 		qcom,wsi_index = <0>;
 		qcom,wsi-controller;
@@ -614,6 +614,8 @@
 		dma-coherent;
 		memory-region-names = "host-ddr-mem", "mlo-global-mem";
 		qcom,board_id = <0x1>;
+		smmu_reg = <0x0 0xc0040000 0x0 0x10000>;
+		smmu_reg-names = "smmu_iova_ipa";
 		qcom,wsi = <&wsi>;
 		qcom,wsi_index = <2>;
 		qcom,pta-num = <0>;
