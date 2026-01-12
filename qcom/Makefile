@@ -111,6 +111,23 @@ canoe-dtb-$(CONFIG_ARCH_CHORA) += \
 	$(call add-overlays, $(CHORA_BOARDS),$(CHORA_APQ_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS) $(CHORA_BASE_DTB) $(CHORA_APQ_BASE_DTB)
 
+RAVELIN_BASE_DTB += ravelin.dtb ravelinp.dtb ravelin-sg.dtb ravelinp-sg.dtb
+RAVELIN_4GB_BASE_DTB += ravelin-4gb.dtb ravelinp-4gb.dtb ravelin-sg.dtb ravelinp-sg.dtb
+
+RAVELIN_BOARDS += \
+		ravelin-atp-overlay.dtbo \
+		ravelin-idp-overlay.dtbo \
+		ravelin-idp-wcn3950-amoled-rcm-overlay.dtbo \
+		ravelin-qrd-overlay.dtbo
+
+RAVELIN_4GB_BOARDS += ravelin-idp-wcn3988-4gb-overlay.dtbo \
+		      ravelin-qrd-4gb-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_RAVELIN) += \
+	$(call add-overlays, $(RAVELIN_BOARDS) ,$(RAVELIN_BASE_DTB)) \
+	$(call add-overlays, $(RAVELIN_4GB_BOARDS) ,$(RAVELIN_4GB_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
+
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
 MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb

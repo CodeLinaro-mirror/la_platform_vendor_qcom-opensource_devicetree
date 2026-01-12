@@ -129,7 +129,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin"],
     },
     "alor": {
         "dtb_list": [
@@ -235,6 +235,26 @@ _platform_map = {
             {"name": "chora-rcm-overlay.dtbo"},
             {"name": "chora-rcm-st54l-overlay.dtbo"},
             {"name": "chora-rcm-wcn7750-overlay.dtbo"},
+        ],
+    },
+    "ravelin": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "ravelin.dtb"},
+            {"name": "ravelinp.dtb"},
+            {"name": "ravelin-sg.dtb"},
+            {"name": "ravelinp-sg.dtb"},
+            {"name": "ravelin-4gb.dtb"},
+            {"name": "ravelinp-4gb.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "ravelin-atp-overlay.dtbo"},
+            {"name": "ravelin-idp-overlay.dtbo"},
+            {"name": "ravelin-idp-wcn3950-amoled-rcm-overlay.dtbo"},
+            {"name": "ravelin-idp-wcn3988-4gb-overlay.dtbo"},
+            {"name": "ravelin-qrd-overlay.dtbo"},
+            {"name": "ravelin-qrd-4gb-overlay.dtbo"},
         ],
     },
     "malabar": {
