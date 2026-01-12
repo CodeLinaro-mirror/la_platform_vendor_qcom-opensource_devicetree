@@ -29,6 +29,20 @@
 	status = "ok";
 };
 
+&pmxr2230_flash_led0 {
+	led-max-microamp = <500000>;
+	led-sources = <1>, <4>;
+};
+
+&pmxr2230_flash_led1 {
+	led-max-microamp = <500000>;
+	led-sources = <2>, <3>;
+};
+
+&pmxr2230_flash_led2 {
+	status = "disabled";
+};
+
 &soc {
 	reboot_reason {
 		compatible = "qcom,reboot-reason";
