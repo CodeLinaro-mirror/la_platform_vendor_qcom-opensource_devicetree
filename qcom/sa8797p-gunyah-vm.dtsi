@@ -1607,6 +1607,7 @@
 		reg = <0x1c81000 0x1000>;
 		reg-names = "tsc";
 		qcom,tsc-nsec-update;
+		status = "disabled";
 	};
 
 	intc: interrupt-controller@17a00000 {
