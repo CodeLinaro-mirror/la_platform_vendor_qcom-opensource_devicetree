@@ -55,6 +55,7 @@ canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS)
 
 ALOR_BASE_DTB += alor.dtb
 ALOR_APQ_BASE_DTB += alorp.dtb
+ALOR_XR_BASE_DTB += alor-xr.dtb
 
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
@@ -67,15 +68,16 @@ ALOR_BOARDS += \
 		alor-rcm-peach-overlay.dtbo \
 		alor-qrd-overlay.dtbo \
 		alor-qrd-peach-overlay.dtbo \
-		alor-qrd-ufcs-overlay.dtbo
+		alor-qrd-ufcs-overlay.dtbo \
+		alor-xr-mtp-overlay.dtbo
 
 NOAPQ_ALOR_BOARDS += \
 		alor-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_ALOR) += \
 	$(call add-overlays, $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS),$(ALOR_BASE_DTB))\
-	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB)
+	$(call add-overlays, $(ALOR_BOARDS),$(ALOR_APQ_BASE_DTB),$(ALOR_XR_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_ALOR) += $(ALOR_BOARDS) $(NOAPQ_ALOR_BOARDS) $(ALOR_BASE_DTB) $(ALOR_APQ_BASE_DTB) $(ALOR_XR_BASE_DTB)
 
 
 CHORA_BASE_DTB += chora.dtb

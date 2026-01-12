@@ -113,6 +113,7 @@ _platform_map = {
                 "name": "alorp.dtb",
                 "apq": True,
             },
+	    {"name": "alor-xr.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -128,6 +129,7 @@ _platform_map = {
             {"name": "alor-qrd-peach-overlay.dtbo"},
             {"name": "alor-qrd-ufcs-overlay.dtbo"},
             {"name": "alor-rumi-overlay.dtbo"},
+            {"name": "alor-xr-mtp-overlay.dtbo"},
         ],
     },
     "alor-le": {
