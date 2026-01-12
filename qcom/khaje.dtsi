@@ -2251,10 +2251,10 @@
 		compatible = "qcom,demux";
 	};
 
-tpdm_turing_llm: tpdm@8861000 {
+	tpdm_turing_llm: tpdm@8861000 {
 		compatible = "qcom,coresight-dummy";
 
-		coresight-name = "coresight-tpdm-turing_llm";
+		device-name = "tpdm_turing_llm";
 		qcom,dummy-source;
 
 		port {
@@ -2268,11 +2268,12 @@ tpdm_turing_llm: tpdm@8861000 {
 	/delete-node/ tpdm@8a58000;
 	tpdm_west: tpdm@8a58000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x8a58000 0x1000>;
 		reg-names = "tpdm-base";
 
-		coresight-name = "coresight-tpdm-west";
+		device-name = "tpdm_west";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2286,11 +2287,12 @@ tpdm_turing_llm: tpdm@8861000 {
 
 	tpdm_spdm: tpdm@800f000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0800f000 0x1000>;
 		reg-names = "tpdm-base";
 
-		coresight-name = "coresight-tpdm-spdm";
+		device-name = "tpdm_spdm";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2309,14 +2311,13 @@ tpdm_turing_llm: tpdm@8861000 {
 		reg = <0x8863000 0x1000>;
 		reg-names = "funnel-base";
 
-		coresight-name = "coresight-funnel-turing";
+		device-name = "funnel_turing";
+		qcom,dsb-element-bits = <1 32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
 
+		out-ports {
 			port@0 {
 				reg = <0>;
 				funnel_turing_out_funnel_qatb: endpoint {
@@ -2333,8 +2334,13 @@ tpdm_turing_llm: tpdm@8861000 {
 					<&tpda5_in_funnel_turing>;
 				};
 			};
+		};
 
-			port@2 {
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
 				reg = <0>;
 				funnel_turing_in_tpdm_turing: endpoint {
 					slave-mode;
@@ -2343,7 +2349,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@3 {
+			port@1 {
 				reg = <1>;
 				funnel_turing_in_tpdm_turing_llm: endpoint {
 					slave-mode;
@@ -2352,7 +2358,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@4 {
+			port@2 {
 				reg = <2>;
 				funnel_turing_in_turing_etm0: endpoint {
 					slave-mode;
@@ -2370,26 +2376,14 @@ tpdm_turing_llm: tpdm@8861000 {
 		reg = <0x8004000 0x1000>;
 		reg-names = "tpda-base";
 
-		coresight-name = "coresight-tpda";
+		device-name = "tpda";
 
 		qcom,tpda-atid = <65>;
-		qcom,dsb-elem-size = <0 32>,
-						<1 32>,
-						<5 32>,
-						<11 32>,
-						<12 32>,
-						<15 32>;
-		qcom,cmb-elem-size = <7 32>,
-						<8 32>,
-						<10 32>,
-						<15 64>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
+		out-ports {
 			port@0 {
 				reg = <0>;
 				tpda_out_funnel_qatb: endpoint {
@@ -2397,8 +2391,13 @@ tpdm_turing_llm: tpdm@8861000 {
 					<&funnel_qatb_in_tpda>;
 				};
 			};
+		};
 
-			port@1 {
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
 				reg = <0>;
 				tpda0_in_tpdm_dl_ct: endpoint {
 					slave-mode;
@@ -2407,7 +2406,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@2 {
+			port@1 {
 				reg = <1>;
 				tpda1_in_funnel_gpu: endpoint {
 					slave-mode;
@@ -2416,7 +2415,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@3 {
+			port@5 {
 				reg = <5>;
 				tpda5_in_funnel_turing: endpoint {
 					slave-mode;
@@ -2425,7 +2424,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@4 {
+			port@7 {
 				reg = <7>;
 				tpda7_in_tpdm_vsense: endpoint {
 					slave-mode;
@@ -2434,7 +2433,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@5 {
+			port@8 {
 				reg = <8>;
 				tpda8_in_tpdm_dcc: endpoint {
 					slave-mode;
@@ -2443,7 +2442,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@6 {
+			port@10 {
 				reg = <10>;
 				tpda10_in_tpdm_prng: endpoint {
 					slave-mode;
@@ -2452,7 +2451,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@7 {
+			port@11 {
 				reg = <11>;
 				tpda11_in_tpdm_west: endpoint {
 					slave-mode;
@@ -2461,7 +2460,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@8 {
+			port@12 {
 				reg = <12>;
 				tpda12_in_tpdm_qm: endpoint {
 					slave-mode;
@@ -2470,7 +2469,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@9 {
+			port@13 {
 				reg = <13>;
 				tpda13_in_tpdm_spdm: endpoint {
 					slave-mode;
@@ -2479,7 +2478,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@10 {
+			port@15 {
 				reg = <15>;
 				tpda15_in_tpdm_pimem: endpoint {
 					slave-mode;
@@ -2498,7 +2497,7 @@ tpdm_turing_llm: tpdm@8861000 {
 		reg = <0x8862000 0x1000>;
 		reg-names = "cti-base";
 
-		coresight-name = "coresight-cti-turing-q6";
+		device-name = "cti_turing_q6";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
