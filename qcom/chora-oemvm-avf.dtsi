@@ -82,6 +82,18 @@
 				qcom,label = <0x1>;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x108>;
+					#address-cells = <0x2>;
+					base = <0x0 0x64006000>;
+				};
+			};
+
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-oemvm";
@@ -103,6 +115,15 @@
 				queue-depth = <0x8>;
 				qcom,label = <0x105>;
 				peer-default;
+			};
+
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x103>;
 			};
 
 			test-large-dmabuf-oemvm {
@@ -170,6 +191,9 @@
 				&virtio_mem_device
 				&qcom_mem_buf
 				&mem_buf_msgq
+				&qrtr_gunyah
+				&qcom_qrtr
+				&qmsgq_gunyah
 				>;
 	};
 
@@ -183,6 +207,16 @@
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
+	};
+
+	qcom_qrtr: qcom,qrtr {
+		compatible = "qcom,qrtr";
+		qcom,node-id = <21>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x108>;
 	};
 
 	qcom_mem_buf: qcom,mem-buf {
@@ -222,6 +256,12 @@
 	qcom_test_large_dmabuf_oemvm: qcom,test-large-dmabuf-oemvm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10e>;
+	};
+
+	qmsgq_gunyah: msgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <2>;
 	};
 
 	gh_qtimer: qcom,gh-qtimer@1742b000 {

@@ -166,6 +166,18 @@
 				peer-default;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
+				};
+			};
+
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
 				generate = "/hypervisor/membuf-msgq-pair";
@@ -173,6 +185,15 @@
 				queue-depth = <0x00000008>;
 				peer-default;
 				qcom,label = <0x101>;
+			};
+
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
 			};
 
 			// Retrieve VM dmesg
@@ -289,6 +310,8 @@
 			&qcom_test_large_dmabuf_tuivm
 			&qcom_mem_buf
 			&mem_buf_msgq
+			&qmsgq_gunyah
+			&qrtr_gunyah
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
@@ -405,6 +428,17 @@
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10d>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
+	};
+
+	qmsgq_gunyah: qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <4>;
 	};
 
 	qcom_gh_qtimer: qcom,gh-qtimer@1742b000 { // Same as PVM
