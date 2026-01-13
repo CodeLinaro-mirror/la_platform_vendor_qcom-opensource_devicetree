@@ -689,6 +689,13 @@
 		};
 	};
 
+	kryo-erp {
+		compatible = "arm,arm64-kryo-cpu-erp";
+		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "l1-l2-faultirq","l3-scu-faultirq";
+	};
+
 	slimbam: bamdma@a584000 {
 		compatible = "qcom,bam-v1.7.0";
 		reg = <0xa584000 0x20000>, <0xa66f000 0x1000>;
