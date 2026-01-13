@@ -271,7 +271,8 @@
 			&mem_buf_msgq
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
-			&google_debug_kinfo>;
+			&google_debug_kinfo
+			&qcom_dma_heaps>;
 	};
 
 	vm_tlmm_irq: vm-tlmm-irq@0 {
