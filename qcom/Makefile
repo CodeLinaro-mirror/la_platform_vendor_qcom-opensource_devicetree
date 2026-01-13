@@ -713,6 +713,7 @@ ifeq ($(CONFIG_ARCH_CHORA), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
 				chora-vm-mtp-overlay.dtbo \
+				chora-vm-mtp-lcd-overlay.dtbo \
 				chora-vm-qrd-overlay.dtbo \
 				chora-vm-rcm-overlay.dtbo \
 				chora-vm-cdp-overlay.dtbo \
