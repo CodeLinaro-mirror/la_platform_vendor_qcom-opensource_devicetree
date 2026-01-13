@@ -1499,9 +1499,9 @@
 	};
 
 	ufsphy_mem: ufsphy_mem@0x4807000 {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		reg = <0x4807000 0xE10>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0x4807000 0x0 0xE10>;
 		reg-names = "phy_mem";
 		#phy-cells = <0>;
 
@@ -1529,7 +1529,7 @@
 		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
 		 * from 0x1000 - 0xffffffff.
 		 */
-		iommu-addresses = <&ufshc_mem 0x0 0x1000>;
+		iommu-addresses = <&ufshc_mem 0x0 0x0 0x0 0x1000>;
 	};
 
 	ufshc_opp_table: ufshc-opp-table {
@@ -1564,9 +1564,10 @@
 
 	ufshc_mem: ufshc@4804000 {
 		compatible = "qcom,ufshc";
-		#address-cells = <1>;
-		#size-cells = <1>;
-		reg = <0x0 0x4804000 0x0 0x3000>, <0x0 0x4810000 0x0 0x8000>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0x4804000 0x0 0x3000>,
+		      <0x0 0x4810000 0x0 0x8000>;
 
 		reg-names = "ufs_mem", "ufs_ice";
 
