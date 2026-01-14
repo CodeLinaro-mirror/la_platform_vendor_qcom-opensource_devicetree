@@ -503,6 +503,11 @@ properties:
                  support l1ss.
     type: boolean
 
+  qcom,no-client-based-bw-voting:
+    description: client based bw voting is not supported. PCIe driver votes for
+                 required bandwidth based on link-width and Gen-Speed.
+    type: boolean
+
   qcom,wr-halt-size:
     description: Exponent (base 2) that determines the data size(bytes) that
                  PCIe core will halt for each write.
