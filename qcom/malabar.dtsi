@@ -1199,6 +1199,15 @@
 		reg = <0x0 0x3c0000 0x0 0x40000>;
 	};
 
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,malabar-qfprom", "qcom,qfprom";
+		reg = <0x0 0x1b40000 0x0 0x7000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
 	clk_virt: interconnect {
 		compatible = "qcom,malabar-clk_virt";
 		#interconnect-cells = <1>;
