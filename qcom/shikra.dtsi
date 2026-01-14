@@ -769,6 +769,7 @@
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"
 #include "msm-rdbg-shikra.dtsi"
+#include "shikra-usb.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
