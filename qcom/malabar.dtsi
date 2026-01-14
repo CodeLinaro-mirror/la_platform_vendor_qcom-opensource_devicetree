@@ -726,6 +726,11 @@
 		wakeup-parent = <&mpm>;
 	};
 
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 	ipcc_mproc: qcom,ipcc@208000 {
 		compatible = "qcom,ipcc";
 		reg = <0x208000 0x1000>;
