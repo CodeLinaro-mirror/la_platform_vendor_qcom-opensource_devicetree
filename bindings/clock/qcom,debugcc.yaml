@@ -32,6 +32,7 @@ properties:
       - qcom,x1e80100-debugcc
       - qcom,pikachu-debugcc
       - qcom,shikra-debugcc
+      - qcom,sm8350-debugcc
 
   clocks:
     items:
