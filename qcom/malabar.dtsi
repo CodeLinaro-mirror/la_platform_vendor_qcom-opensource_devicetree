@@ -507,7 +507,7 @@
 		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
 
-		status = "disabled";
+		status = "ok";
 	};
 
 	tcsr_mutex_block: syscon@340000 {
