@@ -1319,10 +1319,12 @@
 		compatible = "qcom,malabar-adsp-pas";
 		reg = <0x0 0xa400000 0x0 0x100>;
 
-		status = "disabled";
+		status = "ok";
 
 		vdd_lpi_cx-supply = <&VDD_LPI_CX_LEVEL>;
+		vdd_lpi_cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 0>;
 		vdd_lpi_mx-supply = <&VDD_LPI_MX_LEVEL>;
+		vdd_lpi_mx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 0>;
 		reg-names = "vdd_lpi_cx", "vdd_lpi_mx";
 
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
@@ -1333,18 +1335,21 @@
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
 		memory-region = <&adsp_mem>;
+		firmware-name = "adsp.mdt";
 
 		interrupts-extended = <&intc GIC_SPI 282 IRQ_TYPE_EDGE_RISING>,
 			<&adsp_smp2p_in 0 0>,
 			<&adsp_smp2p_in 2 0>,
 			<&adsp_smp2p_in 1 0>,
-			<&adsp_smp2p_in 3 0>;
+			<&adsp_smp2p_in 3 0>,
+			<&adsp_smp2p_in 7 0>;
 
 		interrupt-names = "wdog",
 			"fatal",
 			"handover",
 			"ready",
-			"stop-ack";
+			"stop-ack",
+			"shutdown-ack";
 
 		qcom,smem-states = <&adsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
@@ -1388,10 +1393,12 @@
 		compatible = "qcom,malabar-modem-pas";
 		reg = <0x0 0x6080000 0x0 0x100>;
 
-		status = "disabled";
+		status = "ok";
 
 		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;
 		mx-supply = <&VDD_MX_LEVEL>;
+		mx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;
 		reg-names = "cx", "mx";
 
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
@@ -1401,7 +1408,8 @@
 				<&system_noc MASTER_CRYPTO_CORE0 &bimc SLAVE_EBI_CH0>;
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
-		memory-region = <&mpss_mem>;
+		memory-region = <&mpss_mem &system_cma>;
+		firmware-name = "modem.mdt";
 
 		interrupts-extended = <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,
 			<&modem_smp2p_in 0 0>,
