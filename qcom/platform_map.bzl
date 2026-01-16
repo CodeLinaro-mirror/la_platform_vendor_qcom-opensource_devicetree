@@ -203,6 +203,7 @@ _platform_map = {
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
+            {"name": "malabar-4gb.dtb"},
             {
                 "name": "malabarp.dtb",
                 "apq": True,
@@ -217,6 +218,9 @@ _platform_map = {
             {"name": "malabar-qrd-overlay.dtbo"},
             {"name": "malabar-rcm-overlay.dtbo"},
             {"name": "malabar-rumi-overlay.dtbo"},
+            {"name": "malabar-cdp-4gb-overlay.dtbo"},
+            {"name": "malabar-qrd-4gb-overlay.dtbo"},
+            {"name": "malabar-mtp-4gb-overlay.dtbo"},
         ],
     },
     "bengal": {
