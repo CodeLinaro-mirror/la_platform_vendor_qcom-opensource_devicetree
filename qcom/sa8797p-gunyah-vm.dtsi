@@ -463,6 +463,9 @@
 		};
 	};
 
+	virtio_mmio_gpio {
+	};
+
 	vm_config: qcom,vm-config {
 		compatible = "qcom,vm-1.0";
 		vm-type = "aarch64-guest";
@@ -1349,10 +1352,10 @@
 				};
 			};
 
-			/* Reserved device */
+			/* GPIO virtio */
 			virtio-mmio@50 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/virtio_mmio_gpio";
 				peer-default;
 				vqs-num = <0x2>;
 				push-compatible = "virtio,mmio";
@@ -1361,6 +1364,24 @@
 				dma_base = <0x0 0x2D4000>;
 				memory {
 					qcom,label = <0x53>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+
+			/* Reserved device */
+			virtio-mmio@51 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x2D8000>;
+				memory {
+					qcom,label = <0x54>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};

@@ -160,6 +160,17 @@
 				qcom,label = <0x10a>;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					allocate-base;
+				};
+			};
+
 			gpiomem0 {
 				vdevice-type = "iomem";
 				patch = "/soc/tlmm-vm-mem-access";
@@ -274,6 +285,7 @@
 			&qcom_smcinvoke
 			&qtee_shmbridge
 			&qcom_gunyah_panic_notifier
+			&virtio_mem_device
 			&google_debug_kinfo
 			>;
 	};
@@ -395,6 +407,11 @@
 		affinity = <0>;
 	};
 
+	qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
+	};
+
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10d>;
@@ -412,11 +429,24 @@
 	qcom_mem_buf: qcom,mem-buf {
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
 		qcom,vmid = <45>;
 	};
 
 	mem_buf_msgq: qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_smcinvoke: qcom_smcinvoke {

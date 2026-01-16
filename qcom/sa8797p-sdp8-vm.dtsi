@@ -349,6 +349,86 @@
 				<GIC_ESPI 0x13f IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	kgsl_smmu_0: iommu@3da0000 {
+		compatible = "qcom,qsmmu-v500";
+		reg = <0x3da0000 0x40000>;
+		reg-names = "base";
+		#iommu-cells = <2>;
+		#global-interrupts = <2>;
+		dma-coherent;
+		qcom,skip-init;
+		qcom,reset-stream-mapping-groups;
+		qcom,handoff-smrs = <0x0 0xffff>;
+		qcom,multi-match-handoff-smr;
+		interrupts = <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 476 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 574 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 575 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 576 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 577 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 660 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 662 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 665 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 666 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 667 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 669 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 670 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 700 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	kgsl_smmu_1: iommu@98a0000 {
+		compatible = "qcom,qsmmu-v500";
+		reg = <0x98a0000 0x40000>;
+		reg-names = "base";
+		#iommu-cells = <2>;
+		#global-interrupts = <2>;
+		dma-coherent;
+		qcom,skip-init;
+		qcom,reset-stream-mapping-groups;
+		qcom,handoff-smrs = <0x0 0xffff>;
+		qcom,multi-match-handoff-smr;
+		interrupts = <GIC_SPI 851 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 852 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 853 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 857 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 859 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 922 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 924 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 925 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 926 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 927 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 928 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 929 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 931 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 932 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 936 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 937 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 938 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 939 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 940 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 941 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 942 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 	dma_dev@0x0 {
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
@@ -522,6 +602,26 @@
 		qcom,wdt-bark-offset = <0x0C>;
 		qcom,wdt-bite-offset = <0x10>;
 		qcom,wdt-hz = <19198242>;
+	};
+};
+
+&hab {
+	mmidgrp1700: mmidgrp1700 {
+	    grp-start-id = <1700>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1800: mmidgrp1800 {
+	    grp-start-id = <1800>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1900: mmidgrp1900 {
+	    grp-start-id = <1900>;
+	    role = "fe";
+	    remote-vmids = <0>;
 	};
 };
 

@@ -18,6 +18,13 @@ properties:
   compatible:
     const: qcom,si-core
 
+  qcom,ffa-pool-size:
+    description:
+      Indicates the size of FFA pool to be supported in multiples of page size (4K by default).
+    $ref: /schemas/types.yaml#/definitions/uint32
+    minimum: 32
+    maximum: 1024
+
 required:
   - compatible
 
@@ -26,5 +33,15 @@ additionalProperties: false
 examples:
   - |
     qcom_si_core {
-        compatible = "qcom,si-core";
+      compatible = "qcom,si-core";
+    };
+
+    When qcom,ffa-pool-size property is missing, a default FFA pool of size
+    4 MB is allocated. To allocate 1 MB of memory for FFA pool, we will have
+    an entry of 256, since 256 * 4 KB (page size) = 1 MB. Note that this
+    means the allocated memory depends on the value of kernel PAGE_SIZE macro.
+
+    qcom_si_core {
+      compatible = "qcom,si-core";
+      qcom,ffa-pool-size = <256>;
     };

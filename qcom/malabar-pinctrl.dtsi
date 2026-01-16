@@ -47,69 +47,69 @@
 
 	sdc1_on: sdc1_on {
 		clk {
-			pins = "sdc1_clk";
+			pins = "SDC1_CLK";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "sdc1_cmd";
+			pins = "SDC1_CMD";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "sdc1_data";
+			pins = "SDC1_DATA";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		rclk {
-			pins = "sdc1_rclk";
+			pins = "SDC1_RCLK";
 			bias-pull-down;
 		};
 	};
 
 	sdc1_off: sdc1_off {
 		clk {
-			pins = "sdc1_clk";
+			pins = "SDC1_CLK";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "sdc1_cmd";
+			pins = "SDC1_CMD";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "sdc1_data";
+			pins = "SDC1_DATA";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		rclk {
-			pins = "sdc1_rclk";
+			pins = "SDC1_RCLK";
 			bias-pull-down;
 		};
 	};
 
 	sdc2_on: sdc2_on {
 		clk {
-			pins = "sdc2_clk";
+			pins = "SDC2_CLK";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "sdc2_cmd";
+			pins = "SDC2_CMD";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "sdc2_data";
+			pins = "SDC2_DATA";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
@@ -123,19 +123,19 @@
 
 	sdc2_off: sdc2_off {
 		clk {
-			pins = "sdc2_clk";
+			pins = "SDC2_CLK";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "sdc2_cmd";
+			pins = "SDC2_CMD";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "sdc2_data";
+			pins = "SDC2_DATA";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
@@ -1991,6 +1991,33 @@
 				drive-strength = <2>;
 				bias-disable;
 			};
+		};
+	};
+
+	pm8010_reset: pm8010_reset {
+		mux {
+			pins = "gpio112";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio112";
+			bias-pull-up;
+			output-high;
+			drive-strength = <2>;
+		};
+	};
+
+	pm8010_interrupt: pm8010_interrupt {
+		mux {
+			pins = "gpio113";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio113";
+			bias-disable;
+			input-enable;
 		};
 	};
 };

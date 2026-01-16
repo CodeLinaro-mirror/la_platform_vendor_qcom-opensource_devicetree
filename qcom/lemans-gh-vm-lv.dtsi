@@ -9,6 +9,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
+	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 
 	chosen {
@@ -39,7 +40,7 @@
 
 		qseecom_ta_mem: qseecom_ta_region {
 			compatible = "shared-dma-pool";
-			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+			alloc-ranges = <0x0 0x00000000 0x0 0xfb700000>;
 			reusable;
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x1000000>;
@@ -1034,6 +1035,11 @@
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
 		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
 	};
 
 	soc: soc { };

@@ -3,6 +3,7 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "lemans-vm-la.dtb"},
+            {"name": "lemans-vm-lv.dtb"},
             {"name": "lemans-vm-lv-mt.dtb"},
             {"name": "lemans-gh-vm-lv-qam-ridesx.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
@@ -22,6 +23,7 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "lemans-vm-la-overlay.dtbo"},
+            {"name": "lemans-vm-lv-overlay.dtbo"},
             {"name": "lemans-vm-lv-mt-overlay.dtbo"},
             {"name": "lemans-gh-vm-lv-qam-ridesx-overlay.dtbo"},
             {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},

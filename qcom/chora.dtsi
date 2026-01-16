@@ -687,6 +687,33 @@
 		interrupt-controller;
 	};
 
+	disp_rsc: rsc@af20000 {
+		label = "disp_rsc";
+		compatible = "qcom,rpmh-rsc";
+		reg = <0x0 0xaf20000 0x0 0x10000>;
+		reg-names = "drv-0";
+		qcom,drv-count = <1>;
+		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
+
+		disp_rsc_drv0: drv@0 {
+			qcom,tcs-offset = <0x1c00>;
+			qcom,drv-id = <0>;
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						  <SLEEP_TCS     1>,
+						  <WAKE_TCS      1>,
+						  <CONTROL_TCS   0>,
+						  <FAST_PATH_TCS 0>;
+			};
+
+			disp_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
+			};
+		};
+	};
+
 	cluster-device {
 		compatible = "qcom,lpm-cluster-dev";
 		power-domains = <&CLUSTER_PD>;
@@ -2128,8 +2155,8 @@
 	mc_virt: interconnect@1 {
 		compatible = "qcom,chora-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "disp";
+		qcom,bcm-voters = <&apps_bcm_voter>, <&disp_bcm_voter>;
 	};
 
 	aggre_noc: interconnect@1700000 {
@@ -2163,8 +2190,8 @@
 		compatible = "qcom,chora-gem_noc";
 		reg = <0x0 0x24100000 0x0 0xff080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "disp";
+		qcom,bcm-voters = <&apps_bcm_voter>, <&disp_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@3C40000 {
@@ -2179,8 +2206,8 @@
 		compatible = "qcom,chora-mmss_noc";
 		reg = <0x0 0x01400000 0x0 0xdb400>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "disp";
+		qcom,bcm-voters = <&apps_bcm_voter>, <&disp_bcm_voter>;
 	};
 
 	pcie_anoc: interconnect@16C0000 {
@@ -2613,6 +2640,7 @@
 /delete-node/ &ipcc_self_ping_mpss;
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_wpss;
+#include "msm-rdbg-monaco.dtsi"
 
 &qupv3_se5_2uart {
 	status = "ok";
