@@ -11,6 +11,7 @@
 		compatible = "virtio,mmio";
 		reg =<0x1e000000 0x1000>;
 		interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+		status = "disabled";
 	};
 
 	emac1_mtl_rx_setup: rx-queues-config {
@@ -78,6 +79,7 @@
 		clocks = <&gcc GCC_SGMI_CLKREF_EN>;
 		clock-names = "sgmi_ref";
 		#phy-cells = <0>;
+		status = "disabled";
 	};
 
 	ethernet1: ethernet@23000000 {
