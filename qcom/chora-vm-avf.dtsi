@@ -362,20 +362,6 @@
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		depends-on-supply = <&tlmm>;
-		// Soc dependent
-		tlmm-vm-gpio-list = <
-				/* Touch gpio pins */
-				&tlmm 0 0
-				&tlmm 1 0
-				&tlmm 19 0
-				&tlmm 20 0
-				&tlmm 21 0
-				&tlmm 22 0
-				/* Display gpio pins */
-				&tlmm 12 0
-				&tlmm 113 0
-				/* Test gpio pins */
-				&tlmm 24 0>;
 	};
 
 	wdog: qcom,wdt@17410000 {  // Same as PVM
