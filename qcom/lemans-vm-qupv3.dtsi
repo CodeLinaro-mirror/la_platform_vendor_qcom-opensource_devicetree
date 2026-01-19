@@ -24,7 +24,7 @@
 		memory-region = <&qup_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
-		status = "ok";
+		status = "disabled";
 
 		qupv3_se3_spi: spi@98c000 {
 			compatible = "qcom,spi-geni";
@@ -109,7 +109,7 @@
 		memory-region = <&qup_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
-		status = "ok";
+		status = "disabled";
 
 		qupv3_se11_i2c: i2c@a90000 {
 			compatible = "qcom,i2c-geni";
@@ -154,7 +154,7 @@
 		memory-region = <&qup_iommu_region>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 		qcom,iommu-dma = "fastmap";
-		status = "ok";
+		status = "disabled";
 
 		qupv3_se14_spi: spi@880000 {
 			compatible = "qcom,spi-geni";

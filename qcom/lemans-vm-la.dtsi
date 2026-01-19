@@ -172,7 +172,15 @@
 	status = "ok";
 };
 
+&qupv3_2 {
+	status = "ok";
+};
+
 &qupv3_se17_4uart {
+	status = "ok";
+};
+
+&qupv3_0 {
 	status = "ok";
 };
 
