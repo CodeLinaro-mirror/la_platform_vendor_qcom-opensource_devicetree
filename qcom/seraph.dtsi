@@ -31,7 +31,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe";
+		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1";
 	};
 
 	reserved_memory: reserved-memory {};
@@ -1537,6 +1537,15 @@
 		memory-region-names = "trustedvm_cma";
 	};
 
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
+
 	thermal_zones: thermal-zones {};
 
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
@@ -1825,6 +1834,70 @@
 		method = "smc";
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	eud: qcom,msm-eud@88e0000 {
+		compatible = "qcom,msm-eud";
+		interrupt-names = "eud_irq";
+		interrupt-parent = <&pdc>;
+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x088e0000 0x2000>,
+			<0x088e2000 0x1000>;
+		reg-names = "eud_base", "eud_mode_mgr2";
+		qcom,secure-eud-en;
+		status = "ok";
+	};
+
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,seraph-qfprom", "qcom,qfprom";
+		reg = <0x221c8000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
+	qfprom_sys: qfprom@0 {
+		compatible = "qcom,qfprom-sys";
+	};
+
+	ramoops_mem: ramoops_region {
+		compatible = "ramoops";
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x200000>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0xc221000 0x1000>;
+		clock-frequency = <32768>;
+	};
+
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,gic-class1-cpus = <&CPU4>;
+		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4>;
+		qcom,gic-runtime-cpu-class-en;
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
 };
 
 &firmware {
@@ -1890,6 +1963,18 @@
 		size = <0x0 0x1000000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
 };
 
 #include "seraph-reserved-memory.dtsi"
