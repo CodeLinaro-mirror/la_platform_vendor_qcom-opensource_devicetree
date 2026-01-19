@@ -15,8 +15,6 @@
 &firmware {
 	qcom_scm {
 		compatible = "qcom,scm-v1.1", "qcom,scm";
-		interrupts = <0x00 0x3ad 0x01>;
-		qcom,max-queues = <0x23>;
 	};
 
 };
