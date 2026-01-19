@@ -2616,7 +2616,7 @@
 					&tlmm 22 0
 					/* Display gpio pins */
 					&tlmm 12 0
-					&tlmm 133 0
+					&tlmm 113 0
 					/* Test gpio pins */
 					&tlmm 24 0>;
 		};
