@@ -351,6 +351,7 @@
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
+		depends-on-supply = <&tlmm>;
 		// Soc dependent
 		tlmm-vm-gpio-list = <
 				/* Touch gpio pins */
