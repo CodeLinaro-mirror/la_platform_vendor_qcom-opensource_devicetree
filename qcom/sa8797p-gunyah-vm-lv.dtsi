@@ -5,6 +5,8 @@
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
 
 / {
 	#address-cells = <0x2>;
@@ -1160,6 +1162,15 @@
 			reg = <0x16>;
 			#reset-cells = <1>;
 		};
+	};
+
+	ipcc_mproc_apps_ns2: qcom,ipcc@9009000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9009000 0x1000>;
+		interrupts = <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 
 	qcom,mem-buf {
