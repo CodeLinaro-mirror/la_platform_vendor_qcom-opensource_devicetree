@@ -150,6 +150,15 @@
 				peer-default;
 			};
 
+			test-large-dmabuf-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10d>;
+				peer-default;
+			};
+
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
 				generate = "/hypervisor/membuf-msgq-pair";
@@ -278,6 +287,7 @@
 			&qcom_test_msgq_tuivm
 			&qcom_mem_buf
 			&mem_buf_msgq
+			&qcom_test_large_dmabuf_tuivm
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
@@ -370,6 +380,11 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
 	};
 
 	qcom_gh_qtimer: qcom,gh-qtimer@f42B000 { // APSS_QTMR0_F5V1_QTMR_V1
