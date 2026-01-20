@@ -44,6 +44,10 @@
 	};
 };
 
+&usb0 {
+	extcon = <&pmar2230_extcon>;
+};
+
 &soc {
 	reboot_reason {
 		compatible = "qcom,reboot-reason";
