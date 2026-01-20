@@ -757,6 +757,10 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	gic-interrupt-router {
 		compatible = "qcom,gic-intr-routing";
 		/* keep a few m cores in class0 only to avoid wakeup of l cores */
