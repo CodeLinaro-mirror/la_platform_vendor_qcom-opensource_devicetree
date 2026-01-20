@@ -31,8 +31,8 @@
 			android,pvmfw,target = <&wdog>;
 		};
 
-		pinctrl@f100000 { // Same as PVM
-			reg = <0x0 0x0f100000 0x0 0xf00000>;
+		pinctrl@f000000 { // Same as PVM
+			reg = <0x0 0xf000000 0x0 0x1000000>;
 			android,pvmfw,target = <&tlmm>;
 		};
 
@@ -347,9 +347,9 @@
 		#interrupt-cells = <2>;
 	};
 
-	tlmm: pinctrl@f100000 { // Same as PVM
+	tlmm: pinctrl@f000000 { // Same as PVM
 		compatible = "qcom,chora-vm-tlmm";
-		reg = <0x0 0xf100000 0x0 0xf00000>;
+		reg = <0x0 0xf000000 0x0 0x1000000>;
 		interrupts-extended = <&vm_tlmm_irq 1 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
 		#gpio-cells = <2>;
