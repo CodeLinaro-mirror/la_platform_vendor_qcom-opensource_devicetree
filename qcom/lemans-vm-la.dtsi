@@ -116,10 +116,6 @@
 	vmid = <2>;
 };
 
-&ethernet1 {
-	status = "ok";
-};
-
 &pcie0 {
 	status = "ok";
 };
