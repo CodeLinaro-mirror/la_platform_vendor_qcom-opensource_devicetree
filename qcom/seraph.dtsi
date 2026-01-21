@@ -1154,13 +1154,14 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		reg = <0x00B24000 0x1000>, <0x00B25000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0xB24000 0x1000>, <0xB25000 0x1000>, <0xB28000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "bypass";
 
+		qcom,ice-use-hwkm;
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
 		 * be used in dma allocation.
