@@ -58,8 +58,7 @@
 };
 
 &pmk8350_vadc {
-	pinctrl-0 = <&sys_therm_1_gpio5_default>,
-		    <&sys_therm_2_gpio2_default>,
+	pinctrl-0 = <&sys_therm_2_gpio2_default>,
 		    <&sys_therm_3_gpio2_default>,
 		    <&sys_therm_4_gpio1_default>,
 		    <&sys_therm_5_gpio4_default>,
