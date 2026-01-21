@@ -390,6 +390,7 @@
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
+		depends-on-supply = <&tlmm>;
 		tlmm-vm-gpio-list = <&tlmm 86 0 &tlmm 87 0 &tlmm 97 0 &tlmm 98 0 &tlmm 48 0
 					&tlmm 49 0 &tlmm 50 0 &tlmm 51 0 &tlmm 158 0 &tlmm 66 0
 					&tlmm 100 0 &tlmm 8 0 &tlmm 9 0 &tlmm 10 0 &tlmm 11 0
