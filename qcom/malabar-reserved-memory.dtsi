@@ -86,7 +86,7 @@
 	};
 
 	adsp_mem: adsp-region@94600000 {
-		reg = <0x0 0x94500000 0x0 0x1e00000>;
+		reg = <0x0 0x94600000 0x0 0x1e00000>;
 		no-map;
 	};
 
