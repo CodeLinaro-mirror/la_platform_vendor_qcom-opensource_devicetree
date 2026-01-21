@@ -30,6 +30,7 @@
 		VDD_CX_FLOOR_LEVEL:
 		S2B_FLOOR_LEVEL:
 		pm6450_s2_floor_level: regulator-s2-floor-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s2_floor_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -43,6 +44,7 @@
 		VDD_CX_LEVEL_A0:
 		S2B_LEVEL_A0:
 		pm6450_s2_level_a0: regulator-s2-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s2_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -58,6 +60,7 @@
 		VDD_GFX_LEVEL:
 		S3B_LEVEL: S3B_E0_LEVEL:
 		pm6450_s3_level: regulator-s3-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s3_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -88,6 +91,7 @@
 		VDD_GFX_LEVEL_A0:
 		S3B_LEVEL_A0:
 		pm6450_s3_level_a0: regulator-s3-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s3_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -103,6 +107,7 @@
 		VDD_MX_LEVEL:
 		S6B_LEVEL: S6B_E0_LEVEL:
 		pm6450_s6_level: regulator-s6-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -119,6 +124,7 @@
 		VDD_MX_FLOOR_LEVEL:
 		S6B_FLOOR_LEVEL:
 		pm6450_s6_floor_level: regulator-s6-floor-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_floor_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -132,6 +138,7 @@
 		VDD_MX_LEVEL_A0:
 		S6B_LEVEL_A0:
 		pm6450_s6_level_a0: regulator-s6-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -147,6 +154,7 @@
 		VDD_LPI_CX_LEVEL:
 		L6B_LEVEL: L6B_E0_LEVEL:
 		pm6450_l6_level: regulator-l6-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_l6_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -162,6 +170,7 @@
 		VDD_LPI_MX_LEVEL:
 		L8B_LEVEL: L8B_E0_LEVEL:
 		pm6450_l8_level: regulator-l8-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_l8_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
