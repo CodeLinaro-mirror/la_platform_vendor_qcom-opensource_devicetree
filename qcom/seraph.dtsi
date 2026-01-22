@@ -82,6 +82,8 @@
 			power-domain-names = "psci";
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
 				cache-level = <2>;
@@ -104,6 +106,8 @@
 			power-domain-names = "psci";
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU2: cpu@200 {
@@ -116,6 +120,8 @@
 			power-domain-names = "psci";
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU3: cpu@300 {
@@ -128,6 +134,8 @@
 			power-domain-names = "psci";
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		CPU4: cpu@400 {
@@ -140,6 +148,8 @@
 			power-domain-names = "psci";
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 1>;
+			capacity-dmips-mhz = <1956>;
+			dynamic-power-coefficient = <389>;
 		};
 
 		cpu-map {
