@@ -230,6 +230,15 @@
 		interrupt-controller;
 	};
 
+	ipcc_mproc: qcom,ipcc@404000 {
+		compatible = "qcom,ipcc";
+		reg = <0x404000 0x1000>;
+		interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
 	memtimer: timer@17420000 {
 		#address-cells = <1>;
 		#size-cells = <1>;
