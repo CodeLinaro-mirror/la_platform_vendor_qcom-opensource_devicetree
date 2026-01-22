@@ -5,6 +5,10 @@
 
 #include <dt-bindings/thermal/thermal_qti.h>
 
+&msm_gpu {
+	#cooling-cells = <2>;
+};
+
 &soc {
 	tsens0: tsens0@4411000 {
 		compatible = "qcom,tsens-v2";
@@ -90,6 +94,22 @@
 			qcom,cdev-alias = "cpu-hotplug3";
 			#cooling-cells = <2>;
 		};
+	};
+
+	qcom,cpufreq-cdev {
+		compatible = "qcom,cpufreq-cdev";
+		cpu-cluster0 {
+			qcom,cpus = <&CPU0 &CPU1 &CPU2>;
+		};
+
+		cpu-cluster1 {
+			qcom,cpus = <&CPU3>;
+		};
+	};
+
+	qcom,devfreq-cdev {
+		compatible = "qcom,devfreq-cdev";
+		qcom,devfreq = <&msm_gpu>;
 	};
 };
 
@@ -349,6 +369,19 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "hot";
+			};
+
+			gpu0_tj_cfg: tj_cfg {
+				temperature = <95000>;
+				hysteresis = <5000>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			gpu0_cdev {
+				trip = <&gpu0_tj_cfg>;
+				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
 			};
 		};
 	};
