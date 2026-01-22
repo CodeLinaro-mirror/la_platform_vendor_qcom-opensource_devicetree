@@ -1072,6 +1072,15 @@
 		};
 	};
 
+	qcom_tzlog: tz-log@14680720 {
+		compatible = "qcom,tz-log";
+		reg = <0x14680720 0x3000>;
+		qcom,hyplog-enabled;
+		hyplog-address-offset = <0x410>;
+		hyplog-size-offset = <0x414>;
+		tmecrashdump-address-offset = <0x81CA0000>;
+	};
+
 	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
 		/*
 		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
@@ -1383,6 +1392,18 @@
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "supplier";
 		qcom,vmid = <3>;
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
 	};
 
 	qcom,mem-buf-msgq {
@@ -1764,6 +1785,23 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x400000>;
 	};
+
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
+	};
+
 };
 
 #include "seraph-reserved-memory.dtsi"
