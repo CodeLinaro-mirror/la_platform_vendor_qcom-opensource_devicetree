@@ -282,6 +282,17 @@
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x13000>;
 	};
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
 };
 
 &reserved_memory {
@@ -2804,14 +2815,6 @@
 		compatible = "qcom,secure-chan-manager";
 	};
 
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-	};
-
-	qcom_smcinvoke {
-		compatible = "qcom,smcinvoke";
-	};
-
 	qcom-secure-buffer {
 		compatible = "qcom,secure-buffer";
 		qcom,vmid-cp-camera-preview-ro;
@@ -5201,9 +5204,21 @@
 
 		qcom,ucsi {
 			compatible = "qcom,ucsi-glink";
-			port {
-				usb_port0_connector: endpoint {
-					remote-endpoint = <&usb_port0>;
+
+			connector {
+				compatible = "usb-c-connector";
+
+				ports {
+					#address-cells = <1>;
+					size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						usb_port0_connector: endpoint {
+							remote-endpoint = <&usb_port0>;
+						};
+					};
 				};
 			};
 		};
