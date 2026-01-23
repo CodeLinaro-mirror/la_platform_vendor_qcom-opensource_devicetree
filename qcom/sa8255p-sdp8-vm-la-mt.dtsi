@@ -28,7 +28,7 @@
 
 &chosen {
 	bootargs ="rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_    show_resume_irq.debug_mask=1 fw_devlink.strict=1";
-	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=100";
+	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=3";
 };
 
 &hab {
@@ -47,24 +47,28 @@
 	status = "disabled";
 };
 
-&usb0 {
+&qupv3_se3_4uart {
 	status = "disabled";
+};
+
+&usb0 {
+	status = "ok";
 };
 
 &usb2_phy0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie0 {
@@ -75,6 +79,21 @@
 	status = "disabled";
 };
 
+&gcc {
+	status = "ok";
+};
+
+&virtio_regulator {
+	status = "ok";
+};
+
+&virtio_spmi {
+	status = "ok";
+};
+
+&qcom_rng_ee3 {
+	status = "ok";
+};
 &ufs2phy_mem {
 	status = "disabled";
 };
