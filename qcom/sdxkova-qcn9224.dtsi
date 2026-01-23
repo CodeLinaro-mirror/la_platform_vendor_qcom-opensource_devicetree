@@ -151,6 +151,7 @@
 			qcom,iommu-msi-size = <0x1000>;
 			qcom,iommu-dma-addr-pool = <0x0 0x70000000 0x0 0x4EC00000>;
 			qcom,iommu-dma = "fastmap";
+			qcom,iommu-geometry = <0x0 0x70000000 0x0 0x50030000>;
 			dma-coherent;
 			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
 					    "non-fatal";
