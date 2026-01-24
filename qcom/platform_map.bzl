@@ -457,6 +457,7 @@ _platform_map = {
             {"name": "chora-vm-atp-overlay.dtbo"},
             {"name": "chora-vm-cdp-overlay.dtbo"},
             {"name": "chora-vm-mtp-overlay.dtbo"},
+            {"name": "chora-vm-mtp-lcd-overlay.dtbo"},
             {"name": "chora-vm-qrd-overlay.dtbo"},
             {"name": "chora-vm-rcm-overlay.dtbo"},
         ],
