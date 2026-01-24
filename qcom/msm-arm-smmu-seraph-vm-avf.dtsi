@@ -28,6 +28,7 @@
 		compatible = "qcom,qsmmu-v500", "qcom,virt-smmu";
 		#iommu-cells = <2>;
 		qcom,use-3-lvl-tables;
+		qcom,irgn0-errata;
 		dma-coherent;
 
 		qcom,actlr =
