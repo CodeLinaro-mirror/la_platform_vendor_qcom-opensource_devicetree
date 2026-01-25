@@ -713,8 +713,6 @@
 		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
 		/* keep gold cores in class1 */
 		qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
-		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
-		qcom,gic-runtime-cpu-class-en;
 	};
 
 	wdog: qcom,wdt@17410000 {
