@@ -82,6 +82,9 @@
 	qcom,vccq-parent-supply = <&S8B_E0>;
 	qcom,vccq-parent-max-microamp = <210000>;
 
+	ufs-dev-types = <2>;
+	nvmem-cells = <&ufs_dev>;
+	nvmem-cell-names = "ufs_dev";
 	status = "ok";
 };
 
