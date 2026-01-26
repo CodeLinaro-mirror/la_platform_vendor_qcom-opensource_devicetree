@@ -935,13 +935,18 @@ endif
 ifeq ($(CONFIG_ARCH_MONACO_AUTO), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 
+MONACO_GH_LA_GVM_QAM_BASE_DTB += monaco-gh-vm-la-qam-ridesx.dtb
+MONACO_GH_LA_GVM_QAM_BOARDS += monaco-gh-vm-la-qam-ridesx-overlay.dtbo
+
 MONACO_GH_LV_GVM_QAM_BASE_DTB += monaco-gh-vm-lv-qam-ridesx.dtb
 MONACO_GH_LV_GVM_QAM_BOARDS += monaco-gh-vm-lv-qam-ridesx-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(MONACO_GH_LA_GVM_QAM_BOARDS),$(MONACO_GH_LA_GVM_QAM_BASE_DTB)) \
 	$(call add-overlays, $(MONACO_GH_LV_GVM_QAM_BOARDS),$(MONACO_GH_LV_GVM_QAM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(MONACO_GH_LA_GVM_QAM_BOARDS) $(MONACO_GH_LA_GVM_QAM_BASE_DTB) \
 	$(MONACO_GH_LV_GVM_QAM_BOARDS) $(MONACO_GH_LV_GVM_QAM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
