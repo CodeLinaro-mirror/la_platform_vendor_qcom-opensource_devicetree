@@ -5,3 +5,9 @@
 
 #include "malabar-pmic-overlay.dtsi"
 #include "malabar-pmiv010x.dtsi"
+
+&L5E {
+	regulator-min-microvolt = <2952000>;
+	regulator-max-microvolt = <3544000>;
+	qcom,init-voltage = <2952000>;
+};

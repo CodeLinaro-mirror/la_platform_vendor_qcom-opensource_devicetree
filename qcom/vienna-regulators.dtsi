@@ -481,8 +481,8 @@
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
 			<RPMH_REGULATOR_MODE_LPM
-			RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 30000>;
+			RPMH_REGULATOR_MODE_AUTO>;
+		qcom,mode-threshold-currents = <0 1000>;
 
 		L15A:
 		pmw6100_l15: regulator-pmw6100-l15 {
@@ -491,7 +491,7 @@
 			regulator-min-microvolt = <1650000>;
 			regulator-max-microvolt = <1950000>;
 			qcom,init-voltage = <1650000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
 		};
 	};
 

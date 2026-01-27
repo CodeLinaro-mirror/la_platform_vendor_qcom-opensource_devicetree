@@ -24,37 +24,12 @@
 			reg = <0x08 0x200000 0x0 0x100000>;
 			android,pvmfw,target = <&apps_smmu>;
 		};
-
-		tlmm-vm-mem-access {
-			reg = <
-				/* TLMM_GPIO_CFG0 */
-				0x0 0xf100000 0x0 0x1000
-				/* TLMM_GPIO_CFG1 */
-				0x0 0xf101000 0x0 0x1000
-				/* TLMM_GPIO_CFG19 */
-				0x0 0xf113000 0x0 0x1000
-				/* TLMM_GPIO_CFG20 */
-				0x0 0xf114000 0x0 0x1000
-				/* TLMM_GPIO_CFG21 */
-				0x0 0xf115000 0x0 0x1000
-				/* TLMM_GPIO_CFG22 */
-				0x0 0xf116000 0x0 0x1000
-				/* TLMM_GPIO_CFG12 */
-				0x0 0xf10C000 0x0 0x1000
-				/* TLMM_GPIO_CFG113 */
-				0x0 0xf171000 0x0 0x1000
-				/* TLMM_GPIO_CFG24 */
-				0x0 0xf118000 0x0 0x1000>;
-			android,pvmfw,target = <&tlmm_vm_mem_access>;
-		};
 	};
 };
 
 &firmware {
 	qcom_scm {
 		compatible = "qcom,scm-v1.1", "qcom,scm";
-		interrupts = <0x00 0x3b1 0x01>;
-		qcom,max-queues = <0x23>;
 	};
 
 };
@@ -62,64 +37,43 @@
 &reserved_memory {
 	qrtr_buff: buffer@81000c000 {
 		compatible = "qcom,qrtr-gunyah-gen";
+		reg = <0x08 0x1000c000 0x00 0x9000>;
 		no-map;
-		peers = <0x03 0x2d>;
 		qcom,label = <0x103>;
-		qcom,shared-memory;
-		reg = <0x08 0x1000c000 0x00 0x9000>; // Based on RM IPA allocation
 	};
 
 	gpn_buff: buffer@810015000 {
 		compatible = "qcom,gunyah-panic-gen";
+		reg = <0x08 0x10015000 0x00 0x1000>;
 		no-map;
-		peers = <0x03 0x2d>;
 		qcom,label = <0x109>;
-		qcom,shared-memory;
-		reg = <0x08 0x10015000 0x00 0x1000>; // Based on RM IPA allocation
 	};
 
 	ddump_buff: buffer@810016000 {
 		compatible = "qcom,ddump-gunyah-gen";
+		reg = <0x08 0x10016000 0x00 0x1000>;
 		no-map;
-		peers = <0x03 0x2d>;
 		qcom,label = <0x107>;
-		qcom,shared-memory;
-		reg = <0x08 0x10016000 0x00 0x1000>; // Based on RM IPA allocation
 	};
 };
 
 &{/}  {
 	ddump_shm: ddump-shm {
-		buffer = <&ddump_buff>;
 		compatible = "qcom,ddump-gunyah-gen", "qcom,gunyah-shm-doorbell";
-		label = <0x107>;
 		memory-region = <&ddump_buff>;
-		peer = <0x103>;
 		qcom,label = <0x107>;
-		rx-doorbell = <0x0b>;
-		tx-doorbell = <0x0a>;
 	};
 
 	gpn_shm: gpn-shm {
-		buffer = <&gpn_buff>;
 		compatible = "qcom,gunyah-panic-gen", "qcom,gunyah-shm-doorbell";
-		label = <0x109>;
 		memory-region = <&gpn_buff>;
-		peer = <0x03>;
 		qcom,label = <0x109>;
-		rx-doorbell = <0x0d>;
-		tx-doorbell = <0x0c>;
 	};
 
 	qrtr_shm: qrtr-shm {
-		buffer = <&qrtr_buff>;
 		compatible = "qcom,qrtr-gunyah-gen", "qcom,gunyah-shm-doorbell";
-		label = <0x103>;
 		memory-region = <&qrtr_buff>;
-		peer = <0x03>;
 		qcom,label = <0x103>;
-		rx-doorbell = <0x09>;
-		tx-doorbell = <0x08>;
 	};
 
 	minidump: minidump {
@@ -156,29 +110,4 @@
 		0x00 0x198 0x04
 		0x00 0x199 0x04>;
 	reg = <0x08 0x200000 0x0 0x100000>;
-};
-
-&tlmm_vm_mem_access {
-	peer = <0x03>;
-	qcom,label = <0x08>;
-	qcom,rm-acl = <0x04 0x06>;
-	reg = <
-		/* TLMM_GPIO_CFG0 */
-		0x0 0xf100000 0x0 0x1000
-		/* TLMM_GPIO_CFG1 */
-		0x0 0xf101000 0x0 0x1000
-		/* TLMM_GPIO_CFG19 */
-		0x0 0xf113000 0x0 0x1000
-		/* TLMM_GPIO_CFG20 */
-		0x0 0xf114000 0x0 0x1000
-		/* TLMM_GPIO_CFG21 */
-		0x0 0xf115000 0x0 0x1000
-		/* TLMM_GPIO_CFG22 */
-		0x0 0xf116000 0x0 0x1000
-		/* TLMM_GPIO_CFG12 */
-		0x0 0xf10C000 0x0 0x1000
-		/* TLMM_GPIO_CFG113 */
-		0x0 0xf171000 0x0 0x1000
-		/* TLMM_GPIO_CFG24 */
-		0x0 0xf118000 0x0 0x1000>;
 };

@@ -75,8 +75,18 @@
 		no-map;
 	};
 
-	adsp_mem: adsp-region@94500000 {
-		reg = <0x0 0x94500000 0x0 0x1e00000>;
+	q6_mpss_dtb_mem: q6-mpss-dtb-region@94500000 {
+		reg = <0x0 0x94500000 0x0 0x80000>;
+		no-map;
+	};
+
+	q6_adsp_dtb_mem: q6-adsp-dtb-region@94580000 {
+		reg = <0x0 0x94580000 0x0 0x80000>;
+		no-map;
+	};
+
+	adsp_mem: adsp-region@94600000 {
+		reg = <0x0 0x94600000 0x0 0x1e00000>;
 		no-map;
 	};
 

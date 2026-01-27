@@ -337,6 +337,10 @@ properties:
                  the PCIe enumeration if the config spac read returns all Fs.
     type: boolean
 
+  qcom,device-vendor-id:
+    description: Support Device-Vendor Id.
+    $ref: /schemas/types.yaml#/definitions/uint32
+
   qcom,pcie-phy-ver:
     description: States the PCIe PHY HSR version.
     $ref: /schemas/types.yaml#/definitions/uint32
@@ -497,6 +501,11 @@ properties:
   qcom,no-aux-clk-sync:
     description: The AUX clock is not synchronous to the Core clock to
                  support l1ss.
+    type: boolean
+
+  qcom,no-client-based-bw-voting:
+    description: client based bw voting is not supported. PCIe driver votes for
+                 required bandwidth based on link-width and Gen-Speed.
     type: boolean
 
   qcom,wr-halt-size:

@@ -18,11 +18,6 @@
 		compatible = "goodix,gt9916S";
 		reg = <0>;
 		spi-max-frequency = <1000000>;
-		interrupt-parent = <&tlmm>;
-		interrupts = <0 0x2008>;
-		goodix,reset-gpio = <&tlmm 1 0x00>;
-		goodix,irq-gpio = <&tlmm 0 0x2008>;
-		goodix,irq-flags = <2>;
 		goodix,panel-max-x = <1080>;
 		goodix,panel-max-y = <2400>;
 		goodix,panel-max-w = <255>;
@@ -31,12 +26,12 @@
 		goodix,touch-type = "primary";
 		goodix,qts_en;
 		qts,trusted-touch-mode = "vm_mode";
-		qts,touch-environment = "pvm";
+		qts,touch-environment = "tvm";
 		qts,trusted-touch-type = "primary";
 		qts,trusted-touch-spi-irq = <664>;
 		qts,trusted-touch-io-bases = <0xA90000>;
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 19 0 &tlmm 20 0 &tlmm 21 0
-						&tlmm 22 0 &tlmm 0 0 &tlmm 1 0x2008>;
+						&tlmm 22 0 &tlmm 1 0 &tlmm 0 0x2008>;
 	};
 };

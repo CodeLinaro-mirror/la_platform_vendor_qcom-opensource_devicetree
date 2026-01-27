@@ -40,6 +40,11 @@
 			reg = <0x0 0x1742b000 0x0 0x1000>;
 			android,pvmfw,target = <&qcom_gh_qtimer>;
 		};
+
+		qcom,wdt@17410000 {
+			reg = <0x0 0x17410000 0x0 0x1000>;
+			android,pvmfw,target = <&wdog>;
+		};
 	};
 
 	qcom,vm-config {
@@ -354,7 +359,7 @@
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		tlmm-vm-gpio-list = <&tlmm 12 0>;
+		depends-on-supply = <&tlmm>;
 	};
 
 	tlmm_vm_test: tlmm-vm-test {
@@ -469,6 +474,18 @@
 		memory-region = <&kinfo_mem>;
 	};
 
+	/* same as PVM */
+	wdog: qcom,wdt@17410000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x0 0x17410000 0x0 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0x3a0 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 0x3a1 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bark-time = <11000>;
+		qcom,pet-time = <9360>;
+		qcom,ipi-ping;
+		qcom,wakeup-enable;
+	};
 };
 
 #include "msm-arm-smmu-seraph-vm-avf.dtsi"

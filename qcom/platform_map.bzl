@@ -205,6 +205,7 @@ _platform_map = {
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
+            {"name": "malabar-4gb.dtb"},
             {
                 "name": "malabarp.dtb",
                 "apq": True,
@@ -219,6 +220,9 @@ _platform_map = {
             {"name": "malabar-qrd-overlay.dtbo"},
             {"name": "malabar-rcm-overlay.dtbo"},
             {"name": "malabar-rumi-overlay.dtbo"},
+            {"name": "malabar-cdp-4gb-overlay.dtbo"},
+            {"name": "malabar-qrd-4gb-overlay.dtbo"},
+            {"name": "malabar-mtp-4gb-overlay.dtbo"},
         ],
     },
     "bengal": {
@@ -455,6 +459,7 @@ _platform_map = {
             {"name": "chora-vm-atp-overlay.dtbo"},
             {"name": "chora-vm-cdp-overlay.dtbo"},
             {"name": "chora-vm-mtp-overlay.dtbo"},
+            {"name": "chora-vm-mtp-lcd-overlay.dtbo"},
             {"name": "chora-vm-qrd-overlay.dtbo"},
             {"name": "chora-vm-rcm-overlay.dtbo"},
         ],
@@ -532,6 +537,8 @@ _platform_map = {
             {"name": "seraphp-idp-dtof-overlay.dtbo"},
             {"name": "seraph-idp-no-display-overlay.dtbo"},
             {"name": "seraphp-idp-no-display-overlay.dtbo"},
+            {"name": "seraphp-qar-camera-audio-overlay.dtbo"},
+            {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
         ],
     },

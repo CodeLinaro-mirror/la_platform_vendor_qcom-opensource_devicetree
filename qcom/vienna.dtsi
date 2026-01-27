@@ -757,6 +757,10 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	gic-interrupt-router {
 		compatible = "qcom,gic-intr-routing";
 		/* keep a few m cores in class0 only to avoid wakeup of l cores */
@@ -1964,12 +1968,6 @@
 				qcom,glinkpkt-edge = "am";
 				qcom,glinkpkt-ch-name = "LOOPBACK_CTL_AM";
 				qcom,glinkpkt-dev-name = "glink_pkt_ctrl_am";
-		};
-
-		qcom,glinkpkt-disp-ctrl-am {
-				qcom,glinkpkt-edge = "am";
-				qcom,glinkpkt-ch-name = "disp-ctrl";
-				qcom,glinkpkt-dev-name = "glink_pkt_am_display_ctrl";
 		};
 
 		qcom,glinkpkt-data-am {

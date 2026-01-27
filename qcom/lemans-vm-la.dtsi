@@ -7,24 +7,6 @@
 
 &soc {
 
-	mtl_rx_setup: rx-queues-config {
-		snps,rx-queues-to-use = <1>;
-		snps,rx-sched-sp;
-
-		queue {
-			snps,dcb-algorithm;
-			snps,priority = <0x1>;
-		};
-	};
-
-	mtl_tx_setup: tx-queues-config {
-		snps,tx-queues-to-use = <1>;
-		snps,tx-sched-sp;
-		queue {
-			snps,dcb-algorithm;
-		};
-	};
-
 	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
 		compatible = "qcom,ipcc";
 		reg = <0x421000 0x1000>;
@@ -186,7 +168,15 @@
 	status = "ok";
 };
 
+&qupv3_2 {
+	status = "ok";
+};
+
 &qupv3_se17_4uart {
+	status = "ok";
+};
+
+&qupv3_0 {
 	status = "ok";
 };
 

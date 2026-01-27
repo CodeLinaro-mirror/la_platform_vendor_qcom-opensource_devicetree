@@ -206,9 +206,8 @@
 				&pcie6_wake_default
 				&pcie6_nvme_pwr_sleep>;
 
-		/* Enable interconnect handles once ICC driver is avilable */
-		//interconnect-names = "icc_path";
-		//interconnects = <&pcie_south_anoc MASTER_PCIE_6A &mc_virt SLAVE_EBI1>;
+		interconnect-names = "icc_path";
+		interconnects = <&pcie_south_anoc MASTER_PCIE_6A &mc_virt SLAVE_EBI1>;
 
 		power-domains = <&gcc GCC_PCIE_6A_GDSC>, <&gcc GCC_PCIE_6_PHY_GDSC>;
 		power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
@@ -290,11 +289,9 @@
 
 		dma-coherent;
 
-		/* x1e80100 has SMMUv3, enabled it once pcie_smmu enabled */
-		/*
-		 * iommu-map = <0x0 &pcie_smmu 0x60000 0x1>,
-		 *		<0x100 &pcie_smmu 0x60100 0x1>;
-		 */
+		/* x1e80100 has SMMUv3 */
+		iommu-map = <0x0 &pcie_smmu 0x60000 0x1>,
+			    <0x100 &pcie_smmu 0x60100 0x1>;
 
 
 		/* Enable 4-lane capability */
@@ -307,6 +304,7 @@
 
 		qcom,target-link-speed = <0x4>;
 		qcom,target-link-width = <0x4>;
+		qcom,no-client-based-bw-voting;
 		qcom,boot-option = <0x2>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
@@ -729,9 +727,8 @@
 				&pcie4_clkreq_sleep
 				&pcie4_wake_default>;
 
-		/* Disabled until ICC driver is up */
-		//interconnect-names = "icc_path";
-		//interconnects = <&pcie_north_anoc MASTER_PCIE_4 &mc_virt SLAVE_EBI1>;
+		interconnect-names = "icc_path";
+		interconnects = <&pcie_north_anoc MASTER_PCIE_4 &mc_virt SLAVE_EBI1>;
 
 		power-domains = <&gcc GCC_PCIE_4_GDSC>, <&gcc GCC_PCIE_4_PHY_GDSC>;
 		power-domain-names = "gdsc-core-vdd", "gdsc-phy-vdd";
@@ -796,6 +793,10 @@
 
 		dma-coherent;
 
+		/* x1e80100 has SMMUv3 */
+		iommu-map = <0x0 &pcie_smmu 0x40000 0x1>,
+			    <0x100 &pcie_smmu 0x40100 0x1>;
+
 		qcom,boot-option = <0x1>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
@@ -803,6 +804,8 @@
 		qcom,l1-2-th-value = <150>;
 		qcom,ep-latency = <10>;
 		qcom,num-parf-testbus-sel = <0xb9>;
+		/* work around to enable ACS quirk */
+		qcom,device-vendor-id = <0x011517cb>;
 
 		qcom,pcie-phy-ver = <113>;
 		qcom,phy-status-offset = <0x214>;

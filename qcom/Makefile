@@ -125,7 +125,7 @@ pikachu-dtb-$(CONFIG_ARCH_PIKACHU) += \
 pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB) $(PIKACHU_APQ_BASE_DTB)
 dtb-y += $(pikachu-dtb-y)
 
-MALABAR_BASE_DTB += malabar.dtb
+MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
 MALABAR_BOARDS += \
@@ -135,7 +135,10 @@ MALABAR_BOARDS += \
 		malabar-mtp-overlay.dtbo \
 		malabar-mtp-wcn3950-overlay.dtbo \
 		malabar-qrd-overlay.dtbo \
-		malabar-rcm-overlay.dtbo
+		malabar-rcm-overlay.dtbo \
+		malabar-cdp-4gb-overlay.dtbo \
+		malabar-qrd-4gb-overlay.dtbo \
+		malabar-mtp-4gb-overlay.dtbo
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
@@ -373,7 +376,9 @@ SERAPH_BOARDS += \
 		seraphp-atp-overlay.dtbo \
 		seraphp-idp-overlay.dtbo \
 		seraphp-idp-dtof-overlay.dtbo \
-		seraphp-idp-no-display-overlay.dtbo
+		seraphp-idp-no-display-overlay.dtbo \
+		seraphp-qar-camera-audio-overlay.dtbo \
+		seraphp-qar-overlay.dtbo
 
 NOAPQ_SERAPH_BOARDS += \
                   seraph-rumi-overlay.dtbo
@@ -713,6 +718,7 @@ ifeq ($(CONFIG_ARCH_CHORA), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
 				chora-vm-mtp-overlay.dtbo \
+				chora-vm-mtp-lcd-overlay.dtbo \
 				chora-vm-qrd-overlay.dtbo \
 				chora-vm-rcm-overlay.dtbo \
 				chora-vm-cdp-overlay.dtbo \
