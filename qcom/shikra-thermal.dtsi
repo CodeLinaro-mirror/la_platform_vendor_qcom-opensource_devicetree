@@ -107,6 +107,32 @@
 		};
 	};
 
+	qmi_tmd: qmi-tmd-devices {
+		compatible = "qcom,qmi-cooling-devices";
+		cdsp {
+			qcom,instance-id = <QMI_CDSP_INST_ID>;
+
+			cdsp_sw: cdsp_sw {
+				qcom,qmi-dev-name = "cdsp_sw";
+				#cooling-cells = <2>;
+			};
+		};
+
+		modem {
+			qcom,instance-id = <QMI_MODEM_INST_ID>;
+
+			pa: pa {
+				qcom,qmi-dev-name = "pa";
+				#cooling-cells = <2>;
+			};
+
+			modem: modem {
+				qcom,qmi-dev-name = "modem";
+				#cooling-cells = <2>;
+			};
+		};
+	};
+
 	qcom,devfreq-cdev {
 		compatible = "qcom,devfreq-cdev";
 		qcom,devfreq = <&msm_gpu>;
