@@ -615,6 +615,12 @@
 		reg = <0x45f0000 0x7000>;
 	};
 
+	sram@4690000 {
+		compatible = "qcom,rpm-stats-v2";
+		reg = <0x04690000 0x10000>;
+		ss-name = "modem", "cdsp", "apss";
+	};
+
 	apcs_glb: mailbox@f400000 {
 		compatible = "qcom,shikra-apcs-hmss-global";
 		reg = <0xf400000 0x1000>;
