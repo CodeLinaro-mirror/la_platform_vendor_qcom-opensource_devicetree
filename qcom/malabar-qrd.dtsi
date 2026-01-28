@@ -79,6 +79,9 @@
 	qcom,vccq-proxy-vote-supply = <&L13B_E0>;
 	qcom,vccq-proxy-vote-max-microamp = <750000>;
 
+	qcom,vccq2-proxy-vote-supply = <&L19B_E0>;
+	qcom,vccq2-proxy-vote-max-microamp = <750000>;
+
 	qcom,vccq-parent-supply = <&S8B_E0>;
 	qcom,vccq-parent-max-microamp = <210000>;
 
