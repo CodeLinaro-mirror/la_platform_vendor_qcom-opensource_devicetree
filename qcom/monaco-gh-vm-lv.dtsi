@@ -980,6 +980,11 @@
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
 		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
 	};
 
 	soc: soc { };
