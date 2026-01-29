@@ -1844,7 +1844,7 @@
 		reg = <0x0 0x4804000 0x0 0x3000>,
 		      <0x0 0x4810000 0x0 0x8000>;
 
-		reg-names = "ufs_mem", "ufs_ice";
+		reg-names = "ufs_mem", "ice";
 
 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
