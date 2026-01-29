@@ -451,10 +451,16 @@
 	dma-coherent;
 	qcom,smmu-sid-base = <0x1480>;
 	iommu-map = <0x0 &apps_smmu 0x1480 0x1>,
-		<0x100 &apps_smmu 0x1481 0x1>;
+		<0x100 &apps_smmu 0x1481 0x1>,
+		<0x101 &apps_smmu 0x1483 0x1>,
+		<0x102 &apps_smmu 0x1485 0x1>,
+		<0x103 &apps_smmu 0x1487 0x1>,
+		<0x104 &apps_smmu 0x1489 0x1>,
+		<0x105 &apps_smmu 0x148b 0x1>,
+		<0x106 &apps_smmu 0x148d 0x1>,
+		<0x107 &apps_smmu 0x148f 0x1>;
 
-	/* Enabled once (TC+BDF)2SID specific logic is in place */
-	qcom,iommu-dma = "bypass";
+	qcom,tc2bdf-tc-count = <2>;
 	qcom,boot-option = <0x0>;
 	qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 	qcom,drv-l1ss-timeout-us = <5000>;
@@ -575,7 +581,7 @@
 		reg = <0 0 0 0 0>;
 		client_pcie1: client_pcie1 {
 			reg = <0x10000 0x0 0x0 0x0 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
 		};
 	};
 };
