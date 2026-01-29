@@ -888,10 +888,8 @@
 
 	restart@440b000 {
 		compatible = "qcom,pshold";
-		reg = <0x0 0x440b000 0x0 0x4>, <0x0 0x03d3000 0x0 0x4>;
-		reg-names = "pshold-base", "tcsr-boot-misc-detect";
-
-		status = "disabled";
+		reg = <0x0 0x440b000 0x0 0x4>;
+		reg-names = "pshold-base";
 	};
 
 	dload_mode {
@@ -2134,7 +2132,7 @@
 		reg = <0x0 0x08a08000 0x0 0x60>;
 		reg-names = "core";
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-		clock-names = "qdss_clk";
+		clock-names = "core_clk";
 		#address-cells = <2>;
 		#size-cells = <0>;
 		depends-on-supply = <&spmi0_bus>;
