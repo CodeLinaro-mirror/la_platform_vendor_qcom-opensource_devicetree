@@ -85,8 +85,6 @@
 	status = "ok";
 };
 
-#include "malabar-pm7250b.dtsi"
-
 &tlmm {
 	pmx_ts_active {
 		ts_active: ts_active {
