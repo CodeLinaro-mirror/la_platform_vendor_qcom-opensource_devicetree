@@ -1056,6 +1056,11 @@
 		memory-region = <&adsp_mem_heap>;
 	};
 
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
+
 	sdhc1_opp_table: sdhc1-opp-table {
 		compatible = "operating-points-v2";
 
