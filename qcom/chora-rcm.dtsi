@@ -60,6 +60,9 @@
 	qcom,vccq-parent-supply = <&S2B_E0>;
 	qcom,vccq-parent-max-microamp = <8176000>;
 
+	qcom,vccq2-parent-supply = <&S1B_E0>;
+	qcom,vccq2-parent-max-microamp = <210000>;
+
 	status = "ok";
 };
 
