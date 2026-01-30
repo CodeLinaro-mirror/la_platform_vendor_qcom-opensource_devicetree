@@ -1497,6 +1497,15 @@
 		memory-region-names = "trustedvm_cma";
 	};
 
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
+
 	thermal_zones: thermal-zones {};
 
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
@@ -1785,6 +1794,14 @@
 		method = "smc";
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
 };
 
 &firmware {
@@ -1850,6 +1867,18 @@
 		size = <0x0 0x1000000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
 };
 
 #include "seraph-reserved-memory.dtsi"
