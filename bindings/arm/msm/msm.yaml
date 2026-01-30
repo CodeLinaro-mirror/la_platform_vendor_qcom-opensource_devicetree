@@ -402,12 +402,35 @@ properties:
               - qcom,rumi
           - const: qcom,pikachu
 
-      - description: Qualcomm Technologies, Inc. SHIKRA
+      - description: Qualcomm Technologies, Inc. SHIKRA CQM
         items:
           - enum:
+              - qcom,shikra-evk
+              - qcom,evk
               - qcom,shikra-rumi
               - qcom,rumi
-          - const: qcom,shikra
+          - const: qcom,shikra-cqm
+
+      - description: Qualcomm Technologies, Inc. SHIKRA CQS
+        items:
+          - enum:
+              - qcom,shikra-evk
+              - qcom,evk
+          - const: qcom,shikra-cqs
+
+      - description: Qualcomm Technologies, Inc. SHIKRA Lite CQM
+        items:
+          - enum:
+              - qcom,shikra-lite-evk
+              - qcom,evk
+          - const: qcom,shikra-lite-cqm
+
+      - description: Qualcomm Technologies, Inc. SHIKRA Lite CQS
+        items:
+          - enum:
+              - qcom,shikra-lite-evk
+              - qcom,evk
+          - const: qcom,shikra-lite-cqs
 
       - description: Qualcomm Technologies, Inc. SERAPH
         items:
