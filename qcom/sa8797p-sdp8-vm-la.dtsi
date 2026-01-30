@@ -34,6 +34,10 @@
 	};
 };
 
+&chosen {
+	bootconfig = "androidboot.dtbo_idx=25 androidboot.fstab_suffix=hqx.nord.qcom";
+};
+
 &reserved_memory {
 	kinfo_mem: debug_kinfo_region {
 		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
