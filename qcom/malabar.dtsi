@@ -1414,7 +1414,7 @@
 		compatible = "qcom,malabar-modem-pas";
 		reg = <0x0 0x6080000 0x0 0x100>;
 
-		status = "ok";
+		status = "disabled";
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;
