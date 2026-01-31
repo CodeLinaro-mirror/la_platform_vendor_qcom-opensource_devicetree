@@ -7,6 +7,7 @@
 /plugin/;
 
 #include "malabar-mtp-4gb.dtsi"
+#include "malabar-pm7250b.dtsi"
 
 / {
        model = "Qualcomm Technologies, Inc. Malabar MTP 4GB DDR";

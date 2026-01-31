@@ -7,6 +7,7 @@
 /plugin/;
 
 #include "malabar-mtp.dtsi"
+#include "malabar-pm7250b.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Malabar MTP";
