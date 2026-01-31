@@ -535,6 +535,8 @@ _platform_map = {
             {"name": "seraphp-idp-dtof-overlay.dtbo"},
             {"name": "seraph-idp-no-display-overlay.dtbo"},
             {"name": "seraphp-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
