@@ -553,6 +553,13 @@ _platform_map = {
             {"name": "seraph-vm-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraph-vm-idp-dtof-overlay.dtbo"},
         ],
+        "binary_compatible_with": ["pikachu-tuivm"],
+    },
+    "pikachu-tuivm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "pikachu-vm-idp-overlay.dtbo"},
+        ],
     },
     "sun": {
         "dtb_list": [

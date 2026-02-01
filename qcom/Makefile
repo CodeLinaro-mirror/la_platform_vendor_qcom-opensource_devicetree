@@ -495,6 +495,14 @@ dtb-y += $(seraph_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_PIKACHU), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += pikachu-vm-idp-overlay.dtbo
+
+dtb-y += $(seraph_tuivm-dtb-y)
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_SUN), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 sun_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += sun-vm-rumi.dtb \
