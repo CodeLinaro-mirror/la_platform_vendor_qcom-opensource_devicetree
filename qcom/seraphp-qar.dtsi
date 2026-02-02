@@ -4,3 +4,4 @@
  */
 
 #include "seraphp-idp.dtsi"
+#include "seraph-pm8011.dtsi"

@@ -42,6 +42,42 @@
 			power-source = <1>;
 		};
 	};
+
+	pm8011m_reset {
+		pm8011m_active: pm8011m_active {
+			pins = "gpio7";
+			function = "normal";
+			bias-disable;
+			output-high;
+			power-source = <0>;
+		};
+	};
+
+	pm8011n_reset {
+		pm8011n_active: pm8011n_active {
+			pins = "gpio12";
+			function = "normal";
+			bias-disable;
+			output-high;
+			power-source = <0>;
+		};
+	};
+
+	pm8011m_int_default: pm8011m-int-default-state {
+		pins = "gpio5";
+		function = "normal";
+		bias-disable;
+		input-enable;
+		power-source = <0>;
+	};
+
+	pm8011n_int_default: pm8011n-int-default-state {
+		pins = "gpio13";
+		function = "normal";
+		bias-disable;
+		input-enable;
+		power-source = <0>;
+	};
 };
 
 &soc {
