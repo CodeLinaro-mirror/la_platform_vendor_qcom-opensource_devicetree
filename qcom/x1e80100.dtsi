@@ -1158,7 +1158,6 @@
 			interrupt-names = "bam-irq", "core-irq";
 			qcom,bam-pipe-pair = <2>;
 			qcom,offload-ops-support;
-			qcom,use-key-index;
 			qcom,bam-pipe-offload-cpb-hlos = <1>;
 			qcom,bam-pipe-offload-hlos-cpb = <3>;
 			qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
@@ -1187,8 +1186,7 @@
 			qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
-				iommus = <&apps_smmu 0x0483 0x0>;
-				qcom,iommu-vmid = <0x9>;
+				iommus = <&dpd_smmu 0x9>;
 				qcom,secure-context-bank;
 				dma-noncoherent;
 			};
