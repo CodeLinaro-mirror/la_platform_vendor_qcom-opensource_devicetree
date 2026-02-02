@@ -2252,10 +2252,10 @@
 	};
 
 	tpdm_turing_llm: tpdm@8861000 {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-source";
 
 		device-name = "tpdm_turing_llm";
-		qcom,dummy-source;
+		trace-name = "tpdm-turing-llm";
 
 		port {
 			tpdm_turing_llm_out_funnel_turing: endpoint {
@@ -2292,7 +2292,6 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_spdm";
-		qcom,dsb-element-bits = <32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2372,7 +2371,7 @@
 	/delete-node/ tpda@8004000;
 	tpda: tpda@8004000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb969>;
+		arm,primecell-periphid = <0x000f0f00>;
 		reg = <0x8004000 0x1000>;
 		reg-names = "tpda-base";
 
@@ -2493,7 +2492,7 @@
 	/delete-node/ cti@8867000;
 	cti_turing_q6: cti@8862000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb966>;
+		arm,primecell-periphid = <0x000bb922>;
 		reg = <0x8862000 0x1000>;
 		reg-names = "cti-base";
 
