@@ -163,7 +163,7 @@
 };
 
 &soc {
-	gpio_key {
+	gpio_keys {
 		compatible = "gpio-keys";
 		label = "gpio-keys";
 		pinctrl-names = "default";
