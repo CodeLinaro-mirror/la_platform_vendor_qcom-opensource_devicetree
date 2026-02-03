@@ -28,6 +28,8 @@ properties:
               - qcom,sm6375-cpufreq-epss
               - qcom,sm8250-cpufreq-epss
               - qcom,cpufreq-epss-pdmem
+              - qcom,cpufreq-rimps
+              - qcom,cpufreq-rimps-pdmem
           - const: qcom,cpufreq-epss
 
   reg:
