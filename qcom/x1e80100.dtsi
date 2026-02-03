@@ -1918,6 +1918,18 @@
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
 			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port0_hs_in: endpoint {
+					};
+				};
+			};
 		};
 
 		dwc3_mem_region: dwc3_mem_region {
