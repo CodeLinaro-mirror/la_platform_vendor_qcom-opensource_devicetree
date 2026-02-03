@@ -2194,6 +2194,23 @@
 		mem-type = <2>;
 	};
 
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0xc221000 0x1000>;
+		clock-frequency = <32768>;
+	};
+
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,gic-class1-cpus = <&CPU4>;
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 };
 
 &firmware {
