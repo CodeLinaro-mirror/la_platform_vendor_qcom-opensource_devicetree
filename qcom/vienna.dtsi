@@ -1359,6 +1359,8 @@
 	gcc_camss_top_gdsc: qcom,gdsc@12a004 {
 		compatible = "qcom,gdsc";
 		reg = <0x12a004 0x4>;
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		regulator-name = "gcc_camss_top_gdsc";
 		parent-supply = <&VDD_MXC_LEVEL>;
 		qcom,retain-regs;
