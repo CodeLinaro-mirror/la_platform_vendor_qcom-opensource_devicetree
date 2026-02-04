@@ -323,6 +323,8 @@
 			regulator-min-microvolt = <1080000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
+			qcom,init-ldo-mode = <4>;
+			qcom,send-defaults;
 			status = "okay";
 		};
 	};
@@ -384,6 +386,8 @@
 			regulator-max-microvolt = <1950000>;
 			qcom,init-voltage = <1800000>;
 			status = "okay";
+			qcom,init-ldo-mode = <4>;
+			qcom,send-defaults;
 		};
 	};
 
