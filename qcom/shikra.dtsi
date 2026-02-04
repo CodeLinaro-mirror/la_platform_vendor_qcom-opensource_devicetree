@@ -971,6 +971,10 @@
 		read-only;
 		ranges;
 	};
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
