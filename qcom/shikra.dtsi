@@ -527,7 +527,7 @@
 			 <&rpmcc RPM_SMD_CPUSS_GNOC_A_CLK>;
 	};
 
-	mmnrt_virt: interconnect@1880000 {
+	mmnrt_virt: interconnect1@1880000 {
 		reg = <0x01880000 0x6a080>;
 		compatible = "qcom,shikra-mmnrt_virt";
 		#interconnect-cells = <1>;
@@ -538,7 +538,7 @@
 			 <&rpmcc RPM_SMD_MMNRT_A_CLK>;
 	};
 
-	mmrt_virt: interconnect@1880000 {
+	mmrt_virt: interconnect2@1880000 {
 		reg = <0x01880000 0x6a080>;
 		compatible = "qcom,shikra-mmrt_virt";
 		#interconnect-cells = <1>;
