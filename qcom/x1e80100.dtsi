@@ -829,6 +829,10 @@
 			memory-region = <&kinfo_mem>;
 		};
 
+		qcom,logbuf-vendor-hooks {
+			compatible = "qcom,logbuf-vendor-hooks";
+		};
+
 		gic_router: gic-interrupt-router {
 			compatible = "qcom,gic-intr-routing";
 			/* keep cluster0 cores in class0*/
