@@ -252,6 +252,9 @@ _platform_map = {
             {"name": "malabar-mtp-4gb-overlay.dtbo"},
             {"name": "malabar-cdp-emmc-overlay.dtbo"},
             {"name": "malabar-mtp-emmc-overlay.dtbo"},
+            {"name": "malabar-cdp-ufs3-overlay.dtbo"},
+            {"name": "malabar-mtp-ufs3-overlay.dtbo"},
+            {"name": "malabar-qrd-ufs3-overlay.dtbo"},
         ],
     },
     "bengal": {
