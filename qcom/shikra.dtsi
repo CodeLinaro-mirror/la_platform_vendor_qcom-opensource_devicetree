@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/clock/qcom,rpmcc.h>
+#include <dt-bindings/clock/qcom,shikra-audiocorecc.h>
 #include <dt-bindings/clock/qcom,shikra-dispcc.h>
 #include <dt-bindings/clock/qcom,shikra-gcc.h>
 #include <dt-bindings/clock/qcom,shikra-gpucc.h>
@@ -508,6 +509,14 @@
 	rpmcc: clock-controller {
 		compatible = "qcom,rpmcc-shikra";
 		#clock-cells = <1>;
+	};
+
+	audiocorecc: clock-controller@a0a0000 {
+		compatible = "qcom,dummycc";
+		reg = <0xa0a0000 0x10000>;
+		clock-output-names = "audiocorecc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
 	};
 
 	dispcc: clock-controller@5f00000 {
