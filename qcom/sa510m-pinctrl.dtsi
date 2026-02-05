@@ -700,6 +700,20 @@
 					bias-pull-down; /* NO PULL*/
 				};
 			};
+
+			emac_pin_pps1: emac_pin_pps1 {
+				mux {
+					pins = "gpio94";
+					function = "emac_ptp_pps";
+				};
+
+				config {
+					pins = "gpio94";
+					drive-strength = <8>;   /* 8 mA */
+					bias-disable;           /* NO PULL*/
+				};
+			};
+
 		};
 
 		wcd9xxx_intr {
