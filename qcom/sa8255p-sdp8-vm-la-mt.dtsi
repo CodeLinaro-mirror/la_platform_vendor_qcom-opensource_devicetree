@@ -72,11 +72,11 @@
 };
 
 &pcie0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie0_msi_snps {
-	status = "disabled";
+	status = "ok";
 };
 
 &gcc {
