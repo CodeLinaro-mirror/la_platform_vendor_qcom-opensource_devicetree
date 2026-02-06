@@ -708,11 +708,19 @@ MONACO_FLEX_SDP8_LA_GVM_BOARDS += sa7775p-sdp8-vm-la-overlay.dtbo
 
 MONACO_SDP8_MULTI_GVM_BASE_DTB += sa7255p-sdp8-vm-la-mt.dtb
 
+MONACO_SDP8_MULTI_GVM_BASE_DTB += sa7255p-sdp8-vm-lv-mt.dtb
+
 MONACO_SDP8_MULTI_GVM_BOARDS += sa7255p-sdp8-vm-la-mt-overlay.dtbo
+
+MONACO_SDP8_MULTI_GVM_BOARDS += sa7255p-sdp8-vm-lv-mt-overlay.dtbo
 
 MONACO_FLEX_SDP8_MULTI_GVM_BASE_DTB += sa7775p-sdp8-vm-la-mt.dtb
 
+MONACO_FLEX_SDP8_MULTI_GVM_BASE_DTB += sa7775p-sdp8-vm-lv-mt.dtb
+
 MONACO_FLEX_SDP8_MULTI_GVM_BOARDS += sa7775p-sdp8-vm-la-mt-overlay.dtbo
+
+MONACO_FLEX_SDP8_MULTI_GVM_BOARDS += sa7775p-sdp8-vm-lv-mt-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(MONACO_LA_GVM_BOARDS),$(MONACO_LA_GVM_BASE_DTB)) \
