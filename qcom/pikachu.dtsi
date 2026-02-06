@@ -1007,6 +1007,7 @@
 #include "pikachu-dma-heaps.dtsi"
 #include "pikachu-qupv3.dtsi"
 #include "msm-rdbg.dtsi"
+#include "ipcc-test-pikachu.dtsi"
 
 &uart11 {
 	status = "ok";
