@@ -656,6 +656,20 @@
 		};
 	};
 
+	qcom,qrtr-gunyah-oemvm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x108>;
+		peer-name = <4>;
+	};
+
+	qcom,qrtr-gunyah-tuivm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x103>;
+		peer-name = <2>;
+	};
+
 	memtimer: timer@f420000 {
 		compatible = "arm,armv7-timer-mem";
 		reg = <0x0 0x0f420000 0x0 0x1000>;
