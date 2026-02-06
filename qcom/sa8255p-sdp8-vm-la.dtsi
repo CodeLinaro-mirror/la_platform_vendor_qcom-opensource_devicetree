@@ -56,15 +56,15 @@
 };
 
 &usb0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb1 {
@@ -80,11 +80,11 @@
 };
 
 &usb2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie0 {
