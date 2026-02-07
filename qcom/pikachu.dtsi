@@ -311,6 +311,53 @@
 
 	aoss_qmp: aoss_qmp {};
 
+	spmi_debug_bus_0: qcom,spmi-debug@11314000  {
+		compatible = "qcom,spmi-pmic-arb-debug";
+		reg = <0x0 0x11314000 0x0 0x60>,
+		      <0x0 0x221c8784 0x0 0x4>;
+		reg-names = "core", "fuse";
+		clocks = <&aoss_qmp>;
+		clock-names = "core_clk";
+		qcom,fuse-enable-bit = <14>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		depends-on-supply = <&spmi0_bus>;
+
+		qcom,pmar2230-debug@0 {
+			compatible = "qcom,spmi-pmic";
+			reg = <0 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pmg1110-debug@a {
+			compatible = "qcom,spmi-pmic";
+			reg = <10 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@c {
+			compatible = "qcom,spmi-pmic";
+			reg = <12 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@d {
+			compatible = "qcom,spmi-pmic";
+			reg = <13 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+	};
+
+	thermal_zones: thermal-zones {};
+
 	qcom,mem-buf {
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "supplier";
