@@ -232,38 +232,6 @@
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU12: cpu@20000 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20000>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU13: cpu@20100 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20100>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU14: cpu@20200 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20200>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU15: cpu@20300 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20300>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
 		cpu-map {
 			cluster0 {
 				core0 {
@@ -314,24 +282,6 @@
 
 				core5 {
 					cpu = <&CPU11>;
-				};
-			};
-
-			cluster2 {
-				core0 {
-					cpu = <&CPU12>;
-				};
-
-				core1 {
-					cpu = <&CPU13>;
-				};
-
-				core2 {
-					cpu = <&CPU14>;
-				};
-
-				core3 {
-					cpu = <&CPU15>;
 				};
 			};
 		};
