@@ -1327,6 +1327,11 @@
 		#reset-cells = <1>;
 	};
 
+	adsp_sleepmon: adsp-sleepmon {
+		compatible = "qcom,adsp-sleepmon";
+		qcom,rproc-handle = <&adsp_pas>;
+	};
+
 	adsp_pas: remoteproc-adsp@a400000 {
 		compatible = "qcom,malabar-adsp-pas";
 		reg = <0x0 0xa400000 0x0 0x100>;
@@ -1397,6 +1402,12 @@
 				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
 				qcom,intents = <0x800 5
 						0xc00 3 >;
+			};
+
+			qcom,msm_adspsleepmon_rpmsg {
+				compatible = "qcom,msm-adspsleepmon-rpmsg";
+				qcom,glink-channels = "sleepmonglink-apps-adsp";
+				qcom,intents = <0x1000 8>;
 			};
 		};
 	};
