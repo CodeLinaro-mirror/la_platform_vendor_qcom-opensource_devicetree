@@ -610,6 +610,7 @@ _platform_map = {
     "pikachu-tuivm": {
         "dtbo_list": [
             # keep sorted
+            {"name": "pikachu-vm-atp-overlay.dtbo"},
             {"name": "pikachu-vm-idp-overlay.dtbo"},
         ],
     },
