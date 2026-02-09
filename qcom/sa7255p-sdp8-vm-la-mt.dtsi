@@ -36,12 +36,12 @@
 };
 
 &pcie0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie0_msi_snps {
 	interrupt-parent = <&qvm_vdev_gic>;
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie1 {
