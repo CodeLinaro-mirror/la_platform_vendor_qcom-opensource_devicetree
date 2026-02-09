@@ -119,6 +119,13 @@ properties:
               - qcom,qrd
           - const: qcom,ravelinp
 
+      - description: Qualcomm Technologies, Inc. TAYCAN
+        items:
+          - enum:
+              - qcom,taycan-idp
+              - qcom,idp
+          - const: qcom,taycan
+
       - description: Qualcomm Technologies, Inc. TUNA
         items:
           - enum:
