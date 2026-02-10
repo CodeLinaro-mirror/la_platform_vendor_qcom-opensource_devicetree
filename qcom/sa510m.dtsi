@@ -451,11 +451,6 @@
 		};
 	};
 
-	restart@c264000 {
-		compatible = "qcom,pshold";
-		reg = <0x0c264000 0x1000>;
-	};
-
 	apps_rsc: rsc@17040000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
