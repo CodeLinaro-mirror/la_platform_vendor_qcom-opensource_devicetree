@@ -34,6 +34,7 @@ properties:
       - qcom,shikra-debugcc
       - qcom,sm8350-debugcc
       - qcom,sm4450-debugcc
+      - qcom,qcm2290-debugcc
 
   clocks:
     items:
