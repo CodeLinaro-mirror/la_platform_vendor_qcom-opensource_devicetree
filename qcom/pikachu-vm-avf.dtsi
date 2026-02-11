@@ -474,3 +474,4 @@
 };
 
 #include "pikachu-vm-rm-info-avf.dtsi"
+#include "pikachu-vm-dma-heaps-avf.dtsi"
