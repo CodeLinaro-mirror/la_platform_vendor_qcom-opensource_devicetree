@@ -686,11 +686,18 @@ SA8797P_LA_GVM_BOARDS += \
 
 SA8797P_LA_GVM_BASE_DTB += sa8797p-sdp8-vm-la.dtb sa8797p-v2-sdp8-vm-la.dtb
 
+SA8797P_MULTI_GVM_BOARDS += \
+		sa8797p-sdp8-vm-lv-mt-overlay.dtbo
+
+SA8797P_MULTI_GVM_BASE_DTB += sa8797p-sdp8-vm-lv-mt.dtb
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(SA8797P_MULTI_GVM_BOARDS),$(SA8797P_MULTI_GVM_BASE_DTB)) \
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
+	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
 
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 
