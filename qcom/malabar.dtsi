@@ -1380,8 +1380,8 @@
 				<&system_noc MASTER_CRYPTO_CORE0 &bimc SLAVE_EBI_CH0>;
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
-		memory-region = <&adsp_mem>;
-		firmware-name = "adsp.mdt";
+		memory-region = <&adsp_mem &q6_adsp_dtb_mem>;
+		firmware-name = "adsp.mdt","adsp_dtb.mdt";
 
 		interrupts-extended = <&intc GIC_SPI 282 IRQ_TYPE_EDGE_RISING>,
 			<&adsp_smp2p_in 0 0>,
