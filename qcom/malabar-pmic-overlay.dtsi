@@ -109,7 +109,7 @@
 			L5M: pm8010m_l5: ldo5 {
 				regulator-name = "pm8010m_l5";
 				regulator-min-microvolt = <1504000>;
-				regulator-max-microvolt = <1900000>;
+				regulator-max-microvolt = <1904000>;
 			};
 
 			L6M: pm8010m_l6: ldo6 {
