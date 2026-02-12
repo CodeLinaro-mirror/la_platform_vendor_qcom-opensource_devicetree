@@ -46,6 +46,10 @@
 	status = "ok";
 };
 
+&pm8010_n {
+	status = "disabled";
+};
+
 &pm8550_gpios {
 	key_vol_up {
 		key_vol_up_default: key_vol_up_default {
@@ -321,6 +325,7 @@
 		reg = <12 SPMI_USID>;
 		#address-cells = <1>;
 		#size-cells = <0>;
+		status = "disabled";
 
 		smb2360_3_eusb2_repeater: phy@fd00 {
 			compatible = "qcom,smb2360-eusb2-repeater";
