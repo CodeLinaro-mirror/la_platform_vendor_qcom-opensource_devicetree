@@ -337,6 +337,10 @@
 		qcom,dev-name = "bootloader_a";
 	};
 
+	virtio_blk_la_gvminfo {
+		qcom,dev-name = "gvminfo";
+	};
+
 	vm_config: qcom,vm-config {
 		compatible = "qcom,vm-1.0";
 		vm-type = "aarch64-guest";
@@ -475,7 +479,7 @@
 
 			virtio-mmio@0 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/virtio_blk_la_gvminfo";
 				peer-default;
 				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";
