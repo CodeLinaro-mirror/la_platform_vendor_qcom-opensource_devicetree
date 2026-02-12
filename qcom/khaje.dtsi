@@ -431,9 +431,19 @@
 		#size-cells = <2>;
 		ranges;
 
-		hyp_mem: hyp_region@45700000 {
+		hyp_mem: hyp_region@0x44600000 {
 			no-map;
-			reg = <0x0 0x45700000 0x0 0x600000>;
+			reg = <0x0 0x44600000 0x0 0xe00000>;
+		};
+
+		hyp_mem1: hyp_region1@0x45400000 {
+			no-map;
+			reg = <0x0 0x45400000 0x0 0x800000>;
+		};
+
+		pvmfw_mem: pvmfw_region@0x48000000 {
+			no-map;
+			reg = <0x0 0x48000000 0x0 0x100000>;
 		};
 
 		xbl_aop_mem: xbl_aop_region@45e00000 {
