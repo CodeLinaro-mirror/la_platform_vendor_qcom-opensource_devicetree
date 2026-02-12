@@ -47,6 +47,7 @@
 };
 
 &qupv3_2 {
+	qcom,iommu-dma = "bypass";
 	status = "disabled";
 };
 
