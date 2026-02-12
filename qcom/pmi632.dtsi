@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/leds/common.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/iio/qcom,spmi-vadc.h>
 
@@ -356,7 +357,7 @@
 		};
 
 		pmi632_pbs_client3: qcom,pbs@7400 {
-			compatible = "qcom,qpnp-pbs";
+			compatible = "qcom,pmi632-pbs", "qcom,pbs";
 			reg = <0x7400>;
 		};
 
@@ -404,68 +405,32 @@
 			qcom,disable-overdrive;
 		};
 
-		pmi632_pwm: qcom,pwms@b300 {
-			compatible = "qcom,pwm-lpg";
-			reg = <0xb300>;
-			reg-names = "lpg-base";
+		pmi632_pwm: pwms@b300 {
+			compatible = "qcom,pmi632-lpg";
+			#address-cells = <1>;
+			#size-cells = <0>;
 			#pwm-cells = <2>;
-			qcom,num-lpg-channels = <5>;
-			nvmem-names = "ppg_sdam";
+
 			nvmem = <&pmi632_sdam7>;
-			qcom,pbs-client = <&pmi632_pbs_client3>;
-			qcom,lut-sdam-base = <0x80>;
-			qcom,lut-patterns = <0 0 0 14 28 42 56 70 84 100
-						100 84 70 56 42 28 14 0 0 0>;
-			lpg@1 {
-				qcom,lpg-chan-id = <1>;
-				qcom,ramp-step-ms = <200>;
-				qcom,ramp-low-index = <0>;
-				qcom,ramp-high-index = <19>;
-				qcom,ramp-pattern-repeat;
-				qcom,lpg-sdam-base = <0x48>;
-			};
+			nvmem-names = "lpg_chan_sdam";
+			qcom,pbs = <&pmi632_pbs_client3>;
 
-			lpg@2 {
-				qcom,lpg-chan-id = <2>;
-				qcom,ramp-step-ms = <200>;
-				qcom,ramp-low-index = <0>;
-				qcom,ramp-high-index = <19>;
-				qcom,ramp-pattern-repeat;
-				qcom,lpg-sdam-base = <0x56>;
-			};
-
-			lpg@3 {
-				qcom,lpg-chan-id = <3>;
-				qcom,ramp-step-ms = <200>;
-				qcom,ramp-low-index = <0>;
-				qcom,ramp-high-index = <19>;
-				qcom,ramp-pattern-repeat;
-				qcom,lpg-sdam-base = <0x64>;
-			};
-		};
-
-		pmi632_rgb: qcom,leds@d000 {
-			compatible = "qcom,tri-led";
-			reg = <0xd000>;
-			red {
+			led@1 {
+				reg = <1>;
+				color = <LED_COLOR_ID_RED>;
 				label = "red";
-				pwms = <&pmi632_pwm 0 1000000>;
-				led-sources = <0>;
-				linux,default-trigger = "timer";
 			};
 
-			green {
+			led@2 {
+				reg = <2>;
+				color = <LED_COLOR_ID_GREEN>;
 				label = "green";
-				pwms = <&pmi632_pwm 1 1000000>;
-				led-sources = <1>;
-				linux,default-trigger = "timer";
 			};
 
-			blue {
+			led@3 {
+				reg = <3>;
+				color = <LED_COLOR_ID_BLUE>;
 				label = "blue";
-				pwms = <&pmi632_pwm 2 1000000>;
-				led-sources = <2>;
-				linux,default-trigger = "timer";
 			};
 		};
 
