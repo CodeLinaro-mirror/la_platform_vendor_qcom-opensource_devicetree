@@ -40,6 +40,7 @@ properties:
           - qcom,ufs-phy-qmp-v4-yupik
           - qcom,ufs-phy-qmp-v4-khaje
           - qcom,ufs-phy-qmp-v4-canoe
+          - qcom,ufs-phy-qmp-v4-crow
       - const: qcom,ufshc
       - const: jedec,ufs-2.0
 

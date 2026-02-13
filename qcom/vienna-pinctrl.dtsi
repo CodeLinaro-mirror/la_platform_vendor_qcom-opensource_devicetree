@@ -1769,7 +1769,7 @@
 				config {
 					pins = "gpio117", "gpio118";
 					drive-strength = <2>;
-					bias-pull-down;
+					bias-bus-hold;
 				};
 			};
 		};
@@ -2686,6 +2686,8 @@
 					pins = "gpio28", "gpio29";
 					drive-strength = <2>;
 					qcom,remote;
+					bias-disable;
+					output-low;
 				};
 			};
 		};

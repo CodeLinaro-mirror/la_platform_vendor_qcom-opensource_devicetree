@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+&spmi0_bus {
+	#include "pm8010.dtsi"
+	#include "pmar2230.dtsi"
+	#include "pmg1110.dtsi"
+};

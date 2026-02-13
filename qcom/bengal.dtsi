@@ -584,7 +584,7 @@
 	};
 
 	chosen {
-	bootargs = "androidboot.first_stage_console=1 androidboot.console=ttyMSM0 earlycon=qcom_geni,0x4a90000 qcom_geni_serial.con_enabled=1 androidboot.serialconsole=1 lpm_levels.sleep_disabled=1 console=ttyMSM0,115200n8 cpuidle.off=1 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=off export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 androidboot.hardware=qcom fw_devlink.strict=1 android_arch_task_struct_size=512";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
 	};
 
 	soc: soc { };
@@ -1227,6 +1227,15 @@
 				qcom,glink-channels = "apr_audio_svc";
 				qcom,intents = <0x200 20>;
 			};
+			qcom,pmic_glink_rpmsg {
+				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
+			};
+
+			qcom,pmic_glink_log_rpmsg {
+				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
+				qcom,intents = <0x800 5
+						0xc00 3>;
+			};
 		};
 	};
 
@@ -1277,11 +1286,6 @@
 						0x4400 2>;
 			};
 
-			qcom,msm_fastrpc_rpmsg {
-				compatible = "qcom,msm-fastrpc-rpmsg";
-				qcom,glink-channels = "fastrpcglink-apps-dsp";
-				qcom,intents = <0x64 64>;
-			};
 
 			qcom,msm_cdsprm_rpmsg {
 				compatible = "qcom,msm-cdsprm-rpmsg";
@@ -1519,6 +1523,16 @@
 		};
 	};
 
+	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				  <&sdhc_1 0x50000000 0xbfffffff>;
+	};
+
+
 	sdhc_1: sdhci@4744000 {
 		status = "disabled";
 
@@ -1578,6 +1592,7 @@
 
 		iommus = <&apps_smmu 0xC0 0x0>;
 		qcom,iommu-dma = "fastmap";
+		memory-region = <&sdhc_1_dma_resv>;
 
 		qos0 {
 			mask = <0xf0>;
@@ -1604,6 +1619,15 @@
 			opp-peak-kBps = <800000 300000>;
 			opp-avg-kBps = <104000 0>;
 		};
+	};
+
+	sdhc_2_dma_resv: sdhc_2_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC2 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
+				  <&sdhc_2 0x50000000 0xbfffffff>;
 	};
 
 	sdhc_2: sdhci@4784000 {
@@ -1639,6 +1663,7 @@
 
 		iommus = <&apps_smmu 0x00A0 0x0>;
 		qcom,iommu-dma = "fastmap";
+		memory-region = <&sdhc_2_dma_resv>;
 
 		qos0 {
 			mask = <0xf0>;
@@ -1949,112 +1974,6 @@
 		compatible = "qcom,msm-adsprpc-mem-region";
 		memory-region = <&adsp_mem>;
 		restrict-access;
-	};
-
-	qcom,msm_fastrpc {
-		compatible = "qcom,msm-fastrpc-compute";
-		qcom,rpc-latency-us = <611>;
-		qcom,adsp-remoteheap-vmid = <22 37>;
-		qcom,fastrpc-adsp-audio-pdr;
-		qcom,fastrpc-adsp-sensors-pdr;
-
-		qcom,msm_fastrpc_compute_cb1 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C01 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb2 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C02 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb3 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C03 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb4 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C04 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb5 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C05 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb6 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			iommus = <&apps_smmu 0x0C06 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb9 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			qcom,secure-context-bank;
-			iommus = <&apps_smmu 0x0C09 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb10 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "adsprpc-smd";
-			iommus = <&apps_smmu 0x01C3 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb11 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "adsprpc-smd";
-			iommus = <&apps_smmu 0x01C4 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb12 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "adsprpc-smd";
-			iommus = <&apps_smmu 0x01C5 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb13 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "adsprpc-smd";
-			iommus = <&apps_smmu 0x01C6 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
-		qcom,msm_fastrpc_compute_cb14 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "adsprpc-smd";
-			iommus = <&apps_smmu 0x01C7 0x0>;
-			qcom,iommu-dma-addr-pool = <0x80000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-		};
-
 	};
 
 	rpm-glink {
@@ -2769,3 +2688,4 @@
 
 #include "bengal-thermal.dtsi"
 #include "msm-rdbg.dtsi"
+#include "bengal-walt.dtsi"

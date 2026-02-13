@@ -63,6 +63,14 @@ properties:
       after shut down is initiated.
     $ref: /schemas/types.yaml#/definitions/flag
 
+  qcom,micro-usb:
+    description: |
+      Flag used for the enabling the micro-usb.
+      When present, PMIC GLINK USB properties such as USB_CONNECTOR_TYPE and
+      USB_SCOPE are queried. When absent, drivers should skip connector-related
+      queries.
+    $ref: /schemas/types.yaml#/definitions/flag
+
 required:
   - compatible
 
