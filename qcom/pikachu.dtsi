@@ -1125,6 +1125,37 @@
 
 	};
 
+	eud: qcom,msm-eud@88e0000 {
+		compatible = "qcom,msm-eud";
+		interrupt-names = "eud_irq";
+		interrupt-parent = <&pdc>;
+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x088e0000 0x2000>,
+			<0x088e2000 0x1000>;
+		reg-names = "eud_base", "eud_mode_mgr2";
+		qcom,secure-eud-en;
+		status = "ok";
+	};
+
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,pikachu-qfprom", "qcom,qfprom";
+		reg = <0x221c8000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+		ranges;
+	};
+
+	qfprom_sys: qfprom@0 {
+		compatible = "qcom,qfprom-sys";
+	};
+
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
 };
 
 &firmware {
@@ -1157,6 +1188,12 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x400000>;
+	};
+
+	ramoops_mem: ramoops_region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
 	};
 
 };
