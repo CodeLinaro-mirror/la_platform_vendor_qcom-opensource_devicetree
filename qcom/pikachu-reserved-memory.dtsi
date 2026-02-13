@@ -265,7 +265,7 @@
 
 	trust_ui_vm_mem: trust_ui_vm_region@f3800000 {
 		compatible = "shared-dma-pool";
-		reg = <0x0 0xf3800000 0x0 0x4400000>;
+		reg = <0x0 0xf3800000 0x0 0x4000000>;
 		reusable;
 		alignment = <0x0 0x400000>;
 	};

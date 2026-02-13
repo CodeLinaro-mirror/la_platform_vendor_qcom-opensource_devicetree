@@ -527,7 +527,8 @@ endif
 
 ifeq ($(CONFIG_ARCH_PIKACHU), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
-seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += pikachu-vm-idp-overlay.dtbo
+seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += pikachu-vm-idp-overlay.dtbo \
+				pikachu-vm-atp-overlay.dtbo
 
 dtb-y += $(seraph_tuivm-dtb-y)
 endif
