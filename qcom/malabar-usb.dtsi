@@ -40,6 +40,7 @@
 
 		qcom,dis-sending-cm-l1-quirk;
 		qcom,core-clk-rate = <66666667>;
+		qcom,default-bus-vote = <2>; /* use svs bus voting */
 
 		qcom,num-gsi-evt-buffs = <0x3>;
 		qcom,gsi-reg-offset =
@@ -67,7 +68,6 @@
 			snps,dis-u1-entry-quirk;
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
-			snps,ssp-u3-u0-quirk;
 			dr_mode = "otg";
 			maximum-speed = "high-speed";
 			usb-role-switch;

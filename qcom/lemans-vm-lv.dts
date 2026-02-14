@@ -12,4 +12,5 @@
 	model = "Qualcomm Technologies, Inc. Lemans Single LV Virtual Machine";
 	compatible = "qcom,lemans", "qcom,quinvm";
 	qcom,board-id = <0x0 0x1000002>;
+	qcom,sdp = <0x2c6>;
 };

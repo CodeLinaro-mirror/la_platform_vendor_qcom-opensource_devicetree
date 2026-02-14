@@ -835,6 +835,8 @@
 			qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
 			/* keep other cores in class1 */
 			qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,gic-runtime-cpu-class-en;
 		};
 
 		mini_dump_mode {
@@ -1915,6 +1917,18 @@
 				dr_mode = "otg";
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
+			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port0_hs_in: endpoint {
+					};
+				};
 			};
 		};
 
