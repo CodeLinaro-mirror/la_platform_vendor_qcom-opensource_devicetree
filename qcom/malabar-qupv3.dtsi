@@ -51,6 +51,7 @@
 			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
 		iommus = <&apps_smmu 0xe3 0x0>;
 		memory-region = <&qup0_se_iommu_region>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		ranges;
 		status = "ok";
@@ -464,6 +465,7 @@
 			 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x203 0x0>;
 		memory-region = <&qup1_se_iommu_region>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		ranges;
 		status = "ok";
