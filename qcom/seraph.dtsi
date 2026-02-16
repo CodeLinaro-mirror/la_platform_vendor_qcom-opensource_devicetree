@@ -2368,6 +2368,7 @@
 #include "seraph-pcie.dtsi"
 #include "ipcc-test-seraph.dtsi"
 #include "msm-rdbg.dtsi"
+#include "seraph-walt.dtsi"
 
 &qupv3_se11_2uart {
 	status = "ok";
