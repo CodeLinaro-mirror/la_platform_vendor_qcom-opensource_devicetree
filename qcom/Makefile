@@ -112,18 +112,6 @@ canoe-overlays-dtb-$(CONFIG_ARCH_CHORA) += $(CHORA_BOARDS) $(NOAPQ_CHORA_BOARDS)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
-
-PIKACHU_BASE_DTB += pikachu.dtb
-
-NOAPQ_PIKACHU_BOARDS += \
-                  pikachu-rumi-overlay.dtbo
-
-pikachu-dtb-$(CONFIG_ARCH_PIKACHU) += \
-	$(call add-overlays, $(PIKACHU_BOARDS) $(NOAPQ_PIKACHU_BOARDS),$(PIKACHU_BASE_DTB))\
-	$(call add-overlays, $(PIKACHU_BOARDS) $(APQ_PIKACHU_BOARDS),$(PIKACHU_APQ_BASE_DTB))
-pikachu-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB) $(PIKACHU_APQ_BASE_DTB)
-dtb-y += $(pikachu-dtb-y)
-
 MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
@@ -417,7 +405,17 @@ seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(NOAPQ_SERAPH_BOARDS),$(SERAPH_BASE_DTB))\
 	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
 seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
-dtb-y += $(seraph-dtb-y)
+
+PIKACHU_BASE_DTB += pikachu.dtb
+
+NOAPQ_PIKACHU_BOARDS += \
+		pikachu-rumi-overlay.dtbo
+
+seraph-dtb-$(CONFIG_ARCH_PIKACHU) += \
+	$(call add-overlays, $(NOAPQ_PIKACHU_BOARDS),$(PIKACHU_BASE_DTB))
+seraph-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_BASE_DTB)
+
+dtb-y += $(seraph-dtb-y) $(seraph-overlays-dtb-y)
 
 VIENNA_BASE_DTB += vienna.dtb
 VIENNA_APQ_BASE_DTB += viennap.dtb

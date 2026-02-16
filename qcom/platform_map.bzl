@@ -599,6 +599,7 @@ _platform_map = {
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
         ],
+        "binary_compatible_with": ["pikachu"],
     },
     "seraph-tuivm": {
         "dtb_list": [
