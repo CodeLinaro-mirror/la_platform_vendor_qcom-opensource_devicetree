@@ -1030,7 +1030,7 @@
 		compatible = "qcom,msm-eud";
 		interrupt-names = "eud_irq";
 		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-		reg = <0x0 0x1610000 0x0 0x1000>,
+		reg = <0x0 0x1610000 0x0 0x2000>,
 		      <0x0 0x1612000 0x0 0x1000>,
 		      <0x0 0x3E5018 0x0 0x4>;
 		reg-names = "eud_base", "eud_mode_mgr2",
@@ -1039,7 +1039,7 @@
 		qcom,eud-utmi-delay = /bits/ 16 <255>;
 		qcom,secure-eud-en;
 
-		status = "disabled";
+		status = "ok";
 	};
 
 	cpu_pmu: cpu-pmu {
