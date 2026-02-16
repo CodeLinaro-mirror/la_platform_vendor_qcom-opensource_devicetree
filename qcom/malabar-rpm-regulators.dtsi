@@ -385,6 +385,8 @@
 			regulator-max-microvolt = <1950000>;
 			qcom,init-voltage = <1800000>;
 			status = "okay";
+			qcom,init-ldo-mode = <4>;
+			qcom,send-defaults;
 		};
 	};
 
