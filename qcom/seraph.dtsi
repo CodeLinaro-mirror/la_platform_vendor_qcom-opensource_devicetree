@@ -2223,10 +2223,9 @@
 		compatible = "qcom,qfprom-sys";
 	};
 
-	ramoops_mem: ramoops_region {
-		compatible = "ramoops";
-		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-		size = <0x0 0x200000>;
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
 		pmsg-size = <0x200000>;
 		mem-type = <2>;
 	};
@@ -2316,6 +2315,12 @@
 	kinfo_mem: debug_kinfo_region {
 		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
 		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	ramoops_mem: ramoops_region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
 		no-map;
 	};
 
