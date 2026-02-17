@@ -4,3 +4,15 @@
  */
 
 #include "malabar-cdp.dtsi"
+
+&sdhc_1 {
+	status = "ok";
+};
+
+&ufsphy_mem {
+	status = "disabled";
+};
+
+&ufshc_mem {
+	status = "disabled";
+};
