@@ -47,69 +47,69 @@
 
 	sdc1_on: sdc1_on {
 		clk {
-			pins = "SDC1_CLK";
+			pins = "sdc1_clk";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "SDC1_CMD";
+			pins = "sdc1_cmd";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "SDC1_DATA";
+			pins = "sdc1_data";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		rclk {
-			pins = "SDC1_RCLK";
+			pins = "sdc1_rclk";
 			bias-pull-down;
 		};
 	};
 
 	sdc1_off: sdc1_off {
 		clk {
-			pins = "SDC1_CLK";
+			pins = "sdc1_clk";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "SDC1_CMD";
+			pins = "sdc1_cmd";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "SDC1_DATA";
+			pins = "sdc1_data";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		rclk {
-			pins = "SDC1_RCLK";
+			pins = "sdc1_rclk";
 			bias-pull-down;
 		};
 	};
 
 	sdc2_on: sdc2_on {
 		clk {
-			pins = "SDC2_CLK";
+			pins = "sdc2_clk";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "SDC2_CMD";
+			pins = "sdc2_cmd";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "SDC2_DATA";
+			pins = "sdc2_data";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
@@ -123,19 +123,19 @@
 
 	sdc2_off: sdc2_off {
 		clk {
-			pins = "SDC2_CLK";
+			pins = "sdc2_clk";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "SDC2_CMD";
+			pins = "sdc2_cmd";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "SDC2_DATA";
+			pins = "sdc2_data";
 			bias-pull-up;
 			drive-strength = <2>;
 		};

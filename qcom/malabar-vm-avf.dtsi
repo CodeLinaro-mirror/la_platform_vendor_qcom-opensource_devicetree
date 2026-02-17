@@ -25,7 +25,7 @@
 			android,pvmfw,target = <&vm_tlmm_irq>;
 		};
 
-		qcom,wdt@0xf410000 { // APSS_WDT_TMR1_APSS_WDT
+		qcom,wdt@f410000 { // APSS_WDT_TMR1_APSS_WDT
 			reg = <0x0 0xf410000 0x0 0x1000>;
 			android,pvmfw,target = <&wdog>;
 		};
@@ -35,8 +35,8 @@
 			android,pvmfw,target = <&tlmm>;
 		};
 
-		qcom,gh-qtimer@f42B000 { // Same as PVM
-			reg = <0x0 0x0f42B000 0x0 0x1000>;
+		qcom,gh-qtimer@f42b000 { // Same as PVM
+			reg = <0x0 0x0f42b000 0x0 0x1000>;
 			android,pvmfw,target = <&qcom_gh_qtimer>;
 		};
 	};
@@ -75,8 +75,6 @@
 		 * Soc dependent
 		 */
 		iomemory-ranges = <
-			/* Display */
-			0x0 0x05e8f000 0x0 0x05e8f000 0x0 0x1000 0x0
 			/* Touch */
 			0x0 0x4a24000 0x0 0x4a24000 0x0 0x4000 0x0>;
 
@@ -150,6 +148,27 @@
 				peer-default;
 			};
 
+			test-large-dmabuf-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10d>;
+				peer-default;
+			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
+				};
+			};
+
 			mem-buf-message-queue-pair {
 				vdevice-type = "message-queue-pair";
 				generate = "/hypervisor/membuf-msgq-pair";
@@ -157,6 +176,24 @@
 				queue-depth = <0x00000008>;
 				peer-default;
 				qcom,label = <0x101>;
+			};
+
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
+			};
+
+			smmu-proxy-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/smmu-proxy-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x10a>;
 			};
 
 			ddump-shm {
@@ -268,11 +305,20 @@
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_mem_buf
+			&qrtr_gunyah
+			&qmsgq_gunyah
 			&mem_buf_msgq
+			&qcom_test_large_dmabuf_tuivm
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
-			&qcom_dma_heaps>;
+			&qcom_dma_heaps
+			&qcom_smcinvoke
+			&qcom_mem_object
+			&qtee_shmbridge
+			&qti_smmu_proxy
+			&qti_smmu_proxy_camera_cb
+			&qti_smmu_proxy_display_cb>;
 	};
 
 	vm_tlmm_irq: vm-tlmm-irq@0 {
@@ -296,23 +342,10 @@
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		// Soc dependent
-		tlmm-vm-gpio-list = <
-			/* Touch gpio pins */
-			&tlmm 8 0
-			&tlmm 9 0
-			&tlmm 10 0
-			&tlmm 11 0
-			&tlmm 12 0
-			&tlmm 13 0
-			/* Display gpio pins */
-			&tlmm 14 0
-			&tlmm 23 0
-			&tlmm 56 0
-			&tlmm 57 0>;
+		depends-on-supply = <&tlmm>;
 	};
 
-	wdog: qcom,wdt@0xf410000 {  // Same as PVM
+	wdog: qcom,wdt@f410000 {  // Same as PVM
 		compatible = "qcom,msm-watchdog";
 		reg = <0x0 0xf410000 0x0 0x1000>;
 		reg-names = "wdt-base";
@@ -328,7 +361,7 @@
 		compatible = "smmu-proxy-receiver";
 	};
 
-	qti,smmu-proxy-camera-cb {
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 		qcom,iommu-defer-smr-config;
@@ -336,20 +369,18 @@
 			 <&apps_smmu 0x821 0x0>,
 			 <&apps_smmu 0x841 0x0>,
 			 <&apps_smmu 0x401 0x0>;
-		dma-coherent;
 	};
 
-	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
+	qti_smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
 		qcom,iommu-defer-smr-config;
 		memory-region = <&smmu_proxy_iommu_region>;
 		iommus = <&apps_smmu 0x421 0x0>;
-		dma-coherent;
 	};
 
 	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
-		iommu-addresses = <&smmu_proxy_display_cb 0x0 0x0 0x0 0x20000>;
+		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x0 0x0 0x20000>;
 	};
 
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
@@ -363,9 +394,25 @@
 		affinity = <0>;
 	};
 
-	qcom_gh_qtimer: qcom,gh-qtimer@f42B000 { // APSS_QTMR0_F5V1_QTMR_V1
+	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
+	};
+
+	qmsgq_gunyah: qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <4>;
+	};
+
+	qcom_gh_qtimer: qcom,gh-qtimer@f42b000 { // APSS_QTMR0_F5V1_QTMR_V1
 		compatible = "qcom,gh-qtmr";
-		reg = <0x0 0x0f42B000 0x0 0x1000>;
+		reg = <0x0 0x0f42b000 0x0 0x1000>;
 		reg-names = "qtmr-base";
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";

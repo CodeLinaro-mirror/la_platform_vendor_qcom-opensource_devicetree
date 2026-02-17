@@ -61,6 +61,9 @@
 	qcom,vccq-parent-supply = <&S2B_E0>;
 	qcom,vccq-parent-max-microamp = <8176000>;
 
+	qcom,vccq2-parent-supply = <&S1B_E0>;
+	qcom,vccq2-parent-max-microamp = <210000>;
+
 	status = "ok";
 };
 
@@ -135,6 +138,16 @@
 	};
 };
 
+&fsa4480 {
+	mode-switch;
+
+	port {
+		fsa4480_mux: endpoint {
+			remote-endpoint = <&ucsi_audio_mux>;
+		};
+	};
+};
+
 &usb0 {
 	usb-role-switch;
 
@@ -158,6 +171,14 @@
 
 				usb_port0_connector: endpoint {
 					remote-endpoint = <&usb_port0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				ucsi_audio_mux: endpoint {
+					remote-endpoint = <&fsa4480_mux>;
 				};
 			};
 		};

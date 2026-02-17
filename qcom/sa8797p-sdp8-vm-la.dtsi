@@ -30,7 +30,7 @@
 	};
 	aliases: aliases {
 		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
-		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart14@880000";
+		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@880000";
 	};
 };
 
@@ -158,10 +158,14 @@
 };
 
 &qupv3_se14_4uart {
+	power-domains = <&scmi_power 12>, <&scmi_perf 3>;
+	power-domain-names = "power", "perf";
 	status = "ok";
 };
 
 &qupv3_se17_4uart {
+	power-domains = <&scmi_power 4>, <&scmi_perf 0>;
+	power-domain-names = "power", "perf";
 	status = "ok";
 };
 
@@ -203,19 +207,19 @@
 };
 
 &usb0 {
-	power-domains = <&scmi_power 20>, <&scmi_power 21>;
 	interrupts-extended = <&qvm_vdev_gic GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
 		<&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
 		<&pdc 14 IRQ_TYPE_EDGE_RISING>,
 		<&pdc 15 IRQ_TYPE_EDGE_RISING>;
+	status = "ok";
 };
 
 &eusb2_phy0 {
-	power-domains = <&scmi_power 22>, <&scmi_power 23>;
+	status = "ok";
 };
 
 &usb_0_qmp_combo_phy {
-	power-domains = <&scmi_power 24>, <&scmi_power 25>;
+	status = "ok";
 };
 
 &remoteproc_cdsp_glink {

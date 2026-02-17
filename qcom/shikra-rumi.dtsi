@@ -76,3 +76,26 @@
 		dr_mode = "peripheral";
 	};
 };
+
+&sdhc_1 {
+	status = "okay";
+	vdd-supply = <&L20A>;
+	qcom,vdd-voltage-level = <2952000 2952000>;
+	qcom,vdd-current-level = <0 570340>;
+
+	vdd-io-supply = <&L14A>;
+	qcom,vdd-io-always-on;
+	qcom,vdd-io-voltage-level = <1800000 1800000>;
+	qcom,vdd-io-current-level = <0 325560>;
+
+	/delete-property/ mmc-ddr-1_8v;
+	/delete-property/ mmc-hs200-1_8v;
+	/delete-property/ mmc-hs400-1_8v;
+	/delete-property/ mmc-hs400-enhanced-strobe;
+
+	max-frequency = <100000000>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc1_on>;
+	pinctrl-1 = <&sdc1_off>;
+};

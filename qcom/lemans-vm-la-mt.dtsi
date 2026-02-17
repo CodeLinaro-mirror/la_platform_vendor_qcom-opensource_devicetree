@@ -123,10 +123,6 @@
 	status = "ok";
 };
 
-&ethernet1 {
-	status = "ok";
-};
-
 &usb2_phy0 {
 	status = "ok";
 };
@@ -152,6 +148,10 @@
 };
 
 &qcom_rng_ee3 {
+	status = "ok";
+};
+
+&qupv3_2 {
 	status = "ok";
 };
 

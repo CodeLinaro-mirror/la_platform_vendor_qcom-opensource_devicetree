@@ -169,13 +169,14 @@
 			pmw6100_usb_in_i {
 				reg = <PMW6100_ADC5_GEN4_IIN(0, PMW6100_SID)>;
 				label = "pmw6100_usb_in_i";
-				qcom,pre-scaling = <1 1>;
+				qcom,pre-scaling = <10 25>;
 			};
 
 			pmw6100_chg_temp {
 				reg = <PMW6100_ADC5_GEN4_CHG_TEMP(0, PMW6100_SID)>;
 				label = "pmw6100_chg_temp";
 				qcom,pre-scaling = <1 1>;
+				qcom,scale-fn-type = <ADC_SCALE_HW_CALIB_PMW6100_CHG_TEMP>;
 			};
 
 			pmw6100_vusb {

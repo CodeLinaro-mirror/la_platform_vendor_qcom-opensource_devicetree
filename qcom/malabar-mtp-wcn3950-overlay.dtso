@@ -7,6 +7,7 @@
 /plugin/;
 
 #include "malabar-mtp-wcn3950.dtsi"
+#include "malabar-pmiv010x.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Malabar MTP + WCN3950";

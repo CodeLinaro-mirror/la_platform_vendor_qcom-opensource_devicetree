@@ -116,10 +116,6 @@
 	vmid = <2>;
 };
 
-&ethernet1 {
-	status = "ok";
-};
-
 &pcie0 {
 	status = "ok";
 };
@@ -172,7 +168,15 @@
 	status = "ok";
 };
 
+&qupv3_2 {
+	status = "ok";
+};
+
 &qupv3_se17_4uart {
+	status = "ok";
+};
+
+&qupv3_0 {
 	status = "ok";
 };
 

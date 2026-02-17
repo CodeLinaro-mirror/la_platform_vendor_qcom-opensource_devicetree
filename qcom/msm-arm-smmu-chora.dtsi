@@ -254,7 +254,7 @@
 
 		anoc_1_qtb: anoc_1_qtb@1733000 {
 			compatible = "qcom,qsmmuv500-tbu", "qcom,qtb500";
-			reg = <0x0 0x171e000 0x0 0x1000>;
+			reg = <0x0 0x1733000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <36>;
 			interconnects = <&system_noc MASTER_A1NOC_SNOC &mc_virt SLAVE_EBI1>;

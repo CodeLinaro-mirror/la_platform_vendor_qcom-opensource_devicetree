@@ -12,8 +12,8 @@
 		reg = <0x4e00000 0x100000>;
 		reg-names = "core_base";
 
-		#address-cells = <1>;
-		#size-cells = <1>;
+		#address-cells = <2>;
+		#size-cells = <2>;
 		ranges;
 
 		interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
@@ -36,11 +36,15 @@
 		qcom,core-clk-rate = <133333333>;
 		qcom,core-clk-rate-hs = <66666667>;
 
-		dwc3@4e00000 {
+		dummy-supply = <&apps_smmu>;
+
+		dwc3_0: dwc3@4e00000 {
 			compatible = "snps,dwc3";
-			reg = <0x4e00000 0xe000>;
+			reg = <0x0 0x4e00000 0x0 0xcd00>;
+			iommus = <&apps_smmu 0x120 0x0>;
+			qcom,iommu-dma = "bypass";
+			memory-region = <&dwc3_mem_region_0>;
 			interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-			linux,sysdev_is_parent;
 			snps,disable-clk-gating;
 			snps,dis_enblslpm_quirk;
 			snps,has-lpm-erratum;
@@ -59,5 +63,10 @@
 
 	usb_nop_phy: usb_nop_phy {
 		     compatible = "usb-nop-xceiv";
+	};
+
+	dwc3_mem_region_0: dwc3_mem_region_0 {
+		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x50000000>,
+					<&dwc3_0 0x0 0xb0000000 0xffffffff 0x50000000>;
 	};
 };

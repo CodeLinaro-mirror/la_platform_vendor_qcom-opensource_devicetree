@@ -7,6 +7,7 @@
 /plugin/;
 
 #include "chora-mtp.dtsi"
+#include "chora-pmiv010x-pmd802x.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Chora MTP evros + st54l only";

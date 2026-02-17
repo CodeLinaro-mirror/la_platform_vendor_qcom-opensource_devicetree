@@ -11,8 +11,14 @@
 #include <dt-bindings/clock/qcom,pikachu-gpucc.h>
 #include <dt-bindings/clock/qcom,pikachu-tcsrcc.h>
 #include <dt-bindings/clock/qcom,pikachu-videocc.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
+#include <dt-bindings/interconnect/qcom,pikachu.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/spmi/spmi.h>
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Pikachu";
@@ -51,6 +57,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
 				cache-level = <2>;
@@ -72,6 +79,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU2: cpu@200 {
@@ -83,6 +91,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU3: cpu@300 {
@@ -94,6 +103,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		cpu-map {
@@ -128,16 +138,168 @@
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	qcom,qrtr-gunyah-tuivm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x103>;
+		peer-name = <2>;
+	};
+
+	tcsr_mutex_block: syscon@1f40000 {
+		compatible = "syscon";
+		reg = <0x1f40000 0x20000>;
+	};
+
+	tcsr_mutex: hwlock {
+		compatible = "qcom,tcsr-mutex";
+		syscon = <&tcsr_mutex_block 0 0x1000>;
+		#hwlock-cells = <1>;
+	};
+
+
+	qcom,smp2p-adsp {
+		compatible = "qcom,smp2p";
+		qcom,smem = <443>, <429>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_LPASS IPCC_MPROC_SIGNAL_SMP2P
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
+			  IPCC_MPROC_SIGNAL_SMP2P>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <2>;
+
+		adsp_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		adsp_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_rdbg2_out: qcom,smp2p-rdbg2-out {
+			qcom,entry-name = "rdbg";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_rdbg2_in: qcom,smp2p-rdbg2-in {
+			qcom,entry-name = "rdbg";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p-cdsp {
+		compatible = "qcom,smp2p";
+		qcom,smem = <94>, <432>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_CDSP IPCC_MPROC_SIGNAL_SMP2P
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_CDSP IPCC_MPROC_SIGNAL_SMP2P>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <5>;
+
+		cdsp_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		cdsp_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_rdbg5_out: qcom,smp2p-rdbg5-out {
+			qcom,entry-name = "rdbg";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_rdbg5_in: qcom,smp2p-rdbg5-in {
+			qcom,entry-name = "rdbg";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p-soccp {
+		compatible = "qcom,smp2p";
+		qcom,smem = <617>, <616>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_SOCCP IPCC_MPROC_SIGNAL_SMP2P
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_SOCCP IPCC_MPROC_SIGNAL_SMP2P>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <19>;
+
+		soccp_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		soccp_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p_sleepstate {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&sleepstate_smp2p_out 0>;
+		interrupt-parent = <&sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+
+	qcom,smp2p-dcp {
+		compatible = "qcom,smp2p";
+		qcom,smem = <617>, <616>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_DCP IPCC_MPROC_SIGNAL_SMP2P
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_DCP IPCC_MPROC_SIGNAL_SMP2P>;
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <22>;
+
+		dcp_smp2p_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		dcp_smp2p_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
 	intc: interrupt-controller@17200000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
 		interrupt-controller;
 		#redistributor-regions = <1>;
-		redistributor-stride = <0x0 0x40000>;
+		redistributor-stride = <0x0 0x20000>;
 		reg = <0x17200000 0x10000>,       /* GICD */
-		     <0x17260000 0x200000>;       /* GICR * 8 */
+		     <0x17260000 0xA0000>;       /* GICR * 8 */
 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
 	};
+
+	msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
@@ -172,6 +334,10 @@
 						   <CONTROL_TCS   0>,
 						   <FAST_PATH_TCS 1>;
 			};
+
+			apps_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
+			};
 		};
 	};
 
@@ -197,6 +363,47 @@
 		#interrupt-cells = <2>;
 		interrupt-parent = <&intc>;
 		interrupt-controller;
+	};
+
+	ipcc_mproc: qcom,ipcc@404000 {
+		compatible = "qcom,ipcc";
+		reg = <0x404000 0x1000>;
+		interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
+	aoss_qmp: power-controller@c300000 {
+		compatible = "qcom,aoss-qmp";
+		reg = <0xc300000 0x400>;
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_AOP
+			      IPCC_MPROC_SIGNAL_GLINK_QMP
+			      IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_AOP
+			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+
+		#power-domain-cells = <1>;
+		#clock-cells = <0>;
+	};
+
+	qmp_tme: qcom,qmp-tme {
+		compatible = "qcom,qmp-mbox";
+		qcom,remote-pid = <14>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_TME
+			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+		mbox-names = "tme_qmp";
+		interrupt-parent = <&ipcc_mproc>;
+		interrupts = <IPCC_CLIENT_TME
+			      IPCC_MPROC_SIGNAL_GLINK_QMP
+			      IRQ_TYPE_EDGE_RISING>;
+
+		label = "tme";
+		qcom,early-boot;
+		priority = <0>;
+		mbox-desc-offset = <0x0>;
+		#mbox-cells = <1>;
 	};
 
 	memtimer: timer@17420000 {
@@ -257,6 +464,73 @@
 			status = "disabled";
 		};
 	};
+
+	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
+		compatible = "qcom,spmi-pmic-arb";
+		reg = <0x0 0xc42d000 0x0 0x4000>,
+		      <0x0 0xc400000 0x0 0x3000>,
+		      <0x0 0xc500000 0x0 0x400000>,
+		      <0x0 0xc440000 0x0 0x80000>,
+		      <0x0 0xc4c0000 0x0 0x10000>;
+		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
+		interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "periph_irq";
+		interrupt-controller;
+		#interrupt-cells = <4>;
+		#address-cells = <2>;
+		#size-cells = <0>;
+		cell-index = <0>;
+		qcom,channel = <0>;
+		qcom,ee = <0>;
+		qcom,bus-id = <0>;
+	};
+
+	spmi_debug_bus_0: qcom,spmi-debug@11314000  {
+		compatible = "qcom,spmi-pmic-arb-debug";
+		reg = <0x0 0x11314000 0x0 0x60>,
+		      <0x0 0x221c8784 0x0 0x4>;
+		reg-names = "core", "fuse";
+		clocks = <&aoss_qmp>;
+		clock-names = "core_clk";
+		qcom,fuse-enable-bit = <14>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		depends-on-supply = <&spmi0_bus>;
+
+		qcom,pmar2230-debug@0 {
+			compatible = "qcom,spmi-pmic";
+			reg = <0 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pmg1110-debug@a {
+			compatible = "qcom,spmi-pmic";
+			reg = <10 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@c {
+			compatible = "qcom,spmi-pmic";
+			reg = <12 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+
+		qcom,pm8010-debug@d {
+			compatible = "qcom,spmi-pmic";
+			reg = <13 SPMI_USID>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,can-sleep;
+		};
+	};
+
+	thermal_zones: thermal-zones {};
 
 	qcom,mem-buf {
 		compatible = "qcom,mem-buf";
@@ -343,8 +617,19 @@
 	};
 
 	camcc: clock-controller@ade0000 {
-		compatible = "qcom,dummycc";
-		clock-output-names = "camcc_clocks";
+		compatible = "qcom,pikachu-camcc", "syscon";
+		reg = <0xade0000 0x20000>;
+		reg-name = "cc_base";
+		vdd_mm-supply = <&VDD_MM_LEVEL>;
+		vdd_mx-supply = <&VDD_MX_LEVEL>;
+		vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+		vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			 <&sleep_clk>, <&gcc GCC_CAMERA_AHB_CLK>;
+		clock-names = "bi_tcxo",
+			      "sleep_clk", "iface";
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI1>;
+		interconnect-names = "cam-to-ddr";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -428,87 +713,135 @@
 	clk_virt: interconnect-clk-virt {
 		compatible = "qcom,pikachu-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	mc_virt: interconnect-mc-virt {
 		compatible = "qcom,pikachu-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	config_noc: interconnect@1600000 {
 		compatible = "qcom,pikachu-config_noc_cfg";
+		reg = <0x01600000 0x7200>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	cnoc_main: interconnect@1500000 {
 		compatible = "qcom,pikachu-config_noc_main";
+		reg = <0x01500000 0x1a200>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	gem_noc: interconnect@24100000 {
 		compatible = "qcom,pikachu-gem_noc";
+		reg = <0x24100000 0x161080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_ag_noc: interconnect@8240000 {
+	lpass_ag_noc: interconnect@35640000 {
 		compatible = "qcom,pikachu-lpass_ag_noc";
+		reg = <0x35640000 0xe080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_lpiaon_noc: interconnect@07800000 {
+	lpass_lpiaon_noc: interconnect@34800000 {
 		compatible = "qcom,pikachu-lpass_lpiaon_noc";
+		reg = <0x34800000 0x19080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
-	lpass_lpicx_noc: interconnect@07820000 {
+	lpass_lpicx_noc: interconnect@034820000 {
 		compatible = "qcom,pikachu-lpass_lpicx_noc";
+		reg = <0x34820000 0x44080>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	mmss_noc: interconnect@1780000 {
 		compatible = "qcom,pikachu-mmss_noc";
+		reg = <0x01780000 0x6c000>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	nsp_noc: interconnect@320C0000 {
 		compatible = "qcom,pikachu-nsp_noc";
+		reg = <0x320c0000 0x1f400>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	pcie_anoc: interconnect@16C0000 {
 		compatible = "qcom,pikachu-pcie_anoc";
+		reg = <0x016c0000 0xe800>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
 	system_noc: interconnect@1680000 {
 		compatible = "qcom,pikachu-system_noc";
+		reg = <0x01680000 0x2e400>;
 		#interconnect-cells = <1>;
-		qcom,stub;
+		qcom,bcm-voter-names = "hlos";
+		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
 	};
 
+	thermal_zones: thermal-zones {
+	};
+
+	qcom,gunyah-panic-notifier {
+		compatible = "qcom,gh-panic-notifier";
+		qcom,primary-vm;
+		gunyah-label = <0x109>;
+		peer-name = <2>;
+		memory-region = <&vm_comm_mem>;
+		shared-buffer-size = <0x1000>;
+	};
+
+	dmesg-dump {
+		compatible = "qcom,dmesg-dump";
+		qcom,primary-vm;
+		gunyah-label = <0x107>;
+		peer-name = <2>;
+		memory-region = <&vm_comm_mem>;
+		shared-buffer-size = <0x1000>;
+	};
+
+	gunyah-cma-mem {
+		compatible = "gunyah-cma-vm-mem";
+		memory-region = <&trust_ui_vm_mem>;
+		memory-region-names = "trustedvm_cma";
+	};
 };
 
 &firmware {
@@ -545,3 +878,5 @@
 &qupv3_se11_2uart {
 	status = "ok";
 };
+
+#include "pikachu-thermal.dtsi"

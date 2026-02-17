@@ -63,7 +63,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "loglevel=6 log_buf_len=512K earlycon arm64.nosme arm64.nomte cpufreq.default_governor=performance no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-4 fw_devlink.strict=1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on sysctl.kernel.sched_pelt_multiplier=4 android_arch_task_struct_size=512 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false can.stats_timer=0 slub_debug=-";
+		bootargs = "loglevel=6 log_buf_len=512K earlycon arm64.nosme arm64.nomte cpufreq.default_governor=performance no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-3 fw_devlink.strict=1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on sysctl.kernel.sched_pelt_multiplier=4 android_arch_task_struct_size=512 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false can.stats_timer=0 slub_debug=-";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -792,10 +792,10 @@
 		compatible = "qcom,aoss-qmp";
 		reg = <0x0 0xc300000 0x0 0x400>;
 		interrupt-parent = <&ipcc_mproc>;
-		interrupts = <IPCC_MPROC_AOP
+		interrupts = <IPCC_CLIENT_AOP
 			      IPCC_MPROC_SIGNAL_GLINK_QMP
 			      IRQ_TYPE_EDGE_RISING>;
-		mboxes = <&ipcc_mproc IPCC_MPROC_AOP
+		mboxes = <&ipcc_mproc IPCC_CLIENT_AOP
 			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
 
 		#power-domain-cells = <1>;
@@ -866,11 +866,11 @@
 	qmp_tme: qcom,qmp-tme {
 		compatible = "qcom,qmp-mbox";
 		qcom,remote-pid = <14>;
-		mboxes = <&ipcc_mproc IPCC_MPROC_TME
+		mboxes = <&ipcc_mproc IPCC_CLIENT_TME
 			  IPCC_MPROC_SIGNAL_GLINK_QMP>;
 		mbox-names = "tme_qmp";
 		interrupt-parent = <&ipcc_mproc>;
-		interrupts = <IPCC_MPROC_TME
+		interrupts = <IPCC_CLIENT_TME
 			      IPCC_MPROC_SIGNAL_GLINK_QMP
 			      IRQ_TYPE_EDGE_RISING>;
 
@@ -885,9 +885,9 @@
 		compatible = "qcom,smp2p";
 		qcom,smem = <443>, <429>;
 		interrupt-parent = <&ipcc_mproc>;
-		interrupts = <IPCC_MPROC_LPASS IPCC_MPROC_SIGNAL_SMP2P
+		interrupts = <IPCC_CLIENT_LPASS IPCC_MPROC_SIGNAL_SMP2P
 			      IRQ_TYPE_EDGE_RISING>;
-		mboxes = <&ipcc_mproc IPCC_MPROC_LPASS
+		mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
 			  IPCC_MPROC_SIGNAL_SMP2P>;
 		qcom,local-pid = <0>;
 		qcom,remote-pid = <2>;
@@ -930,9 +930,9 @@
 		compatible = "qcom,smp2p";
 		qcom,smem = <435>, <428>;
 		interrupt-parent = <&ipcc_mproc>;
-		interrupts = <IPCC_MPROC_MPSS IPCC_MPROC_SIGNAL_SMP2P
+		interrupts = <IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_SMP2P
 			      IRQ_TYPE_EDGE_RISING>;
-		mboxes = <&ipcc_mproc IPCC_MPROC_MPSS IPCC_MPROC_SIGNAL_SMP2P>;
+		mboxes = <&ipcc_mproc IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_SMP2P>;
 		qcom,local-pid = <0>;
 		qcom,remote-pid = <1>;
 
@@ -2043,11 +2043,11 @@
 		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
 			transport = "smem";
-			mboxes = <&ipcc_mproc IPCC_MPROC_LPASS
+			mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
 				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
 			mbox-names = "adsp_smem";
 			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_MPROC_LPASS
+			interrupts = <IPCC_CLIENT_LPASS
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
@@ -2120,11 +2120,11 @@
 		glink-edge {
 			qcom,remote-pid = <1>;
 			transport = "smem";
-			mboxes = <&ipcc_mproc IPCC_MPROC_MPSS
+			mboxes = <&ipcc_mproc IPCC_CLIENT_MPSS
 				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
 			mbox-names = "mpss_smem";
 			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_MPROC_MPSS
+			interrupts = <IPCC_CLIENT_MPSS
 				      IPCC_MPROC_SIGNAL_GLINK_QMP
 				      IRQ_TYPE_EDGE_RISING>;
 
@@ -2616,7 +2616,7 @@
 					&tlmm 22 0
 					/* Display gpio pins */
 					&tlmm 12 0
-					&tlmm 133 0
+					&tlmm 113 0
 					/* Test gpio pins */
 					&tlmm 24 0>;
 		};

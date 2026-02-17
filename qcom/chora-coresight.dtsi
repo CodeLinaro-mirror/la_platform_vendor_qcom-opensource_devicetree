@@ -47,7 +47,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_tmess_dragonlink1";
-
+		status = "disabled";
 		qcom,extended_cti;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -59,7 +59,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_tmess_dragonlink0";
-
+		status = "disabled";
 		qcom,extended_cti;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -217,6 +217,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_tmess_rvss_seqr";
+		status = "disabled";
 
 		qcom,extended_cti;
 		clocks = <&aoss_qmp>;

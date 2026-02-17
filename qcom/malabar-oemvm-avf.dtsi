@@ -19,7 +19,7 @@
 			android,pvmfw,target = <&gh_qtimer>;
 		};
 
-		qcom,wdt@0xf410000 {
+		qcom,wdt@f410000 {
 			reg = <0x0 0xf410000 0x0 0x1000>;
 			android,pvmfw,target = <&wdog>;
 		};
@@ -113,6 +113,36 @@
 				qcom,label = <0x105>;
 				peer-default;
 			};
+
+			test-large-dmabuf-oemvm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-oemvm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10e>;
+				peer-default;
+			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x108>;
+					#address-cells = <0x2>;
+					base = <0x0 0x64006000>;
+				};
+			};
+
+			msgqsock-msgq-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,trustedvm";
+				qcom,label = <0x103>;
+			};
 		};
 	};
 };
@@ -153,6 +183,9 @@
 	non_devices_common: non-devices-common {
 		reg = <0x0 0x0 0x0 0x0>;
 		required-subnodes = <&qcom_scm
+				&qcom_smcinvoke
+				&qcom_mem_object
+				&qtee_shmbridge
 				&qcom_test_dbl_oemvm
 				&qcom_test_msgq_oemvm
 				&google_debug_kinfo
@@ -160,10 +193,14 @@
 				&virtio_mem_device
 				&qcom_mem_buf
 				&mem_buf_msgq
+				&qrtr_gunyah
+				&qcom_qrtr
+				&qmsgq_gunyah
+				&qcom_test_large_dmabuf_oemvm
 				>;
 	};
 
-	wdog: qcom,wdt@0xf410000 {
+	wdog: qcom,wdt@f410000 {
 		compatible = "qcom,msm-watchdog";
 		reg = <0x0 0xf410000 0x0 0x1000>;
 		reg-names = "wdt-base";
@@ -186,6 +223,17 @@
 		affinity = <0>;
 	};
 
+	qcom_test_large_dmabuf_oemvm: qcom,test-large-dmabuf-oemvm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10e>;
+	};
+
+	qmsgq_gunyah: msgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <2>;
+	};
+
 	gh_qtimer: qcom,gh-qtimer@f42b000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x0f42b000 0x0 0x1000>;
@@ -195,18 +243,28 @@
 		qcom,secondary;
 	};
 
-	qcom_smcinvoke {
+	qcom_smcinvoke:qcom_smcinvoke {
 		compatible = "qcom,smcinvoke";
 	};
 
-	qcom_mem_object {
+	qcom_mem_object:qcom_mem_object {
 		compatible = "qcom,mem-object";
 	};
 
-	qtee_shmbridge {
+	qtee_shmbridge:qtee_shmbridge {
 		compatible = "qcom,tee-shared-memory-bridge";
 		qcom,custom-bridge-size = <512>;
 		qcom,support-hypervisor;
+	};
+
+	qcom_qrtr: qcom,qrtr {
+		compatible = "qcom,qrtr";
+		qcom,node-id = <21>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x108>;
 	};
 
 	qcom_mem_buf: qcom,mem-buf {
