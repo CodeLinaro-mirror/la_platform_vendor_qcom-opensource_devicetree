@@ -139,6 +139,10 @@ _platform_map = {
                 "name": "alorp.dtb",
                 "apq": True,
             },
+            {
+                "name": "alorp-iot.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
@@ -164,6 +168,10 @@ _platform_map = {
             {"name": "alor.dtb"},
             {
                 "name": "alorp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "alorp-iot.dtb",
                 "apq": True,
             },
         ],
