@@ -498,9 +498,7 @@
 	};
 
 	rpmcc: clock-controller {
-		compatible = "fixed-clock";
-		clock-output-names = "rpmcc_clocks";
-		clock-frequency = <19200000>;
+		compatible = "qcom,rpmcc-shikra";
 		#clock-cells = <1>;
 	};
 
