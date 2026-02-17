@@ -1735,6 +1735,15 @@
 		};
 	};
 
+	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				  <&sdhc_1 0x50000000 0xbfffffff>;
+	};
+
 	sdhc_1: sdhci@7C4000 {
 		status = "disabled";
 
@@ -1744,8 +1753,8 @@
 		reg-names = "hc", "cqhci", "ice";
 		iommus = <&apps_smmu 0x560 0x0>;
 		qcom,iommu-dma = "fastmap";
+		memory-region = <&sdhc_1_dma_resv>;
 
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
 		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
