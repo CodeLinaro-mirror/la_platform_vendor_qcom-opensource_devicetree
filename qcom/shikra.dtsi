@@ -328,6 +328,14 @@
 		interrupts = <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	qcom_tzlog: tz-log@c11e720 {
+		compatible = "qcom,tz-log";
+		reg = <0xc11e720 0x3000>;
+		qcom,hyplog-enabled;
+		hyplog-address-offset = <0x410>;
+		hyplog-size-offset = <0x414>;
+	};
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
