@@ -253,35 +253,6 @@ lahaina-dtb-$(CONFIG_ARCH_YUPIK) += \
 	$(call add-overlays, $(YUPIK_BOARDS),$(YUPIK_APQ_BASE_DTB))
 lahaina-overlays-dtb-$(CONFIG_ARCH_YUPIK) += $(NOAPQ_YUPIK_BOARDS) $(YUPIK_BASE_DTB) $(YUPIK_APQ_BASE_DTB) $(YUPIK_BOARDS)
 
-LAHAINA_BASE_DTB += lahaina.dtb lahaina-v2.dtb lahaina-v2.1.dtb
-LAHAINA_APQ_BASE_DTB += lahainap.dtb lahainap-v2.dtb lahainap-v2.1.dtb
-
-LAHAINA_BOARDS += \
-		lahainap-hhg-hsp-pro-overlay.dtbo \
-		lahainap-mtp-overlay.dtbo \
-		lahainap-atp-overlay.dtbo \
-		lahainap-qrd-overlay.dtbo
-
-NOAPQ_LAHAINA_BOARDS += \
-		lahaina-rumi-overlay.dtbo \
-		lahaina-mtp-overlay.dtbo \
-		lahaina-mtp-hsp-overlay.dtbo \
-		lahaina-atp-overlay.dtbo \
-		lahaina-hdk-overlay.dtbo \
-		lahaina-hhg-overlay.dtbo \
-		lahaina-qrd-overlay.dtbo \
-		lahaina-qrd-hsp-overlay.dtbo \
-		lahaina-qrd-module-overlay.dtbo \
-		lahaina-mtp-hsp-pro-overlay.dtbo \
-		lahaina-qrd-hsp-pro-overlay.dtbo \
-		lahaina-mtp-v2-overlay.dtbo \
-		lahaina-mtp-v2.1-overlay.dtbo
-
-lahaina-dtb-$(CONFIG_ARCH_LAHAINA) += \
-	$(call add-overlays, $(NOAPQ_LAHAINA_BOARDS),$(LAHAINA_BASE_DTB)) \
-	$(call add-overlays, $(LAHAINA_BOARDS),$(LAHAINA_APQ_BASE_DTB))
-lahaina-overlays-dtb-$(CONFIG_ARCH_LAHAINA) += $(NOAPQ_LAHAINA_BOARDS) $(LAHAINA_BASE_DTB) $(LAHAINA_APQ_BASE_DTB) $(LAHAINA_BOARDS)
-
 dtb-y += $(lahaina-dtb-y) $(lahaina-overlays-dtb-y)
 
 MONACO_BASE_DTB += monaco.dtb monacop.dtb
