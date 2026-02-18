@@ -14,7 +14,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=1M console=hvc0";
+		bootargs = "nokaslr log_buf_len=1M console=hvc0 driver_async_probe=arm-scmi";
 	};
 
 	reserved_memory: reserved-memory {
@@ -33,7 +33,7 @@
 
 		qseecom_mem: qseecom_region {
 			compatible = "shared-dma-pool";
-			alloc-ranges = <0x0 0x00000000 0x0 0xe4c00000>;
+			alloc-ranges = <0x0 0xf2e00000 0x0 0x0d200000>;
 			reusable;
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x1400000>;
@@ -41,7 +41,7 @@
 
 		qseecom_ta_mem: qseecom_ta_region {
 			compatible = "shared-dma-pool";
-			alloc-ranges = <0x0 0x00000000 0x0 0xe4c00000>;
+			alloc-ranges = <0x0 0xf2e00000 0x0 0x0d200000>;
 			reusable;
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x1000000>;
@@ -1138,6 +1138,28 @@
 	dma_dev@0x0 {
 		compatible = "qcom,iommu-dma";
 		memory-region = <&system_cma>;
+	};
+
+	scmi {
+		compatible = "arm,scmi-virtio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "ok";
+
+		scmi_power: protocol@11 {
+			reg = <0x11>;
+			#power-domain-cells = <1>;
+		};
+
+		scmi_perf: protocol@13 {
+			reg = <0x13>;
+			#power-domain-cells = <1>;
+		};
+
+		scmi_reset: protocol@16 {
+			reg = <0x16>;
+			#reset-cells = <1>;
+		};
 	};
 
 	qcom,mem-buf {

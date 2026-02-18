@@ -63,6 +63,8 @@
 	};
 
 	smem_mem: smem_region@81d00000 {
+		compatible = "qcom,smem";
+		hwlocks = <&tcsr_mutex 3>;
 		reg = <0x0 0x81d00000 0x0 0x200000>;
 		no-map;
 	};
@@ -273,4 +275,11 @@
 		no-map;
 	};
 
+	vm_comm_mem: vm_comm_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x400000>;
+	};
 };

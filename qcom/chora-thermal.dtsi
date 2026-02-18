@@ -701,6 +701,7 @@
 
 	gpuss-0 {
 		thermal-sensors = <&tsens1 1>;
+		polling-delay-passive = <12>;
 		trips {
 			thermal-engine-config {
 				temperature = <125000>;
@@ -737,6 +738,7 @@
 
 	gpuss-1 {
 		thermal-sensors = <&tsens1 2>;
+		polling-delay-passive = <12>;
 		trips {
 			thermal-engine-config {
 				temperature = <125000>;

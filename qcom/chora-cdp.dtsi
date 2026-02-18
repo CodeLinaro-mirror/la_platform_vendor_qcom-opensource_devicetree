@@ -59,6 +59,9 @@
 	qcom,vccq-parent-supply = <&S2B_E0>;
 	qcom,vccq-parent-max-microamp = <8176000>;
 
+	qcom,vccq2-parent-supply = <&S1B_E0>;
+	qcom,vccq2-parent-max-microamp = <210000>;
+
 	status = "ok";
 };
 
@@ -68,6 +71,7 @@
 
 	qcom,touch-active = "goodix,gt9916S";
 	status = "ok";
+	qcom,la-vm;
 
 	goodix-berlin@0 {
 		compatible = "goodix,gt9916S";
@@ -94,5 +98,43 @@
 		pinctrl-2 = <&ts_release>;
 		goodix,touch-type = "primary";
 		goodix,qts_en;
+
+		qts,trusted-touch-mode = "vm_mode";
+		qts,touch-environment = "pvm";
+		qts,trusted-touch-type = "primary";
+		qts,trusted-touch-spi-irq = <664>;
+		qts,trusted-touch-io-bases = <0xA90000>;
+		qts,trusted-touch-io-sizes = <0x1000>;
+		qts,trusted-touch-vm-gpio-list = <&tlmm 19 0 &tlmm 20 0 &tlmm 21 0
+						&tlmm 22 0 &tlmm 1 0 &tlmm 0 0x2008>;
+	};
+};
+
+&usb0 {
+	usb-role-switch;
+
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		compatible = "usb-c-connector";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				usb_port0_connector: endpoint {
+					remote-endpoint = <&usb_port0>;
+				};
+			};
+		};
 	};
 };

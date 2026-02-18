@@ -409,6 +409,12 @@
 		};
 	};
 
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
+
+
 	hypervisor: hypervisor {
 		gh_watchdog: qcom,gh-watchdog { };
 	};
@@ -823,12 +829,18 @@
 			memory-region = <&kinfo_mem>;
 		};
 
+		qcom,logbuf-vendor-hooks {
+			compatible = "qcom,logbuf-vendor-hooks";
+		};
+
 		gic_router: gic-interrupt-router {
 			compatible = "qcom,gic-intr-routing";
 			/* keep cluster0 cores in class0*/
 			qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
 			/* keep other cores in class1 */
 			qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
+			qcom,gic-runtime-cpu-class-en;
 		};
 
 		mini_dump_mode {
@@ -1163,7 +1175,7 @@
 			qcom,smmu-s1-enable;
 			qcom,no-clock-support;
 			interconnect-names = "data_path";
-			interconnects = <&aggre1_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+			interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 			iommus = <&apps_smmu 0x0480 0x0>,
 				<&apps_smmu 0x0481 0x0>;
 			qcom,iommu-dma = "atomic";
@@ -1910,6 +1922,25 @@
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
 			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port0_hs_in: endpoint {
+					};
+				};
+
+				port@1 {
+					reg = <1>;
+
+					usb_port0_dwc3_ss: endpoint {
+					};
+				};
+			};
 		};
 
 		dwc3_mem_region: dwc3_mem_region {
@@ -1966,7 +1997,22 @@
 
 			vdda-phy-supply = <&L2J>;
 			vdda-pll-supply = <&L1J>;
+
+			orientation-switch;
+
 			status = "disabled";
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port0_ssphy_out: endpoint {
+					};
+				};
+			};
 		};
 
 		usb4: ssusb@a200000 {
@@ -2344,6 +2390,60 @@
 			reg-names = "rx", "tx";
 			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
 			#mbox-cells = <1>;
+		};
+
+		pdp0: qcom,pdp0@0x19980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x19980000 0x0 0x300>,
+				<0x0 0x17420000 0x0 0x4C08>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x10>;
+		};
+
+		pdp1: qcom,pdp1@0x1a980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x1a980000 0x0 0x300>,
+				<0x0 0x17420000 0x0 0x4C08>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x20>;
+		};
+
+		pdp2: qcom,pdp2@0x1b980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x1b980000 0x0 0x300>,
+				<0x0 0x17420000 0x0 0x4C08>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x40>;
+		};
+
+		pdp0_log: qcom,pdp0_log@0x81e61000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81e61000 0x0 0x10000>,
+				<0x0 0x81e71000 0x0 0x10000>;
+			mboxes = <&pdp0 4>;
+			qcom,log-type = <1>;
+		};
+
+		pdp1_log: qcom,pdp1_log@0x81e81000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81e81000 0x0 0x10000>,
+				<0x0 0x81e91000 0x0 0x10000>;
+			mboxes = <&pdp1 5>, <&pdp1 4>;
+			qcom,log-type = <2>;
+		};
+
+		pdp2_log: qcom,pdp2_log@0x81ea1000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81ea1000 0x0 0x10000>,
+				<0x0 0x81eb1000 0x0 0x10000>;
+			mboxes = <&pdp2 6>, <&pdp2 4>;
+			qcom,log-type = <3>;
 		};
 
 		qcom,wdt@1c840000 {

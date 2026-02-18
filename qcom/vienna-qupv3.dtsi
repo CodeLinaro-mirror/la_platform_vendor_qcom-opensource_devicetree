@@ -795,6 +795,7 @@
 				    "rx";
 			qcom,vote-index = <0 0 0>;
 			qcom,wakeup-byte = <0xFD>;
+			wakeup-source;
 			status = "disabled";
 		};
 

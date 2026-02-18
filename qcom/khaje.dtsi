@@ -580,7 +580,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 console=ttyMSM0,115200n8 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
 	};
 
 	soc: soc { };
@@ -1427,6 +1427,14 @@
 		};
 	};
 
+	ufshc_dma_resv: ufshc_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
+		 * from 0x1000 - 0xffffffff.
+		 */
+		iommu-addresses = <&ufshc_mem 0x0 0x0 0x0 0x1000>;
+	};
+
 	ufsphy_mem: ufsphy_mem@4807000 {
 		reg = <0x4807000 0xe00>; /* PHY regs */
 		reg-names = "phy_mem";
@@ -1444,9 +1452,9 @@
 		<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 		<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 		<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
-		<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-		<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
-		<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>;
+		<&ufs_phy_rx_symbol_0_clk>,
+		<&ufs_phy_rx_symbol_1_clk>,
+		<&ufs_phy_tx_symbol_0_clk>;
 
 		resets = <&ufshc_mem 0>;
 		status = "disabled";
@@ -1460,12 +1468,10 @@
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 
-		qcom,dynamic-irq-affinity;
 		limit-rx-hs-gear = <3>;
 		limit-tx-hs-gear = <3>;
 		lanes-per-direction = <2>;
 		limit-phy-submode = <0>;
-		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		#reset-cells = <1>;
 
 		boot_device_type = <0x4>;
@@ -1505,57 +1511,6 @@
 		interconnects = <&system_noc MASTER_UFS_MEM &bimc SLAVE_EBI_CH0>,
 			<&bimc MASTER_AMPSS_M0 &config_noc SLAVE_UFS_MEM_CFG>;
 		interconnect-names = "ufs-ddr", "cpu-ufs";
-		qcom,ufs-bus-bw,name = "ufshc_mem";
-		qcom,ufs-bus-bw,num-cases = <22>;
-		qcom,ufs-bus-bw,num-paths = <2>;
-		qcom,ufs-bus-bw,vectors-KBps =
-		/*
-		 * During HS G3 UFS runs at nominal voltage corner, vote
-		 * higher bandwidth to push other buses in the data path
-		 * to run at nominal to achieve max throughput.
-		 * 4GBps pushes BIMC to run at nominal.
-		 * 200MBps pushes CNOC to run at nominal.
-		 * Vote for half of this bandwidth for HS G3 1-lane.
-		 * For max bandwidth, vote high enough to push the buses
-		 * to run in turbo voltage corner.
-		 */
-		<123 512 0 0>, <1 757 0 0>,          /* No vote */
-		<123 512 922 0>, <1 757 1000 0>,     /* PWM G1 */
-		<123 512 1844 0>, <1 757 1000 0>,    /* PWM G2 */
-		<123 512 3688 0>, <1 757 1000 0>,    /* PWM G3 */
-		<123 512 7376 0>, <1 757 1000 0>,    /* PWM G4 */
-		<123 512 1844 0>, <1 757 1000 0>,    /* PWM G1 L2 */
-		<123 512 3688 0>, <1 757 1000 0>,    /* PWM G2 L2 */
-		<123 512 7376 0>, <1 757 1000 0>,    /* PWM G3 L2 */
-		<123 512 14752 0>, <1 757 1000 0>,   /* PWM G4 L2 */
-		<123 512 127796 0>, <1 757 1000 0>,  /* HS G1 RA */
-		<123 512 255591 0>, <1 757 1000 0>,  /* HS G2 RA */
-		<123 512 2097152 0>, <1 757 102400 0>,  /* HS G3 RA */
-		<123 512 255591 0>, <1 757 1000 0>,  /* HS G1 RA L2 */
-		<123 512 511181 0>, <1 757 1000 0>,  /* HS G2 RA L2 */
-		<123 512 4194304 0>, <1 757 204800 0>, /* HS G3 RA L2 */
-		<123 512 149422 0>, <1 757 1000 0>,  /* HS G1 RB */
-		<123 512 298189 0>, <1 757 1000 0>,  /* HS G2 RB */
-		<123 512 2097152 0>, <1 757 102400 0>,  /* HS G3 RB */
-		<123 512 298189 0>, <1 757 1000 0>,  /* HS G1 RB L2 */
-		<123 512 596378 0>, <1 757 1000 0>,  /* HS G2 RB L2 */
-		/* As UFS working in HS G3 RB L2 mode, aggregated
-		 * bandwidth (AB) should take care of providing
-		 * optimum throughput requested. However, as tested,
-		 * in order to scale up CNOC clock, instantaneous
-		 * bindwidth (IB) needs to be given a proper value too.
-		 */
-		<123 512 4194304 0>, <1 757 204800 409600>, /* HS G3 RB L2 */
-		<123 512 7643136 0>, <1 757 307200 0>; /* Max. bandwidth */
-
-		qcom,bus-vector-names = "MIN",
-		"PWM_G1_L1", "PWM_G2_L1", "PWM_G3_L1", "PWM_G4_L1",
-		"PWM_G1_L2", "PWM_G2_L2", "PWM_G3_L2", "PWM_G4_L2",
-		"HS_RA_G1_L1", "HS_RA_G2_L1", "HS_RA_G3_L1",
-		"HS_RA_G1_L2", "HS_RA_G2_L2", "HS_RA_G3_L2",
-		"HS_RB_G1_L1", "HS_RB_G2_L1", "HS_RB_G3_L1",
-		"HS_RB_G1_L2", "HS_RB_G2_L2", "HS_RB_G3_L2",
-		"MAX";
 
 		reset-names = "core_reset";
 		non-removable;
@@ -1563,8 +1518,8 @@
 		status = "disabled";
 		iommus = <&apps_smmu 0x100 0x0>;
 		qcom,iommu-dma = "fastmap";
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		memory-region = <&ufshc_dma_resv>;
 
 		qos0 {
 			vote = <26>;
@@ -2296,11 +2251,11 @@
 		compatible = "qcom,demux";
 	};
 
-tpdm_turing_llm: tpdm@8861000 {
-		compatible = "qcom,coresight-dummy";
+	tpdm_turing_llm: tpdm@8861000 {
+		compatible = "arm,coresight-dummy-source";
 
-		coresight-name = "coresight-tpdm-turing_llm";
-		qcom,dummy-source;
+		device-name = "tpdm_turing_llm";
+		trace-name = "tpdm-turing-llm";
 
 		port {
 			tpdm_turing_llm_out_funnel_turing: endpoint {
@@ -2313,11 +2268,12 @@ tpdm_turing_llm: tpdm@8861000 {
 	/delete-node/ tpdm@8a58000;
 	tpdm_west: tpdm@8a58000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x8a58000 0x1000>;
 		reg-names = "tpdm-base";
 
-		coresight-name = "coresight-tpdm-west";
+		device-name = "tpdm_west";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2331,11 +2287,11 @@ tpdm_turing_llm: tpdm@8861000 {
 
 	tpdm_spdm: tpdm@800f000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0800f000 0x1000>;
 		reg-names = "tpdm-base";
 
-		coresight-name = "coresight-tpdm-spdm";
+		device-name = "tpdm_spdm";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2354,14 +2310,13 @@ tpdm_turing_llm: tpdm@8861000 {
 		reg = <0x8863000 0x1000>;
 		reg-names = "funnel-base";
 
-		coresight-name = "coresight-funnel-turing";
+		device-name = "funnel_turing";
+		qcom,dsb-element-bits = <1 32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
 
+		out-ports {
 			port@0 {
 				reg = <0>;
 				funnel_turing_out_funnel_qatb: endpoint {
@@ -2378,8 +2333,13 @@ tpdm_turing_llm: tpdm@8861000 {
 					<&tpda5_in_funnel_turing>;
 				};
 			};
+		};
 
-			port@2 {
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
 				reg = <0>;
 				funnel_turing_in_tpdm_turing: endpoint {
 					slave-mode;
@@ -2388,7 +2348,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@3 {
+			port@1 {
 				reg = <1>;
 				funnel_turing_in_tpdm_turing_llm: endpoint {
 					slave-mode;
@@ -2397,7 +2357,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@4 {
+			port@2 {
 				reg = <2>;
 				funnel_turing_in_turing_etm0: endpoint {
 					slave-mode;
@@ -2411,30 +2371,18 @@ tpdm_turing_llm: tpdm@8861000 {
 	/delete-node/ tpda@8004000;
 	tpda: tpda@8004000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb969>;
+		arm,primecell-periphid = <0x000f0f00>;
 		reg = <0x8004000 0x1000>;
 		reg-names = "tpda-base";
 
-		coresight-name = "coresight-tpda";
+		device-name = "tpda";
 
 		qcom,tpda-atid = <65>;
-		qcom,dsb-elem-size = <0 32>,
-						<1 32>,
-						<5 32>,
-						<11 32>,
-						<12 32>,
-						<15 32>;
-		qcom,cmb-elem-size = <7 32>,
-						<8 32>,
-						<10 32>,
-						<15 64>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
+		out-ports {
 			port@0 {
 				reg = <0>;
 				tpda_out_funnel_qatb: endpoint {
@@ -2442,8 +2390,13 @@ tpdm_turing_llm: tpdm@8861000 {
 					<&funnel_qatb_in_tpda>;
 				};
 			};
+		};
 
-			port@1 {
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
 				reg = <0>;
 				tpda0_in_tpdm_dl_ct: endpoint {
 					slave-mode;
@@ -2452,7 +2405,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@2 {
+			port@1 {
 				reg = <1>;
 				tpda1_in_funnel_gpu: endpoint {
 					slave-mode;
@@ -2461,7 +2414,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@3 {
+			port@5 {
 				reg = <5>;
 				tpda5_in_funnel_turing: endpoint {
 					slave-mode;
@@ -2470,7 +2423,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@4 {
+			port@7 {
 				reg = <7>;
 				tpda7_in_tpdm_vsense: endpoint {
 					slave-mode;
@@ -2479,7 +2432,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@5 {
+			port@8 {
 				reg = <8>;
 				tpda8_in_tpdm_dcc: endpoint {
 					slave-mode;
@@ -2488,7 +2441,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@6 {
+			port@10 {
 				reg = <10>;
 				tpda10_in_tpdm_prng: endpoint {
 					slave-mode;
@@ -2497,7 +2450,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@7 {
+			port@11 {
 				reg = <11>;
 				tpda11_in_tpdm_west: endpoint {
 					slave-mode;
@@ -2506,7 +2459,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@8 {
+			port@12 {
 				reg = <12>;
 				tpda12_in_tpdm_qm: endpoint {
 					slave-mode;
@@ -2515,7 +2468,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@9 {
+			port@13 {
 				reg = <13>;
 				tpda13_in_tpdm_spdm: endpoint {
 					slave-mode;
@@ -2524,7 +2477,7 @@ tpdm_turing_llm: tpdm@8861000 {
 				};
 			};
 
-			port@10 {
+			port@15 {
 				reg = <15>;
 				tpda15_in_tpdm_pimem: endpoint {
 					slave-mode;
@@ -2539,11 +2492,11 @@ tpdm_turing_llm: tpdm@8861000 {
 	/delete-node/ cti@8867000;
 	cti_turing_q6: cti@8862000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb966>;
+		arm,primecell-periphid = <0x000bb922>;
 		reg = <0x8862000 0x1000>;
 		reg-names = "cti-base";
 
-		coresight-name = "coresight-cti-turing-q6";
+		device-name = "cti_turing_q6";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";

@@ -627,7 +627,7 @@
 
 &firmware {
 	scm {
-		compatible = "qcom,scm";
+		compatible = "qcom,scm", "qcom,scm-v1.1";
 		qcom,scm-hab;
 	};
 

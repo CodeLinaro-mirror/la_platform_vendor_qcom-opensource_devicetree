@@ -21,7 +21,7 @@
 	pinctrl-0 = <&sdc1_on>;
 	pinctrl-1 = <&sdc1_off>;
 
-	status = "ok";
+	status = "disabled";
 };
 
 &sdhc_2 {
@@ -79,9 +79,18 @@
 	qcom,vccq-proxy-vote-supply = <&L13B_E0>;
 	qcom,vccq-proxy-vote-max-microamp = <750000>;
 
+	qcom,vccq2-proxy-vote-supply = <&L19B_E0>;
+	qcom,vccq2-proxy-vote-max-microamp = <750000>;
+
 	qcom,vccq-parent-supply = <&S8B_E0>;
 	qcom,vccq-parent-max-microamp = <210000>;
 
+	qcom,vccq2-parent-supply = <&S9B_E0>;
+	qcom,vccq2-parent-max-microamp = <210000>;
+
+	ufs-dev-types = <2>;
+	nvmem-cells = <&ufs_dev>;
+	nvmem-cell-names = "ufs_dev";
 	status = "ok";
 };
 
@@ -181,3 +190,33 @@
 	regulator-max-microvolt = <3544000>;
 	qcom,init-voltage = <2504000>;
 };
+
+&usb0 {
+	usb-role-switch;
+
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		compatible = "usb-c-connector";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				usb_port0_connector: endpoint {
+					remote-endpoint = <&usb_port0>;
+				};
+			};
+		};
+	};
+};
+

@@ -58,6 +58,7 @@
 			iommus = <&apps_smmu 0x080 0x0>;
 			qcom,iommu-dma = "atomic";
 			memory-region = <&dwc3_mem_region>;
+			dma-coherent;
 			interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy0>, <&usb_qmp_phy0>;
 			snps,disable-clk-gating;
@@ -74,10 +75,10 @@
 			usb-role-switch;
 		};
 
-	dwc3_mem_region: dwc3_mem_region {
-		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
-					<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
-	};
+		dwc3_mem_region: dwc3_mem_region {
+			iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
+						<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+		};
 
 	};
 
@@ -296,6 +297,7 @@
 			iommus = <&apps_smmu 0x0A0 0x0>;
 			qcom,iommu-dma = "atomic";
 			memory-region = <&dwc3_mem_region_1>;
+			dma-coherent;
 			usb-phy = <&usb2_phy1>, <&usb_qmp_phy1>;
 			snps,disable-clk-gating;
 			snps,has-lpm-erratum;
@@ -311,10 +313,10 @@
 			usb-role-switch;
 		};
 
-	dwc3_mem_region_1: dwc3_mem_region_1 {
-		iommu-addresses = <&dwc3_1 0x0 0x0 0x0 0x90000000>,
-					<&dwc3_1 0x0 0xf0000000 0xffffffff 0x10000000>;
-	};
+		dwc3_mem_region_1: dwc3_mem_region_1 {
+			iommu-addresses = <&dwc3_1 0x0 0x0 0x0 0x90000000>,
+						<&dwc3_1 0x0 0xf0000000 0xffffffff 0x10000000>;
+		};
 
 	};
 
@@ -530,6 +532,7 @@
 			iommus = <&apps_smmu 0x020 0x0>;
 			qcom,iommu-dma = "atomic";
 			memory-region = <&dwc3_mem_region_2>;
+			dma-coherent;
 			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&usb2_phy2>, <&usb_nop_phy>;
 			snps,disable-clk-gating;
@@ -541,11 +544,11 @@
 			dr_mode = "otg";
 			usb-role-switch;
 		};
-	};
 
-	dwc3_mem_region_2: dwc3_mem_region_2 {
-		iommu-addresses = <&dwc3_2 0x0 0x0 0x0 0x90000000>,
-					<&dwc3_2 0x0 0xf0000000 0xffffffff 0x10000000>;
+		dwc3_mem_region_2: dwc3_mem_region_2 {
+			iommu-addresses = <&dwc3_2 0x0 0x0 0x0 0x90000000>,
+						<&dwc3_2 0x0 0xf0000000 0xffffffff 0x10000000>;
+		};
 	};
 
 	/* Tertiary USB port related High Speed PHY */

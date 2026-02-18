@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
 	};
 
 	reserved_memory: reserved-memory {
@@ -232,38 +232,6 @@
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU12: cpu@20000 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20000>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU13: cpu@20100 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20100>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU14: cpu@20200 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20200>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
-		CPU15: cpu@20300 {
-			compatible = "arm,armv8";
-			reg = <0x0 0x20300>;
-			device_type = "cpu";
-			enable-method = "psci";
-			cpu-idle-states = <&CPU_PWR_DWN>;
-		};
-
 		cpu-map {
 			cluster0 {
 				core0 {
@@ -314,24 +282,6 @@
 
 				core5 {
 					cpu = <&CPU11>;
-				};
-			};
-
-			cluster2 {
-				core0 {
-					cpu = <&CPU12>;
-				};
-
-				core1 {
-					cpu = <&CPU13>;
-				};
-
-				core2 {
-					cpu = <&CPU14>;
-				};
-
-				core3 {
-					cpu = <&CPU15>;
 				};
 			};
 		};
@@ -481,6 +431,8 @@
 		qcom,primary-vm-index = <0>;
 		vm-attrs = "guest-ram-dump" ,"vpm-virq", "allow-unprotected";
 		qcom,peripheral-vmids = <0x9 0xa 0xb>;
+		virtio-iommu-stream-id-ranges-temp = <0x20000 0x10000 0x30000 0x10000>;
+		vits-device-id-ranges-temp = <0xa0000 0x1 0xa0100 0x1 0xb0000 0x1 0xb0100 0x1>;
 
 		memory {
 			#address-cells = <0x2>;
@@ -1506,6 +1458,48 @@
 				peer-default;
 			};
 		};
+
+		pci@0 {
+			vdevice-type = "pci";
+			patch = "/vsoc/pcie@0";
+			config-base-address = <0x0 0x28200000>;
+			config-size = <0x0 0x200000>;
+			npmem-base-address = <0x0 0x28100000>;
+			npmem-size = <0x0 0x100000>;
+			enable-msi;
+			dma-coherent;
+		};
+
+		virtio-iommu@0 {
+			vdevice-type = "virtio-iommu";
+			/*
+			 * Use existing PCI config below, no patch or generate
+			 * The HW address of the target SMMUv3
+			 */
+			smmu-handle = <0x0 0x9980000>;
+			/*
+			 * How many stream do we expect to support on this interface
+			 * to limit memory consumption
+			 */
+			max-streams = <10>;
+			pci-slot-index = <0x1>;
+		};
+	};
+
+	vsoc: vsoc {
+		/*
+		 * Virtual PCI device for Virtio-iommu
+		 * RM is now choosing the addr for this bus, use the index instead
+		 */
+		vpci_0: pcie@0 {
+			/* Device @1,0 matches up with pci-slot-index <0x1> vm-config */
+			virtio_iommu0: virtio-iommu@1,0 {
+				/* This IOMMU programming interface uses slot 00:01.0 */
+				compatible = "pci1af4,1057";
+				reg = <0x00000800 0x0 0x0 0x0 0x0>;
+				#iommu-cells = <1>;
+			};
+		};
 	};
 
 	firmware: firmware {
@@ -1563,6 +1557,7 @@
 		reg = <0x1c81000 0x1000>;
 		reg-names = "tsc";
 		qcom,tsc-nsec-update;
+		status = "disabled";
 	};
 
 	intc: interrupt-controller@17a00000 {
@@ -1922,6 +1917,8 @@
 		compatible = "qcom,xpcs";
 		reg = <0x1a94000 0x5100>;
 		reg-names = "qxpcs";
+		resets = <&scmi_reset 1>;
+		reset-names = "serdes_reset";
 	};
 
 	ethernet1: ethernet@1a80000 {
@@ -1929,7 +1926,7 @@
 		compatible = "qcom,sa8797p-ethqos", "snps,dwxgmac";
 		reg = <0x1a80000 0x14000>,
 			<0x1aff000 0x1000>;
-
+		qcom,iommu-dma = "fastmap";
 		reg-names = "stmmaceth", "rgmii";
 
 		interrupts = <GIC_SPI 820 IRQ_TYPE_LEVEL_HIGH>;
@@ -1948,9 +1945,6 @@
 
 		power-domains = <&scmi_power 8>, <&scmi_power 9>, <&scmi_perf 1>, <&scmi_perf 2>;
 		power-domain-names = "power_core", "power_mdio", "perf_serdes", "perf_5g_serdes";
-
-		resets = <&scmi_reset 1>;
-		reset-names = "serdes_reset";
 
 		pinctrl-0 = <&ethernet1_default>;
 		pinctrl-names = "default";

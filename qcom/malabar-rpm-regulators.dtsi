@@ -8,50 +8,6 @@
 #include "pm8010-rpm-regulator.dtsi"
 
 &rpm_bus {
-	rpm-regulator-smpb1 {
-		status = "okay";
-		VDD_MSS_LEVEL:
-		S1B_LEVEL: S1B_E0_LEVEL:
-		pm6450_s1_level: regulator-s1-level {
-			regulator-name = "pm6450_s1_level";
-			qcom,set = <3>;
-			regulator-min-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-			regulator-max-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_BINNING>;
-			proxy-supply = <&pm6450_s1_level>;
-			qcom,proxy-consumer-enable;
-			qcom,proxy-consumer-voltage = <RPM_SMD_REGULATOR_LEVEL_TURBO
-						RPM_SMD_REGULATOR_LEVEL_BINNING>;
-			qcom,use-voltage-level;
-		};
-
-		VDD_MSS_FLOOR_LEVEL:
-		S1B_FLOOR_LEVEL:
-		pm6450_s1_floor_level: regulator-s1-floor-level {
-			regulator-name = "pm6450_s1_floor_level";
-			qcom,set = <3>;
-			regulator-min-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-			regulator-max-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_BINNING>;
-			qcom,use-voltage-level;
-			qcom,always-send-voltage;
-		};
-
-		VDD_MSS_LEVEL_A0:
-		S1B_LEVEL_A0:
-		pm6450_s1_level_a0: regulator-s1-level-a0 {
-			regulator-name = "pm6450_s1_level_a0";
-			qcom,set = <1>;
-			regulator-min-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-			regulator-max-microvolt =
-					<RPM_SMD_REGULATOR_LEVEL_BINNING>;
-			qcom,use-voltage-level;
-		};
-	};
-
 	rpm-regulator-smpb2 {
 		status = "okay";
 		VDD_CX_LEVEL:
@@ -74,6 +30,7 @@
 		VDD_CX_FLOOR_LEVEL:
 		S2B_FLOOR_LEVEL:
 		pm6450_s2_floor_level: regulator-s2-floor-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s2_floor_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -87,6 +44,7 @@
 		VDD_CX_LEVEL_A0:
 		S2B_LEVEL_A0:
 		pm6450_s2_level_a0: regulator-s2-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s2_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -102,6 +60,7 @@
 		VDD_GFX_LEVEL:
 		S3B_LEVEL: S3B_E0_LEVEL:
 		pm6450_s3_level: regulator-s3-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s3_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -132,6 +91,7 @@
 		VDD_GFX_LEVEL_A0:
 		S3B_LEVEL_A0:
 		pm6450_s3_level_a0: regulator-s3-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s3_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -147,6 +107,7 @@
 		VDD_MX_LEVEL:
 		S6B_LEVEL: S6B_E0_LEVEL:
 		pm6450_s6_level: regulator-s6-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -163,6 +124,7 @@
 		VDD_MX_FLOOR_LEVEL:
 		S6B_FLOOR_LEVEL:
 		pm6450_s6_floor_level: regulator-s6-floor-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_floor_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -176,6 +138,7 @@
 		VDD_MX_LEVEL_A0:
 		S6B_LEVEL_A0:
 		pm6450_s6_level_a0: regulator-s6-level-a0 {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_s6_level_a0";
 			qcom,set = <1>;
 			regulator-min-microvolt =
@@ -191,6 +154,7 @@
 		VDD_LPI_CX_LEVEL:
 		L6B_LEVEL: L6B_E0_LEVEL:
 		pm6450_l6_level: regulator-l6-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_l6_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -206,6 +170,7 @@
 		VDD_LPI_MX_LEVEL:
 		L8B_LEVEL: L8B_E0_LEVEL:
 		pm6450_l8_level: regulator-l8-level {
+			compatible = "qcom,rpm-smd-regulator";
 			regulator-name = "pm6450_l8_level";
 			qcom,set = <3>;
 			regulator-min-microvolt =
@@ -229,7 +194,7 @@
 	rpm-regulator-smpb8 {
 		status = "okay";
 		S8B: S8B_E0: pm6450_s8: regulator-s8 {
-			regulator-min-microvolt = <382000>;
+			regulator-min-microvolt = <1224000>;
 			regulator-max-microvolt = <1374000>;
 			qcom,init-voltage = <1352000>;
 			status = "okay";
@@ -270,7 +235,7 @@
 		status = "okay";
 		L3B: L3B_E0: pm6450_l3: regulator-l3 {
 			regulator-min-microvolt = <312000>;
-			regulator-max-microvolt = <1304000>;
+			regulator-max-microvolt = <888000>;
 			qcom,init-voltage = <312000>;
 			status = "okay";
 		};
@@ -291,7 +256,7 @@
 		L5B: L5B_E0: pm6450_l5: regulator-l5 {
 			regulator-min-microvolt = <504000>;
 			regulator-max-microvolt = <950000>;
-			qcom,init-voltage = <808000>;
+			qcom,init-voltage = <880000>;
 			status = "okay";
 		};
 	};
@@ -301,7 +266,7 @@
 		L7B: L7B_E0: pm6450_l7: regulator-l7 {
 			regulator-min-microvolt = <312000>;
 			regulator-max-microvolt = <1304000>;
-			qcom,init-voltage = <912000>;
+			qcom,init-voltage = <312000>;
 			status = "okay";
 		};
 	};
@@ -331,7 +296,7 @@
 		L11B: L11B_E0: pm6450_l11: regulator-l11 {
 			regulator-min-microvolt = <312000>;
 			regulator-max-microvolt = <1304000>;
-			qcom,init-voltage = <752000>;
+			qcom,init-voltage = <312000>;
 			status = "okay";
 		};
 	};
@@ -359,9 +324,9 @@
 	rpm-regulator-ldob14 {
 		status = "okay";
 		L14B: L14B_E0: pm6450_l14: regulator-l14 {
-			regulator-min-microvolt = <1150000>;
+			regulator-min-microvolt = <1245000>;
 			regulator-max-microvolt = <1304000>;
-			qcom,init-voltage = <1150000>;
+			qcom,init-voltage = <1245000>;
 			status = "okay";
 		};
 	};
@@ -451,7 +416,7 @@
 		L23B: L23B_E0: pm6450_l23: regulator-l23 {
 			regulator-min-microvolt = <1504000>;
 			regulator-max-microvolt = <2000000>;
-			qcom,init-voltage = <1800000>;
+			qcom,init-voltage = <1504000>;
 			status = "okay";
 		};
 	};

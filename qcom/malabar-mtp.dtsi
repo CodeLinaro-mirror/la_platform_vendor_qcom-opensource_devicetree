@@ -21,7 +21,7 @@
 	pinctrl-0 = <&sdc1_on>;
 	pinctrl-1 = <&sdc1_off>;
 
-	status = "ok";
+	status = "disabled";
 };
 
 &sdhc_2 {
@@ -79,13 +79,21 @@
 	qcom,vccq-proxy-vote-supply = <&L13B_E0>;
 	qcom,vccq-proxy-vote-max-microamp = <750000>;
 
+	qcom,vccq2-proxy-vote-supply = <&L19B_E0>;
+	qcom,vccq2-proxy-vote-max-microamp = <750000>;
+
 	qcom,vccq-parent-supply = <&S8B_E0>;
 	qcom,vccq-parent-max-microamp = <210000>;
 
+	qcom,vccq2-parent-supply = <&S9B_E0>;
+	qcom,vccq2-parent-max-microamp = <210000>;
+
+	ufs-dev-types = <2>;
+	nvmem-cells = <&ufs_dev>;
+	nvmem-cell-names = "ufs_dev";
+
 	status = "ok";
 };
-
-#include "malabar-pm7250b.dtsi"
 
 &tlmm {
 	pmx_ts_active {
@@ -176,8 +184,72 @@
 	};
 };
 
+&pmic_glink_debug {
+	i2c@105 {
+		reg = <0x105>;  /* I2C instance 5 in ADSP for SE4 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		qcom,bus-type = "i2c";
+
+		qcom,smb1355@c {
+			compatible = "qcom,i2c-pmic";
+			reg = <0x0c>;
+			qcom,can-sleep;
+		};
+	};
+};
+
+&pmic_glink_adc {
+	status = "ok";
+
+	smb1355_1_iin {
+		reg = <0x1050c01>;
+		label = "smb1355_1_iin";
+	};
+
+	smb1355_1_ichg {
+		reg = <0x1050c02>;
+		label = "smb1355_1_ichg";
+	};
+
+	smb1355_1_die_temp {
+		reg = <0x1050c03>;
+		label = "smb1355_1_die_temp";
+	};
+};
+
 &L5E {
 	regulator-min-microvolt = <2952000>;
 	regulator-max-microvolt = <3544000>;
 	qcom,init-voltage = <2952000>;
 };
+
+&usb0 {
+	usb-role-switch;
+
+	port {
+		usb_port0: endpoint {
+			remote-endpoint = <&usb_port0_connector>;
+		};
+	};
+};
+
+&ucsi {
+	connector {
+		compatible = "usb-c-connector";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				usb_port0_connector: endpoint {
+					remote-endpoint = <&usb_port0>;
+				};
+			};
+		};
+	};
+};
+

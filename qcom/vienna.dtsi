@@ -26,7 +26,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "android_arch_task_struct_size=512 kasan=off kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 hibernate=nocompress irqaffinity=0-1 cpufreq.default_governor=performance fw_devlink.strict=1 printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 sysctl.kernel.panic_on_rcu_stall=1";
+		bootargs = "android_arch_task_struct_size=512 kasan=off kpti=0 log_buf_len=512K swiotlb=0 loop.max_part=7 hibernate=nocompress irqaffinity=0-1 cpufreq.default_governor=performance fw_devlink.strict=1 printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 sysctl.kernel.panic_on_rcu_stall=1";
 	};
 
 	aliases {
@@ -757,6 +757,10 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	gic-interrupt-router {
 		compatible = "qcom,gic-intr-routing";
 		/* keep a few m cores in class0 only to avoid wakeup of l cores */
@@ -951,7 +955,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -1355,6 +1359,8 @@
 	gcc_camss_top_gdsc: qcom,gdsc@12a004 {
 		compatible = "qcom,gdsc";
 		reg = <0x12a004 0x4>;
+		interconnects = <&mmss_noc MASTER_CAMNOC_HF &mmss_noc SLAVE_MNOC_HF_MEM_NOC>;
+		interconnect-names = "mmnoc";
 		regulator-name = "gcc_camss_top_gdsc";
 		parent-supply = <&VDD_MXC_LEVEL>;
 		qcom,retain-regs;

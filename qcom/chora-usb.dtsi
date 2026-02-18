@@ -44,7 +44,6 @@
 		qcom,use-pdc-interrupts;
 
 		extcon = <&eud>;
-		usb-role-switch;
 		qcom,pm-qos-latency = <2>;
 
 		qcom,num-gsi-evt-buffs = <0x3>;
@@ -55,6 +54,12 @@
 			0x130 /* GSI_RING_BASE_ADDR_L */
 			0x144 /* GSI_RING_BASE_ADDR_H */
 			0x1a4>; /* GSI_IF_STS */
+
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
 
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
@@ -76,16 +81,10 @@
 			snps,dis_u2_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 			dr_mode = "otg";
+			xhci-skip-phy-init-quirk;
 			maximum-speed = "high-speed";
 			usb-role-switch;
 		};
-
-		port {
-			usb_port0: endpoint {
-				remote-endpoint = <&usb_port0_connector>;
-			};
-		};
-
 
 	};
 

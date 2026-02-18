@@ -47,69 +47,69 @@
 
 	sdc1_on: sdc1_on {
 		clk {
-			pins = "SDC1_CLK";
+			pins = "sdc1_clk";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "SDC1_CMD";
+			pins = "sdc1_cmd";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "SDC1_DATA";
+			pins = "sdc1_data";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		rclk {
-			pins = "SDC1_RCLK";
+			pins = "sdc1_rclk";
 			bias-pull-down;
 		};
 	};
 
 	sdc1_off: sdc1_off {
 		clk {
-			pins = "SDC1_CLK";
+			pins = "sdc1_clk";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "SDC1_CMD";
+			pins = "sdc1_cmd";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "SDC1_DATA";
+			pins = "sdc1_data";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		rclk {
-			pins = "SDC1_RCLK";
+			pins = "sdc1_rclk";
 			bias-pull-down;
 		};
 	};
 
 	sdc2_on: sdc2_on {
 		clk {
-			pins = "SDC2_CLK";
+			pins = "sdc2_clk";
 			bias-disable;
 			drive-strength = <16>;
 		};
 
 		cmd {
-			pins = "SDC2_CMD";
+			pins = "sdc2_cmd";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
 
 		data {
-			pins = "SDC2_DATA";
+			pins = "sdc2_data";
 			bias-pull-up;
 			drive-strength = <10>;
 		};
@@ -123,19 +123,19 @@
 
 	sdc2_off: sdc2_off {
 		clk {
-			pins = "SDC2_CLK";
+			pins = "sdc2_clk";
 			bias-disable;
 			drive-strength = <2>;
 		};
 
 		cmd {
-			pins = "SDC2_CMD";
+			pins = "sdc2_cmd";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
 
 		data {
-			pins = "SDC2_DATA";
+			pins = "sdc2_data";
 			bias-pull-up;
 			drive-strength = <2>;
 		};
@@ -2020,4 +2020,63 @@
 			input-enable;
 		};
 	};
+
+	/* WCD reset pin */
+	wcd939x_reset_active: wcd939x_reset_active {
+		mux {
+			 pins = "gpio43";
+			 function = "gpio";
+		};
+
+		config {
+		pins = "gpio43";
+			drive-strength = <16>;
+			output-high;
+		};
+	};
+
+	wcd939x_reset_sleep: wcd939x_reset_sleep {
+		mux {
+			pins = "gpio43";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio43";
+			drive-strength = <16>;
+			bias-disable;
+			output-low;
+		};
+	};
+
+	spkr_1_sd_n {
+		spkr_1_sd_n_sleep: spkr_1_sd_n_sleep {
+			mux {
+				pins = "gpio64";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio64";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;
+				input-enable;
+			};
+		};
+
+		spkr_1_sd_n_active: spkr_1_sd_n_active {
+			mux {
+				pins = "gpio64";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio64";
+				drive-strength = <16>;   /* 16 mA */
+				bias-disable;
+				output-high;
+			};
+		};
+	};
+
 };

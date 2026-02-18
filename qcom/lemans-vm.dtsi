@@ -11,6 +11,7 @@
 	model = "Qualcomm Technologies, Inc. Lemans Guest Virtual Machine";
 	qcom,msm-name  = "SA_QX_VM";
 	qcom,msm-id = <532 0x20000>;
+	qcom,sdp = <0x2c6>;
 
 	aliases {
 		hsuart0 = &qupv3_se17_4uart;
@@ -467,13 +468,6 @@
 		enable-active-high;
 		gpio = <&pm8775_2_gpios 4 0>;
 	};
-
-
-	emac_ctrl_fe: emac_ctrl_drv@0x1d000000 {
-		compatible = "virtio,mmio";
-		reg =<0x1d000000 0x1000>;
-		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-	};
 };
 
 &regulator {
@@ -596,6 +590,7 @@
 #include "lemans-vm-usb.dtsi"
 #include "lemans-vm-pcie.dtsi"
 #include "lemans-vm-ufs.dtsi"
+#include "lemans-vm-ethernet.dtsi"
 
 &pm8775_3_gpios {
 	usb201_vbus_boost {

@@ -163,7 +163,7 @@
 };
 
 &soc {
-	gpio_key {
+	gpio_keys {
 		compatible = "gpio-keys";
 		label = "gpio-keys";
 		pinctrl-names = "default";
@@ -184,6 +184,14 @@
 		nvmem = <&pmk8550_sdam_5>, <&pmk8550_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
 		depends-on-supply = <&wdog>;
+	};
+
+	regulator_ocp_notifier: regulator-ocp-notifier {
+		compatible = "qcom,regulator-ocp-notifier";
+		interrupt-parent = <&spmi0_bus>;
+		interrupts = <0x0 0x71 0x1 IRQ_TYPE_EDGE_RISING>;
+		nvmem-cells = <&ocp_log>;
+		nvmem-cell-names = "ocp_log";
 	};
 };
 
