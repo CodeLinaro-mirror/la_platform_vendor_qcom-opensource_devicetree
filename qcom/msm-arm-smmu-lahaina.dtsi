@@ -200,7 +200,7 @@
 		interconnects = <&gem_noc MASTER_APPSS_PROC
 				 &config_noc SLAVE_IMEM_CFG>;
 		qcom,active-only;
-		qcom,handoff-smrs = <0x820 0x402>;
+		qcom,handoff-smrs = <0x900 0x402>;
 
 		qcom,actlr =
 			/* For HF-0 TBU +3 deep PF */
