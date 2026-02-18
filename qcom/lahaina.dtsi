@@ -4055,6 +4055,189 @@
 
 	qcom,glink {
 		compatible = "qcom,glink";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		glink_modem: modem {
+			qcom,remote-pid = <1>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_MPSS
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "mpss_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_MPSS
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "modem";
+			qcom,glink-label = "mpss";
+
+			qcom,modem_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,low-latency;
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
+			qcom,modem_ds {
+				qcom,glink-channels = "DS";
+				qcom,intents = <0x4000 0x2>;
+			};
+
+			qcom,modem_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+				qcom,notify-edges = <&glink_adsp>,
+						    <&glink_slpi>,
+						    <&glink_spss>;
+			};
+		};
+
+		glink_adsp: adsp {
+			qcom,remote-pid = <2>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "adsp_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_LPASS
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "adsp";
+			qcom,glink-label = "lpass";
+
+			qcom,adsp_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
+			qcom,msm_fastrpc_rpmsg {
+				compatible = "qcom,msm-fastrpc-rpmsg";
+				qcom,glink-channels = "fastrpcglink-apps-dsp";
+				qcom,intents = <0x64 64>;
+			};
+
+			qcom,adsp_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+				qcom,notify-edges = <&glink_slpi>,
+						    <&glink_modem>;
+			};
+
+			qcom,pmic_glink_rpmsg {
+				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
+			};
+
+			qcom,pmic_glink_log_rpmsg {
+				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
+				qcom,intents = <0x800 5
+						0xc00 3>;
+			};
+		};
+
+		glink_slpi: dsps {
+			qcom,remote-pid = <3>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_SLPI
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "dsps_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_SLPI
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "slpi";
+			qcom,glink-label = "dsps";
+
+			qcom,slpi_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,net-id = <2>;
+				qcom,low-latency;
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
+			qcom,msm_fastrpc_rpmsg {
+				compatible = "qcom,msm-fastrpc-rpmsg";
+				qcom,glink-channels = "fastrpcglink-apps-dsp";
+				qcom,intents = <0x64 64>;
+			};
+
+			qcom,slpi_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+				qcom,notify-edges = <&glink_adsp>,
+						    <&glink_modem>;
+			};
+		};
+
+		glink_cdsp: cdsp {
+			qcom,remote-pid = <5>;
+			transport = "smem";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_CDSP
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "dsps_smem";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_CDSP
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_EDGE_RISING>;
+
+			label = "cdsp";
+			qcom,glink-label = "cdsp";
+
+			qcom,cdsp_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
+			qcom,msm_fastrpc_rpmsg {
+				compatible = "qcom,msm-fastrpc-rpmsg";
+				qcom,glink-channels = "fastrpcglink-apps-dsp";
+				qcom,intents = <0x64 64>;
+			};
+
+			qcom,msm_cdsprm_rpmsg {
+				compatible = "qcom,msm-cdsprm-rpmsg";
+				qcom,glink-channels = "cdsprmglink-apps-dsp";
+				qcom,intents = <0x20 12>;
+
+				msm_cdsp_rm: qcom,msm_cdsp_rm {
+					compatible = "qcom,msm-cdsp-rm";
+					qcom,qos-latency-us = <70>;
+					qcom,qos-maxhold-ms = <20>;
+				};
+			};
+		};
+
+		glink_spss: spss {
+			qcom,remote-pid = <8>;
+			transport = "spss";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_SPSS
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "spss_spss";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_SPSS
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_LEVEL_HIGH>;
+
+			reg = <0x1885008 0x8>,
+			      <0x1885010 0x4>;
+			reg-names = "qcom,spss-addr",
+				    "qcom,spss-size";
+
+			label = "spss";
+			qcom,glink-label = "spss";
+
+			qcom,spss_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+				qcom,notify-edges = <&glink_modem>;
+			};
+		};
 	};
 
 	qcom,glinkpkt {
@@ -4097,221 +4280,144 @@
 		};
 	};
 
-	modem_pas: remoteproc-mss@8a800000 {
-		compatible = "qcom,lahaina-modem-pas";
+	pil_modem: qcom,mss@8a800000 {
 		reg = <0x4080000 0x100>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
+		qcom,proxy-clock-names = "xo";
 
-		cx-supply = <&VDD_CX_LEVEL>;
-		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		mx-supply = <&VDD_MODEM_LEVEL>;
-		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		reg-names = "cx", "mx";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		qcom,vdd_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		vdd_mss-supply = <&VDD_MODEM_LEVEL>;
+		qcom,vdd_mss-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		qcom,proxy-reg-names = "vdd_cx", "vdd_mss";
 
-		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
-				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
-		interconnect-names = "rproc_ddr", "crypto_ddr";
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
 
+		qcom,firmware-name = "modem";
 		memory-region = <&pil_modem_mem>;
-		firmware-name = "modem.mdt";
-
+		qcom,proxy-timeout-ms = <10000>;
+		qcom,sysmon-id = <0>;
+		qcom,minidump-id = <3>;
 		qcom,aux-minidump-ids = <4>;
-
-		qcom,qmp = <&aoss_qmp>;
+		qcom,ssctl-instance-id = <0x12>;
+		qcom,pas-id = <4>;
+		qcom,smem-id = <421>;
+		qcom,signal-aop;
+		qcom,complete-ramdump;
 
 		/* Inputs from mss */
-		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
 				<&modem_smp2p_in 0 0>,
 				<&modem_smp2p_in 2 0>,
 				<&modem_smp2p_in 1 0>,
 				<&modem_smp2p_in 3 0>,
 				<&modem_smp2p_in 7 0>;
 
-		interrupt-names = "wdog",
-				"fatal",
-				"handover",
-				"ready",
-				"stop-ack",
-				"shutdown-ack";
+		interrupt-names = "qcom,wdog",
+				"qcom,err-fatal",
+				"qcom,proxy-unvote",
+				"qcom,err-ready",
+				"qcom,stop-ack",
+				"qcom,shutdown-ack";
 
 		/* Outputs to mss */
 		qcom,smem-states = <&modem_smp2p_out 0>;
-		qcom,smem-state-names = "stop";
+		qcom,smem-state-names = "qcom,force-stop";
 
-		glink-edge {
-			qcom,remote-pid = <1>;
-			transport = "smem";
-			mboxes = <&ipcc_mproc IPCC_CLIENT_MPSS
-				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
-			mbox-names = "mpss_smem";
-			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_CLIENT_MPSS
-				      IPCC_MPROC_SIGNAL_GLINK_QMP
-				      IRQ_TYPE_EDGE_RISING>;
-
-			label = "modem";
-			qcom,glink-label = "mpss";
-
-			qcom,modem_qrtr {
-				qcom,glink-channels = "IPCRTR";
-				qcom,low-latency;
-				qcom,intents = <0x800  5
-						0x2000 3
-						0x4400 2>;
-			};
-
-			qcom,modem_ds {
-				qcom,glink-channels = "DS";
-				qcom,intents = <0x4000 0x2>;
-			};
-
-		};
+		mboxes = <&qmp_aop 0>;
+		mbox-names = "mss-pil";
 	};
 
-	adsp_pas: remoteproc-adsp@17300000 {
-		compatible = "qcom,lahaina-adsp-pas";
+	qcom,lpass@17300000 {
 		reg = <0x17300000 0x00100>;
 
-		cx-supply = <&VDD_LPI_CX_LEVEL>;
-		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
-		mx-supply = <&VDD_LPI_MX_LEVEL>;
-		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
-		reg-names = "cx","mx";
-
-		clocks = <&rpmhcc RPMH_CXO_CLK>;
-		clock-names = "xo";
-
-		firmware-name = "adsp.mdt";
-		memory-region = <&pil_adsp_mem>;
-
-		qcom,qmp = <&aoss_qmp>;
-
-		/* Inputs from lpass */
-		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
-				<&adsp_smp2p_in 0 0>,
-				<&adsp_smp2p_in 2 0>,
-				<&adsp_smp2p_in 1 0>,
-				<&adsp_smp2p_in 3 0>;
-
-		interrupt-names = "wdog",
-				"fatal",
-				"handover",
-				"ready",
-				"stop-ack";
-
-		/* Outputs to lpass */
-		qcom,smem-states = <&adsp_smp2p_out 0>;
-		qcom,smem-state-names = "stop";
-
-		remoteproc_adsp_glink: glink-edge {
-			qcom,remote-pid = <2>;
-			transport = "smem";
-			mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
-				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
-			mbox-names = "adsp_smem";
-			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_CLIENT_LPASS
-					  IPCC_MPROC_SIGNAL_GLINK_QMP
-					  IRQ_TYPE_EDGE_RISING>;
-
-			label = "adsp";
-			qcom,glink-label = "lpass";
-
-			qcom,adsp_qrtr {
-				qcom,glink-channels = "IPCRTR";
-				qcom,intents = <0x800  5
-						0x2000 3
-						0x4400 2>;
-			};
-
-			qcom,pmic_glink_rpmsg {
-				qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
-			};
-
-			qcom,pmic_glink_log_rpmsg {
-				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
-				qcom,intents = <0x800 5
-						0xc00 3>;
-			};
-		};
-
-	};
-
-	cdsp_pas: remoteproc-cdsp@0x98900000 {
-		compatible = "qcom,lahaina-cdsp-pas";
-		reg = <0x98900000 0x1400000>;
-
-		cx-supply = <&VDD_CX_LEVEL>;
-		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		mx-supply = <&VDD_MXC_LEVEL>;
-		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		reg-names = "cx","mx";
+		vdd_cx-supply = <&VDD_LPI_CX_LEVEL>;
+		qcom,vdd_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		vdd_mx-supply = <&VDD_LPI_MX_LEVEL>;
+		qcom,vdd_mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		qcom,proxy-reg-names = "vdd_cx","vdd_mx";
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 		qcom,proxy-clock-names = "xo";
 
-		firmware-name = "cdsp.mdt";
+		qcom,pas-id = <1>;
+		qcom,proxy-timeout-ms = <10000>;
+		qcom,smem-id = <423>;
+		qcom,minidump-id = <5>;
+		qcom,sysmon-id = <1>;
+		qcom,ssctl-instance-id = <0x14>;
+		qcom,firmware-name = "adsp";
+		memory-region = <&pil_adsp_mem>;
+		qcom,signal-aop;
+		qcom,complete-ramdump;
+		qcom,minidump-as-elf32;
+
+		/* Inputs from lpass */
+		interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+				<&adsp_smp2p_in 0 0>,
+				<&adsp_smp2p_in 2 0>,
+				<&adsp_smp2p_in 1 0>,
+				<&adsp_smp2p_in 3 0>;
+
+		interrupt-names = "qcom,wdog",
+				"qcom,err-fatal",
+				"qcom,proxy-unvote",
+				"qcom,err-ready",
+				"qcom,stop-ack";
+
+		/* Outputs to lpass */
+		qcom,smem-states = <&adsp_smp2p_out 0>;
+		qcom,smem-state-names = "qcom,force-stop";
+
+		mboxes = <&qmp_aop 0>;
+		mbox-names = "adsp-pil";
+	};
+
+	qcom,turing@0x98900000 {
+		reg = <0x98900000 0x1400000>;
+
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		qcom,vdd_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		vdd_mx-supply = <&VDD_MXC_LEVEL>;
+		qcom,vdd_mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		qcom,proxy-reg-names = "vdd_cx","vdd_mx";
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "xo";
+		qcom,proxy-clock-names = "xo";
+
+		qcom,pas-id = <18>;
+		qcom,proxy-timeout-ms = <10000>;
+		qcom,smem-id = <601>;
+		qcom,minidump-id = <7>;
+		qcom,sysmon-id = <7>;
+		qcom,ssctl-instance-id = <0x17>;
+		qcom,firmware-name = "cdsp";
 		memory-region = <&pil_cdsp_mem>;
+		qcom,complete-ramdump;
+		qcom,minidump-as-elf32;
 
-		qcom,qmp = <&aoss_qmp>;
-
-		interconnects = <&nsp_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>,
-				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
-		interconnect-names = "rproc_ddr", "crypto_ddr";
+		interconnects = <&nsp_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>;
 
 		/* Inputs from turing */
-		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
+		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
 				<&cdsp_smp2p_in 0 0>,
 				<&cdsp_smp2p_in 2 0>,
 				<&cdsp_smp2p_in 1 0>,
 				<&cdsp_smp2p_in 3 0>;
 
-		interrupt-names = "wdog",
-				"fatal",
-				"handover",
-				"ready",
-				"stop-ack";
+		interrupt-names = "qcom,wdog",
+				"qcom,err-fatal",
+				"qcom,proxy-unvote",
+				"qcom,err-ready",
+				"qcom,stop-ack";
 
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
-		qcom,smem-state-names = "stop";
-
-		remoteproc_cdsp_glink: glink-edge {
-			qcom,remote-pid = <5>;
-			transport = "smem";
-			mboxes = <&ipcc_mproc IPCC_CLIENT_CDSP
-				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
-			mbox-names = "dsps_smem";
-			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_CLIENT_CDSP
-					  IPCC_MPROC_SIGNAL_GLINK_QMP
-					  IRQ_TYPE_EDGE_RISING>;
-
-			label = "cdsp";
-			qcom,glink-label = "cdsp";
-
-			qcom,cdsp_qrtr {
-				qcom,glink-channels = "IPCRTR";
-				qcom,intents = <0x800  5
-						0x2000 3
-						0x4400 2>;
-			};
-
-			qcom,msm_cdsprm_rpmsg {
-				compatible = "qcom,msm-cdsprm-rpmsg";
-				qcom,glink-channels = "cdsprmglink-apps-dsp";
-				qcom,intents = <0x20 12>;
-
-				msm_cdsp_rm: qcom,msm_cdsp_rm {
-					compatible = "qcom,msm-cdsp-rm";
-					qcom,qos-latency-us = <70>;
-					qcom,qos-maxhold-ms = <20>;
-				};
-			};
-		};
+		qcom,smem-state-names = "qcom,force-stop";
 
 	};
 
@@ -4737,8 +4843,8 @@
 	};
 
 	/* PIL spss node - for loading Secure Processor */
-	spss_pas: remoteproc-spss@1880000 {
-		compatible = "qcom,lahaina-spss-pas";
+	qcom,spss@1880000 {
+		compatible = "qcom,pil-tz-generic";
 		reg = <0x188101c 0x4>,
 		      <0x1881024 0x4>,
 		      <0x1881028 0x4>,
@@ -4750,41 +4856,31 @@
 			    "rmb_general_purpose", "rmb_err_spare2";
 		interrupts = <0 352 1>;
 
-		cx-supply = <&VDD_CX_LEVEL>;
-		qcom,proxy-reg-names = "cx";
-		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		mx-supply = <&VDD_MXA_LEVEL>;
-		mx-uV = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		qcom,proxy-reg-names = "vdd_cx";
+		qcom,vdd_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		vdd_mx-supply = <&VDD_MXA_LEVEL>;
+		vdd_mx-uV = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 		qcom,proxy-clock-names = "xo";
+		qcom,pil-generic-irq-handler;
 		status = "ok";
 
-		qcom,qmp = <&aoss_qmp>;
+		qcom,signal-aop;
+		qcom,complete-ramdump;
 
+		qcom,boot-enabled;
+		qcom,pas-id = <14>;
+		qcom,proxy-timeout-ms = <10000>;
+		qcom,firmware-name = "spss";
 		memory-region = <&pil_spss_mem>;
 		qcom,spss-scsr-bits = <24 25>;
 		qcom,extra-size = <4096>;
 
-		glink-edge {
-			qcom,remote-pid = <8>;
-			mboxes = <&ipcc_mproc IPCC_CLIENT_SPSS
-				IPCC_MPROC_SIGNAL_GLINK_QMP>;
-			mbox-names = "spss_spss";
-			interrupt-parent = <&ipcc_mproc>;
-			interrupts = <IPCC_CLIENT_SPSS
-				     IPCC_MPROC_SIGNAL_GLINK_QMP
-				     IRQ_TYPE_EDGE_RISING>;
-
-			reg = <0x0 0x1885008 0x0 0x8>,
-			      <0x0 0x1885010 0x0 0x4>;
-			reg-names = "qcom,spss-addr",
-				    "qcom,spss-size";
-
-			label = "spss";
-			qcom,glink-label = "spss";
-		};
+		mboxes = <&qmp_aop 0>;
+		mbox-names = "spss-pil";
 	};
 
 	qcom,trustedvm@d0800000 {
