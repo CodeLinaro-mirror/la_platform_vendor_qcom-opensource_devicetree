@@ -2249,6 +2249,13 @@
 		compatible = "qcom,qfprom-sys";
 	};
 
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
+
 	qcom,mpm2-sleep-counter@c221000 {
 		compatible = "qcom,mpm2-sleep-counter";
 		reg = <0xc221000 0x1000>;
@@ -2337,12 +2344,10 @@
 	};
 
 	ramoops_mem: ramoops_region {
-                compatible = "ramoops";
-                alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-                size = <0x0 0x200000>;
-                pmsg-size = <0x200000>;
-                mem-type = <2>;
-        };
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
 
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
