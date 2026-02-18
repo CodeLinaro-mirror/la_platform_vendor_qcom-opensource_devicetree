@@ -2792,19 +2792,12 @@
 	};
 
 	cache-controller@9200000 {
-		compatible = "qcom,lahaina-llcc","qcom,llcc-v2";
-		reg = <0x9200000 0x58000>, <0x9280000 0x58000>,
-			<0x9300000 0x58000>, <0x9380000 0x58000>, <0x9600000 0x58000>;
-		reg-names = "llcc0_base", "llcc1_base",
-			"llcc2_base", "llcc3_base", "llcc_broadcast_base";
-		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		compatible = "qcom,lahaina-llcc", "qcom,llcc-v2";
+		reg = <0x9200000 0x1d0000> , <0x9600000 0x50000>;
+		reg-names = "llcc_base", "llcc_broadcast_base";
 		cap-based-alloc-and-pwr-collapse;
-
-		llcc_perfmon {
-			compatible = "qcom,llcc-perfmon";
-			clocks = <&aoss_qmp QDSS_CLK>;
-			clock-names = "qdss_clk";
-		};
+		clocks = <&clock_aop QDSS_CLK>;
+		clock-names = "qdss_clk";
 	};
 
 	qcom_scm {
