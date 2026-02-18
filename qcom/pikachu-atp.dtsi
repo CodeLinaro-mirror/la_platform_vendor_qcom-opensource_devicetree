@@ -5,3 +5,9 @@
 
 &soc {
 };
+
+&apps_rsc_drv2 {
+	rpmh-regulator-gfxlvl {
+		status = "okay";
+	};
+};

@@ -4,3 +4,9 @@
  */
 
 #include "pikachup-idp-base.dtsi"
+
+&apps_rsc_drv2 {
+	rpmh-regulator-mxclvl {
+		status = "okay";
+	};
+};
