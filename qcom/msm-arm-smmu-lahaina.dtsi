@@ -7,7 +7,6 @@
 
 &soc {
 	kgsl_smmu: kgsl-smmu@3da0000 {
-		compatible = "qcom,qsmmu-v500";
 		reg = <0x3DA0000 0x20000>,
 			<0x3DC2000 0x20>;
 		reg-names = "base", "tcu-base";
@@ -67,7 +66,6 @@
 				<0x3DC2200 0x8>;
 			reg-names = "base", "status-reg";
 			qcom,stream-id-range = <0x0 0x400>;
-			qcom,iova-width = <49>;
 		};
 
 		gfx_1_tbu: gfx_1_tbu@3dc9000 {
@@ -76,7 +74,6 @@
 				<0x3DC2208 0x8>;
 			reg-names = "base", "status-reg";
 			qcom,stream-id-range = <0x400 0x400>;
-			qcom,iova-width = <49>;
 		};
 	};
 
@@ -200,7 +197,7 @@
 		interconnects = <&gem_noc MASTER_APPSS_PROC
 				 &config_noc SLAVE_IMEM_CFG>;
 		qcom,active-only;
-		qcom,handoff-smrs = <0x900 0x402>;
+//		qcom,handoff-smrs = <0x900 0x402>;
 
 		qcom,actlr =
 			/* For HF-0 TBU +3 deep PF */
