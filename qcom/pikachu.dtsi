@@ -891,6 +891,7 @@
 #include "pikachu-stub-regulators.dtsi"
 #include "pikachu-dma-heaps.dtsi"
 #include "pikachu-qupv3.dtsi"
+#include "msm-rdbg.dtsi"
 
 &qupv3_se11_2uart {
 	status = "ok";
