@@ -282,17 +282,6 @@
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x13000>;
 	};
-	qcom_smcinvoke {
-		compatible = "qcom,smcinvoke";
-	};
-
-	qcom_mem_object {
-		compatible = "qcom,mem-object";
-	};
-
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-	};
 };
 
 &reserved_memory {
@@ -2820,6 +2809,14 @@
 
 	qcom_scm {
 		compatible = "qcom,secure-chan-manager";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
 	};
 
 	qcom-secure-buffer {
