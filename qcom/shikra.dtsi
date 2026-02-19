@@ -441,6 +441,12 @@
 		qcom,msgq-names = "trusted_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
 	kryo-erp {
 		compatible = "arm,arm64-kryo-cpu-erp";
 		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>,
