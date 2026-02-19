@@ -91,7 +91,10 @@
 		vdd-supply = <&L5B_E0>;
 		vdda18-supply = <&L18B_E0>;
 		vdda33-supply = <&L25B_E0>;
+		refgen-supply = <&L16B_E0>;
+
 		qcom,vdd-voltage-level = <0 880000 950000>;
+		qcom,refgen-voltage-level = <0 1200000 1304000>;
 
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
 			<&gcc GCC_USB2_CLKREF_EN>,
