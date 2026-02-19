@@ -252,6 +252,7 @@
 			&qcom_test_msgq_tuivm
 			&qcom_mem_buf
 			&mem_buf_msgq
+			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
 			&google_debug_kinfo>;
 	};
@@ -291,6 +292,16 @@
 	mem_buf_msgq: qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
