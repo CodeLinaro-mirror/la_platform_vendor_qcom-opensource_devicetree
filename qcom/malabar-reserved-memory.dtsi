@@ -18,6 +18,13 @@
 		no-map;
 	};
 
+	hyp_mem_database_mem: hyp-mem-database-region@80920000 {
+		reg = <0x0 0x80920000 0x0 0x60000>;
+		no-map;
+	};
+
+	/* secdata region at 0x809ff000 can be reused by apps */
+
 	smem_mem: smem-region@80a00000 {
 		reg = <0x0 0x80a00000 0x0 0x200000>;
 		compatible = "qcom,smem";
@@ -39,6 +46,8 @@
 		reg = <0x0 0x81e00000 0x0 0x100000>;
 		no-map;
 	};
+
+	/* splash_screen region at 0x81f00000 will change dynamically */
 
 	wpss_mem: wpss-region@84000000 {
 		reg = <0x0 0x84000000 0x0 0x1580000>;
@@ -71,12 +80,12 @@
 	};
 
 	mpss_mem: mpss-region@85f00000 {
-		reg = <0x0 0x85f00000 0x0 0xe600000>;
+		reg = <0x0 0x85f00000 0x0 0xd200000>;
 		no-map;
 	};
 
-	q6_mpss_dtb_mem: q6-mpss-dtb-region@94500000 {
-		reg = <0x0 0x94500000 0x0 0x80000>;
+	q6_mpss_dtb_mem: q6-mpss-dtb-region@93100000 {
+		reg = <0x0 0x93100000 0x0 0x80000>;
 		no-map;
 	};
 
