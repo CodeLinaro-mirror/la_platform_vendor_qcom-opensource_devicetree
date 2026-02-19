@@ -1007,6 +1007,30 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
+    "shikra-tuivm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-oemvm-base.dtb"},
+            {"name": "shikra-vm-base.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-vm-atp-overlay.dtbo"},
+            {"name": "shikra-vm-itp-overlay.dtbo"},
+        ],
+    },
+    "shikra-oemvm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-oemvm-base.dtb"},
+            {"name": "shikra-vm-base.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-oemvm-atp-overlay.dtbo"},
+            {"name": "shikra-oemvm-itp-overlay.dtbo"},
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):
