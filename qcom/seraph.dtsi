@@ -1842,6 +1842,12 @@
 		qcom,msgq-names = "trusted_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
 	qcom,secure-buffer {
 		compatible = "qcom,secure-buffer";
 		qcom,vmid-cp-camera-preview-ro;
