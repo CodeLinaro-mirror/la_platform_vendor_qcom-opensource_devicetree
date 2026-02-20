@@ -726,6 +726,7 @@ LEMANS_MULTI_GVM_BOARDS += \
 		lemans-vm-lv-mt-overlay.dtbo
 
 LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx.dtb
+LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx-qcvirtio.dtb
 LEMANS_GH_LV_GVM_QAM_BOARDS += lemans-gh-vm-lv-qam-ridesx-overlay.dtbo
 
 LEMANS_SDP8_LA_GVM_BASE_DTB += sa8255p-sdp8-vm-la.dtb
