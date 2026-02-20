@@ -481,9 +481,12 @@ X1E80100_BOARDS += \
 		   x1e80100-qcp-overlay.dtbo
 
 x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
-	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB))
-x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
+	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB)) \
+        $(call add-overlays, $(X1E80100_BOARDS),$(HAMOA_LA_BASE_DTB))
+x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB) $(HAMOA_LA_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
+
+HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra.dtb
 

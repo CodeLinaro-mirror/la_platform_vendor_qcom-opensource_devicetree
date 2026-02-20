@@ -465,6 +465,16 @@ _platform_map = {
             {"name": "x1p42100-crd-overlay.dtbo"},
         ],
     },
+    "hamoa_la": {
+        "dtb_list": [
+            {"name": "hamoa_la.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "x1e80100-crd-overlay.dtbo"},
+            {"name": "x1e80100-qcb-overlay.dtbo"},
+            {"name": "x1e80100-qcp-overlay.dtbo"},
+        ],
+    },
     "canoe-tuivm": {
         "dtb_list": [
             # keep sorted
