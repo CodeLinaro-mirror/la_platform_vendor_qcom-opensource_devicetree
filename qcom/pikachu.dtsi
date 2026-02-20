@@ -32,7 +32,7 @@
 
 	reserved_memory: reserved-memory {};
 
-	aliases {
+	aliases: aliases {
 		serial0 = &uart11;
 		hsuart0 = &uart7;
 		hsuart1 = &uart1;
