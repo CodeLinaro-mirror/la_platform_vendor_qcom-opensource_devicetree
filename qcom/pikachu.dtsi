@@ -36,7 +36,7 @@
 
 	reserved_memory: reserved-memory {};
 
-	aliases {
+	aliases: aliases {
 		serial0 = &qupv3_se11_2uart;
 	 };
 
