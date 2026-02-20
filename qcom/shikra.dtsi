@@ -22,7 +22,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 androidboot.selinux=permissive bootconfig";
+		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig";
 	};
 
 	reserved_memory: reserved-memory { };
@@ -1055,10 +1055,10 @@
 		qcom,no-clock-support;
 	};
 
-	qcom,msm-imem@C100000 {
+	qcom,msm-imem@C11E000 {
 		compatible = "qcom,msm-imem";
-		reg = <0xC100000 0x1000>;
-		ranges = <0x0 0xC100000 0x1000>;
+		reg = <0xC11E000 0x1000>;
+		ranges = <0x0 0xC11E000 0x1000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 
