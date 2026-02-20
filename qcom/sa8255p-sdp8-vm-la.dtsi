@@ -92,15 +92,15 @@
 };
 
 &usb1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2 {
