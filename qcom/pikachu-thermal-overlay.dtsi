@@ -76,7 +76,31 @@
 		};
 	};
 
-	pmar2230_tz {
+	pmar2230_temp_alarm: pmar2230_tz {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmar2230_tz>;
+
+		trips {
+			pmar2230_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pmar2230_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pmar2230_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+
 		cooling-maps {
 			pmar2230_cpu1_pause {
 				trip = <&pmar2230_trip0>;
