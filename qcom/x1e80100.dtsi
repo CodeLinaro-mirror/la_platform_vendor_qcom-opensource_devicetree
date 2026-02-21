@@ -1733,6 +1733,7 @@
 
 				iommus = <&apps_smmu 0x1400 0x0>;
 				qcom,iommu-dma = "atomic";
+				memory-region = <&dwc3_mp_mem_region>;
 				dma-coherent;
 
 				phys = <&usb_mp_hsphy0>, <&usb_mp_qmpphy0>,
@@ -1748,6 +1749,11 @@
 				snps,dis-u2-entry-quirk;
 
 			};
+		};
+
+		dwc3_mp_mem_region: dwc3_mp_mem_region {
+			iommu-addresses = <&usb_mp_dwc3 0x0 0x0 0x0 0x90000000>,
+					<&usb_mp_dwc3 0x0 0xf0000000 0xffffffff 0x10000000>;
 		};
 
 		usb_mp_hsphy0: phy@88e1000 {
