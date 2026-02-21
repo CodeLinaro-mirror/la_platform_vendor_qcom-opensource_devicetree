@@ -285,6 +285,7 @@
 					"bcl-lvl1",
 					"bcl-lvl2";
 			qcom,pmic7-threshold;
+			qcom,disable-vbat-level0-in-suspend;
 			#thermal-sensor-cells = <1>;
 		};
 
