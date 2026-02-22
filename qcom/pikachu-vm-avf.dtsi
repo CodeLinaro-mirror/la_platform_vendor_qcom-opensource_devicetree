@@ -290,6 +290,7 @@
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
+			&qcom_dma_heaps
 			>;
 	};
 
