@@ -961,7 +961,7 @@
 
 #include "msm-arm-smmu-pikachu.dtsi"
 #include "pikachu-pinctrl.dtsi"
-#include "pikachu-stub-regulators.dtsi"
+#include "pikachu-regulators.dtsi"
 #include "pikachu-dma-heaps.dtsi"
 #include "pikachu-qupv3.dtsi"
 
