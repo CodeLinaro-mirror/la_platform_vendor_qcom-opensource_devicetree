@@ -1092,6 +1092,7 @@
 	};
 };
 
+#include "pikachu-walt.dtsi"
 #include "pikachu-reserved-memory.dtsi"
 
 &reserved_memory {
