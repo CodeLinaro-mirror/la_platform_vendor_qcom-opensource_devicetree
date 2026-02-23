@@ -70,6 +70,7 @@
 			next-level-cache = <&L2_0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			#cooling-cells = <2>;
 			L2_0: l2-cache {
 			      compatible = "arm,arch-cache";
@@ -94,6 +95,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			#cooling-cells = <2>;
 		};
 
@@ -108,6 +110,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			#cooling-cells = <2>;
 		};
 
@@ -122,6 +125,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			#cooling-cells = <2>;
 		};
 
@@ -137,6 +141,7 @@
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU5: cpu@500 {
@@ -150,6 +155,7 @@
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			next-level-cache = <&L2_0>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			#cooling-cells = <2>;
 		};
 
@@ -164,6 +170,7 @@
 			capacity-dmips-mhz = <1946>;
 			dynamic-power-coefficient = <489>;
 			next-level-cache = <&L2_6>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 			#cooling-cells = <2>;
 			L2_6: l2-cache {
 			      compatible = "arm,arch-cache";
@@ -183,6 +190,7 @@
 			capacity-dmips-mhz = <1946>;
 			dynamic-power-coefficient = <489>;
 			next-level-cache = <&L2_6>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 			#cooling-cells = <2>;
 		};
 
@@ -1274,9 +1282,7 @@
 	};
 
 	rpmcc: clock-controller {
-		compatible = "fixed-clock";
-		clock-output-names = "rpm_clocks";
-		clock-frequency = <19200000>;
+		compatible = "qcom,rpmcc-malabar";
 		#clock-cells = <1>;
 	};
 
@@ -1336,6 +1342,23 @@
 	adsp_sleepmon: adsp-sleepmon {
 		compatible = "qcom,adsp-sleepmon";
 		qcom,rproc-handle = <&adsp_pas>;
+	};
+
+	cpufreq_hw: qcom,cpufreq-hw {
+		compatible = "qcom,cpufreq-epss";
+		reg = <0x0 0x0fd91000 0x0 0x1000>, <0x0 0x0fd92000 0x0 0x1000>;
+		reg-names = "freq-domain0", "freq-domain1";
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GPLL0>;
+		clock-names = "xo", "alternate";
+		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "dcvsh0_int", "dcvsh1_int";
+		#freq-domain-cells = <1>;
+	};
+
+	qcom,cpufreq-hw-debug {
+		compatible = "qcom,cpufreq-hw-epss-debug";
+		qcom,freq-hw-domain = <&cpufreq_hw 0>, <&cpufreq_hw 1>;
 	};
 
 	adsp_pas: remoteproc-adsp@a400000 {
