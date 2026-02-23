@@ -893,11 +893,19 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {
+                "name": "pikachup.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
-            {
-                "name": "pikachu-rumi-overlay.dtbo",
-            },
+            {"name": "pikachu-atp-overlay.dtbo"},
+            {"name": "pikachup-atp-overlay.dtbo"},
+            {"name": "pikachu-idp-overlay.dtbo"},
+            {"name": "pikachup-idp-overlay.dtbo"},
+            {"name": "pikachu-idp-dtof-overlay.dtbo"},
+            {"name": "pikachup-idp-dtof-overlay.dtbo"},
+            {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },
     "shikra": {
