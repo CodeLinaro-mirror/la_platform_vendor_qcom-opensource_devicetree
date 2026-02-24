@@ -4791,6 +4791,7 @@
 		compatible = "qcom,msm-ssc-sensors";
 		status = "ok";
 		qcom,firmware-name = "slpi";
+		qcom,rproc-handle = <&remoteproc_slpi>;
 	};
 
 	qcom_tzlog: tz-log@146bf720 {
