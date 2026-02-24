@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-#include <dt-bindings/mailbox/qcom-ipcc.h>
 
 #include <dt-bindings/mailbox/qcom-ipcc.h>
 
