@@ -6,12 +6,11 @@
 /dts-v1/;
 /plugin/;
 
-#include "pikachup.dtsi"
-#include "pikachup-idp-dtof.dtsi"
+#include "pikachu.dtsi"
+#include "pikachu-idp.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. PikachuP IDP DTOF";
+	model = "Qualcomm Technologies, Inc. PikachuP IDP";
 	compatible = "qcom,pikachup-idp", "qcom,pikachup", "qcom,idp";
-	qcom,board-id = <0x10022 1>;
+	qcom,board-id = <0x10022 0>;
 };
-
