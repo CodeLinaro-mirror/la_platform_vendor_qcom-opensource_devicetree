@@ -1157,6 +1157,19 @@
 		interrupt-controller;
 	};
 
+	pcie_crm: crm@1d01000 {
+		label = "pcie_crm";
+		compatible = "qcom,pcie-crm-v2";
+		reg = <0x1d01000 0x2000>, <0x1d03000 0x400>, <0x1d03400 0x400>,
+		      <0x1d03800 0x2000>, <0x1d05800 0x700>, <0x1d05f00 0x100>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pcie_crm_drv0";
+		clocks = <&pcie_0_pipe_clk>;
+		qcom,hw-drv-ids = <0 1>;
+		qcom,sw-drv-ids = <0>;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
