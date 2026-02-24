@@ -78,6 +78,7 @@
 
 &battery_charger {
 	qcom,wireless-charging-not-supported;
+	qcom,multiport-usb = <2>;
 };
 
 &pmk8550_rtc {
