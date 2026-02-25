@@ -36,3 +36,36 @@
 &qcn9224_2_mem {
 	status = "disabled";
 };
+
+#ifdef __WLAN_UD__
+&pcie0_rp {
+	wifi@0 {
+		qcom,board_id = <0x1003>;
+	};
+};
+
+&wifi1_wsi_tx {
+	remote-endpoint = <&wifi2_wsi_rx>;
+};
+
+
+&wifi1_wsi_rx {
+	remote-endpoint = <&wifi2_wsi_tx>;
+};
+
+&wifi2_wsi_tx {
+	remote-endpoint = <&wifi1_wsi_rx>;
+};
+
+
+&wifi2_wsi_rx {
+	remote-endpoint = <&wifi1_wsi_tx>;
+};
+
+&pcie2_rp {
+	wifi@2 {
+		status = "disabled";
+	};
+};
+
+#endif
