@@ -1459,6 +1459,10 @@
 		};
 	};
 
+	etr_iommu_region: etr_iommu_region {
+		iommu-addresses = <&tmc_etr 0xffc00000 0x400000>;
+	};
+
 	tmc_etr: tmc@8048000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000bb961>;
@@ -1492,7 +1496,7 @@
 		interrupt-names = "byte-cntr-irq";
 		qcom,sw-usb;
 		qcom,iommu-dma = "bypass";
-		qcom,iommu-dma-addr-pool = <0x0 0xffc00000>;
+		memory-region = <&etr_iommu_region>;
 
 		in-ports {
 			port {
