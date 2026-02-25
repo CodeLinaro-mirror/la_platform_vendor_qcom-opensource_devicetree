@@ -48,6 +48,10 @@ pm4125: pm4125@0 {
 		#interrupt-cells = <2>;
 	};
 
+	pm4125_cdc: qcom,pm4125-cdc {
+		compatible = "qcom,pm2250-spmi";
+	};
+
 	pm4125_charger: qcom,qpnp-smblite {
 		compatible = "qcom,qpnp-smblite";
 		#address-cells = <1>;
