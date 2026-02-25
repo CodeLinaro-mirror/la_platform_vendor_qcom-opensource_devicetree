@@ -50,6 +50,7 @@
 		i2c8 = &i2c8;
 		i2c9 = &i2c9;
 		i2c10 = &i2c10;
+		mmc0 = &sdhc_1;
 		spi0 = &spi0;
 		spi1 = &spi1;
 		spi2 = &spi2;
@@ -1013,6 +1014,102 @@
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
 		qcom,skip-qos;
+	};
+
+	sdhc1_opp_table: sdhc1-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <250000 133320>;
+			opp-avg-kBps = <104000 0>;
+		};
+
+		opp-384000000 {
+			opp-hz = /bits/ 64 <384000000>;
+			opp-peak-kBps = <1900000 300000>;
+			opp-avg-kBps = <400000 0>;
+		};
+	};
+
+	sdhc_1_dma_resv: sdhc_1_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				<&sdhc_1 0x50000000 0xb0000000>;
+	};
+
+	sdhc_1: sdhci@b24000 {
+		status = "disabled";
+
+		compatible = "qcom,sdhci-msm-v5";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		reg = <0xb24000 0x1000>, <0xb25000 0x1000>;
+		reg-names = "hc", "cqhci";
+
+		iommus = <&apps_smmu 0x120 0x0>;
+		dma-coherent;
+		qcom,iommu-dma = "fastmap";
+
+		/*
+		 * iommu-addresses - Indicate the range of data addresses which will NOT
+		 * be used in dma allocation.
+		 *
+		 * iommu-geometry -  This is specific for fastmap which Allow clients
+		 * to save SMMU page table memory.
+		 *
+		 * The 2nd parameter indicates size of the smmu page table memory.
+		 * If its exceeds beyond this size, last unused entry from page table
+		 * memory will be invalidated.
+		 *
+		 * It's better to provide range of dma address, hence provide
+		 * iommu-dma-addr-pool property along with iommu-geometry property.
+		 */
+
+		memory-region = <&sdhc_1_dma_resv>;
+		qcom,iommu-geometry = <0x40000000 0x10000000>;
+
+		interrupts = <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+			<&gcc GCC_SDCC1_AHB_CLK>,
+			<&gcc GCC_SDCC1_ICE_CORE_CLK>;
+		clock-names = "core", "iface", "ice_core";
+
+		qcom,ice-clk-rates = <300000000 100000000>;
+
+		interconnects = <&system_noc MASTER_SDCC_1 &mc_virt SLAVE_EBI1>,
+			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_1>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+		operating-points-v2 = <&sdhc1_opp_table>;
+
+	      /* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
+		qcom,dll-hsr-list = <0x000f44ec 0x0 0x01 0x290106c0 0x80040868>;
+
+		cap-mmc-hw-reset;
+		qcom,restore-after-cx-collapse;
+
+		non-removable;
+		supports-cqe;
+
+		no-sd;
+		no-sdio;
+
+		bus-width = <8>;
+
+		resets = <&gcc GCC_SDCC1_BCR>;
+		reset-names = "core_reset";
+
+		qos0 {
+			mask = <0x0f>;
+			vote = <44>;
+		};
 	};
 
 	thermal_zones: thermal-zones {
