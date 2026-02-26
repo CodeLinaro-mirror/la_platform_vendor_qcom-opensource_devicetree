@@ -61,5 +61,22 @@
 				type = "critical";
 			};
 		};
+
+		cooling-maps {
+			trip0_cpu3 {
+				trip = <&pm8005_trip0>;
+				cooling-device = <&cpu3_pause 0 1>;
+			};
+
+			trip0_gpu {
+				trip = <&pm8005_trip0>;
+				cooling-device = <&msm_gpu 0 THERMAL_NO_LIMIT>;
+			};
+
+			trip0_cdsp {
+				trip = <&pm8005_trip0>;
+				cooling-device = <&cdsp_sw 0 THERMAL_NO_LIMIT>;
+			};
+		};
 	};
 };
