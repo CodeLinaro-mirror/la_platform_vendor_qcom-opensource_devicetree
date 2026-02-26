@@ -333,6 +333,11 @@
 		clock-frequency = <19200000>;
 	};
 
+	show_resume_irqs@0x17200000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17200000 0x110000>;
+	};
+
 	ipcc_mproc: qcom,ipcc@404000 {
 		compatible = "qcom,ipcc";
 		reg = <0x404000 0x1000>;
