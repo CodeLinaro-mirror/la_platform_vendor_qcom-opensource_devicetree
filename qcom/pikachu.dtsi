@@ -941,6 +941,8 @@
 };
 
 #include "pikachu-reserved-memory.dtsi"
+#include "pikachu-coresight.dtsi"
+#include "pikachu-debug.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
