@@ -680,6 +680,14 @@
 		wakeup-parent = <&pdc>;
 	};
 
+	cache-controller@25000000 {
+		compatible = "qcom,pikachu-llcc";
+		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base";
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
@@ -1060,6 +1068,22 @@
 		status = "ok";
 	};
 
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0xc221000 0x1000>;
+		clock-frequency = <32768>;
+	};
+
+	gic-interrupt-router {
+		compatible = "qcom,gic-intr-routing";
+		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 };
 
 &firmware {
@@ -1102,6 +1126,7 @@
 #include "pikachu-dma-heaps.dtsi"
 #include "pikachu-qupv3.dtsi"
 #include "msm-rdbg.dtsi"
+#include "ipcc-test-pikachu.dtsi"
 
 &uart11 {
 	status = "ok";
