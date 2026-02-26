@@ -61,6 +61,15 @@
 		output-high;
 		power-source = <0>;
 	};
+
+	usb5_vbus_en: usb5-vbus-en-state {
+		pins = "gpio6";
+		function = "normal";
+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+		input-disable;
+		output-low;
+		power-source = <0>;
+	};
 };
 
 &soc {
@@ -76,12 +85,21 @@
 
 	regulator_usb6_vbus: regulator-usb6-vbus {
 		compatible = "regulator-fixed";
-		regulator-name = "VREG_USB5_VBUS";
+		regulator-name = "VREG_USB6_VBUS";
 		gpio = <&pm8550ve_j_gpios 5 GPIO_ACTIVE_HIGH>;
 		pinctrl-0 = <&usb6_vbus_en>;
 		pinctrl-names = "default";
 		enable-active-high;
 		regulator-always-on;
+	};
+
+	regulator_usb5_vbus: regulator-usb5-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_USB5_VBUS";
+		gpio = <&pm8550ve_j_gpios 6 GPIO_ACTIVE_HIGH>;
+		pinctrl-0 = <&usb5_vbus_en>;
+		pinctrl-names = "default";
+		enable-active-high;
 	};
 };
 
@@ -277,5 +295,6 @@
 };
 
 &usb4 {
+	vbus_dwc3-supply = <&regulator_usb5_vbus>;
 	status = "okay";
 };
