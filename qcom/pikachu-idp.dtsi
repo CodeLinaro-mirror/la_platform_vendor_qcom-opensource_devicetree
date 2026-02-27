@@ -3,5 +3,4 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-&soc {
-};
+#include "pikachu-idp-base.dtsi"
