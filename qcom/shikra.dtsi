@@ -1444,6 +1444,10 @@
 			};
 		};
 	};
+
+	dload_mode {
+		compatible = "qcom,dload-mode";
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
