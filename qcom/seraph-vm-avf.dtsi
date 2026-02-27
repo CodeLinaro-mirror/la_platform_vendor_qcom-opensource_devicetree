@@ -291,6 +291,7 @@
 			&qtee_shmbridge
 			&qcom_gunyah_panic_notifier
 			&google_debug_kinfo
+			&qcom_dma_heaps
 			>;
 	};
 
