@@ -229,6 +229,17 @@
 			regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
 			qcom,init-voltage-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
 		};
+
+		VDD_MX_MMCX_VOTER_LEVEL: VDD_MX_MM_VOTER_LEVEL:
+		VDD_MM_MX_VOTER_LEVEL: regulator-pmar2230-a-s10-mmcx-voter-level {
+			regulator-name = "pmar2230_a_s10_mmcx_voter_level";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			pmar2230_a_s10_mmcx_voter_level-parent-supply =
+				<&VDD_MMCX_LEVEL>;
+			regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+			regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
+			qcom,init-voltage-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+		};
 	};
 
 	rpmh-regulator-ebilvl {
