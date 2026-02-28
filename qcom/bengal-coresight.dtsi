@@ -4,18 +4,9 @@
  */
 
 &soc {
-	hwevent {
-		compatible = "qcom,coresight-hwevent";
-
-		device-name = "hwevent";
-		coresight-csr = <&csr>;
-		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-		clock-names = "apb_pclk";
-	};
-
 	apss_tgu: tgu@9900000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x0003b999>;
+		arm,primecell-periphid = <0x000bb999>;
 		reg = <0x09900000 0x1000>;
 		reg-names = "tgu-base";
 		tgu-steps = <3>;
@@ -67,12 +58,10 @@
 		reg-names = "stm-base", "stm-stimulus-base";
 
 		device-name = "stm0";
+		atid = <16>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
-
-		nvmem-cells = <&stm_debug_fuse>;
-		nvmem-cell-names = "debug_fuse";
 
 		out-ports {
 			port {
@@ -232,10 +221,10 @@
 	};
 
 	tpdm_lpass: tpdm@8a26000 {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-source";
 
 		device-name = "tpdm_lpass";
-		qcom,dummy-source;
+		trace-name = "tpdm-lpass";
 
 		out-ports {
 			port {
@@ -445,10 +434,10 @@
 	};
 
 	tpdm_wcss: tpdm@899c000 {
-		compatible = "qcom,coresight-dummy";
+		compatible = "arm,coresight-dummy-source";
 
 		device-name = "tpdm_wcss";
-		qcom,dummy-source;
+		trace-name = "tpdm-wcss";
 
 		out-ports {
 			port {
@@ -487,11 +476,10 @@
 	};
 
 	etm0: etm@9040000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9040000 0x1000>;
 		cpu = <&CPU0>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm0";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -507,11 +495,10 @@
 	};
 
 	etm1: etm@9140000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9140000 0x1000>;
 		cpu = <&CPU1>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm1";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -527,11 +514,10 @@
 	};
 
 	etm2: etm@9240000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9240000 0x1000>;
 		cpu = <&CPU2>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm2";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -547,11 +533,10 @@
 	};
 
 	etm3: etm@9340000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9340000 0x1000>;
 		cpu = <&CPU3>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm3";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -567,11 +552,10 @@
 	};
 
 	etm4: etm@9440000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9440000 0x1000>;
 		cpu = <&CPU4>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm4";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -587,11 +571,10 @@
 	};
 
 	etm5: etm@9540000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9540000 0x1000>;
 		cpu = <&CPU5>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm5";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -607,11 +590,10 @@
 	};
 
 	etm6: etm@9640000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9640000 0x1000>;
 		cpu = <&CPU6>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm6";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -627,11 +609,10 @@
 	};
 
 	etm7: etm@9740000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb908>;
+		compatible = "arm,coresight-etm4x-sysreg";
 		reg = <0x9740000 0x1000>;
 		cpu = <&CPU7>;
-		qcom,tupwr-disable;
+		qcom,skip-power-up;
 		device-name = "etm7";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -1460,7 +1441,7 @@
 		reg = <0x8047000 0x1000>;
 		reg-names = "tmc-base";
 
-		device-name = "tmc_etf";
+		device-name = "tmc_etf0";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -1534,21 +1515,20 @@
 			<0x8064000 0x15000>;
 		reg-names = "tmc-base","bam-base";
 
-		device-name = "tmc_etr";
+		device-name = "tmc_etr0";
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x0180 0>,
 			<&apps_smmu 0x0160 0>;
 
-		qcom,iommu-dma-addr-pool = <0x0 0xffc00000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
 
-		qcom,mem_support;
 		qcom,sw-usb;
 		arm,buffer-size = <0x400000>;
 		arm,scatter-gather;
+		dma-coherent;
 
 		coresight-ctis = <&cti0>;
 		coresight-csr = <&csr>;

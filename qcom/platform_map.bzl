@@ -9,7 +9,9 @@ _platform_map = {
             {"name": "sa7255p-sdp8-vm-la.dtb"},
             {"name": "sa7775p-sdp8-vm-la.dtb"},
             {"name": "sa7255p-sdp8-vm-la-mt.dtb"},
+            {"name": "sa7255p-sdp8-vm-lv-mt.dtb"},
             {"name": "sa7775p-sdp8-vm-la-mt.dtb"},
+            {"name": "sa7775p-sdp8-vm-lv-mt.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
             {"name": "sa8797p-v2-gunyah-vm-qam.dtb"},
             {"name": "monaco-vm-la.dtb"},
@@ -19,6 +21,7 @@ _platform_map = {
             {"name": "monaco-vm-flex-lv-mt.dtb"},
             {"name": "sa8797p-sdp8-vm-la.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la.dtb"},
+            {"name": "sa8797p-sdp8-vm-lv-mt.dtb"},
             {"name": "lemans-vm-la-mt.dtb"},
             {"name": "sa8255p-sdp8-vm-la.dtb"},
             {"name": "sa8775p-sdp8-vm-la.dtb"},
@@ -39,7 +42,9 @@ _platform_map = {
             {"name": "sa7255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7775p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7255p-sdp8-vm-la-mt-overlay.dtbo"},
+            {"name": "sa7255p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "sa7775p-sdp8-vm-la-mt-overlay.dtbo"},
+            {"name": "sa7775p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},
             {"name": "monaco-vm-la-overlay.dtbo"},
             {"name": "monaco-sdp8-vm-lv-overlay.dtbo"},
@@ -48,6 +53,7 @@ _platform_map = {
             {"name": "monaco-vm-flex-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-overlay.dtbo"},
+            {"name": "sa8797p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8775p-sdp8-vm-la-overlay.dtbo"},
@@ -341,6 +347,9 @@ _platform_map = {
             {"name": "katmai-fp2.dtb"},
             {"name": "katmai-fp3.dtb"},
             {"name": "katmai-fp2p5.dtb"},
+            {"name": "lahaina.dtb"},
+            {"name": "lahaina-v2.dtb"},
+            {"name": "lahaina-v2.1.dtb"},
             {
                 "name": "yupikp-iot.dtb",
                 "apq": True,
@@ -365,6 +374,17 @@ _platform_map = {
             {"name": "yupik-hsp.dtb"},
             {
                 "name": "yupikp-hsp.dtb",
+            },
+            {
+                "name": "lahainap.dtb",
+                "apq": True,
+            },
+            {
+                "name": "lahainap-v2.dtb",
+                "apq": True,
+            },
+            {
+                "name": "lahainap-v2.1.dtb",
                 "apq": True,
             },
         ],
@@ -398,6 +418,23 @@ _platform_map = {
             {"name": "yupikp-atp-overlay.dtbo"},
             {"name": "yupik-idp-hsp-overlay.dtbo"},
             {"name": "yupikp-idp-hsp-overlay.dtbo"},
+            {"name": "lahaina-rumi-overlay.dtbo"},
+            {"name": "lahaina-mtp-overlay.dtbo"},
+            {"name": "lahaina-mtp-hsp-overlay.dtbo"},
+            {"name": "lahaina-atp-overlay.dtbo"},
+            {"name": "lahaina-hdk-overlay.dtbo"},
+            {"name": "lahaina-hhg-overlay.dtbo"},
+            {"name": "lahaina-qrd-overlay.dtbo"},
+            {"name": "lahaina-qrd-hsp-overlay.dtbo"},
+            {"name": "lahaina-qrd-module-overlay.dtbo"},
+            {"name": "lahaina-mtp-hsp-pro-overlay.dtbo"},
+            {"name": "lahaina-qrd-hsp-pro-overlay.dtbo"},
+            {"name": "lahaina-mtp-v2-overlay.dtbo"},
+            {"name": "lahaina-mtp-v2.1-overlay.dtbo"},
+            {"name": "lahainap-hhg-hsp-pro-overlay.dtbo"},
+            {"name": "lahainap-mtp-overlay.dtbo"},
+            {"name": "lahainap-atp-overlay.dtbo"},
+            {"name": "lahainap-qrd-overlay.dtbo"},
         ],
     },
     "hamoa": {
@@ -565,6 +602,7 @@ _platform_map = {
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
         ],
+        "binary_compatible_with": ["pikachu"],
     },
     "seraph-tuivm": {
         "dtb_list": [
@@ -582,6 +620,7 @@ _platform_map = {
     "pikachu-tuivm": {
         "dtbo_list": [
             # keep sorted
+            {"name": "pikachu-vm-atp-overlay.dtbo"},
             {"name": "pikachu-vm-idp-overlay.dtbo"},
         ],
     },

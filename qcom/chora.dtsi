@@ -1274,6 +1274,9 @@
 		#size-cells = <1>;
 		read-only;
 		ranges;
+		feat_conf17: feat_conf17@0144 {
+			reg = <0x0144 0x4>;
+		};
 
 		gpu_speed_bin: gpu_speed_bin@142 {
 			reg = <0x142 0x2>;

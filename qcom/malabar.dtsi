@@ -1348,6 +1348,11 @@
 	qcom,cpufreq-hw-debug {
 		compatible = "qcom,cpufreq-hw-epss-debug";
 		qcom,freq-hw-domain = <&cpufreq_hw 0>, <&cpufreq_hw 1>;
+        };
+
+	adsp_sleepmon: adsp-sleepmon {
+		compatible = "qcom,adsp-sleepmon";
+		qcom,rproc-handle = <&adsp_pas>;
 	};
 
 	adsp_pas: remoteproc-adsp@a400000 {
@@ -1420,6 +1425,12 @@
 				qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
 				qcom,intents = <0x800 5
 						0xc00 3 >;
+			};
+
+			qcom,msm_adspsleepmon_rpmsg {
+				compatible = "qcom,msm-adspsleepmon-rpmsg";
+				qcom,glink-channels = "sleepmonglink-apps-adsp";
+				qcom,intents = <0x1000 8>;
 			};
 		};
 	};

@@ -31,7 +31,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=8 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc";
+		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe";
 	};
 
 	reserved_memory: reserved-memory {};
@@ -1512,13 +1512,14 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		reg = <0x00B24000 0x1000>, <0x00B25000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0xB24000 0x1000>, <0xB25000 0x1000>, <0xB28000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "bypass";
 
+		qcom,ice-use-hwkm;
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
 		 * be used in dma allocation.
@@ -1699,6 +1700,15 @@
 			 <&rpmhcc RPMH_IPA_CLK>;
 	};
 
+	cache-controller@25000000 {
+		compatible = "qcom,seraph-llcc";
+		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>, <0xD8170000 0x1000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base", "slc_mem_base";
+		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		cap-based-alloc-and-pwr-collapse;
+		qcom,sct-initialized;
+	};
+
 	qcom,msm_gsi {
 		compatible = "qcom,msm_gsi";
 	};
@@ -1835,6 +1845,23 @@
 	qcom,secure-buffer {
 		compatible = "qcom,secure-buffer";
 		qcom,vmid-cp-camera-preview-ro;
+	};
+
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		qcom,master;
+
+		tuivm {
+			qcom,label = <0x08>;
+			qcom,vmid = <45>;
+			tlmm-vm-gpio-list = <&tlmm 12 0>;
+		};
+	};
+
+	tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		qcom,master;
+		tlmm-vm-gpio-list = <&tlmm 12 0>;
 	};
 
 	qcom,gunyah-panic-notifier {
@@ -2196,10 +2223,9 @@
 		compatible = "qcom,qfprom-sys";
 	};
 
-	ramoops_mem: ramoops_region {
-		compatible = "ramoops";
-		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-		size = <0x0 0x200000>;
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
 		pmsg-size = <0x200000>;
 		mem-type = <2>;
 	};
@@ -2292,6 +2318,12 @@
 		no-map;
 	};
 
+	ramoops_mem: ramoops_region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
+
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -2301,6 +2333,8 @@
 };
 
 #include "seraph-reserved-memory.dtsi"
+#include "seraph-coresight.dtsi"
+#include "seraph-debug.dtsi"
 #include "msm-arm-smmu-seraph.dtsi"
 #include "seraph-dma-heaps.dtsi"
 #include "seraph-regulators.dtsi"
