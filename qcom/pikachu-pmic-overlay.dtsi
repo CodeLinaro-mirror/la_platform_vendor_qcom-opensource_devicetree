@@ -41,4 +41,10 @@
 			linux,can-disable;
 		};
 	};
+
+	pmic-pon-log {
+		compatible = "qcom,pmic-pon-log";
+		nvmem = <&pmar2230_sdam_5>;
+		nvmem-names = "pon_log";
+	};
 };
