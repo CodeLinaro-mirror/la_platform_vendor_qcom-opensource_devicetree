@@ -1472,7 +1472,8 @@
 
 #include "shikra-pinctrl.dtsi"
 #include "shikra-reserved-memory.dtsi"
-#include "shikra-stub-regulators.dtsi"
+#include "shikra-pm4125-regulator.dtsi"
+#include "shikra-pm8005-regulator.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"
