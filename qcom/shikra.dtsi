@@ -846,6 +846,26 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		lmcu_sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		lmcu_sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p_sleepstate_lmcu {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&lmcu_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&lmcu_sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		label = "lmcu";
+		interrupt-names = "smp2p-sleepstate-in";
 	};
 
 	apcs: syscon@f400000 {
