@@ -1468,6 +1468,42 @@
 	dload_mode {
 		compatible = "qcom,dload-mode";
 	};
+
+	lpaicp_pas: remoteproc-lpaicp@0B800000 {
+		compatible = "qcom,shikra-lpaicp-pas";
+		reg = <0x0B800000 0x200000>;
+		status = "ok";
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;
+		mx-supply = <&VDD_MX_LEVEL>;
+		mx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_NOM_PLUS 100000>;
+		reg-names = "cx", "mx";
+
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+		clock-names = "xo";
+
+		firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";
+
+		memory-region = <&lmcu_mem &lmcu_dtb_mem>;
+
+		/* Inputs from lpaicp */
+		interrupts-extended = <&intc GIC_SPI 257 IRQ_TYPE_EDGE_RISING>,
+					<&lmcu_smp2p_in 0 0>,
+					<&lmcu_smp2p_in 2 0>,
+					<&lmcu_smp2p_in 1 0>,
+					<&lmcu_smp2p_in 3 0>;
+
+		interrupt-names = "wdog",
+				"fatal",
+				"handover",
+				"ready",
+				"stop-ack";
+
+		/* Outputs to lpaicp */
+		qcom,smem-states = <&lmcu_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
+	};
 };
 
 #include "shikra-pinctrl.dtsi"
