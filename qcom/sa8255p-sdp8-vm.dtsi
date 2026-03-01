@@ -13,9 +13,9 @@
 	qcom,msm-id = <532 0x20000>;
 
 	aliases {
-		hsuart0 = &qupv3_se17_4uart;
-		hsuart1 = &qupv3_se3_4uart;
-		ufshc2 = &ufshc2_mem;
+		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
+		hsuart1 = "/soc/qcom,qupv3_0_geni_se@9c0000/qcom,qup_uart@98c000";
+		ufshc2 = "/soc/ufshc2@1da4000";
 	};
 
 	cpus {
