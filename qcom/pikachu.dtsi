@@ -923,6 +923,11 @@
 		cap-based-alloc-and-pwr-collapse;
 	};
 
+	qcom,msm-adsprpc-mem {
+		compatible = "qcom,msm-adsprpc-mem-region";
+		memory-region = <&adsp_mem_heap>;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
@@ -1510,6 +1515,14 @@
 	#address-cells = <2>;
 	#size-cells = <2>;
 	ranges;
+
+	adsp_mem_heap: adsp_heap_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xC00000>;
+	};
 
 	/* global autoconfigured region for contiguous allocations */
 	system_cma: linux,cma {
