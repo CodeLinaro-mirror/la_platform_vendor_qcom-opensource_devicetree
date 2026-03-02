@@ -35,6 +35,7 @@
 	};
 
 	reserved_memory: reserved-memory {};
+	ddr-regions { };
 
 	aliases: aliases {
 		serial0 = &qupv3_se11_2uart;
@@ -298,6 +299,9 @@
 
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	disp_rdump_region@d5100000 {
+	};
 
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
