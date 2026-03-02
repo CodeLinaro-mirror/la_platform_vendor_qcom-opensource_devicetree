@@ -5288,7 +5288,7 @@
 		compatible = "qcom,coresight-qmi";
 
 		device-name = "qmi_auido";
-		qcom,inst-id = <2>;
+		qcom,inst-id = <5>;
 
 		in-ports {
 			#address-cells = <1>;
