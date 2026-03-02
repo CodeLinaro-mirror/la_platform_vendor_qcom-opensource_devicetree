@@ -4,3 +4,11 @@
  */
 
 #include "pikachup-idp-base.dtsi"
+#include "pikachu-pmic-overlay.dtsi"
+#include "pikachu-thermal-overlay.dtsi"
+
+&apps_rsc_drv2 {
+	rpmh-regulator-gfxlvl {
+		status = "okay";
+	};
+};
