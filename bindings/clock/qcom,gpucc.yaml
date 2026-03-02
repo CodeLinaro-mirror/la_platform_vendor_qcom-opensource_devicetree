@@ -33,6 +33,7 @@ description: |
     dt-bindings/clock/qcom,pikachu-gpucc.h
     dt-bindings/clock/qcom,gpucc-seraph.h
     dt-bindings/clock/qcom,shikra-gpucc.h
+    dt-bindings/clock/qcom,qcm2290-gpucc.h
 
 properties:
   compatible:
@@ -60,6 +61,7 @@ properties:
       - qcom,pikachu-gpucc
       - qcom,seraph-gpucc
       - qcom,shikra-gpucc
+      - qcom,qcm2290-gpucc
 
   clocks:
     items:
