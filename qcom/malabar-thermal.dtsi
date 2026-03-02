@@ -16,8 +16,9 @@
 		      <0x0 0x04410000 0x0 0x1ff>; /* SROT */
 		#qcom,sensors = <15>;
 		interrupts = <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>,
-			     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "uplow","critical";
+			     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
+				 <GIC_SPI 314 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "uplow","critical","cold";
 		#thermal-sensor-cells = <1>;
 	};
 
@@ -27,8 +28,9 @@
 		      <0x0 0x04412000 0x0 0x1ff>; /* SROT */
 		#qcom,sensors = <7>;
 		interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-			     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "uplow","critical";
+			     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+				 <GIC_SPI 315 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "uplow","critical","cold";
 		#thermal-sensor-cells = <1>;
 	};
 
@@ -184,6 +186,18 @@
 
 		cpu-cluster1 {
 			qcom,cpus = <&CPU6 &CPU7>;
+		};
+	};
+
+	qmi_tmd: qmi-tmd-devices {
+		compatible = "qcom,qmi-cooling-devices";
+		adsp {
+			qcom,instance-id = <QMI_ADSP_INST_ID>;
+
+			adsp_vdd: adsp_vdd {
+				qcom,qmi-dev-name = "cpuv_restriction_cold";
+				#cooling-cells = <2>;
+			};
 		};
 	};
 
@@ -933,4 +947,65 @@
 		};
 	};
 
+	zeroc-0 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&tsens0 128>;
+
+		trips {
+			zeroc_0_trip: active-config0 {
+				temperature = <1>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			adsp_vdd_cdev {
+				trip = <&zeroc_0_trip>;
+				cooling-device = <&adsp_vdd 0 1>;
+			};
+
+			cx_vdd_cdev {
+				trip = <&zeroc_0_trip>;
+				cooling-device = <&cx_cdev 0 1>;
+			};
+
+			mx_vdd_cdev {
+				trip = <&zeroc_0_trip>;
+				cooling-device = <&mx_cdev 0 1>;
+			};
+		};
+	};
+
+	zeroc-1 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&tsens1 128>;
+
+		trips {
+			zeroc_1_trip: active-config0 {
+				temperature = <1>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			adsp_vdd_cdev {
+				trip = <&zeroc_1_trip>;
+				cooling-device = <&adsp_vdd 0 1>;
+			};
+
+			cx_vdd_cdev {
+				trip = <&zeroc_1_trip>;
+				cooling-device = <&cx_cdev 0 1>;
+			};
+
+			mx_vdd_cdev {
+				trip = <&zeroc_1_trip>;
+				cooling-device = <&mx_cdev 0 1>;
+			};
+		};
+	};
 };
