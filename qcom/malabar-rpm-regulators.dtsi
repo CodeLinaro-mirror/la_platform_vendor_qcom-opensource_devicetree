@@ -567,6 +567,7 @@
 	rpm-regulator-ldom7 {
 		compatible = "qcom,rpm-smd-regulator-resource";
 		qcom,resource-name = "ldoe";
+		qcom,hpm-min-load = <10000>;
 		status = "okay";
 		L7E: L7E_E0: pm8010_l7: regulator-l7 {
 			compatible = "qcom,rpm-smd-regulator";
