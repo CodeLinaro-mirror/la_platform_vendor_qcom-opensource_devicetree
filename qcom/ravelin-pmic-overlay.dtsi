@@ -227,7 +227,6 @@
 &pmk8350_sdam_1 {
 	ufs_dev: ufs_dev@94 {
 		reg = <0x94 0x1>;
-		bits = <0 0>;
 	};
 };
 
