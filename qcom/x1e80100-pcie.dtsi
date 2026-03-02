@@ -171,7 +171,7 @@
 			<0x6 0x10000000 0x0 0x4000>;
 		reg-names = "parf", "phy", "phy_portb", "tcsr", "dm_core", "elbi", "iatu";
 
-		cell-index = <1>; /* Change it later to 6 */
+		cell-index = <6>;
 		linux,pci-domain = <6>;
 		bus-range = <0x0 0xff>;
 
@@ -285,8 +285,8 @@
 
 		resets = <&gcc GCC_PCIE_6A_BCR>,
 			 <&gcc GCC_PCIE_6A_PHY_BCR>;
-		reset-names = "pcie_1_core_reset", /* change this to 6 later */
-			      "pcie_1_phy_reset";  /* change this to 6 later */
+		reset-names = "pcie_6_core_reset",
+			      "pcie_6_phy_reset";
 
 		dma-coherent;
 
