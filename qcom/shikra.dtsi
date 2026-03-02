@@ -1141,6 +1141,7 @@
 	qcom_pmu: qcom,pmu {
 		compatible = "qcom,pmu";
 		qcom,pmu-events-tbl =
+			< 0x0003 0xFF 0xFF 0xFF >,
 			< 0x0008 0xFF 0xFF 0xFF >,
 			< 0x0011 0xFF 0xFF 0xFF >,
 			< 0x0017 0xFF 0xFF 0xFF >,
@@ -1274,11 +1275,11 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_l3_dcvs_hw>;
 			qcom,sampling-path = <&l3_dcvs_sp>;
-			qcom,miss-ev = <0x17>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
+				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  566400 >,
 					< 1017600  806400 >,
@@ -1292,6 +1293,7 @@
 			gold {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
+				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  566400 >,
 					< 1017600  806400 >,
