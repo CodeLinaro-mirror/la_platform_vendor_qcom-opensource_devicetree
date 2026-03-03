@@ -123,10 +123,7 @@
 		no-map;
 	};
 
-	trusted_apps_mem: trusted-apps-region@c5100000 {
-		reg = <0x0 0xc5100000 0x0 0x2100000>;
-		no-map;
-	};
+	/* trusted_apps* region at 0xc5100000 will change dynamically */
 
 	/* vm_kernel_memoem_configurable_mem was split into trust_ui_vm_mem & oem_vm_mem below */
 	trust_ui_vm_mem: trust_ui_vm_region@f3800000 { // VM_KERNEL_MEM
