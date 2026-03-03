@@ -1518,6 +1518,7 @@
 #include "msm-rdbg-shikra.dtsi"
 #include "shikra-usb.dtsi"
 #include "shikra-walt.dtsi"
+#include "shikra-debug.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
