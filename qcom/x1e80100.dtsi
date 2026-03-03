@@ -2533,6 +2533,12 @@
 			#address-cells = <1>;
 			#size-cells = <1>;
 			read-only;
+
+			gpu_speed_bin: gpu_speed_bin@119 {
+				reg = <0x119 0x2>;
+				bits = <7 8>;
+			};
+
 		};
 
 		system-cache-controller@25000000 {
