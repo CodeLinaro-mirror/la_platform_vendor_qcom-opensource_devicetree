@@ -2517,7 +2517,7 @@
 		};
 
 		qfprom: qfprom@221c8000 {
-			compatible = "qcom,qfprom";
+			compatible = "qcom,x1e80100-qfprom", "qcom,qfprom";
 			reg = <0x0 0x221c8000 0x0 0x1000>;
 			#address-cells = <1>;
 			#size-cells = <1>;
