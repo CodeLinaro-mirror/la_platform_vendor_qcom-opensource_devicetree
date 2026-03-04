@@ -1680,7 +1680,7 @@
 		reg-names = "hc", "cqhci";
 
 		iommus = <&apps_smmu 0xC0 0x0>;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
 
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
@@ -1731,6 +1731,16 @@
 
 		resets = <&gcc GCC_SDCC1_BCR>;
 		reset-names = "core_reset";
+
+		qos0 {
+			mask = <0x08>;
+			vote = <44>;
+		};
+
+		qos1 {
+			mask = <0x07>;
+			vote = <44>;
+		};
 	};
 
 	qcom_rng: qrng@4454000 {
