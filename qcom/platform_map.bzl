@@ -300,6 +300,42 @@ _platform_map = {
             {"name": "bourtzi-rumi-overlay.dtbo"},
         ],
     },
+    "waipio": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "waipio.dtb"},
+            {"name": "waipiop.dtb"},
+            {"name": "waipio-v2.dtb"},
+            {"name": "waipiop-v2.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "waipio-rumi-overlay.dtbo"},
+            {"name": "waipio-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8008-overlay.dtbo"},
+            {"name": "waipio-atp-pm8008-overlay.dtbo"},
+            {"name": "waipio-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8010-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8010-2s-overlay.dtbo"},
+            {"name": "waipio-atp-pm8010-overlay.dtbo"},
+            {"name": "waipio-lemur-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-lemur-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-lemur-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-lemur-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-kiwi-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-kiwi-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-kiwi-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-kiwi-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-mtp-68disp-pm8008-overlay.dtbo"},
+            {"name": "waipio-mtp-68disp-pm8010-overlay.dtbo"},
+            {"name": "waipio-cdp-xr-overlay.dtbo"},
+            {"name": "waipio-mtp-xr-overlay.dtbo"},
+            {"name": "waipio-cdp-xr-pcie-overlay.dtbo"},
+            {"name": "waipio-mtp-xr-pcie-overlay.dtbo"},
+        ],
+    },
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
