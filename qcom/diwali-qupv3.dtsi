@@ -336,7 +336,6 @@
 	qup1_gpi_iommu_region: qup1_gpi_iommu_region {
 		iommu-addresses =  <&gpi_dma1 0x0 0x100000>,
 				<&gpi_dma1 0x200000 0xffe00000>;
-	};
 
 	/* GPI Instance */
 	gpi_dma1: qcom,gpi-dma@a00000 {
@@ -642,6 +641,7 @@
 			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
+
 	};
 
 };
