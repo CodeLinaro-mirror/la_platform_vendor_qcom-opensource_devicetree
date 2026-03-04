@@ -1626,6 +1626,10 @@
 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	qcom_dcvs_prof: qcom-dcvs-prof {
+		max_masters = <4>;
+	};
+
 	adsp_pas: remoteproc-adsp@33C00000 {
 		compatible = "qcom,pikachu-adsp-pas";
 		reg = <0x33C00000 0x10000>;
