@@ -80,12 +80,6 @@
 			dr_mode = "otg";
 			usb-role-switch;
 		};
-
-		port {
-			usb_port0: endpoint {
-				remote-endpoint = <&usb_port0_connector>;
-			};
-		};
 	};
 
 	dwc3_mem_region_0: dwc3_mem_region0 {
