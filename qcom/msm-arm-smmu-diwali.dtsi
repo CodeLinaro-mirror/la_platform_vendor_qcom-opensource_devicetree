@@ -62,7 +62,6 @@
 				<0x3dd6200 0x8>;
 			reg-names = "base", "status-reg";
 			qcom,stream-id-range = <0x0 0x400>;
-			qcom,iova-width = <49>;
 		};
 
 		gfx_1_tbu: gfx_1_tbu@3ded000 {
@@ -71,7 +70,6 @@
 				<0x3dd6208 0x8>;
 			reg-names = "base", "status-reg";
 			qcom,stream-id-range = <0x400 0x400>;
-			qcom,iova-width = <49>;
 		};
 	};
 
@@ -205,7 +203,7 @@
 			/* For compute +15 deep PF */
 			<0x2160 0x41f 0x303>;
 
-	/*	anoc_1_tbu: anoc_1_tbu@151d1000 {
+		anoc_1_tbu: anoc_1_tbu@151d1000 {
 			compatible = "qcom,qsmmuv500-tbu";
 			reg = <0x151d1000 0x1000>,
 				<0x151ce200 0x8>;
@@ -359,7 +357,7 @@
 					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 			qcom,micro-idle;
-		};*/
+		};
 	};
 
 	dma_dev@0x0 {

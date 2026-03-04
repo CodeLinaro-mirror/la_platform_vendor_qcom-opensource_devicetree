@@ -9,20 +9,6 @@
 #include "diwali-pmic-overlay.dtsi"
 #include "diwali-thermal-overlay.dtsi"
 
-#if 0
-&pmr735a_debug {
-	status = "disabled";
-};
-
-&pmr735a_spmi {
-	status = "disabled";
-};
-
-&pmr735a_temp_alarm {
-	status = "disabled";
-};
-#endif
-
 &soc {
 	qcom,userspace-cdev {
 		display-fps {
@@ -98,9 +84,9 @@
 	 * ufs devices supported for ufs-dev-types, and nvmem handle
 	 * added by pmic for sdam register.
 	 */
-	//ufs-dev-types = <2>;
-	//nvmem-cells = <&ufs_dev>;
-	//nvmem-cell-names = "ufs_dev";
+	ufs-dev-types = <2>;
+	nvmem-cells = <&ufs_dev>;
+	nvmem-cell-names = "ufs_dev";
 
 	status = "ok";
 };
