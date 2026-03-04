@@ -4,6 +4,7 @@
  */
 
 #include "shikra.dtsi"
+#include "shikra-lite-thermal.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Shikra Lite CQS SoC";
