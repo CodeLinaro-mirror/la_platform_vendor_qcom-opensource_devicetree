@@ -1493,12 +1493,14 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		reg = <0xb24000 0x1000>, <0xb25000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0xb24000 0x1000>, <0xb25000 0x1000>, <0xb28000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "fastmap";
+
+		qcom,ice-use-hwkm;
 
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
