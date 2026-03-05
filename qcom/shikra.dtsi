@@ -28,7 +28,7 @@
 
 	reserved_memory: reserved-memory { };
 
-	aliases {
+	aliases: aliases {
 		serial0 = &uart0;
 		mmc0 = &sdhc_1;
 		i2c3 = &i2c3;
