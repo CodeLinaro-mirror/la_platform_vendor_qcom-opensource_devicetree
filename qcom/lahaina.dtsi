@@ -583,6 +583,13 @@
 		method = "smc";
 	};
 
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats";
+		reg = <0x0c3f0000 0x400>;
+		ss-name = "modem", "adsp", "adsp_island",
+			  "cdsp", "apss";
+	};
+
 	apps_rsc: rsc@18200000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
