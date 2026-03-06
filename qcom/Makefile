@@ -54,14 +54,14 @@ canoe-dtb-$(CONFIG_ARCH_CANOE) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_CANOE) += $(CANOE_BOARDS) $(NOAPQ_CANOE_BOARDS) $(CANOE_BASE_DTB) $(CANOE_APQ_BASE_DTB)
 
 ALOR_BASE_DTB += alor.dtb
-ALOR_APQ_BASE_DTB += alorp.dtb
-ALOR_XR_BASE_DTB += alor-xr.dtb
+ALOR_APQ_BASE_DTB += alorp.dtb alorp-iot.dtb
 
 ALOR_BOARDS += \
 	        alor-atp-overlay.dtbo \
 		alor-cdp-overlay.dtbo \
 		alor-cdp-peach-overlay.dtbo \
 		alor-mtp-overlay.dtbo \
+		alor-mtp-iot-overlay.dtbo \
 		alor-mtp-pmih010x-smb1398-overlay.dtbo \
 		alor-mtp-pm7550ba-smb1398-overlay.dtbo \
 		alor-rcm-overlay.dtbo \
@@ -481,9 +481,12 @@ X1E80100_BOARDS += \
 		   x1e80100-qcp-overlay.dtbo
 
 x1e80100-dtb-$(CONFIG_ARCH_X1E80100) += \
-	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB))
-x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB)
+	$(call add-overlays, $(X1E80100_BOARDS),$(X1E80100_BASE_DTB)) \
+        $(call add-overlays, $(X1E80100_BOARDS),$(HAMOA_LA_BASE_DTB))
+x1e80100-overlays-dtb-$(CONFIG_ARCH_X1E80100) += $(X1E80100_BOARDS) $(X1E80100_BASE_DTB) $(HAMOA_LA_BASE_DTB)
 dtb-y += $(x1e80100-dtb-y)
+
+HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra.dtb
 

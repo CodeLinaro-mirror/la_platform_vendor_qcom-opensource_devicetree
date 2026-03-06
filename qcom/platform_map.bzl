@@ -139,7 +139,10 @@ _platform_map = {
                 "name": "alorp.dtb",
                 "apq": True,
             },
-	    {"name": "alor-xr.dtb"},
+            {
+                "name": "alorp-iot.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
@@ -147,6 +150,7 @@ _platform_map = {
             {"name": "alor-cdp-overlay.dtbo"},
             {"name": "alor-cdp-peach-overlay.dtbo"},
             {"name": "alor-mtp-overlay.dtbo"},
+            {"name": "alor-mtp-iot-overlay.dtbo"},
             {"name": "alor-mtp-pm7550ba-smb1398-overlay.dtbo"},
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
             {"name": "alor-rcm-overlay.dtbo"},
@@ -166,6 +170,10 @@ _platform_map = {
                 "name": "alorp.dtb",
                 "apq": True,
             },
+            {
+                "name": "alorp-iot.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
@@ -173,6 +181,7 @@ _platform_map = {
             {"name": "alor-cdp-overlay.dtbo"},
             {"name": "alor-cdp-peach-overlay.dtbo"},
             {"name": "alor-mtp-overlay.dtbo"},
+            {"name": "alor-mtp-iot-overlay.dtbo"},
             {"name": "alor-mtp-pm7550ba-smb1398-overlay.dtbo"},
             {"name": "alor-mtp-pmih010x-smb1398-overlay.dtbo"},
             {"name": "alor-rcm-overlay.dtbo"},
@@ -454,6 +463,16 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "x1p42100-crd-overlay.dtbo"},
+        ],
+    },
+    "hamoa_la": {
+        "dtb_list": [
+            {"name": "hamoa_la.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "x1e80100-crd-overlay.dtbo"},
+            {"name": "x1e80100-qcb-overlay.dtbo"},
+            {"name": "x1e80100-qcp-overlay.dtbo"},
         ],
     },
     "canoe-tuivm": {

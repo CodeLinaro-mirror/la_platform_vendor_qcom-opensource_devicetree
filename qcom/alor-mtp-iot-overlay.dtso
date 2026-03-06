@@ -6,12 +6,11 @@
 /dts-v1/;
 /plugin/;
 
-#include "alor-mtp-pm7550ba-smb1398.dtsi"
-#include "alor-pm7550ba-smb1398.dtsi"
+#include "alor-mtp-iot.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Alor MTP + WCN7750 WLAN + PM7750BA SMB1398 + ST54L + Panderio";
+	model = "Qualcomm Technologies, Inc. Alor MTP + WCN7750 WLAN + PM7750BA SMB1500 + ST54L + Harmonium + Panderio";
 	compatible = "qcom,alor-mtp", "qcom,alor", "qcom,mtp", "qcom,alorp-mtp", "qcom,alorp";
 	qcom,msm-id = <685 0x10000>, <727 0x10000>, <764 0x10000>;
-	qcom,board-id = <0x20008 0>;
+	qcom,board-id = <0x50008 0>;
 };

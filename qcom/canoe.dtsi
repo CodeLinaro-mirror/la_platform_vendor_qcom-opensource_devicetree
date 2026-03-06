@@ -3795,6 +3795,11 @@
 			reg = <0x144 0x4>;
 		};
 
+		debugbus_en: debugbus_en@783 {
+			reg = <0x783 0x1>;
+			bits = <1 1>;
+		};
+
 		gpu_debug_bus_bin: gpu_debug_bus_bin@73 {
 			reg = <0x73 0x1>;
 			bits = <1 1>;
@@ -3803,6 +3808,11 @@
 		gpu_speed_bin: gpu_speed_bin@142 {
 			reg = <0x142 0x2>;
 			bits = <3 9>;
+		};
+
+		gpu_niden_en: gpu_niden_en@783 {
+			reg = <0x783 0x1>;
+			bits = <6 1>;
 		};
 
 		cpr_gfx_rc: cpr_gfx_rc@999 {

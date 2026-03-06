@@ -3,5 +3,4 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "seraphp-idp.dtsi"
-#include "seraph-pm8011.dtsi"
+#include "x1e80100.dtsi"

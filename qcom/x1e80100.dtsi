@@ -1199,7 +1199,7 @@
 		};
 
 		qcom,sps {
-			compatible = "qcom,msm-sps-4k";
+			compatible = "qcom,msm-sps-v1_7-4k";
 			qcom,pipe-attr-ee;
 		};
 
@@ -2212,6 +2212,18 @@
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
 			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port1_dwc3_ss: endpoint {
+					};
+				};
+			};
 		};
 
 		dwc3_1_mem_region: dwc3_1_mem_region {
@@ -2268,7 +2280,22 @@
 
 			vdda-phy-supply = <&L2J>;
 			vdda-pll-supply = <&L2D>;
+
+			orientation-switch;
+
 			status = "disabled";
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port1_ssphy_out: endpoint {
+					};
+				};
+			};
 		};
 
 		intc: interrupt-controller@17000000 {
