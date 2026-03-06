@@ -2175,7 +2175,7 @@
 		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
 		clock-names = "xo";
 
-		firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";
+		firmware-name = "lpaicp.mbn", "lpaicp_dtb.mbn";
 
 		memory-region = <&lmcu_mem &lmcu_dtb_mem>;
 
