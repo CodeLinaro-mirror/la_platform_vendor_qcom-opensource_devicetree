@@ -1617,6 +1617,11 @@
 		status = "disabled";
 	};
 
+	pcie_pdc: pdc@b330000 {
+		compatible = "qcom,pikachu-pcie-pdc", "qcom,pcie-pdc";
+		reg = <0xb330000 0x20000>;
+	};
+
 	thermal_zones: thermal-zones {
 	};
 
