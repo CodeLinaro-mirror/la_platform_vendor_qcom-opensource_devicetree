@@ -1790,7 +1790,7 @@
 				funnel_ddr_dl0_out_tpda_dlct0_4: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_4_in_funnel_ddr_dl0>;
-					source = <&tpdm_ddr_ch02>;
+					filter-source = <&tpdm_ddr_ch02>;
 				};
 			};
 
@@ -1799,7 +1799,7 @@
 				funnel_ddr_dl0_out_tpda_dlct0_6: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_6_in_funnel_ddr_dl0>;
-					source = <&tpdm_ddr0>;
+					filter-source = <&tpdm_ddr0>;
 				};
 			};
 
@@ -1808,7 +1808,7 @@
 				funnel_ddr_dl0_out_tpda_dlct0_7: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_7_in_funnel_ddr_dl0>;
-					source = <&tpdm_ddr_dpm>;
+					filter-source = <&tpdm_ddr_dpm>;
 				};
 			};
 
@@ -2198,6 +2198,7 @@
 	tpdm_turing_llm: tpdm@11181000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -2212,6 +2213,7 @@
 	tpdm_turing_llm2: tpdm@11182000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm2";
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -2621,7 +2623,7 @@
 				funnel_dlct2_out_tpda_dlct0_14: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_14_in_funnel_dlct2>;
-					source = <&tpdm_mxc>;
+					filter-source = <&tpdm_mxc>;
 				};
 			};
 
@@ -2629,7 +2631,7 @@
 				funnel_dlct2_out_tpda_dlct0_13: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_13_in_funnel_dlct2>;
-					source = <&tpdm_cx>;
+					filter-source = <&tpdm_cx>;
 				};
 			};
 
@@ -2637,7 +2639,7 @@
 				funnel_dlct2_out_tpda_dlct0_15: endpoint {
 					remote-endpoint =
 					<&tpda_dlct0_15_in_funnel_dlct2>;
-					source = <&tpdm_mxa>;
+					filter-source = <&tpdm_mxa>;
 				};
 			};
 
@@ -2669,7 +2671,7 @@
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
 		reg = <0x112c0000 0x1000>;
 		reg-names = "tpdm-base";
-		qcom,cmb-element-bits = <32>;
+		qcom,dsb-element-bits = <32>;
 		device-name = "tpdm_dlct1_0";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -3258,7 +3260,7 @@
 				funnel_wpss_out_tpda_dlct1: endpoint {
 					remote-endpoint =
 					<&tpda_dlct1_in_funnel_wpss>;
-					source = <&tpdm_wpss_dsb>;
+					filter-source = <&tpdm_wpss_dsb>;
 				};
 			};
 
@@ -3267,7 +3269,7 @@
 				funnel_wpss_out_funnel_dlct1: endpoint {
 					remote-endpoint =
 					<&funnel_dlct1_in_funnel_wpss>;
-					source = <&wpss_etm>;
+					filter-source = <&wpss_etm>;
 				};
 			};
 
