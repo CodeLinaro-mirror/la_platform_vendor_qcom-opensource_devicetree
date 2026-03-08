@@ -164,7 +164,7 @@
 	};
 
 	adspslpi_mem: adspslpi_region@9bc00000 {
-		reg = <0x0 0x9bc00000 0x0 0x320c800>;
+		reg = <0x0 0x9bc00000 0x0 0x3200000>;
 		no-map;
 	};
 
