@@ -1801,9 +1801,10 @@
 
 		reg-names = "tpda-base";
 		device-name = "tpda_tme";
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+
+		status = "disabled";
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1947,7 +1948,8 @@
 	};
 
 	qdss_tpdm_dcc: tpdm@10003000 {
-		compatible = "qcom,coresight-tpdm","arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000bb968>;
 		reg = <0x10003000 0x1000>;
 
 		reg-names = "tpdm-base";
