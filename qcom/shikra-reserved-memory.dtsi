@@ -35,7 +35,7 @@
 		hwlocks = <&tcsr_mutex 3>;
 	};
 
-	audio_heap_mem: audio_heap_region@86200000 {
+	audio_carveout_mem: audio_carved_region@86200000 {
 		no-map;
 		reg = <0x0 0x86200000 0x0 0x100000>;
 	};
