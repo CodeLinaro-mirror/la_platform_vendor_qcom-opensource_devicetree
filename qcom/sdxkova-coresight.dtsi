@@ -2637,6 +2637,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 	};
 
 	mvmss_internal_cti0: cti@24981000 {

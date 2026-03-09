@@ -2543,22 +2543,18 @@ qcom_cedev: qcedev@1de0000 {
 					<&modem_smp2p_in 2 0>,
 					<&modem_smp2p_in 1 0>,
 					<&modem_smp2p_in 3 0>,
-					<&modem_smp2p_in 7 0>,
-					<&modem_smp2p_in 9 0>;
+					<&modem_smp2p_in 7 0>;
 
 		interrupt-names = "wdog",
 					"fatal",
 					"handover",
 					"ready",
 					"stop-ack",
-					"shutdown-ack",
-					"dump-level-ack";
+					"shutdown-ack";
 
 		/* Outputs to mss */
-		qcom,smem-states = <&modem_smp2p_out 0>,
-				   <&modem_smp2p_out 2>;
-		qcom,smem-state-names = "stop",
-					"dump-level-notify";
+		qcom,smem-states = <&modem_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
 
 		glink_edge: glink-edge {
 			qcom,remote-pid = <1>;

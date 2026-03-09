@@ -91,6 +91,21 @@ _platform_map = {
             # keep sorted
         ],
     },
+    "sdxkova.prpl.min": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "sdxkova-idp-cpe.dtb"},
+            {"name": "sdxkova-idp-cpe-v2.dtb"},
+            {"name": "sdxkova-idp-cpe-v3.dtb"},
+            {"name": "sdxkova-idp-cpe-v4.dtb"},
+            {"name": "sdxkova-idp-cpe-v5.dtb"},
+            {"name": "sdxkova-idp-cpe-v6.dtb"},
+            {"name": "sdxkova-idp-lga-v2.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+        ],
+    },
     "sdxkova.512": {
         "dtb_list": [
             # keep sorted

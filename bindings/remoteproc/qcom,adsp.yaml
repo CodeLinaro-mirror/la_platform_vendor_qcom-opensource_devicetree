@@ -98,7 +98,6 @@ properties:
       - description: Handover interrupt
       - description: Stop acknowledge interrupt
       - description: Shutdown acknowledge interrupt
-      - description: Dump-level update acknowledge interrupt
 
   interrupt-names:
     minItems: 5
@@ -109,7 +108,6 @@ properties:
       - const: handover
       - const: stop-ack
       - const: shutdown-ack
-      - const: dump-level-ack
 
   resets:
     minItems: 1
@@ -148,16 +146,13 @@ properties:
   qcom,smem-states:
     $ref: /schemas/types.yaml#/definitions/phandle-array
     description: States used by the AP to signal the Hexagon core
-    minItems: 1
     items:
       - description: Stop the modem
-      - description: Notify the modem about dump level update
 
   qcom,smem-state-names:
     description: The names of the state bits used for SMP2P output
     items:
       - const: stop
-      - const: dump-level-notify
 
   qcom,halt-regs:
     $ref: /schemas/types.yaml#/definitions/phandle-array
