@@ -2181,6 +2181,7 @@
 		#address-cells = <2>;
 		#size-cells = <0>;
 		depends-on-supply = <&spmi0_bus>;
+		status = "disabled";
 
 		pm6450-debug@0 {
 			compatible = "qcom,spmi-pmic";
