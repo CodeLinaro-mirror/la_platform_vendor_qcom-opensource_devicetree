@@ -128,6 +128,26 @@ canoe-dtb-$(CONFIG_ARCH_RAVELIN) += \
 	$(call add-overlays, $(RAVELIN_4GB_BOARDS) ,$(RAVELIN_4GB_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
 
+BOURTZI_BASE_DTB += bourtzi.dtb
+
+BOURTZI_BOARDS += \
+		bourtzi-atp-overlay.dtbo \
+		bourtzi-cdp-overlay.dtbo \
+		bourtzi-cdp-lcd-overlay.dtbo \
+		bourtzi-mtp-overlay.dtbo \
+		bourtzi-mtp-evros-cottid-overlay.dtbo \
+		bourtzi-qrd-overlay.dtbo \
+		bourtzi-qrd-evros-overlay.dtbo \
+		bourtzi-rcm-overlay.dtbo \
+		bourtzi-rcm-evros-cottid-overlay.dtbo
+
+NOAPQ_BOURTZI_BOARDS += \
+		bourtzi-rumi-overlay.dtbo
+
+canoe-dtb-$(CONFIG_ARCH_BOURTZI) += \
+	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB)
+
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
 MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb

@@ -139,7 +139,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin", "bourtzi"],
     },
     "alor": {
         "dtb_list": [
@@ -265,6 +265,25 @@ _platform_map = {
             {"name": "ravelin-idp-wcn3988-4gb-overlay.dtbo"},
             {"name": "ravelin-qrd-overlay.dtbo"},
             {"name": "ravelin-qrd-4gb-overlay.dtbo"},
+        ],
+    },
+    "bourtzi": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "bourtzi.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-atp-overlay.dtbo"},
+            {"name": "bourtzi-cdp-lcd-overlay.dtbo"},
+            {"name": "bourtzi-cdp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-qrd-overlay.dtbo"},
+            {"name": "bourtzi-qrd-evros-overlay.dtbo"},
+            {"name": "bourtzi-rcm-overlay.dtbo"},
+            {"name": "bourtzi-rcm-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-rumi-overlay.dtbo"},
         ],
     },
     "malabar": {
