@@ -7,6 +7,7 @@
 #include <dt-bindings/clock/qcom,gcc-monaco_auto.h>
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
 
 / {
 	#address-cells = <0x2>;
@@ -299,6 +300,11 @@
 				0x0 0x421000 0x0 0x421000 0x0 0x1000 0x0
 				/* EMAC0 CH4 region */
 				0x0 0x2304C000 0x0 0x2304C000 0x0 0x1000 0x0
+				/* USB2 region */
+				0x0 0xa400000 0x0 0xa400000 0x0 0x200000 0x0
+				0x0 0x8906000 0x0 0x8906000 0x0 0x1000 0x0
+				/* PDC region */
+				0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
 				>;
 
 		gic-irq-ranges = <
@@ -310,6 +316,12 @@
 				/* EMAC0 CH4 GIC IRQ */
 				902 902
 				973 973
+
+				/* USB2 IRQs */
+				521 521
+				522 522
+				476 476
+				474 474
 				>;
 
 		memory {
@@ -1161,6 +1173,15 @@
 		};
 	};
 
+	pdc: interrupt-controller@b220000 {
+		compatible = "qcom,sm8150-pdc","qcom,pdc";
+		reg = <0xb220000 0x30000>;
+		qcom,pdc-ranges = <7 487 4>, <12 492 4>;
+		#interrupt-cells = <2>;
+		interrupt-parent = <&intc>;
+		interrupt-controller;
+	};
+
 	intc: interrupt-controller@17a00000 {
 		compatible = "arm,gic-v3";
 		interrupt-controller;
@@ -1183,6 +1204,7 @@
 
 	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		qcom,hgy-secure-heap;
 
 		qcom,qseecom {
 			qcom,dma-heap-name = "qcom,qseecom";
@@ -1353,6 +1375,7 @@
 
 #include "monaco-vm-qupv3.dtsi"
 #include "monaco_auto-pinctrl.dtsi"
+#include "monaco-vm-usb.dtsi"
 
 &qupv3_1 {
 	status = "disabled";
@@ -1390,4 +1413,43 @@
 
 	qcom,auto-suspend-disable;
 	status = "ok";
+};
+
+/delete-node/ &usb0;
+/delete-node/ &usb2_phy0;
+/delete-node/ &usb_qmp_phy0;
+
+&usb2 {
+	compatible = "qcom,dwc3-msm-fw-managed";
+
+	power-domains = <&scmi_power 2>, <&scmi_power 3>;
+	power-domain-names = "usb_transfer", "usb_core";
+
+	/delete-property/ USB3_GDSC-supply;
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	/delete-property/ resets;
+	/delete-property/ reset-names;
+	/delete-property/ qcom,core-clk-rate;
+	/delete-property/ qcom,default-mode-host;
+
+	status = "okay";
+};
+
+&usb2_phy2 {
+	compatible = "qcom,usb-hsphy-snps-femto-fw-managed";
+
+	power-domains = <&scmi_power 4>, <&scmi_power 5>;
+	power-domain-names = "usb_transfer", "usb_core";
+
+	status = "okay";
+
+	/delete-property/ vdd-supply;
+	/delete-property/ vdda18-supply;
+	/delete-property/ vdda33-supply;
+	/delete-property/ qcom,vdd-voltage-level;
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	/delete-property/ resets;
+	/delete-property/ reset-names;
 };
