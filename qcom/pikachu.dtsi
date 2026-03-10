@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,pikachu-camcc.h>
@@ -1195,6 +1196,15 @@
 		qcom,pipe-attr-ee;
 	};
 
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,pikachu-tlmm";
 		reg = <0xF000000 0x1000000>;
@@ -2036,6 +2046,23 @@
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x99000>;
 	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
+
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
 };
 
 #include "pikachu-walt.dtsi"
@@ -2075,6 +2102,22 @@
 		size = <0x0 0x400000>;
 	};
 
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
+	};
+
 	ramoops_mem: ramoops_region {
 		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
 		size = <0x0 0x200000>;
@@ -2093,7 +2136,6 @@
 		reusable;
 		size = <0 0x1000000>;
 	};
-
 };
 
 #include "msm-arm-smmu-pikachu.dtsi"
