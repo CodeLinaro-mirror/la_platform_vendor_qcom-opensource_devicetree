@@ -631,8 +631,13 @@ _platform_map = {
     "seraph": {
         "dtb_list": [
             {"name": "seraph.dtb"},
+            {"name": "seraph-v1.1.dtb"},
             {
                 "name": "seraphp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "seraphp-v1.1.dtb",
                 "apq": True,
             },
         ],
@@ -647,6 +652,16 @@ _platform_map = {
             {"name": "seraphp-idp-no-display-overlay.dtbo"},
             {"name": "seraph-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraph-v1.1-atp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-atp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
