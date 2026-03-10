@@ -1055,6 +1055,14 @@ _platform_map = {
             {"name": "shikra-oemvm-itp-overlay.dtbo"},
         ],
     },
+    "glymur": {
+        "dtb_list": [
+            {"name": "mahua.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "mahua-crd-overlay.dtbo"},
+        ],
+    },
 }
 
 def _get_dtb_lists(target, dt_overlay_supported):

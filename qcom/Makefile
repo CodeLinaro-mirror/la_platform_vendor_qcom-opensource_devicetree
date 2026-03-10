@@ -622,6 +622,16 @@ shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
 	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB))
 shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB)
 dtb-y += $(shikra-dtb-y)
+
+MAHUA_BASE_DTB += mahua.dtb
+
+MAHUA_BOARDS += \
+		   mahua-crd-overlay.dtbo
+
+mahua-dtb-$(CONFIG_ARCH_MAHUA) += \
+	$(call add-overlays, $(MAHUA_BOARDS),$(MAHUA_BASE_DTB))
+mahua-overlays-dtb-$(CONFIG_ARCH_MAHUA) += $(MAHUA_BOARDS) $(MAHUA_BASE_DTB)
+dtb-y += $(mahua-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
