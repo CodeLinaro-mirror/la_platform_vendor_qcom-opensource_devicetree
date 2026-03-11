@@ -13,6 +13,11 @@
 		reg = <0x0 0x80000000 0x0 0x1600000>;
 	};
 
+	display_config_mem: display_config_region@84c00000 {
+		no-map;
+		reg = <0x0 0x84c00000 0x0 0x1100000>;
+	};
+
 	xblboot_mem: xblboot_region@85e00000 {
 		no-map;
 		reg = <0x0 0x85e00000 0x0 0x100000>;

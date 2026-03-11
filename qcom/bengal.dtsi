@@ -584,7 +584,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
 	};
 
 	soc: soc { };
@@ -738,17 +738,10 @@
 		#interrupt-cells = <2>;
 	};
 
-	rpm-sleep-stats@4690000 {
-		compatible = "qcom,rpm-sleep-stats";
-		reg = <0x04690000 0x400>;
-	};
-
-	qcom,rpm-master-stats@45f0150 {
-		compatible = "qcom,rpm-master-stats";
-		reg = <0x45f0150 0x5000>;
-		qcom,masters = "APSS", "MPSS", "ADSP", "CDSP", "TZ";
-		qcom,master-stats-version = <2>;
-		qcom,master-offset = <4096>;
+	sram@4690000 {
+		compatible = "qcom,rpm-stats-v2";
+		reg = <0x04690000 0x10000>;
+		ss-name = "apss", "modem", "adsp", "cdsp";
 	};
 
 	cluster-device0 {

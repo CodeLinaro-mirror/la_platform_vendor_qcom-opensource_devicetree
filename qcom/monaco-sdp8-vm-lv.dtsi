@@ -88,10 +88,14 @@
 	status = "disabled";
 };
 
+&qupv3_0 {
+	status = "ok";
+};
+
 &qupv3_se2_4uart {
 	interrupts-extended = <&qvm_vdev_gic GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
 					<&tlmm 36 IRQ_TYPE_LEVEL_HIGH>;
-	status = "disabled";
+	status = "ok";
 };
 
 &gcc {

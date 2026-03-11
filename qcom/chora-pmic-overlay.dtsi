@@ -29,6 +29,20 @@
 	status = "ok";
 };
 
+&pmxr2230_flash_led0 {
+	led-max-microamp = <500000>;
+	led-sources = <1>, <4>;
+};
+
+&pmxr2230_flash_led1 {
+	led-max-microamp = <500000>;
+	led-sources = <2>, <3>;
+};
+
+&pmxr2230_flash_led2 {
+	status = "disabled";
+};
+
 &soc {
 	reboot_reason {
 		compatible = "qcom,reboot-reason";
@@ -431,5 +445,31 @@
 				type = "passive";
 			};
 		};
+	};
+};
+
+&pmr735b_gpios {
+	s6b_ext_enable_pin {
+		s6b_ext_enable_default: s6b_ext_enable_default {
+			pins = "gpio1";
+			function = "normal";
+			bias-disable;
+			output-low;
+			power-source = <0>;
+		};
+	};
+};
+
+&soc {
+	S6B_EXT: ktb_s6b_ext {
+		compatible = "qti-regulator-fixed";
+		regulator-name = "ktb_s6b_ext";
+		regulator-min-microvolt	= <2200000>;
+		regulator-max-microvolt	= <2200000>;
+		startup-delay-us = <1000>;
+		enable-active-high;
+		gpio = <&pmr735b_gpios 1 0>;
+		pinctrl-names =	"default";
+		pinctrl-0 = <&s6b_ext_enable_default>;
 	};
 };

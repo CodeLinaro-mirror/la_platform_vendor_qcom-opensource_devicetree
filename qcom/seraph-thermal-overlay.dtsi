@@ -146,4 +146,54 @@
 			};
 		};
 	};
+
+	pm8010m_temp_alarm: pm8010m_tz {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pm8010m_tz>;
+
+		trips {
+			pm8010m_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pm8010m_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pm8010m_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pm8010n_temp_alarm: pm8010n_tz {
+		polling-delay-passive = <100>;
+		thermal-sensors = <&pm8010n_tz>;
+
+		trips {
+			pm8010n_trip0: trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			pm8010n_trip1: trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "hot";
+			};
+
+			pm8010n_trip2: trip2 {
+				temperature = <145000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
 };

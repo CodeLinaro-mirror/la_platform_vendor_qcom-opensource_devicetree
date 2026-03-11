@@ -248,6 +248,11 @@
 		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
 	};
 
+	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@d74e0000 {
+		no-map;
+		reg = <0x0 0xd74e0000 0x0 0x520000>;
+	};
+
 	global_sync_mem: global_sync_region@d7a00000 {
 		no-map;
 		reg = <0x0 0xd7a00000 0x0 0x200000>;

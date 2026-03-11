@@ -68,6 +68,12 @@ properties:
       - qcom,shikra-mmrt_virt
       - qcom,shikra-mmnrt_virt
       - qcom,shikra-sys_noc
+      - qcom,scuba-bimc
+      - qcom,scuba-sys_noc
+      - qcom,scuba-config_noc
+      - qcom,scuba-clk_virt
+      - qcom,scuba-mmnrt_virt
+      - qcom,scuba-mmrt_virt
 
   '#interconnect-cells':
     description: |
