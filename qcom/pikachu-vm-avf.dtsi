@@ -290,6 +290,7 @@
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
+			&qcom_dma_heaps
 			>;
 	};
 
@@ -474,3 +475,5 @@
 };
 
 #include "pikachu-vm-rm-info-avf.dtsi"
+#include "pikachu-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-pikachu-vm-avf.dtsi"

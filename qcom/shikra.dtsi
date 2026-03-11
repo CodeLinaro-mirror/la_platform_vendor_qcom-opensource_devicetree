@@ -22,7 +22,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 androidboot.selinux=permissive bootconfig";
+		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig";
 	};
 
 	reserved_memory: reserved-memory { };
@@ -592,6 +592,34 @@
 				      <&cpufreq_hw 1>;
 	};
 
+	mccc_debug: syscon@cba000 {
+		compatible = "syscon";
+		reg = <0xcba000 0x54>;
+	};
+
+	cpucc_debug: syscon@faa0018 {
+		compatible = "syscon";
+		reg = <0xfaa0018 0x4>;
+	};
+
+	debugcc: clock-controller@0 {
+		compatible = "qcom,shikra-debugcc";
+		qcom,gcc = <&gcc>;
+		qcom,dispcc = <&dispcc>;
+		qcom,gpucc = <&gpucc>;
+		qcom,mccc = <&mccc_debug>;
+		qcom,cpucc = <&cpucc_debug>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&gcc 0>,
+			 <&dispcc 0>,
+			 <&gpucc 0>;
+		clock-names = "xo_clk_src",
+			      "gcc",
+			      "dispcc",
+			      "gpucc";
+		#clock-cells = <1>;
+	};
+
 	clk_virt: interconnect@0 {
 		compatible = "qcom,shikra-clk_virt";
 		#interconnect-cells = <1>;
@@ -818,6 +846,73 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		lmcu_sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		lmcu_sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,smp2p_sleepstate_lmcu {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&lmcu_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&lmcu_sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		label = "lmcu";
+		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+	apcs: syscon@f400000 {
+		compatible = "syscon";
+		reg = <0xf400000 0x1000>;
+	};
+
+	qcom,smsm {
+		compatible = "qcom,smsm";
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		qcom,ipc-1 = <&apcs 12 13>;
+
+		apps_smsm_out: apps@0 {
+			reg = <0>;
+			#qcom,smem-state-cells = <1>;
+		};
+
+		modem_smsm_in: modem@1 {
+			reg = <1>;
+			interrupts = <GIC_SPI 69 IRQ_TYPE_EDGE_RISING>;
+
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	qcom,bam_dmux@6044000 {
+		compatible = "qcom,bam_dmux";
+		reg = <0x6044000 0x19000>;
+		qcom,rx-ring-size = <32>;
+		qcom,max-rx-mtu = <4096>;
+		qcom,fast-shutdown;
+		qcom,smem-states = <&apps_smsm_out 1>, <&apps_smsm_out 11>;
+		qcom,smem-state-names = "pwrctrl", "pwrctrlack";
+		interrupts-extended =
+			<&intc GIC_SPI 69 IRQ_TYPE_EDGE_RISING>,
+			<&modem_smsm_in 1 IRQ_TYPE_EDGE_BOTH>,
+			<&modem_smsm_in 11 IRQ_TYPE_EDGE_BOTH>;
+		interrupt-names = "dmux", "ctrl", "ack";
+		};
+
+	qcom,sps {
+		compatible = "qcom,msm-sps-4k";
+		qcom,pipe-attr-ee;
 	};
 
 	qupv3_id_0: geniqup@4ac0000 {
@@ -960,10 +1055,10 @@
 		qcom,no-clock-support;
 	};
 
-	qcom,msm-imem@C100000 {
+	qcom,msm-imem@C11E000 {
 		compatible = "qcom,msm-imem";
-		reg = <0xC100000 0x1000>;
-		ranges = <0x0 0xC100000 0x1000>;
+		reg = <0xC11E000 0x1000>;
+		ranges = <0x0 0xC11E000 0x1000>;
 		#address-cells = <1>;
 		#size-cells = <1>;
 
@@ -1046,6 +1141,7 @@
 	qcom_pmu: qcom,pmu {
 		compatible = "qcom,pmu";
 		qcom,pmu-events-tbl =
+			< 0x0003 0xFF 0xFF 0xFF >,
 			< 0x0008 0xFF 0xFF 0xFF >,
 			< 0x0011 0xFF 0xFF 0xFF >,
 			< 0x0017 0xFF 0xFF 0xFF >,
@@ -1179,11 +1275,11 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_l3_dcvs_hw>;
 			qcom,sampling-path = <&l3_dcvs_sp>;
-			qcom,miss-ev = <0x17>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
+				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  566400 >,
 					< 1017600  806400 >,
@@ -1197,6 +1293,7 @@
 			gold {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
+				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  566400 >,
 					< 1017600  806400 >,
@@ -1276,6 +1373,40 @@
 		/* Outputs to mss */
 		qcom,smem-states = <&modem_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+
+		remoteproc_modem_glink: glink-edge {
+			qcom,remote-pid = <1>;
+			transport = "smem";
+			mboxes = <&apcs_glb 12>;
+			mbox-names = "mpss_smem";
+			interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
+
+			label = "modem";
+			qcom,glink-label = "mpss";
+
+			qcom,modem_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,low-latency;
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
+			qcom,msm_fastrpc_rpmsg {
+				compatible = "qcom,msm-fastrpc-rpmsg";
+				qcom,glink-channels = "fastrpcglink-apps-dsp";
+				qcom,intents = <0x64 64>;
+			};
+
+			qcom,modem_ds {
+				qcom,glink-channels = "DS";
+				qcom,intents = <0x4000 0x2>;
+			};
+
+			qcom,modem_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+			};
+		};
 	};
 
 	cdsp_pas: remoteproc-cdsp@0B300000 {
@@ -1316,12 +1447,71 @@
 		/* Outputs to turing */
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
+
+		remoteproc_cdsp_glink: glink-edge {
+			qcom,remote-pid = <5>;
+			transport = "smem";
+			mboxes = <&apcs_glb 4>;
+			mbox-names = "cdsp_smem";
+			interrupts = <GIC_SPI 261 IRQ_TYPE_EDGE_RISING>;
+
+			label = "cdsp";
+			qcom,glink-label = "cdsp";
+
+			qcom,cdsp_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+		};
+	};
+
+	dload_mode {
+		compatible = "qcom,dload-mode";
+	};
+
+	lpaicp_pas: remoteproc-lpaicp@0B800000 {
+		compatible = "qcom,shikra-lpaicp-pas";
+		reg = <0x0B800000 0x200000>;
+		status = "ok";
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;
+		mx-supply = <&VDD_MX_LEVEL>;
+		mx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_NOM_PLUS 100000>;
+		reg-names = "cx", "mx";
+
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+		clock-names = "xo";
+
+		firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";
+
+		memory-region = <&lmcu_mem &lmcu_dtb_mem>;
+
+		/* Inputs from lpaicp */
+		interrupts-extended = <&intc GIC_SPI 257 IRQ_TYPE_EDGE_RISING>,
+					<&lmcu_smp2p_in 0 0>,
+					<&lmcu_smp2p_in 2 0>,
+					<&lmcu_smp2p_in 1 0>,
+					<&lmcu_smp2p_in 3 0>;
+
+		interrupt-names = "wdog",
+				"fatal",
+				"handover",
+				"ready",
+				"stop-ack";
+
+		/* Outputs to lpaicp */
+		qcom,smem-states = <&lmcu_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
 	};
 };
 
 #include "shikra-pinctrl.dtsi"
 #include "shikra-reserved-memory.dtsi"
-#include "shikra-stub-regulators.dtsi"
+#include "shikra-pm4125-regulator.dtsi"
+#include "shikra-pm8005-regulator.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"

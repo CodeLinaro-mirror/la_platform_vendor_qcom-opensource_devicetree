@@ -28,7 +28,7 @@
 
 &chosen {
 	bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1";
-	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=11";
+	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=13";
 };
 
 &hab {
@@ -78,11 +78,11 @@
 	interrupts-extended = <&pdc 10  IRQ_TYPE_EDGE_RISING>,
 			<&qvm_vdev_gic GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
 			<&pdc 9  IRQ_TYPE_EDGE_RISING>;
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &qupv3_0 {

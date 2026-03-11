@@ -259,11 +259,14 @@
 
 	rpm-regulator-ldob5 {
 		status = "okay";
+		proxy-supply = <&L5B>;
 		L5B: L5B_E0: pm6450_l5: regulator-l5 {
 			regulator-min-microvolt = <504000>;
 			regulator-max-microvolt = <950000>;
 			qcom,init-voltage = <880000>;
 			status = "okay";
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <97800>;
 		};
 	};
 
@@ -352,11 +355,14 @@
 
 	rpm-regulator-ldob16 {
 		status = "okay";
+		proxy-supply = <&L16B>;
 		L16B: L16B_E0: pm6450_l16: regulator-l16 {
 			regulator-min-microvolt = <1140000>;
 			regulator-max-microvolt = <1260000>;
 			qcom,init-voltage = <1200000>;
 			status = "okay";
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <16600>;
 		};
 	};
 
@@ -525,12 +531,15 @@
 		compatible = "qcom,rpm-smd-regulator-resource";
 		qcom,resource-name = "ldoe";
 		status = "okay";
+		proxy-supply = <&L4E>;
 		L4E: L4E_E0: pm8010_l4: regulator-l4 {
 			compatible = "qcom,rpm-smd-regulator";
 			regulator-min-microvolt = <2600000>;
 			regulator-max-microvolt = <3312000>;
 			qcom,init-voltage = <2600000>;
 			status = "okay";
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-current = <10000>;
 		};
 	};
 
@@ -563,6 +572,7 @@
 	rpm-regulator-ldom7 {
 		compatible = "qcom,rpm-smd-regulator-resource";
 		qcom,resource-name = "ldoe";
+		qcom,hpm-min-load = <10000>;
 		status = "okay";
 		L7E: L7E_E0: pm8010_l7: regulator-l7 {
 			compatible = "qcom,rpm-smd-regulator";

@@ -39,11 +39,13 @@
 
 		status = "disabled";
 
-		dwc3@a600000 {
+		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0xa600000 0xd800>;
 			iommus = <&apps_smmu_0 0x1500 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region0>;
+			dma-coherent;
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&eusb2_phy0>, <&usb_0_qmp_combo_phy>;
 			snps,disable-clk-gating;
@@ -52,6 +54,7 @@
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
+			tx-fifo-resize;
 			snps,hird-threshold = /bits/ 8 <0x0>;
 			snps,is-utmi-l1-suspend;
 			snps,usb2-gadget-lpm-disable;
@@ -59,6 +62,11 @@
 			maximum-speed = "super-speed-plus";
 			dr_mode = "otg";
 			usb-role-switch;
+		};
+
+		dwc3_mem_region0: dwc3_mem_region@0 {
+			iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
+				<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
 		};
 	};
 
@@ -301,11 +309,13 @@
 
 		status = "disabled";
 
-		dwc3@a400000 {
+		dwc3_1: dwc3@a400000 {
 			compatible = "snps,dwc3";
 			reg = <0x0a400000 0xd800>;
 			iommus = <&apps_smmu_0 0x15c0 0x0>;
 			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region1>;
+			dma-coherent;
 			interrupts = <GIC_SPI 917 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&eusb2_phy1>, <&usb_1_qmp_combo_phy>;
 			snps,disable-clk-gating;
@@ -316,12 +326,18 @@
 			snps,dis_u2_susphy_quirk;
 			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
+			tx-fifo-resize;
 			snps,is-utmi-l1-suspend;
 			snps,usb2-gadget-lpm-disable;
 			num-hc-interrupters = /bits/ 16 <3>;
 			maximum-speed = "super-speed-plus";
 			dr_mode = "otg";
 			usb-role-switch;
+		};
+
+		dwc3_mem_region1: dwc3_mem_region@1 {
+			iommu-addresses = <&dwc3_1 0x0 0x0 0x0 0x90000000>,
+				<&dwc3_1 0x0 0xf0000000 0xffffffff 0x10000000>;
 		};
 	};
 
@@ -562,11 +578,13 @@
 
 		status = "disabled";
 
-		dwc3@a200000 {
+		dwc3_2: dwc3@a200000 {
 			compatible = "snps,dwc3";
 			reg = <0x0a200000 0xd800>;
 			iommus = <&apps_smmu_0 0x14e0 0x0>;
-			qcom,iommu-dma = "bypass";
+			qcom,iommu-dma = "atomic";
+			memory-region = <&dwc3_mem_region2>;
+			dma-coherent;
 			interrupts = <GIC_SPI 910 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&eusb2_phy2>, <&usb_nop_phy>;
 			snps,disable-clk-gating;
@@ -577,6 +595,11 @@
 			maximum-speed = "high-speed";
 			dr_mode = "otg";
 			usb-role-switch;
+		};
+
+		dwc3_mem_region2: dwc3_mem_region@2 {
+			iommu-addresses = <&dwc3_2 0x0 0x0 0x0 0x90000000>,
+				<&dwc3_2 0x0 0xf0000000 0xffffffff 0x10000000>;
 		};
 	};
 

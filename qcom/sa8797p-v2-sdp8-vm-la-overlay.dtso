@@ -11,4 +11,5 @@
 	compatible = "qcom,sa8797p", "qcom,quinvm";
 	qcom,msm-id = <690 0x20000>;
 	qcom,board-id = <0x0 0x1000001>;
+	qcom,sdp = <0x320>;
 };

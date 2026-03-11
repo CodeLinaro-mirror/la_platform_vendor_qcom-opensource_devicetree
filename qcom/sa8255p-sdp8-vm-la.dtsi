@@ -14,16 +14,6 @@
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
 	};
-
-	ipcc_compute_l0_apps_ns1: qcom,ipcc@461000 {
-		compatible = "qcom,ipcc";
-		reg = <0x461000 0x1000>;
-		interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-controller;
-		#interrupt-cells = <3>;
-		#mbox-cells = <2>;
-		status = "ok";
-	};
 };
 
 &{/} {
@@ -51,7 +41,7 @@
 
 &chosen {
 	bootargs ="rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_    show_resume_irq.debug_mask=1 fw_devlink.strict=1";
-	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=100";
+	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=18";
 };
 
 &hab {
@@ -71,7 +61,6 @@
 };
 
 &qupv3_2 {
-	iommus = <&apps_smmu 0x5a3  0x0>;
 	status = "ok";
 };
 
@@ -92,15 +81,15 @@
 };
 
 &usb1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2 {

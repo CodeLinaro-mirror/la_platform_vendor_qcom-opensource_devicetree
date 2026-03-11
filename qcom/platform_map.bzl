@@ -6,6 +6,7 @@ _platform_map = {
             {"name": "lemans-vm-lv.dtb"},
             {"name": "lemans-vm-lv-mt.dtb"},
             {"name": "lemans-gh-vm-lv-qam-ridesx.dtb"},
+            {"name": "monaco-gh-vm-lv-qam-ridesx.dtb"},
             {"name": "sa7255p-sdp8-vm-la.dtb"},
             {"name": "sa7775p-sdp8-vm-la.dtb"},
             {"name": "sa7255p-sdp8-vm-la-mt.dtb"},
@@ -13,7 +14,9 @@ _platform_map = {
             {"name": "sa7775p-sdp8-vm-la-mt.dtb"},
             {"name": "sa7775p-sdp8-vm-lv-mt.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
+            {"name": "sa8797p-gunyah-vm-qam-star.dtb"},
             {"name": "sa8797p-v2-gunyah-vm-qam.dtb"},
+            {"name": "sa8797p-v2-gunyah-vm-qam-star.dtb"},
             {"name": "monaco-vm-la.dtb"},
             {"name": "monaco-sdp8-vm-lv.dtb"},
             {"name": "monaco-sdp8-vm-lv-headless-mt.dtb"},
@@ -32,6 +35,9 @@ _platform_map = {
             {"name": "monaco-vm-la-mt.dtb"},
             {"name": "lemans-gh-vm-la-qam-ridesx.dtb"},
             {"name": "lemans-gh-vm-la-flex-qam-ridesx.dtb"},
+            {"name": "monaco-gh-vm-la-qam-ridesx.dtb"},
+            {"name": "sa8797p-sdp8-vm-la-mt.dtb"},
+            {"name": "sa8797p-v2-sdp8-vm-la-mt.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -39,6 +45,7 @@ _platform_map = {
             {"name": "lemans-vm-lv-overlay.dtbo"},
             {"name": "lemans-vm-lv-mt-overlay.dtbo"},
             {"name": "lemans-gh-vm-lv-qam-ridesx-overlay.dtbo"},
+            {"name": "monaco-gh-vm-lv-qam-ridesx-overlay.dtbo"},
             {"name": "sa7255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7775p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7255p-sdp8-vm-la-mt-overlay.dtbo"},
@@ -64,6 +71,9 @@ _platform_map = {
             {"name": "monaco-vm-la-mt-overlay.dtbo"},
             {"name": "lemans-gh-vm-la-qam-ridesx-overlay.dtbo"},
             {"name": "lemans-gh-vm-la-flex-qam-ridesx-overlay.dtbo"},
+            {"name": "monaco-gh-vm-la-qam-ridesx-overlay.dtbo"},
+            {"name": "sa8797p-sdp8-vm-la-mt-overlay.dtbo"},
+            {"name": "sa8797p-v2-sdp8-vm-la-mt-overlay.dtbo"},
         ],
     },
     "canoe": {
@@ -129,7 +139,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin"],
     },
     "alor": {
         "dtb_list": [
@@ -235,6 +245,26 @@ _platform_map = {
             {"name": "chora-rcm-overlay.dtbo"},
             {"name": "chora-rcm-st54l-overlay.dtbo"},
             {"name": "chora-rcm-wcn7750-overlay.dtbo"},
+        ],
+    },
+    "ravelin": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "ravelin.dtb"},
+            {"name": "ravelinp.dtb"},
+            {"name": "ravelin-sg.dtb"},
+            {"name": "ravelinp-sg.dtb"},
+            {"name": "ravelin-4gb.dtb"},
+            {"name": "ravelinp-4gb.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "ravelin-atp-overlay.dtbo"},
+            {"name": "ravelin-idp-overlay.dtbo"},
+            {"name": "ravelin-idp-wcn3950-amoled-rcm-overlay.dtbo"},
+            {"name": "ravelin-idp-wcn3988-4gb-overlay.dtbo"},
+            {"name": "ravelin-qrd-overlay.dtbo"},
+            {"name": "ravelin-qrd-4gb-overlay.dtbo"},
         ],
     },
     "malabar": {
@@ -873,20 +903,42 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {
+                "name": "pikachup.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
-            {
-                "name": "pikachu-rumi-overlay.dtbo",
-            },
+            {"name": "pikachu-atp-overlay.dtbo"},
+            {"name": "pikachup-atp-overlay.dtbo"},
+            {"name": "pikachu-idp-overlay.dtbo"},
+            {"name": "pikachup-idp-overlay.dtbo"},
+            {"name": "pikachu-idp-dtof-overlay.dtbo"},
+            {"name": "pikachup-idp-dtof-overlay.dtbo"},
+            {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },
     "shikra": {
         "dtb_list": [
             # keep sorted
-            {"name": "shikra.dtb"},
+            {"name": "shikra-cqm.dtb"},
+            {
+                "name": "shikra-cqs.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-lite-cqm.dtb"},
+            {
+                "name": "shikra-lite-cqs.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
+            {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },

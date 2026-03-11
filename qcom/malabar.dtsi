@@ -1355,6 +1355,23 @@
 		qcom,rproc-handle = <&adsp_pas>;
 	};
 
+	cpufreq_hw: qcom,cpufreq-hw {
+		compatible = "qcom,cpufreq-epss";
+		reg = <0x0 0x0fd91000 0x0 0x1000>, <0x0 0x0fd92000 0x0 0x1000>;
+		reg-names = "freq-domain0", "freq-domain1";
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GPLL0>;
+		clock-names = "xo", "alternate";
+		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "dcvsh0_int", "dcvsh1_int";
+		#freq-domain-cells = <1>;
+	};
+
+	qcom,cpufreq-hw-debug {
+		compatible = "qcom,cpufreq-hw-epss-debug";
+		qcom,freq-hw-domain = <&cpufreq_hw 0>, <&cpufreq_hw 1>;
+	};
+
 	adsp_pas: remoteproc-adsp@a400000 {
 		compatible = "qcom,malabar-adsp-pas";
 		reg = <0x0 0xa400000 0x0 0x100>;
@@ -1545,6 +1562,20 @@
 			qcom,glinkpkt-edge = "adsp";
 			qcom,glinkpkt-ch-name = "bt_cp_ctrl";
 			qcom,glinkpkt-dev-name = "bt_cp_ctrl";
+		};
+
+		qcom,glinkpkt-ims-sub-1 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "Ims_dc_sub1";
+			qcom,glinkpkt-dev-name = "ims_dc_sub1";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-ims-sub-2 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "Ims_dc_sub2";
+			qcom,glinkpkt-dev-name = "ims_dc_sub2";
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 

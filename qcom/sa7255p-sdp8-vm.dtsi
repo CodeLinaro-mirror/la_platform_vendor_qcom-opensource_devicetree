@@ -11,7 +11,7 @@
 	qcom,msm-id = <606 0x10000>;
 
 	aliases {
-		hsuart0 = &qupv3_se2_4uart;
+		hsuart0 = "/soc/qcom,qupv3_0_geni_se@9c0000/qcom,qup_uart@988000";
 	};
 
 	cpus {
