@@ -292,6 +292,7 @@
 			&qcom_gunyah_panic_notifier
 			&google_debug_kinfo
 			&qcom_dma_heaps
+			&qrtr_gunyah
 			>;
 	};
 
@@ -412,7 +413,7 @@
 		affinity = <0>;
 	};
 
-	qrtr-gunyah {
+	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x103>;
 	};
