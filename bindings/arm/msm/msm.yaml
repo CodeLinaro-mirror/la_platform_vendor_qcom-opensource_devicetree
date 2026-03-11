@@ -175,6 +175,23 @@ properties:
               - qcom,rcm
           - const: qcom,chorap
 
+      - description: Qualcomm Technologies, Inc. Bourtzi
+        items:
+          - enum:
+              - qcom,bourtzi-atp
+              - qcom,atp
+              - qcom,bourtzi-cdp
+              - qcom,cdp
+              - qcom,bourtzi-mtp
+              - qcom,mtp
+              - qcom,bourtzi-qrd
+              - qcom,qrd
+              - qcom,bourtzi-rcm
+              - qcom,rcm
+              - qcom,bourtzi-rumi
+              - qcom,rumi
+          - const: qcom,bourtzi
+
       - description: Qualcomm Technologies, Inc. Malabar
         items:
           - enum:
