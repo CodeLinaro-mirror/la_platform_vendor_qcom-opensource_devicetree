@@ -171,7 +171,8 @@
 				peer-default;
 				memory {
 					qcom,label = <0x103>;
-					allocate-base;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
 				};
 			};
 
@@ -291,6 +292,7 @@
 			&virtio_mem_device
 			&google_debug_kinfo
 			&qcom_dma_heaps
+			&qrtr_gunyah
 			>;
 	};
 
@@ -398,7 +400,7 @@
 		affinity = <0>;
 	};
 
-	qrtr-gunyah {
+	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x103>;
 	};
