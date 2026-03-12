@@ -180,6 +180,12 @@
 		size = <0x0 0x2400000>;
 		linux,cma-default;
 	};
+
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
 };
 
 &soc {
@@ -349,6 +355,11 @@
 		compatible = "syscon";
 		reg = <0x0 0x1fc0000 0x0 0x30000>;
 		/* TODO: Make sure dload mode is updated in qcom_scm node */
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
 	};
 
 	apps_smmu: smmu {};
