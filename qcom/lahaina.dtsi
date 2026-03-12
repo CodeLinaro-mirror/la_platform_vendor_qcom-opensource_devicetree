@@ -5210,6 +5210,11 @@
 		vio-supply = <&S10B>;
 		rtc6226,vio-supply-voltage = <1800000 1800000 >;
 	};
+
+	fsa4480: fsa4480@42 {
+		compatible = "qcom,fsa4480-i2c";
+		reg = <0x42>;
+	};
 };
 
 #include "msm-rdbg.dtsi"
