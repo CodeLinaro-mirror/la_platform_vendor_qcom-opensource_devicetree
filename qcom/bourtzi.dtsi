@@ -150,13 +150,18 @@
 
 	ddr_regions: ddr-regions { };
 
-	firmware: firmware {
-		qcom_scm: qcom_scm { };
-	};
+	firmware: firmware { };
 
 	reserved_memory: reserved-memory { };
 
 	soc: soc { };
+};
+
+&firmware {
+	qcom_scm: qcom_scm {
+		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x13000>;
+	};
 };
 
 &soc {
