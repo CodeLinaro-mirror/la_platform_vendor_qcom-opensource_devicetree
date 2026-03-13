@@ -4,6 +4,7 @@
  */
 
 #include "shikra.dtsi"
+#include "shikra-pmic-overlay-pm4125.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Shikra CQS SoC";
