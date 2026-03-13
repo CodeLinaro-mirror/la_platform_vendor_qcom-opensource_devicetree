@@ -80,9 +80,6 @@
 		interrupts-extended = <&tlmm 113 IRQ_TYPE_EDGE_RISING>;
 		reset-gpios = <&tlmm 112 GPIO_ACTIVE_LOW>;
 
-		vdd-l1-l2-supply = <&S8B>;
-		vdd-l5-supply = <&S9B>;
-
 		pinctrl-names = "default";
 		pinctrl-0 = <&pm8010_reset>, <&pm8010_interrupt>;
 
