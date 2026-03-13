@@ -526,11 +526,21 @@
 	};
 
 	audiocorecc: clock-controller@a0a0000 {
-		compatible = "qcom,dummycc";
+		compatible = "qcom,shikra-audiocorecc";
 		reg = <0xa0a0000 0x10000>;
-		clock-output-names = "audiocorecc_clocks";
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&gcc GCC_LPASS_CONFIG_CLK>,
+			 <&gcc GCC_LPASS_CORE_AXIM_CLK>,
+			 <&sleep_clk>;
+		clock-names = "bi_tcxo",
+			      "lpass_config_clk",
+			      "lpass_core_axim_clk",
+			      "sleep_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		status = "disabled";
 	};
 
 	dispcc: clock-controller@5f00000 {
@@ -573,6 +583,8 @@
 			      "pcie_pipe_clk",
 			      "sleep_clk",
 			      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
+		protected-clocks = <GCC_LPASS_CONFIG_CLK>,
+				   <GCC_LPASS_CORE_AXIM_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
