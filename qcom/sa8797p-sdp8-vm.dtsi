@@ -637,6 +637,22 @@
 };
 
 &hab {
+	mmidgrp200: mmidgrp200 {
+	    dma-coherent;
+	};
+
+	mmidgrp300: mmidgrp300 {
+	    dma-coherent;
+	};
+
+	mmidgrp400: mmidgrp400 {
+	    dma-coherent;
+	};
+
+	mmidgrp500: mmidgrp500 {
+	    dma-coherent;
+	};
+
 	mmidgrp1700: mmidgrp1700 {
 	    grp-start-id = <1700>;
 	    role = "fe";
