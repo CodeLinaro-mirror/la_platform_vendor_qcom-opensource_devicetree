@@ -228,6 +228,15 @@ bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
+
+ifeq ($(CONFIG_ARCH_BENGAL), y)
+bengal-le-dtb-$(CONFIG_ARCH_BENGAL) += qrb4210-rb2.dtb \
+				qrb4210-rb2-v2.dtb \
+				qrb4210-rb2-v3.dtb \
+				qrb4210-rb2-v4.dtb
+dtb-y += $(bengal-le-dtb-y)
+endif
+
 SCUBA_BASE_DTB +=  scuba-iot.dtb scuba-iot-2gb.dtb scubap-iot.dtb scubap-iot-idp.dtb scubap-iot-idp-2gb.dtb
 
 SCUBA_BOARDS += \
