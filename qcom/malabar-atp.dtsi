@@ -195,7 +195,7 @@
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "pvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <36>;
+		qts,trusted-touch-spi-irq = <267>;
 		qts,trusted-touch-io-bases = <0x04A8C000>;
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 8 0 &tlmm 9 0 &tlmm 10 0
