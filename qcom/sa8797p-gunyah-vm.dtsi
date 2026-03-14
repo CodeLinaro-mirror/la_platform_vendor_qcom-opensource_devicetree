@@ -1431,31 +1431,51 @@
 				patch = "/soc/kgsl-smmu@98a0000";
 			};
 
-			hab-virq5-dbl {
+			hab_virq_dbl5 {
 				vdevice-type = "doorbell";
-				generate = "/hypervisor/hab-virq5-dbl";
+				generate = "/hypervisor/hab_virq_5";
 				qcom,label = <0x5>;
+				push-compatible = "qcom,msm-virt_irq";
 				peer-default;
 			};
 
-			hab-virq5-dbl-source {
-				vdevice-type = "doorbell-source";
-				generate = "/hypervisor/hab-virq5-dbl-source";
-				qcom,label = <0x5>;
-				peer-default;
-			};
-
-			hab-virq6-dbl {
+			hab_virq_dbl6 {
 				vdevice-type = "doorbell";
-				generate = "/hypervisor/hab-virq6-dbl";
+				generate = "/hypervisor/hab_virq_6";
 				qcom,label = <0x6>;
+				push-compatible = "qcom,msm-virt_irq";
 				peer-default;
 			};
 
-			hab-virq6-dbl-source {
-				vdevice-type = "doorbell-source";
-				generate = "/hypervisor/hab-virq6-dbl-source";
-				qcom,label = <0x6>;
+			hab_virq_dbl9 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_9";
+				qcom,label = <0x9>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl10 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_a";
+				qcom,label = <0xa>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl11 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_b";
+				qcom,label = <0xb>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl12 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_c";
+				qcom,label = <0xc>;
+				push-compatible = "qcom,msm-virt_irq";
 				peer-default;
 			};
 
@@ -1738,7 +1758,6 @@
 	hab: qcom,hab {
 		compatible = "qcom,hab";
 		vmid = <2>;
-		virt-irq = <0x4 0x5 0x6>;
 
 		mmidgrp100: mmidgrp100 {
 			grp-start-id = <100>;
