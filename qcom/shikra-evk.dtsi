@@ -3,8 +3,6 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "shikra-pmic-overlay-pm4125.dtsi"
-
 &gpi_dma0 {
 	status = "okay";
 };
