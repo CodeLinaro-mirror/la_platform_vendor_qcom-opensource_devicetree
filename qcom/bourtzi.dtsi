@@ -165,6 +165,7 @@
 };
 
 #include "bourtzi-reserved-memory.dtsi"
+#include "msm-arm-smmu-bourtzi.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
@@ -403,8 +404,6 @@
 		compatible = "qcom,va-minidump";
 		memory-region = <&va_md_mem>;
 	};
-
-	apps_smmu: smmu {};
 };
 
 #include "bourtzi-pinctrl.dtsi"
