@@ -166,6 +166,7 @@
 
 #include "bourtzi-reserved-memory.dtsi"
 #include "msm-arm-smmu-bourtzi.dtsi"
+#include "bourtzi-dma-heaps.dtsi"
 
 &reserved_memory {
 	#address-cells = <2>;
