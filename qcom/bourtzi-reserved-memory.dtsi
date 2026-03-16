@@ -53,8 +53,10 @@
 	/* secdata region at 0x808ff000 can be reused by apps */
 
 	smem_mem: smem_region@80900000 {
+		compatible = "qcom,smem";
 		no-map;
 		reg = <0x0 0x80900000 0x0 0x200000>;
+		hwlocks = <&tcsr_mutex 3>;
 	};
 
 	cpucp_fw_mem: cpucp_fw_region@80b00000 {
