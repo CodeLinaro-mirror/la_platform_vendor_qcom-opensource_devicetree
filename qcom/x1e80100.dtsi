@@ -1012,7 +1012,7 @@
 
 			wakeup-parent = <&pdc>;
 			gpio-ranges = <&tlmm 0 0 239>;
-			gpio-reserved-ranges = <34 2>, <44 4>, <238 1>;
+			gpio-reserved-ranges = <34 2>, <44 4>;
 		};
 
 		slimbam: bamdma@6C04000 {
