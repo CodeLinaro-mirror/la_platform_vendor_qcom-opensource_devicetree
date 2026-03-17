@@ -112,14 +112,16 @@
 		<0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x3d00000>,
 		<0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 0xeff00000>;
 
-	interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
+	interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
+	interrupt-names = "int_global_int";
 
-	interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-			"int_d";
+	#interrupt-cells = <1>;
+	interrupt-map-mask = <0 0 0 0x7>;
+
+	interrupt-map = <0 0 0 1 &intc GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 2 &intc GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 3 &intc GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 4 &intc GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
 
 	msi-parent = <&pcie0_msi>;
 
@@ -362,14 +364,16 @@
 	ranges = <0x02000000 0x0 0x60000000 0x0 0x60000000 0x0 0x20000000>,
 		<0x43000000 0x5 0x10100000 0x5 0x10100000 0x2 0xeff00000>;
 
-	interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH
-			GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+	interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
+	interrupt-names = "int_global_int";
 
-	interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-			"int_d";
+	#interrupt-cells = <1>;
+	interrupt-map-mask = <0 0 0 0x7>;
+
+	interrupt-map = <0 0 0 1 &intc GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 2 &intc GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 3 &intc GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH
+			0 0 0 4 &intc GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
 
 	msi-parent = <&pcie1_msi>;
 
