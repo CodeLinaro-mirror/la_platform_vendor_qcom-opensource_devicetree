@@ -76,6 +76,10 @@
 	};
 };
 
+&battery_charger {
+	qcom,wireless-charging-not-supported;
+};
+
 &pmk8550_rtc {
 	qcom,no-alarm; /* alarm owned by ADSP */
 };
