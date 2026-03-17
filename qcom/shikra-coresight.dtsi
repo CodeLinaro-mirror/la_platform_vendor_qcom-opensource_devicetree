@@ -1495,7 +1495,6 @@
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x0160 0x0>;
-		dma-coherent;
 		arm,scatter-gather;
 
 		qcom,sw-usb;
