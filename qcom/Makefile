@@ -417,8 +417,8 @@ pineapple-dtb-$(CONFIG_ARCH_PINEAPPLE) += \
 pineapple-overlays-dtb-$(CONFIG_ARCH_PINEAPPLE) += $(PINEAPPLE_BOARDS) $(NOAPQ_PINEAPPLE_BOARDS) $(PINEAPPLE_BASE_DTB) $(PINEAPPLE_APQ_BASE_DTB)
 dtb-y += $(pineapple-dtb-y)
 
-SERAPH_BASE_DTB += seraph.dtb
-SERAPH_APQ_BASE_DTB += seraphp.dtb
+SERAPH_BASE_DTB += seraph.dtb seraph-v1.1.dtb
+SERAPH_APQ_BASE_DTB += seraphp.dtb seraphp-v1.1.dtb
 
 SERAPH_BOARDS += \
 		seraph-atp-overlay.dtbo \
@@ -431,6 +431,16 @@ SERAPH_BOARDS += \
 		seraphp-idp-dtof-overlay.dtbo \
 		seraphp-idp-no-display-overlay.dtbo \
 		seraphp-idp-no-display-no-gpu-overlay.dtbo \
+		seraph-v1.1-atp-overlay.dtbo \
+		seraph-v1.1-idp-overlay.dtbo \
+		seraph-v1.1-idp-dtof-overlay.dtbo \
+		seraph-v1.1-idp-no-display-overlay.dtbo \
+		seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo \
+		seraphp-v1.1-atp-overlay.dtbo \
+		seraphp-v1.1-idp-overlay.dtbo \
+		seraphp-v1.1-idp-dtof-overlay.dtbo \
+		seraphp-v1.1-idp-no-display-overlay.dtbo \
+		seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo \
 		seraphp-qar-camera-audio-overlay.dtbo \
 		seraphp-qar-overlay.dtbo
 
