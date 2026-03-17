@@ -2455,17 +2455,6 @@
 		clock-names = "apb_pclk";
 	};
 
-	mapss_cti: cti@8a02000 {
-		compatible = "arm,coresight-cti", "arm,primecell";
-		reg = <0x0 0x8a02000 0x0 0x1000>;
-
-		arm,primecell-periphid = <0x000bb922>;
-		device-name = "cti_mapss_cti";
-
-		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-		clock-names = "apb_pclk";
-	};
-
 	wcss_cti0: cti@89a4000 {
 		compatible = "arm,coresight-cti", "arm,primecell";
 		reg = <0x0 0x89a4000 0x0 0x1000>;
@@ -2524,4 +2513,14 @@
 		clock-names = "apb_pclk";
 	};
 
+	swao_cti: cti@8a02000 {
+		compatible = "arm,coresight-cti", "arm,primecell";
+		reg = <0x0 0x8a02000 0x0 0x1000>;
+
+		arm,primecell-periphid = <0x000bb922>;
+		device-name = "cti_swao_cti";
+
+		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
+		clock-names = "apb_pclk";
+	};
 };
