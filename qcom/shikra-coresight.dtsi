@@ -258,6 +258,8 @@
 
 		device-name = "tpda_aodbg";
 
+		qcom,legacy-timestamp-en;
+
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
