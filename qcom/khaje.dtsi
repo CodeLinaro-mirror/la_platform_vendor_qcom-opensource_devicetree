@@ -431,6 +431,10 @@
 		#size-cells = <2>;
 		ranges;
 
+		pvmfw_mem: pvmfw_region@0x48000000 {
+			reg = <0x0 0x48000000 0x0 0x100000>;
+		};
+
 		hyp_mem: hyp_region@0x44600000 {
 			no-map;
 			reg = <0x0 0x44600000 0x0 0xe00000>;
