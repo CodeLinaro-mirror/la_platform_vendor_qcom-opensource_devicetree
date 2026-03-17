@@ -412,6 +412,15 @@
 			qcom,dload-mode = <&tcsr 0x13000>;
 		};
 
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
 		qtee_shmbridge {
 			compatible = "qcom,tee-shared-memory-bridge";
 		};
@@ -929,13 +938,6 @@
 			<&rpmcc RPM_SMD_CE1_CLK>;
 		qcom,ce-opp-freq = <192000000>;
 		qcom,qsee-reentrancy-support = <2>;
-	};
-
-	qcom_smcinvoke: smcinvoke@61800000 {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
 	};
 
 	qcom_rng: qrng@1b53000 {
