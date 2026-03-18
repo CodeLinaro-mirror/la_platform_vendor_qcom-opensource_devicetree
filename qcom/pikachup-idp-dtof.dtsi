@@ -12,3 +12,7 @@
 		status = "okay";
 	};
 };
+
+&gpucc {
+	status = "disabled";
+};
