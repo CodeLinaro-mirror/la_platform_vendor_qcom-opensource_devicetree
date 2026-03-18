@@ -1299,7 +1299,7 @@
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x4744000 0x1000>, <0x4745000 0x1000>,
 		      <0x4748000 0x8000>;
-		reg-names = "hc", "cqhci", "cqhci_ice";
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts-extended = <&intc GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
 				<&intc GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
