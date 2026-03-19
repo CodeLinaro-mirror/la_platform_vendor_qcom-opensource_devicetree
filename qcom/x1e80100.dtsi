@@ -1732,6 +1732,8 @@
 				interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
 
 				iommus = <&apps_smmu 0x1400 0x0>;
+				qcom,iommu-dma = "atomic";
+				dma-coherent;
 
 				phys = <&usb_mp_hsphy0>, <&usb_mp_qmpphy0>,
 				       <&usb_mp_hsphy1>, <&usb_mp_qmpphy1>;
@@ -1745,7 +1747,6 @@
 				snps,dis-u1-entry-quirk;
 				snps,dis-u2-entry-quirk;
 
-				dma-coherent;
 			};
 		};
 
