@@ -393,6 +393,12 @@ properties:
               - qcom,adp-air
           - const: qcom,sa8195p
 
+      - description: Qualcomm Technologies, Inc. sa8x97p
+        items:
+          - enum:
+              - qcom,qam
+          - const: qcom,sa8797p
+
       - description: Qualcomm Technologies, Inc. QUINVM
         items:
           - const: qcom,quinvm
