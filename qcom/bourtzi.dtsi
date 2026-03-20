@@ -1535,6 +1535,89 @@
 		};
 	};
 
+	adsp_pas: remoteproc-adsp@3000000 {
+		compatible = "qcom,bourtzi-adsp-pas";
+		reg = <0x0 0x3000000 0x0 0x10000>;
+		status = "ok";
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "xo";
+
+		cx-supply = <&VDD_LPI_CX_LEVEL>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		mx-supply = <&VDD_LPI_MX_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+		reg-names = "cx", "mx";
+
+		qcom,qmp = <&aoss_qmp>;
+
+		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "crypto_ddr";
+
+		memory-region = <&adsp_mem>;
+		firmware-name = "adsp.mdt";
+
+		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
+				      <&adsp_smp2p_in 0 0>,
+				      <&adsp_smp2p_in 2 0>,
+				      <&adsp_smp2p_in 1 0>,
+				      <&adsp_smp2p_in 3 0>,
+				      <&adsp_smp2p_in 7 0>;
+
+		interrupt-names = "wdog",
+				  "fatal",
+				  "handover",
+				  "ready",
+				  "stop-ack",
+				  "shutdown-ack";
+
+		qcom,smem-states = <&adsp_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
+	};
+
+	modem_pas: remoteproc-mss@4080000 {
+		compatible = "qcom,bourtzi-modem-pas";
+		reg = <0x0 0x4080000 0x0 0x10000>;
+		status = "ok";
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>;
+		clock-names = "xo";
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		mx-supply = <&VDD_MX_LEVEL>;
+		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		reg-names = "cx", "mx";
+
+		qcom,qmp = <&aoss_qmp>;
+
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "rproc_ddr","crypto_ddr";
+
+		memory-region = <&mpss_mem &q6_mpss_dtb_mem &system_cma>;
+		firmware-name = "modem.mdt", "modem_dtb.mdt";
+
+		/* Inputs from mss */
+		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+				      <&modem_smp2p_in 0 0>,
+				      <&modem_smp2p_in 2 0>,
+				      <&modem_smp2p_in 1 0>,
+				      <&modem_smp2p_in 3 0>,
+				      <&modem_smp2p_in 7 0>;
+
+		interrupt-names = "wdog",
+				  "fatal",
+				  "handover",
+				  "ready",
+				  "stop-ack",
+				  "shutdown-ack";
+
+		/* Outputs to mss */
+		qcom,smem-states = <&modem_smp2p_out 0>;
+		qcom,smem-state-names = "stop";
+	};
+
 	wpss_pas: remoteproc-wpss@08a00000 {
 		compatible = "qcom,bourtzi-wpss-pas";
 		reg = <0x0 0x08a00000 0x0 0x10000>;
