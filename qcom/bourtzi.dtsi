@@ -311,6 +311,10 @@
 		#mbox-cells = <2>;
 	};
 
+	qcom,glink {
+		compatible = "qcom,glink";
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,bourtzi-tlmm";
 		reg = <0x0 0xf000000 0x0 0x1000000>;
