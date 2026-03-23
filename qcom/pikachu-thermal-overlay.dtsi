@@ -130,6 +130,7 @@
 	};
 
 	pmg1110_temp_alarm: pmg1110_tz {
+		status = "disabled";
 		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-sensors = <&pmg1110_tz>;

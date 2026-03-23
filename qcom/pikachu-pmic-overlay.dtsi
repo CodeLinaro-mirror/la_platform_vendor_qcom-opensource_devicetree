@@ -54,3 +54,14 @@
 		nvmem-cell-names = "restart_reason";
 	};
 };
+
+&spmi_debug_bus_0 {
+	qcom,pmg1110-debug@a {
+		status = "disabled";
+	};
+};
+
+&pmg1110 {
+	status = "disabled";
+};
+
