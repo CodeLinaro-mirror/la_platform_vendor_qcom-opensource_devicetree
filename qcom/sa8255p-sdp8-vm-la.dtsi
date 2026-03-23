@@ -109,9 +109,9 @@
 };
 
 &ufs2phy_mem {
-	status = "disabled";
+	status = "ok";
 };
 
 &ufshc2_mem {
-	status = "disabled";
+	status = "ok";
 };
