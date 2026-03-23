@@ -51,6 +51,13 @@
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x1000000>;
 		};
+
+		kinfo_mem: debug_kinfo_region {
+			alloc-ranges = <0x0 0x0 0xffffffff 0xffffffff>;
+			size = <0x0 0x1000>;
+			no-map;
+		};
+
 	};
 
 	cpus {
@@ -305,6 +312,11 @@
 
 		vdevices {
 			generate = "/hypervisor";
+			minidump {
+				vdevice-type = "minidump";
+				push-compatible = "qcom,minidump_rm";
+				minidump_allowed;
+			};
 
 			rm-rpc {
 				vdevice-type = "rm-rpc";
@@ -1104,6 +1116,11 @@
 		#iommu-cells = <2>;
 		qcom,use-3-lvl-tables;
 		dma-coherent;
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
 	};
 };
 
