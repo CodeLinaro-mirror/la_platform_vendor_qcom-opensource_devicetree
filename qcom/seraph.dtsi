@@ -1657,18 +1657,36 @@
 		qcom,gpios-reserved = <18 19>;
 	};
 
+	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <5>;
+	};
+
+	pcie_crm_hw_1_bcm_voter: bcm_voter@1 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <1>;
+		qcom,crm-pwr-states = <5>;
+	};
+
 	clk_virt: interconnect@0 {
 		compatible = "qcom,seraph-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	mc_virt: interconnect@1 {
 		compatible = "qcom,seraph-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	cnoc_cfg: interconnect@1600000 {
@@ -1691,8 +1709,10 @@
 		compatible = "qcom,seraph-gem_noc";
 		reg = <0x24100000 0x163080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@8240000 {
@@ -1739,8 +1759,10 @@
 		compatible = "qcom,seraph-pcie_anoc";
 		reg = <0x016C0000 0xe400>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
 			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
 	};
