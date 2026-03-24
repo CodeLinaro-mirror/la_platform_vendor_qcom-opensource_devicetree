@@ -65,3 +65,6 @@
 	status = "disabled";
 };
 
+&pm8010_n {
+	status = "disabled";
+};
