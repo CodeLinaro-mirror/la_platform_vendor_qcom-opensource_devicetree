@@ -1558,8 +1558,8 @@
 		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
 		 * from 0x40000000 - 0x4fffffff.
 		 */
-		iommu-addresses = <&sdhc_1 0x0 0x0 0x0 0x40000000>,
-						  <&sdhc_1 0x0 0x50000000 0xffffffff 0xb0000000>;
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				<&sdhc_1 0x50000000 0xb0000000>;
 	};
 
 	sdhc_1: sdhci@B24000 {
@@ -1574,7 +1574,7 @@
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
 
 		qcom,ice-use-hwkm;
 		/*
