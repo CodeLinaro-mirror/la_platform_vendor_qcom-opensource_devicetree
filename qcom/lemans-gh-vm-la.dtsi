@@ -17,6 +17,7 @@
 
 	aliases {
 		hsuart0 = &qupv3_se17_4uart;
+		hsuart1 = &qupv3_se3_4uart;
 	};
 
 	qcom,mem-buf {
@@ -363,6 +364,11 @@
 				0x0 0x88C000 0x0 0x88C000 0x0 0x1000 0x0
 				0x0 0x88D000 0x0 0x88D000 0x0 0x1000 0x0
 				0x0 0x88E000 0x0 0x88E000 0x0 0x1000 0x0
+				/* QUPv3 SE4 region */
+				0x0 0x98c000 0x0 0x98c000 0x0 0x1000 0x0
+				0x0 0x98D000 0x0 0x98D000 0x0 0x1000 0x0
+				0x0 0x98E000 0x0 0x98E000 0x0 0x1000 0x0
+				0x0 0x98F000 0x0 0x98F000 0x0 0x1000 0x0
 				/* QRNG region */
 				0x0 0x10dc000 0x0 0x10dc000 0x0 0x1000 0x0
 				/* MPROC NS1 IPCC region */
@@ -400,6 +406,8 @@
 		gic-irq-ranges = <
 			/* QUPv3 SE17 GIC IRQ */
 			617 617
+			/* QUPv3 SE4 GIC IRQ */
+			562 562
 			/* MPROC NS1 IPCC GIC IRQ */
 			591 591
 			/* Compute L0 IPCC GIC IRQ */
@@ -1897,6 +1905,38 @@
 	interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
 
 	power-domains = <&scmi_power 0>, <&scmi_perf 0>;
+	power-domain-names = "power", "perf";
+	status = "ok";
+};
+
+&qupv3_0 {
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	compatible = "qcom,sa8255p-geni-se-qup";
+	reg = <0x9c0000 0x1000>;
+	iommus = <&apps_smmu 0x418 0x0>;
+	qcom,iommu-dma = "default";
+	status = "ok";
+};
+
+	/* BT UART 2nd Hastings Instance */
+&qupv3_se3_4uart {
+	/delete-property/ clocks;
+	/delete-property/ clock-names;
+	/delete-property/ interconnects;
+	/delete-property/ interconnect-names;
+	/delete-property/ pinctrl-names;
+	/delete-property/ pinctrl-0;
+	/delete-property/ pinctrl-1;
+	/delete-property/ pinctrl-2;
+	/delete-property/ pinctrl-3;
+	/delete-property/ interrupts-extended;
+	/delete-property/ qcom,wakeup-byte;
+	compatible = "qcom,sa8255p-geni-uart";
+	reg = <0x98c000 0x4000>;
+	interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
+
+	power-domains = <&scmi_power 10>, <&scmi_perf 1>;
 	power-domain-names = "power", "perf";
 	status = "ok";
 };
