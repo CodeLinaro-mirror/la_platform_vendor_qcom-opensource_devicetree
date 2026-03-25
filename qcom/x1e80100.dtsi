@@ -31,7 +31,7 @@
 		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3";
 	};
 
-	aliases {
+	aliases: aliases {
 		serial0 = &qupv3_se21_2uart;
 		hsuart0 = &qupv3_se14_4uart;
 		i2c0 = &qupv3_se0_i2c;
