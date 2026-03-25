@@ -441,6 +441,8 @@ SERAPH_BOARDS += \
 		seraphp-v1.1-idp-dtof-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo \
+		seraphp-v1.1-qar-camera-audio-overlay.dtbo \
+		seraphp-v1.1-qar-overlay.dtbo \
 		seraphp-qar-camera-audio-overlay.dtbo \
 		seraphp-qar-overlay.dtbo
 
