@@ -866,7 +866,7 @@
 		sd-uhs-sdr25;
 		sd-uhs-sdr50;
 		sd-uhs-ddr50;
-		max-frequency = <86000000>;
+		max-frequency = <100000000>;
 
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "fastmap";
