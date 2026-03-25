@@ -13,6 +13,11 @@
 		reg = <0x0 0x80000000 0x0 0x1600000>;
 	};
 
+	display_config_mem: display_config_region@84c00000 {
+		no-map;
+		reg = <0x0 0x84c00000 0x0 0x1100000>;
+	};
+
 	xblboot_mem: xblboot_region@85e00000 {
 		no-map;
 		reg = <0x0 0x85e00000 0x0 0x100000>;
@@ -46,9 +51,11 @@
 		reg = <0x0 0xa0000000 0x0 0x100000>;
 	};
 
-	/* TA at 0xA0100000 is dynamically removed from the RAM
-	 * partition tables before boot occurs.
-	 */
+	tags_mem: tags_region@a0100000 {
+		no-map;
+		reg = <0x0 0xa0100000 0x0 0x1200000>;
+	};
+
 	qtee_mem: qtee_region@a1300000 {
 		no-map;
 		reg = <0x0 0xa1300000 0x0 0x500000>;

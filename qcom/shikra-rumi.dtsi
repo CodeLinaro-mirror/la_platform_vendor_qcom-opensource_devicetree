@@ -99,3 +99,9 @@
 	pinctrl-0 = <&sdc1_on>;
 	pinctrl-1 = <&sdc1_off>;
 };
+
+&rpmcc {
+	compatible = "fixed-clock";
+	clock-output-names = "rpmcc_clocks";
+	clock-frequency = <19200000>;
+};

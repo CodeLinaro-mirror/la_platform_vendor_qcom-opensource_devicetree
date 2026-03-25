@@ -171,7 +171,7 @@
 			<0x6 0x10000000 0x0 0x4000>;
 		reg-names = "parf", "phy", "phy_portb", "tcsr", "dm_core", "elbi", "iatu";
 
-		cell-index = <1>; /* Change it later to 6 */
+		cell-index = <6>;
 		linux,pci-domain = <6>;
 		bus-range = <0x0 0xff>;
 
@@ -182,14 +182,15 @@
 			<0x43000000 0x6 0x10100000 0x6 0x10100000 0x0 0xeff00000>;
 
 		device_type = "pci";
-		interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "int_global_int";
 
-		interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-				"int_d";
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0 0 0 0x7>;
+		interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 2 &intc 0 0 GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 3 &intc 0 0 GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 4 &intc 0 0 GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>;
 
 		msi-parent = <&pcie6_msi>;
 
@@ -284,8 +285,8 @@
 
 		resets = <&gcc GCC_PCIE_6A_BCR>,
 			 <&gcc GCC_PCIE_6A_PHY_BCR>;
-		reset-names = "pcie_1_core_reset", /* change this to 6 later */
-			      "pcie_1_phy_reset";  /* change this to 6 later */
+		reset-names = "pcie_6_core_reset",
+			      "pcie_6_phy_reset";
 
 		dma-coherent;
 
@@ -706,14 +707,16 @@
 			<0x43000000 0x7 0x90100000 0x7 0x90100000 0x0 0x2ff00000>;
 
 		device_type = "pci";
-		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "int_global_int";
 
-		interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-				"int_d";
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0 0 0 0x7>;
+
+		interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 2 &intc 0 0 GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 3 &intc 0 0 GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 4 &intc 0 0 GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
 
 		msi-parent = <&pcie4_msi>;
 

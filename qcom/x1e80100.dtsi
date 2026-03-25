@@ -748,6 +748,13 @@
 			no-map;
 		};
 
+		va_md_mem: va_md_mem_region {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+			reusable;
+			size = <0 0x1000000>;
+		};
+
 		qseecom_mem: qseecom_region {
 			compatible = "shared-dma-pool";
 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -829,6 +836,10 @@
 			memory-region = <&kinfo_mem>;
 		};
 
+		qcom,logbuf-vendor-hooks {
+			compatible = "qcom,logbuf-vendor-hooks";
+		};
+
 		gic_router: gic-interrupt-router {
 			compatible = "qcom,gic-intr-routing";
 			/* keep cluster0 cores in class0*/
@@ -841,6 +852,12 @@
 
 		mini_dump_mode {
 			compatible = "qcom,minidump";
+			status = "ok";
+		};
+
+		va_mini_dump {
+			compatible = "qcom,va-minidump";
+			memory-region = <&va_md_mem>;
 			status = "ok";
 		};
 
@@ -879,7 +896,7 @@
 
 			wakeup-parent = <&pdc>;
 			gpio-ranges = <&tlmm 0 0 239>;
-			gpio-reserved-ranges = <34 2>, <44 4>, <238 1>;
+			gpio-reserved-ranges = <34 2>, <44 4>;
 		};
 
 		slimbam: bamdma@6C04000 {
@@ -1158,7 +1175,6 @@
 			interrupt-names = "bam-irq", "core-irq";
 			qcom,bam-pipe-pair = <2>;
 			qcom,offload-ops-support;
-			qcom,use-key-index;
 			qcom,bam-pipe-offload-cpb-hlos = <1>;
 			qcom,bam-pipe-offload-hlos-cpb = <3>;
 			qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
@@ -1187,15 +1203,14 @@
 			qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
-				iommus = <&apps_smmu 0x0483 0x0>;
-				qcom,iommu-vmid = <0x9>;
+				iommus = <&dpd_smmu 0x9>;
 				qcom,secure-context-bank;
 				dma-noncoherent;
 			};
 		};
 
 		qcom,sps {
-			compatible = "qcom,msm-sps-4k";
+			compatible = "qcom,msm-sps-v1_7-4k";
 			qcom,pipe-attr-ee;
 		};
 
@@ -2208,6 +2223,18 @@
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
 			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port1_dwc3_ss: endpoint {
+					};
+				};
+			};
 		};
 
 		dwc3_1_mem_region: dwc3_1_mem_region {
@@ -2264,7 +2291,22 @@
 
 			vdda-phy-supply = <&L2J>;
 			vdda-pll-supply = <&L2D>;
+
+			orientation-switch;
+
 			status = "disabled";
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_port1_ssphy_out: endpoint {
+					};
+				};
+			};
 		};
 
 		intc: interrupt-controller@17000000 {
@@ -2486,7 +2528,7 @@
 		};
 
 		qfprom: qfprom@221c8000 {
-			compatible = "qcom,qfprom";
+			compatible = "qcom,x1e80100-qfprom", "qcom,qfprom";
 			reg = <0x0 0x221c8000 0x0 0x1000>;
 			#address-cells = <1>;
 			#size-cells = <1>;

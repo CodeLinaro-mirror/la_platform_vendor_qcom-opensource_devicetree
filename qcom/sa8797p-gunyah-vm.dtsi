@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.dtbo_idx=13";
 	};
 
 	reserved_memory: reserved-memory {
@@ -129,6 +129,12 @@
 			alloc-ranges = <0x0 0x0 0xffffffff 0xffffffff>;
 			size = <0x0 0x1000>;
 			no-map;
+		};
+
+		dice_mem0: dice-mem {
+			compatible = "google,open-dice";
+			no-map;
+			qcom,label = <0x67>;
 		};
 	};
 
@@ -1803,6 +1809,40 @@
 			reg = <0x16>;
 			#reset-cells = <1>;
 		};
+	};
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x14680000 0x1000>;
+		ranges = <0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		status = "ok";
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+			compatible = "qcom,mpm2-sleep-counter";
+			reg = <0xc221000 0x1000>;
+			clock-frequency = <32768>;
 	};
 
 	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {

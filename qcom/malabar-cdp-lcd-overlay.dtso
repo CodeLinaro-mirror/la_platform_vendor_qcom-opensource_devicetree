@@ -106,3 +106,9 @@
 		pinctrl-2 = <&ts_release>;
 	};
 };
+
+&L5E {
+	regulator-min-microvolt = <2952000>;
+	regulator-max-microvolt = <3544000>;
+	qcom,init-voltage = <2952000>;
+};

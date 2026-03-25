@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 #include "sdp8-quin-vm-common.dtsi"
+#include <dt-bindings/soc/qcom,ipcc.h>
 
 &{/} {
 	model = "Qualcomm Technologies, Inc. Monaco Guest Virtual Machine";
@@ -10,7 +11,7 @@
 	qcom,msm-id = <606 0x10000>;
 
 	aliases {
-		hsuart0 = &qupv3_se2_4uart;
+		hsuart0 = "/soc/qcom,qupv3_0_geni_se@9c0000/qcom,qup_uart@988000";
 	};
 
 	cpus {
@@ -495,6 +496,14 @@
 		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	wdog: qcom,wdt@17c10000 {
+		compatible = "qcom,msm-watchdog";
+		reg = <0x17c10000 0x1000>;
+		reg-names = "wdt-base";
+		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 	vm_restart: restart {
 		compatible = "qcom,vm-restart";
 		status = "ok";
@@ -674,6 +683,17 @@
 
 	mmidgrp500: mmidgrp500 {
 		dma-coherent;
+	};
+};
+
+&soc {
+	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
+		compatible = "qcom,ipcc";
+		reg = <0x421000 0x1000>;
+		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 };
 

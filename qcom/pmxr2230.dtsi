@@ -153,6 +153,7 @@ pmxr2230: pmxr2230@1 {
 			led-max-microamp = <180000>;
 			flash-max-microamp = <1000000>;
 			flash-max-timeout-us = <1280000>;
+			function-enumerator = <0>;
 		};
 
 		pmxr2230_flash_led1: led-1 {
@@ -162,6 +163,7 @@ pmxr2230: pmxr2230@1 {
 			led-max-microamp = <180000>;
 			flash-max-microamp = <1000000>;
 			flash-max-timeout-us = <1280000>;
+			function-enumerator = <1>;
 		};
 
 		pmxr2230_flash_led2: led-2 {
@@ -171,6 +173,7 @@ pmxr2230: pmxr2230@1 {
 			led-max-microamp = <180000>;
 			flash-max-microamp = <1000000>;
 			flash-max-timeout-us = <1280000>;
+			function-enumerator = <2>;
 		};
 	};
 
