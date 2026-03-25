@@ -1771,7 +1771,6 @@
 #include "lemans-vm-usb.dtsi"
 
 &qupv3_1 {
-	qcom,iommu-dma = "bypass";
 	status = "disabled";
 };
 
@@ -1781,7 +1780,7 @@
 	compatible = "qcom,sa8255p-geni-se-qup";
 	reg = <0x8c0000 0x1000>;
 	iommus = <&apps_smmu 0x5b8 0x0>;
-	qcom,iommu-dma = "bypass";
+	qcom,iommu-dma = "default";
 	status = "ok";
 };
 
