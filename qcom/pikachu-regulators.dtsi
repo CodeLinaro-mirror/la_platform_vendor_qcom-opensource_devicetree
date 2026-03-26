@@ -17,6 +17,7 @@
 			regulator-min-microvolt = <RPMH_REGULATOR_LEVEL_RETENTION>;
 			regulator-max-microvolt = <RPMH_REGULATOR_LEVEL_MAX>;
 			qcom,init-voltage-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+			proxy-supply = <&VDD_CX_LEVEL>;
 			qcom,proxy-consumer-enable;
 			qcom,proxy-consumer-voltage =
 				<RPMH_REGULATOR_LEVEL_TURBO
