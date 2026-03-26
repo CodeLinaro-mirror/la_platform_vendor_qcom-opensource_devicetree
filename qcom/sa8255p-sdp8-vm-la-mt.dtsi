@@ -70,8 +70,12 @@
 	status = "ok";
 };
 
+&qupv3_0 {
+	status = "ok";
+};
+
 &qupv3_se3_4uart {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb0 {
