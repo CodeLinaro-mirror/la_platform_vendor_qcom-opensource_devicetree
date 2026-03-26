@@ -4,3 +4,8 @@
  */
 
 #include "x1e80100.dtsi"
+
+&gcc {
+	protected-clocks = <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
+			<GCC_QSPI_CORE_CLK_SRC>;
+};
