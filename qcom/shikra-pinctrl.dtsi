@@ -785,6 +785,19 @@
 			};
 		};
 
+		usb_id_interrupt: usb_id_interrupt {
+			mux {
+				pins = "gpio90";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio90";
+				bias-pull-up;
+				input-enable;
+			};
+		};
+
 		pndr_spkr_sd_n: pndr_spkr_sd_n {
 			pins = "gpio2";
 			function = "gpio";
