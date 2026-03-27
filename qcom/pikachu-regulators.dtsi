@@ -397,24 +397,6 @@
 		};
 	};
 
-	rpmh-regulator-l10a-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "L10A_E0";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_AUTO>;
-		qcom,mode-threshold-currents = <0 30000>;
-
-		L10A_E0: L10A:
-		pmar2230_l10: regulator-pmar2230-l10 {
-			regulator-name = "pmar2230_l10";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <320000>;
-			regulator-max-microvolt = <2000000>;
-			qcom,init-voltage = <320000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
-		};
-	};
-
 	rpmh-regulator-l11a-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L11A_E0";
@@ -429,24 +411,6 @@
 			regulator-min-microvolt = <2400000>;
 			regulator-max-microvolt = <3544000>;
 			qcom,init-voltage = <2952000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-		};
-	};
-
-	rpmh-regulator-l12a-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "L12A_E0";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 30000>;
-
-		L12A_E0: L12A:
-		pmar2230_l12: regulator-pmar2230-l12 {
-			regulator-name = "pmar2230_l12";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <320000>;
-			regulator-max-microvolt = <2000000>;
-			qcom,init-voltage = <320000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
@@ -505,42 +469,6 @@
 		};
 	};
 
-	rpmh-regulator-l16a-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "L16A_E0";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 30000>;
-
-		L16A_E0: L16A:
-		pmar2230_l16: regulator-pmar2230-l16 {
-			regulator-name = "pmar2230_l16";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <320000>;
-			regulator-max-microvolt = <2000000>;
-			qcom,init-voltage = <320000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-		};
-	};
-
-	rpmh-regulator-l17a-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "L17A_E0";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 10000>;
-
-		L17A_E0: L17A:
-		pmar2230_l17: regulator-pmar2230-l17 {
-			regulator-name = "pmar2230_l17";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <2800000>;
-			regulator-max-microvolt = <3544000>;
-			qcom,init-voltage = <2800000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-		};
-	};
-
 	rpmh-regulator-l18a-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L18A_E0";
@@ -556,24 +484,6 @@
 			regulator-max-microvolt = <2000000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
-		};
-	};
-
-	rpmh-regulator-l19a-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "L19A_E0";
-		qcom,regulator-type = "pmic7-ldo";
-		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-		qcom,mode-threshold-currents = <0 10000>;
-
-		L19A_E0: L19A:
-		pmar2230_l19: regulator-pmar2230-l19 {
-			regulator-name = "pmar2230_l19";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1800000>;
-			regulator-max-microvolt = <3300000>;
-			qcom,init-voltage = <1800000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
 
@@ -700,20 +610,6 @@
 			regulator-max-microvolt = <3000000>;
 			qcom,init-voltage = <2600000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-		};
-	};
-
-	rpmh-regulator-s1k-e0 {
-		compatible = "qcom,rpmh-vrm-regulator";
-		qcom,resource-name = "S1K_E0";
-
-		S1K_E0: S1K:
-		pmg1110_k_s1: regulator-pmg1110-k-s1 {
-			regulator-name = "pmg1110_k_s1";
-			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <320000>;
-			regulator-max-microvolt = <1352000>;
-			qcom,init-voltage = <1080000>;
 		};
 	};
 
