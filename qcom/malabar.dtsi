@@ -2293,6 +2293,7 @@
 #include "malabar-qupv3.dtsi"
 #include "malabar-walt.dtsi"
 #include "malabar-thermal.dtsi"
+#include "msm-rdbg-monaco.dtsi"
 
 &qupv3_se8_2uart {
 	status = "ok";
