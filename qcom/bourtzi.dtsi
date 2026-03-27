@@ -15,7 +15,7 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases { };
+	aliases: aliases { };
 
 	chosen: chosen {
 		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0";
@@ -301,6 +301,14 @@
 		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
 		qcom,gic-runtime-cpu-class-en;
 		status = "disabled";
+	};
+
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
 	};
 
 	apps_smmu: smmu {};
