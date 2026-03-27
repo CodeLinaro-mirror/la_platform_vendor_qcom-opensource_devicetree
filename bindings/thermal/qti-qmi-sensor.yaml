@@ -45,9 +45,8 @@ patternProperties:
         description: |
           Remote sensor names. Below strings are the only acceptable
           sensor names.
-        minItems: 1
         items:
-          enum:
+          - enum:
             - pa
             - pa_1
             - pa_2
