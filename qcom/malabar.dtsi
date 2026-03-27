@@ -1768,8 +1768,8 @@
 		compatible = "qcom,sdhci-msm-v5";
 		#address-cells = <2>;
 		#size-cells = <2>;
-		reg = <0x0 0x04744000 0x0 0x1000>, <0x0 0x04745000 0x0 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0x0 0x04744000 0x0 0x1000>, <0x0 0x04745000 0x0 0x1000>, <0x0 0x04748000 0x0 0x8000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
