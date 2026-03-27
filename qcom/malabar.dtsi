@@ -448,15 +448,6 @@
 	qtee_shmbridge {
 		compatible = "qcom,tee-shared-memory-bridge";
 	};
-
-	qti,smmu-proxy {
-		compatible = "smmu-proxy-sender";
-	};
-
-	qcom,seccamtest {
-		compatible = "qcom,seccamtest";
-		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
-	};
 };
 
 &soc {
@@ -2282,6 +2273,15 @@
 				&tlmm 56 0
 				&tlmm 57 0>;
 		};
+	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 	};
 };
 
