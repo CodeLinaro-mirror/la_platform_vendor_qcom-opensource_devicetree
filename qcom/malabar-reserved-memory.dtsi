@@ -75,7 +75,7 @@
 	};
 
 	rpm_dump_mem: rpm_dump_region@85e1c000 {
-		reg = <0x0 0x85e1c000 0x0 0x25800>;
+		reg = <0x0 0x85e1c000 0x0 0x25000>;
 		no-map;
 	};
 
