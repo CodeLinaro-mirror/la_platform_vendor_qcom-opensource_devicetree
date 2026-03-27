@@ -192,6 +192,21 @@ properties:
               - qcom,rumi
           - const: qcom,bourtzi
 
+      - description: Qualcomm Technologies, Inc. BourtziP
+        items:
+          - enum:
+              - qcom,bourtzip-atp
+              - qcom,atp
+              - qcom,bourtzip-cdp
+              - qcom,cdp
+              - qcom,bourtzip-mtp
+              - qcom,mtp
+              - qcom,bourtzip-qrd
+              - qcom,qrd
+              - qcom,bourtzip-rcm
+              - qcom,rcm
+          - const: qcom,bourtzip
+
       - description: Qualcomm Technologies, Inc. Malabar
         items:
           - enum:
