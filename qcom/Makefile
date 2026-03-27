@@ -165,7 +165,10 @@ MALABAR_BOARDS += \
 		malabar-qrd-4gb-overlay.dtbo \
 		malabar-mtp-4gb-overlay.dtbo \
 		malabar-cdp-emmc-overlay.dtbo \
-		malabar-mtp-emmc-overlay.dtbo
+		malabar-mtp-emmc-overlay.dtbo \
+		malabar-cdp-ufs3-overlay.dtbo \
+		malabar-mtp-ufs3-overlay.dtbo \
+		malabar-qrd-ufs3-overlay.dtbo
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
