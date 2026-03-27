@@ -10,9 +10,9 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_apss1";
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		
 	};
 
 	apss_cti0: cti@128e0000 {
@@ -21,7 +21,6 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_apss0";
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -32,7 +31,6 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_apss2";
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -99,7 +97,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_turing_q6";
-
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -110,7 +108,6 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_aop_rvss";
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -202,6 +199,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_ddr0";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -213,6 +211,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_ddr1";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -224,6 +223,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_ddr_ch02_dl0";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -235,6 +235,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_cti0";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -257,6 +258,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_dlmm0";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -268,6 +270,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_eva";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -279,6 +282,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_iris_dl";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -305,6 +309,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti-soccp";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -328,6 +333,7 @@
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti-turing_dl0";
 		qcom,extended_cti;
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -452,6 +458,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				gpu_dl_0_in_gpu_tpdm_gpu: endpoint {
@@ -475,7 +482,6 @@
 		compatible = "arm,coresight-dummy-source";
 		device-name = "tpdm_ddr_lpi";
 		trace-name = "tpda-ddr-lpi";
-		status = "disabled";
 		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -533,7 +539,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
 		out-ports {
 			port {
 				ddr_tpdm_channel_0_2_out_ddr_ch_0_2_dl_0: endpoint {
@@ -550,7 +555,6 @@
 
 		reg-names = "funnel-base";
 		device-name = "funnel_ddr_ch02";
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		in-ports {
@@ -587,7 +591,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
 		out-ports {
 			port {
 				ddr_tpdm_ddr_dl_0_dsb_cmb_out_dl_0_ddr_2: endpoint {
@@ -611,7 +614,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
 		out-ports {
 			port {
 				ddr_tpdm_ddr_dpm_out_dl_0_ddr_3: endpoint {
@@ -643,7 +645,7 @@
 
 		reg-names = "tpda-base";
 		device-name = "tpda_ddr_llcc";
-
+ 		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		in-ports {
@@ -805,10 +807,10 @@
 		device-name = "tpdm_llcc0";
 
 		qcom,cmb-element-bits = <32>;
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				ddr_tpdm_llcc_0_out_tpda_llcc_0: endpoint {
@@ -825,12 +827,12 @@
 
 		reg-names = "tpdm-base";
 		device-name = "tpdm_llcc1";
+		status = "disabled";
 
 		qcom,cmb-element-bits = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				ddr_tpdm_llcc_1_out_tpda_llcc_1: endpoint {
@@ -853,7 +855,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
 		out-ports {
 			port {
 				qm_tpdm_qm_out_tpda_dlct_0_22: endpoint {
@@ -876,7 +877,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				gcc_tpdm_gcc_dsb_out_tpda_dlct_0_23: endpoint {
@@ -968,6 +968,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				video_0_in_video_tpdm_iris_mvp_dsb: endpoint {
@@ -1021,6 +1022,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				mdss_dl_funnel_0_in_mdss_tpdm_mdss: endpoint {
@@ -1049,6 +1051,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				eva_0_in_eva_tpdm_eva_cvp_dsb: endpoint {
@@ -1104,7 +1107,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
 		out-ports {
 			port {
 				soccp_tpdm_crdl_dsb_out_soccp_dl_0: endpoint {
@@ -1155,7 +1157,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dl_west_tpdm_dl_west_dsb_out_tpda_dl_west_3: endpoint {
@@ -1318,7 +1319,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dlct_1_tpdm_dlct_1_dsb_out_tpda_dlct_1_25: endpoint {
@@ -1341,7 +1341,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dlct_1_tpdm_pmu_out_tpda_dlct_1_26: endpoint {
@@ -1363,7 +1362,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dlct_1_tpdm_qrng_out_tpda_dlct_1_27: endpoint {
@@ -1406,6 +1404,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1469,6 +1468,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				dlmm_0_in_tpda_dlmm: endpoint {
@@ -1497,9 +1497,9 @@
 
 		qcom,cmb-element-bits = <32>;
 
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				sdcc5_tpdm_sdcc5_wrapper_1_out_tpda_dlmm_10: endpoint {
@@ -1591,7 +1591,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dlct_0_tpdm_ipcc_cmb_out_tpda_dlct_0_30: endpoint {
@@ -1733,7 +1732,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				dlct_0_tpdm_dlct_0_dsb_out_tpda_dlct_0_29: endpoint {
@@ -1751,6 +1749,7 @@
 		reg-names = "tpda-base";
 		device-name = "tpda_pcie";
 
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		in-ports {
@@ -1928,6 +1927,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				tme_0_in_tpda_tme: endpoint {
@@ -1949,7 +1949,7 @@
 
 	qdss_tpdm_dcc: tpdm@10003000 {
 		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x10003000 0x1000>;
 
 		reg-names = "tpdm-base";
@@ -1959,7 +1959,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		qcom,hw-enable-check;
 		out-ports {
 			port {
@@ -1979,7 +1978,6 @@
 		device-name = "tpdm_spdm";
 
 		qcom,cmb-element-bits = <32>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2325,6 +2323,7 @@
 		dma-coherent;
 		arm,scatter-gather;
 
+		qcom,iommu-dma = "bypass";
 		coresight-csr = <&csr>;
 		csr-atid-offset = <0x108>;
 		csr-irqctrl-offset = <0x70>;
@@ -2423,7 +2422,6 @@
 		device-name = "tpdm_swao_prio_0";
 
 		qcom,cmb-element-bits = <64>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2444,7 +2442,6 @@
 		device-name = "tpdm_swao_prio_1";
 
 		qcom,cmb-element-bits = <64>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2465,7 +2462,6 @@
 		device-name = "tpdm_swao_prio_2";
 
 		qcom,cmb-element-bits = <64>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2486,7 +2482,6 @@
 		device-name = "tpdm_swao_prio_3";
 
 		qcom,cmb-element-bits = <64>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2508,7 +2503,6 @@
 
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		out-ports {
@@ -2530,6 +2524,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -2689,7 +2684,6 @@
 		device-name = "tpdm_turing_llm";
 		qcom,cmb-element-bits = <32>;
 		qcom,dsb-msrs-num = <12>;
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_llm_out_tpda_turing: endpoint {
@@ -2704,7 +2698,6 @@
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm2";
 		qcom,cmb-element-bits = <32>;
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_llm2_out_tpda_turing: endpoint {
@@ -2720,10 +2713,6 @@
 
 		device-name = "tpdm_turing_cmsr1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_cmsr1_out_tpda_turing: endpoint {
@@ -2741,10 +2730,6 @@
 
 		device-name = "tpdm_turing_cmsr2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_cmsr2_out_tpda_turing: endpoint {
@@ -2808,7 +2793,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -2971,7 +2955,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -3008,7 +2991,6 @@
 		device-name = "tpdm_lpass_lpi";
 
 		trace-name = "tpda-lpass-lpi";
-		status = "disabled";
 		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -3176,7 +3158,6 @@
 		device-name = "tpdm_lpass_rscc";
 
 		trace-name = "tpda-lpass-rscc";
-		status = "disabled";
 		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -3204,7 +3185,6 @@
 		device-name = "tpdm_lpass_audio";
 
 		trace-name = "tpda-lpass-audio";
-		status = "disabled";
 
 		out-ports {
 			#address-cells = <1>;
@@ -3349,6 +3329,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 		in-ports {
 			port@0 {
 				lpass_cx_dl_0_in_lpass_tpdm_crdl_dsb: endpoint {
@@ -3613,7 +3594,6 @@
 
 		qcom,cmb-element-bits = <32>;
 		qcom,cmb-msrs-num = <12>;
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_llm_silver_out_tpda_apss: endpoint {
@@ -3638,7 +3618,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_actpm_out_tpda_apss: endpoint {
@@ -3662,7 +3641,6 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_llm_dsb_out_tpda_apss: endpoint {
