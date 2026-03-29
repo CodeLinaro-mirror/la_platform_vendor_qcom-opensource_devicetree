@@ -5,6 +5,7 @@
 
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1e80100-thermal-overlay.dtsi"
+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
 
 &ufsphy_mem {
 	status = "okay";
@@ -29,6 +30,50 @@
 		drive-strength = <2>;
 		bias-disable;
 		output-low;
+	};
+};
+
+&pm8550ve_j_gpios {
+	usb3_vbus_en: usb3-vbus-en-state {
+		pins = "gpio4";
+		function = "normal";
+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+		input-disable;
+		output-enable;
+		output-high;
+		power-source = <0>;
+	};
+
+	usb6_vbus_en: usb6-vbus-en-state {
+		pins = "gpio5";
+		function = "normal";
+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+		input-disable;
+		output-enable;
+		output-high;
+		power-source = <0>;
+	};
+};
+
+&soc {
+	regulator_usb3_vbus: regulator-usb3-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_USB4_VBUS";
+		gpio = <&pm8550ve_j_gpios 4 GPIO_ACTIVE_HIGH>;
+		pinctrl-0 = <&usb3_vbus_en>;
+		pinctrl-names = "default";
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	regulator_usb6_vbus: regulator-usb6-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_USB5_VBUS";
+		gpio = <&pm8550ve_j_gpios 5 GPIO_ACTIVE_HIGH>;
+		pinctrl-0 = <&usb6_vbus_en>;
+		pinctrl-names = "default";
+		enable-active-high;
+		regulator-always-on;
 	};
 };
 
