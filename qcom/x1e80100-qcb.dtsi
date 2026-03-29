@@ -14,6 +14,60 @@
 	status = "okay";
 };
 
+&tlmm {
+	eusb3_reset_n: eusb3-reset-n-state {
+		pins = "gpio6";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+		output-low;
+	};
+
+	eusb6_reset_n: eusb6-reset-n-state {
+		pins = "gpio184";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+		output-low;
+	};
+};
+
+&qupv3_se5_i2c {
+	clock-frequency = <400000>;
+
+	status = "okay";
+
+	eusb3_repeater: redriver@43 {
+		compatible = "nxp,ptn3222";
+		reg = <0x43>;
+
+		vdd1v8-supply = <&L4B>;
+		vdd3v3-supply = <&L13B>;
+
+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+
+		pinctrl-0 = <&eusb3_reset_n>;
+		pinctrl-names = "default";
+
+		#phy-cells = <0>;
+	};
+
+	eusb6_repeater: redriver@4f {
+		compatible = "nxp,ptn3222";
+		reg = <0x4f>;
+
+		vdd1v8-supply = <&L4B>;
+		vdd3v3-supply = <&L13B>;
+
+		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
+
+		pinctrl-0 = <&eusb6_reset_n>;
+		pinctrl-names = "default";
+
+		#phy-cells = <0>;
+	};
+};
+
 &ucsi {
 	/* Left-side front port */
 	connector {
@@ -98,4 +152,26 @@
 
 &usb_port1_dwc3_ss {
 	remote-endpoint = <&usb_port1_ssphy_out>;
+};
+
+&usb_mp_hsphy0 {
+	phys = <&eusb3_repeater>;
+	status = "okay";
+};
+
+&usb_mp_hsphy1 {
+	phys = <&eusb6_repeater>;
+	status = "okay";
+};
+
+&usb_mp_qmpphy0 {
+	status = "okay";
+};
+
+&usb_mp_qmpphy1 {
+	status = "okay";
+};
+
+&usb_mp {
+	status = "okay";
 };
