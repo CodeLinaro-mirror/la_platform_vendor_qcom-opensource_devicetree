@@ -443,6 +443,7 @@
 #include "pm8775-vm.dtsi"
 #include "monaco-vm-qupv3.dtsi"
 #include "monaco-vm-pcie.dtsi"
+#include "monaco-vm-audio.dtsi"
 
 &regulator {
 	gcc_usb30_prim_gdsc: gcc_usb30_prim_gdsc {
