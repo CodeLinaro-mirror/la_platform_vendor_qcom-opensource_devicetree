@@ -209,6 +209,16 @@
 	ranges = <0 0 0 0 0x10 0>;
 	compatible = "simple-bus";
 
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+	};
+
 	psci: psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
