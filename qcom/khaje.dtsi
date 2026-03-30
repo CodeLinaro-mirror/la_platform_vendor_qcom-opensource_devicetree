@@ -412,6 +412,15 @@
 			qcom,dload-mode = <&tcsr 0x13000>;
 		};
 
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
 		qtee_shmbridge {
 			compatible = "qcom,tee-shared-memory-bridge";
 		};
@@ -580,7 +589,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
 	};
 
 	soc: soc { };
@@ -931,22 +940,9 @@
 		qcom,qsee-reentrancy-support = <2>;
 	};
 
-	qcom_smcinvoke: smcinvoke@61800000 {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-	};
-
 	qcom_rng: qrng@1b53000 {
-		compatible = "qcom,msm-rng";
+		compatible = "qcom,trng";
 		reg = <0x1b53000 0x1000>;
-		qcom,msm-rng-iface-clk;
-		qcom,no-qrng-config;
-		interconnect-names = "data_path";
-		interconnects = <&bimc MASTER_AMPSS_M0 &config_noc SLAVE_PRNG>;
-		clocks = <&gcc GCC_PRNG_AHB_CLK>;
-		clock-names = "km_clk_src";
 	};
 
 	qcom_tzlog: tz-log@c125720 {
@@ -1463,7 +1459,7 @@
 	ufshc_mem: ufshc@4804000 {
 		compatible = "qcom,ufshc";
 		reg = <0x4804000 0x3000>, <0x4810000 0x8000>;
-		reg-names = "ufs_mem", "ufs_ice";
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
@@ -2002,7 +1998,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -2570,6 +2566,7 @@
 	parent-supply = <&L3A_LEVEL>;
 };
 
+#include <dt-bindings/gpio/gpio.h>
 #include "msm-arm-smmu-bengal.dtsi"
 #include "pm6125-rpm-regulator.dtsi"
 #include "khaje-regulator.dtsi"
@@ -2585,69 +2582,75 @@
 };
 
 &qupv3_se1_i2c {
-	status = "ok";
+	#address-cells = <1>;
+	#size-cells = <0>;
 	qcom,leica-used-i2c;
-	#include "pm8008.dtsi"
-};
+	status = "ok";
 
-&pm8008_regulators {
-	/delete-property/ qcom,enable-ocp-broadcast;
-};
+	pm8008_8: qcom,pm8008@8 {
+		compatible = "qcom,pm8008";
+		reg = <0x8>;
+		interrupts-extended = <&tlmm 25 IRQ_TYPE_EDGE_RISING>;
+		reset-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
 
-&pm8008_8 {
-	/* PM8008 IRQ STAT */
-	interrupt-parent = <&tlmm>;
-	interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+		vdd-l7-supply = <&S7A>;
 
-	pinctrl-names = "default";
-	pinctrl-0 = <&pm8008_active &pm8008_interrupt>;
-};
+		pinctrl-names = "default";
+		pinctrl-0 = <&pm8008_active>, <&pm8008_interrupt>;
 
-&pm8008_regulators {
-	vdd_l1_l2-supply = <&S6A>;
-	vdd_l7-supply = <&S7A>;
-};
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-ranges = <&pm8008_8 0 0 2>;
 
-&L1P {
-	regulator-min-microvolt = <1100000>;
-	regulator-max-microvolt = <1300000>;
-	qcom,min-dropout-voltage = <56000>;
-};
+		interrupt-controller;
+		#interrupt-cells = <2>;
 
-&L2P {
-	regulator-min-microvolt = <950000>;
-	regulator-max-microvolt = <1150000>;
-	qcom,min-dropout-voltage = <88000>;
-};
+		#thermal-sensor-cells = <0>;
 
-&L3P {
-	regulator-min-microvolt = <2700000>;
-	regulator-max-microvolt = <2900000>;
-	qcom,min-dropout-voltage = <96000>;
-};
+		regulators {
+			L1P: pm8008_l1: ldo1 {
+				regulator-name = "pm8008_l1";
+				regulator-min-microvolt = <1104000>;
+				regulator-max-microvolt = <1296000>;
+			};
 
-&L4P {
-	regulator-min-microvolt = <2700000>;
-	regulator-max-microvolt = <2900000>;
-	qcom,min-dropout-voltage = <136000>;
-};
+			L2P: pm8008_l2: ldo2 {
+				regulator-name = "pm8008_l2";
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1144000>;
+			};
 
-&L5P {
-	regulator-min-microvolt = <2700000>;
-	regulator-max-microvolt = <2900000>;
-	qcom,min-dropout-voltage = <240000>;
-};
+			L3P: pm8008_l3: ldo3 {
+				regulator-name = "pm8008_l3";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2896000>;
+			};
 
-&L6P {
-	regulator-min-microvolt = <2700000>;
-	regulator-max-microvolt = <2900000>;
-	qcom,min-dropout-voltage = <168000>;
-};
+			L4P: pm8008_l4: ldo4 {
+				regulator-name = "pm8008_l4";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2896000>;
+			};
 
-&L7P {
-	regulator-min-microvolt = <1650000>;
-	regulator-max-microvolt = <1800000>;
-	qcom,min-dropout-voltage = <112000>;
+			L5P: pm8008_l5: ldo5 {
+				regulator-name = "pm8008_l5";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2896000>;
+			};
+
+			L6P: pm8008_l6: ldo6 {
+				regulator-name = "pm8008_l6";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2896000>;
+			};
+
+			L7P: pm8008_l7: ldo7 {
+				regulator-name = "pm8008_l7";
+				regulator-min-microvolt = <1656000>;
+				regulator-max-microvolt = <1800000>;
+			};
+		};
+	};
 };
 
 &qupv3_se4_2uart {

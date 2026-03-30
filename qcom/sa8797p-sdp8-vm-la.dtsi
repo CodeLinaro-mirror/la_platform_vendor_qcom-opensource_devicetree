@@ -30,8 +30,13 @@
 	};
 	aliases: aliases {
 		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
-		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart14@880000";
+		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@880000";
 	};
+};
+
+&chosen {
+	bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-15 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1 fw_devlink.strict=1 driver_async_probe=arm-scmi";
+	bootconfig = "androidboot.dtbo_idx=25 androidboot.fstab_suffix=hqx.nord.qcom";
 };
 
 &reserved_memory {
@@ -154,14 +159,19 @@
 };
 
 &qupv3_2 {
+	qcom,iommu-dma = "bypass";
 	status = "ok";
 };
 
 &qupv3_se14_4uart {
+	power-domains = <&scmi_power 12>, <&scmi_perf 3>;
+	power-domain-names = "power", "perf";
 	status = "ok";
 };
 
 &qupv3_se17_4uart {
+	power-domains = <&scmi_power 4>, <&scmi_perf 0>;
+	power-domain-names = "power", "perf";
 	status = "ok";
 };
 

@@ -31,10 +31,11 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe";
+		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc";
 	};
 
 	reserved_memory: reserved-memory {};
+	ddr-regions { };
 
 	aliases: aliases {
 		serial0 = &qupv3_se11_2uart;
@@ -84,6 +85,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 			L2_0: l2-cache {
 				compatible = "arm,arch-cache";
 				cache-level = <2>;
@@ -108,6 +110,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU2: cpu@200 {
@@ -122,6 +125,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU3: cpu@300 {
@@ -136,6 +140,7 @@
 			qcom,freq-domain = <&cpufreq_hw 0>;
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
+			#cooling-cells = <2>;
 		};
 
 		CPU4: cpu@400 {
@@ -150,6 +155,7 @@
 			qcom,freq-domain = <&cpufreq_hw 1>;
 			capacity-dmips-mhz = <1956>;
 			dynamic-power-coefficient = <389>;
+			#cooling-cells = <2>;
 		};
 
 		cpu-map {
@@ -299,6 +305,9 @@
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	disp_rdump_region@d5100000 {
+	};
+
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
 		qcom,master;
@@ -331,6 +340,11 @@
 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
+	};
+
+	show_resume_irqs@0x17200000 {
+		compatible = "qcom,show-resume-irqs";
+		reg = <0x17200000 0x110000>;
 	};
 
 	ipcc_mproc: qcom,ipcc@404000 {
@@ -827,6 +841,10 @@
 		< 1 >;
 	};
 
+	qcom_dcvs_prof: qcom-dcvs-prof {
+		max_masters = <4>;
+	};
+
 	qcom_dcvs: qcom,dcvs {
 		compatible = "qcom,dcvs";
 		#address-cells = <1>;
@@ -1141,6 +1159,45 @@
 		#interrupt-cells = <2>;
 		interrupt-parent = <&intc>;
 		interrupt-controller;
+	};
+
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-seraph";
+		reg = <0xc320000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+	};
+
+	cpuss-sleep-stats@17800054 {
+		compatible = "qcom,cpuss-sleep-stats-v4";
+		reg = <0x17800054 0x4>, <0x17810054 0x4>, <0x17820054 0x4>,
+		      <0x17830054 0x4>, <0x17840054 0x4>, <0x17880098 0x4>,
+		      <0x178c0000 0x10000>;
+		reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
+			    "seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
+			    "seq_lpm_cntr_cfg_cpu4", "l3_seq_lpm_cntr_cfg",
+			    "apss_seq_mem_base";
+		num-cpus = <5>;
+	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v4";
+		reg = <0xc3f0000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+		ss-name = "modem", "wpss", "adsp", "adsp_island",
+			  "cdsp", "apss";
+	};
+
+	pcie_crm: crm@1d01000 {
+		label = "pcie_crm";
+		compatible = "qcom,pcie-crm-v2";
+		reg = <0x1d01000 0x2000>, <0x1d03000 0x400>, <0x1d03400 0x400>,
+		      <0x1d03800 0x2000>, <0x1d05800 0x700>, <0x1d05f00 0x100>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pcie_crm_drv0";
+		clocks = <&pcie_0_pipe_clk>;
+		qcom,hw-drv-ids = <0 1>;
+		qcom,sw-drv-ids = <0>;
 	};
 
 	clocks {
@@ -1512,13 +1569,14 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		reg = <0x00B24000 0x1000>, <0x00B25000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0xB24000 0x1000>, <0xB25000 0x1000>, <0xB28000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "bypass";
 
+		qcom,ice-use-hwkm;
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
 		 * be used in dma allocation.
@@ -1841,9 +1899,32 @@
 		qcom,msgq-names = "trusted_vm";
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
 	qcom,secure-buffer {
 		compatible = "qcom,secure-buffer";
 		qcom,vmid-cp-camera-preview-ro;
+	};
+
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		qcom,master;
+
+		tuivm {
+			qcom,label = <0x08>;
+			qcom,vmid = <45>;
+			tlmm-vm-gpio-list = <&tlmm 12 0>;
+		};
+	};
+
+	tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		qcom,master;
+		tlmm-vm-gpio-list = <&tlmm 12 0>;
 	};
 
 	qcom,gunyah-panic-notifier {
@@ -2205,10 +2286,9 @@
 		compatible = "qcom,qfprom-sys";
 	};
 
-	ramoops_mem: ramoops_region {
-		compatible = "ramoops";
-		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-		size = <0x0 0x200000>;
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
 		pmsg-size = <0x200000>;
 		mem-type = <2>;
 	};
@@ -2301,6 +2381,12 @@
 		no-map;
 	};
 
+	ramoops_mem: ramoops_region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
+
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -2310,6 +2396,8 @@
 };
 
 #include "seraph-reserved-memory.dtsi"
+#include "seraph-coresight.dtsi"
+#include "seraph-debug.dtsi"
 #include "msm-arm-smmu-seraph.dtsi"
 #include "seraph-dma-heaps.dtsi"
 #include "seraph-regulators.dtsi"
@@ -2318,6 +2406,7 @@
 #include "seraph-pcie.dtsi"
 #include "ipcc-test-seraph.dtsi"
 #include "msm-rdbg.dtsi"
+#include "seraph-walt.dtsi"
 
 &qupv3_se11_2uart {
 	status = "ok";
@@ -2343,3 +2432,5 @@
 	dummy-supply = <&nxp_eusb2_repeater>;
 	usb-repeater = <&nxp_eusb2_repeater>;
 };
+
+#include "seraph-thermal.dtsi"

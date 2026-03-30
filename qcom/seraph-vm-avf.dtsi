@@ -290,8 +290,9 @@
 			&qcom_smcinvoke
 			&qtee_shmbridge
 			&qcom_gunyah_panic_notifier
-			&virtio_mem_device
 			&google_debug_kinfo
+			&qcom_dma_heaps
+			&qrtr_gunyah
 			>;
 	};
 
@@ -332,7 +333,7 @@
 			qupv3_se1_7i2c_active: qupv3_se1_7i2c_active {
 				qupv3_se1_7i2c_active_mux: mux {
 					pins = "gpio12";
-					function = "qup2_se3_l0";
+					function = "qup0_se0_l2";
 				};
 
 				qupv3_se1_7i2c_active_config: config {
@@ -412,7 +413,7 @@
 		affinity = <0>;
 	};
 
-	qrtr-gunyah {
+	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x103>;
 	};
@@ -442,16 +443,6 @@
 	mem_buf_msgq: qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm";
-	};
-
-	virtio_mem_device: virtio_mem_device {
-		compatible = "qcom,virtio-mem";
-		depends-on-supply = <&mem_buf_msgq>;
-		/* Must be memory_block_size_bytes() aligned */
-		qcom,max-size = <0x0 0x18000000>;
-		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
-		qcom,block-size = <0x400000>;
-		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_smcinvoke: qcom_smcinvoke {

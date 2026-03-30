@@ -3,6 +3,19 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+
+&soc {
+	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
+		compatible = "qcom,ipcc";
+		reg = <0x421000 0x1000>;
+		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+};
+
 &{/} {
 	rename_devices: rename_devices {
 		compatible = "qcom,rename-devices";
@@ -28,7 +41,7 @@
 
 &chosen {
 	bootargs ="rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_    show_resume_irq.debug_mask=1 fw_devlink.strict=1";
-	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=100";
+	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=18";
 };
 
 &hab {
@@ -48,11 +61,11 @@
 };
 
 &qupv3_2 {
-	status = "disabled";
+	status = "ok";
 };
 
 &qupv3_se17_4uart {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb0 {
@@ -68,15 +81,15 @@
 };
 
 &usb1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb_qmp_phy1 {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb2 {
@@ -88,11 +101,11 @@
 };
 
 &pcie0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &pcie0_msi_snps {
-	status = "disabled";
+	status = "ok";
 };
 
 &ufs2phy_mem {

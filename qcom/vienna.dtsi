@@ -1394,6 +1394,8 @@
 		reg = <0x159004 0x4>;
 		regulator-name = "gcc_usb30_prim_gdsc";
 		parent-supply = <&VDD_CX_LEVEL>;
+		qcom,proxy-consumer-enable;
+		proxy-supply = <&gcc_usb30_prim_gdsc>;
 		qcom,retain-regs;
 		qcom,support-cfg-gdscr;
 	};
@@ -2377,7 +2379,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 			qcom,sampling-path = <&ddr_dcvs_sp>;
-			qcom,miss-ev = <0x1000>;
+			qcom,miss-ev = <0x2A>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
@@ -2490,7 +2492,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
 			qcom,sampling-path = <&ddrqos_dcvs_sp>;
-			qcom,miss-ev = <0x1000>;
+			qcom,miss-ev = <0x2A>;
 
 			ddrqos_gold_lat: gold {
 				compatible = "qcom,memlat-mon";

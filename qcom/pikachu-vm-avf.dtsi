@@ -9,7 +9,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <736 0x10000>;
+	qcom,msm-id = <736 0x10000>, <737 0x10000>;
 
 	host {
 		#address-cells = <0x2>;
@@ -280,6 +280,8 @@
 			&tlmm_vm_mem_access
 			&tlmm_vm_test
 			&qti_smmu_proxy
+			&qti_smmu_proxy_camera_cb
+			&qcom_mem_object
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
@@ -290,6 +292,7 @@
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
+			&qcom_dma_heaps
 			>;
 	};
 
@@ -471,6 +474,24 @@
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
 	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x1841 0x20>,
+				<&apps_smmu 0x1801 0xA0>,
+				<&apps_smmu 0x1902 0x0>,
+				<&apps_smmu 0x1921 0x0>,
+				<&apps_smmu 0x0801 0x0>;
+		dma-coherent;
+	};
 };
 
 #include "pikachu-vm-rm-info-avf.dtsi"
+#include "pikachu-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-pikachu-vm-avf.dtsi"
