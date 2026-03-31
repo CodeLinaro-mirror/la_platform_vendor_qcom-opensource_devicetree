@@ -194,6 +194,7 @@
 							&mc_virt SLAVE_EBI_CH0>;
 			qcom,active-only;
 			qcom,iova-width = <36>;
+			qcom,opt-out-tbu-halting;
 		};
 	};
 
