@@ -271,6 +271,10 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "bourtzi.dtb"},
+            {
+                "name": "bourtzip.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
