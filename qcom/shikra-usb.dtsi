@@ -113,8 +113,8 @@
 		reg-names = "qmp_phy_base",
 			"vls_clamp_reg";
 
-		vdd-supply = <&pm4125_l13>;
-		core-supply = <&pm4125_l8>;
+		vdd-supply = <&pm4125_l8>;
+		core-supply = <&pm4125_l13>;
 		qcom,vdd-voltage-level = <0 925000 970000>;
 		qcom,core-voltage-level = <0 1800000 1800000>;
 		qcom,qmp-phy-init-seq =
