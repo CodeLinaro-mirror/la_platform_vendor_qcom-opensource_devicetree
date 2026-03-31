@@ -1357,6 +1357,7 @@
 
 		reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
 		resets = <&gcc GCC_UFS_PHY_BCR>;
+		non-removable;
 		reset-names = "rst";
 
 		depends-on-supply = <&apps_smmu>;
