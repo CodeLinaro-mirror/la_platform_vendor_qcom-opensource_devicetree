@@ -649,6 +649,27 @@
 			qcom,glinkpkt-dev-name = "bt_cp_ctrl";
 		};
 
+		qcom,glinkpkt-hci-aribter {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-socket-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-gatt-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
 		qcom,glinkpkt-lmcu-qsh-0 {
 			qcom,glinkpkt-edge = "lmcu";
 			qcom,glinkpkt-ch-name = "qsh_1_0";
