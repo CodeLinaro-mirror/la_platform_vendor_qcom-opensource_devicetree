@@ -18,7 +18,7 @@
 	aliases: aliases { };
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0";
+		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false";
 	};
 
 	cpus {
