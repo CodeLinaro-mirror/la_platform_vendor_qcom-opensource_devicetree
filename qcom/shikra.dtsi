@@ -670,7 +670,8 @@
 		qcom,keepalive;
 		clock-names = "bus", "bus_a";
 		clocks = <&rpmcc RPM_SMD_CPUSS_GNOC_CLK>,
-			 <&rpmcc RPM_SMD_CPUSS_GNOC_A_CLK>;
+			 <&rpmcc RPM_SMD_CPUSS_GNOC_A_CLK>,
+			 <&gcc GCC_DDRSS_GPU_AXI_CLK>;
 	};
 
 	mmnrt_virt: interconnect1@1880000 {
@@ -702,7 +703,11 @@
 		qcom,keepalive;
 		clock-names = "bus", "bus_a";
 		clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-			 <&rpmcc RPM_SMD_SNOC_A_CLK>;
+			 <&rpmcc RPM_SMD_SNOC_A_CLK>,
+			 <&gcc GCC_EMAC0_AXI_SYS_NOC_CLK>,
+			 <&gcc GCC_EMAC1_AXI_SYS_NOC_CLK>,
+			 <&gcc GCC_SYS_NOC_USB2_PRIM_AXI_CLK>,
+			 <&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>;
 	};
 
 	config_noc: interconnect@1900000 {
