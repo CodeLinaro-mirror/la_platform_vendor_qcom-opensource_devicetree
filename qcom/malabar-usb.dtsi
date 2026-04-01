@@ -114,6 +114,6 @@
 		iommus = <&apps_smmu 0x22f 0x0>;
 		qcom,iommu-dma = "disabled";
 		qcom,usb-audio-stream-id = <0xf>;
-		qcom,usb-audio-intr-num = <2>;
+		qcom,usb-audio-intr-num = <0>;
 	};
 };
