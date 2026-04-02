@@ -415,11 +415,6 @@
 		qcom,use-smcinvoke = <1>;
 	};
 
-
-	hypervisor: hypervisor {
-		gh_watchdog: qcom,gh-watchdog { };
-	};
-
 	memory@80000000 {
 		device_type = "memory";
 		/* We expect the bootloader to fill in the size */
@@ -3357,6 +3352,18 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
+		};
+
+		wdog: qcom,wdt@17410000 {
+			compatible = "qcom,msm-watchdog";
+			reg = <0x0 0x17410000 0x0 0x1000>;
+			reg-names = "wdt-base";
+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,bark-time = <11000>;
+			qcom,pet-time = <9360>;
+			qcom,ipi-ping;
+			qcom,wakeup-enable;
 		};
 
 		mmss_noc: interconnect@1780000 {
