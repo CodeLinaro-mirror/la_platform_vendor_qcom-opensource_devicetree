@@ -316,3 +316,4 @@
 
 #include "bourtzi-pinctrl.dtsi"
 #include "bourtzi-walt.dtsi"
+#include "bourtzi-usb.dtsi"
