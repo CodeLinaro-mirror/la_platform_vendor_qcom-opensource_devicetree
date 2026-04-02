@@ -18,7 +18,7 @@
 	aliases: aliases { };
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false";
+		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4";
 	};
 
 	cpus {
