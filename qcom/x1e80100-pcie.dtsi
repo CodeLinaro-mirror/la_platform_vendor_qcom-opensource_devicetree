@@ -16,6 +16,7 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
+		regulator-boot-on;
 	};
 
 	pcie6: pcie@0x1bf8000 {
