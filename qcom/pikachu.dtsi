@@ -714,6 +714,7 @@
 		compatible = "qcom,cpucp-log";
 		reg = <0xD8040000 0x10000>, <0xD8050000 0x10000>;
 		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
 	};
 
 	llcc_pmu: llcc-pmu@24095000 {
