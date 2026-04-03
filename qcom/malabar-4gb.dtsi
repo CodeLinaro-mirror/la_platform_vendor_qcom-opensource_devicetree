@@ -14,6 +14,7 @@
 	/delete-node/ trust_ui_vm_mem@f3800000;
 	/delete-node/ vm_comm_mem;
 	/delete-node/ non_secure_display_memory;
+	/delete-node/ mem_dump_region;
 };
 
 &soc {
@@ -29,4 +30,6 @@
 	qcom,gunyah-panic-notifier {
 		status = "disabled";
 	};
+
+	/delete-node/ mem_dump;
 };
