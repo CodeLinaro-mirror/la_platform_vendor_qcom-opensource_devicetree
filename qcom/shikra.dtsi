@@ -1032,6 +1032,7 @@
 		spi0: spi@4a80000 {
 			compatible = "qcom,spi-geni";
 			reg = <0x4a80000 0x4000>;
+			reg-names = "se_phys";
 			interrupts = <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
 			clock-names = "se-clk";
@@ -1053,6 +1054,7 @@
 				    "rx";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
@@ -1152,6 +1154,7 @@
 		spi2: spi@4a88000 {
 			compatible = "qcom,spi-geni";
 			reg = <0x4a88000 0x4000>;
+			reg-names = "se_phys";
 			interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
 			clock-names = "se-clk";
@@ -1173,6 +1176,7 @@
 				    "rx";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
@@ -1328,6 +1332,7 @@
 		spi5: spi@4a94000 {
 			compatible = "qcom,spi-geni";
 			reg = <0x4a94000 0x4000>;
+			reg-names = "se_phys";
 			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
 			clock-names = "se-clk";
@@ -1349,6 +1354,7 @@
 				    "rx";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
@@ -1410,6 +1416,7 @@
 		spi6: spi@4a98000 {
 			compatible = "qcom,spi-geni";
 			reg = <0x4a98000 0x4000>;
+			reg-names = "se_phys";
 			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
 			clock-names = "se-clk";
@@ -1431,6 +1438,7 @@
 				    "rx";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
@@ -1539,6 +1547,7 @@
 		spi8: spi@4aa0000 {
 			compatible = "qcom,spi-geni";
 			reg = <0x4aa0000 0x4000>;
+			reg-names = "se_phys";
 			interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&gcc GCC_QUPV3_WRAP0_S8_CLK>;
 			clock-names = "se-clk";
@@ -1560,6 +1569,7 @@
 				    "rx";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
