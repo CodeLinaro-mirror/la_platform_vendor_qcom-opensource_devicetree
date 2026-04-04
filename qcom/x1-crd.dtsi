@@ -38,7 +38,7 @@
 };
 
 &usb_mp_hsphy0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp_hsphy1 {
@@ -47,15 +47,19 @@
 };
 
 &usb_mp_qmpphy0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp_qmpphy1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp {
 	status = "okay";
+	usb@a400000 {
+		phys = <&usb_mp_hsphy1>;
+		phy-names = "usb2-0";
+	};
 };
 
 &pmc8380_f_gpios {
