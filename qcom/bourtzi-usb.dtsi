@@ -61,4 +61,12 @@
 		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
 				<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
 	};
+
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu 0x100f 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0xf>;
+		qcom,usb-audio-intr-num = <2>;
+	};
 };
