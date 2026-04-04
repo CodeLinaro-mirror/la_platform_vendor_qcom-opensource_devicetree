@@ -61,6 +61,7 @@
 			dma-coherent;
 
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+			usb-phy = <&usb2_phy0>, <&usb_nop_phy>;
 			snps,has-lpm-erratum;
 			snps,hird-threshold = /bits/ 8 <0x0>;
 			snps,is-utmi-l1-suspend;
@@ -79,6 +80,31 @@
 	dwc3_mem_region: dwc3_mem_region {
 		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
 				<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+	};
+
+	/* USB port related High Speed PHY */
+	usb2_phy0: hsphy@88e3000 {
+		compatible = "qcom,usb-hsphy-snps-femto";
+		reg = <0x88e3000 0x11c>,
+			<0x088e2000 0x4>;
+		reg-names = "hsusb_phy_base",
+			"eud_enable_reg";
+
+		vdd-supply = <&L5B_E0>;
+		vdda18-supply = <&L18B_E0>;
+		vdda33-supply = <&L25B_E0>;
+		qcom,vdd-voltage-level = <0 880000 920000>;
+
+		clocks = <&rpmhcc RPMH_CXO_CLK>,
+			<&gcc GCC_EUSB3_0_CLKREF_EN>;
+		clock-names = "ref_clk_src", "ref_clk";
+
+		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+		reset-names = "phy_reset";
+	};
+
+	usb_nop_phy: usb_nop_phy {
+		compatible = "usb-nop-xceiv";
 	};
 
 	usb_audio_qmi_dev {
