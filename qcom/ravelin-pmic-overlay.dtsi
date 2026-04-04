@@ -227,7 +227,6 @@
 &pmk8350_sdam_1 {
 	ufs_dev: ufs_dev@94 {
 		reg = <0x94 0x1>;
-		bits = <0 0>;
 	};
 };
 
@@ -635,7 +634,7 @@
 
 &pm6450_pwm_1 {
 	status = "ok";
-	qcom,mid-res-support;
+	qcom,avoid-hi-res-clk-rates;
 };
 
 &pm6450_gpios {

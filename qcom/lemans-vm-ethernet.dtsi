@@ -83,7 +83,7 @@
 	};
 
 	ethernet1: ethernet@23000000 {
-		compatible = "qcom,sa8775p-ethqos","snps,dwmac-4.20a";
+		compatible = "qcom,sa8775p-ethqos";
 		reg = <0x23000000 0x10000>,
 				<0x23016000 0x100>;
 		reg-names = "stmmaceth", "rgmii";
@@ -99,6 +99,10 @@
 					"pclk",
 					"ptp_ref",
 					"phyaux";
+
+		qcom,cl22-phy-addr = <10>;
+		qcom,air-cl45-phy-addr = <0>;
+		qcom,star-cl45-phy-addr = <8>;
 
 		gdsc_emac-supply = <&gcc_emac1_gdsc>;
 		phys = <&serdes1>;

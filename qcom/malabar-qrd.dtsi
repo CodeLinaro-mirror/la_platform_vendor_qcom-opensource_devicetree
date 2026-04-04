@@ -185,12 +185,6 @@
 	};
 };
 
-&L5E {
-	regulator-min-microvolt = <2504000>;
-	regulator-max-microvolt = <3544000>;
-	qcom,init-voltage = <2504000>;
-};
-
 &usb0 {
 	usb-role-switch;
 

@@ -42,3 +42,12 @@
 &chosen {
 	bootconfig = "androidboot.dtbo_idx=28 androidboot.fstab_suffix=hqx.nord.qcom";
 };
+
+&soc {
+	tsc@1c81000 {
+		compatible = "qcom,tsc-vm";
+		reg = <0x1c81000 0x1000>;
+		reg-names = "tsc";
+		qcom,tsc-nsec-update;
+	};
+};

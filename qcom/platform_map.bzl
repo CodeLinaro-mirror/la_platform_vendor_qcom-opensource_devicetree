@@ -14,7 +14,9 @@ _platform_map = {
             {"name": "sa7775p-sdp8-vm-la-mt.dtb"},
             {"name": "sa7775p-sdp8-vm-lv-mt.dtb"},
             {"name": "sa8797p-gunyah-vm-qam.dtb"},
+            {"name": "sa8797p-gunyah-vm-qam-star.dtb"},
             {"name": "sa8797p-v2-gunyah-vm-qam.dtb"},
+            {"name": "sa8797p-v2-gunyah-vm-qam-star.dtb"},
             {"name": "monaco-vm-la.dtb"},
             {"name": "monaco-sdp8-vm-lv.dtb"},
             {"name": "monaco-sdp8-vm-lv-headless-mt.dtb"},
@@ -33,6 +35,7 @@ _platform_map = {
             {"name": "monaco-vm-la-mt.dtb"},
             {"name": "lemans-gh-vm-la-qam-ridesx.dtb"},
             {"name": "lemans-gh-vm-la-flex-qam-ridesx.dtb"},
+            {"name": "monaco-gh-vm-la-qam-ridesx.dtb"},
             {"name": "sa8797p-sdp8-vm-la-mt.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt.dtb"},
         ],
@@ -68,6 +71,7 @@ _platform_map = {
             {"name": "monaco-vm-la-mt-overlay.dtbo"},
             {"name": "lemans-gh-vm-la-qam-ridesx-overlay.dtbo"},
             {"name": "lemans-gh-vm-la-flex-qam-ridesx-overlay.dtbo"},
+            {"name": "monaco-gh-vm-la-qam-ridesx-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt-overlay.dtbo"},
         ],
@@ -135,7 +139,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin", "bourtzi"],
     },
     "alor": {
         "dtb_list": [
@@ -263,6 +267,25 @@ _platform_map = {
             {"name": "ravelin-qrd-4gb-overlay.dtbo"},
         ],
     },
+    "bourtzi": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "bourtzi.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-atp-overlay.dtbo"},
+            {"name": "bourtzi-cdp-lcd-overlay.dtbo"},
+            {"name": "bourtzi-cdp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-qrd-overlay.dtbo"},
+            {"name": "bourtzi-qrd-evros-overlay.dtbo"},
+            {"name": "bourtzi-rcm-overlay.dtbo"},
+            {"name": "bourtzi-rcm-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-rumi-overlay.dtbo"},
+        ],
+    },
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
@@ -286,6 +309,9 @@ _platform_map = {
             {"name": "malabar-mtp-4gb-overlay.dtbo"},
             {"name": "malabar-cdp-emmc-overlay.dtbo"},
             {"name": "malabar-mtp-emmc-overlay.dtbo"},
+            {"name": "malabar-cdp-ufs3-overlay.dtbo"},
+            {"name": "malabar-mtp-ufs3-overlay.dtbo"},
+            {"name": "malabar-qrd-ufs3-overlay.dtbo"},
         ],
     },
     "bengal": {
@@ -300,6 +326,11 @@ _platform_map = {
             {"name": "bengalp.dtb"},
             {"name": "bengal-1gb.dtb"},
             {"name": "bengal-2gb.dtb"},
+            {"name": "scuba-iot.dtb"},
+            {"name": "scuba-iot-2gb.dtb"},
+            {"name": "scubap-iot.dtb"},
+            {"name": "scubap-iot-idp.dtb"},
+            {"name": "scubap-iot-idp-2gb.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -352,6 +383,11 @@ _platform_map = {
             {"name": "bengal-idp-2gb-overlay.dtbo"},
             {"name": "bengal-idp-usbc-1gb-overlay.dtbo"},
             {"name": "bengal-idp-usbc-2gb-overlay.dtbo"},
+            {"name": "scuba-iot-idp-overlay.dtbo"},
+            {"name": "scuba-iot-idp-usbc-overlay.dtbo"},
+            {"name": "scuba-iot-qrd-eldo-overlay.dtbo"},
+            {"name": "scuba-iot-qrd-non-eldo-overlay.dtbo"},
+            {"name": "scuba-iot-rb1-overlay.dtbo"},
         ],
     },
     "monaco": {
@@ -439,6 +475,11 @@ _platform_map = {
             {"name": "yupikp-iot-hsp-overlay.dtbo"},
             {"name": "yupikp-iot-hsp-pm7250b-overlay.dtbo"},
             {"name": "yupikp-iot-idps-amoled-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-videocollab-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-visionkit-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-corekit-overlay.dtbo"},
+            {"name": "katmaip-iot-rb3-gen2-videocollab-overlay.dtbo"},
+            {"name": "katmaip-iot-rb3-gen2-visionkit-overlay.dtbo"},
             {"name": "katmaip-hsp-overlay.dtbo"},
             {"name": "katmaip-hsp-pm7250b-overlay.dtbo"},
             {"name": "yupik-rumi-overlay.dtbo"},
@@ -480,6 +521,13 @@ _platform_map = {
             {"name": "x1e80100-crd-overlay.dtbo"},
             {"name": "x1e80100-qcb-overlay.dtbo"},
             {"name": "x1e80100-qcp-overlay.dtbo"},
+        ],
+        "custom_dtbo_img_list": [
+            {
+                "name": "x1e80100-crd",
+                "src": ["x1e80100-crd-overlay.dtbo", "x1e80100.dtb"],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/x1e80100_crd_dtbo.config",
+            },
         ],
         "binary_compatible_with": ["x1p42100"],
     },
@@ -627,8 +675,13 @@ _platform_map = {
     "seraph": {
         "dtb_list": [
             {"name": "seraph.dtb"},
+            {"name": "seraph-v1.1.dtb"},
             {
                 "name": "seraphp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "seraphp-v1.1.dtb",
                 "apq": True,
             },
         ],
@@ -643,6 +696,18 @@ _platform_map = {
             {"name": "seraphp-idp-no-display-overlay.dtbo"},
             {"name": "seraph-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraph-v1.1-atp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-atp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-camera-audio-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-overlay.dtbo"},
             {"name": "seraphp-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
@@ -917,10 +982,24 @@ _platform_map = {
     "shikra": {
         "dtb_list": [
             # keep sorted
-            {"name": "shikra.dtb"},
+            {"name": "shikra-cqm.dtb"},
+            {
+                "name": "shikra-cqs.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-lite-cqm.dtb"},
+            {
+                "name": "shikra-lite-cqs.dtb",
+                "apq": True,
+            },
         ],
         "dtbo_list": [
             # keep sorted
+            {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
@@ -933,12 +1012,14 @@ def _get_dtb_lists(target, dt_overlay_supported):
     ret = {
         "dtb_list": [],
         "dtbo_list": [],
+        "custom_dtbo_img_list": [],
     }
 
     for dtb_node in [target] + _platform_map[target].get("binary_compatible_with", []):
         ret["dtb_list"].extend(_platform_map[dtb_node].get("dtb_list", []))
         if dt_overlay_supported:
             ret["dtbo_list"].extend(_platform_map[dtb_node].get("dtbo_list", []))
+            ret["custom_dtbo_img_list"].extend(_platform_map[dtb_node].get("custom_dtbo_img_list", []))
         else:
             # Translate the dtbo list into dtbs we can append to main dtb_list
             for dtb in _platform_map[dtb_node].get("dtb_list", []):
@@ -957,3 +1038,6 @@ def get_dtb_list(target, dt_overlay_supported = True):
 
 def get_dtbo_list(target, dt_overlay_supported = True):
     return [dtb["name"] for dtb in _get_dtb_lists(target, dt_overlay_supported).get("dtbo_list", [])]
+
+def get_custom_dtbo_img_list(target, dt_overlay_supported = True):
+    return _get_dtb_lists(target, dt_overlay_supported).get("custom_dtbo_img_list", [])

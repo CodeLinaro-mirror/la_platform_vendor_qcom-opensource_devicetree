@@ -13,9 +13,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s1a_e0: regulator-s1a-e0 {
+		regulator-s1 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_s1a_e0";
+			regulator-name = "pm4125_s1";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -29,9 +29,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s2a_e0: regulator-s2a-e0 {
+		regulator-s2 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_s2a_e0";
+			regulator-name = "pm4125_s2";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -45,9 +45,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s3a_e0: regulator-s3a-e0 {
+		regulator-s3 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_s3a_e0";
+			regulator-name = "pm4125_s3";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -61,9 +61,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s4a_e0: regulator-s4a-e0 {
+		regulator-s4 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_s4a_e0";
+			regulator-name = "pm4125_s4";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -79,9 +79,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l1a_e0: regulator-l1a-e0 {
+		regulator-l1 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l1a_e0";
+			regulator-name = "pm4125_l1";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -96,9 +96,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l2a_e0: regulator-l2a-e0 {
+		regulator-l2 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l2a_e0";
+			regulator-name = "pm4125_l2";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -113,9 +113,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l3a_e0: regulator-l3a-e0 {
+		regulator-l3 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l3a_e0";
+			regulator-name = "pm4125_l3";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -130,9 +130,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l4a_e0: regulator-l4a-e0 {
+		regulator-l4 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l4a_e0";
+			regulator-name = "pm4125_l4";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -147,9 +147,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l5a_e0: regulator-l5a-e0 {
+		regulator-l5 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l5a_e0";
+			regulator-name = "pm4125_l5";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -164,9 +164,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l6a_e0: regulator-l6a-e0 {
+		regulator-l6 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l6a_e0";
+			regulator-name = "pm4125_l6";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -181,9 +181,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l7a_e0: regulator-l7a-e0 {
+		regulator-l7 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l7a_e0";
+			regulator-name = "pm4125_l7";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -198,9 +198,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l8a_e0: regulator-l8a-e0 {
+		regulator-l8 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l8a_e0";
+			regulator-name = "pm4125_l8";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -215,9 +215,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l9a_e0: regulator-l9a-e0 {
+		regulator-l9 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l9a_e0";
+			regulator-name = "pm4125_l9";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -232,9 +232,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l10a_e0: regulator-l10a-e0 {
+		regulator-l10 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l10a_e0";
+			regulator-name = "pm4125_l10";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -249,9 +249,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l11a_e0: regulator-l11a-e0 {
+		regulator-l11 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l11a_e0";
+			regulator-name = "pm4125_l11";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -266,9 +266,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l12a_e0: regulator-l12a-e0 {
+		regulator-l12 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l12a_e0";
+			regulator-name = "pm4125_l12";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -283,9 +283,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l13a_e0: regulator-l13a-e0 {
+		regulator-l13 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l13a_e0";
+			regulator-name = "pm4125_l13";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -300,9 +300,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l14a_e0: regulator-l14a-e0 {
+		regulator-l14 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l14a_e0";
+			regulator-name = "pm4125_l14";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -317,9 +317,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l15a_e0: regulator-l15a-e0 {
+		regulator-l15 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l15a_e0";
+			regulator-name = "pm4125_l15";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -334,9 +334,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l16a_e0: regulator-l16a-e0 {
+		regulator-l16 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l16a_e0";
+			regulator-name = "pm4125_l16";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -351,9 +351,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l17a_e0: regulator-l17a-e0 {
+		regulator-l17 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l17a_e0";
+			regulator-name = "pm4125_l17";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -368,9 +368,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l18a_e0: regulator-l18a-e0 {
+		regulator-l18 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l18a_e0";
+			regulator-name = "pm4125_l18";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -385,9 +385,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l19a_e0: regulator-l19a-e0 {
+		regulator-l19 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l19a_e0";
+			regulator-name = "pm4125_l19";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -402,9 +402,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l20a_e0: regulator-l20a-e0 {
+		regulator-l20 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l20a_e0";
+			regulator-name = "pm4125_l20";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -419,9 +419,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l21a_e0: regulator-l21a-e0 {
+		regulator-l21 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l21a_e0";
+			regulator-name = "pm4125_l21";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -436,9 +436,9 @@
 		qcom,hpm-min-load = <10000>;
 		status = "disabled";
 
-		regulator_l22a_e0: regulator-l22a-e0 {
+		regulator-l22 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm4125_l22a_e0";
+			regulator-name = "pm4125_l22";
 			qcom,set = <3>;
 			status = "disabled";
 		};

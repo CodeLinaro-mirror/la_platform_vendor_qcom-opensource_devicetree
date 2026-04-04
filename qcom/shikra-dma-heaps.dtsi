@@ -21,6 +21,12 @@
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
 			memory-region = <&qseecom_ta_mem>;
 		};
+
+		qcom,audio_carveout {
+			qcom,dma-heap-name = "qcom,audio-carveout";
+			qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
+			memory-region = <&audio_carveout_mem>;
+		};
 	};
 };
 

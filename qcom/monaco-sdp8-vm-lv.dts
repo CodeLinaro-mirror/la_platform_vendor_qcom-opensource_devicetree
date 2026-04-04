@@ -15,4 +15,5 @@
 };
 
 #include "monaco-sdp8-vm.dtsi"
+#include "sa7255p-sdp8-vm-cpu-conf.dtsi"
 #include "monaco-sdp8-vm-lv.dtsi"

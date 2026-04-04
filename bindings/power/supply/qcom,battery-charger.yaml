@@ -21,6 +21,7 @@ properties:
       - enum:
           - qcom,battery-charger
           - qcom,pmw6100-battery-charger
+          - qcom,canoe-battery-charger
 
   qcom,thermal-mitigation:
     description: |
