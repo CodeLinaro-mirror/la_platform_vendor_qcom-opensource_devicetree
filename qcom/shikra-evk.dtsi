@@ -630,7 +630,7 @@
 	resets = <&gcc GCC_SDCC2_BCR>;
 	reset-names = "core_reset";
 
-	status = "ok";
+	status = "disabled";
 };
 
 &uart0 {
