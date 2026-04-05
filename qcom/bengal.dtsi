@@ -1105,15 +1105,6 @@
 		status = "ok";
 	};
 
-	qcom,msm-gladiator-v2@f100000 {
-		compatible = "qcom,msm-gladiator-v2";
-		reg = <0xf100000 0xdc00>;
-		reg-names = "gladiator_base";
-		interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-		clock-names = "atb_clk";
-		clocks = <&rpmcc RPM_QDSS_CLK>;
-	};
-
 	wdog: qcom,wdt@f017000 {
 		compatible = "qcom,msm-watchdog";
 		reg = <0xf017000 0x1000>;
