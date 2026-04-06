@@ -9,7 +9,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <736 0x10000>;
+	qcom,msm-id = <736 0x10000>, <737 0x10000>;
 
 	host {
 		#address-cells = <0x2>;
@@ -30,8 +30,8 @@
 			android,pvmfw,target = <&tlmm>;
 		};
 
-		qcom,ipcc@405000 {
-			reg = <0x0 0x405000 0x0 0x1000>;
+		qcom,ipcc@406000 {
+			reg = <0x0 0x406000 0x0 0x1000>;
 			android,pvmfw,target = <&ipcc_mproc_ns1>;
 		};
 
@@ -65,12 +65,12 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		iomemory-ranges = <0x0 0x405000 0x0 0x405000 0x0 0x1000 0x0>;
+		iomemory-ranges = <0x0 0x406000 0x0 0x406000 0x0 0x1000 0x0>;
 
 		/* Dynamically nominate the vmmio ranges */
 		vmmio-ranges;
 
-		gic-irq-ranges = <734 734>;
+		gic-irq-ranges = <109 109>;
 
 		segments {
 			ramdisk = <3>;
@@ -171,7 +171,8 @@
 				peer-default;
 				memory {
 					qcom,label = <0x103>;
-					allocate-base;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
 				};
 			};
 
@@ -280,6 +281,8 @@
 			&tlmm_vm_mem_access
 			&tlmm_vm_test
 			&qti_smmu_proxy
+			&qti_smmu_proxy_camera_cb
+			&qcom_mem_object
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
@@ -290,6 +293,8 @@
 			&qcom_gunyah_panic_notifier
 			&virtio_mem_device
 			&google_debug_kinfo
+			&qcom_dma_heaps
+			&qrtr_gunyah
 			>;
 	};
 
@@ -373,10 +378,10 @@
 		method = "smc";
 	};
 
-	ipcc_mproc_ns1: qcom,ipcc@405000 {
+	ipcc_mproc_ns1: qcom,ipcc@406000 {
 		compatible = "qcom,ipcc";
-		reg = <0x0 0x405000 0x0 0x1000>; /* size */
-		interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x0 0x406000 0x0 0x1000>; /* size */
+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-controller;
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
@@ -397,7 +402,7 @@
 		affinity = <0>;
 	};
 
-	qrtr-gunyah {
+	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x103>;
 	};
@@ -471,6 +476,24 @@
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
 	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x1841 0x20>,
+				<&apps_smmu 0x1801 0xA0>,
+				<&apps_smmu 0x1902 0x0>,
+				<&apps_smmu 0x1921 0x0>,
+				<&apps_smmu 0x0801 0x0>;
+		dma-coherent;
+	};
 };
 
 #include "pikachu-vm-rm-info-avf.dtsi"
+#include "pikachu-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-pikachu-vm-avf.dtsi"

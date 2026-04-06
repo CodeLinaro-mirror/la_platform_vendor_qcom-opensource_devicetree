@@ -7,7 +7,7 @@
 /plugin/;
 
 #include "pikachup.dtsi"
-#include "pikachup-idp.dtsi"
+#include "pikachup-idp-dtof.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. PikachuP IDP DTOF";

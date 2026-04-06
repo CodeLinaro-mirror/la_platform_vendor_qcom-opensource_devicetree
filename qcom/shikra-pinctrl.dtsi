@@ -785,20 +785,11 @@
 			};
 		};
 
-		tlmm_swr_tx_data1_active: tlmm_swr_tx_data1_active {
-			status = "disabled";
-		};
-
-		tlmm_swr_tx_data2_active: tlmm_swr_tx_data2_active {
-			status = "disabled";
-		};
-
-		tlmm_swr_tx_data1_sleep: tlmm_swr_tx_data1_sleep {
-			status = "disabled";
-		};
-
-		tlmm_swr_tx_data2_sleep: tlmm_swr_tx_data2_sleep {
-			status = "disabled";
+		pndr_spkr_sd_n: pndr_spkr_sd_n {
+			pins = "gpio2";
+			function = "gpio";
+			input-disable;
+			output-enable;
 		};
 
 		sdc1_on: sdc1_on {

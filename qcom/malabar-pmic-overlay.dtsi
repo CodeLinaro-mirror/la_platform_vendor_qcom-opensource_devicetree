@@ -30,6 +30,7 @@
 
 &pm6450_pwm_1 {
 	status = "ok";
+	qcom,avoid-hi-res-clk-rates;
 };
 
 &pmk8350_sdam_1 {
@@ -103,20 +104,20 @@
 
 			L2M: pm8010m_l2: ldo2 {
 				regulator-name = "pm8010m_l2";
-				regulator-min-microvolt = <950000>;
-				regulator-max-microvolt = <1150000>;
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1152000>;
 			};
 
 			L3M: pm8010m_l3: ldo3 {
 				regulator-name = "pm8010m_l3";
-				regulator-min-microvolt = <2700000>;
-				regulator-max-microvolt = <2900000>;
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
 			};
 
 			L4M: pm8010m_l4: ldo4 {
 				regulator-name = "pm8010m_l4";
-				regulator-min-microvolt = <2700000>;
-				regulator-max-microvolt = <2900000>;
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
 			};
 
 			L5M: pm8010m_l5: ldo5 {
@@ -127,14 +128,14 @@
 
 			L6M: pm8010m_l6: ldo6 {
 				regulator-name = "pm8010m_l6";
-				regulator-min-microvolt = <2700000>;
+				regulator-min-microvolt = <2704000>;
 				regulator-max-microvolt = <3000000>;
 			};
 
 			L7M: pm8010m_l7: ldo7 {
 				regulator-name = "pm8010m_l7";
-				regulator-min-microvolt = <2700000>;
-				regulator-max-microvolt = <2900000>;
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
 			};
 		};
 	};
@@ -387,6 +388,41 @@
 				temperature = <125000>;
 				hysteresis = <1000>;
 				type = "passive";
+			};
+
+			display_test_config1: display-test-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			display_test_config2: display-test-config2 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			display_test_config3: display-test-config3 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			display_cdev1 {
+				trip = <&display_test_config1>;
+				cooling-device = <&display_fps 1 1>;
+			};
+
+			display_cdev2 {
+				trip = <&display_test_config2>;
+				cooling-device = <&display_fps 2 2>;
+			};
+
+			display_cdev3 {
+				trip = <&display_test_config3>;
+				cooling-device = <&display_fps 3 3>;
 			};
 		};
 	};

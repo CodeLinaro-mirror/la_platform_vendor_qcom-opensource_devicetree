@@ -63,7 +63,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "loglevel=6 log_buf_len=512K earlycon arm64.nosme arm64.nomte cpufreq.default_governor=performance no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-3 fw_devlink.strict=1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on sysctl.kernel.sched_pelt_multiplier=4 android_arch_task_struct_size=512 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false can.stats_timer=0 slub_debug=-";
+		bootargs = "loglevel=6 log_buf_len=512K earlycon arm64.nosme arm64.nomte cpufreq.default_governor=performance no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-3 fw_devlink.strict=1 kasan=off ufshcd-core.use_mcq_mode=n rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on sysctl.kernel.sched_pelt_multiplier=4 android_arch_task_struct_size=512 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false can.stats_timer=0 slub_debug=-";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -1282,6 +1282,9 @@
 		#size-cells = <1>;
 		read-only;
 		ranges;
+		feat_conf17: feat_conf17@0144 {
+			reg = <0x0144 0x4>;
+		};
 
 		gpu_speed_bin: gpu_speed_bin@142 {
 			reg = <0x142 0x2>;
@@ -1713,25 +1716,25 @@
 		ddr4 {
 			qcom,ddr-type = <7>;
 			qcom,freq-tbl =
-				<  547000 >,
+				<  547200 >,
 				<  768000 >,
-				< 1017000 >,
+				< 1017600 >,
 				< 1353600 >,
-				< 1555000 >,
-				< 1708000 >,
-				< 2092000 >;
+				< 1555200 >,
+				< 1708800 >,
+				< 2092800 >;
 		};
 
 		ddr5 {
 			qcom,ddr-type = <8>;
 			qcom,freq-tbl =
-				<  547000 >,
+				<  547200 >,
 				<  768000 >,
-				< 1555000 >,
-				< 1708000 >,
-				< 2092000 >,
+				< 1555200 >,
+				< 1708800 >,
+				< 2092800 >,
 				< 2736000 >,
-				< 3196000 >;
+				< 3187200 >;
 		};
 	};
 
@@ -1851,7 +1854,7 @@
 						< 1651200 1555200 >,
 						< 1900800 1708000 >,
 						< 2304000 2092800 >,
-						< 2611200 3196800 >;
+						< 2611200 3187200 >;
 				};
 			};
 
@@ -1899,7 +1902,7 @@
 						< 1612800 1555200 >,
 						< 1900800 1708000 >,
 						< 2246400 2092800 >,
-						< 2611200 3196800 >;
+						< 2611200 3187200 >;
 				};
 			};
 		};
@@ -1949,7 +1952,7 @@
 				qcom,compute-mon;
 				qcom,cpufreq-memfreq-tbl =
 					< 2035200  384000 >,
-					< 2611200 1497600 >;
+					< 2611200 1459200 >;
 			};
 		};
 
@@ -2491,6 +2494,7 @@
 		depends-on-supply = <&apps_smmu>;
 
 		iommus = <&apps_smmu 0x60 0x0>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		memory-region = <&ufshc_dma_resv>;
 		dma-coherent;

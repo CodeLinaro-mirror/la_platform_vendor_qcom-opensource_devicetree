@@ -8,148 +8,7 @@
 #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
 #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
 
-
-&tlmm {
-
-	pcie6 {
-		pcie6_perst_default: pcie6_perst_default {
-			mux {
-				pins = "gpio152";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio152";
-				drive-strength = <2>;
-				bias-pull-down;
-			};
-		};
-
-		pcie6_clkreq_default: pcie6_clkreq_default {
-			mux {
-				pins = "gpio153";
-				function = "pcie6a_clk";
-			};
-
-			config {
-				pins = "gpio153";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-
-		pcie6_wake_default: pcie6_wake_default {
-			mux {
-				pins = "gpio154";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio154";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-
-		pcie6_nvme_pwr_default: pcie6_nvme_pwr_default {
-			mux {
-				pins = "gpio18";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio18";
-				drive-strength = <2>;
-				bias-disable;
-				output-high;
-			};
-		};
-
-		pcie6_clkreq_sleep: pcie6_clkreq_sleep {
-			mux {
-				pins = "gpio153";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio153";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-
-		pcie6_nvme_pwr_sleep: pcie6_nvme_pwr_sleep {
-			mux {
-				pins = "gpio18";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio18";
-				drive-strength = <2>;
-				bias-disable;
-				output-low;
-			};
-		};
-	};
-
-	pcie4 {
-		pcie4_perst_default: pcie4_perst_default {
-			mux {
-				pins = "gpio146";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio146";
-				drive-strength = <2>;
-				bias-pull-down;
-			};
-		};
-
-		pcie4_clkreq_default: pcie4_clkreq_default {
-			mux {
-				pins = "gpio147";
-				function = "pcie4_clk";
-			};
-
-			config {
-				pins = "gpio147";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-
-		pcie4_wake_default: pcie4_wake_default {
-			mux {
-				pins = "gpio148";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio148";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-
-		pcie4_clkreq_sleep: pcie4_clkreq_sleep {
-			mux {
-				pins = "gpio147";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio147";
-				drive-strength = <2>;
-				bias-pull-up;
-			};
-		};
-	};
-};
-
 &soc {
-
 	nvme_vreg: nvme_vreg {
 		compatible = "regulator-fixed";
 		regulator-name = "nvme_vreg";
@@ -171,7 +30,7 @@
 			<0x6 0x10000000 0x0 0x4000>;
 		reg-names = "parf", "phy", "phy_portb", "tcsr", "dm_core", "elbi", "iatu";
 
-		cell-index = <1>; /* Change it later to 6 */
+		cell-index = <6>;
 		linux,pci-domain = <6>;
 		bus-range = <0x0 0xff>;
 
@@ -182,14 +41,15 @@
 			<0x43000000 0x6 0x10100000 0x6 0x10100000 0x0 0xeff00000>;
 
 		device_type = "pci";
-		interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "int_global_int";
 
-		interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-				"int_d";
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0 0 0 0x7>;
+		interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 2 &intc 0 0 GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 3 &intc 0 0 GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
+				<0 0 0 4 &intc 0 0 GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>;
 
 		msi-parent = <&pcie6_msi>;
 
@@ -223,9 +83,9 @@
 		qcom,vreg-0p9-voltage-level = <880000 880000 410000>;
 		qcom,vreg-qref-voltage-level = <880000 880000 1300>;
 		qcom,vreg-cx-voltage-level = <RPMH_REGULATOR_LEVEL_MAX
-					      RPMH_REGULATOR_LEVEL_SVS 0>;
+					      RPMH_REGULATOR_LEVEL_LOW_SVS 0>;
 		qcom,vreg-mx-voltage-level = <RPMH_REGULATOR_LEVEL_MAX
-					      RPMH_REGULATOR_LEVEL_SVS 0>;
+					      RPMH_REGULATOR_LEVEL_LOW_SVS 0>;
 
 		clocks = <&gcc GCC_PCIE_6A_PIPE_CLK>,
 			<&rpmhcc RPMH_CXO_CLK>,
@@ -266,26 +126,26 @@
 				     <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>, <0>;
 
 		qcom,bw-scale = /* Gen1 */
-				<RPMH_REGULATOR_LEVEL_SVS
-				RPMH_REGULATOR_LEVEL_SVS
+				<RPMH_REGULATOR_LEVEL_LOW_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
 				19200000
 				/* Gen2 */
-				RPMH_REGULATOR_LEVEL_SVS
-				RPMH_REGULATOR_LEVEL_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
 				19200000
 				/* Gen3 */
-				RPMH_REGULATOR_LEVEL_SVS
-				RPMH_REGULATOR_LEVEL_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
 				100000000
 				/* Gen4 */
-				RPMH_REGULATOR_LEVEL_SVS
-				RPMH_REGULATOR_LEVEL_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
+				RPMH_REGULATOR_LEVEL_LOW_SVS
 				100000000>;
 
 		resets = <&gcc GCC_PCIE_6A_BCR>,
 			 <&gcc GCC_PCIE_6A_PHY_BCR>;
-		reset-names = "pcie_1_core_reset", /* change this to 6 later */
-			      "pcie_1_phy_reset";  /* change this to 6 later */
+		reset-names = "pcie_6_core_reset",
+			      "pcie_6_phy_reset";
 
 		dma-coherent;
 
@@ -706,14 +566,16 @@
 			<0x43000000 0x7 0x90100000 0x7 0x90100000 0x0 0x2ff00000>;
 
 		device_type = "pci";
-		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH
-				GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "int_global_int";
 
-		interrupt-names = "int_global_int", "int_a", "int_b", "int_c",
-				"int_d";
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0 0 0 0x7>;
+
+		interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 2 &intc 0 0 GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 3 &intc 0 0 GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH
+				 0 0 0 4 &intc 0 0 GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
 
 		msi-parent = <&pcie4_msi>;
 

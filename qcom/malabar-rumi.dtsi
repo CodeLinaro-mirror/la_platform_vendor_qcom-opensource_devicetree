@@ -115,3 +115,8 @@
 	status = "disabled";
 };
 
+&rpmcc {
+	compatible = "fixed-clock";
+	clock-output-names = "rpm_clocks";
+	clock-frequency = <19200000>;
+};

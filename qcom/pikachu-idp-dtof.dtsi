@@ -3,4 +3,16 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "pikachu-idp.dtsi"
+#include "pikachu-idp-base.dtsi"
+#include "pikachu-pmic-overlay.dtsi"
+#include "pikachu-thermal-overlay.dtsi"
+
+&apps_rsc_drv2 {
+	rpmh-regulator-mxclvl {
+		status = "okay";
+	};
+};
+
+&gpucc {
+	status = "disabled";
+};

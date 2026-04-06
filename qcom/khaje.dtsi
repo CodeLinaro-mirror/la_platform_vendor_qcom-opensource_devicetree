@@ -412,6 +412,15 @@
 			qcom,dload-mode = <&tcsr 0x13000>;
 		};
 
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
 		qtee_shmbridge {
 			compatible = "qcom,tee-shared-memory-bridge";
 		};
@@ -580,7 +589,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=-";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
 	};
 
 	soc: soc { };
@@ -760,7 +769,7 @@
 		qca,bt-vdd-xtal-current-level = <1>; /* LPM/PFM */
 	};
 
-	timer {
+	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <1 1 0xf08>,
 			     <1 2 0xf08>,
@@ -931,22 +940,9 @@
 		qcom,qsee-reentrancy-support = <2>;
 	};
 
-	qcom_smcinvoke: smcinvoke@61800000 {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-	};
-
 	qcom_rng: qrng@1b53000 {
-		compatible = "qcom,msm-rng";
+		compatible = "qcom,trng";
 		reg = <0x1b53000 0x1000>;
-		qcom,msm-rng-iface-clk;
-		qcom,no-qrng-config;
-		interconnect-names = "data_path";
-		interconnects = <&bimc MASTER_AMPSS_M0 &config_noc SLAVE_PRNG>;
-		clocks = <&gcc GCC_PRNG_AHB_CLK>;
-		clock-names = "km_clk_src";
 	};
 
 	qcom_tzlog: tz-log@c125720 {
@@ -1463,7 +1459,7 @@
 	ufshc_mem: ufshc@4804000 {
 		compatible = "qcom,ufshc";
 		reg = <0x4804000 0x3000>, <0x4810000 0x8000>;
-		reg-names = "ufs_mem", "ufs_ice";
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
@@ -2002,7 +1998,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -2597,7 +2593,6 @@
 		interrupts-extended = <&tlmm 25 IRQ_TYPE_EDGE_RISING>;
 		reset-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
 
-		vdd-l1-l2-supply = <&S6A>;
 		vdd-l7-supply = <&S7A>;
 
 		pinctrl-names = "default";

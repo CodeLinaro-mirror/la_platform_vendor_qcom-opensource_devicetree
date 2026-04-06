@@ -39,7 +39,7 @@
 
 	chosen: chosen {
 		/* All new command line changes must go into canoe-v2.dtsi */
-		bootargs = "android_arch_task_struct_size=512 loglevel=6 arm64.nosme log_buf_len=512K cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-1 fw_devlink.strict=1 pcie_ports=compat pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false slub_debug=-";
+		bootargs = "android_arch_task_struct_size=512 loglevel=6 arm64.nosme log_buf_len=512K cpufreq.default_governor=performance sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc kpti=0 swiotlb=0 loop.max_part=7 irqaffinity=0-1 fw_devlink.strict=1 pcie_ports=compat pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x1 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup_disable=pressure printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops restrict_cma_redirect=false slub_debug=- can.stats_timer=0";
 		stdout-path = "/soc/qcom,qupv3_1_geni_se@ac0000/qcom,qup_uart@a9c000:115200n8";
 	};
 
@@ -2356,6 +2356,10 @@
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 
+		interconnects = <&aggre_noc MASTER_SOCCP_AGGR_NOC &mc_virt SLAVE_EBI1>,
+				<&gem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_SOCCP>;
+		interconnect-names = "rproc_ddr", "rproc_cnoc";
+
 		firmware-name = "soccp.mbn", "soccp_dtb.mbn";
 
 		memory-region = <&soccp_mem &soccp_dtb_mem>;
@@ -2848,7 +2852,7 @@
 		qcom,subsys-name = "soccp";
 
 		battery_charger: battery-charger {
-			compatible = "qcom,battery-charger";
+			compatible = "qcom,canoe-battery-charger";
 		};
 
 		ucsi: ucsi-glink {
@@ -3791,6 +3795,11 @@
 			reg = <0x144 0x4>;
 		};
 
+		debugbus_en: debugbus_en@783 {
+			reg = <0x783 0x1>;
+			bits = <1 1>;
+		};
+
 		gpu_debug_bus_bin: gpu_debug_bus_bin@73 {
 			reg = <0x73 0x1>;
 			bits = <1 1>;
@@ -3799,6 +3808,11 @@
 		gpu_speed_bin: gpu_speed_bin@142 {
 			reg = <0x142 0x2>;
 			bits = <3 9>;
+		};
+
+		gpu_niden_en: gpu_niden_en@783 {
+			reg = <0x783 0x1>;
+			bits = <6 1>;
 		};
 
 		cpr_gfx_rc: cpr_gfx_rc@999 {
