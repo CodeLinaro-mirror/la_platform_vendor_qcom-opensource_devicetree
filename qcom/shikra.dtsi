@@ -2218,7 +2218,7 @@
 		remoteproc_lmcu_glink: glink-edge {
 			qcom,remote-pid = <26>;
 			transport = "smem";
-			mboxes = <&apcs_glb 8>;
+			mboxes = <&apcs_glb 9>;
 			mbox-names = "lmcu_smem";
 			interrupts = <GIC_SPI 286 IRQ_TYPE_EDGE_RISING>;
 
