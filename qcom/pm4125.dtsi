@@ -17,6 +17,8 @@ pm4125: pm4125@0 {
 
 	pon_hlos@800 {
 		compatible = "qcom,pm8916-pon";
+		mode-bootloader = <0x2>;
+		mode-recovery = <0x1>;
 		reg = <0x800>;
 
 		pwrkey {
