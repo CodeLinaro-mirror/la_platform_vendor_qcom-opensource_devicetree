@@ -295,42 +295,9 @@
 
 		out-ports {
 			port {
-				tpdm_wcss_out_tpda_wcss: endpoint {
+				tpdm_wcss_out_funnel_in1: endpoint {
 					remote-endpoint =
-					<&tpda_wcss_in_tpdm_wcss>;
-				};
-			};
-		};
-	};
-
-	tpda_wcss: tpda@899d000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0f00>;
-		reg = <0x0899d000 0x1000>;
-		reg-names = "tpda-base";
-
-		device-name = "tpda_wcss";
-
-		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-		clock-names = "apb_pclk";
-
-		in-ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			port {
-				tpda_wcss_in_tpdm_wcss: endpoint {
-					remote-endpoint =
-					<&tpdm_wcss_out_tpda_wcss>;
-				};
-			};
-		};
-
-		out-ports {
-			port {
-				tpda_wcss_out_funnel_in1: endpoint {
-					remote-endpoint =
-					<&funnel_in1_in_tpda_wcss>;
+					<&funnel_in1_in_tpdm_wcss>;
 				};
 			};
 		};
@@ -1332,9 +1299,9 @@
 
 			port@3 {
 				reg = <3>;
-				funnel_in1_in_tpda_wcss: endpoint {
+				funnel_in1_in_tpdm_wcss: endpoint {
 					remote-endpoint =
-					<&tpda_wcss_out_funnel_in1>;
+					<&tpdm_wcss_out_funnel_in1>;
 				};
 			};
 
