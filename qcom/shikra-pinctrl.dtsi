@@ -845,5 +845,75 @@
 				bias-bus-hold;
 			};
 		};
+
+		pmx_ts_int_default {
+			ts_int_default: ts_int_default {
+				mux {
+					pins = "gpio85";
+					function = "gpio";
+				};
+
+				config {
+				drive-strength = <16>;
+				/*bias-pull-up;*/
+				input-enable;
+				bias-disable;
+				};
+			};
+		};
+
+		pmx_ts_int_output_high {
+			ts_int_output_high: ts_int_output_high {
+				mux {
+					pins = "gpio85";
+					function = "gpio";
+				};
+
+				config {
+					output-high;
+				};
+			};
+		};
+
+		pmx_ts_int_output_low {
+			ts_int_output_low: ts_int_output_low {
+				mux {
+					pins = "gpio85";
+					function = "gpio";
+				};
+
+				config {
+					output-low;
+				};
+			};
+		};
+
+		pmx_ts_int_input {
+			ts_int_input: ts_int_input {
+				mux {
+					pins = "gpio85";
+					function = "gpio";
+				};
+
+				config {
+					input-enable;
+					bias-disable;
+				};
+			};
+		};
+
+		touch_panel_extavdd_default: touch_panel_extavdd_default {
+			mux {
+				pins = "gpio63";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio63";
+				drive-strength = <8>;
+				bias-disable = <0>;
+				output-high;
+			};
+		};
 	};
 };
