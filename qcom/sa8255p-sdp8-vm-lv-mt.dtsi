@@ -84,15 +84,15 @@
 };
 
 &usb1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb2_phy1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_qmp_phy1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &glink_cma_mem0 {
