@@ -348,6 +348,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_0>;
 	gpios = <&tlmm 121 0>;
+	qcom,enabled-retimer;
 };
 
 &ucsi {
@@ -430,6 +431,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
 	gpios = <&tlmm 123 0>;
+	qcom,enabled-retimer;
 };
 
 &usb_port1_ssphy_out {
