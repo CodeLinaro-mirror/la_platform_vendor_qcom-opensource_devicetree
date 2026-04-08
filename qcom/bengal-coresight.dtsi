@@ -147,7 +147,7 @@
 
 	audio-qmi {
 		compatible = "qcom,coresight-qmi";
-		device-name = "coresight-qmi-audio";
+		device-name = "qmi-audio";
 		qcom,inst-id = <5>;
 
 		in-ports {

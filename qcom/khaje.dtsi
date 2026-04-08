@@ -2264,6 +2264,7 @@
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x0800f000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,cmb-element-bits = <32>;
 
 		device-name = "tpdm_spdm";
 
