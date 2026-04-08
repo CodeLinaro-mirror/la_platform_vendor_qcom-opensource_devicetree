@@ -213,6 +213,14 @@
 	};
 };
 
+&fsa4480 {
+	port {
+		fsa4480_usbss_mux: endpoint {
+		remote-endpoint = <&ucsi_audio_mux>;
+		};
+	};
+};
+
 &ucsi {
 	connector {
 		compatible = "usb-c-connector";
@@ -226,6 +234,14 @@
 
 				usb_port0_connector: endpoint {
 					remote-endpoint = <&usb_port0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				ucsi_audio_mux: endpoint {
+					remote-endpoint = <&fsa4480_usbss_mux>;
 				};
 			};
 		};
