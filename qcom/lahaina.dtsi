@@ -4028,6 +4028,30 @@
 
 	qcom,glink {
 		compatible = "qcom,glink";
+
+		glink_spss: spss {
+			qcom,remote-pid = <8>;
+			transport = "spss";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_SPSS
+				  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "spss_spss";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_SPSS
+				      IPCC_MPROC_SIGNAL_GLINK_QMP
+				      IRQ_TYPE_LEVEL_HIGH>;
+
+			reg = <0x1885008 0x8>,
+			      <0x1885010 0x4>;
+			reg-names = "qcom,spss-addr",
+				    "qcom,spss-size";
+
+			label = "spss";
+			qcom,glink-label = "spss";
+
+			qcom,spss_glink_ssr {
+				qcom,glink-channels = "glink_ssr";
+			};
+		};
 	};
 
 	qcom,glinkpkt {
@@ -4662,7 +4686,7 @@
 		};
 	};
 
-	remoteproc_slpi: remoteproc-slpi@5c00000 {
+	slpi_pas: remoteproc-slpi@5c00000 {
 		compatible = "qcom,lahaina-slpi-pas";
 		reg = <0x5c00000 0x4000>;
 
@@ -4720,18 +4744,7 @@
 						0x2000 3
 						0x4400 2>;
 			};
-
-                        qcom,pmic_glink_rpmsg {
-                                qcom,glink-channels = "PMIC_RTR_ADSP_APPS";
-                        };
-
-                        qcom,pmic_glink_log_rpmsg {
-                                qcom,glink-channels = "PMIC_LOGS_ADSP_APPS";
-                                qcom,intents = <0x800 5
-                                                0xc00 3>;
-                        };
 		};
-
 	};
 
 	/* PIL spss node - for loading Secure Processor */
@@ -4803,7 +4816,7 @@
 		compatible = "qcom,msm-ssc-sensors";
 		status = "ok";
 		qcom,firmware-name = "slpi";
-		qcom,rproc-handle = <&remoteproc_slpi>;
+		qcom,rproc-handle = <&slpi_pas>;
 	};
 
 	qcom_tzlog: tz-log@146bf720 {
