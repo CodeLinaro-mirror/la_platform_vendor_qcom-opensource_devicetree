@@ -2001,6 +2001,15 @@
 			#interconnect-cells = <1>;
 		};
 
+
+		qfprom: qfprom@361c8000 {
+			compatible = "qcom,glymur-qfprom", "qcom,qfprom";
+			reg = <0x0 0x361c8000 0x0 0x1000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			read-only;
+		};
+
 		qcom,mem-buf {
 			compatible = "qcom,mem-buf";
 			qcom,mem-buf-capabilities = "supplier";
