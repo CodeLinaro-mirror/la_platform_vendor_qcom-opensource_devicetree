@@ -370,6 +370,12 @@
 		reg = <0x0 0x8b51a000 0x0 0x2000>;
 	};
 
+    /* First part of the "SPU secure shared memory" region */
+	spu_tz_shared_mem: spu_secure_shared_memory_region@8B580000 {
+		no-map;
+		reg = <0x0 0x8B580000 0x0 0x40000>;
+	};
+
 	pil_spss_mem: pil_spss_region@8b600000 {
 		no-map;
 		reg = <0x0 0x8b600000 0x0 0x100000>;
