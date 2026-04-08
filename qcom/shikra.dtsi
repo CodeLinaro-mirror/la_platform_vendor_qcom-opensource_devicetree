@@ -2291,6 +2291,13 @@
 			label = "lmcu";
 			qcom,glink-label = "lpaicp";
 
+			qcom,lmcu_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
+
 			qcom,glinkpkt-lpaicp-qsh-0 {
 				qcom,glink-channels = "qsh_1_0";
 				qcom,intents = <0x1000 3
