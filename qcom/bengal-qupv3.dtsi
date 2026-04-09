@@ -102,6 +102,7 @@
 				<&qupv3_se3_default_tx>, <&qupv3_se3_default_rx>;
 			qcom,wrapper-core = <&qupv3_0>;
 			qcom,wakeup-byte = <0xFD>;
+			qcom,suspend-ignore-children;
 			status = "disabled";
 		};
 
