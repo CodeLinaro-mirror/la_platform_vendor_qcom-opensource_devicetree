@@ -2258,7 +2258,7 @@
 			interrupt-parent = <&ipcc_mproc>;
 			interrupts = <IPCC_CLIENT_SPSS
 				      IPCC_MPROC_SIGNAL_TZ
-				      IRQ_TYPE_LEVEL_HIGH>;
+				      IRQ_TYPE_EDGE_RISING>;
 			label = "spss";
 		};
 	};
@@ -4773,7 +4773,9 @@
 	};
 
 	/* PIL spss node - for loading Secure Processor */
-	qcom,spss@1880000 {
+	spss_pas: remoteproc-spss@1880000 {
+		compatible = "qcom,lahaina-spss-pas";
+		ranges;
 		reg = <0x188101c 0x4>,
 		      <0x1881024 0x4>,
 		      <0x1881028 0x4>,
@@ -4785,31 +4787,45 @@
 			    "rmb_general_purpose", "rmb_err_spare2";
 		interrupts = <0 352 1>;
 
-		vdd_cx-supply = <&VDD_CX_LEVEL>;
-		qcom,proxy-reg-names = "vdd_cx";
-		qcom,vdd_cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
-		vdd_mx-supply = <&VDD_MXA_LEVEL>;
-		vdd_mx-uV = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		cx-supply = <&VDD_CX_LEVEL>;
+		qcom,proxy-reg-names = "cx";
+		cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+		mx-supply = <&VDD_MXA_LEVEL>;
+		mx-uV = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 		qcom,proxy-clock-names = "xo";
-		qcom,pil-generic-irq-handler;
 		status = "ok";
 
-		qcom,signal-aop;
-		qcom,complete-ramdump;
+		qcom,qmp = <&aoss_qmp>;
 
-		qcom,boot-enabled;
-		qcom,pas-id = <14>;
-		qcom,proxy-timeout-ms = <10000>;
-		qcom,firmware-name = "spss";
 		memory-region = <&pil_spss_mem>;
 		qcom,spss-scsr-bits = <24 25>;
 		qcom,extra-size = <4096>;
 
-		mboxes = <&qmp_aop 0>;
-		mbox-names = "spss-pil";
+		glink-edge {
+			qcom,remote-pid = <8>;
+			transport = "spss";
+			mboxes = <&ipcc_mproc IPCC_CLIENT_SPSS
+				IPCC_MPROC_SIGNAL_GLINK_QMP>;
+			mbox-names = "spss_spss";
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_SPSS
+				     IPCC_MPROC_SIGNAL_GLINK_QMP
+				     IRQ_TYPE_EDGE_RISING>;
+
+			reg = <0x1885008 0x8>,
+			      <0x1885010 0x4>;
+			reg-names = "qcom,spss-addr",
+				    "qcom,spss-size";
+
+			label = "spss";
+			qcom,glink-label = "spss";
+		};
 	};
 
 	qcom,trustedvm@d0800000 {
@@ -4855,6 +4871,7 @@
 
 	qcom,spcom {
 		compatible = "qcom,spcom";
+		qcom,rproc-handle = <&spss_pas>;
 
 		/* predefined channels, remote side is server */
 		qcom,spcom-ch-names = "sp_kernel", "sp_ssr";
@@ -4875,6 +4892,7 @@
 	spss_utils: qcom,spss_utils {
 		compatible = "qcom,spss-utils";
 		/* spss fuses physical address */
+		qcom,rproc-handle = <&spss_pas>;
 		qcom,spss-fuse1-addr = <0x00780204>;
 		qcom,spss-fuse1-bit = <9>;
 		qcom,spss-fuse2-addr = <0x00780204>;
