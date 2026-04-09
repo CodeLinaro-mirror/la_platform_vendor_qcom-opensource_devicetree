@@ -275,6 +275,14 @@
 					remote-endpoint = <&usb_port0_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb0_configure_in: endpoint {
+					remote-endpoint = <&usb_port0_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -408,6 +416,10 @@
 
 &usb_port0_dwc3_ss {
 	remote-endpoint = <&retimer_usb0_ss_out>;
+};
+
+&usb_port0_configure_out {
+	remote-endpoint = <&retimer_usb0_configure_in>;
 };
 
 &smb2360_1_eusb2_repeater {
