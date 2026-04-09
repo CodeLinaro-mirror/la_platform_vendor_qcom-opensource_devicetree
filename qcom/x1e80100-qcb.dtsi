@@ -5,3 +5,11 @@
 
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1e80100-thermal-overlay.dtsi"
+
+&ufsphy_mem {
+	status = "okay";
+};
+
+&ufshc_mem {
+	status = "okay";
+};
