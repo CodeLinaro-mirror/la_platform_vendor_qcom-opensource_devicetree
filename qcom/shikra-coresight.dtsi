@@ -528,7 +528,7 @@
 		};
 	};
 
-	tpdm_apm: tpdm@9860000 {
+	tpdm_actpm: tpdm@9860000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x09860000 0x1000>;
@@ -536,16 +536,16 @@
 		qcom,cmb-element-bits = <64>;
 		qcom,cmb-msrs-num = <1>;
 
-		device-name = "tpdm_apm";
+		device-name = "tpdm_actpm";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
-				tpdm_apm_out_tpda_apss: endpoint {
+				tpdm_actpm_out_tpda_apss: endpoint {
 					remote-endpoint =
-					<&tpda_apss_in_tpdm_apm>;
+					<&tpda_apss_in_tpdm_actpm>;
 				};
 			};
 		};
@@ -599,9 +599,9 @@
 
 			port@2 {
 				reg = <2>;
-				tpda_apss_in_tpdm_apm: endpoint {
+				tpda_apss_in_tpdm_actpm: endpoint {
 					remote-endpoint =
-					<&tpdm_apm_out_tpda_apss>;
+					<&tpdm_actpm_out_tpda_apss>;
 				};
 			};
 
