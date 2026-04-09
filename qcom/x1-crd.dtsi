@@ -416,3 +416,24 @@
 &usb4 {
 	status = "okay";
 };
+
+&smb2360_2_eusb2_repeater {
+	vdd18-supply = <&L3D>;
+	vdd3-supply = <&L2B>;
+};
+
+&usb2_phy_2 {
+	phys = <&smb2360_2_eusb2_repeater>;
+	status = "okay";
+};
+
+&usb3_phy_2 {
+	status = "okay";
+};
+
+&usb2 {
+	status = "okay";
+	dwc3@a000000 {
+		dr_mode = "host";
+	};
+};

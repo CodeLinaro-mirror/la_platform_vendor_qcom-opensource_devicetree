@@ -5,10 +5,15 @@
 
 #include "malabar.dtsi"
 
+&display_heap {
+	status = "disabled";
+};
+
 &reserved_memory {
 	/delete-node/ oem_vm_mem@f7c00000;
 	/delete-node/ trust_ui_vm_mem@f3800000;
 	/delete-node/ vm_comm_mem;
+	/delete-node/ non_secure_display_memory;
 };
 
 &soc {

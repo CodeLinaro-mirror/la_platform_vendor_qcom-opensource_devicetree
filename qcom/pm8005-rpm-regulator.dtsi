@@ -13,9 +13,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s1c_e0: regulator-s1c-e0 {
+		regulator-s1 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm8005_s1c_e0";
+			regulator-name = "pm8005_s1";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -29,9 +29,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s2c_e0: regulator-s2c-e0 {
+		regulator-s2 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm8005_s2c_e0";
+			regulator-name = "pm8005_s2";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -45,9 +45,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s3c_e0: regulator-s3c-e0 {
+		regulator-s3 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm8005_s3c_e0";
+			regulator-name = "pm8005_s3";
 			qcom,set = <3>;
 			status = "disabled";
 		};
@@ -61,9 +61,9 @@
 		qcom,hpm-min-load = <100000>;
 		status = "disabled";
 
-		regulator_s4c_e0: regulator-s4c-e0 {
+		regulator-s4 {
 			compatible = "qcom,rpm-smd-regulator";
-			regulator-name = "pm8005_s4c_e0";
+			regulator-name = "pm8005_s4";
 			qcom,set = <3>;
 			status = "disabled";
 		};

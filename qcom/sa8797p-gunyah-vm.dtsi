@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.dtbo_idx=13";
 	};
 
 	reserved_memory: reserved-memory {
@@ -1523,8 +1523,7 @@
 
 		android {
 			compatible = "android,firmware";
-			boot_devices = "70031000.virtio_blk_la_bootloader_b,70030000.virtio_blk_la_bootloader_a,70003000.virtio_blk_la_devinfo,70004000.virtio_blk_la_init_boot_a,70005000.virtio_blk_la_init_boot_b,70006000.virtio_blk_la_vendor_boot_a,70007000.virtio_blk_la_vendor_boot_b,70008000.virtio_blk_dsp_a,70009000.virtio_blk_dsp_b,7000a000.virtio_blk_la_dtbo_a,7000b000.virtio_blk_la_dtbo_b,7000c000.virtio_blk_la_boot_a,7000d000.virtio_blk_la_boot_b,7000e000.virtio_blk_bluetooth_a,7000f000.virtio_blk_bluetooth_b,70010000.virtio_blk_modem_a,70011000.virtio_blk_modem_b,70012000.virtio_blk_vbmeta_a,70013000.virtio_blk_vbmeta_b,70014000.virtio_blk_misc,70015000.virtio_blk_persist,70016000.virtio_blk_metadata,70017000.virtio_blk_userdata,70018000.virtio_blk_super";
-
+			boot_devices = "28031000.virtio_blk_la_bootloader_b,28030000.virtio_blk_la_bootloader_a,28003000.virtio_blk_la_devinfo,28004000.virtio_blk_la_init_boot_a,28005000.virtio_blk_la_init_boot_b,28006000.virtio_blk_la_vendor_boot_a,28007000.virtio_blk_la_vendor_boot_b,28008000.virtio_blk_dsp_a,28009000.virtio_blk_dsp_b,2800a000.virtio_blk_la_dtbo_a,2800b000.virtio_blk_la_dtbo_b,2800c000.virtio_blk_la_boot_a,2800d000.virtio_blk_la_boot_b,2800e000.virtio_blk_bluetooth_a,2800f000.virtio_blk_bluetooth_b,28010000.virtio_blk_modem_a,28011000.virtio_blk_modem_b,28012000.virtio_blk_vbmeta_a,28013000.virtio_blk_vbmeta_b,28014000.virtio_blk_misc,28015000.virtio_blk_persist,28016000.virtio_blk_metadata,28017000.virtio_blk_userdata,28018000.virtio_blk_super";
 			vbmeta {
 				compatible = "android,vbmeta";
 				parts = "vbmeta,system,vendor";
@@ -1706,7 +1705,7 @@
 	hab: qcom,hab {
 		compatible = "qcom,hab";
 		vmid = <2>;
-		virt-irq = <0x5 0x6>;
+		virt-irq = <0x4 0x5 0x6>;
 
 		mmidgrp100: mmidgrp100 {
 			grp-start-id = <100>;

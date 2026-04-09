@@ -85,6 +85,10 @@
 				bits = <1 7>;
 			};
 
+			xo_calib_data: xo_calib-data@59 {
+				reg = <0x59 0x1>;
+			};
+
 			fmd_set: fmd-set@9a {
 				reg = <0x9a 0x1>;
 			};
