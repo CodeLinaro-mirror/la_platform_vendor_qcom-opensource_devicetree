@@ -107,6 +107,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_aop_rvss";
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
