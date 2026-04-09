@@ -193,6 +193,9 @@
 				"gerror",
 				"cmdq-sync";
 		dma-coherent;
+
+		interconnects = <&pcie_center_anoc MASTER_PCIE_NORTH &pcie_center_anoc SLAVE_ANOC_PCIE_GEM_NOC>;
+		qcom,active-only;
 	};
 
 	dma_dev {
