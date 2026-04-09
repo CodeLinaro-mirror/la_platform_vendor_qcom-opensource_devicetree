@@ -24,7 +24,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig";
+		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc";
 	};
 
 	reserved_memory: reserved-memory { };
@@ -2005,7 +2005,7 @@
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
 				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
-					<  768000  566400 >,
+					<  768000  556800 >,
 					< 1017600  806400 >,
 					< 1094400  940800 >,
 					< 1497600 1209600 >,
@@ -2019,13 +2019,35 @@
 				qcom,cpulist = <&CPU3>;
 				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
-					<  768000  566400 >,
+					<  768000  556800 >,
 					< 1017600  806400 >,
 					< 1190400  940800 >,
 					< 1497600 1209600 >,
 					< 1708800 1344000 >,
 					< 1900800 1363200 >;
 				qcom,sampling-enabled;
+			};
+
+			silver-compute {
+				compatible = "qcom,memlat-mon";
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
+				qcom,miss-ev = <0x03>;
+				qcom,cpufreq-memfreq-tbl =
+					<  768000 556800 >,
+					< 1612800 806400 >;
+				qcom,sampling-enabled;
+				qcom,compute-mon;
+			};
+
+			gold-compute {
+				compatible = "qcom,memlat-mon";
+				qcom,cpulist = <&CPU3>;
+				qcom,miss-ev = <0x17>;
+				qcom,cpufreq-memfreq-tbl =
+					<  768000 556800 >,
+					< 1900800 806400 >;
+				qcom,sampling-enabled;
+				qcom,compute-mon;
 			};
 		};
 
