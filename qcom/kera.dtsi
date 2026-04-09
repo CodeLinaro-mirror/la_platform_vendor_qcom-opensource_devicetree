@@ -2800,7 +2800,7 @@
 		qcom,ice-use-hwkm;
 		bus-width = <8>;
 		non-removable;
-		/delete-property/ supports-cqe;
+		supports-cqe;
 
 		no-sd;
 		no-sdio;
