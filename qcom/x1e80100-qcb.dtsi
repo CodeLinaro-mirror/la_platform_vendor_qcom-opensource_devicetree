@@ -90,6 +90,9 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
 	gpios = <&tlmm 123 0>;
+	dwc3@a800000 {
+		dr_mode = "host";
+	};
 };
 
 &usb_port1_ssphy_out {
