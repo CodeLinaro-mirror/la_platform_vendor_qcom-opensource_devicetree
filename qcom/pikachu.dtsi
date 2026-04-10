@@ -1303,7 +1303,7 @@
 		reg = <0xc3f0000 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "wpss", "adsp", "adsp_island",
-			  "cdsp", "apss";
+			  "cdsp", "apss", "soccp", "dcp";
 	};
 
 	qcom,mem-buf {
