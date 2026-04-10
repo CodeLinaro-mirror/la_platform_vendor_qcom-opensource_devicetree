@@ -15,6 +15,8 @@
 #include <dt-bindings/clock/qcom,videocc-seraph.h>
 #include <dt-bindings/interconnect/qcom,seraph.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/power/qcom-aoss-qmp.h>
+#include <dt-bindings/clock/qcom,aop-qmp.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -31,10 +33,11 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pcie_ports=compat pci=pcie_bus_safe printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc";
+		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc";
 	};
 
 	reserved_memory: reserved-memory {};
+	ddr-regions { };
 
 	aliases: aliases {
 		serial0 = &qupv3_se11_2uart;
@@ -304,6 +307,9 @@
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	disp_rdump_region@d5100000 {
+	};
+
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
 		qcom,master;
@@ -312,6 +318,13 @@
 	};
 
 	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+
+	kryo-erp {
+		compatible = "arm,arm64-kryo-cpu-erp";
+		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "l1-l2-faultirq","l3-scu-faultirq";
+	};
 
 	cluster-device {
 		compatible = "qcom,lpm-cluster-dev";
@@ -1157,6 +1170,50 @@
 		interrupt-controller;
 	};
 
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-seraph";
+		reg = <0xc320000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+	};
+
+	cpuss-sleep-stats@17800054 {
+		compatible = "qcom,cpuss-sleep-stats-v4";
+		reg = <0x17800054 0x4>, <0x17810054 0x4>, <0x17820054 0x4>,
+		      <0x17830054 0x4>, <0x17840054 0x4>, <0x17880098 0x4>,
+		      <0x178c0000 0x10000>;
+		reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
+			    "seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
+			    "seq_lpm_cntr_cfg_cpu4", "l3_seq_lpm_cntr_cfg",
+			    "apss_seq_mem_base";
+		num-cpus = <5>;
+	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v4";
+		reg = <0xc3f0000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+		ss-name = "modem", "wpss", "adsp", "adsp_island",
+			  "cdsp", "apss";
+	};
+
+	pcie_crm: crm@1d01000 {
+		label = "pcie_crm";
+		compatible = "qcom,pcie-crm-v2";
+		reg = <0x1d01000 0x2000>, <0x1d03000 0x400>, <0x1d03400 0x400>,
+		      <0x1d03800 0x2000>, <0x1d05800 0x700>, <0x1d05f00 0x100>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pcie_crm_drv0";
+		clocks = <&pcie_0_pipe_clk>;
+		qcom,hw-drv-ids = <0 1>;
+		qcom,sw-drv-ids = <0>;
+	};
+
+	pcie_pdc: pdc@b310000 {
+		compatible = "qcom,seraph-pcie-pdc", "qcom,pcie-pdc";
+		reg = <0xb310000 0x20000>;
+	};
+
 	clocks {
 		xo_board: xo_board {
 			compatible = "fixed-clock";
@@ -1515,8 +1572,8 @@
 		 * Restrict IOVA mappings for SDHC1 buffers to the 256 MB region
 		 * from 0x40000000 - 0x4fffffff.
 		 */
-		iommu-addresses = <&sdhc_1 0x0 0x0 0x0 0x40000000>,
-						  <&sdhc_1 0x0 0x50000000 0xffffffff 0xb0000000>;
+		iommu-addresses = <&sdhc_1 0x0 0x40000000>,
+				<&sdhc_1 0x50000000 0xb0000000>;
 	};
 
 	sdhc_1: sdhci@B24000 {
@@ -1531,7 +1588,7 @@
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
-		qcom,iommu-dma = "bypass";
+		qcom,iommu-dma = "fastmap";
 
 		qcom,ice-use-hwkm;
 		/*
@@ -1614,18 +1671,36 @@
 		qcom,gpios-reserved = <18 19>;
 	};
 
+	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <5>;
+	};
+
+	pcie_crm_hw_1_bcm_voter: bcm_voter@1 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <1>;
+		qcom,crm-pwr-states = <5>;
+	};
+
 	clk_virt: interconnect@0 {
 		compatible = "qcom,seraph-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	mc_virt: interconnect@1 {
 		compatible = "qcom,seraph-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	cnoc_cfg: interconnect@1600000 {
@@ -1648,8 +1723,10 @@
 		compatible = "qcom,seraph-gem_noc";
 		reg = <0x24100000 0x163080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@8240000 {
@@ -1696,8 +1773,10 @@
 		compatible = "qcom,seraph-pcie_anoc";
 		reg = <0x016C0000 0xe400>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
 			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
 	};
@@ -1721,6 +1800,13 @@
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 		qcom,sct-initialized;
+
+		llcc-perfmon {
+			compatible = "qcom,llcc-perfmon";
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			llcc-scid-status-snapshot;
+		};
 	};
 
 	qcom,msm_gsi {
@@ -2265,6 +2351,20 @@
 	cpu_pmu: cpu-pmu {
 		compatible = "arm,armv8-pmuv3";
 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	qcom,chd {
+		compatible = "qcom,core-hang-detect";
+		label = "core";
+		qcom,chd-percpu-info = <&CPU0 0x17800058 0x17800060>,
+					<&CPU1 0x17810058 0x17810060>,
+					<&CPU2 0x17820058 0x17820060>,
+					<&CPU3 0x17830058 0x17830060>,
+					<&CPU4 0x17840058 0x17840060>;
 	};
 
 };

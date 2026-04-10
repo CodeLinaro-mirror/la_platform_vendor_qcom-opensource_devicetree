@@ -16,7 +16,7 @@
 	};
 };
 
-&pm2250_rg_leds {
+&pm2250_pwm {
 	status = "ok";
 };
 
@@ -132,10 +132,6 @@
 			   "charge_full_design",
 			   "time_to_full_now";
 	qcom,thermal-mitigation = <2000000 1500000 1000000 500000>;
-};
-
-&pm2250_pwm3 {
-	status = "ok";
 };
 
 &qupv3_se2_i2c {

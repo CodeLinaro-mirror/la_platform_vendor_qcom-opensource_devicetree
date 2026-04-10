@@ -866,7 +866,7 @@
 		sd-uhs-sdr25;
 		sd-uhs-sdr50;
 		sd-uhs-ddr50;
-		max-frequency = <86000000>;
+		max-frequency = <100000000>;
 
 		iommus = <&apps_smmu 0x140 0x0>;
 		qcom,iommu-dma = "fastmap";
@@ -1219,6 +1219,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		am_sleepstate_smp2p_out: sleepstate-out {
+			qcom,entry-name = "sleepstate";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		am_sleepstate_smp2p_in: qcom,sleepstate-in {
+			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
 	};
 
 	qcom,smp2p_sleepstate_adsp {
@@ -1236,6 +1247,15 @@
 		interrupt-parent = <&wm_sleepstate_smp2p_in>;
 		interrupts = <0 0>;
 		label = "wm";
+		interrupt-names = "smp2p-sleepstate-in";
+	};
+
+	qcom,smp2p_sleepstate_am {
+		compatible = "qcom,smp2p-sleepstate";
+		qcom,smem-states = <&am_sleepstate_smp2p_out 0>;
+		interrupt-parent = <&am_sleepstate_smp2p_in>;
+		interrupts = <0 0>;
+		label = "am";
 		interrupt-names = "smp2p-sleepstate-in";
 	};
 

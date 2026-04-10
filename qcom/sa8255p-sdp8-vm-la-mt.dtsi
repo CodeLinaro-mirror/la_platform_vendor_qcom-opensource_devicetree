@@ -70,8 +70,12 @@
 	status = "ok";
 };
 
+&qupv3_0 {
+	status = "ok";
+};
+
 &qupv3_se3_4uart {
-	status = "disabled";
+	status = "ok";
 };
 
 &usb0 {
@@ -118,11 +122,11 @@
 	status = "ok";
 };
 &ufs2phy_mem {
-	status = "disabled";
+	status = "ok";
 };
 
 &ufshc2_mem {
-	status = "disabled";
+	status = "ok";
 };
 
 &reserved_memory {

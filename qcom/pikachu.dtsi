@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,pikachu-camcc.h>
@@ -31,7 +32,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 console=ttyMSM0,115200,n8 bootconfig printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance";
+		bootargs = "kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 console=ttyMSM0,115200,n8 bootconfig printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance pci=pcie_bus_safe,noaer pcie_pme=nomsi";
 	};
 
 	reserved_memory: reserved-memory {};
@@ -245,6 +246,9 @@
 
 	soc: soc { };
 
+	pcie0: qcom,pcie@1c00000 { };
+
+	pcie1: qcom,pcie@1c0a000 { };
 };
 
 &soc {
@@ -381,7 +385,7 @@
 	};
 
 
-	qcom,smp2p-dcp {
+	qcom_smp2p_dcp: qcom,smp2p-dcp {
 		compatible = "qcom,smp2p";
 		qcom,smem = <617>, <616>;
 		interrupt-parent = <&ipcc_mproc>;
@@ -472,6 +476,13 @@
 
 			label = "lmcu";
 			qcom,ssr-label = "lpass";
+
+			qcom,lmcu_qrtr {
+				qcom,glink-channels = "IPCRTR";
+				qcom,intents = <0x800  5
+						0x2000 3
+						0x4400 2>;
+			};
 		};
 	};
 
@@ -605,6 +616,15 @@
 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
+	};
+
+	cnss_ipa_wlan_iommu_group0: cnss_ipa_wlan_iommu_group0 {
+		qcom,iommu-msi-size = <0x1000>;
+		qcom,iommu-geometry = <0x98000000 0x18010000>;
+		qcom,iommu-dma = "fastmap";
+		qcom,iommu-pagetable = "coherent";
+		qcom,iommu-faults = "stall-disable", "HUPCF",
+					"non-fatal";
 	};
 
 	apps_rsc: rsc@17a00000 {
@@ -1003,11 +1023,11 @@
 
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
 		compatible = "qcom,spmi-pmic-arb";
-		reg = <0x0 0xc42d000 0x0 0x4000>,
-		      <0x0 0xc400000 0x0 0x3000>,
-		      <0x0 0xc500000 0x0 0x400000>,
-		      <0x0 0xc440000 0x0 0x80000>,
-		      <0x0 0xc4c0000 0x0 0x10000>;
+		reg = <0xc42d000 0x4000>,
+		      <0xc400000 0x3000>,
+		      <0xc500000 0x400000>,
+		      <0xc440000 0x80000>,
+		      <0xc4c0000 0x10000>;
 		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
 		interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "periph_irq";
@@ -1023,8 +1043,8 @@
 
 	spmi_debug_bus_0: qcom,spmi-debug@11314000  {
 		compatible = "qcom,spmi-pmic-arb-debug";
-		reg = <0x0 0x11314000 0x0 0x60>,
-		      <0x0 0x221c8784 0x0 0x4>;
+		reg = <0x11314000 0x60>,
+		      <0x221c8784 0x4>;
 		reg-names = "core", "fuse";
 		clocks = <&aoss_qmp>;
 		clock-names = "core_clk";
@@ -1110,6 +1130,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 
 	qcom,test-large-dmabuf-tuivm {
@@ -1186,6 +1207,24 @@
 	qcom,sps {
 		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
+	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
+	qcom_tzlog: tz-log@14680720 {
+		compatible = "qcom,tz-log";
+		reg = <0x14680720 0x3000>;
+		qcom,hyplog-enabled;
+		hyplog-address-offset = <0x410>;
+		hyplog-size-offset = <0x414>;
+		tmecrashdump-address-offset = <0x81CA0000>;
 	};
 
 	tlmm: pinctrl@f000000 {
@@ -1604,12 +1643,14 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		reg = <0xb24000 0x1000>, <0xb25000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0xb24000 0x1000>, <0xb25000 0x1000>, <0xb28000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0x120 0x0>;
 		dma-coherent;
 		qcom,iommu-dma = "fastmap";
+
+		qcom,ice-use-hwkm;
 
 		/*
 		 * iommu-addresses - Indicate the range of data addresses which will NOT
@@ -2029,6 +2070,23 @@
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x99000>;
 	};
+
+	qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+	};
+
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
 };
 
 #include "pikachu-walt.dtsi"
@@ -2068,6 +2126,22 @@
 		size = <0x0 0x400000>;
 	};
 
+	qseecom_mem: qseecom_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1400000>;
+	};
+
+	qseecom_ta_mem: qseecom_ta_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1000000>;
+	};
+
 	ramoops_mem: ramoops_region {
 		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
 		size = <0x0 0x200000>;
@@ -2086,7 +2160,6 @@
 		reusable;
 		size = <0 0x1000000>;
 	};
-
 };
 
 #include "msm-arm-smmu-pikachu.dtsi"
@@ -2096,6 +2169,7 @@
 #include "pikachu-qupv3.dtsi"
 #include "msm-rdbg.dtsi"
 #include "ipcc-test-pikachu.dtsi"
+#include "pikachu-pcie.dtsi"
 
 &uart11 {
 	status = "ok";

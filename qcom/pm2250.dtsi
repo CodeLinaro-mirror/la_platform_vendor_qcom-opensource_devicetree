@@ -6,6 +6,7 @@
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/input/qcom,qpnp-power-on.h>
 #include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/leds/common.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/iio/qcom,spmi-vadc.h>
 
@@ -22,25 +23,24 @@
 		#size-cells = <0>;
 
 		qcom,power-on@800 {
-			compatible = "qcom,qpnp-power-on";
+			compatible = "qcom,pm8998-pon";
 			reg = <0x800>;
-			interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>,
-					<0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
-			interrupt-names = "kpdpwr", "resin";
-			qcom,pon-dbc-delay = <15625>;
-			qcom,kpdpwr-sw-debounce;
-			qcom,system-reset;
-			qcom,store-hard-reset-reason;
+			mode-bootloader = <0x2>;
+			mode-recovery = <0x1>;
 
-			qcom,pon_1 {
-				qcom,pon-type = <PON_POWER_ON_TYPE_KPDPWR>;
-				qcom,pull-up = <1>;
+			pwrkey {
+				compatible = "qcom,pm8941-pwrkey";
+				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
+				debounce = <15625>;
+				bias-pull-up;
 				linux,code = <KEY_POWER>;
 			};
 
-			qcom,pon_2 {
-				qcom,pon-type = <PON_POWER_ON_TYPE_RESIN>;
-				qcom,pull-up = <1>;
+			resin {
+				compatible = "qcom,pm8941-resin";
+				interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+				debounce = <15625>;
+				bias-pull-up;
 				linux,code = <KEY_VOLUMEDOWN>;
 			};
 		};
@@ -331,45 +331,22 @@
 			qcom,disable-overdrive;
 		};
 
-		pm2250_pwm1: qcom,pwms@bc00 {
-			compatible = "qcom,pwm-lpg";
-			reg = <0xbc00>;
-			reg-names = "lpg-base";
-			qcom,num-lpg-channels = <1>;
+		pm2250_pwm: qcom,pwms@bc00 {
+			compatible = "qcom,pm2250-pwm";
+			#address-cells = <1>;
+			#size-cells = <0>;
 			#pwm-cells = <2>;
-		};
 
-		pm2250_pwm2: qcom,pwms@bd00 {
-			compatible = "qcom,pwm-lpg";
-			reg = <0xbd00>;
-			reg-names = "lpg-base";
-			qcom,num-lpg-channels = <1>;
-			#pwm-cells = <2>;
-		};
-
-		pm2250_pwm3: qcom,pwms@be00 {
-			compatible = "qcom,pwm-lpg";
-			reg = <0xbe00>;
-			reg-names = "lpg-base";
-			qcom,num-lpg-channels = <1>;
-			#pwm-cells = <2>;
-		};
-
-		pm2250_rg_leds: qcom,rg_leds {
-			compatible = "pwm-leds";
-
-			red {
+			led@1 {
+				reg = <1>;
+				color = <LED_COLOR_ID_RED>;
 				label = "red";
-				pwms = <&pm2250_pwm1 0 1000000>;
-				max-brightness = <255>;
-				linux,default-trigger = "timer";
 			};
 
-			green {
+			led@2 {
+				reg = <2>;
+				color = <LED_COLOR_ID_GREEN>;
 				label = "green";
-				pwms = <&pm2250_pwm2 0 1000000>;
-				max-brightness = <255>;
-				linux,default-trigger = "timer";
 			};
 		};
 

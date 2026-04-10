@@ -53,11 +53,11 @@
 };
 
 &qupv3_0 {
-	status = "disabled";
+	status = "ok";
 };
 
 &qupv3_se3_4uart {
-	status = "disabled";
+	status = "ok";
 };
 
 &qupv3_2 {
@@ -109,9 +109,9 @@
 };
 
 &ufs2phy_mem {
-	status = "disabled";
+	status = "ok";
 };
 
 &ufshc2_mem {
-	status = "disabled";
+	status = "ok";
 };

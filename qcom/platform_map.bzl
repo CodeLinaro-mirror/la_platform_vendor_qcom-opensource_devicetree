@@ -139,7 +139,7 @@ _platform_map = {
             {"name": "canoep-hdk-overlay.dtbo"},
             {"name": "canoe-rumi-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin"],
+        "binary_compatible_with": ["alor", "alor-interposer", "chora", "ravelin", "bourtzi"],
     },
     "alor": {
         "dtb_list": [
@@ -267,6 +267,25 @@ _platform_map = {
             {"name": "ravelin-qrd-4gb-overlay.dtbo"},
         ],
     },
+    "bourtzi": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "bourtzi.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-atp-overlay.dtbo"},
+            {"name": "bourtzi-cdp-lcd-overlay.dtbo"},
+            {"name": "bourtzi-cdp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-overlay.dtbo"},
+            {"name": "bourtzi-mtp-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-qrd-overlay.dtbo"},
+            {"name": "bourtzi-qrd-evros-overlay.dtbo"},
+            {"name": "bourtzi-rcm-overlay.dtbo"},
+            {"name": "bourtzi-rcm-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-rumi-overlay.dtbo"},
+        ],
+    },
     "malabar": {
         "dtb_list": [
             {"name": "malabar.dtb"},
@@ -290,6 +309,9 @@ _platform_map = {
             {"name": "malabar-mtp-4gb-overlay.dtbo"},
             {"name": "malabar-cdp-emmc-overlay.dtbo"},
             {"name": "malabar-mtp-emmc-overlay.dtbo"},
+            {"name": "malabar-cdp-ufs3-overlay.dtbo"},
+            {"name": "malabar-mtp-ufs3-overlay.dtbo"},
+            {"name": "malabar-qrd-ufs3-overlay.dtbo"},
         ],
     },
     "bengal": {
@@ -453,6 +475,11 @@ _platform_map = {
             {"name": "yupikp-iot-hsp-overlay.dtbo"},
             {"name": "yupikp-iot-hsp-pm7250b-overlay.dtbo"},
             {"name": "yupikp-iot-idps-amoled-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-videocollab-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-visionkit-overlay.dtbo"},
+            {"name": "yupikp-iot-rb3-gen2-corekit-overlay.dtbo"},
+            {"name": "katmaip-iot-rb3-gen2-videocollab-overlay.dtbo"},
+            {"name": "katmaip-iot-rb3-gen2-visionkit-overlay.dtbo"},
             {"name": "katmaip-hsp-overlay.dtbo"},
             {"name": "katmaip-hsp-pm7250b-overlay.dtbo"},
             {"name": "yupik-rumi-overlay.dtbo"},
@@ -648,8 +675,13 @@ _platform_map = {
     "seraph": {
         "dtb_list": [
             {"name": "seraph.dtb"},
+            {"name": "seraph-v1.1.dtb"},
             {
                 "name": "seraphp.dtb",
+                "apq": True,
+            },
+            {
+                "name": "seraphp-v1.1.dtb",
                 "apq": True,
             },
         ],
@@ -664,6 +696,18 @@ _platform_map = {
             {"name": "seraphp-idp-no-display-overlay.dtbo"},
             {"name": "seraph-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraph-v1.1-atp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-atp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-overlay.dtbo"},
+            {"name": "seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-camera-audio-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-overlay.dtbo"},
             {"name": "seraphp-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-qar-overlay.dtbo"},
             {"name": "seraph-rumi-overlay.dtbo"},
