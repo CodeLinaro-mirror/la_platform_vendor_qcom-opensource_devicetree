@@ -711,4 +711,11 @@
 		reg = <0x0 0x908c7000 0x0 0x9000>;
 		label = "glink_cma_mem0";
 	};
+
+	dice: dice@0 {
+		compatible = "google,open-dice";
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "sdv_dice_mem";
+	};
 };
