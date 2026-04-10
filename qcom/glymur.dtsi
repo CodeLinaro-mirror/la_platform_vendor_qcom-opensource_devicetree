@@ -8,6 +8,7 @@
 #include <dt-bindings/power/qcom-aoss-qmp.h>
 #include <dt-bindings/clock/qcom,aop-qmp.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,glymur-camcc.h>
@@ -1958,6 +1959,90 @@
 			status = "disabled";
 		};
 	};
+
+		adsp_pas: remoteproc-adsp@6800000 {
+			compatible = "qcom,glymur-adsp-pas";
+			reg = <0x0 0x06800000 0x0 0x10000>;
+
+			cx-supply = <&VDD_LPI_CX_LEVEL>;
+			cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+			mx-supply = <&VDD_LPI_MX_LEVEL>;
+			mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 0>;
+			reg-names = "cx", "mx";
+
+			interrupts-extended = <&intc GIC_SPI 751 IRQ_TYPE_EDGE_RISING>,
+						<&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+						<&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+						<&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+						<&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+
+			interrupt-names = "wdog",
+					"fatal",
+					"ready",
+					"handover",
+					"stop-ack";
+
+			clocks = <&rpmhcc RPMH_CXO_CLK>;
+			clock-names = "xo";
+
+			interconnects = <&lpass_lpicx_noc MASTER_LPASS_PROC &mc_virt SLAVE_EBI1>,
+					<&aggre1_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+			interconnect-names = "rproc_ddr", "crypto_ddr";
+
+			firmware-name = "adsp.mdt", "adsp_dtb.mdt";
+			memory-region = <&adspslpi_mem>,
+					<&q6_adsp_dtb_mem>;
+
+			qcom,qmp = <&aoss_qmp>;
+
+			qcom,smem-states = <&adsp_smp2p_out 0>;
+			qcom,smem-state-names = "stop";
+
+			status = "okay";
+		};
+
+		cdsp_pas: remoteproc-cdsp@32300000 {
+			compatible = "qcom,glymur-cdsp-pas";
+			reg = <0x0 0x32300000 0x0 0x10000>;
+
+			cx-supply = <&VDD_CX_LEVEL>;
+			cx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+			mx-supply = <&VDD_MXC_LEVEL>;
+			mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+			nsp-supply = <&VDD_NSP1_LEVEL>;
+			nsp-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
+			reg-names = "cx","mx","nsp";
+
+			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
+						<&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+						<&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+						<&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+						<&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+
+			interrupt-names = "wdog",
+					"fatal",
+					"ready",
+					"handover",
+					"stop-ack";
+
+			clocks = <&rpmhcc RPMH_CXO_CLK>;
+			clock-names = "xo";
+
+			interconnects = <&nsp_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>,
+					<&aggre1_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+			interconnect-names = "rproc_ddr", "crypto_ddr";
+
+			firmware-name = "cdsp.mdt", "cdsp_dtb.mdt";
+			memory-region = <&cdsp_mem>,
+					<&q6_cdsp_dtb_mem>;
+
+			qcom,qmp = <&aoss_qmp>;
+
+			qcom,smem-states = <&cdsp_smp2p_out 0>;
+			qcom,smem-state-names = "stop";
+
+			status = "okay";
+		};
 
 		intc: interrupt-controller@17000000 {
 			compatible = "arm,gic-v3";
