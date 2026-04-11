@@ -289,6 +289,7 @@
 			&qcom_mem_buf
 			&mem_buf_msgq
 			&qcom_smcinvoke
+			&qcom_mem_object
 			&qtee_shmbridge
 			&qcom_gunyah_panic_notifier
 			&google_debug_kinfo
@@ -395,11 +396,10 @@
 		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 		qcom,iommu-defer-smr-config;
 		iommus = <&apps_smmu 0x1841 0x20>,
-			 <&apps_smmu 0x1821 0xA0>,
+			 <&apps_smmu 0x1801 0xA0>,
 			 <&apps_smmu 0x1902 0x0>,
 			 <&apps_smmu 0x1921 0x0>,
-			 <&apps_smmu 0x0801 0x0>,
-			 <&apps_smmu 0x1967 0x0>;
+			 <&apps_smmu 0x0801 0x0>;
 		dma-coherent;
 	};
 
@@ -448,6 +448,10 @@
 
 	qcom_smcinvoke: qcom_smcinvoke {
 		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
 	};
 
 	qtee_shmbridge: qtee_shmbridge {
