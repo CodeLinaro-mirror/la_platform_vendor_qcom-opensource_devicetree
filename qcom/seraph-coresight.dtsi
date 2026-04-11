@@ -3484,7 +3484,8 @@
 	};
 
 	tpdm_dcc: tpdm@10003000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
+		compatible = "arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x10003000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <32>;
