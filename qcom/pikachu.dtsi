@@ -483,6 +483,60 @@
 						0x2000 3
 						0x4400 2>;
 			};
+
+			qcom,glinkpkt-lmcu-qsh-0 {
+				qcom,glink-channels = "qsh_1_0";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-1 {
+				qcom,glink-channels = "qsh_1_1";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-2 {
+				qcom,glink-channels = "qsh_1_2";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-3 {
+				qcom,glink-channels = "qsh_1_3";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-4 {
+				qcom,glink-channels = "qsh_1_4";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-5 {
+				qcom,glink-channels = "qsh_1_5";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-6 {
+				qcom,glink-channels = "qsh_1_6";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-7 {
+				qcom,glink-channels = "qsh_1_7";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-8 {
+				qcom,glink-channels = "qsh_1_8";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
 		};
 	};
 
@@ -593,6 +647,90 @@
 			qcom,glinkpkt-edge = "adsp";
 			qcom,glinkpkt-ch-name = "bt_cp_ctrl";
 			qcom,glinkpkt-dev-name = "bt_cp_ctrl";
+		};
+
+		qcom,glinkpkt-hci-aribter {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-socket-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-gatt-offload {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-0 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_0";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_0";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-1 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_1";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_1";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-2 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_2";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_2";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-3 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_3";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_3";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-4 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_4";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_4";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-5 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_5";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_5";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-6 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_6";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_6";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-7 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_7";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_7";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-8 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_1_8";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_8";
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 
@@ -1165,7 +1303,7 @@
 		reg = <0xc3f0000 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "wpss", "adsp", "adsp_island",
-			  "cdsp", "apss";
+			  "cdsp", "apss", "soccp", "dcp";
 	};
 
 	qcom,mem-buf {
