@@ -860,7 +860,7 @@
 				replicator_turing_dummy_out_tpda_center: endpoint {
 					remote-endpoint =
 					<&tpda_center_in_replicator_turing_dummy>;
-					source = <&tpdm_turing>;
+					filter-source = <&tpdm_turing>;
 				};
 			};
 
@@ -869,6 +869,7 @@
 				replicator_turing_dummy_out_funnel_center: endpoint {
 					remote-endpoint =
 					<&funnel_center_in_replicator_turing_dummy>;
+					filter-source = <&turing_etm0>;
 				};
 			};
 		};
