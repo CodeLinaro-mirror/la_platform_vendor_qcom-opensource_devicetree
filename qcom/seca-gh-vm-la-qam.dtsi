@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/* Change all of these once copied thie files */
+#include "seca-gh-vm-la.dtsi"
+#include "seca-vm-usb.dtsi"
+
+&vm_config {
+	iomemory-ranges = <
+		/* USB2 region */
+		0x0 0x88e0000 0x0 0x88e0000 0x0 0x1000 0x0
+		0x0 0xa200000 0x0 0xa200000 0x0 0x200000 0x0
+		/* QRNG region */
+		0x0 0x10cd000 0x0 0x10cd000 0x0 0x1000 0x0
+		/* PDC region */
+		0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
+		/* Board serial number region */
+		0x0 0x360D4000 0x0 0x360D4000 0x0 0x1000 0x1
+	>;
+
+	gic-irq-ranges = <
+		/*USB2 IRQs*/
+		784 784
+		785 785
+		939 939
+		942 942
+	>;
+	vcpus {
+		affinity-map = <0xb>;
+	};
+};
+
+&usb2 {
+	status = "ok";
+};
+
+&eusb2_phy2 {
+	status = "ok";
+};
+
+&eusb2_phy1 {
+	status = "ok";
+};
