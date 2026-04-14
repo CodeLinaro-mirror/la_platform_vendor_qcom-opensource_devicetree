@@ -1495,6 +1495,249 @@
 				< 0x0017 0x3ffff 0xff 0x05 >;
 		};
 
+		ddr_freq_table: ddr-freq-table {
+			qcom,freq-tbl =
+				<  200000 >,
+				<  547000 >,
+				< 1353000 >,
+				< 1555000 >,
+				< 1708000 >,
+				< 2092000 >,
+				< 2736000 >,
+				< 3187000 >,
+				< 3686000 >,
+				< 4224000 >,
+				< 4761000 >;
+		};
+
+		llcc_freq_table: llcc-freq-table {
+			qcom,freq-tbl =
+				<  315000 >,
+				<  479000 >,
+				<  545000 >,
+				<  725000 >,
+				<  840000 >,
+				<  959000 >,
+				< 1090000 >,
+				< 1211000 >;
+		};
+
+		ddrqos_freq_table: ddrqos-freq-table {
+			qcom,freq-tbl =
+				< 0 >,
+				< 1 >;
+		};
+
+		qcom_dcvs: qcom,dcvs {
+			compatible = "qcom,dcvs";
+
+			qcom_ddr_dcvs_hw: ddr {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <0>;
+				qcom,bus-width = <4>;
+				qcom,freq-tbl = <&ddr_freq_table>;
+
+				ddr_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&mc_virt MASTER_LLCC
+					&mc_virt SLAVE_EBI1>;
+				};
+			};
+
+			qcom_llcc_dcvs_hw: llcc {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <1>;
+				qcom,bus-width = <16>;
+				qcom,freq-tbl = <&llcc_freq_table>;
+
+				llcc_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&hsc_noc MASTER_APPSS_PROC
+					&hsc_noc SLAVE_LLCC>;
+				};
+			};
+
+			qcom_ddrqos_dcvs_hw: ddrqos {
+				compatible = "qcom,dcvs-hw";
+				qcom,dcvs-hw-type = <3>;
+				qcom,bus-width = <1>;
+				qcom,freq-tbl = <&ddrqos_freq_table>;
+
+				ddrqos_dcvs_sp: sp {
+					compatible = "qcom,dcvs-path";
+					qcom,dcvs-path-type = <0>;
+					interconnects = <&mc_virt MASTER_LLCC
+					&mc_virt SLAVE_EBI1>;
+				};
+			};
+		};
+
+		qcom_memlat: qcom,memlat {
+			compatible = "qcom,memlat";
+
+			ddr {
+				compatible = "qcom,memlat-grp";
+				qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+				qcom,sampling-path = <&ddr_dcvs_sp>;
+				qcom,miss-ev = <0x17>;
+
+				ddr_cluster0: cluster0 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+					qcom,cpufreq-memfreq-tbl =
+						<  960000  547000 >,
+						< 1133000 1353000 >,
+						< 1594000 1555000 >,
+						< 1920000 1708000 >,
+						< 2228000 2736000 >,
+						< 2362000 3187000 >,
+						< 2650000 3686000 >,
+						< 2938000 4761000 >;
+					qcom,cpucp-enabled;
+				};
+
+				ddr_cluster1: cluster1 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+					qcom,cpufreq-memfreq-tbl =
+						<  356000  547000 >,
+						< 1018000 1353000 >,
+						< 1536000 1555000 >,
+						< 1748000 1708000 >,
+						< 2324000 2736000 >,
+						< 2496000 3187000 >,
+						< 2900000 3686000 >,
+						< 3514000 4761000 >;
+					qcom,cpucp-enabled;
+				};
+
+				ddr_cluster2: cluster2 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+					qcom,cpufreq-memfreq-tbl =
+						<  356000  547000 >,
+						< 1018000 1353000 >,
+						< 1536000 1555000 >,
+						< 1748000 1708000 >,
+						< 2324000 2736000 >,
+						< 2496000 3187000 >,
+						< 2900000 3686000 >,
+						< 3514000 4761000 >;
+					qcom,cpucp-enabled;
+				};
+
+				ddr_clusterX_compute: clusterX-compute {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11 &cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+					qcom,cpufreq-memfreq-tbl =
+						< 2823000  547000 >,
+						< 3034000 1555000 >,
+						< 3226000 1708000 >,
+						< 5012000 2092000 >;
+					qcom,cpucp-enabled;
+					qcom,compute-mon;
+				};
+			};
+
+			llcc {
+				compatible = "qcom,memlat-grp";
+				qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+				qcom,sampling-path = <&llcc_dcvs_sp>;
+				qcom,miss-ev = <0x17>;
+
+				llcc_cluster0: cluster0 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+					qcom,cpufreq-memfreq-tbl =
+						<  960000  315000 >,
+						< 1133000  479000 >,
+						< 1594000  545000 >,
+						< 1920000  725000 >,
+						< 2362000  840000 >,
+						< 2650000  959000 >,
+						< 2938000 1211000 >;
+					qcom,cpucp-enabled;
+				};
+
+				llcc_cluster1: cluster1 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+					qcom,cpufreq-memfreq-tbl =
+						<  356000  315000 >,
+						< 1018000  479000 >,
+						< 1536000  545000 >,
+						< 1748000  725000 >,
+						< 2496000  840000 >,
+						< 2900000  959000 >,
+						< 3514000 1211000 >;
+					qcom,cpucp-enabled;
+				};
+
+				llcc_cluster2: cluster2 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+					qcom,cpufreq-memfreq-tbl =
+						<  356000  315000 >,
+						< 1018000  479000 >,
+						< 1536000  545000 >,
+						< 1748000  725000 >,
+						< 2496000  840000 >,
+						< 2900000  959000 >,
+						< 3514000 1211000 >;
+					qcom,cpucp-enabled;
+				};
+			};
+
+			ddrqos {
+				compatible = "qcom,memlat-grp";
+				qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
+				qcom,sampling-path = <&ddrqos_dcvs_sp>;
+				qcom,miss-ev = <0x17>;
+
+				ddrqos_cluster0: cluster0 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+					qcom,cpufreq-memfreq-tbl =
+						< 2362000 0 >,
+						< 2938000 1 >;
+					qcom,cpucp-enabled;
+				};
+
+				ddrqos_cluster1: cluster1 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+					qcom,cpufreq-memfreq-tbl =
+						< 2496000 0 >,
+						< 3514000 1 >;
+					qcom,cpucp-enabled;
+				};
+
+				ddrqos_cluster2: cluster2 {
+					compatible = "qcom,memlat-mon";
+					qcom,cpulist = <&cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+					qcom,cpufreq-memfreq-tbl =
+						< 2496000 0 >,
+						< 3514000 1 >;
+					qcom,cpucp-enabled;
+				};
+			};
+		};
+
+		qcom_llcc_ddr_vote: qcom,llcc-ddr-vote {
+			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+			qcom,secondary-map =
+				<  315000  200000 >,
+				<  479000 1353000 >,
+				<  545000 1555000 >,
+				<  725000 2092000 >,
+				<  840000 3187000 >,
+				<  959000 3686000 >,
+				< 1090000 4224000 >,
+				< 1211000 4761000 >;
+		};
+
 		qcom,smp2p-cdsp {
 			compatible = "qcom,smp2p";
 			qcom,smem = <94>, <432>;
