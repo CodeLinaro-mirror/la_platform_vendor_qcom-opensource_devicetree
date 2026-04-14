@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <dt-bindings/phy/qcom,usb3-4nm-qmp-uni.h>
@@ -66,6 +66,13 @@
 		 */
 		dummy-supply = <&apps_smmu>;
 		extcon = <&eud>;
+
+		/* Boot Config Information */
+		nvmem-cells = <&boot_config>;
+		nvmem-cell-names = "boot_conf";
+		qcom,fast-boot-mask = <0x1e>;
+		qcom,host-bypass-mask = <0x40>;
+		qcom,fast-boot-values = <0x5 0x7>;
 
 		dwc3: dwc3@a600000 {
 			compatible = "snps,dwc3";
