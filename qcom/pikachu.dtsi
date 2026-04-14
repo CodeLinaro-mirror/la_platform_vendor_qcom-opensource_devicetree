@@ -1768,7 +1768,6 @@
 		clocks = <&pcie_0_pipe_clk>;
 		qcom,hw-drv-ids = <0 1>;
 		qcom,sw-drv-ids = <0>;
-		status = "disabled";
 	};
 
 	pcie_pdc: pdc@b330000 {
