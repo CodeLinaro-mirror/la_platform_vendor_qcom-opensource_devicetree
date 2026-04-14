@@ -432,6 +432,11 @@
 		reg = <0x0 0x10c3000 0x0 0x1000>;
 	};
 
+	pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+	};
+
 	psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
@@ -1478,6 +1483,16 @@
 					qcom,can-sleep;
 				};
 			};
+		};
+
+		qcom_pmu: qcom,pmu {
+			compatible = "qcom,pmu";
+			qcom,long-counter;
+			qcom,ignore-llcc-setup;
+			qcom,pmu-events-tbl =
+				< 0x0008 0x3ffff 0x02 0x02 >,
+				< 0x0011 0x3ffff 0x01 0x00 >,
+				< 0x0017 0x3ffff 0xff 0x05 >;
 		};
 
 		qcom,smp2p-cdsp {
