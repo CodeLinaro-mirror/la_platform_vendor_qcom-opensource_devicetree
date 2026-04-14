@@ -942,11 +942,6 @@
 		interrupt-names = "dmux", "ctrl", "ack";
 		};
 
-	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
-		qcom,pipe-attr-ee;
-	};
-
 	qup0_gpi_iommu_region: qup0_gpi_iommu_region {
 		iommu-addresses = <&gpi_dma0 0x0 0x100000>,
 				  <&gpi_dma0 0x200000 0xffe00000>;
@@ -1857,8 +1852,62 @@
 		ranges;
 	};
 
+	qcom_cedev: qcedev@1b20000 {
+		compatible = "qcom,qcedev";
+		reg = <0x1b20000 0x20000>,
+			<0x1b04000 0x24000>;
+		reg-names = "crypto-base","crypto-bam-base";
+		interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,bam-pipe-pair = <2>;
+		qcom,ce-hw-instance = <0>;
+		qcom,ce-device = <0>;
+		qcom,ce-hw-shared;
+		qcom,bam-ee = <0>;
+		interconnect-names = "data_path";
+		interconnects = <&system_noc MASTER_CRYPTO_CORE0 &mc_virt SLAVE_EBI_CH0>;
+		clock-names =
+			"core_clk_src", "core_clk",
+			"iface_clk", "bus_clk";
+		clocks =
+			<&rpmcc RPM_SMD_CE1_CLK>,
+			<&rpmcc RPM_SMD_CE1_CLK>,
+			<&rpmcc RPM_SMD_CE1_CLK>,
+			<&rpmcc RPM_SMD_CE1_CLK>;
+		qcom,ce-opp-freq = <192000000>;
+		qcom,smmu-s1-enable;
+		iommus = <&apps_smmu 0x86 0x0011>,
+			 <&apps_smmu 0x92 0x0>,
+			 <&apps_smmu 0x96 0x0011>,
+			 <&apps_smmu 0x98 0x0001>,
+			 <&apps_smmu 0x9F 0x0>,
+			 <&apps_smmu 0x84 0x0011>,
+			 <&apps_smmu 0x94 0x0011>;
+		qcom,iommu-dma = "atomic";
+
+		qcom_cedev_ns_cb {
+			compatible = "qcom,qcedev,context-bank";
+			label = "ns_context";
+			iommus = <&apps_smmu 0x92 0>,
+				 <&apps_smmu 0x98 0x0001>,
+				 <&apps_smmu 0x9F 0>,
+				 <&apps_smmu 0x96 0x0011>,
+				 <&apps_smmu 0x86 0x0011>;
+		};
+
+		qcom_cedev_s_cb {
+			compatible = "qcom,qcedev,context-bank";
+			label = "secure_context";
+			iommus = <&apps_smmu 0x93 0>,
+				<&apps_smmu 0x9C 0x0002>,
+				<&apps_smmu 0x9E 0x0002>,
+				<&apps_smmu 0x9D 0>;
+			qcom,iommu-vmid = <0x9>; /* VMID_CP_BITSTREAM */
+			qcom,secure-context-bank;
+		};
+	};
+
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
