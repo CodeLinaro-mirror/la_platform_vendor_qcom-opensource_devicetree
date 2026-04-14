@@ -2405,6 +2405,12 @@
 					};
 				};
 
+				port@2 {
+					reg = <2>;
+
+					usb_port1_configure_out: endpoint {
+					};
+				};
 			};
 		};
 
