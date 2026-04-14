@@ -1710,6 +1710,8 @@
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
+
+		status = "disabled";
 	};
 
 	cti@8b59000 {
