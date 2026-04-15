@@ -19,3 +19,7 @@
 &mpss_mem {
 	status = "disabled";
 };
+
+&i2c9 {
+        status = "disabled";
+};
