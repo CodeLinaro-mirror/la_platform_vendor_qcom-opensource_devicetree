@@ -481,15 +481,15 @@
 
 &usb2_phy_2 {
 	phys = <&smb2360_2_eusb2_repeater>;
-	status = "okay";
+	status = "disabled";
 };
 
 &usb3_phy_2 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb2 {
-	status = "okay";
+	status = "disabled";
 	dwc3@a000000 {
 		dr_mode = "host";
 	};
