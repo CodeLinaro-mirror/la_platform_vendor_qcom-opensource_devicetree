@@ -26,7 +26,7 @@
 	};
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=1M androidboot.force_normal_boot=1 ufshcd-core.use_mcq_mode=n androidboot.verifiedbootstate=orange androidboot.audio=ar";
+		bootargs = "nokaslr log_buf_len=1M androidboot.force_normal_boot=1 ufshcd-core.use_mcq_mode=n androidboot.verifiedbootstate=orange androidboot.audio=ar pcie_pme=nomsi";
 	};
 
 	reserved_memory: reserved-memory {
@@ -326,6 +326,11 @@
 				346 346
 				406 406
 				407 407
+				/* PCIe0 INTx */
+				466 466
+				467 467
+				470 470
+				471 471
 				/* EMAC0 CH4 GIC IRQ */
 				902 902
 				973 973
@@ -1177,6 +1182,13 @@
 			<GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
+
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0 0 0 0x7>;
+		interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>, //INTa
+				<0 0 0 2 &intc 0 0 GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>, //INTb
+				<0 0 0 3 &intc 0 0 GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>, //INTc
+				<0 0 0 4 &intc 0 0 GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>; //INTd
 
 		iommus = <&pcie_smmu 0x00 0x7f>;
 		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
