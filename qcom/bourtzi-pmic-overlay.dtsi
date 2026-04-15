@@ -23,9 +23,41 @@
 		nvmem = <&pmk8350_sdam_5>;
 		nvmem-names = "pon_log";
 	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <KEY_VOLUMEUP>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
+		};
+	};
 };
 
 &tlmm {
+	key_vol_up_default: key_vol_up_default {
+		mux {
+			pins = "gpio53";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio53";
+			drive-strength = <2>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
+
 	pm8010m_reset_default: pm8010m-reset-default-state {
 		pins = "gpio59";
 		function = "gpio";
