@@ -16,6 +16,22 @@
 		wakeup-parent = <&mpm>;
 		qcom,gpios-reserved = <115 116 6 7 8 9 14 15 16 17 138>;
 
+		dmic_eldo_en_pin: dmic_eldo_en_pin {
+			dmic_eldo_en_pin_default: dmic_eldo_en_pin_default {
+				mux {
+					pins = "gpio71";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio71";
+					drive-strength = <8>;   /* 8 mA */
+					bias-disable;
+					output-high;
+				};
+			};
+		};
+
 		tlmm_i2s0_pins: tlmm_i2s0_pins {
 			tlmm_i2s0_sck_active: tlmm_i2s0_sck_active {
 				mux {
@@ -652,7 +668,6 @@
 				config {
 					pins = "gpio105";
 					drive-strength = <4>;
-					slew-rate = <1>;
 					bias-disable;
 				};
 			};
@@ -680,7 +695,6 @@
 				config {
 					pins = "gpio106";
 					drive-strength = <4>;
-					slew-rate = <1>;
 					bias-bus-hold;
 				};
 			};
@@ -709,7 +723,6 @@
 				config {
 					pins = "gpio107";
 					drive-strength = <2>;
-					slew-rate = <1>;
 					bias-disable;
 				};
 			};
@@ -737,7 +750,6 @@
 				config {
 					pins = "gpio108";
 					drive-strength = <2>;
-					slew-rate = <1>;
 					bias-bus-hold;
 				};
 			};
@@ -766,7 +778,6 @@
 				config {
 					pins = "gpio109";
 					drive-strength = <2>;
-					slew-rate = <1>;
 					bias-bus-hold;
 				};
 			};
