@@ -2000,6 +2000,22 @@
 			qcom,bcm-voters = <&apps_bcm_voter>;
 			#interconnect-cells = <1>;
 		};
+
+		qcom,mem-buf {
+			compatible = "qcom,mem-buf";
+			qcom,mem-buf-capabilities = "supplier";
+			qcom,vmid = <3>;
+		};
+
+		qcom,mem-buf-msgq {
+			compatible = "qcom,mem-buf-msgq";
+			qcom,msgq-names = "trusted_vm", "oem_vm";
+		};
+
+		qcom,secure-buffer {
+			compatible = "qcom,secure-buffer";
+			qcom,vmid-cp-camera-preview-ro;
+		};
 	};
 
 	arch_timer: timer {
