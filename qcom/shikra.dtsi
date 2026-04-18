@@ -2048,11 +2048,11 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_l3_dcvs_hw>;
 			qcom,sampling-path = <&l3_dcvs_sp>;
+			qcom,miss-ev = <0x03>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
-				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  556800 >,
 					< 1017600  806400 >,
@@ -2066,7 +2066,6 @@
 			gold {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
-				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  556800 >,
 					< 1017600  806400 >,
@@ -2080,7 +2079,6 @@
 			silver-compute {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
-				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000 556800 >,
 					< 1612800 806400 >;
@@ -2091,7 +2089,6 @@
 			gold-compute {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
-				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000 556800 >,
 					< 1900800 806400 >;
