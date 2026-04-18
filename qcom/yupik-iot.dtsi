@@ -45,3 +45,22 @@
 &usb2_phy1 {
 	status = "ok";
 };
+
+/delete-node/ &hyp_mem;
+
+&reserved_memory {
+	hyp_mem: hyp_region@9c800000 {
+		no-map;
+		reg = <0x0 0x9c800000 0x0 0xe00000>;
+	};
+
+	hyp_mem1: hyp_region1@9d600000 {
+		no-map;
+		reg = <0x0 0x9d600000 0x0 0x800000>;
+	};
+
+	pvmfw_mem: pvmfw_region@9de00000 {
+		 no-map;
+		 reg = <0x0 0x9de00000 0x0 0x100000>;
+	};
+};
