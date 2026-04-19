@@ -566,17 +566,6 @@
 	};
 };
 
-&soc {
-	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
-		compatible = "qcom,ipcc";
-		reg = <0x421000 0x1000>;
-		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-controller;
-		#interrupt-cells = <3>;
-		#mbox-cells = <2>;
-	};
-};
-
 &reserved_memory {
 	glink_cma_mem0: glink-cma-region0 {
 		no-map;
