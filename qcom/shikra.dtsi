@@ -1700,8 +1700,8 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 
-		reg = <0x04744000 0x1000>,<0x04745000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0x04744000 0x1000>,<0x04745000 0x1000>,<0x04748000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0xC0 0x0>;
 		qcom,iommu-dma = "fastmap";
@@ -1728,9 +1728,14 @@
 			<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "hc_irq", "pwr_irq";
 
+		qcom,ice-use-hwkm;
+
 		clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-			<&gcc GCC_SDCC1_AHB_CLK>;
-		clock-names = "core", "iface";
+			<&gcc GCC_SDCC1_AHB_CLK>,
+			<&gcc GCC_SDCC1_ICE_CORE_CLK>;
+		clock-names = "core", "iface","ice_core";
+
+		qcom,ice-clk-rates = <300000000 100000000>;
 
 		interconnects = <&system_noc MASTER_SDCC_1 &mc_virt SLAVE_EBI_CH0>,
 				<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_SDCC_1>;
