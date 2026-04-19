@@ -624,7 +624,6 @@
 #include "lemans-vm-usb.dtsi"
 #include "lemans-vm-pcie.dtsi"
 #include "lemans-vm-ufs.dtsi"
-#include "lemans-vm-audio.dtsi"
 
 &usb0 {
 	vbus_dwc3-supply = <&usb0_vbus_boost_regulator>;
