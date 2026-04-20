@@ -27,6 +27,8 @@
 /delete-node/ &ddr_cluster2;
 /delete-node/ &ddrqos_cluster2;
 /delete-node/ &llcc_cluster2;
+/delete-node/ &pdp2;
+/delete-node/ &pdp2_log;
 
 &ddr_clusterX_compute {
 	qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;

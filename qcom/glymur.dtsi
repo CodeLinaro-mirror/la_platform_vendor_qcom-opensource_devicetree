@@ -371,14 +371,23 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			compatible = "arm,scmi";
-			mboxes = <&cpucp 0>, <&cpucp 2>;
+			mboxes = <&pdp0 0>, <&pdp0 1>;
 			mbox-names = "tx", "rx";
-			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
+			shmem = <&cpu_scp_lpri1>, <&cpu_scp_lpri0>;
 
-			scmi_dvfs: protocol@13 {
+			scmi_perf: protocol@13 {
 				reg = <0x13>;
 				#power-domain-cells = <1>;
 			};
+		};
+
+		cpucp_scmi: scmi-1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "arm,scmi";
+			mboxes = <&cpucp 0>, <&cpucp 2>;
+			mbox-names = "tx", "rx";
+			shmem = <&cpucp_scp_lpri0>, <&cpucp_scp_lpri1>;
 
 			cpucp_scmi_qcom: protocol@80 {
 				reg = <0x80>;
@@ -742,12 +751,12 @@
 		#size-cells = <1>;
 		ranges = <0x0 0x0 0x18b4e000 0x400>;
 
-		cpu_scp_lpri0: scmi-shmem@0 {
+		cpucp_scp_lpri0: scmi-shmem@0 {
 			compatible = "arm,scmi-shmem";
 			reg = <0x0 0x200>;
 		};
 
-		cpu_scp_lpri1: scmi-shmem@200 {
+		cpucp_scp_lpri1: scmi-shmem@200 {
 			compatible = "arm,scmi-shmem";
 			reg = <0x200 0x200>;
 		};
@@ -2319,6 +2328,60 @@
 			qcom,log-type = <0>;
 		};
 
+		pdp0: qcom,pdp0@0x19980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x19980000 0x0 0x8000>,
+				<0x0 0x17610000 0x0 0x8000>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x0B>;
+		};
+
+		pdp1: qcom,pdp1@0x1a980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x1a980000 0x0 0x300>,
+				<0x0 0x17610000 0x0 0x4C08>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x10>;
+		};
+
+		pdp2: qcom,pdp2@0x1b980000 {
+			compatible = "qcom,cpucp-v2";
+			reg =	<0x0 0x1b980000 0x0 0x300>,
+				<0x0 0x17610000 0x0 0x4C08>;
+			reg-names = "tx", "rx";
+			#mbox-cells = <1>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,rx-chans = <0x20>;
+		};
+
+		pdp0_log: qcom,pdp0_log@0x81e4a000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81e4a000 0x0 0x20000>,
+				<0x0 0x81e6a000 0x0 0x20000>;
+			mboxes = <&pdp0 3>, <&pdp0 2>;
+			qcom,log-type = <1>;
+		};
+
+		pdp1_log: qcom,pdp1_log@0x81e8a000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81e8a000 0x0 0x20000>,
+				<0x0 0x81eaa000 0x0 0x20000>;
+			mboxes = <&pdp1 4>, <&pdp1 2>;
+			qcom,log-type = <2>;
+		};
+
+		pdp2_log: qcom,pdp2_log@0x81eca000 {
+			compatible = "qcom,pdp-log";
+			reg =	<0x0 0x81eca000 0x0 0x20000>,
+				<0x0 0x81eea000 0x0 0x20000>;
+			mboxes = <&pdp2 5>, <&pdp2 2>;
+			qcom,log-type = <3>;
+		};
+
 		apps_rsc: rsc@18900000 {
 			label = "apps_rsc";
 			compatible = "qcom,rpmh-rsc";
@@ -2710,6 +2773,25 @@
 				bits = <0 9>;
 				};
 
+		};
+
+		imem: sram@81e08600 {
+			compatible = "mmio-sram";
+			reg = <0x0 0x81e08600 0x0 0x300>;
+
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0x0 0x0 0x81e08600 0x300>;
+
+			cpu_scp_lpri0: scp-sram-section@0 {
+				compatible = "arm,scmi-shmem";
+				reg = <0x0 0x180>;
+			};
+
+			cpu_scp_lpri1: scp-sram-section@180 {
+				compatible = "arm,scmi-shmem";
+				reg = <0x180 0x180>;
+			};
 		};
 
 		qcom,mem-buf {
