@@ -503,8 +503,8 @@ seraph-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_
 
 dtb-y += $(seraph-dtb-y) $(seraph-overlays-dtb-y)
 
-VIENNA_BASE_DTB += vienna.dtb
-VIENNA_APQ_BASE_DTB += viennap.dtb
+VIENNA_BASE_DTB += vienna.dtb vienna-low-ram.dtb
+VIENNA_APQ_BASE_DTB += viennap.dtb viennap-low-ram.dtb
 
 VIENNA_BOARDS += \
 		 vienna-atp-overlay.dtbo \

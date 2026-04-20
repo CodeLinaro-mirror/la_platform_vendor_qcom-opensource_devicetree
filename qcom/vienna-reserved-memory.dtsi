@@ -96,11 +96,6 @@
 		reg = <0x0 0x84800000 0x0 0x190000>;
 	};
 
-	hyp_carveout_mem: hyp_carveout_region@86700000 {
-		no-map;
-		reg = <0x0 0x86700000 0x0 0x1100000>;
-	};
-
 	mpss_mem: mpss_region@8ba00000 {
 		no-map;
 		reg = <0x0 0x8ba00000 0x0 0x6c00000>;
