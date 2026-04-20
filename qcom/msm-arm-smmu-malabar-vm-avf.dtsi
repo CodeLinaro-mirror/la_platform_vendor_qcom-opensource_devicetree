@@ -11,7 +11,7 @@
 			vsmmu@c600000 { // APPS_MMU500_SMMU_APP
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0xc600000>;
-				num-cbs = <0x4>;
+				num-cbs = <0x5>;
 				num-smrs = <0x9>;
 				patch = "/soc/apps-smmu@c600000";
 			};
