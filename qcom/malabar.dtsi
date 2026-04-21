@@ -849,6 +849,17 @@
 			qcom,shared;
 			label = "modem";
 		};
+
+		qcom,client_dsm_harq {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "md_op1";
+			qcom,peripheral-size = <0x800000>;
+			qcom,client-id = <9>;
+			memory-region = <&dsm_cma_mem>;
+			label = "modem";
+			qcom,dynamic-size-feature;
+			qcom,dynamic-size-max = <0x800000>;
+		};
 	};
 
 	qcom,msm-imem@c125000 {
