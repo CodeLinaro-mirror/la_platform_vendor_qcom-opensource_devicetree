@@ -1575,6 +1575,7 @@
 #include "bourtzi-regulators.dtsi"
 #include "bourtzi-thermal.dtsi"
 #include "bourtzi-qupv3.dtsi"
+#include "bourtzi-debug.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
