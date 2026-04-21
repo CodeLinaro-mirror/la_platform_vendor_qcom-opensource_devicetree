@@ -173,6 +173,15 @@
 	};
 };
 
+&dwc3 {
+	qcom,iommu-dma = "fastmap";
+	qcom,iommu-dma-addr-pool = <0x0 0x40000000 0x0 0x40000000>;
+	qcom,iommu-geometry = <0x0 0x40000000 0x0 0x40000000>;
+	/delete-property/ memory-region;
+};
+
+/delete-node/ &dwc3_mem_region;
+
 &ucsi {
 	connector {
 		port {
