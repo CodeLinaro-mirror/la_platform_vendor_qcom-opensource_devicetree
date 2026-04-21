@@ -1384,6 +1384,10 @@
 			reg = <0x119 0x2>;
 			bits = <5 8>;
 		};
+
+		boot_config: boot_config@600 {
+			reg = <0x600 0x1>;
+		};
 	};
 
 	cpu_pmu: cpu-pmu {
