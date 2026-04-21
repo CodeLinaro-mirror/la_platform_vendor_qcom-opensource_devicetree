@@ -2659,6 +2659,16 @@
 		shared-buffer-size = <0x1000>;
 	};
 
+	cache-controller@e00000 {
+		compatible = "qcom,shikra-llcc";
+		reg = <0x0e00000 0x80000>,
+		      <0x0f00000 0x80000>,
+		      <0x1000000 0x80000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base";
+		cap-based-alloc-and-pwr-collapse;
+		status = "okay";
+	};
+
 };
 
 #include "shikra-pinctrl.dtsi"
