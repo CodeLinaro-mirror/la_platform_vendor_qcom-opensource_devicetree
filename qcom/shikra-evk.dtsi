@@ -3,6 +3,9 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/clock/qcom,shikra-gcc.h>
+#include <dt-bindings/gpio/gpio.h>
+
 &gpi_dma0 {
 	status = "okay";
 };
@@ -517,6 +520,27 @@
 	mmc-hs400-enhanced-strobe;
 
 	status = "okay";
+};
+
+&sdhc_2 {
+	vdd-supply = <&L21A>;
+	qcom,vdd-voltage-level = <2950000 2960000>;
+	qcom,vdd-current-level = <0 976310>;
+
+	vdd-io-supply = <&L4A>;
+	qcom,vdd-io-voltage-level = <1800000 2960000>;
+	qcom,vdd-io-current-level = <0 22000>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc2_on>;
+	pinctrl-1 = <&sdc2_off>;
+
+	cd-gpios = <&tlmm 89 GPIO_ACTIVE_LOW>;
+
+	resets = <&gcc GCC_SDCC2_BCR>;
+	reset-names = "core_reset";
+
+	status = "ok";
 };
 
 &uart0 {

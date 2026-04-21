@@ -32,6 +32,7 @@
 	aliases: aliases {
 		serial0 = &uart0;
 		mmc0 = &sdhc_1;
+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		i2c3 = &i2c3;
 		spi5 = &spi5;
 		hsuart0 = &uart8;
@@ -1754,6 +1755,76 @@
 		qos1 {
 			mask = <0x07>;
 			vote = <44>;
+		};
+	};
+
+	sdhc_2_dma_resv: sdhc_2_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC2 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
+						  <&sdhc_2 0x50000000 0xb0000000>;
+	};
+
+	sdhc_2: sdhci@4784000 {
+		status = "disabled";
+
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x4784000 0x1000>;
+		reg-names = "hc";
+
+		interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		bus-width = <4>;
+		no-sdio;
+		no-mmc;
+		qcom,restore-after-cx-collapse;
+
+		clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+			<&gcc GCC_SDCC2_APPS_CLK>;
+		clock-names = "iface", "core";
+
+		qcom,dll-hsr-list = <0x0007442c 0x0 0x10
+					0x090106c0 0x80040868>;
+
+		iommus = <&apps_smmu 0x0A0 0x0>;
+		qcom,iommu-dma = "fastmap";
+		dma-coherent;
+		memory-region = <&sdhc_2_dma_resv>;
+		qcom,iommu-geometry = <0x40000000 0x10000000>;
+
+		interconnects = <&system_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI_CH0>,
+				<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_SDCC_2>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+		operating-points-v2 = <&sdhc2_opp_table>;
+
+		qos0 {
+			mask = <0xf0>;
+			vote = <44>;
+		};
+
+		qos1 {
+			mask = <0x0f>;
+			vote = <44>;
+		};
+	};
+
+	sdhc2_opp_table: sdhc2-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <160000 100000>;
+			opp-avg-kBps = <50000 0>;
+		};
+
+		opp-202000000 {
+			opp-hz = /bits/ 64 <202000000>;
+			opp-peak-kBps = <200000 120000>;
+			opp-avg-kBps = <104000 0>;
 		};
 	};
 
