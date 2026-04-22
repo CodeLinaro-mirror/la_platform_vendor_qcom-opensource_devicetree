@@ -12,3 +12,11 @@
 	compatible = "qcom,sa8797p", "qcom,qam";
 	qcom,board-id = <0x10025 0x0>;
 };
+
+&xpcs1 {
+	status = "okay";
+};
+
+&ethernet1 {
+	status = "okay";
+};

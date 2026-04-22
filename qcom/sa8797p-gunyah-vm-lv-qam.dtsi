@@ -4,3 +4,50 @@
  */
 
 #include "sa8797p-gunyah-vm-lv.dtsi"
+#include "sa8797p-gunyah-vm-qupv3.dtsi"
+#include "sa8797p-pinctrl.dtsi"
+
+/ {
+	aliases {
+		hsuart0 = &qupv3_se17_4uart;
+	};
+};
+
+&vm_config {
+	/* Pass through regions */
+	iomemory-ranges = <
+		/* EMAC 1 DWC region */
+		0x0 0x1A80000 0x0 0x1A80000 0x0 0x1A000 0x0
+		/* EMAC 1 IO CSR region */
+		0x0 0x1AFF000 0x0 0x1AFF000 0x0 0x1000 0x0
+		/* TLMM region */
+		0x0 0xF000000 0x0 0xF000000 0x0 0x1000000 0x0
+		/* QUPv3 Tile 2 read-only region */
+		0x0 0x8C0000 0x0 0x8C0000 0x0 0x1000 0x1
+		/* QUPv3 SE17 region */
+		0x0 0x88C000 0x0 0x88C000 0x0 0x3000 0x0
+	>;
+
+	/* Pass through IRQs */
+	gic-irq-ranges = <
+		/* EMAC 1 */
+		852 852
+		535 535
+		775 775
+		776 776
+		761 761
+		762 762
+		763 763
+		764 764
+		765 765
+		766 766
+		767 767
+		768 768
+		734 734
+		688 688
+		393 393
+		/* QUPv3 SE17 GIC IRQ */
+		617 617
+	>;
+};
+
