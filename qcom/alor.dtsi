@@ -450,15 +450,6 @@
 		compatible = "qcom,hdcp";
 		qcom,use-smcinvoke = <1>;
 	};
-
-	qti,smmu-proxy {
-		compatible = "smmu-proxy-sender";
-	};
-
-	qcom,seccamtest {
-		compatible = "qcom,seccamtest";
-		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
-	};
 };
 
 &soc {
@@ -3722,6 +3713,16 @@
 		qcom,cluster-num = <2>;
 		qcom,devfreq = <&msm_gpu>;
 	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
 };
 
 #include "alor-debug.dtsi"

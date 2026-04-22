@@ -406,14 +406,6 @@
 		qcom,use-smcinvoke = <1>;
 	};
 
-	qti,smmu-proxy {
-		compatible = "smmu-proxy-sender";
-	};
-
-	qcom,seccamtest {
-		compatible = "qcom,seccamtest";
-		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
-	};
 };
 
 #include "chora-reserved-memory.dtsi"
@@ -2631,6 +2623,16 @@
 		qcom,master;
 		tlmm-vm-gpio-list = <&tlmm 24 0>; // Use a pin that is not utilized by PVM
 	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
 };
 
 #include "chora-pinctrl.dtsi"
