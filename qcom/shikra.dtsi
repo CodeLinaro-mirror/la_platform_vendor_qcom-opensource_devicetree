@@ -2966,7 +2966,7 @@
 
 	qup_uart0_rx: qup-uart0-rx-state {
 		pins = "gpio1";
-		function = "qup1_se0_l3";
+		function = "qup0_se0_l3";
 	};
 
 	qup_uart0_sleep: qup-uart0-sleep-state {
@@ -2976,7 +2976,7 @@
 
 	qup_uart0_tx: qup-uart0-tx-state {
 		pins = "gpio0";
-		function = "qup1_se0_l2";
+		function = "qup0_se0_l2";
 	};
 
 	qup_uart1_rx: qup-uart1-rx-state {
@@ -3131,7 +3131,7 @@
 
 	qup_uart8_cts: qup_uart8_cts-state {
 		pins = "gpio22";
-		function = "qup1_se8_l0";
+		function = "qup0_se8_l0";
 	};
 
 	qup_uart8_default_ctsrtsrx: qup_uart8_default_ctsrtsrx-state {
@@ -3146,7 +3146,7 @@
 
 	qup_uart8_rts: qup_uart8_rts-state {
 		pins = "gpio23";
-		function = "qup1_se8_l1";
+		function = "qup0_se8_l1";
 	};
 
 	qup_uart8_rx_wake: qup_uart8_rx_wake-state {
@@ -3156,7 +3156,7 @@
 
 	qup_uart8_rx_active: qup_uart8_rx_active-state {
 		pins = "gpio25";
-		function = "qup1_se8_l3";
+		function = "qup0_se8_l3";
 	};
 
 	qup_uart8_sleep: qup_uart8_sleep-state {
@@ -3166,12 +3166,12 @@
 
 	qup_uart8_tx: qup_uart8_tx-state {
 		pins = "gpio24";
-		function = "qup1_se8_l2";
+		function = "qup0_se8_l2";
 	};
 
 	qup_uart9_rx: qup-uart9-rx-state {
 		pins = "gpio27";
-		function = "qup1_se9_l3";
+		function = "qup0_se9_l3";
 	};
 
 	qup_uart9_sleep: qup-uart9-sleep-state {
@@ -3181,7 +3181,7 @@
 
 	qup_uart9_tx: qup-uart9-tx-state {
 		pins = "gpio26";
-		function = "qup1_se9_l2";
+		function = "qup0_se9_l2";
 	};
 
 };
