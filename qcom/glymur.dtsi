@@ -1668,6 +1668,7 @@
 #include "mahua-regulators.dtsi"
 #include "msm-arm-smmu-glymur.dtsi"
 #include "mahua-qupv3.dtsi"
+#include "glymur-pcie.dtsi"
 
 &qupv3_se21_2uart {
 	status = "okay";

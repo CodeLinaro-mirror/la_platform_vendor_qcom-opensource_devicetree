@@ -85,3 +85,8 @@
 &pcie_west_slv_noc {
 	compatible = "qcom,mahua-pcie_west_slv_noc";
 };
+
+&pcie5 {
+	status = "okay";
+};
+
