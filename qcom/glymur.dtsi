@@ -6,6 +6,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/mailbox/qcom-ipcc.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+#include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,glymur-gcc.h>
 #include <dt-bindings/clock/qcom,glymur-tcsr.h>
@@ -1077,6 +1078,59 @@
 			diag_dload@0c8 {
 				compatible = "qcom,msm-imem-diag-dload";
 				reg = <0x0c8 0xc8>;
+			};
+		};
+
+		pmic_arbiter: arbiter@c400000 {
+			compatible = "qcom,canoe-spmi-pmic-arb";
+			reg = <0x0 0xc400000 0x0 0x3000>,
+				<0x0 0xc900000 0x0 0x400000>,
+				<0x0 0xc4c0000 0x0 0x400000>,
+				<0x0 0xc403000 0x0 0x8000>;
+			reg-names = "core", "chnls", "obsrvr", "chnl_map";
+			#address-cells = <2>;
+			#size-cells = <2>;
+			ranges;
+			qcom,channel = <0>;
+			qcom,ee = <0>;
+
+			spmi0_bus: spmi@c426000 {
+				reg = <0x0 0xc426000 0x0 0x4000>,
+					<0x0 0xc8c0000 0x0 0x10000>,
+					<0x0 0xc42a000 0x0 0x8000>;
+				reg-names = "cnfg", "intr", "chnl_owner";
+				interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+				interrupt-names = "periph_irq";
+				interrupt-controller;
+				#interrupt-cells = <4>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+			};
+
+			spmi1_bus: spmi@c437000 {
+				reg = <0x0 0xc437000 0x0 0x4000>,
+					<0x0 0xc8d0000 0x0 0x10000>,
+					<0x0 0xc43b000 0x0 0x8000>;
+				reg-names = "cnfg", "intr", "chnl_owner";
+				interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
+				interrupt-names = "periph_irq";
+				interrupt-controller;
+				#interrupt-cells = <4>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+			};
+
+			spmi2_bus: spmi@c448000 {
+				reg = <0x0 0xc448000 0x0 0x4000>,
+					<0x0 0x0c8e0000 0x0 0x10000>,
+					<0x0 0x0c44c000 0x0 0x8000>;
+				reg-names = "cnfg", "intr", "chnl_owner";
+				interrupts-extended = <&pdc 72 IRQ_TYPE_LEVEL_HIGH>;
+				interrupt-names = "periph_irq";
+				interrupt-controller;
+				#interrupt-cells = <4>;
+				#address-cells = <2>;
+				#size-cells = <0>;
 			};
 		};
 
