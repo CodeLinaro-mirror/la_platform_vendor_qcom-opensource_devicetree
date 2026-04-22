@@ -887,8 +887,13 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "vienna.dtb"},
+            {"name": "vienna-low-ram.dtb"},
             {
                 "name": "viennap.dtb",
+                "apq": True,
+            },
+            {
+                "name": "viennap-low-ram.dtb",
                 "apq": True,
             },
         ],
