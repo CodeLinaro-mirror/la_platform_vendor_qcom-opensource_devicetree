@@ -1592,7 +1592,7 @@
 					"dtbo_a", "dsp_b", "dsp_a",
 					"vendor_boot_b", "vendor_boot_a",
 					"init_boot_b", "init_boot_a", "devinfo",
-					"bootloader_b", "bootloader_a";
+					"vm-bootloader_b", "vm-bootloader_a";
 		};
 	};
 };
