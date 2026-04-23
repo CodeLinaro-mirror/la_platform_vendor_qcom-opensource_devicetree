@@ -310,6 +310,11 @@
 		alignment = <0x0 0x400000>;
 	};
 
+	sc_tcm_mem: sc_tcm_region@38000000 {
+		no-map;
+		reg = <0x0 0x38000000 0x0 0xa00000>;
+	};
+
 	llcc_lpi_mem: llcc_lpi_region@fc000000 {
 		no-map;
 		reg = <0x0 0xfc000000 0x0 0xc00000>;

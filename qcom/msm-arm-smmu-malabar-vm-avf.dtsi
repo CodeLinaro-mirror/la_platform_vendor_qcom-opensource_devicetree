@@ -11,8 +11,8 @@
 			vsmmu@c600000 { // APPS_MMU500_SMMU_APP
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0xc600000>;
-				num-cbs = <0x3>;
-				num-smrs = <0x7>;
+				num-cbs = <0x4>;
+				num-smrs = <0x9>;
 				patch = "/soc/apps-smmu@c600000";
 			};
 		};
@@ -39,6 +39,10 @@
 			<0x841 0x0000 0x00000103>,
 
 			/* TBU_RT: Display */
-			<0x424 0x0002 0x00000103>;
+			<0x421 0x0000 0x00000103>,
+			<0x424 0x0002 0x00000103>,
+
+			/* TBU_RT: Rotator(Display) */
+			<0x43d 0x0000 0x00000103>;
 	};
 };

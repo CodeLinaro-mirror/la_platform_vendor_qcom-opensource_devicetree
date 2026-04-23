@@ -50,6 +50,16 @@ pmar2230: pmar2230@0 {
 			};
 		};
 
+		pmar2230_btn1: btn@2500 {
+			compatible = "qcom,pmar2230-btn";
+			reg = <0x2500>;
+			interrupts = <0x0 0x25 0x0 IRQ_TYPE_EDGE_BOTH>;
+			interrupt-names = "btn1";
+			linux,code = <KEY_CAMERA>;
+			debounce = <15625>;
+			bias-pull-up;
+		};
+
 		pmar2230_rtc: rtc@6400 {
 			compatible = "qcom,pm5100-rtc";
 			reg = <0x6400>, <0x6500>;
@@ -214,7 +224,7 @@ pmar2230: pmar2230@0 {
 		};
 
 		pmar2230_bcl: bcl@4700 {
-			compatible = "qcom,bcl-v5";
+			compatible = "qcom,pmh0101-bcl-v5";
 			reg = <0x4700 0x100>;
 			interrupts = <0x0 0x47 0x0 IRQ_TYPE_NONE>,
 					<0x0 0x47 0x1 IRQ_TYPE_NONE>,
@@ -223,6 +233,7 @@ pmar2230: pmar2230@0 {
 					"bcl-lvl1",
 					"bcl-lvl2";
 			qcom,pmic7-threshold;
+			qcom,vph-dynamic-threshold;
 			#thermal-sensor-cells = <1>;
 		};
 

@@ -75,7 +75,7 @@
 	};
 
 	rpm_dump_mem: rpm_dump_region@85e1c000 {
-		reg = <0x0 0x85e1c000 0x0 0x25800>;
+		reg = <0x0 0x85e1c000 0x0 0x25000>;
 		no-map;
 	};
 
@@ -113,8 +113,8 @@
 		no-map;
 	};
 
-	tags_mem: tags_region@c4100000 {
-		reg = <0x0 0xc4100000 0x0 0xb00000>;
+	tags_mem: tags_region@c4500000 {
+		reg = <0x0 0xc4500000 0x0 0x700000>;
 		no-map;
 	};
 
@@ -123,6 +123,10 @@
 		no-map;
 	};
 
+	splash_memory: splash_region {
+		reg = <0x0 0x81F00000 0x0 0x00D0000>;
+		label = "cont_splash_region";
+	};
 	/* trusted_apps* region at 0xc5100000 will change dynamically */
 
 	/* vm_kernel_memoem_configurable_mem was split into trust_ui_vm_mem & oem_vm_mem below */

@@ -5,6 +5,31 @@
 
 #include "malabar.dtsi"
 
+&display_heap {
+	status = "disabled";
+};
+
+&reserved_memory {
+	/delete-node/ oem_vm_mem@f7c00000;
+	/delete-node/ trust_ui_vm_mem@f3800000;
+	/delete-node/ vm_comm_mem;
+	/delete-node/ non_secure_display_memory;
+	/delete-node/ mem_dump_region;
+};
+
 &soc {
 	/* Delete old reserved_mmeory & add new node here */
+	dmesg-dump {
+		status = "disabled";
+	};
+
+	gunyah-cma-mem {
+		status = "disabled";
+	};
+
+	qcom,gunyah-panic-notifier {
+		status = "disabled";
+	};
+
+	/delete-node/ mem_dump;
 };

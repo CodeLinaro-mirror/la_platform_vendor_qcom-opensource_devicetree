@@ -280,7 +280,7 @@
 
 			cpu4_emerg0: cpu4-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -316,7 +316,7 @@
 
 			cpu4_emerg1: cpu4-emerg1-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -352,7 +352,7 @@
 
 			cpu5_emerg0: cpu5-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -388,7 +388,7 @@
 
 			cpu5_emerg1: cpu5-emerg1-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -424,7 +424,7 @@
 
 			cpu6_emerg0: cpu6-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -460,7 +460,7 @@
 
 			cpu6_emerg1: cpu6-emerg1-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -496,7 +496,7 @@
 
 			cpu7_emerg0: cpu7-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -532,7 +532,7 @@
 
 			cpu7_emerg1: cpu7-emerg1-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -591,7 +591,7 @@
 
 			cpu1_emerg0: cpu1-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -627,7 +627,7 @@
 
 			cpu2_emerg0: cpu2-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -663,7 +663,7 @@
 
 			cpu3_emerg0: cpu3-emerg0-cfg {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 

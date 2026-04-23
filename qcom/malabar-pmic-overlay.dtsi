@@ -69,6 +69,10 @@
 	};
 };
 
+&gcc {
+	qcom,critical-devices = <&qupv3_se1_i2c>;
+};
+
 &qupv3_se1_i2c {
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -328,19 +332,19 @@
 		thermal-sensors = <&pm6450_tz>;
 
 		trips {
-			trip0 {
+			pm6450vs_c_trip0: trip0 {
 				temperature = <95000>;
 				hysteresis = <0>;
 				type = "passive";
 			};
 
-			trip1 {
+			pm6450vs_c_trip1: trip1 {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
 			};
 
-			trip2 {
+			pm6450vs_c_trip2: trip2 {
 				temperature = <145000>;
 				hysteresis = <0>;
 				type = "critical";
@@ -388,6 +392,41 @@
 				temperature = <125000>;
 				hysteresis = <1000>;
 				type = "passive";
+			};
+
+			display_test_config1: display-test-config1 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			display_test_config2: display-test-config2 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+
+			display_test_config3: display-test-config3 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+
+		cooling-maps {
+			display_cdev1 {
+				trip = <&display_test_config1>;
+				cooling-device = <&display_fps 1 1>;
+			};
+
+			display_cdev2 {
+				trip = <&display_test_config2>;
+				cooling-device = <&display_fps 2 2>;
+			};
+
+			display_cdev3 {
+				trip = <&display_test_config3>;
+				cooling-device = <&display_fps 3 3>;
 			};
 		};
 	};
