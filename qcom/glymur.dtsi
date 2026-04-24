@@ -1276,6 +1276,111 @@
 			};
 		};
 
+		pmic-arb-debug@11c14000 {
+			compatible = "qcom,spmi-pmic-arb-debug-v8";
+			reg = <0x0 0x11c14000 0x0 0x64>,
+				<0x0 0x361c8784 0x0 0x4>;
+			reg-names = "core", "fuse";
+			clocks = <&aoss_qmp>;
+			clock-names = "core_clk";
+			qcom,fuse-enable-bit = <14>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			depends-on-supply = <&pmic_arbiter>;
+
+			spmi_debug_bus_0: spmi@0 {
+				reg = <0>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+
+				pmk8850@0 {
+					compatible = "qcom,spmi-pmic";
+					reg = <0 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmh0101@1 {
+					compatible = "qcom,spmi-pmic";
+					reg = <1 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmcx0102@2 {
+					compatible = "qcom,spmi-pmic";
+					reg = <2 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmh0110@5 {
+					compatible = "qcom,spmi-pmic";
+					reg = <5 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmh0110@7 {
+					compatible = "qcom,spmi-pmic";
+					reg = <7 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+			};
+
+			spmi_debug_bus_1: spmi@1 {
+				reg = <1>;
+				#address-cells = <2>;
+				#size-cells = <0>;
+
+				pmk8850@0 {
+					compatible = "qcom,spmi-pmic";
+					reg = <0 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmcx0102@2 {
+					compatible = "qcom,spmi-pmic";
+					reg = <2 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmcx0102@3 {
+					compatible = "qcom,spmi-pmic";
+					reg = <3 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmh0110@5 {
+					compatible = "qcom,spmi-pmic";
+					reg = <5 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+
+				pmh0104@b {
+					compatible = "qcom,spmi-pmic";
+					reg = <11 SPMI_USID>;
+					#address-cells = <2>;
+					#size-cells = <0>;
+					qcom,can-sleep;
+				};
+			};
+		};
+
 		qcom,smp2p-cdsp {
 			compatible = "qcom,smp2p";
 			qcom,smem = <94>, <432>;
