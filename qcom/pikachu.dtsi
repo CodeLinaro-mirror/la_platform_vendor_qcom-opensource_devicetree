@@ -714,6 +714,7 @@
 		compatible = "qcom,cpucp-log";
 		reg = <0xD8040000 0x10000>, <0xD8050000 0x10000>;
 		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
 	};
 
 	llcc_pmu: llcc-pmu@24095000 {
@@ -900,7 +901,7 @@
 					< 1113600  902400 >,
 					< 1497600 1209600 >,
 					< 1747200 1401600 >,
-					< 1843200 1516800 >,
+					< 1843200 1497600 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 			};
@@ -909,7 +910,7 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1747200  268800 >,
+					< 1747200  403200 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
@@ -1287,10 +1288,11 @@
 
 	cache-controller@25000000 {
 		compatible = "qcom,pikachu-llcc";
-		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>;
-		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base";
+		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>, <0xD8170000 0x1000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base", "slc_mem_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
+		qcom,sct-initialized;
 	};
 
 	qcom,msm-adsprpc-mem {
@@ -1766,7 +1768,6 @@
 		clocks = <&pcie_0_pipe_clk>;
 		qcom,hw-drv-ids = <0 1>;
 		qcom,sw-drv-ids = <0>;
-		status = "disabled";
 	};
 
 	pcie_pdc: pdc@b330000 {

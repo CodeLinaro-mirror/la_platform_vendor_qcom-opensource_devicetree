@@ -295,42 +295,9 @@
 
 		out-ports {
 			port {
-				tpdm_wcss_out_tpda_wcss: endpoint {
+				tpdm_wcss_out_funnel_in1: endpoint {
 					remote-endpoint =
-					<&tpda_wcss_in_tpdm_wcss>;
-				};
-			};
-		};
-	};
-
-	tpda_wcss: tpda@899d000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000f0f00>;
-		reg = <0x0899d000 0x1000>;
-		reg-names = "tpda-base";
-
-		device-name = "tpda_wcss";
-
-		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-		clock-names = "apb_pclk";
-
-		in-ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			port {
-				tpda_wcss_in_tpdm_wcss: endpoint {
-					remote-endpoint =
-					<&tpdm_wcss_out_tpda_wcss>;
-				};
-			};
-		};
-
-		out-ports {
-			port {
-				tpda_wcss_out_funnel_in1: endpoint {
-					remote-endpoint =
-					<&funnel_in1_in_tpda_wcss>;
+					<&funnel_in1_in_tpdm_wcss>;
 				};
 			};
 		};
@@ -528,7 +495,7 @@
 		};
 	};
 
-	tpdm_apm: tpdm@9860000 {
+	tpdm_actpm: tpdm@9860000 {
 		compatible = "arm,primecell";
 		arm,primecell-periphid = <0x000f0e00>;
 		reg = <0x09860000 0x1000>;
@@ -536,16 +503,16 @@
 		qcom,cmb-element-bits = <64>;
 		qcom,cmb-msrs-num = <1>;
 
-		device-name = "tpdm_apm";
+		device-name = "tpdm_actpm";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
 		out-ports {
 			port {
-				tpdm_apm_out_tpda_apss: endpoint {
+				tpdm_actpm_out_tpda_apss: endpoint {
 					remote-endpoint =
-					<&tpda_apss_in_tpdm_apm>;
+					<&tpda_apss_in_tpdm_actpm>;
 				};
 			};
 		};
@@ -599,9 +566,9 @@
 
 			port@2 {
 				reg = <2>;
-				tpda_apss_in_tpdm_apm: endpoint {
+				tpda_apss_in_tpdm_actpm: endpoint {
 					remote-endpoint =
-					<&tpdm_apm_out_tpda_apss>;
+					<&tpdm_actpm_out_tpda_apss>;
 				};
 			};
 
@@ -893,7 +860,7 @@
 				replicator_turing_dummy_out_tpda_center: endpoint {
 					remote-endpoint =
 					<&tpda_center_in_replicator_turing_dummy>;
-					source = <&tpdm_turing>;
+					filter-source = <&tpdm_turing>;
 				};
 			};
 
@@ -902,6 +869,7 @@
 				replicator_turing_dummy_out_funnel_center: endpoint {
 					remote-endpoint =
 					<&funnel_center_in_replicator_turing_dummy>;
+					filter-source = <&turing_etm0>;
 				};
 			};
 		};
@@ -1332,9 +1300,9 @@
 
 			port@3 {
 				reg = <3>;
-				funnel_in1_in_tpda_wcss: endpoint {
+				funnel_in1_in_tpdm_wcss: endpoint {
 					remote-endpoint =
-					<&tpda_wcss_out_funnel_in1>;
+					<&tpdm_wcss_out_funnel_in1>;
 				};
 			};
 
@@ -1798,6 +1766,8 @@
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
+
+		status = "disabled";
 	};
 
 	cti@8a02000 {

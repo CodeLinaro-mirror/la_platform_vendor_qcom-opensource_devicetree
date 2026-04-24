@@ -282,6 +282,9 @@ YUPIK_BOARDS += \
 		yupikp-iot-rb3-gen2-videocollab-overlay.dtbo \
 		yupikp-iot-rb3-gen2-visionkit-overlay.dtbo \
 		yupikp-iot-rb3-gen2-corekit-overlay.dtbo \
+		yupikp-iot-aio-bar-overlay.dtbo \
+		yupikp-iot-360-camera-overlay.dtbo \
+		yupikp-iot-controller-overlay.dtbo \
 		katmaip-hsp-overlay.dtbo \
 		katmaip-hsp-pm7250b-overlay.dtbo \
 		katmaip-iot-rb3-gen2-videocollab-overlay.dtbo \
@@ -516,27 +519,45 @@ VIENNA_BOARDS += \
 		 vienna-idp-overlay.dtbo \
 		 vienna-idp-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-no-cam-overlay.dtbo \
-                 vienna-idp-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-idp-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-se8-overlay.dtbo \
 		 vienna-idp-se8-overlay-pmw6100-v2.dtbo \
 		 vienna-rcm-overlay.dtbo \
+		 vienna-rcm-overlay-le.dtbo \
 		 vienna-rcm-overlay-pmw6100-v2.dtbo \
+		 vienna-rcm-overlay-pmw6100-v2-le.dtbo \
 		 vienna-rcm-no-cam-overlay.dtbo \
+		 vienna-rcm-no-cam-overlay-le.dtbo \
 		 vienna-rcm-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-rcm-no-cam-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-overlay-le.dtbo \
 		 vienna-wdp-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-ddsip-overlay.dtbo \
+		 vienna-wdp-ddsip-overlay-le.dtbo \
 		 vienna-wdp-ddsip-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-ddsip-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wdp-no-cam-overlay-le.dtbo \
 		 vienna-wdp-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-no-cam-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-se8-overlay.dtbo \
+		 vienna-wdp-se8-overlay-le.dtbo \
 		 vienna-wdp-se8-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-se8-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wrd-overlay.dtbo \
+		 vienna-wrd-overlay-le.dtbo \
 		 vienna-wrd-overlay-pmw6100-v2.dtbo \
+		 vienna-wrd-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wrd-ddsip-overlay.dtbo \
+		 vienna-wrd-ddsip-overlay-le.dtbo \
 		 vienna-wrd-ddsip-overlay-pmw6100-v2.dtbo \
+		 vienna-wrd-ddsip-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wrd-no-cam-overlay.dtbo \
-		 vienna-wrd-no-cam-overlay-pmw6100-v2.dtbo
+		 vienna-wrd-no-cam-overlay-le.dtbo \
+		 vienna-wrd-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-wrd-no-cam-overlay-pmw6100-v2-le.dtbo
 
 NOAPQ_VIENNA_BOARDS += \
 		 vienna-rumi-overlay.dtbo \

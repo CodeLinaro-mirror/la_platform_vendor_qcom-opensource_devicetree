@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
@@ -30,10 +31,10 @@
 
 	#address-cells = <2>;
 	#size-cells = <2>;
-	memory { device_type = "memory"; reg = <0 0 0 0>; };
+	memory { device_type = "memory"; reg = <0x0 0x38000000 0x0 0xa00000>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=6 earlycon earlycon=qcom_geni,0x00A94000 qcom_geni_serial.con_enabled=1 log_buf_len=256K console=ttyMSM0,115200,n8 bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc";
+		bootargs = "loglevel=6 log_buf_len=256K bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc hibernate=nocompress pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x2";
 	};
 
 	reserved_memory: reserved-memory {};
@@ -847,6 +848,16 @@
 		compatible = "qcom,cpucp-log";
 		reg = <0xD8040000 0x10000>, <0xD8050000 0x10000>;
 		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
+	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 	};
 
 	llcc_pmu: llcc-pmu@24095000 {
@@ -1916,6 +1927,7 @@
 		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>, <0xD8170000 0x1000>;
 		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base", "slc_mem_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		memory-region = <&sc_tcm_mem>;
 		cap-based-alloc-and-pwr-collapse;
 		qcom,sct-initialized;
 
@@ -2559,7 +2571,7 @@
 	ramoops_mem: ramoops_region {
 		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
 		size = <0x0 0x200000>;
-		no-map;
+		reusable;
 	};
 
 	va_md_mem: va_md_mem_region {
