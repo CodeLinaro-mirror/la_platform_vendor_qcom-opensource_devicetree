@@ -298,11 +298,6 @@
 		device-name = "tpda_swao";
 
 		qcom,tpda-atid = <71>;
-		qcom,cmb-elem-size = <0 64>,
-				     <1 64>,
-				     <2 64>,
-				     <3 64>;
-		qcom,dsb-elem-size = <4 32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -858,8 +853,6 @@
 		device-name = "tpda_modem";
 
 		qcom,tpda-atid = <67>;
-		qcom,dsb-elem-size = <0 32>;
-		qcom,cmb-elem-size = <0 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -997,33 +990,6 @@
 		device-name = "tpda";
 
 		qcom,tpda-atid = <65>;
-		qcom,bc-elem-size = <25 32>,
-				    <31 32>;
-		qcom,tc-elem-size = <31 32>;
-		qcom,dsb-elem-size = <5 32>,
-				     <6 32>,
-				     <8 32>,
-				     <9 32>,
-				     <10 32>,
-				     <11 32>,
-				     <12 32>,
-				     <19 32>,
-				     <21 32>,
-				     <25 32>,
-				     <26 32>,
-				     <31 32>;
-		qcom,cmb-elem-size = <6 64>,
-				     <12 32>,
-				     <13 64>,
-				     <14 64>,
-				     <15 64>,
-				     <20 64>,
-				     <22 32>,
-				     <23 64>,
-				     <24 32>,
-				     <27 32>,
-				     <28 32>,
-				     <31 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1391,8 +1357,6 @@
 		device-name = "tpda_dl_north";
 		qcom,tpda-atid = <97>;
 
-		qcom,dsb-elem-size = <0 32>;
-
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -1460,7 +1424,6 @@
 		device-name = "tpda_dl_south";
 
 		qcom,tpda-atid = <75>;
-		qcom,dsb-elem-size = <0 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1546,12 +1509,8 @@
 
 	funnel_dl_center: funnel@6c2d000 {
 		compatible = "arm,coresight-static-funnel";
-
 		reg = <0x6c2d000 0x1000>;
 		reg-names = "funnel-base";
-		qcom,dsb-element-bits = <32>;
-		qcom,cmb-element-bits = <64>;
-
 		device-name = "funnel_dl_center";
 
 		clocks = <&aoss_qmp>;
@@ -1615,7 +1574,6 @@
 			};
 
 			port@6 {
-				qcom,cmb-element-bits = <32>;
 				reg = <6>;
 				tpdm_ddr_out_tpda12: endpoint {
 					remote-endpoint =
@@ -1844,10 +1802,6 @@
 		device-name = "tpda_apss";
 
 		qcom,tpda-atid = <66>;
-		qcom,dsb-elem-size = <3 32>;
-		qcom,cmb-elem-size = <0 32>,
-				     <1 32>,
-				     <2 64>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -2178,8 +2132,6 @@
 
 		reg = <0x6985000 0x1000>;
 		reg-names = "funnel-base";
-		qcom,dsb-element-bits = <32>;
-		qcom,cmb-element-bits = <32>;
 
 		device-name = "funnel_turing";
 
