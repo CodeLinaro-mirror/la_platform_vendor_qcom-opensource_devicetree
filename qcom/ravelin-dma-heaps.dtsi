@@ -8,6 +8,7 @@
 &soc {
 	qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		depends-on-supply = <&qcom_scm>;
 		qcom,user_contig {
 			qcom,dma-heap-name = "qcom,user-contig";
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
