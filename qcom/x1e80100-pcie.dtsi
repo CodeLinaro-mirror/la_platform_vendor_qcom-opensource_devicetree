@@ -149,11 +149,6 @@
 
 		dma-coherent;
 
-		/* x1e80100 has SMMUv3 */
-		iommu-map = <0x0 &pcie_smmu 0x60000 0x1>,
-			    <0x100 &pcie_smmu 0x60100 0x1>;
-
-
 		/* Enable 4-lane capability */
 		qcom,bifurcation-capable;
 
@@ -654,10 +649,6 @@
 				"pcie_4_phy_reset";
 
 		dma-coherent;
-
-		/* x1e80100 has SMMUv3 */
-		iommu-map = <0x0 &pcie_smmu 0x40000 0x1>,
-			    <0x100 &pcie_smmu 0x40100 0x1>;
 
 		qcom,boot-option = <0x1>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
