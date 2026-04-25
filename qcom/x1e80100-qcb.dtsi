@@ -29,8 +29,8 @@
 			port@0 {
 				reg = <0>;
 
-				pmic_glink_port1_hs_in: endpoint {
-					remote-endpoint = <&usb_port1_hs_in>;
+				pmic_glink_port0_hs_in: endpoint {
+					remote-endpoint = <&usb_port0_hs_in>;
 				};
 			};
 		};
@@ -50,8 +50,8 @@
 			port@0 {
 				reg = <0>;
 
-				pmic_glink_port0_hs_in: endpoint {
-					remote-endpoint = <&usb_port0_hs_in>;
+				pmic_glink_port1_hs_in: endpoint {
+					remote-endpoint = <&usb_port1_hs_in>;
 				};
 			};
 		};
