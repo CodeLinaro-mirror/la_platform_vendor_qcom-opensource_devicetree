@@ -365,6 +365,12 @@
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
 		};
+
+		qcom_scm {
+			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x99000>;
+		};
+
 	};
 
 	psci {
@@ -646,6 +652,11 @@
 		#size-cells = <2>;
 		ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
 		dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
+
+		dload_mode {
+			compatible = "qcom,dload-mode";
+		};
+
 		clocks {
 			xo_board: xo_board {
 				compatible = "fixed-clock";
