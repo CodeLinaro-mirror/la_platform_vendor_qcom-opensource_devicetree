@@ -335,6 +335,8 @@
 		compatible = "qcom,mem-buf-msgq";
 	};
 
+	msm_gpu: qcom,kgsl-3d0@3d00000 {};
+
 	psci: psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
