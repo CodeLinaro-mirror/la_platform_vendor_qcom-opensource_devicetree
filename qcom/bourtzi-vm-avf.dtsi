@@ -258,6 +258,7 @@
 			&kinfo_mem
 			&tlmm_vm_mem_access
 			&tlmm_vm_test
+			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_gunyah_panic_notifier
