@@ -7,22 +7,22 @@ qcom,Hawi0000903_QRD_4353mAh {
     /* Hawi0000903_QRD_4353mAh_averaged_MasterSlave_Sept23rd2025 */
 	qcom,max-voltage-uv = <4530000>;
 	qcom,fg-cc-cv-threshold-uv = <4520000>;
-	qcom,fastchg-current-ma = <1500>;
+	qcom,fastchg-current-ma = <13500>;
 	qcom,batt-id-kohm = <29>;
 	qcom,battery-beta = <4250>;
 	qcom,battery-therm-kohm = <100>;
 	qcom,battery-type = "Hawi0000903_QRD_4353mAh_averaged_MasterSlave_Sept23rd2025";
 	qcom,qg-batt-profile-ver = <100>;
 
-	qcom,jeita-fcc-ranges = <0  50   2500000
-				51  400  3600000
-				401 450  2500000>;
-	qcom,jeita-fv-ranges = <0   50   4250000
-				51  400  4350000
-				401 450  4250000>;
-	qcom,step-chg-ranges = <3600000  3800000  5400000
-				3800001  4300000  3600000
-				4300001  4350000  2500000>;
+	qcom,jeita-fcc-ranges = <0  50   2200000
+				51  400  13500000
+				401 450  10000000>;
+	qcom,jeita-fv-ranges = <0   50   4530000
+				51  400  4530000
+				401 450  4530000>;
+	qcom,step-chg-ranges = <3000000  4180000  13500000
+				4180001  4250000  11000000
+				4250001  4530000  8800000>;
 	qcom,ocv-based-step-chg;
 
 	/* COOL = 5 DegC, WARM = 40 DegC */
@@ -31,8 +31,9 @@ qcom,Hawi0000903_QRD_4353mAh {
 	qcom,jeita-hard-thresholds = <0x58cd 0x20b8>;
 	/* COOL hys = 8 DegC, WARM hys = 37 DegC */
 	qcom,jeita-soft-hys-thresholds = <0x4f5e 0x2943>;
-	qcom,jeita-soft-fcc-ua = <2500000 2500000>;
-	qcom,jeita-soft-fv-uv = <4250000 4250000>;
+
+	qcom,jeita-soft-fcc-ua = <2200000 2200000>;
+	qcom,jeita-soft-fv-uv = <4530000 4530000>;
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
