@@ -1738,6 +1738,52 @@
 				< 1211000 4761000 >;
 		};
 
+		bwmon_llcc_cluster0: qcom,bwmon-llcc-gold@0x0100C300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0 0x0100C400 0x0 0x300>, <0x0 0x0100C300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_llcc_cluster1: qcom,bwmon-llcc-prime@0x0100D300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0  0x0100D400 0x0 0x300>, <0x0 0x0100D300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_llcc_cluster2: qcom,bwmon-llcc-prime@0x0100E300 {
+			compatible = "qcom,bwmon4";
+			reg = <0x0  0x0100E400 0x0 0x300>, <0x0 0x0100E300 0x0 0x200>;
+			reg-names = "base", "global_base";
+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,mport = <0>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_llcc_dcvs_hw>;
+			qcom,second-vote = <&qcom_llcc_ddr_vote>;
+		};
+
+		bwmon_ddr: qcom,bwmon-ddr@21090000 {
+			compatible = "qcom,bwmon5";
+			reg = <0x0 0x21090000 0x0 0x1000>;
+			reg-names = "base";
+			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,hw-timer-hz = <19200000>;
+			qcom,count-unit = <0x10000>;
+			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
+		};
+
 		qcom,smp2p-cdsp {
 			compatible = "qcom,smp2p";
 			qcom,smem = <94>, <432>;
