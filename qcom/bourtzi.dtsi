@@ -1239,6 +1239,23 @@
 
 		ucsi: ucsi-glink {
 			compatible = "qcom,ucsi-glink";
+
+			connector {
+				compatible = "usb-c-connector";
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						usb_port0_connector: endpoint {
+							remote-endpoint = <&usb_port0>;
+						};
+					};
+				};
+			};
 		};
 
 		altmode: altmode-glink {
