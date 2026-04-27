@@ -1624,6 +1624,12 @@
 					&tlmm 13 0x2008>;
 		};
 	};
+
+	tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		qcom,master;
+		tlmm-vm-gpio-list = < &tlmm 13 0x2008>;
+	};
 };
 
 #include "bourtzi-pinctrl.dtsi"
