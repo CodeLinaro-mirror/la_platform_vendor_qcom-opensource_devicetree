@@ -555,6 +555,30 @@
 		};
 	};
 
+	disp_rsc: rsc@af20000 {
+		label = "disp_rsc";
+		compatible = "qcom,rpmh-rsc";
+		reg = <0x0 0xaf20000 0x0 0x10000>;
+		reg-names = "drv-0";
+		qcom,drv-count = <1>;
+		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
+
+		disp_rsc_drv0: drv@0 {
+			qcom,drv-id = <0>;
+			qcom,tcs-offset = <0x1c00>;
+			qcom,tcs-distance = <0x2a0>;
+
+			channel@0 {
+				 qcom,tcs-config = <ACTIVE_TCS    0>,
+						   <SLEEP_TCS     1>,
+						   <WAKE_TCS      1>,
+						   <CONTROL_TCS   0>,
+						   <FAST_PATH_TCS 0>;
+			};
+		};
+	};
+
 	pdc: interrupt-controller@b220000 {
 		compatible = "qcom,bourtzi-pdc", "qcom,pdc";
 		reg = <0x0 0xb220000 0x0 0x10000>, <0x0 0x174000f0 0x0 0x64>;
