@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "pmk8350.dtsi"
+&spmi0_bus {
+	#include "pm6450.dtsi"
+	#include "pmg1110.dtsi"
+};
+
+&pmg1110 {
+	reg = <6 SPMI_USID>;
+};
+
+&pmg1110_tz {
+	interrupts = <0x6 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+};
+
+&soc {
+	pmic-pon-log {
+		compatible = "qcom,pmic-pon-log";
+		nvmem = <&pmk8350_sdam_5>;
+		nvmem-names = "pon_log";
+	};
+};
