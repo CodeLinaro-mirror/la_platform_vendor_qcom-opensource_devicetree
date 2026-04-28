@@ -3,6 +3,8 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include "mahua-pmic-overlay.dtsi"
+
 &soc {
 
 };
