@@ -484,6 +484,34 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
+	cpuss-sleep-stats@17800054 {
+		compatible = "qcom,cpuss-sleep-stats";
+		reg = <0x0 0x17800054 0x0 0x4>, <0x0 0x17810054 0x0 0x4>, <0x0 0x17820054 0x0 0x4>,
+			  <0x0 0x17830054 0x0 0x4>, <0x0 0x17840054 0x0 0x4>, <0x0 0x17850054 0x0 0x4>,
+			  <0x0 0x17860054 0x0 0x4>, <0x0 0x17870054 0x0 0x4>, <0x0 0x17880098 0x0 0x4>,
+			  <0x0 0x178C0000 0x0 0x10000>;
+		reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
+				"seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
+				"seq_lpm_cntr_cfg_cpu4", "seq_lpm_cntr_cfg_cpu5",
+				"seq_lpm_cntr_cfg_cpu6", "seq_lpm_cntr_cfg_cpu7",
+				"l3_seq_lpm_cntr_cfg", "apss_seq_mem_base";
+		num-cpus = <8>;
+	};
+
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats";
+		reg = <0x0 0xc3f0000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+		ss-name = "modem", "adsp", "adsp_island",
+			  "apss", "wpss";
+	};
+
+	sys-pm-vx@c320000 {
+		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-bourtzi";
+		reg = <0x0 0xc320000 0x0 0x400>;
+		qcom,qmp = <&aoss_qmp>;
+	};
+
 	intc: interrupt-controller@17200000 {
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
