@@ -38,7 +38,7 @@
 };
 
 &usb_mp_hsphy0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp_hsphy1 {
@@ -47,15 +47,19 @@
 };
 
 &usb_mp_qmpphy0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp_qmpphy1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp {
 	status = "okay";
+	usb@a400000 {
+		phys = <&usb_mp_hsphy1>;
+		phy-names = "usb2-0";
+	};
 };
 
 &pmc8380_f_gpios {
@@ -348,8 +352,30 @@
 
 &ucsi {
 	/* Left-side front port */
-	connector {
+	connector@0 {
 		compatible = "usb-c-connector";
+		reg = <0>;
+		power-role = "dual";
+		data-role = "dual";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				pmic_glink_port1_hs_in: endpoint {
+					remote-endpoint = <&usb_port1_hs_in>;
+				};
+			};
+		};
+	};
+
+	/* Left-side front port */
+	connector@1 {
+		compatible = "usb-c-connector";
+		reg = <1>;
 		power-role = "dual";
 		data-role = "dual";
 
@@ -370,6 +396,10 @@
 
 &usb_port0_hs_in {
 	remote-endpoint = <&pmic_glink_port0_hs_in>;
+};
+
+&usb_port1_hs_in {
+	remote-endpoint = <&pmic_glink_port1_hs_in>;
 };
 
 &usb_port0_ssphy_out {
@@ -396,6 +426,7 @@
 
 &usb1 {
 	status = "okay";
+	usb-role-switch;
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
 	gpios = <&tlmm 123 0>;
@@ -415,4 +446,25 @@
 
 &usb4 {
 	status = "okay";
+};
+
+&smb2360_2_eusb2_repeater {
+	vdd18-supply = <&L3D>;
+	vdd3-supply = <&L2B>;
+};
+
+&usb2_phy_2 {
+	phys = <&smb2360_2_eusb2_repeater>;
+	status = "okay";
+};
+
+&usb3_phy_2 {
+	status = "okay";
+};
+
+&usb2 {
+	status = "okay";
+	dwc3@a000000 {
+		dr_mode = "host";
+	};
 };

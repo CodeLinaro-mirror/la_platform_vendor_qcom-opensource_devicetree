@@ -69,6 +69,10 @@
 	};
 };
 
+&gcc {
+	qcom,critical-devices = <&qupv3_se1_i2c>;
+};
+
 &qupv3_se1_i2c {
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -328,19 +332,19 @@
 		thermal-sensors = <&pm6450_tz>;
 
 		trips {
-			trip0 {
+			pm6450vs_c_trip0: trip0 {
 				temperature = <95000>;
 				hysteresis = <0>;
 				type = "passive";
 			};
 
-			trip1 {
+			pm6450vs_c_trip1: trip1 {
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
 			};
 
-			trip2 {
+			pm6450vs_c_trip2: trip2 {
 				temperature = <145000>;
 				hysteresis = <0>;
 				type = "critical";

@@ -464,37 +464,41 @@
 &qup_uart8_cts {
 	drive-strength = <2>;
 	bias-disable;
-	};
+};
 
 &qup_uart8_default_ctsrtsrx {
 	drive-strength = <2>;
 	bias-pull-down;
-	};
+};
 
 &qup_uart8_default_tx {
 	drive-strength = <2>;
 	bias-pull-up;
-	};
+};
 
 &qup_uart8_rts {
 	drive-strength = <2>;
 	bias-pull-down;
-	};
+};
 
 &qup_uart8_rx_active {
 	drive-strength = <2>;
 	bias-disable;
-	};
+};
 
 &qup_uart8_rx_wake {
 	drive-strength = <2>;
 	bias-disable;
-	};
+};
 
 &qup_uart8_tx {
 	drive-strength = <2>;
 	bias-pull-up;
-	};
+};
+
+&qusb_phy0 {
+	extcon = <&pm4125_charger>;
+};
 
 &sdhc_1 {
 	pinctrl-0 = <&sdc1_on>;
@@ -521,4 +525,8 @@
 
 &uart0 {
 	status = "okay";
+};
+
+&usb0 {
+	extcon = <&qusb_phy0>, <&eud>;
 };

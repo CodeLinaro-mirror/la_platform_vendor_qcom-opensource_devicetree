@@ -670,6 +670,53 @@
 		};
 	};
 
+	mmio_sram: mmio-sram@1901E100 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "mmio-sram";
+		reg = <0x1901E100 0x200>;
+		ranges = <0x0 0x1901E100 0x200>;
+
+		cpu_scp_lpri: scmi-shmem@0 {
+			compatible = "arm,scmi-shmem";
+			reg = <0x0 0x200>;
+		};
+	};
+
+	cpucp: qcom,cpucp@17400000 {
+		compatible = "qcom,cpucp";
+		reg =   <0x17400000 0x10>,
+			<0x17d90000 0x2000>;
+		reg-names = "tx", "rx";
+		#mbox-cells = <1>;
+		interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	scmi: qcom,scmi {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "arm,scmi";
+		mboxes = <&cpucp 0>;
+		mbox-names = "tx";
+		shmem = <&cpu_scp_lpri>;
+
+		scmi_qcom: protocol@80 {
+			reg = <0x80>;
+			#clock-cells = <1>;
+		};
+	};
+
+	qcom_cpufreq_stats: qcom,cpufreq_stats {
+		compatible = "qcom,cpufreq-stats-v2";
+	};
+
+	cpucp_log: qcom,cpucp_log@d8050000 {
+		compatible = "qcom,cpucp-log";
+		reg = <0xD8040000 0x10000>, <0xD8050000 0x10000>;
+		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
+	};
+
 	llcc_pmu: llcc-pmu@24095000 {
 		compatible = "qcom,llcc-pmu-ver2";
 		reg = <0x24095000 0x300>;
@@ -854,7 +901,7 @@
 					< 1113600  902400 >,
 					< 1497600 1209600 >,
 					< 1747200 1401600 >,
-					< 1843200 1516800 >,
+					< 1843200 1497600 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 			};
@@ -863,7 +910,7 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1747200  268800 >,
+					< 1747200  403200 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
@@ -1023,11 +1070,11 @@
 
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
 		compatible = "qcom,spmi-pmic-arb";
-		reg = <0x0 0xc42d000 0x0 0x4000>,
-		      <0x0 0xc400000 0x0 0x3000>,
-		      <0x0 0xc500000 0x0 0x400000>,
-		      <0x0 0xc440000 0x0 0x80000>,
-		      <0x0 0xc4c0000 0x0 0x10000>;
+		reg = <0xc42d000 0x4000>,
+		      <0xc400000 0x3000>,
+		      <0xc500000 0x400000>,
+		      <0xc440000 0x80000>,
+		      <0xc4c0000 0x10000>;
 		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
 		interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "periph_irq";
@@ -1043,8 +1090,8 @@
 
 	spmi_debug_bus_0: qcom,spmi-debug@11314000  {
 		compatible = "qcom,spmi-pmic-arb-debug";
-		reg = <0x0 0x11314000 0x0 0x60>,
-		      <0x0 0x221c8784 0x0 0x4>;
+		reg = <0x11314000 0x60>,
+		      <0x221c8784 0x4>;
 		reg-names = "core", "fuse";
 		clocks = <&aoss_qmp>;
 		clock-names = "core_clk";
@@ -1130,6 +1177,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 
 	qcom,test-large-dmabuf-tuivm {
@@ -1240,10 +1288,11 @@
 
 	cache-controller@25000000 {
 		compatible = "qcom,pikachu-llcc";
-		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>;
-		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base";
+		reg = <0x25000000 0x200000> , <0x25400000 0x200000>, <0x25800000 0x200000>, <0x25A00000 0x200000>, <0xD8170000 0x1000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base", "llcc_broadcast_and_base", "slc_mem_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
+		qcom,sct-initialized;
 	};
 
 	qcom,msm-adsprpc-mem {
@@ -2175,3 +2224,23 @@
 };
 
 #include "pikachu-thermal.dtsi"
+#include "pikachu-usb.dtsi"
+
+&i2c8 {
+	status = "ok";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	nxp_eusb2_repeater: eusb2_repeater@4f {
+		compatible = "nxp,eusb2-repeater";
+		reg = <0x4f>;
+		vdd18-supply = <&L3A_E0>;
+		vdd3-supply = <&L14A_E0>;
+	};
+};
+
+&eusb2_phy0 {
+	dummy-supply = <&nxp_eusb2_repeater>;
+	usb-repeater = <&nxp_eusb2_repeater>;
+};

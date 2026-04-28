@@ -4,6 +4,7 @@
  */
 
 #include "pikachu-pmic-overlay.dtsi"
+#include "pikachu-qpt-overlay.dtsi"
 #include "pikachu-thermal-overlay.dtsi"
 
 &soc {

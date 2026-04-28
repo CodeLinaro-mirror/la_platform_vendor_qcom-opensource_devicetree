@@ -438,6 +438,8 @@
 		compatible = "qcom,xpcs";
 		reg = <0x1a94000 0x5100>;
 		reg-names = "qxpcs";
+		resets = <&scmi_reset 1>;
+		reset-names = "serdes_reset";
 	};
 
 	ethernet1: ethernet@1a80000 {

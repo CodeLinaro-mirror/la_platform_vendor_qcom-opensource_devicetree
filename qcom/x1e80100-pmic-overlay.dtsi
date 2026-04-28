@@ -76,6 +76,10 @@
 	};
 };
 
+&battery_charger {
+	qcom,wireless-charging-not-supported;
+};
+
 &pmk8550_rtc {
 	qcom,no-alarm; /* alarm owned by ADSP */
 };
@@ -107,6 +111,7 @@
 		compatible = "qcom,pmic-pon-log";
 		nvmem = <&pmk8550_sdam_5>, <&pmk8550_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
+		depends-on-supply = <&wdog>;
 	};
 };
 
@@ -276,7 +281,7 @@
 		};
 
 		smb2360_0_bcl: bcl@4700 {
-			compatible = "qcom,bcl-v5";
+			compatible = "qcom,smb2360-bcl-v5";
 			reg = <0x4700 0x100>;
 			interrupts = <0x7 0x47 0x0 IRQ_TYPE_NONE>,
 					<0x7 0x47 0x1 IRQ_TYPE_NONE>,

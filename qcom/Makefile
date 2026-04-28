@@ -129,6 +129,7 @@ canoe-dtb-$(CONFIG_ARCH_RAVELIN) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
 
 BOURTZI_BASE_DTB += bourtzi.dtb
+BOURTZI_APQ_BASE_DTB += bourtzip.dtb
 
 BOURTZI_BOARDS += \
 		bourtzi-atp-overlay.dtbo \
@@ -145,8 +146,9 @@ NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_BOURTZI) += \
-	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB)
+	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB)) \
+	$(call add-overlays, $(BOURTZI_BOARDS),$(BOURTZI_APQ_BASE_DTB))
+canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
@@ -165,7 +167,10 @@ MALABAR_BOARDS += \
 		malabar-qrd-4gb-overlay.dtbo \
 		malabar-mtp-4gb-overlay.dtbo \
 		malabar-cdp-emmc-overlay.dtbo \
-		malabar-mtp-emmc-overlay.dtbo
+		malabar-mtp-emmc-overlay.dtbo \
+		malabar-cdp-ufs3-overlay.dtbo \
+		malabar-mtp-ufs3-overlay.dtbo \
+		malabar-qrd-ufs3-overlay.dtbo
 
 NOAPQ_MALABAR_BOARDS += \
 		malabar-rumi-overlay.dtbo
@@ -274,8 +279,13 @@ YUPIK_BOARDS += \
 		yupikp-iot-hsp-overlay.dtbo \
 		yupikp-iot-hsp-pm7250b-overlay.dtbo \
 		yupikp-iot-idps-amoled-overlay.dtbo \
+		yupikp-iot-rb3-gen2-videocollab-overlay.dtbo \
+		yupikp-iot-rb3-gen2-visionkit-overlay.dtbo \
+		yupikp-iot-rb3-gen2-corekit-overlay.dtbo \
 		katmaip-hsp-overlay.dtbo \
 		katmaip-hsp-pm7250b-overlay.dtbo \
+		katmaip-iot-rb3-gen2-videocollab-overlay.dtbo \
+		katmaip-iot-rb3-gen2-visionkit-overlay.dtbo \
 		yupikp-idp-overlay.dtbo \
 		yupikp-qrd-overlay.dtbo \
 		yupikp-idps-amoled-overlay.dtbo \
@@ -506,7 +516,7 @@ VIENNA_BOARDS += \
 		 vienna-idp-overlay.dtbo \
 		 vienna-idp-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-no-cam-overlay.dtbo \
-                 vienna-idp-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-idp-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-idp-se8-overlay.dtbo \
 		 vienna-idp-se8-overlay-pmw6100-v2.dtbo \
 		 vienna-rcm-overlay.dtbo \
@@ -514,13 +524,21 @@ VIENNA_BOARDS += \
 		 vienna-rcm-no-cam-overlay.dtbo \
 		 vienna-rcm-no-cam-overlay-pmw6100-v2.dtbo \
 		 vienna-wdp-overlay.dtbo \
+		 vienna-wdp-overlay-le.dtbo \
 		 vienna-wdp-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-ddsip-overlay.dtbo \
+		 vienna-wdp-ddsip-overlay-le.dtbo \
 		 vienna-wdp-ddsip-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-ddsip-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-no-cam-overlay.dtbo \
+		 vienna-wdp-no-cam-overlay-le.dtbo \
 		 vienna-wdp-no-cam-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-no-cam-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wdp-se8-overlay.dtbo \
+		 vienna-wdp-se8-overlay-le.dtbo \
 		 vienna-wdp-se8-overlay-pmw6100-v2.dtbo \
+		 vienna-wdp-se8-overlay-pmw6100-v2-le.dtbo \
 		 vienna-wrd-overlay.dtbo \
 		 vienna-wrd-overlay-pmw6100-v2.dtbo \
 		 vienna-wrd-ddsip-overlay.dtbo \

@@ -505,6 +505,13 @@
 		no-map;
 	};
 
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
+
 	audio_cma_mem: audio_cma_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -2520,6 +2527,25 @@
 					<&cpufreq_hw 2>;
 	};
 
+	dload_mode {
+		compatible = "qcom,dload-mode";
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+		status = "ok";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+		status = "ok";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
 	/* CAM_CC GDSCs */
 	cam_cc_bps_gdsc: qcom,gdsc@ad07004 {
 		compatible = "qcom,gdsc";
@@ -2829,6 +2855,11 @@
 		compatible = "qcom,mem-buf";
 		qcom,mem-buf-capabilities = "supplier";
 		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
 	};
 
 	aggre1_noc: interconnect@16e0000 {

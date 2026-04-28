@@ -971,14 +971,8 @@
 	};
 
 	qcom_rng: qrng@1b53000 {
-		compatible = "qcom,msm-rng";
+		compatible = "qcom,trng";
 		reg = <0x1b53000 0x1000>;
-		qcom,msm-rng-iface-clk;
-		qcom,no-qrng-config;
-		interconnect-names = "data_path";
-		interconnects = <&bimc MASTER_AMPSS_M0 &config_noc SLAVE_PRNG>;
-		clocks = <&gcc GCC_PRNG_AHB_CLK>;
-		clock-names = "km_clk_src";
 	};
 
 	qcom_tzlog: tz-log@c125720 {
@@ -1528,7 +1522,7 @@
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x4744000 0x1000>, <0x4745000 0x1000>,
 		      <0x4748000 0x8000>;
-		reg-names = "hc", "cqhci", "cqhci_ice";
+		reg-names = "hc", "cqhci", "ice";
 
 		qcom,iommu-geometry = <0x40000000 0x10000000>;
 
@@ -1686,7 +1680,7 @@
 	ufshc_mem: ufshc@4804000 {
 		compatible = "qcom,ufshc";
 		reg = <0x4804000 0x3000>, <0x4810000 0x8000>;
-		reg-names = "ufs_mem", "ufs_ice";
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
@@ -2135,7 +2129,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 

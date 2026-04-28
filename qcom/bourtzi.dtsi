@@ -15,10 +15,10 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases { };
+	aliases: aliases { };
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=256K swiotlb=0";
+		bootargs = "nokaslr kpti=0 log_buf_len=512K earlycon swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops slub_debug=-";
 	};
 
 	cpus {
@@ -150,13 +150,56 @@
 
 	ddr_regions: ddr-regions { };
 
-	firmware: firmware {
-		qcom_scm: qcom_scm { };
-	};
+	firmware: firmware { };
 
 	reserved_memory: reserved-memory { };
 
 	soc: soc { };
+};
+
+&firmware {
+	qcom_scm: qcom_scm {
+		compatible = "qcom,scm";
+		qcom,dload-mode = <&tcsr 0x13000>;
+	};
+};
+
+#include "bourtzi-reserved-memory.dtsi"
+#include "msm-arm-smmu-bourtzi.dtsi"
+
+&reserved_memory {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges;
+
+	/* global autoconfigured region for contiguous allocations */
+	system_cma: linux,cma {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x2400000>;
+		linux,cma-default;
+	};
+
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	ramoops_mem: ramoops-region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
 };
 
 &soc {
@@ -303,7 +346,124 @@
 		status = "disabled";
 	};
 
-	apps_smmu: smmu {};
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	logbuf: qcom,logbuf-vendor-hooks {
+		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	qcom,chd {
+		compatible = "qcom,core-hang-detect";
+		label = "core";
+		qcom,chd-percpu-info = <&CPU0 0x17800058 0x17800060>,
+				<&CPU1 0x17810058 0x17810060>,
+				<&CPU2 0x17820058 0x17820060>,
+				<&CPU3 0x17830058 0x17830060>,
+				<&CPU4 0x17840058 0x17840060>,
+				<&CPU5 0x17850058 0x17850060>,
+				<&CPU6 0x17860058 0x17860060>,
+				<&CPU7 0x17870058 0x17870060>;
+	};
+
+	tcsr_mutex_block: syscon@1f40000 {
+		compatible = "syscon";
+		reg = <0x0 0x1f40000 0x0 0x20000>;
+	};
+
+	tcsr_mutex: hwlock {
+		compatible = "qcom,tcsr-mutex";
+		syscon = <&tcsr_mutex_block 0 0x1000>;
+		#hwlock-cells = <1>;
+	};
+
+	tcsr: syscon@1fc0000 {
+		compatible = "syscon";
+		reg = <0x0 0x1fc0000 0x0 0x30000>;
+		/* TODO: Make sure dload mode is updated in qcom_scm node */
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+	};
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x0 0x14680000 0x0 0x1000>;
+		ranges = <0x0 0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		restart_reason@65c {
+			compatible = "qcom,msm-imem-restart_reason";
+			reg = <0x65c 0x4>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		kaslr_offset@6d0 {
+			compatible = "qcom,msm-imem-kaslr_offset";
+			reg = <0x6d0 0xc>;
+		};
+
+		pil@94c {
+			compatible = "qcom,pil-reloc-info";
+			reg = <0x94c 0xc8>;
+		};
+
+		pil@6dc {
+			compatible = "qcom,msm-imem-pil-disable-timeout";
+			reg = <0x6dc 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+		compatible = "qcom,mpm2-sleep-counter";
+		reg = <0x0 0xc221000 0x0 0x1000>;
+		clock-frequency = <32768>;
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
+
+	mini_dump_mode {
+		compatible = "qcom,minidump";
+	};
+
+	va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
 };
 
 #include "bourtzi-pinctrl.dtsi"
+#include "bourtzi-walt.dtsi"

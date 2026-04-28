@@ -28,11 +28,38 @@
 
 &chosen {
 	bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 cgroup.memory=nokmem,nosocket kpti=0 arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1";
-	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.qcom androidboot.dtbo_idx=13";
+	bootconfig = "androidboot.usbcontroller=a600000.dwc3 androidboot.fstab_suffix=gen4.7255.qcom androidboot.dtbo_idx=13";
 };
 
 &hab {
 	vmid = <2>;
+};
+
+&soc {
+	google_debug_kinfo: google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
+	};
+
+	va_mini_dump: va_mini_dump {
+		compatible = "qcom,va-minidump";
+		memory-region = <&va_md_mem>;
+	};
+};
+
+&reserved_memory {
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
+	va_md_mem: va_md_mem_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		size = <0 0x1000000>;
+	};
 };
 
 &pcie0 {
