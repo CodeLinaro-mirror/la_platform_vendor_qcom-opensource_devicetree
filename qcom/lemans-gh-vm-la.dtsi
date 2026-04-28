@@ -1319,7 +1319,7 @@
 
 		android {
 			compatible = "android,firmware";
-			boot_devices = "7002f000.virtio_blk_la_bootloader_b,7002e000.virtio_blk_la_bootloader_a,70003000.virtio_blk_la_devinfo,70004000.virtio_blk_la_init_boot_a,70005000.virtio_blk_la_init_boot_b,70006000.virtio_blk_la_vendor_boot_a,70007000.virtio_blk_la_vendor_boot_b,70008000.virtio_blk_dsp_a,70009000.virtio_blk_dsp_b,7000a000.virtio_blk_la_dtbo_a,7000b000.virtio_blk_la_dtbo_b,7000c000.virtio_blk_la_boot_a,7000d000.virtio_blk_la_boot_b,7000e000.virtio_blk_bluetooth_a,7000f000.virtio_blk_bluetooth_b,70010000.virtio_blk_modem_a,70011000.virtio_blk_modem_b,70012000.virtio_blk_vbmeta_a,70013000.virtio_blk_vbmeta_b,70014000.virtio_blk_misc,70015000.virtio_blk_persist,70016000.virtio_blk_metadata,70017000.virtio_blk_userdata,70018000.virtio_blk_super";
+			boot_devices = "3002f000.virtio_blk_la_bootloader_b,3002e000.virtio_blk_la_bootloader_a,30003000.virtio_blk_la_devinfo,30004000.virtio_blk_la_init_boot_a,30005000.virtio_blk_la_init_boot_b,30006000.virtio_blk_la_vendor_boot_a,30007000.virtio_blk_la_vendor_boot_b,30008000.virtio_blk_dsp_a,30009000.virtio_blk_dsp_b,3000a000.virtio_blk_la_dtbo_a,3000b000.virtio_blk_la_dtbo_b,3000c000.virtio_blk_la_boot_a,3000d000.virtio_blk_la_boot_b,3000e000.virtio_blk_bluetooth_a,3000f000.virtio_blk_bluetooth_b,30010000.virtio_blk_modem_a,30011000.virtio_blk_modem_b,30012000.virtio_blk_vbmeta_a,30013000.virtio_blk_vbmeta_b,30014000.virtio_blk_misc,30015000.virtio_blk_persist,30016000.virtio_blk_metadata,30017000.virtio_blk_userdata,30018000.virtio_blk_super";
 
 			vbmeta {
 				compatible = "android,vbmeta";
