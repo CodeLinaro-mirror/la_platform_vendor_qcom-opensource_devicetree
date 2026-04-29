@@ -190,6 +190,10 @@
 	status = "disabled";
 };
 
+&pmr735a_1 {
+	status = "disabled";
+};
+
 &sdhc_2 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&sdc2_on>;
