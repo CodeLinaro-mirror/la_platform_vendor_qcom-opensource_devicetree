@@ -64,6 +64,9 @@
 };
 
 &tlmm {
+	/delete-node/ pmx_sde;
+	/delete-node/ pmx_sde_te;
+
 	qupv3_se0_4uart_pins: qupv3_se0_4uart_pins {
 		qupv3_se0_default_cts:
 			qupv3_se0_default_cts {
