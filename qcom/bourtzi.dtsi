@@ -376,6 +376,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 
 	msm_gpu: qcom,kgsl-3d0@3d00000 {};
