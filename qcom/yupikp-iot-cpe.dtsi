@@ -1,0 +1,130 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+&tlmm {
+	pcie1_usb_hub_reset_default: pcie1_usb_hub_reset_default {
+		mux {
+			pins = "gpio162";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio162";
+			drive-strength = <2>;
+			output-high;
+			bias-pull-down;
+		};
+	};
+};
+
+&soc {
+	qps615_0p9_vreg: qps615_0p9_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qps615_0p9_vreg";
+		gpio = <&pm8350c_gpios 2 0>;
+		regulator-min-microvolt = <1000000>;
+		regulator-max-microvolt = <1000000>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <4300>;
+	};
+
+	qps615_1p8_vreg: qps615_1p8_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qps615_1p8_vreg";
+		gpio = <&pm8350c_gpios 3 0>;
+		vin-supply = <&qps615_0p9_vreg>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <10000>;
+	};
+
+	qps615_rsex_vreg: qps615_rsex_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qps615_rsex_vreg";
+		gpio = <&pm8350c_gpios 1 0>;
+		vin-supply = <&qps615_1p8_vreg>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <10000>;
+	};
+
+	upd_3p3_vreg: upd_3p3_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "upd_3p3_vreg";
+		gpio = <&pm7250b_gpios 1 0>;
+		vin-supply = <&qps615_rsex_vreg>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		regulator-always-on;
+		regulator-enable-ramp-delay = <10000>;
+	};
+
+	upd_rest_vreg: upd_rest_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "upd_rest_vreg";
+		gpio = <&pm8350c_gpios 4 0>;
+		vin-supply = <&upd_3p3_vreg>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	usbhub_rest_vreg: usbhub_rest_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "usbhub_rest_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pcie1_usb_hub_reset_default>;
+		gpio = <&tlmm 162 GPIO_ACTIVE_LOW>;
+		enable-active-high;
+	};
+};
+
+&pcie1 {
+	qcom,no-l1ss-supported;
+	vreg-3p3-supply = <&qps615_rsex_vreg>;
+	iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
+		    <0x100 &apps_smmu 0x1c81 0x1>,
+		    <0x208 &apps_smmu 0x1c84 0x1>,
+		    <0x210 &apps_smmu 0x1c85 0x1>,
+		    <0x218 &apps_smmu 0x1c86 0x1>,
+		    <0x300 &apps_smmu 0x1c87 0x1>,
+		    <0x400 &apps_smmu 0x1c88 0x1>,
+		    <0x500 &apps_smmu 0x1c8c 0x1>,
+		    <0x501 &apps_smmu 0x1c8e 0x1>;
+};
+
+&pcie1_rp {
+	#address-cells = <5>;
+	#size-cells = <0>;
+
+	/* BDF 1.0.0 */
+	pcie1_bus1_dev0_fn0: pcie1_bus1_dev0_fn0 {
+		reg = <0 0 0 0 0>;
+
+		/* BDF 2.1.0 */
+		pcie1_bus2_dev1_fn0: pcie1_bus2_dev1_fn0 {
+			reg = <0x800 0x0 0x0 0x0 0x0>;
+		};
+
+		/* BDF 2.2.0 */
+		pcie1_bus2_dev2_fn0: pcie1_bus2_dev2_fn0 {
+			reg = <0x1000 0x0 0x0 0x0 0x0>;
+
+			/* BDF 4.0.0 */
+			pcie1_bus4_dev0_fn0: pcie1_bus4_dev0_fn0 {
+				reg = <0x0 0x0 0x0 0x0 0x0>;
+			};
+		};
+
+		/* BDF 2.3.0 */
+		pcie1_bus2_dev3_fn0: pcie1_bus2_dev3_fn0 {
+			reg = <0x1800 0x0 0x0 0x0 0x0>;
+		};
+	};
+};

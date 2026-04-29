@@ -9,6 +9,7 @@
 #include "yupik-pmic-overlay.dtsi"
 #include "pm7250b.dtsi"
 #include "yupik-pm7250b-thermal-overlay.dtsi"
+#include "yupikp-iot-cpe.dtsi"
 
 &soc {
 	gpio_keys {
@@ -64,6 +65,19 @@
 			qcom,can-sleep;
 		};
 	};
+};
+
+&gcc_pcie_1_gdsc {
+	status = "ok";
+};
+
+&pcie1 {
+	status = "ok";
+	qcom,boot-option = <0x2>;
+};
+
+&pcie1_msi {
+	status = "ok";
 };
 
 &ufsphy_mem {
