@@ -182,6 +182,11 @@
 			<0x1800 0xFF 0x1>,
 			<0x800 0x7FF 0x1>;
 
+		clocks = <&gcc GCC_HLOS1_VOTE_MMU_TCU_CLK>;
+		clock-names =
+			"gcc_hlos1_vote_mmu_tcu_clk";
+		interconnects = <&gem_noc MASTER_APPSS_PROC
+				&cnoc3 SLAVE_TCU>;
 		qcom,active-only;
 
 		anoc_1_tbu: anoc_1_tbu@151e5000 {
@@ -192,6 +197,11 @@
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <36>;
 			qcom,micro-idle;
+			clocks = <&gcc GCC_HLOS1_VOTE_AGGRE_NOC_MMU_TBU1_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_aggre_noc_mmu_tbu1_clk";
+			interconnects = <&gem_noc MASTER_APPSS_PROC
+					&cnoc3 SLAVE_IMEM>;
 			qcom,active-only;
 		};
 
@@ -203,6 +213,11 @@
 			qcom,stream-id-range = <0x400 0x400>;
 			qcom,iova-width = <36>;
 			qcom,micro-idle;
+			clocks = <&gcc GCC_HLOS1_VOTE_AGGRE_NOC_MMU_TBU2_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_aggre_noc_mmu_tbu2_clk";
+			interconnects = <&gem_noc MASTER_APPSS_PROC
+					&cnoc3 SLAVE_IMEM>;
 			qcom,active-only;
 		};
 
@@ -215,6 +230,11 @@
 			qcom,iova-width = <32>;
 			qcom,micro-idle;
 			qcom,regulator-names = "vdd";
+			clocks = <&gcc GCC_HLOS1_VOTE_MMNOC_MMU_TBU_HF0_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_mmnoc_mmu_tbu_hf0_clk";
+			interconnects = <&mmss_noc MASTER_CAMNOC_HF
+					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 		};
 
@@ -227,6 +247,11 @@
 			qcom,iova-width = <32>;
 			qcom,micro-idle;
 			qcom,regulator-names = "vdd";
+			clocks = <&gcc GCC_HLOS1_VOTE_MMNOC_MMU_TBU_HF1_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_mmnoc_mmu_tbu_hf1_clk";
+			interconnects = <&mmss_noc MASTER_CAMNOC_HF
+					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 		};
 
@@ -238,6 +263,11 @@
 			qcom,stream-id-range = <0x1000 0x400>;
 			qcom,iova-width = <32>;
 			qcom,micro-idle;
+			clocks = <&gcc GCC_HLOS1_VOTE_AGGRE_NOC_MMU_AUDIO_TBU_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_aggre_noc_mmu_audio_tbu_clk";
+			interconnects = <&lpass_ag_noc MASTER_LPASS_PROC
+					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 		};
 
@@ -249,6 +279,11 @@
 			qcom,stream-id-range = <0x1400 0x400>;
 			qcom,iova-width = <36>;
 			qcom,micro-idle;
+			clocks = <&gcc GCC_HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_aggre_noc_mmu_pcie_tbu_clk";
+			interconnects = <&pcie_anoc MASTER_PCIE_0
+					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 		};
 
@@ -261,6 +296,11 @@
 			qcom,iova-width = <32>;
 			qcom,regulator-names = "vdd";
 			qcom,micro-idle;
+			clocks = <&gcc GCC_HLOS1_VOTE_MMNOC_MMU_TBU_SF0_CLK>;
+			clock-names =
+				"gcc_hlos1_vote_mmnoc_mmu_tbu_sf0_clk";
+			interconnects = <&mmss_noc MASTER_CAMNOC_SF
+					&mc_virt SLAVE_EBI1>;
 			qcom,active-only;
 		};
 	};
