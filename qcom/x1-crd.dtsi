@@ -467,11 +467,11 @@
 };
 
 &usb2_phy_4 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb4 {
-	status = "okay";
+	status = "disabled";
 };
 
 &smb2360_2_eusb2_repeater {
