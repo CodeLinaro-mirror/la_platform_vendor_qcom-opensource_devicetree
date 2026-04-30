@@ -6,6 +6,7 @@
 #include "malabar-pmic-overlay.dtsi"
 #include "malabar-thermal-overlay.dtsi"
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
 
 &sdhc_1 {
 	vdd-supply = <&L5E_E0>;
@@ -41,6 +42,12 @@
 	cd-gpios = <&tlmm 79 GPIO_ACTIVE_LOW>;
 
 	status = "ok";
+};
+
+&tlmm {
+	interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>,
+		     <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
+	qcom,dirconn-list = <0xFFFFFFFF 0>, <13 235>;
 };
 
 &ufsphy_mem {
@@ -124,4 +131,3 @@
 		};
 	};
 };
-
