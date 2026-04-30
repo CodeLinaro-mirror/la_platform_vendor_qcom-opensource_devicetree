@@ -6,6 +6,19 @@
 &soc {
 };
 
+/* Override board_id for dualmac AP configuration */
+&wifi0 {
+	board_id = <0x101C>;
+};
+
+&wifi1 {
+	status = "disabled";
+};
+
+&wifi2 {
+	status = "disabled";
+};
+
 &pcie_i2c_ctrl {
 		activate = /bits/ 8 <0x00>;
 	};
