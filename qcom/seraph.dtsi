@@ -1217,7 +1217,7 @@
 		bwprof_ddr: ddr {
 			compatible = "qcom,bwprof-hw";
 			qcom,hw-type = < 0 >;
-			qcom,bus_width = < 16 >;
+			qcom,bus_width = < 4 >;
 
 			bwprof_ddr_1ms: 1ms {
 				compatible = "qcom,bwprof-sampling-mode";
