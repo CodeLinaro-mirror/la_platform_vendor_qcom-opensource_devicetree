@@ -2366,6 +2366,7 @@
 		reg-names = "drv-0";
 		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
+		qcom,drv-count = <1>;
 		qcom,tcs-offset = <0x1c00>;
 		qcom,drv-id = <0>;
 		qcom,tcs-config = <ACTIVE_TCS    0>,
