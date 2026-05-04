@@ -140,7 +140,9 @@ BOURTZI_BOARDS += \
 		bourtzi-qrd-overlay.dtbo \
 		bourtzi-qrd-evros-overlay.dtbo \
 		bourtzi-rcm-overlay.dtbo \
-		bourtzi-rcm-evros-cottid-overlay.dtbo
+		bourtzi-rcm-lcd-overlay.dtbo \
+		bourtzi-rcm-evros-cottid-overlay.dtbo \
+		bourtzi-rcm-evros-cottid-lcd-overlay.dtbo
 
 NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
