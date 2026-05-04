@@ -77,6 +77,15 @@
 				qcom,label = <0x1>;
 			};
 
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x10c>;
+			};
+
 			test-dbl-oemvm {
 				vdevice-type = "doorbell";
 				generate = "/hypervisor/test-dbl-oemvm";
@@ -166,6 +175,9 @@
 				&qcom_test_msgq_oemvm
 				&google_debug_kinfo
 				&kinfo_mem
+				&virtio_mem_device
+				&qcom_mem_buf
+				&mem_buf_msgq
 				&qrtr_gunyah
 				&qcom_qrtr
 				&qmsgq_gunyah
@@ -182,6 +194,29 @@
 		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x1 0x00000000>; /* 4GB IPA space for dmabuf */
+		qcom,vmid = <49>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "oem_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_test_dbl_oemvm: qcom,test-dbl-oemvm {

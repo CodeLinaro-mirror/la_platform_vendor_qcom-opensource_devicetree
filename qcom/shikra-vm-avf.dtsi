@@ -134,6 +134,24 @@
 				peer-default;
 			};
 
+			test-large-dmabuf-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10d>;
+				peer-default;
+			};
+
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
+			};
+
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
 				generate = "/hypervisor/ddump-shm";
@@ -241,6 +259,10 @@
 			&kinfo_mem
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
+			&qcom_test_large_dmabuf_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
+			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
 			&google_debug_kinfo>;
 	};
@@ -269,6 +291,34 @@
 		affinity = <0>;
 	};
 
+	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <0x109>;
@@ -282,3 +332,5 @@
 
 #include "shikra-vm-rm-info-avf.dtsi"
 #include "shikra-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-shikra-vm-avf.dtsi"
+
