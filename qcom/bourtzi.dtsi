@@ -1940,6 +1940,7 @@
 #include "bourtzi-thermal.dtsi"
 #include "bourtzi-qupv3.dtsi"
 #include "bourtzi-debug.dtsi"
+#include "bourtzi-coresight.dtsi"
 
 &qupv3_se7_2uart {
 	status = "ok";
