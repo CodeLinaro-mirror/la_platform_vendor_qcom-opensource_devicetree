@@ -390,6 +390,15 @@ _platform_map = {
             {"name": "scuba-iot-rb1-overlay.dtbo"},
         ],
     },
+    "bengal-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "qrb4210-rb2.dtb"},
+            {"name": "qrb4210-rb2-v2.dtb"},
+            {"name": "qrb4210-rb2-v3.dtb"},
+            {"name": "qrb4210-rb2-v4.dtb"},
+        ],
+    },
     "monaco": {
         "dtb_list": [
             {"name": "monaco.dtb"},
