@@ -856,6 +856,12 @@
 			memory-region = <&kinfo_mem>;
 		};
 
+		qcom,qpt-powercap {
+			compatible = "qcom,qptrpmsg";
+			qcom,glink-channels = "APPS_ADSP_PWR_LMTS_GLINK_PORT";
+			label = "adsp";
+		};
+
 		qcom,logbuf-vendor-hooks {
 			compatible = "qcom,logbuf-vendor-hooks";
 		};
