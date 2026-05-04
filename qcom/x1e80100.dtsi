@@ -3548,11 +3548,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			clocks = <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_2_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_6A_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_6B_MSTR_AXI_CLK>;
 		};
 
 		pcie_north_anoc: interconnect@1740000 {
@@ -3561,9 +3556,6 @@
 			#interconnect-cells = <1>;
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
-			clocks = <&gcc GCC_PCIE_3_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_4_MSTR_AXI_CLK>,
-				 <&gcc GCC_PCIE_5_MSTR_AXI_CLK>;
 		};
 
 		aggre1_noc: interconnect@16e0000 {
