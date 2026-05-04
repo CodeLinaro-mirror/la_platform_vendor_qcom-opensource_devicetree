@@ -1233,6 +1233,8 @@
 		memory-region = <&va_md_mem>;
 	};
 
+	thermal_zones: thermal-zones {};
+
 	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
 		compatible = "qcom,spmi-pmic-arb";
 		reg = <0x0 0xc42d000 0x0 0x4000>,
@@ -1308,3 +1310,4 @@
 #include "bourtzi-walt.dtsi"
 #include "bourtzi-usb.dtsi"
 #include "bourtzi-regulators.dtsi"
+#include "bourtzi-thermal.dtsi"
