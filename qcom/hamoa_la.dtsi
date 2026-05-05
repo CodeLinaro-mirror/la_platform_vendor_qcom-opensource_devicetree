@@ -26,3 +26,8 @@
 
 	/delete-property/ iommu-map;
 };
+
+&nvme_vreg {
+	/delete-property/ regulator-boot-on;
+};
+
