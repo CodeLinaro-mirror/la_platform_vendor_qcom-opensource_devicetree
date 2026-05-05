@@ -6,6 +6,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,shikra-gcc.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 
 / {
 	#address-cells = <0x2>;
@@ -57,6 +58,15 @@
 		qcom,sensitive;
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
+
+		/* GPII - 8 is used for QUP LEVM case */
+		iomemory-ranges = <0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
+
+		/* Dynamically nominate the vmmio ranges */
+		vmmio-ranges;
+
+		/* QUP0: SE4: GPII8 : GIC_SPI IRQ 519 + 32 = 551 */
+		gic-irq-ranges = <551 551>;
 
 		segments {
 			ramdisk = <3>;
@@ -306,12 +316,12 @@
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
-		/* TODO: Valid pins — must match tlmm-vm-gpio-list in PVM shikra.dtsi */
+		gpios = /bits/ 16 <12 13>;
 	};
 
 	tlmm-vm-test {
 		compatible = "qcom,tlmm-vm-test";
-		tlmm-vm-gpio-list = <>;
+		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0>;
 	};
 
 	pinctrl@400000 {
@@ -421,6 +431,74 @@
 		compatible = "qcom,tee-shared-memory-bridge";
 		qcom,custom-bridge-size = <64>;
 		qcom,support-hypervisor;
+	};
+
+	qup_iommu_group: qup_common_iommu_group {
+		iommu-addresses = <&qupv3_0 0x0 0x40000000>,
+				  <&gpi_dma0 0x50000000 0xb0000000>;
+	};
+
+	gpi_dma0: qcom,gpi-dma@4a00000 {
+		compatible = "qcom,gpi-dma";
+		#dma-cells = <5>;
+		reg = <0x0 0x4a00000 0x0 0x60000>;
+		reg-names = "gpi-top";
+		iommus = <&apps_smmu 0xf8 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
+		dma-coherent;
+		interrupts = <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,max-num-gpii = <16>;
+		qcom,static-gpii-mask = <0x100>;
+		qcom,gpii-mask = <0x0>;
+		qcom,ev-factor = <1>;
+		qcom,gpi-ee-offset = <0x10000>;
+		qcom,le-vm;
+		status = "ok";
+	};
+
+	qupv3_0: qcom,qupv3_0_geni_se@4ac0000 {
+		compatible = "qcom,geni-se-qup";
+		reg = <0x0 0x4ac0000 0x0 0x2000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clock-names = "m-ahb", "s-ahb";
+		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+		iommus = <&apps_smmu 0xf8 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
+		dma-coherent;
+		ranges;
+		status = "ok";
+
+		i2c4: i2c@4a90000 {
+			compatible = "qcom,i2c-geni";
+			reg = <0x4a90000 0x4000>;
+			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0x12>,
+			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0x12>;
+			dma-names = "tx",
+				    "rx";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			qcom,le-vm;
+			status = "disabled";
+		};
 	};
 };
 
