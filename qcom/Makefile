@@ -129,6 +129,7 @@ canoe-dtb-$(CONFIG_ARCH_RAVELIN) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
 
 BOURTZI_BASE_DTB += bourtzi.dtb
+BOURTZI_4GB_BASE_DTB += bourtzi-4gb.dtb
 BOURTZI_APQ_BASE_DTB += bourtzip.dtb
 
 BOURTZI_BOARDS += \
@@ -144,13 +145,17 @@ BOURTZI_BOARDS += \
 		bourtzi-rcm-evros-cottid-overlay.dtbo \
 		bourtzi-rcm-evros-cottid-lcd-overlay.dtbo
 
+BOURTZI_4GB_BOARDS += bourtzi-mtp-4gb-overlay.dtbo
+
 NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_BOURTZI) += \
 	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB)) \
+	$(call add-overlays, $(BOURTZI_4GB_BOARDS),$(BOURTZI_4GB_BASE_DTB)) \
 	$(call add-overlays, $(BOURTZI_BOARDS),$(BOURTZI_APQ_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB)
+canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB) \
+					 $(BOURTZI_4GB_BOARDS) $(BOURTZI_4GB_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
