@@ -346,7 +346,7 @@
 
 &smb2360_0_eusb2_repeater {
 	vdd18-supply = <&L3D>;
-	vdd3-supply = <&L2B>;
+	vdd3-supply = <&L8B>;
 };
 
 &usb2_phy_0 {
