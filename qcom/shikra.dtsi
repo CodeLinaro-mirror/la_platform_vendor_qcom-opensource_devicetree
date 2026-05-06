@@ -471,7 +471,7 @@
 
 		sleep_clk: sleep_clk {
 			compatible = "fixed-clock";
-			clock-frequency = <32000>;
+			clock-frequency = <32764>;
 			clock-output-names = "sleep_clk";
 			#clock-cells = <0>;
 		};
@@ -525,11 +525,21 @@
 	};
 
 	audiocorecc: clock-controller@a0a0000 {
-		compatible = "qcom,dummycc";
+		compatible = "qcom,shikra-audiocorecc";
 		reg = <0xa0a0000 0x10000>;
-		clock-output-names = "audiocorecc_clocks";
+		reg-name = "cc_base";
+		vdd_cx-supply = <&VDD_CX_LEVEL>;
+		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+			 <&gcc GCC_LPASS_CONFIG_CLK>,
+			 <&gcc GCC_LPASS_CORE_AXIM_CLK>,
+			 <&sleep_clk>;
+		clock-names = "bi_tcxo",
+			      "lpass_config_clk",
+			      "lpass_core_axim_clk",
+			      "sleep_clk";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
+		status = "disabled";
 	};
 
 	dispcc: clock-controller@5f00000 {
@@ -572,6 +582,8 @@
 			      "pcie_pipe_clk",
 			      "sleep_clk",
 			      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
+		protected-clocks = <GCC_LPASS_CONFIG_CLK>,
+				   <GCC_LPASS_CORE_AXIM_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 		#power-domain-cells = <1>;
@@ -609,7 +621,7 @@
 	};
 
 	qcom,cpufreq-hw-debug {
-		compatible = "qcom,cpufreq-epss-debug";
+		compatible = "qcom,cpufreq-hw-epss-debug";
 		qcom,freq-hw-domain = <&cpufreq_hw 0>,
 				      <&cpufreq_hw 1>;
 	};
@@ -936,7 +948,7 @@
 		qcom,smem-states = <&apps_smsm_out 1>, <&apps_smsm_out 11>;
 		qcom,smem-state-names = "pwrctrl", "pwrctrlack";
 		interrupts-extended =
-			<&intc GIC_SPI 69 IRQ_TYPE_EDGE_RISING>,
+			<&intc GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
 			<&modem_smsm_in 1 IRQ_TYPE_EDGE_BOTH>,
 			<&modem_smsm_in 11 IRQ_TYPE_EDGE_BOTH>;
 		interrupt-names = "dmux", "ctrl", "ack";
@@ -1700,8 +1712,8 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 
-		reg = <0x04744000 0x1000>,<0x04745000 0x1000>;
-		reg-names = "hc", "cqhci";
+		reg = <0x04744000 0x1000>,<0x04745000 0x1000>,<0x04748000 0x18000>;
+		reg-names = "hc", "cqhci", "ice";
 
 		iommus = <&apps_smmu 0xC0 0x0>;
 		qcom,iommu-dma = "fastmap";
@@ -1728,9 +1740,14 @@
 			<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "hc_irq", "pwr_irq";
 
+		qcom,ice-use-hwkm;
+
 		clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-			<&gcc GCC_SDCC1_AHB_CLK>;
-		clock-names = "core", "iface";
+			<&gcc GCC_SDCC1_AHB_CLK>,
+			<&gcc GCC_SDCC1_ICE_CORE_CLK>;
+		clock-names = "core", "iface","ice_core";
+
+		qcom,ice-clk-rates = <300000000 100000000>;
 
 		interconnects = <&system_noc MASTER_SDCC_1 &mc_virt SLAVE_EBI_CH0>,
 				<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_SDCC_1>;
@@ -2048,11 +2065,11 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_l3_dcvs_hw>;
 			qcom,sampling-path = <&l3_dcvs_sp>;
+			qcom,miss-ev = <0x03>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
-				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  556800 >,
 					< 1017600  806400 >,
@@ -2066,7 +2083,6 @@
 			gold {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
-				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  556800 >,
 					< 1017600  806400 >,
@@ -2080,7 +2096,6 @@
 			silver-compute {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2>;
-				qcom,miss-ev = <0x03>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000 556800 >,
 					< 1612800 806400 >;
@@ -2091,7 +2106,6 @@
 			gold-compute {
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU3>;
-				qcom,miss-ev = <0x17>;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000 556800 >,
 					< 1900800 806400 >;
@@ -2661,6 +2675,22 @@
 		linux,cma-default;
 	};
 
+	non_secure_display_memory: non_secure_display_region {
+		compatible = "shared-dma-pool";
+		reusable;
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		size = <0x0 0xa400000>;
+		alignment = <0x0 0x400000>;
+	};
+
+	secure_display_memory: secure_display_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0 0x00000000 0 0xffffffff>;
+		reusable;
+		alignment = <0 0x400000>;
+		size = <0 0x5c00000>;
+	};
+
 	qseecom_mem: qseecom_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -2964,7 +2994,7 @@
 
 	qup_uart0_rx: qup-uart0-rx-state {
 		pins = "gpio1";
-		function = "qup1_se0_l3";
+		function = "qup0_se0_l3";
 	};
 
 	qup_uart0_sleep: qup-uart0-sleep-state {
@@ -2974,7 +3004,7 @@
 
 	qup_uart0_tx: qup-uart0-tx-state {
 		pins = "gpio0";
-		function = "qup1_se0_l2";
+		function = "qup0_se0_l2";
 	};
 
 	qup_uart1_rx: qup-uart1-rx-state {
@@ -3129,7 +3159,7 @@
 
 	qup_uart8_cts: qup_uart8_cts-state {
 		pins = "gpio22";
-		function = "qup1_se8_l0";
+		function = "qup0_se8_l0";
 	};
 
 	qup_uart8_default_ctsrtsrx: qup_uart8_default_ctsrtsrx-state {
@@ -3144,7 +3174,7 @@
 
 	qup_uart8_rts: qup_uart8_rts-state {
 		pins = "gpio23";
-		function = "qup1_se8_l1";
+		function = "qup0_se8_l1";
 	};
 
 	qup_uart8_rx_wake: qup_uart8_rx_wake-state {
@@ -3154,7 +3184,7 @@
 
 	qup_uart8_rx_active: qup_uart8_rx_active-state {
 		pins = "gpio25";
-		function = "qup1_se8_l3";
+		function = "qup0_se8_l3";
 	};
 
 	qup_uart8_sleep: qup_uart8_sleep-state {
@@ -3164,12 +3194,12 @@
 
 	qup_uart8_tx: qup_uart8_tx-state {
 		pins = "gpio24";
-		function = "qup1_se8_l2";
+		function = "qup0_se8_l2";
 	};
 
 	qup_uart9_rx: qup-uart9-rx-state {
 		pins = "gpio27";
-		function = "qup1_se9_l3";
+		function = "qup0_se9_l3";
 	};
 
 	qup_uart9_sleep: qup-uart9-sleep-state {
@@ -3179,7 +3209,7 @@
 
 	qup_uart9_tx: qup-uart9-tx-state {
 		pins = "gpio26";
-		function = "qup1_se9_l2";
+		function = "qup0_se9_l2";
 	};
 
 };

@@ -474,6 +474,7 @@ SERAPH_BOARDS += \
 		seraphp-v1.1-idp-dtof-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo \
+		seraphp-v1.1-qar-3rd-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-overlay.dtbo \
 		seraphp-qar-camera-audio-overlay.dtbo \
@@ -508,8 +509,8 @@ seraph-overlays-dtb-$(CONFIG_ARCH_PIKACHU) += $(NOAPQ_PIKACHU_BOARDS) $(PIKACHU_
 
 dtb-y += $(seraph-dtb-y) $(seraph-overlays-dtb-y)
 
-VIENNA_BASE_DTB += vienna.dtb
-VIENNA_APQ_BASE_DTB += viennap.dtb
+VIENNA_BASE_DTB += vienna.dtb vienna-low-ram.dtb
+VIENNA_APQ_BASE_DTB += viennap.dtb viennap-low-ram.dtb
 
 VIENNA_BOARDS += \
 		 vienna-atp-overlay.dtbo \
@@ -794,7 +795,7 @@ SA8797P_GH_LA_GVM_QAM_BASE_DTB += \
 		sa8797p-v2-gunyah-vm-qam-star.dtb
 SA8797P_GH_LA_GVM_QAM_BOARDS += sa8797p-gunyah-vm-qam-overlay.dtbo
 
-SA8797P_GH_LV_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-lv-qam.dtb
+SA8797P_GH_LV_GVM_QAM_BASE_DTB += sa8797p-gunyah-vm-lv-qam.dtb sa8797p-v2-gunyah-vm-lv-qam.dtb
 SA8797P_GH_LV_GVM_QAM_BOARDS += sa8797p-gunyah-vm-lv-qam-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
@@ -982,6 +983,19 @@ malabar_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += malabar-vm-base.dtb \
 				malabar-oemvm-rcm-overlay.dtbo \
 				malabar-oemvm-cdp-overlay.dtbo
 dtb-y += $(malabar_tuivm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_SHIKRA), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+shikra_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += shikra-vm-base.dtb \
+				shikra-vm-atp-overlay.dtbo \
+			        shikra-vm-itp-overlay.dtbo \
+			        shikra-oemvm-base.dtb \
+				shikra-oemvm-atp-overlay.dtbo \
+				shikra-oemvm-itp-overlay.dtbo
+dtb-y += $(shikra_tuivm-dtb-y)
 
 endif
 endif

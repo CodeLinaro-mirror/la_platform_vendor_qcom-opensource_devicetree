@@ -47,6 +47,9 @@
 };
 
 /delete-node/ &hyp_mem;
+/delete-node/ &cdsp_secure_heap_mem;
+/delete-node/ &splash_memory;
+/delete-node/ &dfps_data_memory;
 
 &reserved_memory {
 	hyp_mem: hyp_region@9c800000 {
@@ -62,5 +65,20 @@
 	pvmfw_mem: pvmfw_region@9de00000 {
 		 no-map;
 		 reg = <0x0 0x9de00000 0x0 0x100000>;
+	};
+
+	cdsp_secure_heap_mem: cdsp_secure_heap@d8800000 {
+		no-map;
+		reg = <0x0 0xd8800000 0x0 0x14a00000>;
+	};
+
+	splash_memory: splash_region {
+		reg = <0x0 0x81800000 0x0 0x02300000>;
+		label = "cont_splash_region";
+	};
+
+	dfps_data_memory: dfps_data_memory {
+		reg = <0x0 0x83b00000 0x0 0x0100000>;
+		label = "dfps_data_memory";
 	};
 };

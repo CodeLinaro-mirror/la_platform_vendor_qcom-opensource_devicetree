@@ -1217,7 +1217,7 @@
 		bwprof_ddr: ddr {
 			compatible = "qcom,bwprof-hw";
 			qcom,hw-type = < 0 >;
-			qcom,bus_width = < 16 >;
+			qcom,bus_width = < 4 >;
 
 			bwprof_ddr_1ms: 1ms {
 				compatible = "qcom,bwprof-sampling-mode";
@@ -1930,12 +1930,24 @@
 		memory-region = <&sc_tcm_mem>;
 		cap-based-alloc-and-pwr-collapse;
 		qcom,sct-initialized;
+		ranges;
 
 		llcc-perfmon {
 			compatible = "qcom,llcc-perfmon";
 			clocks = <&aoss_qmp QDSS_CLK>;
 			clock-names = "qdss_clk";
 			llcc-scid-status-snapshot;
+		};
+
+		slc_perfmon: qcom,slc_perfmon {
+			compatible = "qcom,slc-perfmon";
+			/* Use slc_mem_base (0xD8170000) with perfmon struct at offset 0x700 */
+			reg = <0xD8170000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
+			reg-names = "perfmon_base", "trp_0_base", "trp_1_base", "trp_or_bcast_base";
+			perfmon_offset = <0x700>;
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			slc-scid-status-snapshot;
 		};
 	};
 
@@ -1982,7 +1994,7 @@
 		qcom,scaling-exceptions = <>;
 		qcom,interconnect,num-cases = <5>;
 		qcom,interconnect,num-paths = <3>;
-		mboxes = <&qmp_aop 0>;
+		qcom,qmp = <&aoss_qmp>;
 		interconnects = <&system_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
 		<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
 		<&gem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_IPA_CFG>;

@@ -443,7 +443,6 @@
 #include "pm8775-vm.dtsi"
 #include "monaco-vm-qupv3.dtsi"
 #include "monaco-vm-pcie.dtsi"
-#include "monaco-vm-audio.dtsi"
 
 &regulator {
 	gcc_usb30_prim_gdsc: gcc_usb30_prim_gdsc {
@@ -564,17 +563,6 @@
 
 	mmidgrp500: mmidgrp500 {
 		dma-coherent;
-	};
-};
-
-&soc {
-	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
-		compatible = "qcom,ipcc";
-		reg = <0x421000 0x1000>;
-		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-controller;
-		#interrupt-cells = <3>;
-		#mbox-cells = <2>;
 	};
 };
 

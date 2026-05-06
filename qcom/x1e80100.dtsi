@@ -408,11 +408,15 @@
 		qcom_scm_smcinvoke {
 			compatible = "qcom,scm-smcinvoke";
 		};
-	};
 
-	qcom,hdcp {
-		compatible = "qcom,hdcp";
-		qcom,use-smcinvoke = <1>;
+		qtee_shmbridge {
+			compatible = "qcom,tee-shared-memory-bridge";
+		};
+
+		qcom,hdcp {
+			compatible = "qcom,hdcp";
+			qcom,use-smcinvoke = <1>;
+		};
 	};
 
 	memory@80000000 {
