@@ -170,6 +170,7 @@
 		reg = <0x0 0x0 0x0 0x0>;
 		required-subnodes = <&qcom_scm
 				&qcom_smcinvoke
+				&qcom_mem_object
 				&qtee_shmbridge
 				&qcom_test_dbl_oemvm
 				&qcom_test_msgq_oemvm
@@ -238,6 +239,10 @@
 
 	qcom_smcinvoke:qcom_smcinvoke {
 		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object:qcom_mem_object {
+		compatible = "qcom,mem-object";
 	};
 
 	qtee_shmbridge:qtee_shmbridge {
