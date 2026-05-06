@@ -57,28 +57,6 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		/*
-		 * Private IO space and IRQs (not Lent or donated)
-		 * A VM may need access to IO space / IRQS not initially owned by HLOS.
-		 * Below provides a way for this to be handled.
-		 * iomemory-ranges <PA IPA SIZE ACCESS>
-		 * Soc dependent
-		 */
-		iomemory-ranges;
-
-		/* Dynamically nominate the vmmio ranges
-		 * Allow VMMIO traps. Currently doesn't include
-		 * PVTIME, VIRTFREQ and GIC virtual devices.
-		 * GIC is emulated by Gunyah.
-		 * Soc dependent
-		 */
-		vmmio-ranges;
-
-		/* gic-irq-ranges <HWIRQ VIRQ>
-		 * Add based on use cases
-		 */
-		gic-irq-ranges;
-
 		segments {
 			ramdisk = <3>;
 			// fallback-dtb to support recovery mode
