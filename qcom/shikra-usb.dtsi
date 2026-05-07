@@ -37,6 +37,7 @@
 		qcom,core-clk-rate = <133333333>;
 		qcom,core-clk-rate-hs = <66666667>;
 
+		extcon = <&eud>;
 		dummy-supply = <&apps_smmu>;
 
 		dwc3_0: dwc3@4e00000 {
