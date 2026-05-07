@@ -528,5 +528,5 @@
 };
 
 &usb0 {
-	extcon = <&qusb_phy0>;
+	extcon = <&qusb_phy0>, <&eud>;
 };
