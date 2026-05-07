@@ -34,10 +34,6 @@
 	};
 };
 
-&ipcc_mproc_apps_ns1 {
-	status = "disabled";
-};
-
 &reserved_memory {
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
