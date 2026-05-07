@@ -9,6 +9,6 @@
 	qcom,xo-reset-gpio = <&tlmm 201 0>; /* XO */
 };
 
-&wlan {
+&cnss_wlan_mem {
 	qcom,xo-clk-gpio = <&tlmm 201 0>;
 };

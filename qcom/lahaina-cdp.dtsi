@@ -129,18 +129,6 @@
 	status = "ok";
 };
 
-&q6core {
-	cdc_tert_mi2s_gpios: msm_cdc_pinctrl_tert {
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&tert_mi2s_sck_active &tert_mi2s_ws_active
-				&tert_mi2s_sd0_active>;
-		pinctrl-1 = <&tert_mi2s_sck_sleep &tert_mi2s_ws_sleep
-				&tert_mi2s_sd0_sleep>;
-		#gpio-cells = <0>;
-	};
-};
-
 &usb1 {
 	extcon = <&extcon_usb1>;
 };

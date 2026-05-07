@@ -357,11 +357,15 @@ LAHAINA_APQ_BASE_DTB += lahainap.dtb lahainap-v2.dtb lahainap-v2.1.dtb
 LAHAINA_BOARDS += \
 		lahainap-hhg-hsp-pro-overlay.dtbo \
 		lahainap-mtp-overlay.dtbo \
+		lahainap-cdp-overlay.dtbo \
 		lahainap-atp-overlay.dtbo \
 		lahainap-qrd-overlay.dtbo
 
 NOAPQ_LAHAINA_BOARDS += \
 		lahaina-rumi-overlay.dtbo \
+		lahaina-cdp-overlay.dtbo \
+		lahaina-cdp-hsp-pro-overlay.dtbo \
+		lahaina-cdp-v2.2-overlay.dtbo \
 		lahaina-mtp-overlay.dtbo \
 		lahaina-mtp-hsp-overlay.dtbo \
 		lahaina-atp-overlay.dtbo \
