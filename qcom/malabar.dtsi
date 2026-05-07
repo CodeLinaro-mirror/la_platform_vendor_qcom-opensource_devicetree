@@ -476,6 +476,12 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
+	rpm_minidump: qcom,rpm_minidump {
+		compatible = "qcom,rpm-minidump";
+		memory-region = <&rpm_dump_mem>;
+	};
+
+
 	cluster-device {
 		compatible = "qcom,lpm-cluster-dev";
 		power-domains = <&CLUSTER_PD>;
