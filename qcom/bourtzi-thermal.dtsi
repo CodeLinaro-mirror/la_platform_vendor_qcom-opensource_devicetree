@@ -189,6 +189,14 @@
 		qcom,freq-tbl = < 2092800 >;
 	};
 
+	ddr_cdev: qcom,ddr-cdev {
+		compatible = "qcom,ddr-cooling-device";
+		#cooling-cells = <2>;
+		qcom,freq-table = <&thermal_ddr_freq_table>;
+		qcom,bus-width = <4>;
+		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
+	};
+
 	qcom,cpufreq-cdev {
 		compatible = "qcom,cpufreq-cdev";
 		cpu-cluster0 {
@@ -809,6 +817,13 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "hot";
+			};
+		};
+
+		cooling-maps {
+			ddr_cdev {
+				trip = <&ddr_config0>;
+				cooling-device = <&ddr_cdev 1 1>;
 			};
 		};
 	};
