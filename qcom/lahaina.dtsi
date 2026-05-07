@@ -2610,7 +2610,7 @@ soc: soc { };
 	};
 
 	cpufreq_hw: qcom,cpufreq-hw {
-		compatible = "qcom,cpufreq-hw-epss";
+		compatible = "qcom,cpufreq-epss";
 		reg = <0x18591000 0x1000>, <0x18592000 0x1000>,
 			<0x18593000 0x1000>;
 		reg-names = "freq-domain0", "freq-domain1",
@@ -5280,3 +5280,4 @@ soc: soc { };
 };
 
 #include "msm-rdbg.dtsi"
+#include "lahaina-walt.dtsi"
