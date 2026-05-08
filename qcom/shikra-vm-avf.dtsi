@@ -277,7 +277,39 @@
 			&qcom_mem_object
 			&qtee_shmbridge
 			&qti_smmu_proxy
-			&qti_smmu_proxy_camera_cb>;
+			&qti_smmu_proxy_camera_cb
+			&tlmm>;
+	};
+
+	vm_tlmm_irq: vm-tlmm-irq@0 {
+		compatible = "qcom,tlmm-vm-irq";
+		reg = <0x0 0x0 0x0 0x0>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+
+	tlmm: pinctrl@400000 {
+		compatible = "qcom,shikra-vm-tlmm";
+		reg = <0x0 0x400000 0x0 0x800000>;
+		interrupts-extended = <&vm_tlmm_irq 1 IRQ_TYPE_LEVEL_HIGH>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+		/* TODO: Valid pins — must match tlmm-vm-gpio-list in PVM shikra.dtsi */
+	};
+
+	tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		tlmm-vm-gpio-list = <>;
+	};
+
+	pinctrl@400000 {
+	};
+
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		depends-on-supply = <&tlmm>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
