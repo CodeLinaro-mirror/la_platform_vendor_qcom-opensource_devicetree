@@ -4995,9 +4995,9 @@ soc: soc { };
 		qcom,spss-fuse3-bit = <10>;
 		qcom,spss-fuse4-addr = <0x00780204>; // IAR_STATE fuse
 		qcom,spss-fuse4-bit = <25>; // 0x00780204 bits 25-27
-		qcom,spss-dev-firmware-name  = "spss1d";  /* 8 chars max */
-		qcom,spss-test-firmware-name = "spss1t";  /* 8 chars max */
-		qcom,spss-prod-firmware-name = "spss1p";  /* 8 chars max */
+		qcom,spss-dev-firmware-name  = "spss1d.mdt";  /* 8 chars max */
+		qcom,spss-test-firmware-name = "spss1t.mdt";  /* 8 chars max */
+		qcom,spss-prod-firmware-name = "spss1p.mdt";  /* 8 chars max */
 		qcom,spss-debug-reg-addr = <0x01886020>;
 		qcom,spss-scsr-regs-addr = <0x01880000>;  /* SPU shared register */
 		qcom,spss-emul-type-reg-addr = <0x01fc8004>;
