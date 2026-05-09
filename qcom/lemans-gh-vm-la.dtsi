@@ -380,14 +380,16 @@
 				0x0 0x1fdd000 0x0 0x1fdd000 0x0 0x1000 0x3
 				0x0 0x1fdb000 0x0 0x1fdb000 0x0 0x1000 0x0
 				0x0 0x1fdf000 0x0 0x1fdf000 0x0 0x1000 0x0
+				/* IMEM region */
+				0x0 0x146D8000 0x0 0x146D8000 0x0 0x1000 0x0
+				/* MPM timer read only*/
+				0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
 				/* Board serial number region */
 				0x0 0x786000 0x0 0x786000 0x0 0x1000 0x1
 				/* PTP region */
 				0x0 0x23047000 0x0 0x23047000 0x0 0x1000 0x0
 				/* Qtimer region */
 				0x0 0x17c23000 0x0 0x17c23000 0x0 0x1000 0x0
-				/* MPM timer read only*/
-				0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
 				/* PCIe0 region */
 				0x4 0x0 0x4 0x0 0x0 0x10000000 0x0
 				0x0 0x40000000 0x0 0x40000000 0x0 0x100000 0x0
@@ -1255,8 +1257,8 @@
 			vsmmu@15000000 {
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0x15000000>;
-				num-cbs = <0x3>;
-				num-smrs = <0x3>;
+				num-cbs = <0x4>;
+				num-smrs = <0x4>;
 				patch = "/soc/apps-smmu@15000000";
 			};
 
@@ -1484,6 +1486,40 @@
 		};
 	};
 
+	qcom,msm-imem@146D8000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x146D8000 0x1000>;
+		ranges = <0x0 0x146D8000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		status = "ok";
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+			compatible = "qcom,mpm2-sleep-counter";
+			reg = <0xc221000 0x1000>;
+			clock-frequency = <32768>;
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,lemans-pinctrl";
 		reg = <0xf000000 0x1000000>;
@@ -1709,13 +1745,18 @@
 		};
 	};
 
+
+	emac_iommu_region: emac-iommu-region {
+		iommu-addresses = <&emac1_hw 0x0 0x80000000>, <&emac1_hw 0xC0000000 0x40000000>;
+	};
+
 	emac1_hw: qcom,ethernet@2300C000 {
-		compatible = "qcom,stmmac-ethqos-emac1";
+		compatible = "qcom,stmmac-ethqos-emac1-gy";
 		emac-core-version = <0x30010000>;
-		qcom,arm-smmu;
 		reg = <0x2300C000 0x1000>;
 		reg-names = "stmmaceth";
 
+		dma-coherent;
 		interrupts-extended = <&intc 0 776 1>, <&intc 0 828 1>;
 		interrupt-names = "rx_ch0_intr", "tx_ch0_intr";
 
@@ -1730,12 +1771,11 @@
 		snps,mtl-rx-config = <&mtl_rx_setup>;
 		snps,mtl-tx-config = <&mtl_tx_setup>;
 		queue = <0>;
-		emac1_emb_smmu: emac1_emb_smmu {
-			compatible = "qcom,emac-thin-smmu-embedded";
-			iommus = <&apps_smmu 0x148 0x1>;
-			qcom,iommu-dma = "fastmap";
-			qcom,iommu-dma-addr-pool = <0x80000000 0x40000000>;
-		};
+
+		iommus = <&apps_smmu 0x148 0x1>;
+		qcom,iommu-geometry = <0x80000000 0x40000000>;
+		memory-region = <&emac_iommu_region>;
+		qcom,iommu-dma = "fastmap";
 	};
 };
 

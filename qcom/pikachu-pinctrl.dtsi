@@ -1814,7 +1814,7 @@
 			config {
 				pins = "gpio24";
 				drive-strength = <2>;
-				bias-pull-down;
+				bias-disable;
 			};
 		};
 

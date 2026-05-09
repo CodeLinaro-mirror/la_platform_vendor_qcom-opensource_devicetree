@@ -368,7 +368,7 @@
 		compatible = "shared-dma-pool";
 		reusable;
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		size = <0x0 0xa400000>;
+		size = <0x0 0x5c00000>;
 		alignment = <0x0 0x400000>;
 	};
 
@@ -985,7 +985,7 @@
 	sram@c3f0000 {
 		compatible = "qcom,rpm-stats-v2";
 		reg = <0x0 0x04690000 0x0 0x400>;
-		ss-name = "modem", "adsp", "apss";
+		ss-name = "modem", "adsp", "apss", "wpss", "adsp_island";
 	};
 
 	rpm-glink {

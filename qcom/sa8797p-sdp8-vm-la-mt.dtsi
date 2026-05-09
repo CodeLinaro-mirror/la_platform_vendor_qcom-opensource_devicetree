@@ -202,6 +202,10 @@
 	status = "ok";
 };
 
+&usb_audio_qmi_dev {
+	status = "okay";
+};
+
 &usb0 {
 	interrupts-extended = <&qvm_vdev_gic GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
 		<&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
