@@ -377,6 +377,12 @@
 		reg = <0x0 0x8b51a000 0x0 0x2000>;
 	};
 
+    /* First part of the "SPU secure shared memory" region */
+	spu_tz_shared_mem: spu_secure_shared_memory_region@8B580000 {
+		no-map;
+		reg = <0x0 0x8B580000 0x0 0x40000>;
+	};
+
 	pil_spss_mem: pil_spss_region@8b600000 {
 		no-map;
 		reg = <0x0 0x8b600000 0x0 0x100000>;
@@ -2868,6 +2874,11 @@
 		qcom,vmid = <3>;
 	};
 
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
+	};
+
 	aggre1_noc: interconnect@16e0000 {
 		compatible = "qcom,lahaina-aggre1_noc";
 		reg = <0x016E0000 0x1f180>;
@@ -2961,11 +2972,6 @@
 		#interconnect-cells = <1>;
 		qcom,bcm-voter-names = "hlos";
 		qcom,bcm-voters = <&apps_bcm_voter>;
-	};
-
-	pil_scm_pas {
-		compatible = "qcom,pil-tz-scm-pas";
-		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 	};
 
 	qcom,mpm2-sleep-counter@c221000 {
@@ -4029,30 +4035,24 @@
 	};
 
 	tsens0: tsens@c222000 {
-		compatible = "qcom,tsens24xx";
-		reg = <0x0C222000 0x8>,
-		      <0x0C263000 0x1ff>;
-		reg-names = "tsens_srot_physical",
-			"tsens_tm_physical";
-		interrupts-extended = <&pdc 26 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 28 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 20 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "tsens-upper-lower", "tsens-critical",
-				"tsens-0C";
+		compatible = "qcom,tsens-v2";
+		reg = <0x0C263000 0x1ff>,
+			<0x0C222000 0x8>;
+		#qcom,sensors = <15>;
+		interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
 	};
 
 	tsens1: tsens@c223000 {
-		compatible = "qcom,tsens24xx";
-		reg = <0x0C223000 0x8>,
-			<0x0C265000 0x1ff>;
-		reg-names = "tsens_srot_physical",
-			"tsens_tm_physical";
-		interrupts-extended = <&pdc 27 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 29 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 21 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "tsens-upper-lower", "tsens-critical",
-				"tsens-0C";
+		compatible = "qcom,tsens-v2";
+		reg = <0x0C265000 0x1ff>,
+			<0x0C223000 0x8>;
+		#qcom,sensors = <14>;
+		interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
 	};
 
@@ -4784,6 +4784,7 @@
 	/* PIL spss node - for loading Secure Processor */
 	spss_pas: remoteproc-spss@1880000 {
 		compatible = "qcom,lahaina-spss-pas";
+		ranges;
 		reg = <0x188101c 0x4>,
 		      <0x1881024 0x4>,
 		      <0x1881028 0x4>,
@@ -4794,6 +4795,9 @@
 			    "sp2soc_irq_mask", "rmb_err",
 			    "rmb_general_purpose", "rmb_err_spare2";
 		interrupts = <0 352 1>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
 
 		cx-supply = <&VDD_CX_LEVEL>;
 		qcom,proxy-reg-names = "cx";
@@ -4876,6 +4880,7 @@
 
 	qcom,spcom {
 		compatible = "qcom,spcom";
+		qcom,rproc-handle = <&spss_pas>;
 
 		/* predefined channels, remote side is server */
 		qcom,spcom-ch-names = "sp_kernel", "sp_ssr";
@@ -4896,6 +4901,7 @@
 	spss_utils: qcom,spss_utils {
 		compatible = "qcom,spss-utils";
 		/* spss fuses physical address */
+		qcom,rproc-handle = <&spss_pas>;
 		qcom,spss-fuse1-addr = <0x00780204>;
 		qcom,spss-fuse1-bit = <9>;
 		qcom,spss-fuse2-addr = <0x00780204>;
@@ -5143,28 +5149,6 @@
 #include "lahaina-qupv3.dtsi"
 #include "lahaina-pcie.dtsi"
 #include "msm-qvr-external.dtsi"
-
-&pcie0_rp {
-	#address-cells = <5>;
-	#size-cells = <0>;
-
-	cnss_pci: cnss_pci {
-		reg = <0 0 0 0 0>;
-		qcom,iommu-group = <&cnss_pci_iommu_group>;
-		memory-region = <&cnss_wlan_mem>;
-
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-		cnss_pci_iommu_group: cnss_pci_iommu_group {
-			qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000>;
-			qcom,iommu-dma = "fastmap";
-			qcom,iommu-pagetable = "coherent";
-			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
-					    "non-fatal";
-		};
-	};
-};
 
 &pcie1_rp {
 	#address-cells = <5>;

@@ -419,6 +419,21 @@
 			compatible = "virtio,device49155"; /* VIRTIO_ID: 0xC003 */
 		};
 	};
+
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
 };
 
 &firmware {
@@ -694,5 +709,12 @@
 		no-map;
 		reg = <0x0 0x908c7000 0x0 0x9000>;
 		label = "glink_cma_mem0";
+	};
+
+	dice: dice@0 {
+		compatible = "google,open-dice";
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "sdv_dice_mem";
 	};
 };

@@ -30,8 +30,8 @@
 			android,pvmfw,target = <&tlmm>;
 		};
 
-		qcom,ipcc@405000 {
-			reg = <0x0 0x405000 0x0 0x1000>;
+		qcom,ipcc@406000 {
+			reg = <0x0 0x406000 0x0 0x1000>;
 			android,pvmfw,target = <&ipcc_mproc_ns1>;
 		};
 
@@ -65,12 +65,12 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		iomemory-ranges = <0x0 0x405000 0x0 0x405000 0x0 0x1000 0x0>;
+		iomemory-ranges = <0x0 0x406000 0x0 0x406000 0x0 0x1000 0x0>;
 
 		/* Dynamically nominate the vmmio ranges */
 		vmmio-ranges;
 
-		gic-irq-ranges = <734 734>;
+		gic-irq-ranges = <109 109>;
 
 		segments {
 			ramdisk = <3>;
@@ -171,7 +171,8 @@
 				peer-default;
 				memory {
 					qcom,label = <0x103>;
-					allocate-base;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
 				};
 			};
 
@@ -293,6 +294,7 @@
 			&virtio_mem_device
 			&google_debug_kinfo
 			&qcom_dma_heaps
+			&qrtr_gunyah
 			>;
 	};
 
@@ -376,10 +378,10 @@
 		method = "smc";
 	};
 
-	ipcc_mproc_ns1: qcom,ipcc@405000 {
+	ipcc_mproc_ns1: qcom,ipcc@406000 {
 		compatible = "qcom,ipcc";
-		reg = <0x0 0x405000 0x0 0x1000>; /* size */
-		interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH>;
+		reg = <0x0 0x406000 0x0 0x1000>; /* size */
+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-controller;
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
@@ -400,7 +402,7 @@
 		affinity = <0>;
 	};
 
-	qrtr-gunyah {
+	qrtr_gunyah: qrtr-gunyah {
 		compatible = "qcom,qrtr-gunyah";
 		gunyah-label = <0x103>;
 	};
@@ -492,6 +494,6 @@
 	};
 };
 
-#include "pikachu-vm-rm-info-avf.dtsi"
 #include "pikachu-vm-dma-heaps-avf.dtsi"
 #include "msm-arm-smmu-pikachu-vm-avf.dtsi"
+#include "pikachu-vm-rm-info-avf.dtsi"

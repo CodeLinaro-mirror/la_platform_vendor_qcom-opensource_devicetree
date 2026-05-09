@@ -4,6 +4,7 @@
  */
 
 #include "malabar-pmic-overlay.dtsi"
+#include "malabar-thermal-overlay.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 
 &sdhc_1 {
@@ -183,12 +184,6 @@
 		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
 		pinctrl-2 = <&ts_release>;
 	};
-};
-
-&L5E {
-	regulator-min-microvolt = <2504000>;
-	regulator-max-microvolt = <3544000>;
-	qcom,init-voltage = <2504000>;
 };
 
 &usb0 {

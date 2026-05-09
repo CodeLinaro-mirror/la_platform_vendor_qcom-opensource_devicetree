@@ -139,6 +139,7 @@
 		qcom,supported-modes = <RPMH_REGULATOR_MODE_LPM
 					RPMH_REGULATOR_MODE_HPM>;
 		qcom,mode-threshold-currents = <0 30000>;
+		qcom,disable-mode = <RPMH_REGULATOR_MODE_RET>;
 		L1B: L1B_E0:
 		pmxr2230_l1: vreg-pmxr2230-l1 {
 			regulator-name = "pmxr2230_l1";
@@ -147,7 +148,6 @@
 			regulator-max-microvolt = <1980000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
-			qcom,disable-mode = <RPMH_REGULATOR_MODE_RET>;
 		};
 	};
 

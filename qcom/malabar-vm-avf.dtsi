@@ -336,7 +336,8 @@
 			&qtee_shmbridge
 			&qti_smmu_proxy
 			&qti_smmu_proxy_camera_cb
-			&qti_smmu_proxy_display_cb>;
+			&qti_smmu_proxy_display_cb
+			&qti_smmu_proxy_rotator_cb>;
 	};
 
 	vm_tlmm_irq: vm-tlmm-irq@0 {
@@ -397,8 +398,17 @@
 		iommus = <&apps_smmu 0x421 0x0>;
 	};
 
+	qti_smmu_proxy_rotator_cb: qti,smmu-proxy-rotator-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_ROTATOR_CB>;
+		qcom,iommu-defer-smr-config;
+		memory-region = <&smmu_proxy_iommu_region>;
+		iommus = <&apps_smmu 0x43d 0x0>;
+	};
+
 	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
-		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x0 0x0 0x20000>;
+		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x0 0x0 0x20000>,
+				  <&qti_smmu_proxy_rotator_cb 0x0 0x0 0x0 0x20000>;
 	};
 
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {

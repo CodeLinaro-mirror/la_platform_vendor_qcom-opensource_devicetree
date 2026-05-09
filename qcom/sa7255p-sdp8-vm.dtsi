@@ -421,6 +421,21 @@
 			compatible = "virtio,device49155"; /* VIRTIO_ID: 0xC003 */
 		};
 	};
+
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "supplier";
+		qcom,vmid = <3>;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
 };
 
 #include "monaco_auto-pinctrl.dtsi"
@@ -551,21 +566,17 @@
 	};
 };
 
-&soc {
-	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
-		compatible = "qcom,ipcc";
-		reg = <0x421000 0x1000>;
-		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-controller;
-		#interrupt-cells = <3>;
-		#mbox-cells = <2>;
-	};
-};
-
 &reserved_memory {
 	glink_cma_mem0: glink-cma-region0 {
 		no-map;
 		reg = <0x0 0x908c7000 0x0 0x9000>;
 		label = "glink_cma_mem0";
+	};
+
+	dice: dice@0 {
+		compatible = "google,open-dice";
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "sdv_dice_mem";
 	};
 };

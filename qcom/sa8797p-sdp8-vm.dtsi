@@ -438,6 +438,8 @@
 		compatible = "qcom,xpcs";
 		reg = <0x1a94000 0x5100>;
 		reg-names = "qxpcs";
+		resets = <&scmi_reset 1>;
+		reset-names = "serdes_reset";
 	};
 
 	ethernet1: ethernet@1a80000 {
@@ -480,6 +482,11 @@
 		snps,axi-config = <&stmmac_axi_setup1>;
 		snps,mtl-rx-config = <&mtl_rx_setup1>;
 		snps,mtl-tx-config = <&mtl_tx_setup1>;
+
+		qcom,tx-vdma-map = <0 0 0 0 1 2 3 4 5 6 7 7>;
+		qcom,rx-vdma-map = <0 1 2 3 4 5 6 6 6 6 7 7>;
+		qcom,tx-pdma-map = <0 1 2 3 4 5 6 6 6 6 7 7>;
+		qcom,rx-pdma-map = <0 1 2 3 4 5 6 6 6 6 7 7>;
 
 		qcom-xpcs-handle = <&xpcs1>;
 
@@ -633,6 +640,22 @@
 		qcom,wdt-bark-offset = <0x0C>;
 		qcom,wdt-bite-offset = <0x10>;
 		qcom,wdt-hz = <19198242>;
+	};
+
+	qcom,secure-buffer {
+		compatible = "qcom,secure-buffer";
+	};
+
+	qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,vmid = <52>;
+		qcom,vm-uses-hyp-assign;
+	};
+
+	qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 };
 
