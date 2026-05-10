@@ -94,9 +94,9 @@
 	#size-cells = <0>;
 	status = "okay";
 
-	pm8010m: pmic@8 {
+	pm8010m: pmic@14 {
 		compatible = "qcom,pm8008";
-		reg = <0x8>;
+		reg = <0x14>;
 
 		interrupts-extended = <&tlmm 62 IRQ_TYPE_EDGE_RISING>;
 		reset-gpios = <&tlmm 59 GPIO_ACTIVE_LOW>;
