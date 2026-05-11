@@ -70,6 +70,11 @@
 			qcom,label = <0x60>;
 		};
 
+		gptp_timedata_mem: gptp_timedata_region {
+			no-map;
+			qcom,label = <0x61>;
+		};
+
 		cp_pixel_mem: cp_pixel_region {
 			no-map;
 			qcom,target-vmid = <0xa>;
@@ -324,6 +329,10 @@
 				0x0 0x8906000 0x0 0x8906000 0x0 0x1000 0x0
 				/* PDC region */
 				0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
+				/* PTP region */
+				0x0 0x23047000 0x0 0x23047000 0x0 0x1000 0x0
+				/* QTimer region */
+				0x0 0x17c23000 0x0 0x17c23000 0x0 0x1000 0x0
 				>;
 
 		gic-irq-ranges = <
@@ -1509,6 +1518,16 @@
 				qcom,glink-label = "cdsp";
 			};
 		};
+	};
+
+	ptp_virtual {
+		compatible = "qcom,ptp_virtual";
+		reg = <0xac5fe000 0x1000>,
+			<0x23047000 0x1000>,
+			<0x17c23000 0x1000>;
+		reg-names = "ptp_carveout_mem",
+			"ptp_reg",
+			"qtimer_reg";
 	};
 
 	hab: qcom,hab {
