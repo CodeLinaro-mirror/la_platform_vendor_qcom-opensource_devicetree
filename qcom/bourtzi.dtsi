@@ -15,6 +15,8 @@
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,ravelin.h>
+#include <dt-bindings/dma/qcom-gpi.h>
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Bourtzi";
@@ -26,7 +28,24 @@
 	#size-cells = <2>;
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
-	aliases: aliases { };
+	aliases: aliases {
+		serial0 = &qupv3_se7_2uart;
+		hsuart0 = &qupv3_se2_4uart;
+		i2c0 = &qupv3_se1_i2c;
+		i2c1 = &qupv3_se3_i2c;
+		i2c2 = &qupv3_se4_i2c;
+		i2c3 = &qupv3_se5_i2c;
+		i2c4 = &qupv3_se6_i2c;
+		i2c5 = &qupv3_se8_i2c;
+		i2c6 = &qupv3_se9_i2c;
+		spi0 = &qupv3_se1_spi;
+		spi1 = &qupv3_se3_spi;
+		spi2 = &qupv3_se4_spi;
+		spi3 = &qupv3_se5_spi;
+		spi4 = &qupv3_se6_spi;
+		spi5 = &qupv3_se8_spi;
+		spi6 = &qupv3_se9_spi;
+	};
 
 	chosen: chosen {
 		bootargs = "nokaslr kpti=0 log_buf_len=512K earlycon swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops slub_debug=-";
@@ -1206,6 +1225,55 @@
 		#mbox-cells = <1>;
 	};
 
+	pmic-glink {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
+		qcom,subsys-name = "lpass";
+		qcom,protection-domain = "tms/servreg", "msm/adsp/charger_pd";
+		depends-on-supply = <&ipcc_mproc>;
+
+		battery_charger: battery-charger {
+			compatible = "qcom,battery-charger";
+		};
+
+		ucsi: ucsi-glink {
+			compatible = "qcom,ucsi-glink";
+		};
+
+		altmode: altmode-glink {
+			compatible = "qcom,altmode-glink";
+			#altmode-cells = <1>;
+		};
+	};
+
+	pmic-glink-log {
+		compatible = "qcom,qti-pmic-glink";
+		qcom,pmic-glink-channel = "PMIC_LOGS_ADSP_APPS";
+
+		battery-debug {
+			compatible = "qcom,battery-debug";
+		};
+
+		charger-ulog-glink {
+			compatible = "qcom,charger-ulog-glink";
+		};
+
+		pmic_glink_debug: pmic-glink-debug {
+			compatible = "qcom,pmic-glink-debug";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			depends-on-supply = <&spmi0_bus>;
+		};
+
+		pmic_glink_adc: glink-adc {
+			compatible = "qcom,glink-adc";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#io-channel-cells = <1>;
+			status = "disabled";
+		};
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,bourtzi-tlmm";
 		reg = <0x0 0xf000000 0x0 0x1000000>;
@@ -1506,3 +1574,8 @@
 #include "bourtzi-usb.dtsi"
 #include "bourtzi-regulators.dtsi"
 #include "bourtzi-thermal.dtsi"
+#include "bourtzi-qupv3.dtsi"
+
+&qupv3_se7_2uart {
+	status = "ok";
+};
