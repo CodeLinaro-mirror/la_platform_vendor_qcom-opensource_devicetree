@@ -277,8 +277,7 @@
 			&qcom_mem_object
 			&qtee_shmbridge
 			&qti_smmu_proxy
-			&qti_smmu_proxy_camera_cb
-			&qti_smmu_proxy_display_cb>;
+			&qti_smmu_proxy_camera_cb>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
@@ -302,22 +301,10 @@
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 		qcom,iommu-defer-smr-config;
-		iommus = <&apps_smmu 0x601 0x0200>,
+		iommus = <&apps_smmu 0x601 0x0>,
 			 <&apps_smmu 0x621 0x0>,
 			 <&apps_smmu 0x641 0x0>,
-			 <&apps_smmu 0x401 0x0200>;
-	};
-
-	qti_smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
-		compatible = "smmu-proxy-cb";
-		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
-		qcom,iommu-defer-smr-config;
-		memory-region = <&smmu_proxy_iommu_region>;
-		iommus = <&apps_smmu 0x421 0x0>;
-	};
-
-	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
-		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x20000>;
+			 <&apps_smmu 0x401 0x0>;
 	};
 
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
