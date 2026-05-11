@@ -791,9 +791,9 @@
 		pm_v8i_l3: regulator-pm_v8i-l3 {
 			regulator-name = "pm_v8i_l3";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <912000>;
+			regulator-min-microvolt = <880000>;
 			regulator-max-microvolt = <920000>;
-			qcom,init-voltage = <912000>;
+			qcom,init-voltage = <880000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
