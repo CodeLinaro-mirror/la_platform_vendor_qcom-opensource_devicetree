@@ -2553,6 +2553,12 @@
 			qcom,glinkpkt-dev-name = "smd7";
 		};
 
+		qcom,glinkpkt-data2 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "DATA2";
+			qcom,glinkpkt-dev-name = "at_mdm0";
+		};
+
 		qcom,glinkpkt-data4 {
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DATA4";
