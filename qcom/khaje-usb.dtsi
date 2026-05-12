@@ -78,6 +78,9 @@
 			usb-phy = <&usb2_phy0>, <&usb_qmp_dp_phy>;
 			tx-fifo-resize;
 			snps,disable-clk-gating;
+			snps,dis_u2_susphy_quirk;
+			snps,dis_u3_susphy_quirk;
+			snps,dis_enblslpm_quirk;
 			snps,has-lpm-erratum;
 			snps,hird-threshold = /bits/ 8 <0x10>;
 			snps,usb3-u1u2-disable;
