@@ -1921,8 +1921,17 @@
 					       <200000000>;
 
 			interrupts-extended = <&intc GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-					      <&intc GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>;
-			interrupt-names = "pwr_event_1", "pwr_event_2";
+						<&intc GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
+						<&intc GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+						<&intc GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
+						<&pdc 52 IRQ_TYPE_EDGE_RISING>,
+						<&pdc 51 IRQ_TYPE_EDGE_RISING>,
+						<&pdc 54 IRQ_TYPE_EDGE_RISING>,
+						<&pdc 53 IRQ_TYPE_EDGE_RISING>;
+			interrupt-names = "pwr_event_1", "pwr_event_2",
+						"hs_phy_1",    "hs_phy_2",
+						"dp_hs_phy_1", "dm_hs_phy_1",
+						"dp_hs_phy_2", "dm_hs_phy_2";
 
 			power-domains = <&gcc GCC_USB30_MP_GDSC>;
 
@@ -1962,6 +1971,7 @@
 				snps,usb3_lpm_capable;
 				snps,dis-u1-entry-quirk;
 				snps,dis-u2-entry-quirk;
+				xhci-skip-phy-init-quirk;
 
 			};
 		};
