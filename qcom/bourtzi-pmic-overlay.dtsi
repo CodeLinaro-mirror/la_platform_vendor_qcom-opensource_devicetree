@@ -50,6 +50,15 @@
 
 &pmg1110 {
 	reg = <6 SPMI_USID>;
+
+	pmg1110_gpios: pinctrl@8800 {
+		compatible = "qcom,pmg1110-gpio";
+		reg = <0x8800>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
 };
 
 &pmg1110_tz {
