@@ -267,6 +267,7 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "bourtzi.dtb"},
+            {"name": "bourtzi-4gb.dtb"},
             {
                 "name": "bourtzip.dtb",
                 "apq": True,
@@ -282,8 +283,11 @@ _platform_map = {
             {"name": "bourtzi-qrd-overlay.dtbo"},
             {"name": "bourtzi-qrd-evros-overlay.dtbo"},
             {"name": "bourtzi-rcm-overlay.dtbo"},
+            {"name": "bourtzi-rcm-lcd-overlay.dtbo"},
             {"name": "bourtzi-rcm-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-rcm-evros-cottid-lcd-overlay.dtbo"},
             {"name": "bourtzi-rumi-overlay.dtbo"},
+            {"name": "bourtzi-mtp-4gb-overlay.dtbo"},
         ],
     },
     "malabar": {
