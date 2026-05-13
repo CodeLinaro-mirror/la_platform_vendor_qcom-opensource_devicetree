@@ -344,7 +344,7 @@
 
 &pmic_glink_debug {
 	spmi@1 {
-		reg = <0>;
+		reg = <1>;
 		#address-cells = <2>;
 		#size-cells = <0>;
 
