@@ -165,3 +165,10 @@
 	status = "ok";
 };
 
+&emac_ctrl_fe {
+	status = "ok";
+};
+
+&emac0_hw {
+	status = "ok";
+};
