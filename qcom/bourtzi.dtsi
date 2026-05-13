@@ -2127,6 +2127,10 @@
 #include "bourtzi-qupv3.dtsi"
 #include "bourtzi-debug.dtsi"
 #include "bourtzi-coresight.dtsi"
+#include "ipcc-test-bourtzi.dtsi"
+/delete-node/ &ipcc_self_ping_mpss;
+/delete-node/ &ipcc_self_ping_adsp;
+/delete-node/ &ipcc_self_ping_wpss;
 
 &qupv3_se7_2uart {
 	status = "ok";
