@@ -978,6 +978,18 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_BOURTZI), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += bourtzi-vm-atp-overlay.dtbo \
+				bourtzi-vm-mtp-overlay.dtbo \
+				bourtzi-vm-qrd-overlay.dtbo \
+				bourtzi-vm-rcm-overlay.dtbo \
+				bourtzi-vm-cdp-overlay.dtbo
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_MALABAR), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 malabar_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += malabar-vm-base.dtb \

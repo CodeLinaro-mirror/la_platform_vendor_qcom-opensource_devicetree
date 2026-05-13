@@ -577,7 +577,7 @@ _platform_map = {
             {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-vm", "chora-vm"],
+        "binary_compatible_with": ["alor-vm", "chora-vm", "bourtzi-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -636,6 +636,16 @@ _platform_map = {
             {"name": "chora-oemvm-mtp-overlay.dtbo"},
             {"name": "chora-oemvm-qrd-overlay.dtbo"},
             {"name": "chora-oemvm-rcm-overlay.dtbo"},
+        ],
+    },
+    "bourtzi-vm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-vm-atp-overlay.dtbo"},
+            {"name": "bourtzi-vm-mtp-overlay.dtbo"},
+            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
+            {"name": "bourtzi-vm-qrd-overlay.dtbo"},
+            {"name": "bourtzi-vm-rcm-overlay.dtbo"},
         ],
     },
     "malabar-tuivm": {
