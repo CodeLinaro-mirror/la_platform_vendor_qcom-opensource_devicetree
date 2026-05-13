@@ -640,3 +640,7 @@
 &usb0 {
 	extcon = <&qusb_phy0>, <&eud>;
 };
+
+&usb1 {
+	qcom,default-mode-none;
+};

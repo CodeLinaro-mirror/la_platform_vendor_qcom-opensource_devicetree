@@ -92,7 +92,6 @@
 		interrupt-names = "pwr_event_irq", "dm_hs_phy_irq", "dp_hs_phy_irq";
 
 		qcom,core-clk-rate = <60000000>;
-		qcom,default-mode-host;
 
 		dwc3_1: dwc3@4c00000 {
 			compatible = "snps,dwc3";
