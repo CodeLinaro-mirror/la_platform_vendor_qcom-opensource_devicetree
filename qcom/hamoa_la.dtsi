@@ -4,3 +4,7 @@
  */
 
 #include "x1e80100.dtsi"
+
+&pcie_smmu {
+	status = "disabled";
+};
