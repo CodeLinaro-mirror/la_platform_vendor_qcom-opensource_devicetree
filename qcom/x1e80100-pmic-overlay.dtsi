@@ -366,10 +366,5 @@
 			qcom,can-sleep;
 		};
 
-		smb2360_3_debug: pmic@c {
-			compatible = "qcom,spmi-pmic";
-			reg = <12 SPMI_USID>;
-			qcom,can-sleep;
-		};
 	};
 };
