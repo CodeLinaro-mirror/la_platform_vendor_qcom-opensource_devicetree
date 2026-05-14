@@ -2510,6 +2510,28 @@
 						"wakeup",
 						"sleep",
 						"ping";
+
+			glink-edge {
+				qcom,remote-pid = <19>;
+				transport = "smem";
+				mboxes = <&ipcc_mproc IPCC_CLIENT_SOCCP
+					  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+				mbox-names = "soccp_smem";
+				interrupt-parent = <&ipcc_mproc>;
+				interrupts = <IPCC_CLIENT_SOCCP
+					      IPCC_MPROC_SIGNAL_GLINK_QMP
+					      IRQ_TYPE_EDGE_RISING>;
+
+				label = "soccp";
+				qcom,glink-label = "soccp";
+
+				qcom,soccp_qrtr {
+					qcom,glink-channels = "IPCRTR";
+					qcom,intents = <0x800  5
+							0x2000 3
+							0x4400 2>;
+				};
+			};
 		};
 
 		intc: interrupt-controller@17000000 {
