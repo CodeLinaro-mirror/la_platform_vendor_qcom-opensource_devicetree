@@ -13,6 +13,7 @@
 #include <dt-bindings/clock/qcom,x1p42100-gcc.h>
 #include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 
+/delete-node/ &bwmon_llcc_cluster0;
 /delete-node/ &CPU8;
 /delete-node/ &CPU9;
 /delete-node/ &CPU10;
