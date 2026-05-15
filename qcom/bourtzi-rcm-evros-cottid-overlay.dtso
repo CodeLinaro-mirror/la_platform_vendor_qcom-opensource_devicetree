@@ -7,7 +7,6 @@
 /plugin/;
 
 #include "bourtzi-rcm.dtsi"
-#include "bourtzi-pmic-overlay.dtsi"
 #include "bourtzi-pmiv010x.dtsi"
 
 / {
