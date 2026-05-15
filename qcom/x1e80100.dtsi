@@ -1261,6 +1261,8 @@
 		qspi: qspi@88dc000 {
 			compatible = "qcom,x1e80100-qspi", "qcom,qspi-v1";
 			reg = <0x0 0x088dc000 0x0 0x1000>;
+			iommus = <&apps_smmu 0x140 0x0>;
+			qcom,iommu-dma = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
 			interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
