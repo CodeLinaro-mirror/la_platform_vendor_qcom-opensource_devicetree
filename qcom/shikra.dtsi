@@ -24,7 +24,8 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+		bootargs = "android_arch_task_struct_size=512 pcie_ports=compat kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+
 	};
 
 	reserved_memory: reserved-memory { };
@@ -2662,6 +2663,7 @@
 };
 
 #include "shikra-pinctrl.dtsi"
+#include "shikra-pcie.dtsi"
 #include "shikra-reserved-memory.dtsi"
 #include "shikra-pm4125-regulator.dtsi"
 #include "shikra-pm8005-regulator.dtsi"
