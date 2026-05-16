@@ -257,6 +257,8 @@
 			&dmesg_dump
 			&kinfo_mem
 			&tlmm_vm_mem_access
+			&tlmm_vm_test
+			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_gunyah_panic_notifier
@@ -288,6 +290,34 @@
 		#interrupt-cells = <2>;
 		// Valid Soc dependent pin
 		gpios = /bits/ 16 <92 93 10 11 12 13>;
+
+		required-subnodes = <&qupv3_se11_i2c_active
+				&qupv3_se11_i2c_sleep>;
+
+		qupv3_se11_i2c_active: qupv3_se11_i2c_sda_active {
+			mux {
+				pins = "gpio13";
+				function = "qup0_se1_l3";
+			};
+
+			config {
+				pins = "gpio13";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		qupv3_se11_i2c_sleep: qupv3_se11_i2c_sleep {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio13";
+				drive-strength = <2>;
+			};
+		};
 	};
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
@@ -300,6 +330,14 @@
 				&tlmm 11 0
 				&tlmm 12 0
 				&tlmm 13 0x2008>;
+	};
+
+	tlmm_vm_test: tlmm-vm-test {
+		ccompatible = "qcom,tlmm-vm-test";
+		pinctrl-names = "active", "sleep";
+		pinctrl-0 = <&qupv3_se11_i2c_active>;
+		pinctrl-1 = <&qupv3_se11_i2c_sleep>;
+		tlmm-vm-gpio-list = < &tlmm 13 0x2008>;
 	};
 
 	wdog: qcom,wdt@17410000 {  // Same as PVM
