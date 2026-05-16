@@ -13,6 +13,7 @@
 		reg-names = "base", "tcu-base";
 		#iommu-cells = <2>;
 		qcom,use-3-lvl-tables;
+		qcom,outer-shareable-for-iommu-cache-errata;
 		qcom,num-context-banks-override = <0x5>;
 		qcom,num-smr-override = <0x7>;
 		#global-interrupts = <1>;
