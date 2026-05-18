@@ -127,5 +127,17 @@
 		rx-fifo-depth = <16384>;
 		tx-fifo-depth = <16384>;
 		status = "disabled";
+
+		mdio: mdio {
+			compatible = "snps,dwmac-mdio";
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
+
+		fixed-link {
+			status = "disabled";
+			speed = <2500>;
+			full-duplex;
+		};
 	};
 };

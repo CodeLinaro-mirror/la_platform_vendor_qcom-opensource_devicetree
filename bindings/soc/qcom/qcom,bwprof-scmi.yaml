@@ -44,6 +44,10 @@ properties:
     description: Standard ranges property for child address translation.
     maxItems: 1
 
+  max-masters:
+    description: Max masters supported by the device.
+    $ref: /schemas/types.yaml#/definitions/uint32
+
 patternProperties:
   "^[a-z][a-z0-9,._+-]*$":
     type: object

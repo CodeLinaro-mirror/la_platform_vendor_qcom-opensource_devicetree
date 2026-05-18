@@ -19,6 +19,7 @@ properties:
           - qcom,alor-qfprom
           - qcom,apq8064-qfprom
           - qcom,apq8084-qfprom
+          - qcom,bourtzi-qfprom
           - qcom,canoe-qfprom
           - qcom,chora-qfprom
           - qcom,malabar-qfprom

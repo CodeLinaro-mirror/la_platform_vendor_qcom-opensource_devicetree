@@ -39,6 +39,18 @@ properties:
   gpio-ranges: true
   wakeup-parent: true
 
+  qcom,dirconn-list:
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+    description: |
+      List of GPIOs that are configured as dirconn capable. Each entry
+      is a pair of two 32 bit integers that represent GPIO PIN and the
+      dirconn IRQ number, in form <gpio, interrupt>. The order of entries
+      directly maps to the tlmm interrupts, starting from offset 1. A
+      value of 0xFFFFFFFF is used to indicate unused entry. The first
+      pair of <gpio, interrupt> entry unused by the current design.
+
+    minItems: 2
+
 required:
   - compatible
   - reg
@@ -162,6 +174,8 @@ examples:
         interrupt-controller;
         #interrupt-cells = <2>;
         interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+
+        qcom,dirconn-list = <0xFFFFFFFF 0>,<13 235>;
 
         gpio-wo-state {
             pins = "gpio1";

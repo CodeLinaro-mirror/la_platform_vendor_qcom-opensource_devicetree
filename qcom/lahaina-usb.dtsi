@@ -73,6 +73,7 @@
 			snps,dis-u1-entry-quirk;
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
+			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
 			num-hc-interrupters = /bits/ 16 <3>;
@@ -351,6 +352,8 @@
 			0x144 /* GSI_RING_BASE_ADDR_H */
 			0x1a4>; /* GSI_IF_STS */
 
+		usb-role-switch;
+
 		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
 		interconnects = <&aggre1_noc MASTER_USB3_1 &mc_virt SLAVE_EBI1>,
 				<&aggre1_noc MASTER_USB3_1 &config_noc SLAVE_IPA_CFG>,
@@ -376,6 +379,7 @@
 			tx-fifo-resize;
 			maximum-speed = "super-speed";
 			dr_mode = "otg";
+			usb-role-switch;
 		};
 	};
 

@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *
+ * Vienna LE (Limited Edition) specific device tree configurations.
+ * This file contains common LE-specific overrides for all Vienna LE variants.
+ */
+
+/* Disable modem memory for LE variants */
+&mpss_mem {
+	status = "disabled";
+};
+
+/* Disable modem DTB memory for LE variants */
+&q6_mpss_dtb_mem {
+	status = "disabled";
+};
+
+/* Disable CDSP (Compute DSP) memory for LE variants */
+&cdsp_mem {
+	status = "disabled";
+};
+
+/* Disable CDSP DTB memory for LE variants */
+&q6_cdsp_dtb_mem {
+	status = "disabled";
+};
+
+/* Disable splash screen memory for LE variants */
+&splash_memory {
+	status = "disabled";
+};
+
+/* Disable I2C9 for LE variants */
+&i2c9 {
+	status = "disabled";
+};
