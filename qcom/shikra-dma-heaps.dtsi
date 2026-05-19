@@ -6,7 +6,7 @@
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
 
 &soc {
-	qcom,dma-heaps {
+	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
 		depends-on-supply = <&qcom_scm>;
 
