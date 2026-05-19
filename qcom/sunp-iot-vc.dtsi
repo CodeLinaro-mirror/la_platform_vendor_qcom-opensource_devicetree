@@ -221,3 +221,7 @@
 	};
 };
 
+&usb0 {
+	extcon = <&extcon_lt8711uxe2>, <&eud>;
+};
+
