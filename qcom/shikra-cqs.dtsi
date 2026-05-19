@@ -26,6 +26,17 @@
 		reg = <0x0 0x86300000 0x0 0x400000>;
 	};
 
+	/delete-node/ audio_carved_region@86200000;
+	audio_carveout_mem: audio_carved_region@86200000 {
+		no-map;
+		reg = <0x0 0x86200000 0x0 0x40000>;
+	};
+
+	audio_mdsp_carveout_mem: audio_mdsp_carveout_region@86240000 {
+		no-map;
+		reg = <0x0 0x86240000 0x0 0xC0000>;
+	};
+
 	/* UEFI region at 0x9F800000 is reclaimed by Linux */
 
 	/delete-node/ mpss_wlan_region@ab000000;
@@ -48,33 +59,12 @@
 		no-map;
 		reg = <0x0 0xb3d17000 0x0 0x700000>;
 	};
-
-	/delete-node/ lmcu_region@b4402000;
-	lmcu_mem: lmcu_region@b4417000 {
-		no-map;
-		reg = <0x0 0xb4417000 0x0 0x300000>;
-	};
-
-	/delete-node/ lmcu_dtb_region@b4702000;
-	lmcu_dtb_mem: lmcu_dtb_region@b4717000 {
-		no-map;
-		reg = <0x0 0xb4717000 0x0 0x40000>;
-	};
-
-	audio_cma: audio_cma_region {
-		compatible = "shared-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		reusable;
-		alignment = <0x0 0x400000>;
-		size = <0x0 0x400000>;
-	};
 };
 
 &qcom_dma_heaps {
 	qcom,audio {
 		qcom,dma-heap-name = "qcom,audio";
-		qcom,dma-heap-type = <HEAP_TYPE_CMA>;
-		memory-region = <&audio_cma>;
+		qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
+		memory-region = <&audio_mdsp_carveout_mem>;
 	};
 };
-
