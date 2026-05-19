@@ -84,9 +84,9 @@
 		reg = <0x0 0x82300000 0x0 0x60000>;
 	};
 
-	wlan_msa_moselle_mem: wlan_msa_moselle_region@82a00000 {
+	wlan_msa_mem: wlan_msa_region@82a00000 {
 		no-map;
-		reg = <0x0 0x82a00000 0x0 0xc00000>;
+		reg = <0x0 0x82a00000 0x0 0x300000>;
 	};
 
 	splash_screen_mem: splash_screen_region@83600000 {
@@ -99,7 +99,7 @@
 		reg = <0x0 0x84b00000 0x0 0x800000>;
 	};
 
-	wpss_moselle_mem: wpss_moselle_region@85300000 {
+	wpss_mem: wpss_region@85300000 {
 		no-map;
 		reg = <0x0 0x85300000 0x0 0x1900000>;
 	};

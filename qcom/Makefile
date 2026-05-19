@@ -253,6 +253,15 @@ bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
+
+ifeq ($(CONFIG_ARCH_BENGAL), y)
+bengal-le-dtb-$(CONFIG_ARCH_BENGAL) += qrb4210-rb2.dtb \
+				qrb4210-rb2-v2.dtb \
+				qrb4210-rb2-v3.dtb \
+				qrb4210-rb2-v4.dtb
+dtb-y += $(bengal-le-dtb-y)
+endif
+
 SCUBA_BASE_DTB +=  scuba-iot.dtb scuba-iot-2gb.dtb scubap-iot.dtb scubap-iot-idp.dtb scubap-iot-idp-2gb.dtb
 
 SCUBA_BOARDS += \
@@ -717,6 +726,7 @@ LEMANS_MULTI_GVM_BOARDS += \
 		lemans-vm-lv-mt-overlay.dtbo
 
 LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx.dtb
+LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx-qcvirtio.dtb
 LEMANS_GH_LV_GVM_QAM_BOARDS += lemans-gh-vm-lv-qam-ridesx-overlay.dtbo
 
 LEMANS_SDP8_LA_GVM_BASE_DTB += sa8255p-sdp8-vm-la.dtb
@@ -963,6 +973,18 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
 				chora-oemvm-qrd-overlay.dtbo \
 				chora-oemvm-rcm-overlay.dtbo \
 				chora-oemvm-cdp-overlay.dtbo
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_BOURTZI), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += bourtzi-vm-atp-overlay.dtbo \
+				bourtzi-vm-mtp-overlay.dtbo \
+				bourtzi-vm-qrd-overlay.dtbo \
+				bourtzi-vm-rcm-overlay.dtbo \
+				bourtzi-vm-cdp-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif

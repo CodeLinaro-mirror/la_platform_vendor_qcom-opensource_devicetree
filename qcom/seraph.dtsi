@@ -1217,7 +1217,7 @@
 		bwprof_ddr: ddr {
 			compatible = "qcom,bwprof-hw";
 			qcom,hw-type = < 0 >;
-			qcom,bus_width = < 16 >;
+			qcom,bus_width = < 4 >;
 
 			bwprof_ddr_1ms: 1ms {
 				compatible = "qcom,bwprof-sampling-mode";
@@ -1994,7 +1994,7 @@
 		qcom,scaling-exceptions = <>;
 		qcom,interconnect,num-cases = <5>;
 		qcom,interconnect,num-paths = <3>;
-		mboxes = <&qmp_aop 0>;
+		qcom,qmp = <&aoss_qmp>;
 		interconnects = <&system_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
 		<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
 		<&gem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_IPA_CFG>;
@@ -2556,6 +2556,14 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x400000>;
+	};
+
+	non_secure_display_memory: non_secure_display_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xa400000>;
 	};
 
 	qseecom_mem: qseecom_region {

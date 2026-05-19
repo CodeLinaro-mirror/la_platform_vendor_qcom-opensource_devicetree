@@ -3,6 +3,8 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/clock/qcom,sm4450-gcc.h>
+
 &soc {
 	usb0: ssusb@a600000 {
 		compatible = "qcom,dwc-usb3-msm";
@@ -12,6 +14,18 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 		ranges;
+
+		USB3_GDSC-supply = <&gcc_usb30_prim_gdsc>;
+		clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+			<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+			<&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+			<&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+			<&gcc GCC_USB30_PRIM_SLEEP_CLK>;
+		clock-names = "core_clk", "iface_clk", "bus_aggr_clk",
+					"utmi_clk", "sleep_clk";
+
+		resets = <&gcc GCC_USB30_PRIM_BCR>;
+		reset-names = "core_reset";
 
 		interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
 					<&pdc 14 IRQ_TYPE_EDGE_RISING>,
@@ -31,6 +45,11 @@
 			0x130 /* GSI_RING_BASE_ADDR_L */
 			0x144 /* GSI_RING_BASE_ADDR_H */
 			0x1a4>; /* GSI_IF_STS */
+
+		interconnect-names = "usb-ddr", "usb-ipa", "ddr-usb";
+		interconnects = <&aggre2_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
+				<&aggre2_noc MASTER_USB3_0 &cnoc2 SLAVE_IPA_CFG>,
+				<&gem_noc MASTER_APPSS_PROC &cnoc2 SLAVE_USB3_0>;
 
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
@@ -60,5 +79,13 @@
 	dwc3_mem_region: dwc3_mem_region {
 		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
 				<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+	};
+
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		iommus = <&apps_smmu 0x100f 0x0>;
+		qcom,iommu-dma = "disabled";
+		qcom,usb-audio-stream-id = <0xf>;
+		qcom,usb-audio-intr-num = <2>;
 	};
 };

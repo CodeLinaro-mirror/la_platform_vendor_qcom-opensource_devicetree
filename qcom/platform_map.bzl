@@ -5,8 +5,6 @@ _platform_map = {
             {"name": "lemans-vm-la.dtb"},
             {"name": "lemans-vm-lv.dtb"},
             {"name": "lemans-vm-lv-mt.dtb"},
-            {"name": "lemans-gh-vm-lv-qam-ridesx.dtb"},
-            {"name": "monaco-gh-vm-lv-qam-ridesx.dtb"},
             {"name": "sa7255p-sdp8-vm-la.dtb"},
             {"name": "sa7775p-sdp8-vm-la.dtb"},
             {"name": "sa7255p-sdp8-vm-la-mt.dtb"},
@@ -44,8 +42,6 @@ _platform_map = {
             {"name": "lemans-vm-la-overlay.dtbo"},
             {"name": "lemans-vm-lv-overlay.dtbo"},
             {"name": "lemans-vm-lv-mt-overlay.dtbo"},
-            {"name": "lemans-gh-vm-lv-qam-ridesx-overlay.dtbo"},
-            {"name": "monaco-gh-vm-lv-qam-ridesx-overlay.dtbo"},
             {"name": "sa7255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7775p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa7255p-sdp8-vm-la-mt-overlay.dtbo"},
@@ -394,6 +390,15 @@ _platform_map = {
             {"name": "scuba-iot-rb1-overlay.dtbo"},
         ],
     },
+    "bengal-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "qrb4210-rb2.dtb"},
+            {"name": "qrb4210-rb2-v2.dtb"},
+            {"name": "qrb4210-rb2-v3.dtb"},
+            {"name": "qrb4210-rb2-v4.dtb"},
+        ],
+    },
     "monaco": {
         "dtb_list": [
             {"name": "monaco.dtb"},
@@ -572,7 +577,7 @@ _platform_map = {
             {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-vm", "chora-vm"],
+        "binary_compatible_with": ["alor-vm", "chora-vm", "bourtzi-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -631,6 +636,16 @@ _platform_map = {
             {"name": "chora-oemvm-mtp-overlay.dtbo"},
             {"name": "chora-oemvm-qrd-overlay.dtbo"},
             {"name": "chora-oemvm-rcm-overlay.dtbo"},
+        ],
+    },
+    "bourtzi-vm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-vm-atp-overlay.dtbo"},
+            {"name": "bourtzi-vm-mtp-overlay.dtbo"},
+            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
+            {"name": "bourtzi-vm-qrd-overlay.dtbo"},
+            {"name": "bourtzi-vm-rcm-overlay.dtbo"},
         ],
     },
     "malabar-tuivm": {

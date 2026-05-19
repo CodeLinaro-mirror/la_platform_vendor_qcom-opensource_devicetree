@@ -146,7 +146,7 @@
 		thermal-sensors = <&tsens0 0>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -155,12 +155,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -171,7 +165,7 @@
 		thermal-sensors = <&tsens0 1>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -183,15 +177,9 @@
 			};
 
 			cpu00_config: cpu00-config {
-				temperature = <122000>;
+				temperature = <118000>;
 				hysteresis = <10000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -202,7 +190,7 @@
 		thermal-sensors = <&tsens0 2>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -214,15 +202,9 @@
 			};
 
 			cpu01_config: cpu01-config {
-				temperature = <122000>;
+				temperature = <118000>;
 				hysteresis = <10000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -240,7 +222,7 @@
 		thermal-sensors = <&tsens0 3>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -252,15 +234,9 @@
 			};
 
 			cpu10_config: cpu10-config {
-				temperature = <122000>;
+				temperature = <118000>;
 				hysteresis = <10000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -278,7 +254,7 @@
 		thermal-sensors = <&tsens0 4>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -290,15 +266,9 @@
 			};
 
 			cpu11_config: cpu11-config {
-				temperature = <122000>;
+				temperature = <118000>;
 				hysteresis = <10000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -316,7 +286,7 @@
 		thermal-sensors = <&tsens0 5>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -325,12 +295,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -341,7 +305,7 @@
 		thermal-sensors = <&tsens0 6>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -356,12 +320,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -379,7 +337,7 @@
 		thermal-sensors = <&tsens0 7>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -394,12 +352,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -417,7 +369,7 @@
 		thermal-sensors = <&tsens0 8>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -426,12 +378,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -442,7 +388,7 @@
 		thermal-sensors = <&tsens0 9>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -451,12 +397,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -467,7 +407,7 @@
 		thermal-sensors = <&tsens0 10>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -476,12 +416,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -492,7 +426,7 @@
 		thermal-sensors = <&tsens0 11>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -501,12 +435,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};
@@ -517,7 +445,7 @@
 		thermal-sensors = <&tsens0 12>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -529,15 +457,9 @@
 			};
 
 			cpu02_config: cpu02-config {
-				temperature = <122000>;
+				temperature = <118000>;
 				hysteresis = <10000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 
@@ -555,7 +477,7 @@
 		thermal-sensors = <&tsens0 13>;
 		trips {
 			thermal-engine-config {
-				temperature = <135000>;
+				temperature = <125000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -564,12 +486,6 @@
 				temperature = <115000>;
 				hysteresis = <5000>;
 				type = "passive";
-			};
-
-			reset-mon-cfg {
-				temperature = <125000>;
-				hysteresis = <5000>;
-				type = "hot";
 			};
 		};
 	};

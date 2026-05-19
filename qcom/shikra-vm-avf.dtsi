@@ -133,6 +133,32 @@
 				qcom,label = <0x104>;
 				peer-default;
 			};
+			smmu-proxy-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/smmu-proxy-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x10a>;
+			};
+
+			test-large-dmabuf-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10d>;
+				peer-default;
+			};
+
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
+			};
 
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
@@ -241,8 +267,18 @@
 			&kinfo_mem
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
+			&qcom_test_large_dmabuf_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
+			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
-			&google_debug_kinfo>;
+			&google_debug_kinfo
+			&qcom_smcinvoke
+			&qcom_mem_object
+			&qtee_shmbridge
+			&qti_smmu_proxy
+			&qti_smmu_proxy_camera_cb
+			&qti_smmu_proxy_display_cb>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
@@ -258,6 +294,32 @@
 		status="ok";
 	};
 
+	qti_smmu_proxy: qti,smmu-proxy {
+		compatible = "smmu-proxy-receiver";
+	};
+
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x601 0x0200>,
+			 <&apps_smmu 0x621 0x0>,
+			 <&apps_smmu 0x641 0x0>,
+			 <&apps_smmu 0x401 0x0200>;
+	};
+
+	qti_smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
+		qcom,iommu-defer-smr-config;
+		memory-region = <&smmu_proxy_iommu_region>;
+		iommus = <&apps_smmu 0x421 0x0>;
+	};
+
+	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
+		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x20000>;
+	};
+
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
@@ -269,6 +331,34 @@
 		affinity = <0>;
 	};
 
+	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <0x109>;
@@ -278,7 +368,23 @@
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
 	};
+
+	qcom_smcinvoke: qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge: qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <64>;
+		qcom,support-hypervisor;
+	};
 };
 
 #include "shikra-vm-rm-info-avf.dtsi"
+#include "shikra-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-shikra-vm-avf.dtsi"
 

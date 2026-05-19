@@ -15,7 +15,8 @@
 				&qcom_ms4
 				&qcom_ms5
 				&qcom_ms6
-				&qcom_ms7>;
+				&qcom_ms7
+				&qcom_dsp_heap0>;
 
 		depends-on-supply = <&qcom_scm>;
 
@@ -63,6 +64,12 @@
 
 		qcom_ms7: qcom,ms7 {
 			qcom,dma-heap-name = "qcom,ms7";
+			qcom,dma-heap-type = <HEAP_TYPE_TVM_CARVEOUT>;
+			qcom,dynamic-heap;
+		};
+
+		qcom_dsp_heap0: qcom,dsp-heap0 {
+			qcom,dma-heap-name = "qcom,dsp-heap0";
 			qcom,dma-heap-type = <HEAP_TYPE_TVM_CARVEOUT>;
 			qcom,dynamic-heap;
 		};

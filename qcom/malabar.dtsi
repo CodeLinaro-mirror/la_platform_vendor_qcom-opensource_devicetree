@@ -448,15 +448,6 @@
 	qtee_shmbridge {
 		compatible = "qcom,tee-shared-memory-bridge";
 	};
-
-	qti,smmu-proxy {
-		compatible = "smmu-proxy-sender";
-	};
-
-	qcom,seccamtest {
-		compatible = "qcom,seccamtest";
-		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
-	};
 };
 
 &soc {
@@ -773,15 +764,14 @@
 	tlmm: pinctrl@400000 {
 		compatible = "qcom,malabar-tlmm";
 		reg = <0x0 0x400000 0x0 0x1000000>;
-		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>,
-			<GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
+		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+
 		gpio-controller;
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		qcom,gpios-reserved = <73 36 37 38 39 21 22>;
 		wakeup-parent = <&mpm>;
-		qcom,dirconn-list = <0xFFFFFFFF 0>,<13 235>;
 	};
 
 	cpu_pmu: cpu-pmu {
@@ -2282,6 +2272,15 @@
 				&tlmm 56 0
 				&tlmm 57 0>;
 		};
+	};
+
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 	};
 };
 

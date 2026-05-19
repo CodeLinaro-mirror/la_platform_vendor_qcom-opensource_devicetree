@@ -1144,7 +1144,7 @@
 		};
 	};
 
-	qcom,smp2p-dcp {
+	qcom_smp2p_dcp: qcom,smp2p-dcp {
 		compatible = "qcom,smp2p";
 		qcom,smem = <617>, <616>;
 		interrupt-parent = <&ipcc_mproc>;
@@ -2634,6 +2634,11 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x1000000>;
+	};
+
+	dcp_mem: dcp_region@0x2400000 {
+		no-map;
+		reg = <0x0 0x2400000 0x0 0x0>;
 	};
 };
 

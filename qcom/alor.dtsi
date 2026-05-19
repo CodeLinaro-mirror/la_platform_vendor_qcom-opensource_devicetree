@@ -450,6 +450,11 @@
 		compatible = "qcom,hdcp";
 		qcom,use-smcinvoke = <1>;
 	};
+
+	sdei {
+		compatible = "arm,sdei-1.0";
+		method = "hvc";
+	};
 };
 
 &soc {
@@ -1530,6 +1535,10 @@
 
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
+	};
+
+	qcom,sdei {
+		compatible = "qcom,sdei";
 	};
 
 	qfprom: qfprom@221c8000 {

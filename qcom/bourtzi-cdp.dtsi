@@ -2,3 +2,14 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
+
+#include "bourtzi-pmic-overlay.dtsi"
+#include "bourtzi-pmiv010x.dtsi"
+
+&pmiv010x_amoled {
+	status = "okay";
+};
+
+&pmiv010x_amoled_ecm {
+	status = "okay";
+};
