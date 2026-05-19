@@ -2203,7 +2203,7 @@
 			vdda12-supply = <&L2J>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -2319,6 +2319,7 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <120000000>;
@@ -2376,7 +2377,7 @@
 			vdda12-supply = <&L3E>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_2_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -2513,7 +2514,7 @@
 			vdda12-supply = <&L2J>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
