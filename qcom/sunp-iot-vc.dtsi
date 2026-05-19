@@ -210,6 +210,7 @@
 		lt,dp-alt-en = <&tlmm 48 0>;
 		lt,reset-gpio = <&tlmm 46 0>;
 		lt,cc-gpio = <&tlmm 68 0>;
+		control-ramdump;
 		with-hdmi-switch;
 		usb-ss-support;
 		pinctrl-names = "default";
