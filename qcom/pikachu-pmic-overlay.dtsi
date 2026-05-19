@@ -24,6 +24,10 @@
 	};
 };
 
+&usb0 {
+	extcon = <&pmar2230_extcon>;
+};
+
 &soc {
 	gpio_key {
 		compatible = "gpio-keys";

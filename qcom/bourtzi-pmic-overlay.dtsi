@@ -1,0 +1,271 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "pmk8350.dtsi"
+&spmi0_bus {
+	#include "pm6450.dtsi"
+	#include "pmg1110.dtsi"
+};
+
+&pmg1110 {
+	reg = <6 SPMI_USID>;
+};
+
+&pmg1110_tz {
+	interrupts = <0x6 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+};
+
+&soc {
+	pmic-pon-log {
+		compatible = "qcom,pmic-pon-log";
+		nvmem = <&pmk8350_sdam_5>;
+		nvmem-names = "pon_log";
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+			linux,input-type = <1>;
+			linux,code = <KEY_VOLUMEUP>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+			linux,can-disable;
+		};
+	};
+};
+
+&tlmm {
+	key_vol_up_default: key_vol_up_default {
+		mux {
+			pins = "gpio53";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio53";
+			drive-strength = <2>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
+
+	pm8010m_reset_default: pm8010m-reset-default-state {
+		pins = "gpio59";
+		function = "gpio";
+		bias-pull-down;
+	};
+
+	pm8010n_reset_default: pm8010n-reset-default-state {
+		pins = "gpio30";
+		function = "gpio";
+		bias-pull-down;
+	};
+
+	pm8010m_int_default: pm8010m-int-default-state {
+		pins = "gpio62";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	pm8010n_int_default: pm8010n-int-default-state {
+		pins = "gpio28";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+};
+
+&gcc {
+	qcom,critical-devices = <&qupv3_se6_i2c>;
+};
+
+&qupv3_se6_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	pm8010m: pmic@8 {
+		compatible = "qcom,pm8008";
+		reg = <0x8>;
+
+		interrupts-extended = <&tlmm 62 IRQ_TYPE_EDGE_RISING>;
+		reset-gpios = <&tlmm 59 GPIO_ACTIVE_LOW>;
+
+		vdd-l1-l2-supply = <&S8B>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&pm8010m_int_default>, <&pm8010m_reset_default>;
+
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-ranges = <&pm8010m 0 0 2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
+
+		#thermal-sensor-cells = <0>;
+
+		regulators {
+			L1M: pm8010m_l1: ldo1 {
+				regulator-name = "pm8010m_l1";
+				regulator-min-microvolt = <1056000>;
+				regulator-max-microvolt = <1184000>;
+			};
+
+			L2M: pm8010m_l2: ldo2 {
+				regulator-name = "pm8010m_l2";
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1152000>;
+			};
+
+			L3M: pm8010m_l3: ldo3 {
+				regulator-name = "pm8010m_l3";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L4M: pm8010m_l4: ldo4 {
+				regulator-name = "pm8010m_l4";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L5M: pm8010m_l5: ldo5 {
+				regulator-name = "pm8010m_l5";
+				regulator-min-microvolt = <1504000>;
+				regulator-max-microvolt = <3544000>;
+			};
+
+			L6M: pm8010m_l6: ldo6 {
+				regulator-name = "pm8010m_l6";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L7M: pm8010m_l7: ldo7 {
+				regulator-name = "pm8010m_l7";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <3000000>;
+			};
+		};
+	};
+
+	pm8010n: pmic@c {
+		compatible = "qcom,pm8008";
+		reg = <0xc>;
+
+		interrupts-extended = <&tlmm 28 IRQ_TYPE_EDGE_RISING>;
+		reset-gpios = <&tlmm 30 GPIO_ACTIVE_LOW>;
+
+		vdd-l1-l2-supply = <&S8B>;
+		vdd-l3-l4-l5-supply = <&S9B>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&pm8010n_int_default>, <&pm8010n_reset_default>;
+
+		gpio-controller;
+		#gpio-cells = <2>;
+		gpio-ranges = <&pm8010n 0 0 2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
+
+		#thermal-sensor-cells = <0>;
+
+		regulators {
+			L1N: pm8010n_l1: ldo1 {
+				regulator-name = "pm8010n_l1";
+				regulator-min-microvolt = <1056000>;
+				regulator-max-microvolt = <1200000>;
+			};
+
+			L2N: pm8010n_l2: ldo2 {
+				regulator-name = "pm8010n_l2";
+				regulator-min-microvolt = <952000>;
+				regulator-max-microvolt = <1152000>;
+			};
+
+			L3N: pm8010n_l3: ldo3 {
+				regulator-name = "pm8010n_l3";
+				regulator-min-microvolt = <1792000>;
+				regulator-max-microvolt = <1904000>;
+			};
+
+			L4N: pm8010n_l4: ldo4 {
+				regulator-name = "pm8010n_l4";
+				regulator-min-microvolt = <1792000>;
+				regulator-max-microvolt = <1904000>;
+			};
+
+			L5N: pm8010n_l5: ldo5 {
+				regulator-name = "pm8010n_l5";
+				regulator-min-microvolt = <1504000>;
+				regulator-max-microvolt = <3544000>;
+			};
+
+			L6N: pm8010n_l6: ldo6 {
+				regulator-name = "pm8010n_l6";
+				regulator-min-microvolt = <2704000>;
+				regulator-max-microvolt = <2904000>;
+			};
+
+			L7N: pm8010n_l7: ldo7 {
+				regulator-name = "pm8010n_l7";
+				regulator-min-microvolt = <1504000>;
+				regulator-max-microvolt = <3544000>;
+			};
+		};
+	};
+};
+
+&thermal_zones {
+	pm8010m-thermal {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8010m>;
+
+		trips {
+			trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+
+	pm8010n-thermal {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8010n>;
+
+		trips {
+			trip0 {
+				temperature = <95000>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			trip1 {
+				temperature = <115000>;
+				hysteresis = <0>;
+				type = "critical";
+			};
+		};
+	};
+};

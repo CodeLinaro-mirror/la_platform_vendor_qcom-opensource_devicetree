@@ -852,6 +852,7 @@
 		compatible = "qcom,cpucp-log";
 		reg = <0xD8040000 0x10000>, <0xD8050000 0x10000>;
 		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
 	};
 
 	llcc_pmu: llcc-pmu@24095000 {
@@ -1038,7 +1039,7 @@
 					< 1113600  902400 >,
 					< 1497600 1209600 >,
 					< 1747200 1401600 >,
-					< 1843200 1516800 >,
+					< 1843200 1497600 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 			};
@@ -1047,7 +1048,7 @@
 				compatible = "qcom,memlat-mon";
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
-					< 1747200  268800 >,
+					< 1747200  403200 >,
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
@@ -1288,14 +1289,13 @@
 	};
 
 	cpuss-sleep-stats@17800054 {
-		compatible = "qcom,cpuss-sleep-stats-v4";
+		compatible = "qcom,cpuss-sleep-stats";
 		reg = <0x17800054 0x4>, <0x17810054 0x4>, <0x17820054 0x4>,
-		      <0x17830054 0x4>, <0x17840054 0x4>, <0x17880098 0x4>,
-		      <0x178c0000 0x10000>;
+		      <0x17830054 0x4>, <0x17880098 0x4>, <0x178c0000 0x10000>;
 		reg-names = "seq_lpm_cntr_cfg_cpu0", "seq_lpm_cntr_cfg_cpu1",
 			    "seq_lpm_cntr_cfg_cpu2", "seq_lpm_cntr_cfg_cpu3",
 			    "l3_seq_lpm_cntr_cfg", "apss_seq_mem_base";
-		num-cpus = <5>;
+		num-cpus = <4>;
 	};
 
 	sram@c3f0000 {
@@ -1905,7 +1905,6 @@
 		clocks = <&pcie_0_pipe_clk>;
 		qcom,hw-drv-ids = <0 1>;
 		qcom,sw-drv-ids = <0>;
-		status = "disabled";
 	};
 
 	pcie_pdc: pdc@b330000 {
@@ -2043,22 +2042,22 @@
 
 		ipa_smmu_ap_partition: ipa_smmu_ap_partition {
 			iommu-addresses = <&ipa_smmu_ap 0x0 0x0 0x0 0x20000000>,
-				<&ipa_smmu_ap 0x0 0x40000000 0xFFFFFFFF 0xC0000000>;
+				<&ipa_smmu_ap 0x0 0x40000000 0xffffffff 0xC0000000>;
 		};
 
 		ipa_smmu_uc_partition: ipa_smmu_uc_partition {
 			iommu-addresses = <&ipa_smmu_uc 0x0 0x0 0x0 0x20000000>,
-				<&ipa_smmu_uc 0x0 0x40000000 0xFFFFFFFF 0xC0000000>;
+				<&ipa_smmu_uc 0x0 0x40000000 0xffffffff 0xC0000000>;
 		};
 
 		ipa_smmu_rtp_partition: ipa_smmu_rtp_partition {
 			iommu-addresses = <&ipa_smmu_rtp 0x0 0x0 0x0 0x20000000>,
-				<&ipa_smmu_rtp 0x0 0x40000000 0xFFFFFFFF 0xC0000000>;
+				<&ipa_smmu_rtp 0x0 0x40000000 0xffffffff 0xC0000000>;
 		};
 
 		ipa_smmu_ap: ipa_smmu_ap {
 			compatible = "qcom,ipa-smmu-ap-cb";
-			iommus = <&apps_smmu 0x0A0 0x0>;
+			iommus = <&apps_smmu 0x0a0 0x0>;
 			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_ap_partition>;
 			qcom,additional-mapping =
@@ -2071,7 +2070,7 @@
 
 		ipa_smmu_wlan: ipa_smmu_wlan {
 			compatible = "qcom,ipa-smmu-wlan-cb";
-			iommus = <&apps_smmu 0x0A1 0x0>;
+			iommus = <&apps_smmu 0x0a1 0x0>;
 			qcom,iommu-group = <&cnss_ipa_wlan_iommu_group0>;
 			qcom,shared-cb;
 			dma-coherent;
@@ -2079,7 +2078,7 @@
 
 		ipa_smmu_uc: ipa_smmu_uc {
 			compatible = "qcom,ipa-smmu-uc-cb";
-			iommus = <&apps_smmu 0x0A2 0x0>;
+			iommus = <&apps_smmu 0x0a2 0x0>;
 			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_uc_partition>;
 			/* Map IPCC Fence Protocol Region to uC CB */
@@ -2090,7 +2089,7 @@
 
 		ipa_smmu_rtp: ipa_smmu_rtp {
 			compatible = "qcom,ipa-smmu-rtp-cb";
-			iommus = <&apps_smmu 0x0A3 0x0>;
+			iommus = <&apps_smmu 0x0a3 0x0>;
 			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_rtp_partition>;
 			qcom,iommu-dma = "atomic";
@@ -2477,6 +2476,14 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		size = <0 0x1000000>;
+	};
+
+	non_secure_display_memory: non_secure_display_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xa400000>;
 	};
 };
 

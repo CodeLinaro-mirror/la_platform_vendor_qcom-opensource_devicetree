@@ -589,7 +589,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-3 slub_debug=- ";
 	};
 
 	soc: soc { };
@@ -908,36 +908,6 @@
 		reg = <0x440b000 0x4>,
 		      <0x03d3000 0x4>;
 		reg-names = "pshold-base", "tcsr-boot-misc-detect";
-	};
-
-	qcom_seecom: qseecom@61800000 {
-		compatible = "qcom,qseecom";
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-		memory-region = <&qseecom_mem>;
-		qseecom_mem = <&qseecom_mem>;
-		qseecom_ta_mem = <&qseecom_ta_mem>;
-		user_contig_mem = <&user_contig_mem>;
-		qcom,hlos-num-ce-hw-instances = <1>;
-		qcom,hlos-ce-hw-instance = <0>;
-		qcom,qsee-ce-hw-instance = <0>;
-		qcom,disk-encrypt-pipe-pair = <2>;
-		qcom,support-fde;
-		qcom,fde-key-size;
-		qcom,appsbl-qseecom-support;
-		qcom,commonlib64-loaded-by-uefi;
-		interconnect-names = "data_path";
-		interconnects = <&system_noc MASTER_CRYPTO_CORE0 &bimc SLAVE_EBI_CH0>;
-		clock-names =
-			"core_clk_src", "core_clk",
-			"iface_clk", "bus_clk";
-		clocks =
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>;
-		qcom,ce-opp-freq = <192000000>;
-		qcom,qsee-reentrancy-support = <2>;
 	};
 
 	qcom_rng: qrng@1b53000 {
@@ -1299,7 +1269,7 @@
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x4744000 0x1000>, <0x4745000 0x1000>,
 		      <0x4748000 0x8000>;
-		reg-names = "hc", "cqhci", "cqhci_ice";
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts-extended = <&intc GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
 				<&intc GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,

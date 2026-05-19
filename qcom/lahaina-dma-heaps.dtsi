@@ -48,6 +48,13 @@
 			memory-region = <&sp_mem>;
 		};
 
+		qcom,secure_sp_tz {
+			qcom,dma-heap-name = "qcom,secure-sp-tz";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			memory-region = <&spu_tz_shared_mem>;
+			qcom,token = <0x01000000>;
+		};
+
 		qcom,adsp {
 			qcom,dma-heap-name = "qcom,adsp";
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;

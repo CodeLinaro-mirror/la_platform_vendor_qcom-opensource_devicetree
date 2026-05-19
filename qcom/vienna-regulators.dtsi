@@ -930,4 +930,15 @@
 			qcom,init-voltage = <1504000>;
 		};
 	};
+
+	rpmh-regulator-vrm-wcal {
+		compatible = "qcom,rpmh-pbs-regulator";
+		qcom,resource-name = "vrm.wcal";
+
+		WCAL_PBS:
+		pmw6100_wcal_pbs: regulator-pmw6100-wcal-pbs {
+			regulator-name = "pmw6100_wcal_pbs";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+		};
+	};
 };

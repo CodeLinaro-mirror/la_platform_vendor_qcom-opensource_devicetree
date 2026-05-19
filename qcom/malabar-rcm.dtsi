@@ -4,6 +4,7 @@
  */
 
 #include "malabar-pmic-overlay.dtsi"
+#include "malabar-thermal-overlay.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 
 &sdhc_1 {

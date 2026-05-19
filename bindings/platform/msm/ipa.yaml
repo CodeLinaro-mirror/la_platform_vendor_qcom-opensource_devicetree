@@ -23,6 +23,14 @@ properties:
     minItems: 1
     description: Base addresses and sizes of IPA register regions.
 
+  clocks:
+    maxItems: 1
+    description: Clock phandle for IPA core clock.
+
+  clock-names:
+    items:
+      - const: core_clk
+
 required:
   - compatible
   - reg

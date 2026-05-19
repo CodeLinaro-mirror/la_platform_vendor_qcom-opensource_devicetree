@@ -12,7 +12,6 @@
 		device-name = "cti_apss1";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-		
 	};
 
 	apss_cti0: cti@128e0000 {
@@ -535,6 +534,7 @@
 		device-name = "tpdm_ddr_ch02";
 
 		qcom,cmb-element-bits = <32>;
+		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <16>;
 
 		clocks = <&aoss_qmp>;
@@ -587,7 +587,6 @@
 		qcom,cmb-element-bits = <32>;
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <32>;
-		qcom,cmb-msrs-num = <1>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -610,7 +609,6 @@
 		device-name = "tpdm_ddr_dpm";
 
 		qcom,cmb-element-bits = <64>;
-		qcom,cmb-msrs-num = <1>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -646,7 +644,7 @@
 
 		reg-names = "tpda-base";
 		device-name = "tpda_ddr_llcc";
- 		status = "disabled";
+
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 		in-ports {
@@ -766,15 +764,9 @@
 		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			port@0 {
-				dl_0_ddr_out_dlct_0_2: endpoint {
-					remote-endpoint =
-						<&dlct_0_2_in_dl_0_ddr>;
-					filter-source = <&dl_1_ddr>;
-				};
-			};
 
-			port@1 {
+			port@0 {
+				reg = <0>;
 				dl_0_ddr_out_tpda_dlct_0_4: endpoint {
 					remote-endpoint =
 						<&tpda_dlct_0_4_in_dl_0_ddr>;
@@ -782,7 +774,8 @@
 				};
 			};
 
-			port@2 {
+			port@1 {
+				reg = <1>;
 				dl_0_ddr_out_tpda_dlct_0_6: endpoint {
 					remote-endpoint =
 						<&tpda_dlct_0_6_in_dl_0_ddr>;
@@ -790,11 +783,20 @@
 				};
 			};
 
-			port@3 {
+			port@2 {
+				reg = <2>;
 				dl_0_ddr_out_tpda_dlct_0_7: endpoint {
 					remote-endpoint =
 						<&tpda_dlct_0_7_in_dl_0_ddr>;
 					filter-source = <&ddr_tpdm_ddr_dpm>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				dl_0_ddr_out_dlct_0_2: endpoint {
+					remote-endpoint =
+						<&dlct_0_2_in_dl_0_ddr>;
 				};
 			};
 		};
@@ -808,7 +810,6 @@
 		device-name = "tpdm_llcc0";
 
 		qcom,cmb-element-bits = <32>;
-		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -828,7 +829,6 @@
 
 		reg-names = "tpdm-base";
 		device-name = "tpdm_llcc1";
-		status = "disabled";
 
 		qcom,cmb-element-bits = <32>;
 
@@ -2666,7 +2666,6 @@
 		qcom,dsb-msrs-num = <16>;
 
 		device-name = "tpdm_turing_dsb";
-		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -2710,7 +2709,9 @@
 	};
 
 	tpdm_turing_cmsr1: tpdm@11183000 {
-		compatible = "arm,coresight-dummy-source";
+		compatible = "qcom,coresight-static-tpdm";
+		qcom,dsb-element-bits = <32>;
+		qcom,cmb-element-bits = <32>;
 
 		device-name = "tpdm_turing_cmsr1";
 
@@ -2725,7 +2726,7 @@
 	};
 
 	tpdm_turing_cmsr2: tpdm@11184000 {
-		compatible = "arm,coresight-dummy-source";
+		compatible = "qcom,coresight-static-tpdm";
 		qcom,dsb-element-bits = <32>;
 		qcom,cmb-element-bits = <32>;
 
@@ -2742,17 +2743,11 @@
 	};
 
 	tpdm_turing_dpm1: tpdm@11185000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x11185000 0x1000>;
-		reg-names = "tpdm-base";
+		compatible = "qcom,coresight-static-tpdm";
 		qcom,cmb-element-bits = <64>;
 
 		device-name = "tpdm_turing_dpm1";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_dpm1_out_tpda_turing: endpoint {
@@ -2764,17 +2759,11 @@
 	};
 
 	tpdm_turing_dpm2: tpdm@11186000 {
-		compatible = "qcom,coresight-tpdm", "arm,primecell";
-		reg = <0x11186000 0x1000>;
-		reg-names = "tpdm-base";
+		compatible = "qcom,coresight-static-tpdm";
 		qcom,cmb-element-bits = <64>;
 
 		device-name = "tpdm_turing_dpm2";
 
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
-
-		status = "disabled";
 		out-ports {
 			port {
 				tpdm_turing_dpm2_out_tpda_turing: endpoint {
@@ -3530,12 +3519,11 @@
 	};
 
 	tpda_apss: tpda@12863000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb969>;
+		compatible = "qcom,coresight-tpda","arm,primecell";
+		arm,primecell-periphid = <0x000f0f00>;
 
 		reg = <0x12863000 0x1000>;
 		reg-names = "tpda-base";
-
 		device-name = "tpda_apss";
 
 		clocks = <&aoss_qmp>;
@@ -3583,11 +3571,11 @@
 	};
 
 	tpdm_llm_silver: tpdm@128a0000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x128a0000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_llm_silver";
 
 		clocks = <&aoss_qmp>;
@@ -3607,11 +3595,11 @@
 
 
 	tpdm_actpm: tpdm@12860000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x12860000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_actpm";
 
 		qcom,cmb-element-bits = <64>;
@@ -3630,11 +3618,11 @@
 	};
 
 	tpdm_llm_dsb: tpdm@12861000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x12861000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_llm_dsb";
 
 		qcom,dsb-element-bits = <32>;
