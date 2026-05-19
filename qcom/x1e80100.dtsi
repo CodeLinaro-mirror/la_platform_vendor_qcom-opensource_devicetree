@@ -1893,7 +1893,7 @@
 
 		usb_mp: usb@a4f8800 {
 			compatible = "qcom,x1e80100-dwc3-mp",
-				     "qcom,dwc3";
+				     "qcom,dwc3-mp";
 			reg = <0x0 0x0a4f8800 0x0 0x400>;
 
 			clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
