@@ -45,6 +45,10 @@
 		0x5 0x57>;
 };
 
+&pmih010x_bcl2 {
+	status = "disabled";
+};
+
 &qupv3_hub_i2c0 {
 	status = "okay";
 
