@@ -149,6 +149,15 @@
 				peer-default;
 			};
 
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
+			};
+
 			// Retrieve VM dmesg
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
@@ -261,8 +270,11 @@
 			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
 			&qcom_gunyah_panic_notifier
 			&tlmm_vm_mem_access
+			&virtio_mem_device
 			&google_debug_kinfo>;
 	};
 
@@ -371,6 +383,29 @@
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
