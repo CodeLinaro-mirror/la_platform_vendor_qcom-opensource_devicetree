@@ -1108,6 +1108,12 @@
 			#hwlock-cells = <1>;
 		};
 
+		qcom,mpm2-sleep-counter@c221000 {
+			compatible = "qcom,mpm2-sleep-counter";
+			reg = <0x0 0xc221000 0x0 0x1000>;
+			clock-frequency = <32768>;
+		};
+
 		aoss_qmp: power-controller@c300000 {
 			compatible = "qcom,glymur-aoss-qmp", "qcom,aoss-qmp";
 			reg = <0x0 0xc300000 0x0 0x400>;
