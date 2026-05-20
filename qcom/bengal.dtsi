@@ -2502,8 +2502,8 @@
 
 			L2P: pm8008_l2: ldo2 {
 				regulator-name = "pm8008_l2";
-				regulator-min-microvolt = <1056000>;
-				regulator-max-microvolt = <1056000>;
+				regulator-min-microvolt = <1200000>;
+				regulator-max-microvolt = <1200000>;
 			};
 
 			L3P: pm8008_l3: ldo3 {
