@@ -1309,11 +1309,8 @@
 		reg-names = "wdt-base";
 		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,bark-time = <11000>;
-		qcom,pet-time = <9360>;
 		qcom,ipi-ping;
 		qcom,wakeup-enable;
-		status = "disabled";
 	};
 
 	gic-interrupt-router {
@@ -1324,7 +1321,6 @@
 		qcom,gic-class1-cpus = <&CPU6 &CPU7>;
 		qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
 		qcom,gic-runtime-cpu-class-en;
-		status = "disabled";
 	};
 
 	vendor_hooks: qcom,cpu-vendor-hooks {
