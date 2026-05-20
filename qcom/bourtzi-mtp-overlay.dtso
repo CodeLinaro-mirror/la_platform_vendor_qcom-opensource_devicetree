@@ -7,7 +7,6 @@
 /plugin/;
 
 #include "bourtzi-mtp.dtsi"
-#include "bourtzi-pmic-overlay.dtsi"
 #include "bourtzi-pm7250b.dtsi"
 #include "bourtzi-smb1355.dtsi"
 
