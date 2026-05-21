@@ -1281,6 +1281,16 @@
 			compatible = "qcom,cpu-vendor-hooks";
 		};
 
+		gic_router: gic-interrupt-router {
+			compatible = "qcom,gic-intr-routing";
+			/* keep cluster0 cores in class0*/
+			qcom,gic-class0-cpus = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+			/* keep other cores in class1 */
+			qcom,gic-class1-cpus = <&cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11 &cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+			qcom,gic-cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11 &cpu12 &cpu13 &cpu14 &cpu15 &cpu16 &cpu17>;
+			qcom,gic-runtime-cpu-class-en;
+		};
+
 		tlmm: pinctrl@f100000 {
 			compatible = "qcom,glymur-tlmm";
 			reg = <0x0 0x0f100000 0x0 0xf00000>;

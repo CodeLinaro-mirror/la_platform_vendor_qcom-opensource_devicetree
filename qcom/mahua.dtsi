@@ -72,6 +72,12 @@
 		};
 };
 
+&gic_router {
+	qcom,gic-class0-cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
+	qcom,gic-class1-cpus = <&cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+	qcom,gic-cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+};
+
 &config_noc {
 	compatible = "qcom,mahua-cnoc_cfg";
 };
