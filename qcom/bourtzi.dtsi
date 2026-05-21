@@ -546,6 +546,13 @@
 		clock-frequency = <19200000>;
 	};
 
+	qcom,qrtr-gunyah-tuivm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x103>;
+		peer-name = <2>;
+	};
+
 	memtimer: timer@17420000 {
 		compatible = "arm,armv7-timer-mem";
 		reg = <0x0 0x17420000 0x0 0x1000>;
