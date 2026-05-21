@@ -81,6 +81,9 @@
 		spi22 = &qupv3_se22_spi;
 		spi23 = &qupv3_se23_spi;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		usb0 = &dwc3_0; /*usb0 child node*/
+		usb1 = &dwc3_1; /*usb1 child node*/
+		usb2 = &dwc3_2; /*usb2 child node*/
 	};
 
 	cpus {
