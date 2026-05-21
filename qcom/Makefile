@@ -514,7 +514,13 @@ PIKACHU_BOARDS += \
 		pikachu-idp-dtof-overlay.dtbo \
 		pikachup-atp-overlay.dtbo \
 		pikachup-idp-overlay.dtbo \
-		pikachup-idp-dtof-overlay.dtbo
+		pikachup-idp-dtof-overlay.dtbo \
+		pikachus-atp-overlay.dtbo \
+		pikachus-idp-overlay.dtbo \
+		pikachus-idp-dtof-overlay.dtbo \
+		pikachups-atp-overlay.dtbo \
+		pikachups-idp-overlay.dtbo \
+		pikachups-idp-dtof-overlay.dtbo
 
 NOAPQ_PIKACHU_BOARDS += \
 		pikachu-rumi-overlay.dtbo
