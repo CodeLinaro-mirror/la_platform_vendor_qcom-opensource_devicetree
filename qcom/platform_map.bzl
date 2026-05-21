@@ -1011,8 +1011,13 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {"name": "pikachus.dtb"},
             {
                 "name": "pikachup.dtb",
+                "apq": True,
+            },
+            {
+                "name": "pikachups.dtb",
                 "apq": True,
             },
         ],

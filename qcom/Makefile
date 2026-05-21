@@ -504,8 +504,9 @@ seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
 seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
 
-PIKACHU_BASE_DTB += pikachu.dtb
-PIKACHU_APQ_BASE_DTB += pikachup.dtb
+PIKACHU_BASE_DTB += pikachu.dtb  pikachus.dtb
+PIKACHU_APQ_BASE_DTB += pikachup.dtb pikachups.dtb
+
 
 PIKACHU_BOARDS += \
 		pikachu-atp-overlay.dtbo \
