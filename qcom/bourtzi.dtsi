@@ -444,6 +444,12 @@
 		qcom,use-smcinvoke = <1>;
 	};
 
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
+	};
+
 	msm_gpu: qcom,kgsl-3d0@3d00000 {};
 
 	psci: psci {
