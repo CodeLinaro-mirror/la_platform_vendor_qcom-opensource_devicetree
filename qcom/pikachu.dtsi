@@ -2528,8 +2528,8 @@
 	nxp_eusb2_repeater: eusb2_repeater@4f {
 		compatible = "nxp,eusb2-repeater";
 		reg = <0x4f>;
-		vdd18-supply = <&L3A_E0>;
-		vdd3-supply = <&L14A_E0>;
+		vdd1v8-supply = <&L3A_E0>;
+		vdd3v3-supply = <&L14A_E0>;
 	};
 };
 
