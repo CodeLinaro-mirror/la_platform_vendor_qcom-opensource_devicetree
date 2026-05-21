@@ -198,7 +198,7 @@
 				reg = <0>;
 
 				wifi1_wsi_tx: endpoint {
-					remote-endpoint = <&wifi2_wsi_rx>;
+					remote-endpoint = <&wifi3_wsi_rx>;
 				};
 			};
 
@@ -206,7 +206,7 @@
 				reg = <1>;
 
 				wifi1_wsi_rx: endpoint {
-					remote-endpoint = <&wifi3_wsi_tx>;
+					remote-endpoint = <&wifi2_wsi_tx>;
 				};
 			};
 		};
@@ -442,7 +442,7 @@
 				reg = <0>;
 
 				wifi2_wsi_tx: endpoint {
-					remote-endpoint = <&wifi3_wsi_rx>;
+					remote-endpoint = <&wifi1_wsi_rx>;
 				};
 			};
 
@@ -450,7 +450,7 @@
 				reg = <1>;
 
 				wifi2_wsi_rx: endpoint {
-					remote-endpoint = <&wifi1_wsi_tx>;
+					remote-endpoint = <&wifi3_wsi_tx>;
 				};
 			};
 		};
@@ -633,7 +633,7 @@
 				reg = <0>;
 
 				wifi3_wsi_tx: endpoint {
-					remote-endpoint = <&wifi1_wsi_rx>;
+					remote-endpoint = <&wifi2_wsi_rx>;
 				};
 			};
 
@@ -641,7 +641,7 @@
 				reg = <1>;
 
 				wifi3_wsi_rx: endpoint {
-					remote-endpoint = <&wifi2_wsi_tx>;
+					remote-endpoint = <&wifi1_wsi_tx>;
 				};
 			};
 		};
