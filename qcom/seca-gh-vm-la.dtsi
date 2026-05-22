@@ -283,6 +283,9 @@
 		vm-attrs = "guest-ram-dump" ,"vpm-virq", "allow-unprotected";
 		qcom,peripheral-vmids = <0x9 0xa 0xb>;
 
+		virtio-iommu-stream-id-ranges-temp = <0x20000 0x10000 0x30000 0x10000>;
+		vits-device-id-ranges-temp = <0xa0000 0x1 0xa0100 0x1 0xb0000 0x1 0xb0100 0x1>;
+
 		memory {
 			#address-cells = <0x2>;
 			#size-cells = <0x0>;
@@ -1295,10 +1298,48 @@
 
 		};
 
+		pci@0 {
+			vdevice-type = "pci";
+			patch = "/vsoc/pcie@0";
+			config-base-address = <0x0 0x28200000>;
+			config-size = <0x0 0x200000>;
+			npmem-base-address = <0x0 0x28100000>;
+			npmem-size = <0x0 0x100000>;
+			enable-msi;
+			dma-coherent;
+		};
 
+		virtio-iommu@0 {
+			vdevice-type = "virtio-iommu";
+			/*
+			 * Use existing PCI config below, no patch or generate
+			 * The HW address of the target SMMUv3
+			 */
+			smmu-handle = <0x0 0x9980000>;
+			/*
+			 * How many stream do we expect to support on this interface
+			 * to limit memory consumption
+			 */
+			max-streams = <10>;
+			pci-slot-index = <0x1>;
+		};
 	};
 
-
+	vsoc: vsoc {
+		/*
+		 * Virtual PCI device for Virtio-iommu
+		 * RM is now choosing the addr for this bus, use the index instead
+		 */
+		vpci_0: pcie@0 {
+			/* Device @1,0 matches up with pci-slot-index <0x1> vm-config */
+			virtio_iommu0: virtio-iommu@1,0 {
+				/* This IOMMU programming interface uses slot 00:01.0 */
+				compatible = "pci1af4,1057";
+				reg = <0x00000800 0x0 0x0 0x0 0x0>;
+				#iommu-cells = <1>;
+			};
+		};
+	};
 
 	firmware: firmware {
 		scm {
