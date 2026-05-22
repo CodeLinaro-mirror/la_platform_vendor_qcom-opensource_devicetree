@@ -1169,7 +1169,6 @@
 		reg = <0x10c70000 0x1000>;
 		reg-names = "tpdm-base";
 
-		atid = <78>;
 		device-name = "tpdm_wpss_dsb";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <16>;
@@ -1193,7 +1192,6 @@
 		reg = <0x10c71000 0x1000>;
 		reg-names = "tpdm-base";
 
-		atid = <78>;
 		device-name = "tpdm_wpss_cmb";
 		qcom,cmb-element-bits = <32>;
 		qcom,cmb-msrs-num = <12>;
@@ -1297,6 +1295,30 @@
 		};
 
 		out-ports {
+			port {
+				funnel_wpss_out_replicator_wpss: endpoint {
+					remote-endpoint =
+					<&replicator_wpss_in_funnel_wpss>;
+				};
+			};
+		};
+	};
+
+	wpss_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_wpss";
+
+		in-ports {
+			port {
+				replicator_wpss_in_funnel_wpss: endpoint {
+					remote-endpoint =
+					<&funnel_wpss_out_replicator_wpss>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -1305,7 +1327,7 @@
 				funnel_wpss_out_tpda_dl_center_5: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_5_in_funnel_wpss>;
-					source = <&tpdm_wpss>;
+					filter-source = <&tpdm_wpss>;
 				};
 			};
 
@@ -1314,7 +1336,7 @@
 				funnel_wpss_out_tpda_dl_center_6: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_6_in_funnel_wpss>;
-					source = <&tpdm_wpss1>;
+					filter-source = <&tpdm_wpss1>;
 				};
 			};
 
@@ -1323,12 +1345,12 @@
 				funnel_wpss_out_funnel_dl_center: endpoint {
 					remote-endpoint =
 					<&funnel_dl_center_in_funnel_wpss>;
-					source = <&wpss_etm>;
+					filter-source = <&wpss_etm>;
 				};
 			};
-
 		};
 	};
+
 
 	funnel_lpass_lpi: funnel@10b44000 {
 		compatible = "arm,coresight-static-funnel";
@@ -1981,7 +2003,6 @@
 		reg = <0x10c2b000 0x1000>;
 		reg-names = "tpda-base";
 
-		qcom,tpda-atid = <78>;
 		device-name = "tpda_dlct0";
 
 		clocks = <&aoss_qmp>;
