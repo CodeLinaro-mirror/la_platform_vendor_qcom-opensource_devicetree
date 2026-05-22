@@ -2114,6 +2114,19 @@
 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	qcom,chd {
+		compatible = "qcom,core-hang-detect";
+		label = "core";
+		qcom,chd-percpu-info = <&CPU0 0x17800058 0x17800060>,
+					<&CPU1 0x17810058 0x17810060>,
+					<&CPU2 0x17820058 0x17820060>,
+					<&CPU3 0x17830058 0x17830060>;
+	};
+
 	qcom_dcvs_prof: qcom-dcvs-prof {
 		max_masters = <4>;
 	};
@@ -2141,6 +2154,9 @@
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		memory-region = <&adsp_mem &q6_adsp_dtb_mem>;
+
+		subdev-firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";
+		subdev-memory-region = <&lmcu_mem &lmcu_dtb_mem>;
 
 		/* Inputs from ssc */
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
@@ -2476,6 +2492,14 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		size = <0 0x1000000>;
+	};
+
+	non_secure_display_memory: non_secure_display_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xa400000>;
 	};
 };
 

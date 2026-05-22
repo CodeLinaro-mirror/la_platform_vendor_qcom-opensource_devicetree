@@ -177,7 +177,7 @@
 };
 
 &thermal_zones {
-	quiet-therm-step {
+	quiet-therm {
 		status = "ok";
 	};
 };

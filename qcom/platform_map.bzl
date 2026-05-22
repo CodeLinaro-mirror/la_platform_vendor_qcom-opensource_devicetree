@@ -390,6 +390,15 @@ _platform_map = {
             {"name": "scuba-iot-rb1-overlay.dtbo"},
         ],
     },
+    "bengal-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "qrb4210-rb2.dtb"},
+            {"name": "qrb4210-rb2-v2.dtb"},
+            {"name": "qrb4210-rb2-v3.dtb"},
+            {"name": "qrb4210-rb2-v4.dtb"},
+        ],
+    },
     "monaco": {
         "dtb_list": [
             {"name": "monaco.dtb"},
@@ -568,7 +577,7 @@ _platform_map = {
             {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-vm", "chora-vm"],
+        "binary_compatible_with": ["alor-vm", "chora-vm", "bourtzi-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -627,6 +636,16 @@ _platform_map = {
             {"name": "chora-oemvm-mtp-overlay.dtbo"},
             {"name": "chora-oemvm-qrd-overlay.dtbo"},
             {"name": "chora-oemvm-rcm-overlay.dtbo"},
+        ],
+    },
+    "bourtzi-vm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-vm-atp-overlay.dtbo"},
+            {"name": "bourtzi-vm-mtp-overlay.dtbo"},
+            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
+            {"name": "bourtzi-vm-qrd-overlay.dtbo"},
+            {"name": "bourtzi-vm-rcm-overlay.dtbo"},
         ],
     },
     "malabar-tuivm": {

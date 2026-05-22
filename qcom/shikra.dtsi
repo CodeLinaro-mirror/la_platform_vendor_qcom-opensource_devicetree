@@ -24,7 +24,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+		bootargs = "android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
 	};
 
 	reserved_memory: reserved-memory { };
@@ -438,6 +438,13 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
+	};
+
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
 	};
 
 	kryo-erp {
@@ -449,7 +456,7 @@
 
 	qcom,rmtfs_sharedmem@0 {
 		compatible = "qcom,sharedmem-uio";
-		reg = <0x0 0x0 0x0 0x400000>;
+		reg = <0x0 0x400000>;
 		reg-names = "rmtfs";
 		qcom,client-id = <0x00000001>;
 		qcom,guard-memory;
@@ -1854,9 +1861,15 @@
 		interrupt-names = "eud_irq";
 		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
 		reg = <0x1610000 0x2000>,
-		      <0x1612000 0x1000>;
-		reg-names = "eud_base", "eud_mode_mgr2";
+		      <0x1612000 0x1000>,
+			<0x3E5018 0x4>;
+		reg-names = "eud_base", "eud_mode_mgr2",
+				"eud_tcsr_check_reg";
 		qcom,secure-eud-en;
+		qcom,eud-tcsr-check-enable;
+		qcom,eud-clock-vote-req;
+		clocks = <&gcc GCC_AHB2PHY_USB_CLK>;
+		clock-names = "eud_ahb2phy_clk";
 		status = "ok";
 	};
 

@@ -40,6 +40,13 @@
 			qcom,init-voltage-level =
 				<RPMH_REGULATOR_LEVEL_RETENTION>;
 		};
+
+		cx_cdev: regulator-cdev {
+			compatible = "qcom,rpmh-reg-cdev";
+			mboxes = <&qmp_aop 0>;
+			qcom,reg-resource-name = "cx";
+			#cooling-cells = <2>;
+		};
 	};
 
 	rpmh-regulator-mxlvl {
@@ -190,7 +197,7 @@
 		pm6450_b_s8: vreg-pm6450-b-s8 {
 			regulator-name = "pm6450_b_s8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <382000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <2040000>;
 			qcom,init-voltage = <1352000>;
 		};
@@ -204,7 +211,7 @@
 		pm6450_b_s9: vreg-pm6450-b-s9 {
 			regulator-name = "pm6450_b_s9";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1856000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <2040000>;
 			qcom,init-voltage = <1856000>;
 		};
@@ -251,7 +258,6 @@
 	};
 
 	rpmh-regulator-l4b-e0 {
-		status = "disabled";
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L4B_E0";
 		qcom,regulator-type = "pmic5-ldo";
@@ -384,7 +390,7 @@
 		pm6450_b_l11: vreg-pm6450-b-l11 {
 			regulator-name = "pm6450_b_l11";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <312000>;
+			regulator-min-microvolt = <624000>;
 			regulator-max-microvolt = <752000>;
 			qcom,init-voltage = <752000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -424,7 +430,7 @@
 		pm6450_b_l13: vreg-pm6450-b-l13 {
 			regulator-name = "pm6450_b_l13";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1080000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -505,7 +511,7 @@
 		pm6450_b_l17: vreg-pm6450-b-l17 {
 			regulator-name = "pm6450_b_l17";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1170000>;
+			regulator-min-microvolt = <1200000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -545,7 +551,7 @@
 		pm6450_b_l19: vreg-pm6450-b-l19 {
 			regulator-name = "pm6450_b_l19";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1700000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <1950000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -585,7 +591,7 @@
 		pm6450_b_l21: vreg-pm6450-b-l21 {
 			regulator-name = "pm6450_b_l21";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1504000>;
+			regulator-min-microvolt = <1800000>;
 			regulator-max-microvolt = <2000000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -826,9 +832,6 @@
 		pm8010_e_l5: vreg-pm8010-e-l5 {
 			regulator-name = "pm8010_e_l5";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <2400000>;
-			regulator-max-microvolt = <3544000>;
-			qcom,init-voltage = <2952000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};

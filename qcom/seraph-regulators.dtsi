@@ -584,6 +584,26 @@
 		};
 	};
 
+	rpmh-regulator-l19a-e0 {
+		compatible = "qcom,rpmh-vrm-regulator";
+		qcom,resource-name = "L19A_E0";
+		qcom,regulator-type = "pmic7-ldo";
+		qcom,supported-modes =
+			<RPMH_REGULATOR_MODE_LPM
+			RPMH_REGULATOR_MODE_AUTO>;
+		qcom,mode-threshold-currents = <0 30000>;
+
+		L19A: L19A_E0:
+		pmar2230_l19: vreg-pmar2230-l19 {
+			regulator-name = "pmar2230_l19";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			qcom,init-voltage = <1800000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_AUTO>;
+		};
+	};
+
 	rpmh-regulator-l1m-e0 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "L1M_E0";
