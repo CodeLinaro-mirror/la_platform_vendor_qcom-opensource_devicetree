@@ -31,3 +31,7 @@
 	/delete-property/ regulator-boot-on;
 };
 
+&qcom_cedev_s_cb {
+	iommus = <&apps_smmu 0x0483 0x0>;
+	qcom,iommu-vmid = <0x9>;
+};

@@ -1383,7 +1383,7 @@
 				dma-coherent;
 			};
 
-			qcom_cedev_s_cb {
+			qcom_cedev_s_cb: qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
 				iommus = <&dpd_smmu 0x9>;
