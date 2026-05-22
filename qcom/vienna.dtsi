@@ -1200,6 +1200,17 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_dump_debug_out: dump-debug-out {
+			qcom,entry-name = "dump-debug-out";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_dump_debug_in: qcom,dump-debug-in {
+			qcom,entry-name = "dump-debug-in";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
 	};
 
 	qcom,smp2p-am {
