@@ -492,4 +492,11 @@ properties:
             - qcom,qar
           - const: qcom,seraphp
 
+      - description: Qualcomm Technologies, Inc. Mahua
+        items:
+          - enum:
+              - qcom,mahua-crd
+              - qcom,crd
+          - const: qcom,mahua
+
 additionalProperties: true
