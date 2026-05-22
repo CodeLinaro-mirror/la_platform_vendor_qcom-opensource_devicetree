@@ -2510,7 +2510,7 @@
 
 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
 				 <&rpmhcc RPMH_CXO_CLK>,
-				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
+				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
 				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
 				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,
