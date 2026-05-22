@@ -505,4 +505,43 @@ properties:
               - qcom,crd
           - const: qcom,mahua
 
+      - description: Qualcomm Technologies, Inc. PIKACHU
+        items:
+          - enum:
+              - qcom,pikachu-atp
+              - qcom.atp
+              - qcom,pikachu-idp
+              - qcom,idp
+              - qcom,pikachu-rumi
+              - qcom,rumi
+          - const: qcom,pikachu
+
+      - description: Qualcomm Technologies, Inc. PIKACHUP
+        items:
+          - enum:
+              - qcom,pikachup-atp
+              - qcom.atp
+              - qcom,pikachup-idp
+              - qcom,idp
+          - const: qcom,pikachup
+
+      - description: Qualcomm Technologies, Inc. PIKACHUS
+        items:
+         - enum:
+             - qcom,pikachus-atp
+             - qcom,atp
+             - qcom,pikachus-idp
+             - qcom,idp
+         - const: qcom,pikachus
+
+      - description: Qualcomm Technologies, Inc. PIKACHUPS
+        items:
+         - enum:
+             - qcom,pikachups-atp
+             - qcom,atp
+             - qcom,pikachups-idp
+             - qcom,idp
+         - const: qcom,pikachups
+
+
 additionalProperties: true
