@@ -3,14 +3,15 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "shikra.dtsi"
+#include "shikra-cqs.dtsi"
 #include "shikra-lite-thermal.dtsi"
 #include "shikra-pmic-overlay-pm4125.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Shikra Lite CQM SoC";
-	compatible = "qcom,shikra-lite-cqm";
-	qcom,msm-id = <756 0x10000>;
+	model = "Qualcomm Technologies, Inc. Shikra CQS FP1 SoC";
+	compatible = "qcom,shikra-cqs", "qcom,shikra";
+	qcom,msm-id = <758 0x10000>;
+	qcom,softsku-id = <1>;
 };
 
 &audiocorecc {
@@ -34,3 +35,4 @@
 		      "gpucc",
 		      "audiocorecc";
 };
+
