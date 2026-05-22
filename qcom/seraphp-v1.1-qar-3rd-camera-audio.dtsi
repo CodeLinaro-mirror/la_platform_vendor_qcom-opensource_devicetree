@@ -4,3 +4,25 @@
  */
 
 #include "seraphp-qar-camera-audio.dtsi"
+
+&qupv3_se4_i2c {
+	status = "disabled";
+	/delete-node/ rgbw_bysled@30;
+	/delete-node/ rgbw_userled@33;
+};
+
+&qupv3_se1_i2c {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	awinic_rgbw_bysled2: rgbw_bysled@30 {
+		compatible = "awinic,rgbw-bys-led";
+		reg = <0x30>;
+	};
+
+	lp5814_rgbw_userled: rgbw_userled@2C {
+		compatible = "ti,rgbw-user-led2";
+		reg = <0x2C>;
+	};
+};
