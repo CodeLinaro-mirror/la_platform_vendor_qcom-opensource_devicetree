@@ -288,6 +288,8 @@ _platform_map = {
             {"name": "bourtzi-rcm-evros-cottid-lcd-overlay.dtbo"},
             {"name": "bourtzi-rumi-overlay.dtbo"},
             {"name": "bourtzi-mtp-4gb-overlay.dtbo"},
+            {"name": "bourtzi-cdp-4gb-lcd-overlay.dtbo"},
+            {"name": "bourtzi-cdp-4gb-overlay.dtbo"},
         ],
     },
     "malabar": {
