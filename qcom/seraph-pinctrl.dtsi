@@ -45,6 +45,23 @@
 		};
 	};
 
+	pmic_alert_int: pmic-alert-int {
+		pmic_alert_int_active: pmic_alert_int_active {
+			mux {
+				pins = "gpio19";
+				function = "normal";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <2>;
+				bias-pull-up;
+				input-enable;
+				qcom,apps;
+			};
+		};
+	};
+
 	qupv3_se1_1uart_pins: qupv3_se1_1uart_pins {
 		qupv3_se1_1uart_active: qupv3_se1_1uart_active {
 			mux {
