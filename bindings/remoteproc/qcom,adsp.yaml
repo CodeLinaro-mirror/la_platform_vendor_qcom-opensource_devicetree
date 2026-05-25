@@ -72,6 +72,8 @@ properties:
       - qcom,monaco-modem-pas
       - qcom,monaco-adsp-pas
       - qcom,sdmshrike-adsp-pas
+      - qcom,bourtzi-adsp-pas
+      - qcom,bourtzi-modem-pas
       - qcom,canoe-adsp-pas
       - qcom,canoe-cdsp-pas
       - qcom,canoe-modem-pas

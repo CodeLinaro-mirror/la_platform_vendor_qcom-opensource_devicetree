@@ -2963,11 +2963,6 @@
 		qcom,bcm-voters = <&apps_bcm_voter>;
 	};
 
-	pil_scm_pas {
-		compatible = "qcom,pil-tz-scm-pas";
-		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
-	};
-
 	qcom,mpm2-sleep-counter@c221000 {
 		compatible = "qcom,mpm2-sleep-counter";
 		reg = <0xc221000 0x1000>;
@@ -4020,30 +4015,24 @@
 	};
 
 	tsens0: tsens@c222000 {
-		compatible = "qcom,tsens24xx";
-		reg = <0x0C222000 0x8>,
-		      <0x0C263000 0x1ff>;
-		reg-names = "tsens_srot_physical",
-			"tsens_tm_physical";
-		interrupts-extended = <&pdc 26 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 28 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 20 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "tsens-upper-lower", "tsens-critical",
-				"tsens-0C";
+		compatible = "qcom,tsens-v2";
+		reg = <0x0C263000 0x1ff>,
+			<0x0C222000 0x8>;
+		#qcom,sensors = <15>;
+		interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
 	};
 
 	tsens1: tsens@c223000 {
-		compatible = "qcom,tsens24xx";
-		reg = <0x0C223000 0x8>,
-			<0x0C265000 0x1ff>;
-		reg-names = "tsens_srot_physical",
-			"tsens_tm_physical";
-		interrupts-extended = <&pdc 27 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 29 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 21 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "tsens-upper-lower", "tsens-critical",
-				"tsens-0C";
+		compatible = "qcom,tsens-v2";
+		reg = <0x0C265000 0x1ff>,
+			<0x0C223000 0x8>;
+		#qcom,sensors = <14>;
+		interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "uplow","critical";
 		#thermal-sensor-cells = <1>;
 	};
 
@@ -5140,28 +5129,6 @@
 #include "lahaina-qupv3.dtsi"
 #include "lahaina-pcie.dtsi"
 #include "msm-qvr-external.dtsi"
-
-&pcie0_rp {
-	#address-cells = <5>;
-	#size-cells = <0>;
-
-	cnss_pci: cnss_pci {
-		reg = <0 0 0 0 0>;
-		qcom,iommu-group = <&cnss_pci_iommu_group>;
-		memory-region = <&cnss_wlan_mem>;
-
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-		cnss_pci_iommu_group: cnss_pci_iommu_group {
-			qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000>;
-			qcom,iommu-dma = "fastmap";
-			qcom,iommu-pagetable = "coherent";
-			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
-					    "non-fatal";
-		};
-	};
-};
 
 &pcie1_rp {
 	#address-cells = <5>;

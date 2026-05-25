@@ -13,14 +13,13 @@
 		interrupt-controller;
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
-		status = "disabled";
+		status = "okay";
 	};
 
 	virtio_glink_cma: virtio-glink-cma@2e000000 {
 		compatible = "virtio,mmio";
 		reg = <0x2e000000 0x1000>;
 		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-		status = "disabled";
 
 		glink_bridge: virtio-glink-bridge {
 			compatible = "virtio,device49162"; /* VIRTIO_ID: 0xC00A */
@@ -80,7 +79,7 @@
 };
 
 &qcom_rng_ee3 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb1 {

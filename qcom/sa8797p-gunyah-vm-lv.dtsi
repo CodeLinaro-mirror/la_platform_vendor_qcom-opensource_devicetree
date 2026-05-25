@@ -9,7 +9,6 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <690 0x10000>, <690 0x20000>, <690 0x10001>;
 	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 

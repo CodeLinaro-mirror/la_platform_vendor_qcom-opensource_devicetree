@@ -3,6 +3,23 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+
+&soc {
+	ipcc_mproc_apps_ns2: qcom,ipcc@422000 {
+		compatible = "qcom,ipcc";
+		reg = <0x422000 0x1000>;
+		interrupts = <GIC_SPI 560 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+};
+
+&ipcc_mproc_apps_ns1 {
+	status = "disabled";
+};
+
 &reserved_memory {
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
@@ -104,6 +121,10 @@
 
 &virtio_spmi {
 	status = "ok";
+};
+
+&glink_cma_mem0 {
+	status = "okay";
 };
 
 &qcom_rng_ee3 {
