@@ -9,3 +9,12 @@
 	protected-clocks = <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
 			<GCC_QSPI_CORE_CLK_SRC>;
 };
+
+&pcie_smmu {
+	status = "disabled";
+};
+
+&qcom_cedev_s_cb {
+	iommus = <&apps_smmu 0x0483 0x0>;
+	qcom,iommu-vmid = <0x9>;
+};
