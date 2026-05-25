@@ -188,6 +188,7 @@
 	/delete-node/ i2c@4a80000;
 
 	qupv3_se0_4uart: qcom,qup_uart@4a80000 {
+		status = "disabled";
 		compatible = "qcom,msm-geni-serial-hs";
 		reg = <0x4a80000 0x4000>;
 		reg-names = "se_phys";
@@ -211,12 +212,13 @@
 		dmas = <&gpi_dma0 0 0 2 64 0>,
 			<&gpi_dma0 1 0 2 64 0>;
 		dma-names = "tx", "rx";
-		status = "ok";
 	};
 };
 
 &qupv3_se1_i2c {
 	status = "ok";
+
+	/delete-node/ ch_io_expander@22;
 
 	ioexp20: i2c1gpio-expander@20 {
 		compatible = "semtech,sx1508q";
@@ -266,6 +268,21 @@
 		};
 	};
 
+	ioexp22: i2c1gpio-expander@22 {
+		compatible = "semtech,sx1508q";
+		reg = <0x22>;
+		gpio-controller;
+		#gpio-cells = <2>;
+
+		semtech,probe-reset;
+
+		sx1508_touch_power_active: sx1508_touch_power_active {
+			pins = "gpio7";
+			bias-disable;
+			output-high;
+		};
+	};
+
 	ioexp23: i2c1gpio-expander@23 {
 		compatible = "semtech,sx1508q";
 		reg = <0x23>;
@@ -297,5 +314,17 @@
 			bias-disable;
 			output-high;
 		};
+	};
+
+	touch: gt1151@14 {
+		compatible = "goodix,gt1151";
+		reg = <0x14>;
+
+		interrupts-extended = <&tlmm 3 IRQ_TYPE_EDGE_FALLING>;
+		irq-gpios = <&tlmm 3 0x2002>;
+		reset-gpios = <&tlmm 2 0>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&sx1508_touch_power_active>;
 	};
 };
