@@ -13,6 +13,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&mpm>;
+		qcom,gpios-reserved = <0 1 2 3 14 15 16 17>;
 
 		sdc1_on: sdc1_on {
 			clk {
