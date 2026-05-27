@@ -3379,11 +3379,6 @@
 		status = "okay";
 		interrupt-parent = <&tlmm>;
 		interrupts = <85 0x2800>;
-		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
-		pinctrl-0 = <&ts_int_default>;
-		pinctrl-1 = <&ts_int_output_low>;
-		pinctrl-2 = <&ts_int_output_high>;
-		pinctrl-3 = <&ts_int_input>;
 
 		reset-gpios = <&tlmm 76 0x1>;
 		irq-gpios = <&tlmm 85 0x1>;
