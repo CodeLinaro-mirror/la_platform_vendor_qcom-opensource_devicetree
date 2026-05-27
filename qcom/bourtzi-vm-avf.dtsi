@@ -421,7 +421,7 @@
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 		qcom,iommu-defer-smr-config;
-		iommus = <&apps_smmu 0x18A1 0x0>,
+		iommus = <&apps_smmu 0x08A1 0x0>,
 			 <&apps_smmu 0x0881 0x0>,
 			 <&apps_smmu 0x0CA1 0x0>,
 			 <&apps_smmu 0x0C81 0x0>,
@@ -458,7 +458,7 @@
 
 	smmu_proxy_iommu_region: qti,smmu-proxy-iommu-region {
 		iommu-addresses = <&qti_smmu_proxy_display_cb 0x0 0x0 0x0 0x20000>,
-					  <&qti_smmu_proxy_rotator_cb 0x0 0x0 0x0 0x20000>;
+				  <&qti_smmu_proxy_rotator_cb 0x0 0x0 0x0 0x20000>;
 	};
 
 	qcom_mem_object: qcom_mem_object {
