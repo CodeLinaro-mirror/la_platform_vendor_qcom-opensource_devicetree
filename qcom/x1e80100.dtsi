@@ -948,10 +948,8 @@
 			compatible = "qcom,ufshc";
 
 			reg = <0x0 0x1d84000 0x0 0x3000>,
-			      <0x0 0x1d88000 0x0 0x18000>,
-			      <0x0 0x1da5000 0x0 0x2000>,
-			      <0x0 0x1da4000 0x0 0x10>;
-			reg-names = "ufs_mem", "ice", "mcq_sqd", "mcq_vs";
+			      <0x0 0x1d88000 0x0 0x18000>;
+			reg-names = "ufs_mem", "ice";
 
 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 			dev-ref-clk-freq = <0>; /* 19.2 MHz */
