@@ -39,6 +39,18 @@
 	};
 };
 
+&qupv3_se5_i2c {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	lm3645_irled: irled@65 {
+		compatible = "ti,et-irled";
+		reg = <0x65>;
+	};
+};
+
+
 &slg5bv49293L {
 	ldo4-mv = <1800>;
 	ldo5-mv = <1800>;
