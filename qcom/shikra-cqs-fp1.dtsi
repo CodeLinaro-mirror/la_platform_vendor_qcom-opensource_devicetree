@@ -14,4 +14,10 @@
 	qcom,softsku-id = <1>;
 };
 
+&cdsp_pas {
+	status = "disabled";
+};
 
+&lpaicp_pas {
+	status = "disabled";
+};
