@@ -67,7 +67,7 @@
 /*==============================*/
 &tlmm {
 	qcom,reserved-dt-high-priority = <1>;
-	qcom,gpios-reserved = <33 50 51>;
+	qcom,gpios-reserved = <32 33>;
 };
 
 /*==============================*/

@@ -741,6 +741,9 @@
 			<0x88e2000 0x1000>;
 		reg-names = "eud_base", "eud_mode_mgr2";
 		qcom,secure-eud-en;
+		qcom,eud-clock-vote-req;
+		clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>;
+		clock-names = "eud_ahb2phy_clk";
 		status = "ok";
 	};
 
@@ -1144,7 +1147,7 @@
 		};
 	};
 
-	qcom,smp2p-dcp {
+	qcom_smp2p_dcp: qcom,smp2p-dcp {
 		compatible = "qcom,smp2p";
 		qcom,smem = <617>, <616>;
 		interrupt-parent = <&ipcc_mproc>;
@@ -2634,6 +2637,11 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x1000000>;
+	};
+
+	dcp_mem: dcp_region@0x2400000 {
+		no-map;
+		reg = <0x0 0x2400000 0x0 0x0>;
 	};
 };
 

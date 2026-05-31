@@ -6,6 +6,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/iio/qcom,spmi-vadc.h>
+#include <dt-bindings/iio/qti_power_supply_iio.h>
 
 &spmi0_bus {
 	#include "pm4125.dtsi"
@@ -136,6 +137,12 @@
 };
 
 &soc {
+
+	shikra_batterydata: qcom,battery-data {
+		qcom,batt-id-range-pct = <15>;
+		#include "qg-batterydata-hawi0000903-4353mAh.dtsi"
+	};
+
 	gpio_key {
 		compatible = "gpio-keys";
 		label = "gpio-keys";
@@ -218,4 +225,82 @@
 		qcom,hw-settle-time = <200>;
 		qcom,pre-scaling = <1 1>;
 	};
+};
+
+&pm4125_qg {
+	qcom,battery-data = <&shikra_batterydata>;
+	qcom,qg-iterm-ma = <150>;
+	qcom,hold-soc-while-full;
+	qcom,linearize-soc;
+	qcom,cl-feedback-on;
+	qcom,tcss-enable;
+	qcom,fvss-enable;
+	qcom,fvss-vbatt-mv = <3500>;
+	qcom,bass-enable;
+	#io-channel-cells = <1>;
+
+	io-channels = <&pm4125_vadc ADC5_BAT_THERM_100K_PU>,
+		      <&pm4125_vadc ADC5_BAT_ID_100K_PU>,
+		      <&pm4125_charger PSY_IIO_INPUT_CURRENT_LIMITED>,
+		      <&pm4125_charger PSY_IIO_RECHARGE_SOC>,
+		      <&pm4125_charger PSY_IIO_FORCE_RECHARGE>,
+		      <&pm4125_charger PSY_IIO_CHARGE_DONE>;
+	io-channel-names = "batt-therm",
+			   "batt-id",
+			   "input_current_limited",
+			   "recharge_soc",
+			   "force_recharge",
+			   "charge_done";
+};
+
+&pm4125_charger {
+	interrupts-extended = <&tlmm 89 0>;
+	interrupt-names = "usb_id_irq";
+	qcom,usb-id-gpio = <&tlmm 89 0>;
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb_id_interrupt>;
+
+	qcom,auto-recharge-soc = <98>;
+	qcom,suspend-input-on-debug-batt;
+	qcom,battery-data = <&shikra_batterydata>;
+	#io-channel-cells = <1>;
+
+	io-channels = <&pm4125_vadc ADC5_USB_IN_V_16>,
+		      <&pm4125_vadc ADC5_CHG_TEMP>,
+		      <&pm4125_qg PSY_IIO_RESISTANCE_ID>,
+		      <&pm4125_qg PSY_IIO_VOLTAGE_NOW>,
+		      <&pm4125_qg PSY_IIO_TEMP>,
+		      <&pm4125_qg PSY_IIO_CAPACITY>,
+		      <&pm4125_qg PSY_IIO_VOLTAGE_OCV>,
+		      <&pm4125_qg PSY_IIO_VOLTAGE_AVG>,
+		      <&pm4125_qg PSY_IIO_DEBUG_BATTERY>,
+		      <&pm4125_qg PSY_IIO_REAL_CAPACITY>,
+		      <&pm4125_qg PSY_IIO_CC_SOC>,
+		      <&pm4125_qg PSY_IIO_CURRENT_NOW>,
+		      <&pm4125_qg PSY_IIO_VOLTAGE_MAX>,
+		      <&pm4125_qg PSY_IIO_CHARGE_FULL>,
+		      <&pm4125_qg PSY_IIO_CHARGE_COUNTER>,
+		      <&pm4125_qg PSY_IIO_CYCLE_COUNT>,
+		      <&pm4125_qg PSY_IIO_CHARGE_FULL_DESIGN>,
+		      <&pm4125_qg PSY_IIO_TIME_TO_FULL_NOW>;
+	io-channel-names = "usb_in_voltage",
+			   "chg_temp",
+			   "resistance_id",
+			   "voltage_now",
+			   "temp",
+			   "capacity",
+			   "voltage_ocv",
+			   "voltage_avg",
+			   "debug_battery",
+			   "real_capacity",
+			   "cc_soc",
+			   "current_now",
+			   "voltage_max",
+			   "charge_full",
+			   "charge_counter",
+			   "cycle_count",
+			   "charge_full_design",
+			   "time_to_full_now";
+	qcom,thermal-mitigation = <2000000 1500000 1000000 500000>;
 };

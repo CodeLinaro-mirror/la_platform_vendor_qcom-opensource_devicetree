@@ -2393,7 +2393,7 @@
 		};
 	};
 
-	qcom,pmic_glink {
+	pmic-glink {
 		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
 		qcom,subsys-name = "lpass";
@@ -2401,12 +2401,12 @@
 		depends-on-supply = <&ipcc_mproc>;
 		status = "disabled";
 
-		battery_charger: qcom,battery_charger {
+		battery_charger: battery-charger {
 			compatible = "qcom,battery-charger";
 			status = "disabled";
 		};
 
-		ucsi: qcom,ucsi {
+		ucsi: ucsi-glink {
 			compatible = "qcom,ucsi-glink";
 			status = "disabled";
 			connector {

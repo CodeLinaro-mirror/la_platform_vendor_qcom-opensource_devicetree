@@ -596,7 +596,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-3 slub_debug=-";
 	};
 
 	soc: soc { };

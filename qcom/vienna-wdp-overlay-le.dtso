@@ -8,6 +8,7 @@
 
 #include "vienna-wdp.dtsi"
 #include "vienna-pmw6100-v1.dtsi"
+#include "vienna-le.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Vienna WDP PMW6100 V1 for LE";
@@ -16,10 +17,3 @@
 	qcom,pmic-id = <0x10064 0x0 0x0 0x0>;
 };
 
-&mpss_mem {
-	status = "disabled";
-};
-
-&i2c9 {
-        status = "disabled";
-};

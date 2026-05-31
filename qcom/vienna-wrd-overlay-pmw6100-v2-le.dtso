@@ -8,6 +8,7 @@
 
 #include "vienna-wrd.dtsi"
 #include "vienna-pmw6100-v2.dtsi"
+#include "vienna-le.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Vienna WRD PMW6100 V2";
@@ -16,10 +17,3 @@
 	qcom,pmic-id = <0x20064 0x0 0x0 0x0>;
 };
 
-&mpss_mem {
-	status = "disabled";
-};
-
-&i2c9 {
-        status = "disabled";
-};
