@@ -2084,8 +2084,8 @@
 
 	qcom_cedev: qcedev@1de0000 {
 		compatible = "qcom,qcedev";
-		reg = <0x1de0000 0x20000>,
-			<0x1dc4000 0x28000>;
+		reg = <0x0 0x1de0000 0x0 0x20000>,
+		      <0x0 0x1dc4000 0x0 0x28000>;
 		reg-names = "crypto-base","crypto-bam-base";
 		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bam-pipe-pair = <2>;
