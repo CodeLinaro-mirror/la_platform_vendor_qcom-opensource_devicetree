@@ -515,6 +515,7 @@
 		device-name = "tpdm_ipa";
 
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -562,6 +563,7 @@
 		device-name = "tpdm_dlct";
 
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -584,6 +586,7 @@
 		device-name = "tpdm_ipcc";
 
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -711,6 +714,7 @@
 		reg-names = "tpdm-base";
 
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 		atid = <79>;
 		device-name = "tpdm_dlct2_dsb";
 
@@ -856,6 +860,7 @@
 		reg-names = "tpdm-base";
 
 		qcom,cmb-element-bits = <32>;
+		qcom,cmb-msrs-num = <12>;
 
 		atid = <66>;
 		device-name = "tpdm_llm_silver";
@@ -880,6 +885,7 @@
 		reg-names = "tpdm-base";
 
 		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 
 		atid = <66>;
 		device-name = "tpdm_actpm";
@@ -904,6 +910,7 @@
 		reg-names = "tpdm-base";
 
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		atid = <66>;
 		device-name = "tpdm_apss";
@@ -927,6 +934,7 @@
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		atid = <67>;
 		device-name = "tpdm_modem_0";
