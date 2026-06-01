@@ -853,6 +853,18 @@ autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
 
+SECA_GH_LA_GVM_QAM_BASE_DTB += \
+	seca-gh-vm-la-qam.dtb \
+	seca-gh-vm-la-qam-star.dtb \
+
+SECA_GH_LA_GVM_QAM_BOARDS += seca-gh-vm-la-qam-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SECA_GH_LA_GVM_QAM_BOARDS),$(SECA_GH_LA_GVM_QAM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SECA_GH_LA_GVM_QAM_BOARDS) $(SECA_GH_LA_GVM_QAM_BASE_DTB)
+
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 
 endif

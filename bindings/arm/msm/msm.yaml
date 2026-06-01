@@ -399,6 +399,12 @@ properties:
               - qcom,qam
           - const: qcom,sa8797p
 
+      - description: Qualcomm Technologies, Inc. SECA
+        items:
+          - enum:
+              - qcom,qam
+          - const: qcom,seca
+
       - description: Qualcomm Technologies, Inc. QUINVM
         items:
           - const: qcom,quinvm
