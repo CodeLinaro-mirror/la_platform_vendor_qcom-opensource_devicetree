@@ -1457,7 +1457,7 @@
 				<&system_noc MASTER_CRYPTO_CORE0 &bimc SLAVE_EBI_CH0>;
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
-		memory-region = <&mpss_mem &q6_mpss_dtb_mem &system_cma>;
+		memory-region = <&mpss_mem &q6_mpss_dtb_mem &system_cma &dsm_mem>;
 		firmware-name = "modem.mdt", "modem_dtb.mdt";
 
 		interrupts-extended = <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,
