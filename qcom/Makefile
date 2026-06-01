@@ -158,6 +158,7 @@ taycan-dtb-$(CONFIG_ARCH_RAVELIN) += \
 		taycan-idp-wcn3988-4gb.dtb \
 		taycan-idp-moselle-4gb.dtb \
 		taycan-idp.dtb \
+		taycan-idp-1gb.dtb \
 		ravelin-qrd.dtb
 dtb-y += $($(MSM_ARCH)-dtb-y)
 endif

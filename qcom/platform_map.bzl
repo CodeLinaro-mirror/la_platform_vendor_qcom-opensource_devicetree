@@ -381,6 +381,7 @@ _platform_map = {
             {"name": "taycan-idp-wcn3988-4gb.dtb"},
             {"name": "taycan-idp-moselle-4gb.dtb"},
             {"name": "taycan-idp.dtb"},
+            {"name": "taycan-idp-1gb.dtb"},
             {"name": "ravelin-qrd.dtb"},
         ],
         "dtbo_list": [
