@@ -1188,6 +1188,22 @@
 				};
 			};
 
+			virtio-mmio@46 {
+				vdevice-type = "virtio-mmio";
+				patch = "/virtio_blk_la_bootloader_a";
+				peer-default;
+				vqs-num = <0x1>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x23A000>;
+				memory {
+					qcom,label = <0x4E>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
