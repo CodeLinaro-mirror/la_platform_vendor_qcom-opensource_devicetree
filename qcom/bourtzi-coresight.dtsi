@@ -37,6 +37,7 @@
 		compatible = "arm,coresight-dummy-source";
 		device-name = "tpdm_lpass_lpi";
 		trace-name = "tpda-lpass-lpi";
+		atid = <26>;
 
 		out-ports {
 			#address-cells = <1>;
@@ -2942,6 +2943,7 @@
 		reg = <0x0 0x10b06000 0x0 0x1000>;
 		reg-names = "replicator-base";
 
+		qcom,replicator-loses-context;
 		device-name = "replicator_swao";
 
 		clocks = <&aoss_qmp>;
@@ -3055,13 +3057,11 @@
 	tmc_etr0: tmc@10048000 {
 		compatible = "arm,coresight-tmc", "arm,primecell";
 
-		reg = <0x0 0x10048000 0x0 0x1000>,
-			<0x10064000 0x16000>;
+		reg = <0x0 0x10048000 0x0 0x1000>;
 		reg-names = "tmc-base", "bam-base";
 
 		qcom,iommu-dma = "bypass";
-		iommus = <&apps_smmu 0x04e0 0>,
-			<&apps_smmu 0x0520 0>;
+		iommus = <&apps_smmu 0x04e0 0>;
 
 		qcom,sw-usb;
 		dma-coherent;
