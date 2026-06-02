@@ -565,6 +565,17 @@
 			#hwlock-cells = <1>;
 		};
 
+		tlmm: pinctrl@f100000 {
+			compatible = "qcom,glymur-tlmm";
+			reg = <0x0 0x0f100000 0x0 0xf00000>;
+			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			gpio-ranges = <&tlmm 0 0 249>;
+		};
+
 		intc: interrupt-controller@17000000 {
 			compatible = "arm,gic-v3";
 			reg = <0x0 0x17000000 0x0 0x10000>,
@@ -652,3 +663,5 @@
 			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
 	};
 };
+
+#include "glymur-pinctrl.dtsi"
