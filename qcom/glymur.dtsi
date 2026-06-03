@@ -290,6 +290,14 @@
 
 	firmware {
 
+		qcom_si_core {
+			compatible = "qcom,si-core";
+			interrupts = <GIC_SPI 892 IRQ_TYPE_EDGE_RISING>;
+		};
+
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+		};
 	};
 
 	psci {
