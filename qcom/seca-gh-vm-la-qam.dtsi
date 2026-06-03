@@ -3,12 +3,26 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-/* Change all of these once copied thie files */
+/* Change all of these once copied this file */
 #include "seca-gh-vm-la.dtsi"
 #include "seca-vm-usb.dtsi"
+#include "seca-gh-vm-qupv3.dtsi"
+
+/ {
+	aliases {
+		hsuart0 = &qupv3_se17_4uart;
+		hsuart1 = &qupv3_se14_4uart;
+	};
+};
 
 &vm_config {
 	iomemory-ranges = <
+		/* QUPv3 Tile 2 read-only region */
+		0x0 0x8C0000 0x0 0x8C0000 0x0 0x2000 0x1
+		/* QUPv3 SE14 region */
+		0x0 0x880000 0x0 0x880000 0x0 0x3000 0x0
+		/* QUPv3 SE17 region */
+		0x0 0x88C000 0x0 0x88C000 0x0 0x3000 0x0
 		/* USB2 region */
 		0x0 0x88e0000 0x0 0x88e0000 0x0 0x1000 0x0
 		0x0 0xa200000 0x0 0xa200000 0x0 0x200000 0x0
@@ -47,7 +61,11 @@
 	>;
 
 	gic-irq-ranges = <
-		/*USB2 IRQs*/
+		/* QUPv3 SE14 GIC IRQ */
+		405 405
+		/* QUPv3 SE17 GIC IRQ */
+		617 617
+		/* USB2 IRQs */
 		784 784
 		785 785
 		939 939
@@ -61,9 +79,22 @@
 		/* GPU 0 GMU */
 		676 676
 	>;
+
 	vcpus {
 		affinity-map = <0xb>;
 	};
+};
+
+&qupv3_2 {
+	status = "ok";
+};
+
+&qupv3_se14_4uart {
+	status = "ok";
+};
+
+&qupv3_se17_4uart {
+	status = "ok";
 };
 
 &usb2 {
