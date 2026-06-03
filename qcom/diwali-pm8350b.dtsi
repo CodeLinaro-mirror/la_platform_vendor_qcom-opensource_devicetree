@@ -111,7 +111,7 @@
 	};
 };
 
-&apps_rsc {
+&apps_rsc_drv2 {
 	rpmh-regulator-ldod1 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "ldod1";
