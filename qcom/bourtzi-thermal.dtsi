@@ -10,10 +10,10 @@
 };
 
 &soc {
-	tsens0: thermal-sensor@c263000 {
+	tsens0: tsens0@c263000 {
 		compatible = "qcom,tsens-v2";
-		reg = <0x0c263000 0x1ff>, /* TM */
-			<0x0c222000 0x1ff>; /* SROT */
+		reg = <0x0 0x0c263000 0x0 0x1ff>, /* TM */
+			<0x0 0x0c222000 0x0 0x1ff>; /* SROT */
 		#qcom,sensors = <16>;
 		interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
@@ -22,11 +22,11 @@
 		#thermal-sensor-cells = <1>;
 	};
 
-	tsens1: thermal-sensor@c265000 {
+	tsens1: tsens1@c265000 {
 		compatible = "qcom,tsens-v2";
-		reg = <0x0c265000 0x1ff>, /* TM */
-			<0x0c223000 0x1ff>; /* SROT */
-		#qcom,sensors = <16>;
+		reg = <0x0 0x0c265000 0x0 0x1ff>, /* TM */
+			<0x0 0x0c223000 0x0 0x1ff>; /* SROT */
+		#qcom,sensors = <7>;
 		interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
