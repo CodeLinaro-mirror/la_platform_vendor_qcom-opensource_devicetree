@@ -5,7 +5,7 @@
 
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
-&apps_rsc {
+&apps_rsc_drv2 {
 	rpmh-regulator-ldob1 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "ldob1";
