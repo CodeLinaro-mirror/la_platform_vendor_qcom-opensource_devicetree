@@ -10,3 +10,8 @@
 	compatible = "qcom,sunp";
 	qcom,msm-id = <705 0x20000>, <706 0x20000>;
 };
+
+&pcie0 {
+	/delete-property/ msi-map;
+	/delete-property/ qcom,drv-name;
+};
