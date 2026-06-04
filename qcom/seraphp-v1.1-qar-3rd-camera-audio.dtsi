@@ -203,3 +203,12 @@
 	/delete-node/ qcom,pm8010-debug@c;
 	/delete-node/ qcom,pm8010-debug@d;
 };
+
+&charger {
+	status = "disabled";
+};
+
+&charger2 {
+	status = "okay";
+};
+
