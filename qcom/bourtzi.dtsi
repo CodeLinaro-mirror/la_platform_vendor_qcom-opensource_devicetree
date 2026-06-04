@@ -68,6 +68,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 
@@ -93,6 +94,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
@@ -107,6 +109,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
@@ -121,6 +124,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
@@ -135,6 +139,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD4>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
@@ -149,6 +154,7 @@
 			cpu-idle-states = <&SILVER_CPU_OFF &SILVER_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD5>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_0>;
 			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
@@ -163,6 +169,7 @@
 			cpu-idle-states = <&GOLD_CPU_OFF &GOLD_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD6>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_6>;
 			qcom,freq-domain = <&cpufreq_hw 1>;
 
@@ -183,6 +190,7 @@
 			cpu-idle-states = <&GOLD_CPU_OFF &GOLD_CPU_RAIL_OFF>;
 			power-domains = <&CPU_PD7>;
 			power-domain-names = "psci";
+			#cooling-cells = <2>;
 			next-level-cache = <&L2_6>;
 			qcom,freq-domain = <&cpufreq_hw 1>;
 		};
