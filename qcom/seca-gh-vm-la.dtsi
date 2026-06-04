@@ -1345,6 +1345,43 @@
 		status = "ok";
 	};
 
+	virtio_glink_cma: virtio-glink-cma@2e000000 {
+		glink_bridge: virtio-glink-bridge {
+			compatible = "virtio,device49162";
+			remoteproc_cdsp_glink: glink-edge {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_NSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_NSP0 0>;
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+			};
+
+			remoteproc_cdsp1_glink: glink-edge1 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_NSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_NSP1 0>;
+				label = "cdsp1";
+				qcom,glink-label = "cdsp1";
+			};
+
+			remoteproc_hpass0_glink: glink-edge4 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_ADSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_ADSP0 0>;
+				label = "adsp";
+				qcom,glink-label = "adsp";
+			};
+
+			remoteproc_hpass1_glink: glink-edge5 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_ADSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_ADSP1 0>;
+				label = "adsp1";
+				qcom,glink-label = "adsp1";
+			};
+		};
+	};
+
 	psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
