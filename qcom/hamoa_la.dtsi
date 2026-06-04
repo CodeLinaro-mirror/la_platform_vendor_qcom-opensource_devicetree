@@ -40,3 +40,24 @@
 	iommus = <&apps_smmu 0x0483 0x0>;
 	qcom,iommu-vmid = <0x9>;
 };
+
+
+/delete-node/ &depthcharge_log_mem;
+
+&reserved_memory {
+
+	hyp_mem_database_mem: hyp_mem_database_region@a5da0000 {
+		no-map;
+		reg = <0x0 0xa5da0000 0x0 0x60000>;
+	};
+
+	gunyah_hyp_mem: gunyah_hyp_region@a5e00000 {
+		no-map;
+		reg = <0x0 0xa5e00000 0x0 0xe00000>;
+	};
+
+	reserved_for_hyp_mem: reserved_for_hyp_region@a6c00000 {
+		no-map;
+		reg = <0x0 0xa6c00000 0x0 0x400000>;
+	};
+};
