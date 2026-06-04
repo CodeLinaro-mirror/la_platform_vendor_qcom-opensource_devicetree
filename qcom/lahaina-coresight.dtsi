@@ -184,6 +184,7 @@
 		compatible = "arm,coresight-dummy-source";
 
 		device-name = "tpdm_lpass_lpi";
+		atid = <100>;
 		qcom,dummy-source;
 
 		out-ports {
@@ -1011,6 +1012,7 @@
 				tpda_5_in_tpdm_video: endpoint {
 					remote-endpoint =
 						<&tpdm_video_out_tpda5>;
+					filter-source = <&tpdm_video>;
 				};
 			};
 
@@ -1019,6 +1021,7 @@
 				tpda_6_in_tpdm_mdss: endpoint {
 					remote-endpoint =
 						<&tpdm_mdss_out_tpda6>;
+					filter-source = <&tpdm_mdss>;
 				};
 			};
 
@@ -1027,6 +1030,7 @@
 				tpda_8_in_tpdm_mm: endpoint {
 					remote-endpoint =
 						<&tpdm_mm_out_tpda8>;
+					filter-source = <&tpdm_mm>;
 				};
 			};
 
@@ -1035,6 +1039,7 @@
 				tpda_9_in_tpdm_lpass: endpoint {
 					remote-endpoint =
 						<&tpdm_lpass_out_tpda_9>;
+					filter-source = <&tpdm_lpass>;
 				};
 			};
 
@@ -1043,6 +1048,7 @@
 				tpda_10_in_tpdm_ddr_ch02: endpoint {
 					remote-endpoint =
 						<&tpdm_ddr_ch02_out_tpda10>;
+					filter-source = <&tpdm_ddr_ch02>;
 				};
 			};
 
@@ -1051,6 +1057,7 @@
 				tpda_11_in_tpdm_ddr_ch13: endpoint {
 					remote-endpoint =
 						<&tpdm_ddr_ch13_out_tpda11>;
+					filter-source = <&tpdm_ddr_ch13>;
 				};
 			};
 
@@ -1059,6 +1066,7 @@
 				tpda_12_in_tpdm_ddr: endpoint {
 					remote-endpoint =
 						<&tpdm_ddr_out_tpda12>;
+					filter-source = <&tpdm_ddr>;
 				};
 			};
 
@@ -1067,6 +1075,7 @@
 				tpda_13_in_tpdm_shrm: endpoint {
 					remote-endpoint =
 						<&tpdm_shrm_out_tpda13>;
+					filter-source = <&tpdm_shrm>;
 				};
 			};
 
@@ -1075,6 +1084,7 @@
 				tpda_14_in_tpdm_rdpm: endpoint {
 					remote-endpoint =
 						<&tpdm_rdpm_out_tpda14>;
+					filter-source = <&tpdm_rdpm>;
 				};
 			};
 
@@ -1083,6 +1093,7 @@
 				tpda_15_in_tpdm_rdpm_mx: endpoint {
 					remote-endpoint =
 						<&tpdm_rdpm_mx_out_tpda15>;
+					filter-source = <&tpdm_rdpm_mx>;
 				};
 			};
 
@@ -1091,6 +1102,7 @@
 				tpda_19_in_tpdm_dlct: endpoint {
 					remote-endpoint =
 						<&tpdm_dlct_out_tpda19>;
+					filter-source = <&tpdm_dlct>;
 				};
 			};
 
@@ -1099,6 +1111,7 @@
 				tpda_20_in_tpdm_ipcc: endpoint {
 					remote-endpoint =
 						<&tpdm_ipcc_out_tpda20>;
+					filter-source = <&tpdm_ipcc>;
 				};
 			};
 
@@ -1107,6 +1120,7 @@
 				tpda_21_in_tpdm_turing: endpoint {
 					remote-endpoint =
 						<&tpdm_turing_out_tpda21>;
+					filter-source = <&tpdm_turing>;
 				};
 			};
 
@@ -1115,6 +1129,7 @@
 				tpda_22_in_tpdm_llm_turing: endpoint {
 					remote-endpoint =
 						<&tpdm_llm_turing_out_tpda22>;
+					filter-source = <&tpdm_llm_turing>;
 				};
 			};
 
@@ -1307,7 +1322,10 @@
 		reg = <0x6844000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <74>;
 		device-name = "tpdm_lpass";
+		trace-name = "tpdm-lpass";
+		qcom,dsb-element-bits = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1459,6 +1477,7 @@
 		qcom,dsb-element-bits = <64>;
 
 		device-name = "tpdm_dl_south";
+		status = "disabled";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1524,7 +1543,7 @@
 				tpdm_video_out_tpda5: endpoint {
 					remote-endpoint =
 					    <&tpda_5_in_tpdm_video>;
-					source = <&tpdm_video>;
+					filter-source = <&tpdm_video>;
 				};
 			};
 
@@ -1533,7 +1552,7 @@
 				tpdm_mdss_out_tpda6: endpoint {
 					remote-endpoint =
 					    <&tpda_6_in_tpdm_mdss>;
-					source = <&tpdm_mdss>;
+					filter-source = <&tpdm_mdss>;
 				};
 			};
 
@@ -1542,7 +1561,7 @@
 				tpdm_mm_out_tpda8: endpoint {
 					remote-endpoint =
 					    <&tpda_8_in_tpdm_mm>;
-					source = <&tpdm_mm>;
+					filter-source = <&tpdm_mm>;
 				};
 			};
 
@@ -1551,7 +1570,7 @@
 				tpdm_lpass_out_tpda_9: endpoint {
 					remote-endpoint =
 					    <&tpda_9_in_tpdm_lpass>;
-					source = <&tpdm_lpass>;
+					filter-source = <&tpdm_lpass>;
 				};
 			};
 
@@ -1560,7 +1579,7 @@
 				tpdm_ddr_ch02_out_tpda10: endpoint {
 					remote-endpoint =
 					    <&tpda_10_in_tpdm_ddr_ch02>;
-					source = <&tpdm_ddr_ch02>;
+					filter-source = <&tpdm_ddr_ch02>;
 				};
 			};
 
@@ -1569,7 +1588,7 @@
 				tpdm_ddr_ch13_out_tpda11: endpoint {
 					remote-endpoint =
 					    <&tpda_11_in_tpdm_ddr_ch13>;
-					source = <&tpdm_ddr_ch13>;
+					filter-source = <&tpdm_ddr_ch13>;
 				};
 			};
 
@@ -1578,7 +1597,7 @@
 				tpdm_ddr_out_tpda12: endpoint {
 					remote-endpoint =
 					    <&tpda_12_in_tpdm_ddr>;
-					source = <&tpdm_ddr>;
+					filter-source = <&tpdm_ddr>;
 				};
 			};
 
@@ -1587,7 +1606,7 @@
 				tpdm_shrm_out_tpda13: endpoint {
 					remote-endpoint =
 					    <&tpda_13_in_tpdm_shrm>;
-					source = <&tpdm_shrm>;
+					filter-source = <&tpdm_shrm>;
 				};
 			};
 
@@ -1596,7 +1615,7 @@
 				tpdm_rdpm_out_tpda14: endpoint {
 					remote-endpoint =
 					    <&tpda_14_in_tpdm_rdpm>;
-					source = <&tpdm_rdpm>;
+					filter-source = <&tpdm_rdpm>;
 				};
 			};
 
@@ -1605,7 +1624,7 @@
 				tpdm_rdpm_mx_out_tpda15: endpoint {
 				remote-endpoint =
 					<&tpda_15_in_tpdm_rdpm_mx>;
-					source = <&tpdm_rdpm_mx>;
+					filter-source = <&tpdm_rdpm_mx>;
 				};
 			};
 
@@ -1614,7 +1633,7 @@
 				tpdm_dlct_out_tpda19: endpoint {
 				remote-endpoint =
 					<&tpda_19_in_tpdm_dlct>;
-					source = <&tpdm_dlct>;
+					filter-source = <&tpdm_dlct>;
 				};
 			};
 
@@ -1623,7 +1642,7 @@
 				tpdm_ipcc_out_tpda20: endpoint {
 					remote-endpoint =
 					    <&tpda_20_in_tpdm_ipcc>;
-					source = <&tpdm_ipcc>;
+					filter-source = <&tpdm_ipcc>;
 				};
 			};
 
@@ -1695,7 +1714,10 @@
 		reg = <0x6c28000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
 		device-name = "tpdm_dlct";
+		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1716,7 +1738,10 @@
 		reg = <0x6c29000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
 		device-name = "tpdm_ipcc";
+		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msrs-num = <1>;
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
@@ -1780,6 +1805,8 @@
 		reg = <0x600f000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <65>;
+		qcom,cmb-element-bits = <32>;
 		device-name = "tpdm_spdm";
 
 		clocks = <&aoss_qmp>;
@@ -2031,6 +2058,8 @@
 		reg = <0x6830000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
+		qcom,dsb-element-bits = <32>;
 		device-name = "tpdm_video";
 
 		clocks = <&aoss_qmp>;
@@ -2052,6 +2081,9 @@
 		reg = <0x6c60000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
+		qcom,dsb-element-bits = <32>;
+		qcom,cmb-element-bits = <32>;
 		device-name = "tpdm_mdss";
 
 		clocks = <&aoss_qmp>;
@@ -2073,6 +2105,8 @@
 		reg = <0x6c08000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
+		qcom,dsb-element-bits = <32>;
 		device-name = "tpdm_mm";
 
 		clocks = <&aoss_qmp>;
@@ -2146,7 +2180,7 @@
 				tpdm_turing_out_tpda21: endpoint {
 					remote-endpoint =
 					    <&tpda_21_in_tpdm_turing>;
-					source = <&tpdm_turing>;
+					filter-source = <&tpdm_turing>;
 				};
 			};
 
@@ -2155,7 +2189,7 @@
 				tpdm_llm_turing_out_tpda22: endpoint {
 					remote-endpoint =
 					    <&tpda_22_in_tpdm_llm_turing>;
-					source = <&tpdm_llm_turing>;
+					filter-source = <&tpdm_llm_turing>;
 				};
 			};
 
@@ -2202,6 +2236,9 @@
 		reg = <0x6980000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <87>;
+		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 		device-name = "tpdm_turing";
 
 		clocks = <&aoss_qmp>;
@@ -2222,6 +2259,8 @@
 	tpdm_llm_turing: tpdm@69810000 {
 		compatible = "qcom,coresight-static-tpdm";
 		device-name = "tpdm_turing_llm";
+		atid = <87>;
+		qcom,cmb-element-bits = <32>;
 
 		out-ports {
 			port {
@@ -2361,9 +2400,13 @@
 
 	tpdm_ddr_ch02: tpdm@6e10000 {
 		compatible = "qcom,coresight-tpdm", "arm,primecell";
+
 		reg = <0x06e10000 0x1000>;
 		reg-names = "tpdm-base";
+		qcom,dsb-msrs-num = <16>;
 
+		atid = <78>;
+		qcom,dsb-element-bits = <32>;
 		device-name = "tpdm_ddr_ch02";
 
 		clocks = <&aoss_qmp>;
@@ -2386,6 +2429,8 @@
 		reg = <0x06e20000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <78>;
+		qcom,dsb-element-bits = <32>;
 		device-name = "tpdm_ddr_ch13";
 
 		clocks = <&aoss_qmp>;
@@ -2498,6 +2543,9 @@
 		reg = <0x06c38000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <79>;
+		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msr-skip;
 		device-name = "tpdm_rdpm";
 
 		clocks = <&aoss_qmp>;
@@ -2518,6 +2566,9 @@
 		reg = <0x06c39000 0x1000>;
 		reg-names = "tpdm-base";
 
+		atid = <79>;
+		qcom,cmb-element-bits = <64>;
+		qcom,cmb-msr-skip;
 		device-name = "tpdm_rdpm_mx";
 
 		clocks = <&aoss_qmp>;
