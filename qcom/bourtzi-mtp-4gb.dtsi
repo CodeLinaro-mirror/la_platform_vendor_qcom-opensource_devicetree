@@ -3,4 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "bourtzi-pmic-overlay.dtsi"
+#include "bourtzi-mtp.dtsi"
+
+&soc {
+};

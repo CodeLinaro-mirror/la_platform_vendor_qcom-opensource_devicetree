@@ -1005,6 +1005,11 @@
 		interrupts = <IPCC_CLIENT_AOP
 			      IPCC_MPROC_SIGNAL_GLINK_QMP
 			      IRQ_TYPE_EDGE_RISING>;
+
+		qcom,rpm_requests_rpmsg {
+			qcom,glink-channels = "rpm_requests";
+			qcom,ch-sched-rt;
+		};
 	};
 
 	msm_gpu: qcom,kgsl-3d0@5900000 { };

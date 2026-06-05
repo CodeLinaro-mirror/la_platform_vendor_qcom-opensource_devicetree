@@ -71,7 +71,13 @@
 		 * iomemory-ranges <PA IPA SIZE ACCESS>
 		 * Soc dependent
 		 */
-		iomemory-ranges;
+		iomemory-ranges = <0x0 0xae8f000 0x0 0xae8f000 0x0 0x1000 0x0
+				0x0 0x0928000 0x0 0x0928000 0x0 0x4000 0x0
+				0x0 0xc400000 0x0 0xc400000 0x0 0x3000 0x1
+				0x0 0xc42d000 0x0 0xc42d000 0x0 0x4000 0x1
+				0x0 0xc440000 0x0 0xc440000 0x0 0x10000 0x1
+				0x0 0xc450000 0x0 0xc450000 0x0 0x70000 0x1
+				0x0 0xc4c0000 0x0 0xc4c0000 0x0 0x10000 0x1>;
 		/*
 		 * Allow VMMIO traps. Currently doesn't include
 		 * PVTIME, VIRTFREQ and GIC virtual devices.
@@ -84,7 +90,7 @@
 		 * gic-irq-ranges <HWIRQ VIRQ>
 		 * Add based on use cases
 		 */
-		gic-irq-ranges; /* PVM->SVM IRQ transfer */
+		gic-irq-ranges = <282 282>; /* PVM->SVM IRQ transfer */
 
 		segments {
 			fallback-dtb = <2>;
@@ -141,6 +147,15 @@
 				queue-depth = <0x8>;
 				qcom,label = <0x104>;
 				peer-default;
+			};
+
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
 			};
 
 			// Retrieve VM dmesg
@@ -250,10 +265,16 @@
 		required-subnodes = <&qcom_scm
 			&dmesg_dump
 			&kinfo_mem
+			&tlmm_vm_mem_access
+			&tlmm_vm_test
+			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
 			&qcom_gunyah_panic_notifier
 			&tlmm_vm_mem_access
+			&virtio_mem_device
 			&google_debug_kinfo>;
 	};
 
@@ -280,12 +301,55 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		// Valid Soc dependent pin
-		gpios;
+		gpios = /bits/ 16 <92 93 10 11 12 13>;
+
+		required-subnodes = <&qupv3_se11_i2c_active
+				&qupv3_se11_i2c_sleep>;
+
+		qupv3_se11_i2c_active: qupv3_se11_i2c_sda_active {
+			mux {
+				pins = "gpio13";
+				function = "qup0_se1_l3";
+			};
+
+			config {
+				pins = "gpio13";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+
+		qupv3_se11_i2c_sleep: qupv3_se11_i2c_sleep {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio13";
+				drive-strength = <2>;
+			};
+		};
 	};
 
 	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		depends-on-supply = <&tlmm>;
+		tlmm-vm-gpio-list = <
+				&tlmm 92 0
+				&tlmm 93 0
+				&tlmm 10 0
+				&tlmm 11 0
+				&tlmm 12 0
+				&tlmm 13 0x2008>;
+	};
+
+	tlmm_vm_test: tlmm-vm-test {
+		ccompatible = "qcom,tlmm-vm-test";
+		pinctrl-names = "active", "sleep";
+		pinctrl-0 = <&qupv3_se11_i2c_active>;
+		pinctrl-1 = <&qupv3_se11_i2c_sleep>;
+		tlmm-vm-gpio-list = < &tlmm 13 0x2008>;
 	};
 
 	wdog: qcom,wdt@17410000 {  // Same as PVM
@@ -319,6 +383,29 @@
 		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
 	};
 
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {

@@ -1665,6 +1665,7 @@
 		qcom,bam-ee = <0>;
 		qcom,smmu-s1-enable;
 		qcom,no-clock-support;
+		qcom,no-clk-gating;
 		interconnect-names = "data_path";
 		interconnects = <&system_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		iommus = <&apps_smmu 0x080 0x0>,

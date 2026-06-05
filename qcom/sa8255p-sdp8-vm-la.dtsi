@@ -113,6 +113,18 @@
 	status = "ok";
 };
 
+&ethernet1 {
+	status = "ok";
+};
+
+&serdes1 {
+	status = "ok";
+};
+
+&emac_mdio_fe {
+	status = "ok";
+};
+
 &usb2_phy0 {
 	status = "ok";
 };

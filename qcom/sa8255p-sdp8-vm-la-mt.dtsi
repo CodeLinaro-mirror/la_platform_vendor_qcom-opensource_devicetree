@@ -111,6 +111,18 @@
 	status = "ok";
 };
 
+&ethernet1 {
+	status = "ok";
+};
+
+&serdes1 {
+	status = "ok";
+};
+
+&emac_mdio_fe {
+	status = "ok";
+};
+
 &qupv3_0 {
 	status = "ok";
 };
