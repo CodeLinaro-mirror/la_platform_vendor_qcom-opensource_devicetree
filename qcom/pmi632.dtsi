@@ -364,13 +364,6 @@
 		pmi632_sdam7: qcom,sdam@b600 {
 			compatible = "qcom,spmi-sdam";
 			reg = <0xb600>;
-			#address-cells = <1>;
-			#size-cells = <1>;
-
-			restart_reason: restart@48 {
-				reg = <0x48 0x1>;
-				bits = <1 7>;
-			};
 		};
 
 		bcl_sensor: bcl@3d00 {
