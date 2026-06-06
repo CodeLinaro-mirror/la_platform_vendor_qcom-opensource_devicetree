@@ -1415,7 +1415,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,gpios-reserved = <0 1 2 3 54 55>;
+		qcom,gpios-reserved = <0 1 2 3 32 54 55>;
 		wakeup-parent = <&pdc>;
 	};
 
