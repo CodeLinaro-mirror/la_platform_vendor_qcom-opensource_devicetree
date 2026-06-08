@@ -507,3 +507,4 @@
 };
 
 #include "seca-vm-pinctrl.dtsi"
+#include "seca-vm-usb.dtsi"
