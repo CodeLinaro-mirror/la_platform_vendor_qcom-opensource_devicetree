@@ -725,6 +725,26 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS_QCVIRTIO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+
+LEMANS_LV_GVM_QCVIRTIO_BASE_DTB += lemans-vm-lv-qcvirtio.dtb
+
+LEMANS_LV_GVM_QCVIRTIO_BOARDS += \
+                lemans-vm-lv-qcvirtio-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(LEMANS_LV_GVM_QCVIRTIO_BOARDS),$(LEMANS_LV_GVM_QCVIRTIO_BASE_DTB))
+
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(LEMANS_LV_GVM_QCVIRTIO_BOARDS) $(LEMANS_LV_GVM_QCVIRTIO_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 LEMANS_LA_GVM_BASE_DTB += lemans-vm-la.dtb
