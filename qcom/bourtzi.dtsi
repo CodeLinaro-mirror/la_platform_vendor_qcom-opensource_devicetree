@@ -2585,8 +2585,9 @@
 	};
 
 	qcom_cedev: qcedev@1de0000 {
-		reg = <0x1de0000 0x20000>,
-			<0x1dc4000 0x28000>;
+		compatible = "qcom,qcedev";
+		reg = <0X0 0x1de0000 0X0 0x20000>,
+		      <0X0 0x1dc4000 0x0 0x28000>;
 		reg-names = "crypto-base","crypto-bam-base";
 		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bam-pipe-pair = <2>;
@@ -2596,8 +2597,8 @@
 		qcom,bam-ee = <0>;
 		qcom,smmu-s1-enable;
 		qcom,no-clock-support;
-//		interconnect-names = "data_path";
-//		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
+		interconnect-names = "data_path";
+		interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		iommus = <&apps_smmu 0x0480 0x0>,
 			<&apps_smmu 0x0481 0x0>;
 		qcom,iommu-dma = "atomic";
