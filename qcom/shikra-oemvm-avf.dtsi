@@ -43,13 +43,6 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		/*
-		 * Allow VMMIO traps. Currently doesn't include
-		 * PVTIME, VIRTFREQ and GIC virtual devices.
-		 * GIC is emulated by Gunyah.
-		 */
-		vmmio-ranges;
-
 		segments {
 			fallback-dtb = <2>;
 			ramdisk = <3>;
