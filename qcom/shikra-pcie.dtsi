@@ -16,8 +16,9 @@
 		       <0x045ee000 0x1000>,
 		       <0x60000000 0xa00000>,
 		       <0x60000f20 0xa8>,
-		       <0x60001000 0x1000>;
-		reg-names = "parf", "phy", "dm_core", "elbi", "iatu";
+		       <0x60001000 0x1000>,
+		       <0x045eb000 0x1000>;
+		reg-names = "parf", "phy", "dm_core", "elbi", "iatu","mhi";
 
 		cell-index = <0>;
 		linux,pci-domain = <0>;
