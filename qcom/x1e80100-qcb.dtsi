@@ -359,15 +359,15 @@
 
 &usb2_phy_2 {
 	phys = <&smb2360_2_eusb2_repeater>;
-	status = "disabled";
+	status = "okay";
 };
 
 &usb3_phy_2 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb2 {
-	status = "disabled";
+	status = "okay";
 	usb-role-switch;
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_2>;
