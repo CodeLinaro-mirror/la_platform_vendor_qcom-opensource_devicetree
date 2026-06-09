@@ -55,89 +55,6 @@
 };
 
 &tlmm {
-	pmx_ts_int_default {
-		ts_int_default: ts_int_default {
-			mux {
-				pins = "gpio13";
-				function = "gpio";
-			};
-
-			config {
-				drive-strength = <16>;
-				/* bias-pull-up; */   /* Enable if needed */
-				input-enable;
-				bias-disable;
-			};
-		};
-	};
-
-	pmx_ts_gtp_active: pmx_ts_gtp_active {
-		mux {
-			pins = "gpio3";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio3";
-			drive-strength = <8>;    /* 8 mA */
-			bias-disable = <0>;      /* no pull */
-		};
-	};
-
-	pmx_ts_gtp_suspend: pmx_ts_gtp_suspend {
-		mux {
-			pins = "gpio3";
-			function = "gpio";
-		};
-
-		config {
-			pins = "gpio3";
-			drive-strength = <2>;    /* 2 mA */
-			bias-pull-down;          /* PULL DOWN */
-		};
-	};
-
-	pmx_ts_int_output_high {
-		ts_int_output_high: ts_int_output_high {
-			mux {
-				pins = "gpio13";
-				function = "gpio";
-			};
-
-			config {
-				output-high;
-			};
-		};
-	};
-
-	pmx_ts_int_output_low {
-		ts_int_output_low: ts_int_output_low {
-			mux {
-				pins = "gpio13";
-				function = "gpio";
-			};
-
-			config {
-				output-low;
-			};
-		};
-	};
-
-	pmx_ts_int_input {
-		ts_int_input: ts_int_input {
-			mux {
-				pins = "gpio13";
-				function = "gpio";
-			};
-
-
-			config {
-				input-enable;
-				/* bias-pull-up; */   /* Good if IRQ floats */
-				bias-disable;
-			};
-		};
-	};
 	/* --- Touch Panel Regulator --- */
 	touch_panel_extavdd_default: touch_panel_extavdd_default {
 		mux {
@@ -160,12 +77,6 @@
 		reg = <0x14>;
 		status = "okay";
 		interrupt-parent = <&tlmm>;
-		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
-		pinctrl-0 = <&ts_int_default>;
-		pinctrl-1 = <&ts_int_output_low>;
-		pinctrl-2 = <&ts_int_output_high>;
-		pinctrl-3 = <&ts_int_input>;
-
 		interrupts = <13 0x2800>;
 		reset-gpios = <&tlmm 16 GPIO_ACTIVE_LOW>;
 		irq-gpios   = <&tlmm 13 GPIO_ACTIVE_LOW>;
