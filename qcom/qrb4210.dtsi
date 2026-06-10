@@ -24,9 +24,9 @@
 };
 
 &qcom_cedev {
-	status = "disabled";
+	status = "okay";
 };
 
 &qcom_crypto {
-	status = "disabled";
+	status = "okay";
 };
