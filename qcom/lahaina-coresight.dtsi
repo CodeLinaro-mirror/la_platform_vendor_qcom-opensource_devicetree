@@ -710,6 +710,7 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem2_etm0";
+		status = "disabled";
 		qcom,inst-id = <11>;
 		qcom,atid-num = <1>;
 		atid = <39>;
@@ -824,6 +825,7 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem_etm0";
+		status = "disabled";
 		qcom,inst-id = <2>;
 		qcom,atid-num = <2>;
 		atid = <36 37>;
