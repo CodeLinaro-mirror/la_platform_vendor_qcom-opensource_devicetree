@@ -1698,6 +1698,21 @@
 	};
 };
 
+&remoteproc_cdsp_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <0>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp1_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <1>;
+		dsp-type = <1>;
+	};
+};
 
 
 / {
