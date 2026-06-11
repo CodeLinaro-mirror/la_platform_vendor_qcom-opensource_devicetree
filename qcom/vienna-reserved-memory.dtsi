@@ -76,11 +76,6 @@
 		reg = <0x0 0x82B00000 0x0 0x300000>;
 	};
 
-	deepsleep_backup_mem: deepsleep_backup_region@82e00000 {
-		no-map;
-		reg = <0x0 0x82e00000 0x0 0x100000>;
-	};
-
 	displaylpi_mem: displaylpi_region@82f00000 {
 		no-map;
 		reg = <0x0 0x82f00000 0x0 0x1800000>;
@@ -89,16 +84,6 @@
 	xbl_smmu_pt_mem: xbl_smmu_pt_region@84700000 {
 		no-map;
 		reg = <0x0 0x84700000 0x0 0x100000>;
-	};
-
-	dae_deepsleep_mem: dae_deepsleep_region@84800000 {
-		no-map;
-		reg = <0x0 0x84800000 0x0 0x190000>;
-	};
-
-	hyp_carveout_mem: hyp_carveout_region@86700000 {
-		no-map;
-		reg = <0x0 0x86700000 0x0 0x1100000>;
 	};
 
 	mpss_mem: mpss_region@8ba00000 {

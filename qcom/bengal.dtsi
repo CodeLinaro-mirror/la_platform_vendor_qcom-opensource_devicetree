@@ -412,6 +412,18 @@
 			compatible = "qcom,scm";
 			qcom,dload-mode = <&tcsr 0x13000>;
 		};
+
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+		};
+
+		qcom_mem_object {
+			compatible = "qcom,mem-object";
+		};
+
+		qtee_shmbridge {
+			compatible = "qcom,tee-shared-memory-bridge";
+		};
 	};
 
 	reserved_memory: reserved-memory {
@@ -419,9 +431,19 @@
 		#size-cells = <2>;
 		ranges;
 
-		hyp_mem: hyp_region@45700000 {
+		hyp_mem: hyp_region@0x44600000 {
 			no-map;
-			reg = <0x0 0x45700000 0x0 0x600000>;
+			reg = <0x0 0x44600000 0x0 0xe00000>;
+		};
+
+		hyp_mem1: hyp_region1@0x45400000 {
+			no-map;
+			reg = <0x0 0x45400000 0x0 0x800000>;
+		};
+
+		pvmfw_mem: pvmfw_region@0x48000000 {
+			no-map;
+			reg = <0x0 0x48000000 0x0 0x100000>;
 		};
 
 		xbl_aop_mem: xbl_aop_region@45e00000 {
@@ -584,7 +606,7 @@
 	};
 
 	chosen {
-		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-1 slub_debug=- can.stats_timer=0";
+		bootargs = "lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 cpufreq.default_governor=performance rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kpti=0 export_pmu_events movable_node ftrace_dump_on_oops ssbd=force-off disable_dma32=on cgroup.memory=nokmem,nosocket panic=5 android_arch_task_struct_size=512 loglevel=6 log_buf_len=512K printk.console_no_auto_verbose=1 fw_devlink.strict=1 no-steal-acc cgroup_disable=pressure sysctl.kernel.panic_on_rcu_stall=1 restrict_cma_redirect=false irqaffinity=0-3 slub_debug=-";
 	};
 
 	soc: soc { };
@@ -927,49 +949,6 @@
 		reg-names = "pshold-base", "tcsr-boot-misc-detect";
 	};
 
-	qtee_shmbridge {
-		compatible = "qcom,tee-shared-memory-bridge";
-		qcom,disable-shmbridge-support;
-	};
-
-	qcom_seecom: qseecom@61800000 {
-		compatible = "qcom,qseecom";
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-		memory-region = <&qseecom_mem>;
-		qseecom_mem = <&qseecom_mem>;
-		qseecom_ta_mem = <&qseecom_ta_mem>;
-		qcom,no-user-contig-mem-support;
-		qcom,hlos-num-ce-hw-instances = <1>;
-		qcom,hlos-ce-hw-instance = <0>;
-		qcom,qsee-ce-hw-instance = <0>;
-		qcom,disk-encrypt-pipe-pair = <2>;
-		qcom,support-fde;
-		qcom,fde-key-size;
-		qcom,appsbl-qseecom-support;
-		qcom,commonlib64-loaded-by-uefi;
-		qcom,msm-bus,name = "qseecom-noc";
-		qcom,msm-bus,num-cases = <4>;
-		qcom,msm-bus,num-paths = <1>;
-		clock-names =
-			"core_clk_src", "core_clk",
-			"iface_clk", "bus_clk";
-		clocks =
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>,
-			<&rpmcc RPM_SMD_CE1_CLK>;
-		qcom,ce-opp-freq = <192000000>;
-		qcom,qsee-reentrancy-support = <2>;
-	};
-
-	qcom_smcinvoke: smcinvoke@61800000 {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-	};
-
 	qcom_rng: qrng@1b53000 {
 		compatible = "qcom,trng";
 		reg = <0x1b53000 0x1000>;
@@ -1128,22 +1107,17 @@
 		rpm-channel-type = <15>; /* SMD_APPS_RPM */
 	};
 
-	qcom,chd_silver {
+	qcom,chd {
 		compatible = "qcom,core-hang-detect";
-		label = "silver";
-		qcom,threshold-arr = <0x0f1880b0 0x0f1980b0
-				      0x0f1a80b0 0x0f1b80b0>;
-		qcom,config-arr = <0x0f1880b8 0x0f1980b8
-				   0x0f1a80b8 0x0f1b80b8>;
-	};
-
-	qcom,chd_gold {
-		compatible = "qcom,core-hang-detect";
-		label = "gold";
-		qcom,threshold-arr = <0x0f0880b0 0x0f0980b0
-				      0x0f0a80b0 0x0f0b80b0>;
-		qcom,config-arr = <0x0f0880b8 0x0f0980b8
-				   0x0f0a80b8 0x0f0b80b8>;
+		label = "core";
+		qcom,chd-percpu-info = <&CPU0 0x0f1880b0 0x0f1880b8>,
+					<&CPU1 0x0f1980b0 0x0f1980b8>,
+					<&CPU2 0x0f1a80b0 0x0f1a80b8>,
+					<&CPU3 0x0f1b80b0 0x0f1b80b8>,
+					<&CPU4 0x0f0880b0 0x0f0880b8>,
+					<&CPU5 0x0f0980b0 0x0f0980b8>,
+					<&CPU6 0x0f0a80b0 0x0f0a80b8>,
+					<&CPU7 0x0f0b80b0 0x0f0b80b8>;
 	};
 
 	qcom,ghd {
@@ -2200,8 +2174,10 @@
 	};
 
 	cx_ipeak_lm: cx_ipeak@3ed000 {
+		#size-cells = <1>;
 		compatible = "qcom,cx-ipeak-v2";
 		reg = <0x3ed000 0xe008>;
+		status = "ok";
 	};
 
 	modem_pas: remoteproc-mss@6080000 {
@@ -2538,8 +2514,8 @@
 
 			L2P: pm8008_l2: ldo2 {
 				regulator-name = "pm8008_l2";
-				regulator-min-microvolt = <1056000>;
-				regulator-max-microvolt = <1056000>;
+				regulator-min-microvolt = <1200000>;
+				regulator-max-microvolt = <1200000>;
 			};
 
 			L3P: pm8008_l3: ldo3 {

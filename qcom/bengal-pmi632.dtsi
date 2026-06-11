@@ -29,6 +29,16 @@
 	};
 };
 
+&pmi632_sdam7 {
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	restart_reason: restart@48 {
+		reg = <0x48 0x1>;
+		bits = <1 7>;
+	};
+};
+
 &pmi632_vadc {
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -105,8 +115,6 @@
 
 &thermal_zones {
 	chg-skin-therm {
-		polling-delay-passive = <0>;
-		polling-delay = <0>;
 		thermal-sensors = <&pmi632_adc_tm 0>;
 		trips {
 			active-config0 {
@@ -117,8 +125,7 @@
 		};
 	};
 
-	quiet-therm-step {
-		polling-delay-passive = <0>;
+	quiet-therm {
 		cooling-maps {
 			batt_cdev1 {
 				cooling-device = <&pmi632_charger 2 2>;
@@ -134,6 +141,29 @@
 
 			batt_cdev4 {
 				cooling-device = <&pmi632_charger 7 7>;
+			};
+		};
+	};
+
+	vbat {
+		thermal-sensors = <&bcl_sensor 2>;
+		trips {
+			vbat_lvl0:vbat-lvl0 {
+				temperature = <2800>;
+				hysteresis = <100>;
+				type = "passive";
+			};
+
+			vbat_lvl1:vbat-lvl1 {
+				temperature = <2600>;
+				hysteresis = <100>;
+				type = "passive";
+			};
+
+			vbat_lvl2:vbat-lvl2 {
+				temperature = <2300>;
+				hysteresis = <100>;
+				type = "passive";
 			};
 		};
 	};

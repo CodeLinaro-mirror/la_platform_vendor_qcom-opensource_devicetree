@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "vienna.dtsi"
+
+&reserved_memory {
+	hyp_carveout_mem: hyp_carveout_region@86b00000 {
+		no-map;
+		reg = <0x0 0x86b00000 0x0 0xd00000>;
+	};
+};

@@ -45,6 +45,33 @@
 		compatible = "qcom,va-minidump";
 		memory-region = <&va_md_mem>;
 	};
+
+	ipcc_mproc_apps_ns1: qcom,ipcc@421000 {
+		compatible = "qcom,ipcc";
+		reg = <0x421000 0x1000>;
+		interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+	};
+
+	virtio_glink_cma: virtio-glink-cma@2e000000 {
+		compatible = "virtio,mmio";
+		reg = <0x2e000000 0x1000>;
+		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+
+		glink_bridge: virtio-glink-bridge {
+			compatible = "virtio,device49162"; /* VIRTIO_ID: 0xC00A */
+
+			glink-edge {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_CLIENT_CDSP 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_CLIENT_CDSP 0>;
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+			};
+		};
+	};
 };
 
 &reserved_memory {
@@ -138,3 +165,26 @@
 	status = "ok";
 };
 
+&emac_ctrl_fe {
+	status = "ok";
+};
+
+&emac0_hw {
+	status = "ok";
+};
+
+&soc {
+	/*
+	 * STM passthrough: exposes the PVM CoreSight STM stimulus port to the
+	 * GVM via hypervisor memory passthrough.  The PVM must configure:
+	 *   pass loc mem:0x16380000,0x80000,rw=0x16380000
+	 *
+	 * Physical base: 0x16380000 (STM stimulus base 0x16280000 + 0x100000)
+	 * Size:          0x80000    (512 KB = 2048 channels x 256 B/channel)
+	 */
+	stm_passthrough: stm-passthrough@16380000 {
+		compatible = "qcom,stm-passthrough";
+		reg = <0x16380000 0x80000>;
+		status = "okay";
+	};
+};

@@ -171,6 +171,7 @@
 	rpmh-regulator-mmcxlvl {
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "mmcx.lvl";
+		proxy-supply = <&VDD_MMCX_LEVEL>;
 		VDD_MMCX_LEVEL: VDD_MM_LEVEL:
 		S2F_LEVEL: S2F_E0_LEVEL:
 		pm8550ve_f_s2_level: vreg-pm8550ve-f-s2-level {
@@ -184,6 +185,10 @@
 				<RPMH_REGULATOR_LEVEL_MAX>;
 			qcom,init-voltage-level =
 				<RPMH_REGULATOR_LEVEL_TURBO>;
+			qcom,proxy-consumer-enable;
+			qcom,proxy-consumer-voltage =
+				<RPMH_REGULATOR_LEVEL_TURBO
+				 RPMH_REGULATOR_LEVEL_MAX>;
 		};
 
 		VDD_MMCX_LEVEL_AO: VDD_MM_LEVEL_AO:

@@ -1060,6 +1060,9 @@
 			interrupts = <GIC_SPI 813 IRQ_TYPE_LEVEL_HIGH>;
 			clock-names = "se";
 			clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+			interconnect-names = "qup-core", "qup-config";
+			interconnects = <&clk_virt MASTER_QUP_CORE_2 &clk_virt SLAVE_QUP_CORE_2>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_2>;
 			pinctrl-names = "default", "sleep";
 			pinctrl-0 = <&qupv3_se21_2uart_active>;
 			pinctrl-1 = <&qupv3_se21_2uart_sleep>;

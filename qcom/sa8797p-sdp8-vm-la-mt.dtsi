@@ -31,7 +31,7 @@
 };
 
 &chosen {
-	bootconfig = "androidboot.dtbo_idx=24 androidboot.fstab_suffix=hqx.nord.qcom";
+	bootconfig = "androidboot.dtbo_idx=27 androidboot.fstab_suffix=hqx.nord.qcom";
 };
 
 &reserved_memory {
@@ -200,6 +200,10 @@
 
 &eusb2_phy1 {
 	status = "ok";
+};
+
+&usb_audio_qmi_dev {
+	status = "okay";
 };
 
 &usb0 {

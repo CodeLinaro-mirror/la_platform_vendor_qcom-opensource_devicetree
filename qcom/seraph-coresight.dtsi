@@ -3838,7 +3838,7 @@
 		reg = <0x11309000 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,cmb-element-bits = <64>;
-		device-name = "tpdm_swao_prio0";
+		device-name = "tpdm_swao_prio_0";
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";

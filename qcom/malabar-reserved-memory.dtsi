@@ -75,28 +75,40 @@
 	};
 
 	rpm_dump_mem: rpm_dump_region@85e1c000 {
-		reg = <0x0 0x85e1c000 0x0 0x25800>;
+		reg = <0x0 0x85e1c000 0x0 0x25000>;
 		no-map;
 	};
 
 	mpss_mem: mpss_region@85f00000 {
-		reg = <0x0 0x85f00000 0x0 0xd200000>;
+		reg = <0x0 0x85f00000 0x0 0xa900000>;
 		no-map;
 	};
 
-	q6_mpss_dtb_mem: q6_mpss_dtb_region@93100000 {
-		reg = <0x0 0x93100000 0x0 0x80000>;
+	q6_mpss_dtb_mem: q6_mpss_dtb_region@90800000 {
+		reg = <0x0 0x90800000 0x0 0x80000>;
 		no-map;
 	};
 
-	q6_adsp_dtb_mem: q6_adsp_dtb_region@94580000 {
-		reg = <0x0 0x94580000 0x0 0x80000>;
+	q6_adsp_dtb_mem: q6_adsp_dtb_region@91280000 {
+		reg = <0x0 0x91280000 0x0 0x80000>;
 		no-map;
 	};
 
-	adsp_mem: adsp_region@94600000 {
-		reg = <0x0 0x94600000 0x0 0x1e00000>;
+	adsp_mem: adsp_region@91300000 {
+		reg = <0x0 0x91300000 0x0 0x1e00000>;
 		no-map;
+	};
+
+	dsm_mem: dsm_region@9ce00000 {
+		reg = <0x0 0x9ce00000 0x0 0x2200000>;
+		no-map;
+	};
+
+	dsm_cma_mem: dsm_cma_region@9f000000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x9f000000 0x0 0x800000>;
+		reusable;
+		alignment = <0x0 0x400000>;
 	};
 
 	/* UEFI region at 0x9f800000 is reclaimed by Linux */

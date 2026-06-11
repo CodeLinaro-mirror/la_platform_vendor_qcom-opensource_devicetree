@@ -6,6 +6,20 @@
 &tlmm {
 
 	pcie6 {
+		pcie6_perst_init: pcie6_perst_init {
+			mux {
+				pins = "gpio152";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio152";
+				drive-strength = <2>;
+				bias-pull-down;
+				output-low;
+			};
+		};
+
 		pcie6_perst_default: pcie6_perst_default {
 			mux {
 				pins = "gpio152";
@@ -181,6 +195,19 @@
 				drive-strength = <2>;
 			};
 		};
+	};
+
+	ts_int_conn: ts-int-conn-state {
+		pins = "gpio51";
+		function = "gpio";
+		bias-disable;
+	};
+
+	ts_rst_conn: ts-rst-conn-state {
+		pins = "gpio48";
+		function = "gpio";
+		output-high;
+		drive-strength = <16>;
 	};
 
 	qupv3_se0_spi_pins: qupv3_se0_spi_pins {

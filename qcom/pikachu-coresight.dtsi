@@ -107,6 +107,7 @@
 
 		arm,primecell-periphid = <0x000bb922>;
 		device-name = "cti_aop_rvss";
+		status = "disabled";
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 	};
@@ -3518,12 +3519,11 @@
 	};
 
 	tpda_apss: tpda@12863000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb969>;
+		compatible = "qcom,coresight-tpda","arm,primecell";
+		arm,primecell-periphid = <0x000f0f00>;
 
 		reg = <0x12863000 0x1000>;
 		reg-names = "tpda-base";
-
 		device-name = "tpda_apss";
 
 		clocks = <&aoss_qmp>;
@@ -3571,11 +3571,11 @@
 	};
 
 	tpdm_llm_silver: tpdm@128a0000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x128a0000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_llm_silver";
 
 		clocks = <&aoss_qmp>;
@@ -3595,11 +3595,11 @@
 
 
 	tpdm_actpm: tpdm@12860000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x12860000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_actpm";
 
 		qcom,cmb-element-bits = <64>;
@@ -3618,11 +3618,11 @@
 	};
 
 	tpdm_llm_dsb: tpdm@12861000 {
-		compatible = "arm,primecell";
-		arm,primecell-periphid = <0x000bb968>;
+		compatible = "qcom,coresight-tpdm","arm,primecell";
+		arm,primecell-periphid = <0x000f0e00>;
+
 		reg = <0x12861000 0x1000>;
 		reg-names = "tpdm-base";
-
 		device-name = "tpdm_llm_dsb";
 
 		qcom,dsb-element-bits = <32>;

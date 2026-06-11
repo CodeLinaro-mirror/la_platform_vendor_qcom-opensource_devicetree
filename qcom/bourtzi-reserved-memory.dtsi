@@ -24,6 +24,7 @@
 	};
 
 	aop_cmd_db_mem: aop_cmd_db_region@80860000 {
+		compatible = "qcom,cmd-db";
 		no-map;
 		reg = <0x0 0x80860000 0x0 0x20000>;
 	};
@@ -53,8 +54,10 @@
 	/* secdata region at 0x808ff000 can be reused by apps */
 
 	smem_mem: smem_region@80900000 {
+		compatible = "qcom,smem";
 		no-map;
 		reg = <0x0 0x80900000 0x0 0x200000>;
+		hwlocks = <&tcsr_mutex 3>;
 	};
 
 	cpucp_fw_mem: cpucp_fw_region@80b00000 {
@@ -67,24 +70,24 @@
 		reg = <0x0 0x80c00000 0x0 0x100000>;
 	};
 
-	hyp_mem: hyp_region@80d00000 {
+	hyp_mem: hyp_region@80e00000 {
 		no-map;
-		reg = <0x0 0x80d00000 0x0 0xe00000>;
+		reg = <0x0 0x80e00000 0x0 0xe00000>;
 	};
 
-	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@81b00000 {
+	hypervisor_extended_heap_mem: hypervisor_extended_heap_region@81c00000 {
 		no-map;
-		reg = <0x0 0x81b00000 0x0 0x800000>;
+		reg = <0x0 0x81c00000 0x0 0x800000>;
 	};
 
-	hyp_mem_database_mem: hyp_mem_database_region@82300000 {
+	hyp_mem_database_mem: hyp_mem_database_region@82400000 {
 		no-map;
-		reg = <0x0 0x82300000 0x0 0x60000>;
+		reg = <0x0 0x82400000 0x0 0x60000>;
 	};
 
-	wlan_msa_moselle_mem: wlan_msa_moselle_region@82a00000 {
+	wlan_msa_mem: wlan_msa_region@82a00000 {
 		no-map;
-		reg = <0x0 0x82a00000 0x0 0xc00000>;
+		reg = <0x0 0x82a00000 0x0 0x300000>;
 	};
 
 	splash_screen_mem: splash_screen_region@83600000 {
@@ -97,7 +100,7 @@
 		reg = <0x0 0x84b00000 0x0 0x800000>;
 	};
 
-	wpss_moselle_mem: wpss_moselle_region@85300000 {
+	wpss_mem: wpss_region@85300000 {
 		no-map;
 		reg = <0x0 0x85300000 0x0 0x1900000>;
 	};

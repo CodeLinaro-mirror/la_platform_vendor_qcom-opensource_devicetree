@@ -26,7 +26,7 @@
 		qcom,transaction_timeout = <0>;
 		dcc-ram-offset = <0x6000>;
 
-		dcc-no-offset-conv;
+		dcc-mem-map-ver = <2>;
 	};
 
 	mem_dump {

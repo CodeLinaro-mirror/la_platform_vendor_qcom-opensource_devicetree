@@ -10,6 +10,6 @@
 
 / {
   model = "Qualcomm Technologies, Inc. Shikra Lite EVK eSMPS NFC IMXCAM";
-  compatible = "qcom,shikra-lite-evk", "qcom,shikra-lite-cqm", "qcom,shikra-lite-cqs", "qcom,evk";
+  compatible = "qcom,shikra-lite-evk", "qcom,shikra", "qcom,shikra-lite-cqm", "qcom,shikra-lite-cqs", "qcom,evk";
   qcom,board-id = <0x10033 0x01>;
 };

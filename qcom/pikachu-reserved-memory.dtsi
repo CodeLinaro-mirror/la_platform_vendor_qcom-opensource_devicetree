@@ -257,6 +257,12 @@
 		reg = <0x0 0xd7a00000 0x0 0x200000>;
 		no-map;
 	};
+
+	hwfence_shbuf: hwfence-shmem {
+		no-map;
+		reg = <0x0 0xd4e23000 0x0 0x2dd000>;
+	};
+
 	/*
 	 * merged sbl_sc_smmu_pt_mem, hyp_ac_config_mem, dare_tz_reserved_1_mem, cpucp_fw_mem,
 	 * xbl_sc_mem, dare_tz_reserved_2_mem,  qtee_mem, ta_mem, dare_tz_tags_mem,

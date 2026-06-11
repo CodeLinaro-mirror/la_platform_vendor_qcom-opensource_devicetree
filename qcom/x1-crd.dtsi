@@ -38,7 +38,7 @@
 };
 
 &usb_mp_hsphy0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp_hsphy1 {
@@ -47,19 +47,15 @@
 };
 
 &usb_mp_qmpphy0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp_qmpphy1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp {
 	status = "okay";
-	usb@a400000 {
-		phys = <&usb_mp_hsphy1>;
-		phy-names = "usb2-0";
-	};
 };
 
 &pmc8380_f_gpios {
@@ -275,6 +271,14 @@
 					remote-endpoint = <&usb_port0_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb0_configure_in: endpoint {
+					remote-endpoint = <&usb_port0_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -324,6 +328,14 @@
 					remote-endpoint = <&usb_port1_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb1_configure_in: endpoint {
+					remote-endpoint = <&usb_port1_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -348,6 +360,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_0>;
 	gpios = <&tlmm 121 0>;
+	qcom,enabled-retimer;
 };
 
 &ucsi {
@@ -410,6 +423,10 @@
 	remote-endpoint = <&retimer_usb0_ss_out>;
 };
 
+&usb_port0_configure_out {
+	remote-endpoint = <&retimer_usb0_configure_in>;
+};
+
 &smb2360_1_eusb2_repeater {
 	vdd18-supply = <&L3D>;
 	vdd3-supply = <&L14B>;
@@ -430,6 +447,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
 	gpios = <&tlmm 123 0>;
+	qcom,enabled-retimer;
 };
 
 &usb_port1_ssphy_out {
@@ -438,6 +456,10 @@
 
 &usb_port1_dwc3_ss {
 	remote-endpoint = <&retimer_usb1_ss_out>;
+};
+
+&usb_port1_configure_out {
+	remote-endpoint = <&retimer_usb1_configure_in>;
 };
 
 &usb2_phy_4 {
@@ -450,7 +472,7 @@
 
 &smb2360_2_eusb2_repeater {
 	vdd18-supply = <&L3D>;
-	vdd3-supply = <&L2B>;
+	vdd3-supply = <&L8B>;
 };
 
 &usb2_phy_2 {
