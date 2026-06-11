@@ -238,6 +238,12 @@
 		qcom,dev-name = "bootloader_a";
 	};
 
+	virtio_mmio_i2c_9 {
+		virtio_i2c_9: virtio_i2c_9@0 {
+			compatible = "virtio,device22";
+		};
+	};
+
 	virtio_mmio_gpio {
 	};
 

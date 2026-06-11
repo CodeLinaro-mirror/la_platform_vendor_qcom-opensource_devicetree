@@ -12,6 +12,7 @@
 	aliases {
 		hsuart0 = &qupv3_se17_4uart;
 		hsuart1 = &qupv3_se14_4uart;
+		i2c11 = &virtio_i2c_9;
 	};
 };
 
