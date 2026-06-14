@@ -145,7 +145,9 @@ BOURTZI_BOARDS += \
 		bourtzi-rcm-evros-cottid-overlay.dtbo \
 		bourtzi-rcm-evros-cottid-lcd-overlay.dtbo
 
-BOURTZI_4GB_BOARDS += bourtzi-mtp-4gb-overlay.dtbo
+BOURTZI_4GB_BOARDS += bourtzi-mtp-4gb-overlay.dtbo \
+		      bourtzi-cdp-4gb-overlay.dtbo \
+		      bourtzi-cdp-4gb-lcd-overlay.dtbo
 
 NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
