@@ -86,6 +86,26 @@
 			qcom,secure-pt-reserved;
 		};
 
+		glink_cma_mem1: glink-cma-region@1 {
+			no-map;
+			qcom,label = <0x60>;
+		};
+
+		glink_cma_mem2: glink-cma-region@2 {
+			no-map;
+			qcom,label = <0x61>;
+		};
+
+		glink_cma_mem5: glink-cma-region@5 {
+			no-map;
+			qcom,label = <0x64>;
+		};
+
+		glink_cma_mem6: glink-cma-region@6 {
+			no-map;
+			qcom,label = <0x65>;
+		};
+
 		soccp_fe_vm_1: soccp_fe_vm_1 {
 			no-map;
 			qcom,label = <0x80>;
@@ -1314,6 +1334,16 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
+	};
 
 	psci {
 		compatible = "arm,psci-1.0";
