@@ -28,7 +28,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3 pcie_aspm=off";
 	};
 
 	aliases: aliases {
@@ -1412,7 +1412,7 @@
 				dma-coherent;
 			};
 
-			qcom_cedev_s_cb {
+			qcom_cedev_s_cb: qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
 				iommus = <&dpd_smmu 0x9>;
@@ -2510,7 +2510,7 @@
 
 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
 				 <&rpmhcc RPMH_CXO_CLK>,
-				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
+				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
 				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
 				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,

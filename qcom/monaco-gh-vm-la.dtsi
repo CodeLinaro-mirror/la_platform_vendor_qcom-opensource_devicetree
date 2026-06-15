@@ -70,6 +70,11 @@
 			qcom,label = <0x60>;
 		};
 
+		gptp_timedata_mem: gptp_timedata_region {
+			no-map;
+			qcom,label = <0x61>;
+		};
+
 		cp_pixel_mem: cp_pixel_region {
 			no-map;
 			qcom,target-vmid = <0xa>;
@@ -151,6 +156,44 @@
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		cpu-map {
+			cluster0 {
+				core0 {
+					cpu = <&CPU0>;
+				};
+
+				core1 {
+					cpu = <&CPU1>;
+				};
+
+				core2 {
+					cpu = <&CPU2>;
+				};
+
+				core3 {
+					cpu = <&CPU3>;
+				};
+			};
+
+			cluster1 {
+				core0 {
+					cpu = <&CPU4>;
+				};
+
+				core1 {
+					cpu = <&CPU5>;
+				};
+
+				core2 {
+					cpu = <&CPU6>;
+				};
+
+				core3 {
+					cpu = <&CPU7>;
+				};
+			};
 		};
 	};
 
@@ -287,7 +330,7 @@
 		qcom,qtee-config-info = "p=3,16,57,77,78,7A,7C,8F,97,10C,159,199,47E,7F1;ta=keymaster64,widevine,pr_3_0,she_gvm,auto_test_a,auto_test_b,auto_test_c,auto_test_d,auto_test_e,auto_test_f,auto_test_g,auto_test_h,auto_test_i,auto_test_j,auto_test_k,auto_test_l,auto_test_m,auto_test_n,auto_test_o,auto_test_p,auto_test_320,auto_test_321,auto_test_322,auto_test_323,auto_test_324,apttestapp,apttestapp64,aptcryptotestapp,aptcryptotestapp64,smplserv,tzecotestapp,tzecotestappcbo1,smci_auto_test_1,smci_auto_test_2,smci_auto_test_3,smci_auto_test_4,smci_auto_test_5,smci_auto_test_6,smci_auto_test_7,smci_auto_test_8,smci_auto_test_9,smci_auto_test_10,smci_auto_test_11,smci_auto_test_12,smci_auto_test_13,smci_auto_test_14,smci_auto_test_15,smci_auto_test_16,smci_auto_test_init_crash,smci_auto_test_restartable,smci_auto_test_shutdown_crash,fsp_test_1,fsp_test_2,fsp_test_3,bintestapp64,tzecotestapp1,crypto_testapp,sst_testapp,autosst_testapp,auto_test_unpermitted,FD02C9DA-306C-48C7-A49C-BBD827AE86EF,5AF8C3E6-D9DF-446E-4FF2-D4D58E8CA49B,19CE19B9-FD73-4262-8553-E5CAC40C895A,C02CAC07-2639-4EF0-BC12-C4AF1FB3E276,15C6B6E4-D083-48E4-8744-4D90A8FF1EF2,CAD10542-34E4-452D-6156-E979AA6E61BC,23914957-C174-4EA6-54D1-DA820F77B4B0,5AF8C3E6-D9DF-446E-4FF2-C3C47D7B938A,CAD10542-34E4-452D-6156-E979AA6E6132,5AF8C3E6-D9DF-446E-4FF2-B2B36C6A8279,smplap32,smplap64;";
 		qcom,secdomain-ids = <52 9 10>;
 		qcom,primary-vm-index = <0>;
-		vm-attrs = "guest-ram-dump", "vpm-virq";
+		vm-attrs = "guest-ram-dump", "vpm-virq", "allow-unprotected";
 		qcom,peripheral-vmids = <0x9 0xa>;
 
 		/* Pass through regions */
@@ -324,6 +367,10 @@
 				0x0 0x8906000 0x0 0x8906000 0x0 0x1000 0x0
 				/* PDC region */
 				0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
+				/* PTP region */
+				0x0 0x23047000 0x0 0x23047000 0x0 0x1000 0x0
+				/* QTimer region */
+				0x0 0x17c23000 0x0 0x17c23000 0x0 0x1000 0x0
 				>;
 
 		gic-irq-ranges = <
@@ -1141,6 +1188,22 @@
 				};
 			};
 
+			virtio-mmio@46 {
+				vdevice-type = "virtio-mmio";
+				patch = "/virtio_blk_la_bootloader_a";
+				peer-default;
+				vqs-num = <0x1>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x23A000>;
+				memory {
+					qcom,label = <0x4E>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
@@ -1322,6 +1385,11 @@
 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 		clock-frequency = <19200000>;
+	};
+
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
 	qcom_dma_heaps: qcom,dma-heaps {
@@ -1509,6 +1577,16 @@
 				qcom,glink-label = "cdsp";
 			};
 		};
+	};
+
+	ptp_virtual {
+		compatible = "qcom,ptp_virtual";
+		reg = <0xac5fe000 0x1000>,
+			<0x23047000 0x1000>,
+			<0x17c23000 0x1000>;
+		reg-names = "ptp_carveout_mem",
+			"ptp_reg",
+			"qtimer_reg";
 	};
 
 	hab: qcom,hab {

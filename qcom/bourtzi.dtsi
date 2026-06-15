@@ -51,7 +51,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 log_buf_len=512K earlycon swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 irqaffinity=0-3 ftrace_dump_on_oops slub_debug=- ";
+		bootargs = "nokaslr kpti=0 loglevel=6 can.stats_timer=0 log_buf_len=512K earlycon swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 irqaffinity=0-3 ftrace_dump_on_oops slub_debug=- ";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -1527,18 +1527,6 @@
 		};
 	};
 
-	qfprom_sys: qfprom@0 {
-		compatible = "qcom,qfprom-sys";
-		nvmem-cells = <&feat_conf12>,
-				<&feat_conf13>,
-				<&boot_config>,
-				<&gpu_speed_bin>;
-		nvmem-cell-names = "feat_conf12",
-				"feat_conf13",
-				"boot_config",
-				"gpu_speed_bin";
-	};
-
 	qcom,memshare {
 		compatible = "qcom,memshare";
 
@@ -1601,23 +1589,6 @@
 			qcom,shared;
 			label = "modem";
 		};
-	};
-
-	cpucp: qcom,cpucp@17400000 {
-		compatible = "qcom,cpucp";
-		reg =   <0x0 0x17400000 0x0 0x10>,
-			<0x0 0x17d90000 0x0 0x2000>;
-		reg-names = "tx", "rx";
-		#mbox-cells = <1>;
-		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-	};
-
-	cpucp_log: qcom,cpucp_log@0x17d09c00 {
-		compatible = "qcom,cpucp-log";
-		reg =   <0x0 0x17d09c00 0x0 0x200>,
-			<0x0 0x17d09e00 0x0 0x200>;
-		mboxes = <&cpucp 1>;
-		qcom,log-type = <0>;
 	};
 
 	cpu_pmu: cpu-pmu {
