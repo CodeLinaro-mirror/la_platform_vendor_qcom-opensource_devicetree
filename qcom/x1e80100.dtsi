@@ -28,7 +28,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3 pcie_aspm=off";
 	};
 
 	aliases: aliases {
@@ -398,7 +398,7 @@
 
 		qcom_si_core {
 			compatible = "qcom,si-core";
-			interrupts = <GIC_SPI 830 IRQ_TYPE_EDGE_RISING>;
+			interrupts = <GIC_SPI 862 IRQ_TYPE_EDGE_RISING>;
 		};
 
 		qcom_smcinvoke {
@@ -930,18 +930,43 @@
 			status = "disabled";
 		};
 
+		ice_cfg: shared_ice {
+			 alg1 {
+				 alg-name = "alg1";
+				 rx-alloc-percent = <60>;
+				 status = "disabled";
+			 };
+
+			 alg2 {
+				 alg-name = "alg2";
+				 status = "disabled";
+
+			 };
+
+			alg3 {
+				alg-name = "alg3";
+				num-core = <28 28 15 13>;
+				status = "ok";
+			 };
+		 };
+
 		ufshc_mem: ufshc@1d84000 {
 			compatible = "qcom,ufshc";
 
-			reg = <0x0 0x1d84000 0x0 0x3000>;
+			reg = <0x0 0x1d84000 0x0 0x3000>,
+			      <0x0 0x1d88000 0x0 0x18000>;
+			reg-names = "ufs_mem", "ice";
 
 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 			dev-ref-clk-freq = <0>; /* 19.2 MHz */
+
+			qcom,ice-use-hwkm;
 
 			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
 				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
 				 <&gcc GCC_UFS_PHY_AHB_CLK>,
 				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>,
 				 <&rpmhcc RPMH_LN_BB_CLK3>,
 				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
 				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
@@ -950,6 +975,7 @@
 				      "bus_aggr_clk",
 				      "iface_clk",
 				      "core_clk_unipro",
+				      "core_clk_ice",
 				      "ref_clk",
 				      "tx_lane0_sync_clk",
 				      "rx_lane0_sync_clk",
@@ -960,6 +986,7 @@
 				<0 0>,
 				<0 0>,
 				<75000000 300000000>,
+				<100000000 403000000>,
 				<0 0>,
 				<0 0>,
 				<0 0>,
@@ -976,6 +1003,8 @@
 			iommus = <&apps_smmu 0x1a0 0>;
 			qcom,iommu-dma = "fastmap";
 			dma-coherent;
+
+			shared-ice-cfg = <&ice_cfg>;
 
 			reset-gpios = <&tlmm 238 GPIO_ACTIVE_LOW>;
 			resets = <&gcc GCC_UFS_PHY_BCR>;
@@ -1261,6 +1290,8 @@
 		qspi: qspi@88dc000 {
 			compatible = "qcom,x1e80100-qspi", "qcom,qspi-v1";
 			reg = <0x0 0x088dc000 0x0 0x1000>;
+			iommus = <&apps_smmu 0x140 0x0>;
+			qcom,iommu-dma = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
 			interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
@@ -1381,7 +1412,7 @@
 				dma-coherent;
 			};
 
-			qcom_cedev_s_cb {
+			qcom_cedev_s_cb: qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
 				iommus = <&dpd_smmu 0x9>;
@@ -2479,7 +2510,7 @@
 
 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
 				 <&rpmhcc RPMH_CXO_CLK>,
-				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
+				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
 				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
 				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,
@@ -2534,8 +2565,8 @@
 			clocks = <&gcc GCC_USB30_TERT_MASTER_CLK>,
 				<&gcc GCC_CFG_NOC_USB3_TERT_AXI_CLK>,
 				<&gcc GCC_AGGRE_USB3_TERT_AXI_CLK>,
-				<&gcc GCC_USB30_TERT_SLEEP_CLK>,
 				<&gcc GCC_USB30_TERT_MOCK_UTMI_CLK>,
+				<&gcc GCC_USB30_TERT_SLEEP_CLK>,
 				<&gcc GCC_CFG_NOC_USB_ANOC_NORTH_AHB_CLK>,
 				<&gcc GCC_AGGRE_USB_NOC_AXI_CLK>,
 				<&gcc GCC_SYS_NOC_USB_AXI_CLK>,
@@ -2640,7 +2671,7 @@
 				 <&rpmhcc RPMH_CXO_CLK>,
 				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
 				 <&gcc GCC_USB3_TERT_PHY_COM_AUX_CLK>,
-				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
+				 <&gcc GCC_USB3_TERT_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_2_wrapper_gcc_usb30_pipe_clk>,
 				 <&gcc GCC_USB3_TERT_PHY_PIPE_CLK>;
 			clock-names = "aux",

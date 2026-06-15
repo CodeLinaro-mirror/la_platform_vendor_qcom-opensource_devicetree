@@ -76,6 +76,7 @@
 &qupv3_se1_i2c {
 	#address-cells = <1>;
 	#size-cells = <0>;
+	qcom,leica-used-i2c;
 	status = "ok";
 
 	pm8010m: pmic@14 {

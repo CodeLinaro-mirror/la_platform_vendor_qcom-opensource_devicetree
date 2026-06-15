@@ -17,6 +17,8 @@
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/power/qcom-aoss-qmp.h>
+#include <dt-bindings/clock/qcom,aop-qmp.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/mailbox/qcom-ipcc.h>
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -536,6 +538,12 @@
 				qcom,glink-channels = "qsh_1_8";
 				qcom,intents = <0x1000 3
 						0x3E8  7>;
+			};
+
+			/* DHMS GLINK Channel for LMCU */
+			qcom,dhms {
+				qcom,glink-channels = "dhms_mcu0";
+				qcom,intents = <0x400 20>;
 			};
 		};
 	};
@@ -1077,6 +1085,77 @@
 		qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 	};
 
+	bwprof_scmi: qcom,bwprof-scmi {
+		compatible = "qcom,bwprof-scmi";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		reg = <0x1901C040 0xFC0>, <0x1901C000 0x40>;
+		reg-names = "mem-base", "buff-fill-base";
+
+		bwprof_ddr: ddr {
+			compatible = "qcom,bwprof-hw";
+			qcom,hw-type = < 0 >;
+			qcom,bus_width = < 4 >;
+
+			bwprof_ddr_1ms: 1ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 50 51 >;
+			};
+
+			bwprof_ddr_10ms: 10ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 10 >;
+				qcom,master-list = /bits/ 8 < 50 51 53 54 55 56 57 >;
+			};
+
+			bwprof_ddr_100ms: 100ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 100 >;
+				qcom,master-list = /bits/ 8 < 50 51 52 53 54 55 56 57 >;
+			};
+
+			bwprof_ddr_hist: Hist {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 50 51 52 >;
+				qcom,hist-enable;
+			};
+		};
+
+		bwprof_llcc: llcc {
+			compatible = "qcom,bwprof-hw";
+			qcom,hw-type = < 1 >;
+			qcom,bus_width = < 32 >;
+
+			bwprof_llcc_1ms: 1ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 0 1 >;
+			};
+
+			bwprof_llcc_10ms: 10ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 10 >;
+				qcom,master-list = /bits/ 8 < 0 1 3 4 5 6 7 >;
+			};
+
+			bwprof_llcc_100ms: 100ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 100 >;
+				qcom,master-list = /bits/ 8 < 0 1 2 3 4 5 6 7 >;
+			};
+
+			bwprof_llcc_hist: Hist {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 0 1 2 >;
+				qcom,hist-enable;
+			};
+		};
+	};
+
 	pdc: interrupt-controller@0xb220000 {
 		compatible = "qcom,pikachu-pdc", "qcom,pdc";
 		reg = <0xb220000 0x10000>, <0x174000f0 0x64>;
@@ -1303,7 +1382,7 @@
 		reg = <0xc3f0000 0x400>;
 		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "wpss", "adsp", "adsp_island",
-			  "cdsp", "apss", "soccp", "dcp";
+			  "cdsp", "apss", "soccp", "dcp", "lmcu";
 	};
 
 	qcom,mem-buf {
@@ -1430,6 +1509,13 @@
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 		qcom,sct-initialized;
+
+		llcc-perfmon {
+			compatible = "qcom,llcc-perfmon";
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			llcc-scid-status-snapshot;
+		};
 	};
 
 	qcom,msm-adsprpc-mem {
@@ -2114,6 +2200,19 @@
 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
+	vendor_hooks: qcom,cpu-vendor-hooks {
+		compatible = "qcom,cpu-vendor-hooks";
+	};
+
+	qcom,chd {
+		compatible = "qcom,core-hang-detect";
+		label = "core";
+		qcom,chd-percpu-info = <&CPU0 0x17800058 0x17800060>,
+					<&CPU1 0x17810058 0x17810060>,
+					<&CPU2 0x17820058 0x17820060>,
+					<&CPU3 0x17830058 0x17830060>;
+	};
+
 	qcom_dcvs_prof: qcom-dcvs-prof {
 		max_masters = <4>;
 	};
@@ -2141,6 +2240,9 @@
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
 		memory-region = <&adsp_mem &q6_adsp_dtb_mem>;
+
+		subdev-firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";
+		subdev-memory-region = <&lmcu_mem &lmcu_dtb_mem>;
 
 		/* Inputs from ssc */
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
@@ -2380,6 +2482,21 @@
 					<&CPU2 0x17820058 0x17820060>,
 					<&CPU3 0x17830058 0x17830060>;
 	};
+	/* IOVA reservation node — restricts DHMS DMA allocations to CACHE_6 range */
+	dhms_dma_region: dhms_dma_iommu_region {
+		iommu-addresses = <&dhms_rpmsg_lmcu 0x00000000 0xD0000000>,
+			<&dhms_rpmsg_lmcu 0xD8000000 0x28000000>;
+	};
+
+
+	/* DHMS RPMSG Platform Device - Kernel driver for DHMS */
+	dhms_rpmsg_lmcu: dhms-rpmsg-lmcu {
+		compatible = "qcom,dhms-rpmsg";
+		iommus = <&apps_smmu 0x01141 0x0>;
+		dma-coherent;
+		memory-region = <&dhms_dma_region>;
+		status = "okay";
+	};
 };
 
 &firmware {
@@ -2477,6 +2594,14 @@
 		reusable;
 		size = <0 0x1000000>;
 	};
+
+	non_secure_display_memory: non_secure_display_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0xa400000>;
+	};
 };
 
 #include "msm-arm-smmu-pikachu.dtsi"
@@ -2504,8 +2629,8 @@
 	nxp_eusb2_repeater: eusb2_repeater@4f {
 		compatible = "nxp,eusb2-repeater";
 		reg = <0x4f>;
-		vdd18-supply = <&L3A_E0>;
-		vdd3-supply = <&L14A_E0>;
+		vdd1v8-supply = <&L3A_E0>;
+		vdd3v3-supply = <&L14A_E0>;
 	};
 };
 

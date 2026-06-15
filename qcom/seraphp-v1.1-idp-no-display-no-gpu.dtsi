@@ -5,3 +5,7 @@
 
 
 #include "seraphp-v1.1-idp.dtsi"
+
+&gxclkctl {
+	status = "disabled";
+};

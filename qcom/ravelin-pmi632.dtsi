@@ -8,11 +8,11 @@
 #include "pmi632.dtsi"
 
 &soc {
-	qcom,pmic_glink {
+	pmic-glink {
 		status = "okay";
 	};
 
-	qcom,pmic_glink_log {
+	pmic-glink-log {
 		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_LOGS_ADSP_APPS";
 
@@ -171,12 +171,12 @@
 	socd {
 		cooling-maps {
 			socd_cpu_6_7 {
-				trip = <&socd_trip>;
+				trip = <&pmi632_low_soc>;
 				cooling-device = <&cpu_6_7_pause 1 1>;
 			};
 
 			socd_gpu0 {
-				trip = <&socd_trip>;
+				trip = <&pmi632_low_soc>;
 				cooling-device = <&msm_gpu 2 2>;
 			};
 		};
@@ -185,37 +185,37 @@
 	pmi632-bcl-lvl0 {
 		cooling-maps {
 			vbat_lte0 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&modem_lte_dsc 8 8>;
 			};
 
 			vbat_nr0_scg {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&modem_nr_scg_dsc 3 3>;
 			};
 
 			vbat_nr0 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&modem_nr_dsc 6 6>;
 			};
 
 			vbat_cpu_4 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&cpu4_pause 1 1>;
 			};
 
 			vbat_cpu_5 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&cpu5_pause 1 1>;
 			};
 
 			vbat_cpu_6 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&cpu6_pause 1 1>;
 			};
 
 			vbat_gpu0 {
-				trip = <&b_bcl_lvl0>;
+				trip = <&bcl_lvl0>;
 				cooling-device = <&msm_gpu 2 2>;
 			};
 		};
@@ -224,27 +224,27 @@
 	pmi632-bcl-lvl1 {
 		cooling-maps {
 			vbat_lte1 {
-				trip = <&b_bcl_lvl1>;
+				trip = <&bcl_lvl1>;
 				cooling-device = <&modem_lte_dsc 255 255>;
 			};
 
 			vbat_nr1_scg {
-				trip = <&b_bcl_lvl1>;
+				trip = <&bcl_lvl1>;
 				cooling-device = <&modem_nr_scg_dsc 255 255>;
 			};
 
 			vbat_nr1 {
-				trip = <&b_bcl_lvl1>;
+				trip = <&bcl_lvl1>;
 				cooling-device = <&modem_nr_dsc 255 255>;
 			};
 
 			vbat_cpu_7 {
-				trip = <&b_bcl_lvl1>;
+				trip = <&bcl_lvl1>;
 				cooling-device = <&cpu7_pause 1 1>;
 			};
 
 			vbat_gpu1 {
-				trip = <&b_bcl_lvl1>;
+				trip = <&bcl_lvl1>;
 				cooling-device = <&msm_gpu 4 4>;
 			};
 		};
@@ -253,7 +253,7 @@
 	pmi632-bcl-lvl2 {
 		cooling-maps {
 			vbat_gpu2 {
-				trip = <&b_bcl_lvl2>;
+				trip = <&bcl_lvl2>;
 				cooling-device = <&msm_gpu 3 THERMAL_NO_LIMIT>;
 			};
 		};

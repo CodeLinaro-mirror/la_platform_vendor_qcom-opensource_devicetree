@@ -7,6 +7,8 @@
 /plugin/;
 
 #include "bourtzi-rcm.dtsi"
+#include "bourtzi-pm7250b.dtsi"
+#include "bourtzi-smb1355.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Bourtzi RCM + WCN3998 + tioman";

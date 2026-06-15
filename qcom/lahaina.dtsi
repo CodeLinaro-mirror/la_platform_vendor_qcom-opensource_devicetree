@@ -699,7 +699,7 @@ soc: soc { };
 		compatible = "qcom,rpmh-stats";
 		reg = <0x0c3f0000 0x400>;
 		ss-name = "modem", "adsp", "adsp_island",
-			  "cdsp", "apss";
+			  "cdsp", "apss", "slpi", "slpi_island";
 	};
 
 	apps_rsc: rsc@18200000 {
@@ -762,29 +762,41 @@ soc: soc { };
 		};
 	};
 
-	slim_aud: slim@3ac0000 {
-		cell-index = <1>;
-		compatible = "qcom,slim-ngd";
-		reg = <0x3ac0000 0x2c000>,
-			<0x3a84000 0x22000>;
-		reg-names = "slimbus_physical", "slimbus_bam_physical";
-		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-				<GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "slimbus_irq", "slimbus_bam_irq";
+	slimbam: bamdma@3a84000 {
+		compatible = "qcom,bam-v1.7.0";
+		reg = <0x03a84000 0x20000>;
+		interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
+		#dma-cells = <1>;
+		qcom,controlled-remotely;
+		num-channels = <31>;
+		qcom,ee = <1>;
+		qcom,num-ees = <2>;
+		iommus = <&apps_smmu 0x1826 0x0>;
+	};
+
+	slim_msm: slim@3ac0000 {
+		compatible = "qcom,slim-ngd-v1.5.0";
+		reg = <0x03ac0000 0x2c000>;
+		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,apps-ch-pipes = <0x0>;
 		qcom,ea-pc = <0x350>;
+		dmas = <&slimbam 3>, <&slimbam 4>;
+		dma-names = "rx", "tx";
 		iommus = <&apps_smmu 0x1826 0x0>;
-		qcom,iommu-dma-addr-pool = <0x40000000 0x10000000>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
-		qcom,iommu-dma = "fastmap";
-		status = "ok";
+		qcom,wait_for_adsp_up;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+		ngd@1 {
+			reg = <1>;
+			#address-cells = <1>;
+			#size-cells = <1>;
 
-		/* Slimbus Slave DT for QCA6490 */
-		btfmslim_codec: qca6490 {
-			compatible = "qcom,btfmslim_slave";
-			elemental-addr = [00 01 21 02 17 02];
-			qcom,btfm-slim-ifd = "btfmslim_slave_ifd";
-			qcom,btfm-slim-ifd-elemental-addr = [00 00 21 02 17 02];
+			/* slimbus child nodes */
+			slimbus: btfmslim-driver {
+				compatible = "slim217,221";
+				reg = <1 0>;
+			};
 		};
 	};
 
@@ -5015,9 +5027,9 @@ soc: soc { };
 		qcom,spss-fuse3-bit = <10>;
 		qcom,spss-fuse4-addr = <0x00780204>; // IAR_STATE fuse
 		qcom,spss-fuse4-bit = <25>; // 0x00780204 bits 25-27
-		qcom,spss-dev-firmware-name  = "spss1d";  /* 8 chars max */
-		qcom,spss-test-firmware-name = "spss1t";  /* 8 chars max */
-		qcom,spss-prod-firmware-name = "spss1p";  /* 8 chars max */
+		qcom,spss-dev-firmware-name  = "spss1d.mdt";  /* 8 chars max */
+		qcom,spss-test-firmware-name = "spss1t.mdt";  /* 8 chars max */
+		qcom,spss-prod-firmware-name = "spss1p.mdt";  /* 8 chars max */
 		qcom,spss-debug-reg-addr = <0x01886020>;
 		qcom,spss-scsr-regs-addr = <0x01880000>;  /* SPU shared register */
 		qcom,spss-emul-type-reg-addr = <0x01fc8004>;

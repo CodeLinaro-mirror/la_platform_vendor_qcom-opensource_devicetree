@@ -8,15 +8,26 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "audio_etm0";
-		qcom,inst-id = <5>;
+		qcom,atid-num = <1>;
 		trace-name = "audio-etm0";
 		atid = <40>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				audio_etm0_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_audio_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				audio_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_audio_etm0>;
 				};
 			};
 		};
@@ -26,15 +37,23 @@
 		compatible = "arm,coresight-dummy-source";
 		device-name = "tpdm_lpass_lpi";
 		trace-name = "tpda-lpass-lpi";
-		qcom,dummy-source;
-
-		atid = <26>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				tpdm_lpass_lpi_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_tpdm_lpass_lpi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_lpi_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_lpi>;
 				};
 			};
 		};
@@ -92,15 +111,58 @@
 		compatible = "arm,coresight-dummy-source";
 		device-name = "lpass_stm";
 		trace-name = "lpass-stm";
-		qcom,dummy-source;
-
 		atid = <25>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				lpass_stm_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_lpass_stm>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				lpass_stm_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_lpass_stm>;
+				};
+			};
+		};
+	};
+
+	audio-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi-audio";
+		qcom,inst-id = <5>;
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				qmi_in_audio_etm0: endpoint {
+					remote-endpoint =
+						<&audio_etm0_out_qmi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				qmi_in_lpass_stm: endpoint {
+					remote-endpoint =
+					<&lpass_stm_out_qmi>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				qmi_in_lpass_lpi: endpoint {
+					remote-endpoint =
+					<&lpass_lpi_out_qmi>;
 				};
 			};
 		};
@@ -908,17 +970,44 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem_etm0";
-		qcom,inst-id = <2>;
+		qcom,atid-num = <2>;
 
 		atid = <36 37>;
 		trace-name = "modem-etm0";
 		qcom,secure-component;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				modem_etm0_out_funnel_modem_q6_dup: endpoint {
 					remote-endpoint =
 						<&funnel_modem_q6_dup_in_modem_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_modem_etm0>;
+				};
+			};
+		};
+	};
+
+	modem0-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem0";
+		qcom,inst-id = <2>;
+
+		in-ports {
+			port {
+				qmi_in_modem_etm0: endpoint {
+					remote-endpoint =
+						<&modem_etm0_out_qmi>;
 				};
 			};
 		};
@@ -928,16 +1017,43 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem2_etm0";
-		qcom,inst-id = <11>;
+		qcom,atid-num = <1>;
 
 		atid = <39>;
 		trace-name = "modem2-etm0";
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				modem2_etm0_out_funnel_modem: endpoint {
 					remote-endpoint =
 						<&funnel_modem_in_modem2_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem2_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_modem2_etm0>;
+				};
+			};
+		};
+	};
+
+	modem2-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem2";
+		qcom,inst-id = <11>;
+
+		in-ports {
+			port {
+				qmi_in_modem2_etm0: endpoint {
+					remote-endpoint =
+						<&modem2_etm0_out_qmi>;
 				};
 			};
 		};
@@ -1053,7 +1169,6 @@
 		reg = <0x10c70000 0x1000>;
 		reg-names = "tpdm-base";
 
-		atid = <78>;
 		device-name = "tpdm_wpss_dsb";
 		qcom,dsb-element-bits = <32>;
 		qcom,dsb-msrs-num = <16>;
@@ -1077,7 +1192,6 @@
 		reg = <0x10c71000 0x1000>;
 		reg-names = "tpdm-base";
 
-		atid = <78>;
 		device-name = "tpdm_wpss_cmb";
 		qcom,cmb-element-bits = <32>;
 		qcom,cmb-msrs-num = <12>;
@@ -1099,14 +1213,41 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "wpss_etm0";
-		qcom,inst-id = <3>;
+		trace-name = "wpss-etm0";
 		atid = <44>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				wpss_etm0_out_funnel_wpss: endpoint {
 					remote-endpoint =
 						<&funnel_wpss_in_wpss_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				wpss_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_wpss_etm0>;
+				};
+			};
+		};
+	};
+
+	wpss-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_wpss";
+		qcom,inst-id = <3>;
+
+		in-ports {
+			port {
+				qmi_in_wpss_etm0: endpoint {
+					remote-endpoint =
+						<&wpss_etm0_out_qmi>;
 				};
 			};
 		};
@@ -1154,6 +1295,30 @@
 		};
 
 		out-ports {
+			port {
+				funnel_wpss_out_replicator_wpss: endpoint {
+					remote-endpoint =
+					<&replicator_wpss_in_funnel_wpss>;
+				};
+			};
+		};
+	};
+
+	wpss_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_wpss";
+
+		in-ports {
+			port {
+				replicator_wpss_in_funnel_wpss: endpoint {
+					remote-endpoint =
+					<&funnel_wpss_out_replicator_wpss>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -1162,7 +1327,7 @@
 				funnel_wpss_out_tpda_dl_center_5: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_5_in_funnel_wpss>;
-					source = <&tpdm_wpss>;
+					filter-source = <&tpdm_wpss>;
 				};
 			};
 
@@ -1171,7 +1336,7 @@
 				funnel_wpss_out_tpda_dl_center_6: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_6_in_funnel_wpss>;
-					source = <&tpdm_wpss1>;
+					filter-source = <&tpdm_wpss1>;
 				};
 			};
 
@@ -1180,12 +1345,12 @@
 				funnel_wpss_out_funnel_dl_center: endpoint {
 					remote-endpoint =
 					<&funnel_dl_center_in_funnel_wpss>;
-					source = <&wpss_etm>;
+					filter-source = <&wpss_etm>;
 				};
 			};
-
 		};
 	};
+
 
 	funnel_lpass_lpi: funnel@10b44000 {
 		compatible = "arm,coresight-static-funnel";
@@ -1838,7 +2003,6 @@
 		reg = <0x10c2b000 0x1000>;
 		reg-names = "tpda-base";
 
-		qcom,tpda-atid = <78>;
 		device-name = "tpda_dlct0";
 
 		clocks = <&aoss_qmp>;
