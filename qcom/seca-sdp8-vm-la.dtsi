@@ -3,6 +3,10 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/mailbox/qcom-ipcc-sa8797p.h>
+
 &{/} {
 	rename_devices: rename_devices {
 		compatible = "qcom,rename-devices";
@@ -54,6 +58,16 @@
 };
 
 &soc {
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
+	};
+
 	google_debug_kinfo: google,debug-kinfo {
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
