@@ -326,5 +326,7 @@
 
 		pinctrl-names = "default";
 		pinctrl-0 = <&sx1508_touch_power_active>;
+
+		goodix,config-name = "gt1151_cfg.bin";
 	};
 };
