@@ -467,6 +467,12 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
+	rpm_minidump: qcom,rpm_minidump {
+		compatible = "qcom,rpm-minidump";
+		memory-region = <&rpm_dump_mem>;
+	};
+
+
 	cluster-device {
 		compatible = "qcom,lpm-cluster-dev";
 		power-domains = <&CLUSTER_PD>;
@@ -849,6 +855,17 @@
 			qcom,shared;
 			label = "modem";
 		};
+
+		qcom,client_dsm_harq {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "md_op1";
+			qcom,peripheral-size = <0x800000>;
+			qcom,client-id = <9>;
+			memory-region = <&dsm_cma_mem>;
+			label = "modem";
+			qcom,dynamic-size-feature;
+			qcom,dynamic-size-max = <0x800000>;
+		};
 	};
 
 	qcom,msm-imem@c125000 {
@@ -988,6 +1005,11 @@
 		interrupts = <IPCC_CLIENT_AOP
 			      IPCC_MPROC_SIGNAL_GLINK_QMP
 			      IRQ_TYPE_EDGE_RISING>;
+
+		qcom,rpm_requests_rpmsg {
+			qcom,glink-channels = "rpm_requests";
+			qcom,ch-sched-rt;
+		};
 	};
 
 	msm_gpu: qcom,kgsl-3d0@5900000 { };
@@ -1446,7 +1468,7 @@
 				<&system_noc MASTER_CRYPTO_CORE0 &bimc SLAVE_EBI_CH0>;
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
-		memory-region = <&mpss_mem &q6_mpss_dtb_mem &system_cma>;
+		memory-region = <&mpss_mem &q6_mpss_dtb_mem &system_cma &dsm_mem>;
 		firmware-name = "modem.mdt", "modem_dtb.mdt";
 
 		interrupts-extended = <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,

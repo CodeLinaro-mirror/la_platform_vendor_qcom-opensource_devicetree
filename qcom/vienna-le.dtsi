@@ -31,6 +31,43 @@
 	status = "disabled";
 };
 
+/* Reduce video carveout to match the Vienna LE memory layout. */
+&video_mem {
+	no-map;
+	reg = <0x0 0x93B00000 0x0 0x500000>;
+};
+
+/* Disable IPA firmware carveout for Vienna LE variants. */
+&ipa_fw_mem {
+	status = "disabled";
+};
+
+/* Disable IPA GSI carveout for Vienna LE variants. */
+&ipa_gsi_mem {
+	status = "disabled";
+};
+
+/* Disable GPU microcode carveout for Vienna LE variants. */
+&gpu_microcode_mem {
+	status = "disabled";
+};
+
+/* Disable audio calibration database carveout for Vienna LE variants. */
+&ac_db_mem {
+	status = "disabled";
+};
+
+/* Resize ADSP/SLPI carveout to match the Vienna LE memory layout. */
+&adspslpi_mem {
+	no-map;
+	reg = <0x0 0x95200000 0x0 0x2B00000>;
+};
+
+/* Disable Display LPI memory for LE variants */
+&displaylpi_mem {
+	status = "disabled";
+};
+
 /* Disable I2C9 for LE variants */
 &i2c9 {
 	status = "disabled";

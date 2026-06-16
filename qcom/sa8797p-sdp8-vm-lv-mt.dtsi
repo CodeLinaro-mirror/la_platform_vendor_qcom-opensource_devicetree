@@ -37,6 +37,10 @@
 	};
 };
 
+&hab {
+	vmid = <3>;
+};
+
 &virt_scmi {
 	irq_no_suspend;
 	status = "ok";
@@ -44,6 +48,10 @@
 
 &scmi {
 	status = "ok";
+};
+
+&qcom_rng_ee13 {
+	status = "disabled";
 };
 
 &qupv3_2 {
@@ -111,5 +119,13 @@
 
 &usb_0_qmp_combo_phy {
 	power-domains = <&scmi_power 24>, <&scmi_power 25>;
+	status = "disabled";
+};
+
+&xpcs1 {
+	status = "disabled";
+};
+
+&ethernet1 {
 	status = "disabled";
 };
