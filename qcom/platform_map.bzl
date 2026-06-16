@@ -547,9 +547,16 @@ _platform_map = {
         ],
         "custom_dtbo_img_list": [
             {
-                "name": "x1e80100-crd",
-                "src": ["x1e80100-crd-overlay.dtbo", "x1e80100.dtb"],
-                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/x1e80100_crd_dtbo.config",
+                "name": "hamoa",
+                "src": [
+                    "x1e80100.dtb",
+                    "x1p42100.dtb",
+                    "x1e80100-crd-overlay.dtbo",
+                    "x1e80100-qcb-overlay.dtbo",
+                    "x1e80100-qcp-overlay.dtbo",
+                    "x1p42100-crd-overlay.dtbo",
+                ],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/hamoa_dtbo.config",
             },
         ],
         "binary_compatible_with": ["x1p42100"],
