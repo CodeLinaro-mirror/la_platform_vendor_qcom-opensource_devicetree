@@ -98,9 +98,9 @@
 	 * ufs devices supported for ufs-dev-types, and nvmem handle
 	 * added by pmic for sdam register.
 	 */
-	ufs-dev-types = <2>;
-	nvmem-cells = <&ufs_dev>;
-	nvmem-cell-names = "ufs_dev";
+	//ufs-dev-types = <2>;
+	//nvmem-cells = <&ufs_dev>;
+	//nvmem-cell-names = "ufs_dev";
 
 	status = "ok";
 };
