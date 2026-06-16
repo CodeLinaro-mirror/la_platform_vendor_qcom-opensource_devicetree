@@ -440,6 +440,13 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
+	};
+
+	qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+		qcom,primary;
 	};
 
 	kryo-erp {
@@ -473,7 +480,7 @@
 
 		sleep_clk: sleep_clk {
 			compatible = "fixed-clock";
-			clock-frequency = <32000>;
+			clock-frequency = <32764>;
 			clock-output-names = "sleep_clk";
 			#clock-cells = <0>;
 		};
@@ -623,7 +630,7 @@
 	};
 
 	qcom,cpufreq-hw-debug {
-		compatible = "qcom,cpufreq-epss-debug";
+		compatible = "qcom,cpufreq-hw-epss-debug";
 		qcom,freq-hw-domain = <&cpufreq_hw 0>,
 				      <&cpufreq_hw 1>;
 	};
@@ -763,9 +770,9 @@
 		status = "ok";
 	};
 
-	qcom,mpm2-sleep-counter@c221000 {
+	qcom,mpm2-sleep-counter@4403000 {
 		compatible = "qcom,mpm2-sleep-counter";
-		reg = <0xc221000 0x1000>;
+		reg = <0x4403000 0x1000>;
 		clock-frequency = <32768>;
 	};
 
@@ -1792,7 +1799,7 @@
 		 * from 0x40000000 - 0x4fffffff.
 		 */
 		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
-						  <&sdhc_2 0x50000000 0xb0000000>;
+				  <&sdhc_2 0x50000000 0xb0000000>;
 	};
 
 	sdhc_2: sdhci@4784000 {
@@ -1815,7 +1822,7 @@
 			<&gcc GCC_SDCC2_APPS_CLK>;
 		clock-names = "iface", "core";
 
-		qcom,dll-hsr-list = <0x0007442c 0x0 0x10
+		qcom,dll-config-list = <0x0007442c 0x0 0x10
 					0x090106c0 0x80040868>;
 
 		iommus = <&apps_smmu 0x0A0 0x0>;
@@ -1915,9 +1922,15 @@
 		interrupt-names = "eud_irq";
 		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
 		reg = <0x1610000 0x2000>,
-		      <0x1612000 0x1000>;
-		reg-names = "eud_base", "eud_mode_mgr2";
+		      <0x1612000 0x1000>,
+			<0x3E5018 0x4>;
+		reg-names = "eud_base", "eud_mode_mgr2",
+				"eud_tcsr_check_reg";
 		qcom,secure-eud-en;
+		qcom,eud-tcsr-check-enable;
+		qcom,eud-clock-vote-req;
+		clocks = <&gcc GCC_AHB2PHY_USB_CLK>;
+		clock-names = "eud_ahb2phy_clk";
 		status = "ok";
 	};
 
@@ -2045,7 +2058,7 @@
 			l3_dcvs_sp: sp {
 				compatible = "qcom,dcvs-path";
 				qcom,dcvs-path-type = <0>;
-				qcom,shared-offset = <0x0920>;
+				qcom,shared-offset = <0x0320>;
 			};
 		};
 
@@ -2624,6 +2637,12 @@
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DATA1";
 			qcom,glinkpkt-dev-name = "smd7";
+		};
+
+		qcom,glinkpkt-data2 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "DATA2";
+			qcom,glinkpkt-dev-name = "at_mdm0";
 		};
 
 		qcom,glinkpkt-data4 {

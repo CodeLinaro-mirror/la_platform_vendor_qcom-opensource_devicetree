@@ -1743,7 +1743,7 @@
 				config {
 					pins = "gpio117";
 					drive-strength = <2>;
-					bias-disable;
+					bias-pull-up;
 				};
 			};
 
@@ -1756,7 +1756,7 @@
 				config {
 					pins = "gpio118";
 					drive-strength = <2>;
-					bias-disable;
+					bias-pull-up;
 				};
 			};
 
@@ -1769,7 +1769,7 @@
 				config {
 					pins = "gpio117", "gpio118";
 					drive-strength = <2>;
-					bias-bus-hold;
+					bias-pull-up;
 				};
 			};
 		};

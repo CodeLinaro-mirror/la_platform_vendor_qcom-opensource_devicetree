@@ -895,7 +895,7 @@
 			rclk {
 				pins = "sdc1_rclk";
 				bias-pull-down;
-				drive-strength = <2>;
+				drive-strength = <4>;
 			};
 		};
 

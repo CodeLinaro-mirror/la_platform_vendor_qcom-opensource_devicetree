@@ -7,6 +7,7 @@
 /plugin/;
 
 #include "bourtzi-mtp.dtsi"
+#include "bourtzi-pmiv010x.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Bourtzi MTP + evros + cottid";

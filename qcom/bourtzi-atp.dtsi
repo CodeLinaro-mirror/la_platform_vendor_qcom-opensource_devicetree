@@ -2,3 +2,58 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
+
+#include "bourtzi-pmic-overlay.dtsi"
+#include "bourtzi-pm7250b.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+
+&ufsphy_mem {
+	compatible = "qcom,ufs-phy-qmp-v4-waipio";
+
+	vdda-phy-supply = <&L5B_E0>;
+	vdda-pll-supply = <&L16B_E0>;
+	vdda-phy-max-microamp = <90560>;
+	vdda-pll-max-microamp = <18430>;
+
+	status = "ok";
+};
+
+&ufshc_mem {
+	vdd-hba-supply = <&gcc_ufs_phy_gdsc>;
+
+	vcc-supply = <&L5E_E0>;
+	vcc-max-microamp = <1056000>;
+
+	vccq-supply = <&L13B_E0>;
+	vccq-max-microamp = <750000>;
+
+	vccq2-supply = <&L19B_E0>;
+	vccq2-max-microamp = <750000>;
+
+	qcom,vddp-ref-clk-supply = <&L13B_E0>;
+	qcom,vddp-ref-clk-max-microamp = <100>;
+
+	/*
+	 * ufs-dev-types and nvmem entries are for ufs device
+	 * identification using nvmem interface. Use number of
+	 * ufs devices supported for ufs-dev-types, and nvmem handle
+	 * added by pmic for sdam register.
+	 *
+	 * Default value taken by driver is bit[0] = 0 for 3.x and
+	 * bit[0] = 1 for 2.x driver code takes this as default case.
+	 *
+	 * But Bit value to identify ufs device is not consistent
+	 * across the targets it could be bit[0] = 0/1 for UFS2.x/3x
+	 * and vice versa. If the bit[0] value is not same as default
+	 * value used in driver and if its reverted then use flag
+	 * qcom,ufs-dev-revert to identify ufs device.
+	 */
+	ufs-dev-types = <2>;
+	nvmem-cells = <&ufs_dev>, <&boot_config>;
+	nvmem-cell-names = "ufs_dev", "boot_conf";
+
+	boot_device_type = <0x0>;
+	non-removable;
+
+	status = "ok";
+};

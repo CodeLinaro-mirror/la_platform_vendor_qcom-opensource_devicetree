@@ -393,6 +393,18 @@ properties:
               - qcom,adp-air
           - const: qcom,sa8195p
 
+      - description: Qualcomm Technologies, Inc. sa8x97p
+        items:
+          - enum:
+              - qcom,qam
+          - const: qcom,sa8797p
+
+      - description: Qualcomm Technologies, Inc. SECA
+        items:
+          - enum:
+              - qcom,qam
+          - const: qcom,seca
+
       - description: Qualcomm Technologies, Inc. QUINVM
         items:
           - const: qcom,quinvm
@@ -485,5 +497,12 @@ properties:
             - qcom,seraphp-qar
             - qcom,qar
           - const: qcom,seraphp
+
+      - description: Qualcomm Technologies, Inc. Mahua
+        items:
+          - enum:
+              - qcom,mahua-crd
+              - qcom,crd
+          - const: qcom,mahua
 
 additionalProperties: true

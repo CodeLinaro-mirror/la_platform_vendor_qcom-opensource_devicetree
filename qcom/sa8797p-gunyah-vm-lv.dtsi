@@ -5,11 +5,12 @@
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
 
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <690 0x10000>, <690 0x20000>, <690 0x10001>;
 	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 
@@ -45,6 +46,41 @@
 			reusable;
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x1000000>;
+		};
+
+		glink_cma_mem8: glink-cma-region@8 {
+			no-map;
+			qcom,label = <0x150>;
+		};
+
+		glink_cma_mem9: glink-cma-region@9 {
+			no-map;
+			qcom,label = <0x151>;
+		};
+
+		glink_cma_mem10: glink-cma-region@10 {
+			no-map;
+			qcom,label = <0x152>;
+		};
+
+		glink_cma_mem11: glink-cma-region@11 {
+			no-map;
+			qcom,label = <0x153>;
+		};
+
+		glink_cma_mem12: glink-cma-region@12 {
+			no-map;
+			qcom,label = <0x154>;
+		};
+
+		glink_cma_mem13: glink-cma-region@13 {
+			no-map;
+			qcom,label = <0x155>;
+		};
+
+		glink_cma_mem14: glink-cma-region@14 {
+			no-map;
+			qcom,label = <0x156>;
 		};
 
 		kinfo_mem: debug_kinfo_region {
@@ -1219,6 +1255,15 @@
 			reg = <0x16>;
 			#reset-cells = <1>;
 		};
+	};
+
+	ipcc_mproc_apps_ns2: qcom,ipcc@9009000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9009000 0x1000>;
+		interrupts = <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 
 	qcom,mem-buf {
