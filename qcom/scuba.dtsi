@@ -1470,17 +1470,9 @@
 		power-domains = <&CLUSTER_PD>;
 	};
 
-	rpm-stats@4690000 {
-		compatible = "qcom,rpm-sleep-stats";
-		reg = <0x04690000 0x400>;
-	};
-
-	qcom,rpm-master-stats@45f0150 {
-		compatible = "qcom,rpm-master-stats";
-		reg = <0x45f0150 0x5000>;
-		qcom,masters = "APSS", "MPSS", "ADSP", "CDSP", "TZ";
-		qcom,master-stats-version = <2>;
-		qcom,master-offset = <4096>;
+	sram@4690000 {
+		compatible = "qcom,rpm-stats-v2";
+		reg = <0x04690000 0x10000>;
 	};
 
 	mem_dump {
