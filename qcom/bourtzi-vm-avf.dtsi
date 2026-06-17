@@ -167,6 +167,18 @@
 				qcom,label = <0x101>;
 			};
 
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					#address-cells = <0x2>;
+					base = <0x0 0x6400c000>;
+				};
+			};
+
 			// Retrieve VM dmesg
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
@@ -283,6 +295,8 @@
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
+			&qmsgq_gunyah
+			&qrtr_gunyah
 			&qcom_mem_buf
 			&mem_buf_msgq
 			&qcom_smcinvoke
@@ -397,6 +411,17 @@
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10d>;
+	};
+
+	qmsgq_gunyah: qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <4>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+		compatible = "qcom,qrtr-gunyah";
+		gunyah-label = <0x103>;
 	};
 
 	qcom_gh_qtimer: qcom,gh-qtimer@1742b000 { // Same as PVM
