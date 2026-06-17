@@ -665,6 +665,23 @@
 		};
 	};
 
+	cpucp: qcom,cpucp@17400000 {
+		compatible = "qcom,cpucp";
+		reg =   <0x0 0x17400000 0x0 0x10>,
+			<0x0 0x17d90000 0x0 0x2000>;
+		reg-names = "tx", "rx";
+		#mbox-cells = <1>;
+		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	cpucp_log: qcom,cpucp_log@0x17d09c00 {
+		compatible = "qcom,cpucp-log";
+		reg =   <0x0 0x17d09c00 0x0 0x200>,
+			<0x0 0x17d09e00 0x0 0x200>;
+		mboxes = <&cpucp 1>;
+		qcom,log-type = <0>;
+	};
+
 	apps_rsc: rsc@17a00000 {
 		label = "apps_rsc";
 		compatible = "qcom,rpmh-rsc";
