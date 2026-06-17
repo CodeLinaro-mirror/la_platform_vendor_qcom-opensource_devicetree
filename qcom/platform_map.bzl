@@ -1059,6 +1059,30 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
+    "shikra-low_ram": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-cqm.dtb"},
+            {
+                "name": "shikra-cqs.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-lite-cqm.dtb"},
+            {
+                "name": "shikra-lite-cqs.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
+            {"name": "shikra-rumi-overlay.dtbo"},
+        ],
+    },
     "shikra-tuivm": {
         "dtb_list": [
             # keep sorted
