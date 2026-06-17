@@ -1541,6 +1541,18 @@
 		};
 	};
 
+	qfprom_sys: qfprom@0 {
+		compatible = "qcom,qfprom-sys";
+		nvmem-cells = <&feat_conf12>,
+				<&feat_conf13>,
+				<&boot_config>,
+				<&gpu_speed_bin>;
+		nvmem-cell-names = "feat_conf12",
+				"feat_conf13",
+				"boot_config",
+				"gpu_speed_bin";
+	};
+
 	qcom,memshare {
 		compatible = "qcom,memshare";
 
