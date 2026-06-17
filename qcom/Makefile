@@ -243,6 +243,7 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
 BENGAL_BASE_DTB += bengal.dtb bengalp.dtb bengal-1gb.dtb bengal-2gb.dtb
+BENGAL_IOT_BASE_DTB += bengal-iot.dtb bengalp-iot.dtb bengal-iot-2gb.dtb bengalp-iot-2gb.dtb
 
 BENGAL_BOARDS += \
 		bengal-idp-overlay.dtbo\
@@ -256,9 +257,21 @@ BENGAL_BOARDS += \
 		bengal-idp-usbc-1gb-overlay.dtbo \
 		bengal-idp-usbc-2gb-overlay.dtbo
 
+BENGAL_IOT_BOARDS +=\
+		bengal-iot-idp-overlay.dtbo \
+		bengalp-iot-idp-overlay.dtbo \
+		bengalp-iot-idp-usbc-2gb-overlay.dtbo \
+		bengal-iot-idp-usbc-2gb-overlay.dtbo \
+		bengal-iot-idp-2gb-overlay.dtbo \
+		bengal-iot-idp-usbc-overlay.dtbo \
+		bengalp-iot-idp-2gb-overlay.dtbo \
+		bengalp-iot-idp-usbc-overlay.dtbo
+
 bengal-dtb-$(CONFIG_ARCH_BENGAL) += \
-        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB))
-bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
+        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB)) \
+	$(call add-overlays, $(BENGAL_IOT_BOARDS), $(BENGAL_IOT_BASE_DTB))
+
+bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB) $(BENGAL_IOT_BOARDS) $(BENGAL_IOT_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
