@@ -2142,6 +2142,8 @@
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 		reg-names = "cx","mx";
 
+		qcom,qmp = <&aoss_qmp>;
+
 		/* Inputs from wpss */
 		interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
 				      <&wpss_smp2p_in 0 0>,
