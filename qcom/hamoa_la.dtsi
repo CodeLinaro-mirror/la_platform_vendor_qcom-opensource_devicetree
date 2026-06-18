@@ -61,3 +61,7 @@
 		reg = <0x0 0xa6c00000 0x0 0x400000>;
 	};
 };
+
+&usb_audio_qmi_dev {
+	status = "okay";
+};
