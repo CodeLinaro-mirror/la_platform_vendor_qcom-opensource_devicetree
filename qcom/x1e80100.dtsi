@@ -2253,6 +2253,15 @@
 			};
 		};
 
+		usb_audio_qmi_dev: usb_audio_qmi_dev {
+			compatible = "qcom,usb-audio-qmi-dev";
+			iommus = <&apps_smmu 0x100b 0x0>;
+			qcom,iommu-dma = "disabled";
+			qcom,usb-audio-stream-id = <0xb>;
+			qcom,usb-audio-intr-num = <2>;
+			status = "disabled";
+		};
+
 		usb4: ssusb@a200000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0x0a200000 0x0 0x100000>;
