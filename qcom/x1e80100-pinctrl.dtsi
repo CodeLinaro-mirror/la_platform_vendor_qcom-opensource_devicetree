@@ -6,6 +6,20 @@
 &tlmm {
 
 	pcie6 {
+		pcie6_perst_init: pcie6_perst_init {
+			mux {
+				pins = "gpio152";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio152";
+				drive-strength = <2>;
+				bias-pull-down;
+				output-low;
+			};
+		};
+
 		pcie6_perst_default: pcie6_perst_default {
 			mux {
 				pins = "gpio152";

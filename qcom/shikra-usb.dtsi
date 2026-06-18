@@ -48,16 +48,11 @@
 			memory-region = <&dwc3_mem_region_0>;
 			interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
 			usb-phy = <&qusb_phy0>, <&usb_qmp_phy>;
+			tx-fifo-resize;
 			snps,disable-clk-gating;
 			snps,dis_enblslpm_quirk;
 			snps,has-lpm-erratum;
 			snps,hird-threshold = /bits/ 8 <0x10>;
-			snps,is-utmi-l1-suspend;
-			snps,dis-u1-entry-quirk;
-			snps,dis-u2-entry-quirk;
-			snps,dis_u2_susphy_quirk;
-			snps,dis_u3_susphy_quirk;
-			snps,ssp-u3-u0-quirk;
 			maximum-speed = "super-speed";
 			dr_mode = "otg";
 			usb-role-switch;
@@ -92,7 +87,6 @@
 		interrupt-names = "pwr_event_irq", "dm_hs_phy_irq", "dp_hs_phy_irq";
 
 		qcom,core-clk-rate = <60000000>;
-		qcom,default-mode-host;
 
 		dwc3_1: dwc3@4c00000 {
 			compatible = "snps,dwc3";
@@ -134,6 +128,8 @@
 		vdda18-supply = <&pm4125_l13>;
 		vdda33-supply = <&pm4125_l21>;
 		qcom,vdd-voltage-level = <0 925000 970000>;
+		qcom,vdda18-voltage-level = <0 1800000 1800000>;
+		qcom,vdda33-voltage-level = <0 2950000 2950000>;
 		qcom,tune2-efuse-bit-pos = <25>;
 		qcom,tune2-efuse-num-bits = <4>;
 		qcom,qusb-phy-init-seq = <0xf8 0x80
@@ -173,6 +169,8 @@
 		vdda18-supply = <&pm4125_l13>;
 		vdda33-supply = <&pm4125_l21>;
 		qcom,vdd-voltage-level = <0 925000 970000>;
+		qcom,vdda18-voltage-level = <0 1800000 1800000>;
+		qcom,vdda33-voltage-level = <0 2950000 2950000>;
 		qcom,tune2-efuse-bit-pos = <20>;
 		qcom,tune2-efuse-num-bits = <4>;
 		qcom,qusb-phy-init-seq = <0xf8 0x80

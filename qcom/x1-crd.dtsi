@@ -38,7 +38,7 @@
 };
 
 &usb_mp_hsphy0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp_hsphy1 {
@@ -47,19 +47,15 @@
 };
 
 &usb_mp_qmpphy0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp_qmpphy1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &usb_mp {
 	status = "okay";
-	usb@a400000 {
-		phys = <&usb_mp_hsphy1>;
-		phy-names = "usb2-0";
-	};
 };
 
 &pmc8380_f_gpios {
@@ -346,7 +342,7 @@
 
 &smb2360_0_eusb2_repeater {
 	vdd18-supply = <&L3D>;
-	vdd3-supply = <&L8B>;
+	vdd3-supply = <&L2B>;
 };
 
 &usb2_phy_0 {
@@ -476,7 +472,7 @@
 
 &smb2360_2_eusb2_repeater {
 	vdd18-supply = <&L3D>;
-	vdd3-supply = <&L2B>;
+	vdd3-supply = <&L8B>;
 };
 
 &usb2_phy_2 {

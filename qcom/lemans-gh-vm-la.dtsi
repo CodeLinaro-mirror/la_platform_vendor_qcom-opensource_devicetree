@@ -1454,6 +1454,11 @@
 		clock-frequency = <19200000>;
 	};
 
+	cpu_pmu: cpu-pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
 	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
 		qcom,hgy-secure-heap;
@@ -1800,7 +1805,7 @@
 					"dtbo_a", "dsp_b", "dsp_a",
 					"vendor_boot_b", "vendor_boot_a",
 					"init_boot_b", "init_boot_a", "devinfo",
-					"bootloader_b", "bootloader_a"
+					"vm-bootloader_b", "vm-bootloader_a"
 					;
 		};
 	};

@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "bourtzi.dtsi"
+
+&reserved_memory {
+	/delete-node/ trust_ui_vm_region@df800000;
+	/delete-node/ vm_comm_mem;
+};
+
+&soc {
+	/* Delete old reserved_memory & add new node here */
+	/delete-node/ qcom,gunyah-panic-notifier;
+	/delete-node/ dmesg-dump;
+	/delete-node/ gunyah-cma-mem;
+};

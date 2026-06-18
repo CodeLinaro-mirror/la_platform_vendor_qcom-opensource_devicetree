@@ -24,7 +24,8 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1 earlycon=qcom_geni,0x4a80000 android_arch_task_struct_size=512 kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+		bootargs = "android_arch_task_struct_size=512 pcie_ports=compat kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+
 	};
 
 	reserved_memory: reserved-memory { };
@@ -32,6 +33,7 @@
 	aliases: aliases {
 		serial0 = &uart0;
 		mmc0 = &sdhc_1;
+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		i2c3 = &i2c3;
 		spi5 = &spi5;
 		hsuart0 = &uart8;
@@ -456,7 +458,7 @@
 
 	qcom,rmtfs_sharedmem@0 {
 		compatible = "qcom,sharedmem-uio";
-		reg = <0x0 0x0 0x0 0x400000>;
+		reg = <0x0 0x400000>;
 		reg-names = "rmtfs";
 		qcom,client-id = <0x00000001>;
 		qcom,guard-memory;
@@ -768,9 +770,9 @@
 		status = "ok";
 	};
 
-	qcom,mpm2-sleep-counter@c221000 {
+	qcom,mpm2-sleep-counter@4403000 {
 		compatible = "qcom,mpm2-sleep-counter";
-		reg = <0xc221000 0x1000>;
+		reg = <0x4403000 0x1000>;
 		clock-frequency = <32768>;
 	};
 
@@ -1791,6 +1793,65 @@
 		};
 	};
 
+	sdhc_2_dma_resv: sdhc_2_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC2 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_2 0x0 0x40000000>,
+				  <&sdhc_2 0x50000000 0xb0000000>;
+	};
+
+	sdhc_2: sdhci@4784000 {
+		status = "disabled";
+
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x4784000 0x1000>;
+		reg-names = "hc";
+
+		interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		bus-width = <4>;
+		no-sdio;
+		no-mmc;
+		qcom,restore-after-cx-collapse;
+
+		clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+			<&gcc GCC_SDCC2_APPS_CLK>;
+		clock-names = "iface", "core";
+
+		qcom,dll-config-list = <0x0007442c 0x0 0x10
+					0x090106c0 0x80040868>;
+
+		iommus = <&apps_smmu 0x0A0 0x0>;
+		qcom,iommu-dma = "bypass";
+		memory-region = <&sdhc_2_dma_resv>;
+		qcom,iommu-geometry = <0x40000000 0x10000000>;
+
+		interconnects = <&system_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI_CH0>,
+				<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_SDCC_2>;
+		interconnect-names = "sdhc-ddr","cpu-sdhc";
+		operating-points-v2 = <&sdhc2_opp_table>;
+	};
+
+	sdhc2_opp_table: sdhc2-opp-table {
+		compatible = "operating-points-v2";
+
+		opp-100000000 {
+			opp-hz = /bits/ 64 <100000000>;
+			opp-peak-kBps = <160000 100000>;
+			opp-avg-kBps = <50000 0>;
+		};
+
+		opp-202000000 {
+			opp-hz = /bits/ 64 <202000000>;
+			opp-peak-kBps = <200000 120000>;
+			opp-avg-kBps = <104000 0>;
+		};
+	};
+
 	qcom_rng: qrng@4454000 {
 		compatible = "qcom,msm-rng";
 		reg = <0x4454000 0x1000>;
@@ -1861,9 +1922,15 @@
 		interrupt-names = "eud_irq";
 		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
 		reg = <0x1610000 0x2000>,
-		      <0x1612000 0x1000>;
-		reg-names = "eud_base", "eud_mode_mgr2";
+		      <0x1612000 0x1000>,
+			<0x3E5018 0x4>;
+		reg-names = "eud_base", "eud_mode_mgr2",
+				"eud_tcsr_check_reg";
 		qcom,secure-eud-en;
+		qcom,eud-tcsr-check-enable;
+		qcom,eud-clock-vote-req;
+		clocks = <&gcc GCC_AHB2PHY_USB_CLK>;
+		clock-names = "eud_ahb2phy_clk";
 		status = "ok";
 	};
 
@@ -1991,7 +2058,7 @@
 			l3_dcvs_sp: sp {
 				compatible = "qcom,dcvs-path";
 				qcom,dcvs-path-type = <0>;
-				qcom,shared-offset = <0x0920>;
+				qcom,shared-offset = <0x0320>;
 			};
 		};
 
@@ -2572,6 +2639,12 @@
 			qcom,glinkpkt-dev-name = "smd7";
 		};
 
+		qcom,glinkpkt-data2 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "DATA2";
+			qcom,glinkpkt-dev-name = "at_mdm0";
+		};
+
 		qcom,glinkpkt-data4 {
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DATA4";
@@ -2656,6 +2729,7 @@
 };
 
 #include "shikra-pinctrl.dtsi"
+#include "shikra-pcie.dtsi"
 #include "shikra-reserved-memory.dtsi"
 #include "shikra-pm4125-regulator.dtsi"
 #include "shikra-pm8005-regulator.dtsi"

@@ -1665,6 +1665,7 @@
 		qcom,bam-ee = <0>;
 		qcom,smmu-s1-enable;
 		qcom,no-clock-support;
+		qcom,no-clk-gating;
 		interconnect-names = "data_path";
 		interconnects = <&system_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		iommus = <&apps_smmu 0x080 0x0>,
@@ -2630,8 +2631,8 @@
 	nxp_eusb2_repeater: eusb2_repeater@4f {
 		compatible = "nxp,eusb2-repeater";
 		reg = <0x4f>;
-		vdd18-supply = <&pmar2230_l3>;
-		vdd3-supply = <&pmar2230_l14>;
+		vdd1v8-supply = <&pmar2230_l3>;
+		vdd3v3-supply = <&pmar2230_l14>;
 	};
 };
 
