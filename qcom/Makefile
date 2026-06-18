@@ -234,7 +234,8 @@ KHAJE_BOARDS += \
 		khajeg-idp-nopmi-overlay.dtbo \
 		khajeg-idp-usbc-overlay.dtbo \
 		khajeg-idp-pm8010-overlay.dtbo \
-		khajeg-idps-display-90hz-overlay.dtbo
+		khajeg-idps-display-90hz-overlay.dtbo \
+		khaje-idp-lp4-overlay.dtbo
 
 bengal-dtb-$(CONFIG_ARCH_KHAJE) += \
         $(call add-overlays, $(KHAJE_BOARDS) ,$(KHAJE_BASE_DTB))
@@ -291,7 +292,8 @@ SCUBA_BOARDS += \
                  scuba-iot-idp-usbc-overlay.dtbo \
                  scuba-iot-qrd-eldo-overlay.dtbo \
                  scuba-iot-qrd-non-eldo-overlay.dtbo \
-                 scuba-iot-rb1-overlay.dtbo
+                 scuba-iot-rb1-overlay.dtbo \
+                 scuba-iot-idp-lp4-overlay.dtbo
 
 bengal-dtb-$(CONFIG_ARCH_SCUBA) += \
 	$(call add-overlays, $(SCUBA_BOARDS), $(SCUBA_BASE_DTB))
