@@ -16,7 +16,11 @@ description:
 
 properties:
   compatible:
-    const: qcom,vadj
+    items:
+      - enum:
+          - qcom,vadj-canoe
+          - qcom,vadj-chora
+      - const: qcom,vadj
 
 required:
   - compatible
