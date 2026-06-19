@@ -483,7 +483,7 @@
 		qcom,wdt-bark-offset = <0x0C>;
 		qcom,wdt-bite-offset = <0x10>;
 		qcom,wdt-hz = <19198242>;
-		status = "disabled";
+		status = "ok";
 	};
 
 	qcom,secure-buffer {
