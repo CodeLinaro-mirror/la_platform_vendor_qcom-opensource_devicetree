@@ -809,3 +809,4 @@
 };
 
 #include "glymur-pinctrl.dtsi"
+#include "mahua-regulators.dtsi"
