@@ -162,8 +162,6 @@
 		interrupts-extended = <&tlmm 62 IRQ_TYPE_EDGE_RISING>;
 		reset-gpios = <&tlmm 59 GPIO_ACTIVE_LOW>;
 
-		vdd-l1-l2-supply = <&S8B>;
-
 		pinctrl-names = "default";
 		pinctrl-0 = <&pm8010m_int_default>, <&pm8010m_reset_default>;
 
@@ -227,9 +225,6 @@
 
 		interrupts-extended = <&tlmm 28 IRQ_TYPE_EDGE_RISING>;
 		reset-gpios = <&tlmm 30 GPIO_ACTIVE_LOW>;
-
-		vdd-l1-l2-supply = <&S8B>;
-		vdd-l3-l4-l5-supply = <&S9B>;
 
 		pinctrl-names = "default";
 		pinctrl-0 = <&pm8010n_int_default>, <&pm8010n_reset_default>;
