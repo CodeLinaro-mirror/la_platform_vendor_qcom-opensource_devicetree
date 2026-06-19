@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=1 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=1 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange androidboot.hardware=qcom androidboot.selinux=enforcing androidboot.memcg=1 androidboot.recover_usb=1 androidboot.usbcontroller=a200000.dwc3";
 		bootconfig = "androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange";
 	};
 
@@ -84,6 +84,26 @@
 		cp_np_pt_mem: cp_np_pt_region {
 			qcom,label = <0x9C>;
 			qcom,secure-pt-reserved;
+		};
+
+		glink_cma_mem1: glink-cma-region@1 {
+			no-map;
+			qcom,label = <0x60>;
+		};
+
+		glink_cma_mem2: glink-cma-region@2 {
+			no-map;
+			qcom,label = <0x61>;
+		};
+
+		glink_cma_mem5: glink-cma-region@5 {
+			no-map;
+			qcom,label = <0x64>;
+		};
+
+		glink_cma_mem6: glink-cma-region@6 {
+			no-map;
+			qcom,label = <0x65>;
 		};
 
 		soccp_fe_vm_1: soccp_fe_vm_1 {
@@ -1279,10 +1299,6 @@
 			compatible = "qcom,scm";
 		};
 
-		qcom_smcinvoke {
-			compatible = "qcom,smcinvoke";
-		};
-
 		qcom_mem_object {
 			compatible = "qcom,mem-object";
 		};
@@ -1318,6 +1334,16 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
+	};
 
 	psci {
 		compatible = "arm,psci-1.0";

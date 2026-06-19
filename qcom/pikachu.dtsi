@@ -539,6 +539,12 @@
 				qcom,intents = <0x1000 3
 						0x3E8  7>;
 			};
+
+			/* DHMS GLINK Channel for LMCU */
+			qcom,dhms {
+				qcom,glink-channels = "dhms_mcu0";
+				qcom,intents = <0x400 20>;
+			};
 		};
 	};
 
@@ -2475,6 +2481,21 @@
 					<&CPU1 0x17810058 0x17810060>,
 					<&CPU2 0x17820058 0x17820060>,
 					<&CPU3 0x17830058 0x17830060>;
+	};
+	/* IOVA reservation node — restricts DHMS DMA allocations to CACHE_6 range */
+	dhms_dma_region: dhms_dma_iommu_region {
+		iommu-addresses = <&dhms_rpmsg_lmcu 0x00000000 0xD0000000>,
+			<&dhms_rpmsg_lmcu 0xD8000000 0x28000000>;
+	};
+
+
+	/* DHMS RPMSG Platform Device - Kernel driver for DHMS */
+	dhms_rpmsg_lmcu: dhms-rpmsg-lmcu {
+		compatible = "qcom,dhms-rpmsg";
+		iommus = <&apps_smmu 0x01141 0x0>;
+		dma-coherent;
+		memory-region = <&dhms_dma_region>;
+		status = "okay";
 	};
 };
 
