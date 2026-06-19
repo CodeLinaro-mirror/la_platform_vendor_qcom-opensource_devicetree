@@ -506,5 +506,49 @@
 	};
 };
 
+&reserved_memory {
+	glink_cma_mem0: glink-cma-region0 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem0";
+	};
+
+	glink_cma_mem1: glink-cma-region1 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem1";
+	};
+
+	glink_cma_mem2: glink-cma-region2 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem2";
+	};
+
+	glink_cma_mem3: glink-cma-region3 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem3";
+	};
+
+	glink_cma_mem4: glink-cma-region4 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem4";
+	};
+
+	glink_cma_mem5: glink-cma-region5 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem5";
+	};
+
+	glink_cma_mem6: glink-cma-region6 {
+		no-map;
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "glink_cma_mem6";
+	};
+};
+
 #include "seca-vm-pinctrl.dtsi"
 #include "seca-vm-usb.dtsi"
