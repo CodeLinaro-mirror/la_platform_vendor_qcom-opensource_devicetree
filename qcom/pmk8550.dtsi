@@ -179,6 +179,10 @@ pmk8550: qcom,pmk8550@0 {
 		#pwm-cells = <2>;
 	};
 
+	pmk8550_qvadj: qcom,voltage-adj-device {
+		compatible = "qcom,vadj";
+	};
+
 	pmk8550_vadc: vadc@9000 {
 		compatible = "qcom,spmi-adc5-gen3";
 		reg = <0x9000>, <0x9100>;
