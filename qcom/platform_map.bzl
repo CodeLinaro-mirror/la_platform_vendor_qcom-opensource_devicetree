@@ -1135,6 +1135,17 @@ _platform_map = {
             {"name": "mahua-crd-overlay.dtbo"},
             {"name": "mahua-qcb-overlay.dtbo"},
         ],
+        "custom_dtbo_img_list": [
+            {
+                "name": "glymur",
+                "src": [
+                    "mahua.dtb",
+                    "mahua-crd-overlay.dtbo",
+                    "mahua-qcb-overlay.dtbo",
+                ],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/mahua_dtbo.config",
+            },
+        ],
     },
 }
 
