@@ -2192,7 +2192,8 @@
 
 	gic-interrupt-router {
 		compatible = "qcom,gic-intr-routing";
-		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,gic-class0-cpus = <&CPU0 &CPU1>;
+		qcom,gic-class1-cpus = <&CPU2 &CPU3>;
 	};
 
 	cpu_pmu: cpu-pmu {
