@@ -810,3 +810,4 @@
 
 #include "glymur-pinctrl.dtsi"
 #include "mahua-regulators.dtsi"
+#include "msm-arm-smmu-glymur.dtsi"
