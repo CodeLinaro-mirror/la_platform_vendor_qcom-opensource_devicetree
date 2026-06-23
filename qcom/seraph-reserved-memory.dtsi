@@ -293,11 +293,6 @@
 		reg = <0x0 0xd82e0000 0x0 0x520000>;
 	};
 
-	splash_memory: splash_region@b8000000 {
-		reg = <0x0 0xb8000000 0x0 0x09600000>;
-		label = "cont_splash_region";
-	};
-
 	/*
 	 * ta/tags_mem is dynamically removed from the RAM
 	 * partition tables before boot occurs.
