@@ -798,6 +798,8 @@
 		};
 	};
 
+	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
