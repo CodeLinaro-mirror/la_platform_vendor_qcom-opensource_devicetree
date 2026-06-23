@@ -375,6 +375,7 @@
 		resets = <&gcc GCC_EMAC0_BCR>;
 		reset-names = "stmmaceth";
 		iommus = <&apps_smmu 0x380 0x7>;
+		qcom,iommu-dma = "atomic";
 
 		interconnect-names = "axi_icc_path", "apb_icc_path";
 		interconnects = <&system_noc MASTER_EMAC_0 &mc_virt SLAVE_EBI_CH0>,
