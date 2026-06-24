@@ -112,12 +112,7 @@
 
 	adsp_mem: adsp_region@87300000 {
 		no-map;
-		reg = <0x0 0x87300000 0x0 0x2100000>;
-	};
-
-	q6_adsp_dtb_mem: q6_adsp_dtb_region@89400000 {
-		no-map;
-		reg = <0x0 0x89400000 0x0 0x80000>;
+		reg = <0x0 0x87300000 0x0 0x1c00000>;
 	};
 
 	ipa_fw_mem: ipa_fw_region@89480000 {
@@ -133,11 +128,6 @@
 	gpu_microcode_mem: gpu_microcode_region@8949a000 {
 		no-map;
 		reg = <0x0 0x8949a000 0x0 0x2000>;
-	};
-
-	q6_mpss_dtb_mem: q6_mpss_dtb_region@89f80000 {
-		no-map;
-		reg = <0x0 0x89f80000 0x0 0x80000>;
 	};
 
 	mpss_mem: mpss_region@8a000000 {
