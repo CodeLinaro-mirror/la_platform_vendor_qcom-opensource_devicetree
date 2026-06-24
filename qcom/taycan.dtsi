@@ -46,6 +46,10 @@
 	};
 };
 
+&cx_sdpm {
+	status = "disabled";
+};
+
 &pcie0 {
 /delete-property/ qcom,config-recovery;
 /delete-property/ qcom,drv-supported;
