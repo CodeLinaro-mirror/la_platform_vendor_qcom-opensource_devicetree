@@ -265,6 +265,7 @@
 		required-subnodes = <&qcom_scm
 			&dmesg_dump
 			&kinfo_mem
+			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
