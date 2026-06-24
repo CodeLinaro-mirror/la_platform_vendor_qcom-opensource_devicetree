@@ -20,16 +20,21 @@
 
 	/delete-node/ display_config_region@84c00000;
 
-	/delete-node/ audio_heap_region@86200000;
-	audio_carveout_mem: audio_carved_region@86200000 {
-		no-map;
-		reg = <0x0 0x86200000 0x0 0x100000>;
-	};
-
 	/delete-node/ pvm_fw_region@86300000;
 	audio_heap_mem: audio_heap_region@86300000 {
 		no-map;
 		reg = <0x0 0x86300000 0x0 0x400000>;
+	};
+
+	/delete-node/ audio_carved_region@86200000;
+	audio_carveout_mem: audio_carved_region@86200000 {
+		no-map;
+		reg = <0x0 0x86200000 0x0 0x40000>;
+	};
+
+	audio_mdsp_carveout_mem: audio_mdsp_carveout_region@86240000 {
+		no-map;
+		reg = <0x0 0x86240000 0x0 0xC0000>;
 	};
 
 	/* UEFI region at 0x9F800000 is reclaimed by Linux */
@@ -66,6 +71,13 @@
 		no-map;
 		reg = <0x0 0xb4717000 0x0 0x40000>;
 	};
+};
 
+&qcom_dma_heaps {
+	qcom,audio {
+		qcom,dma-heap-name = "qcom,audio";
+		qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
+		memory-region = <&audio_mdsp_carveout_mem>;
+	};
 };
 

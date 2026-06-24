@@ -57,28 +57,6 @@
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
-		/*
-		 * Private IO space and IRQs (not Lent or donated)
-		 * A VM may need access to IO space / IRQS not initially owned by HLOS.
-		 * Below provides a way for this to be handled.
-		 * iomemory-ranges <PA IPA SIZE ACCESS>
-		 * Soc dependent
-		 */
-		iomemory-ranges;
-
-		/* Dynamically nominate the vmmio ranges
-		 * Allow VMMIO traps. Currently doesn't include
-		 * PVTIME, VIRTFREQ and GIC virtual devices.
-		 * GIC is emulated by Gunyah.
-		 * Soc dependent
-		 */
-		vmmio-ranges;
-
-		/* gic-irq-ranges <HWIRQ VIRQ>
-		 * Add based on use cases
-		 */
-		gic-irq-ranges;
-
 		segments {
 			ramdisk = <3>;
 			// fallback-dtb to support recovery mode
@@ -132,6 +110,32 @@
 				queue-depth = <0x8>;
 				qcom,label = <0x104>;
 				peer-default;
+			};
+			smmu-proxy-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/smmu-proxy-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x10a>;
+			};
+
+			test-large-dmabuf-tuivm {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/test-large-dmabuf-tuivm-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				qcom,label = <0x10d>;
+				peer-default;
+			};
+
+			mem-buf-message-queue-pair {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/membuf-msgq-pair";
+				message-size = <0x000000f0>;
+				queue-depth = <0x00000008>;
+				peer-default;
+				qcom,label = <0x101>;
 			};
 
 			ddump-shm {
@@ -241,8 +245,49 @@
 			&kinfo_mem
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
+			&qcom_test_large_dmabuf_tuivm
+			&qcom_mem_buf
+			&mem_buf_msgq
+			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
-			&google_debug_kinfo>;
+			&google_debug_kinfo
+			&qcom_smcinvoke
+			&qcom_mem_object
+			&qtee_shmbridge
+			&qti_smmu_proxy
+			&qti_smmu_proxy_camera_cb
+			&tlmm>;
+	};
+
+	vm_tlmm_irq: vm-tlmm-irq@0 {
+		compatible = "qcom,tlmm-vm-irq";
+		reg = <0x0 0x0 0x0 0x0>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
+
+	tlmm: pinctrl@400000 {
+		compatible = "qcom,shikra-vm-tlmm";
+		reg = <0x0 0x400000 0x0 0x800000>;
+		interrupts-extended = <&vm_tlmm_irq 1 IRQ_TYPE_LEVEL_HIGH>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+		/* TODO: Valid pins — must match tlmm-vm-gpio-list in PVM shikra.dtsi */
+	};
+
+	tlmm-vm-test {
+		compatible = "qcom,tlmm-vm-test";
+		tlmm-vm-gpio-list = <>;
+	};
+
+	pinctrl@400000 {
+	};
+
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		depends-on-supply = <&tlmm>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
@@ -258,6 +303,20 @@
 		status="ok";
 	};
 
+	qti_smmu_proxy: qti,smmu-proxy {
+		compatible = "smmu-proxy-receiver";
+	};
+
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
+		compatible = "smmu-proxy-cb";
+		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+		qcom,iommu-defer-smr-config;
+		iommus = <&apps_smmu 0x601 0x0>,
+			 <&apps_smmu 0x621 0x0>,
+			 <&apps_smmu 0x641 0x0>,
+			 <&apps_smmu 0x401 0x0>;
+	};
+
 	qcom_test_dbl_tuivm: qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
@@ -269,6 +328,34 @@
 		affinity = <0>;
 	};
 
+	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
+		compatible = "qcom,gh-large-dmabuf-test";
+		gunyah-label = <0x10d>;
+	};
+
+	qcom_mem_buf: qcom,mem-buf {
+		compatible = "qcom,mem-buf";
+		qcom,mem-buf-capabilities = "consumer";
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,dmabuf-ipa-size = <0x3 0xA0000000>; /* 14GB IPA space for dmabuf */
+		qcom,vmid = <45>;
+	};
+
+	mem_buf_msgq: qcom,mem-buf-msgq {
+		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
+	};
+
+	virtio_mem_device: virtio_mem_device {
+		compatible = "qcom,virtio-mem";
+		depends-on-supply = <&mem_buf_msgq>;
+		/* Must be memory_block_size_bytes() aligned */
+		qcom,max-size = <0x0 0x18000000>;
+		qcom,ipa-range = <0x0 0x0 0xf 0xffffffff>;
+		qcom,block-size = <0x400000>;
+		qcom,initial-movable-zone-size = <0x2000000>;
+	};
+
 	qcom_gunyah_panic_notifier: qcom,gunyah-panic-notifier {
 		compatible = "qcom,gh-panic-notifier";
 		gunyah-label = <0x109>;
@@ -278,7 +365,70 @@
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
 	};
+
+	qcom_smcinvoke: qcom_smcinvoke {
+		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object: qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge: qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <64>;
+		qcom,support-hypervisor;
+	};
 };
 
 #include "shikra-vm-rm-info-avf.dtsi"
 #include "shikra-vm-dma-heaps-avf.dtsi"
+#include "msm-arm-smmu-shikra-vm-avf.dtsi"
+
+&i2c4 {
+	status = "ok";
+	gt9xx-i2c@5d {
+		compatible = "goodix,gt928";
+		reg = <0x5d>;
+		status = "okay";
+		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
+		pinctrl-0 = <&ts_int_default>;
+		pinctrl-1 = <&ts_int_output_low>;
+		pinctrl-2 = <&ts_int_output_high>;
+		pinctrl-3 = <&ts_int_input>;
+		vdd_ana-supply = <&touch_panel_extavdd>;
+		touchscreen-max-id = <11>;
+		touchscreen-size-x = <1080>;
+		touchscreen-size-y = <1920>;
+		touchscreen-max-w = <1024>;
+		touchscreen-max-p = <1024>;
+		goodix,type-a-report = <0>;
+		goodix,driver-send-cfg = <1>;
+		goodix,create-wr-node = <1>;
+		goodix,wakeup-with-reset = <0>;
+		goodix,resume-in-workqueue = <0>;
+		goodix,int-sync = <1>;
+		goodix,swap-x2y = <0>;
+		goodix,esd-protect = <1>;
+		goodix,pen-suppress-finger = <0>;
+		goodix,auto-update = <0>;
+		goodix,auto-update-cfg = <0>;
+		goodix,power-off-sleep = <0>;
+		goodix,cfg-group0 = [
+			42 38 04 80 07 0A 35 00 01 08 32 05 50 3C 03 05 00 00 00 00 00 00 00 18 1A 1E 14 8C 2E 0E
+			32 34 7F 08 00 00 01 BB 02 1D 00 00 00 00 00 03 64 32 00 00 00 23 46 94 C5 02 00 00 00 00
+			A7 25 00 92 2B 00 82 31 00 74 38 00 66 41 00 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+			00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1C 1A 18 16 14 12 10 0E
+			0C 0A 08 06 04 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0F
+			10 12 13 14 16 2A 29 28 26 24 22 21 20 1F 1E 1D 1C 18 00 00 00 00 00 00 00 00 00 00 00 00
+			00 00 00 00 82 01];
+
+		qts,trusted-touch-mode = "vm_mode";
+		qts,touch-environment = "tvm";
+		qts,trusted-touch-type = "primary";
+		qts,trusted-touch-spi-irq = <598>;
+		qts,trusted-touch-io-bases = <0xa80000>;
+		qts,trusted-touch-io-sizes = <0x1000>;
+		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
+	};
+};

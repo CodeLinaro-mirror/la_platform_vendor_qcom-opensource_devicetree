@@ -129,6 +129,7 @@ canoe-dtb-$(CONFIG_ARCH_RAVELIN) += \
 canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
 
 BOURTZI_BASE_DTB += bourtzi.dtb
+BOURTZI_4GB_BASE_DTB += bourtzi-4gb.dtb
 BOURTZI_APQ_BASE_DTB += bourtzip.dtb
 
 BOURTZI_BOARDS += \
@@ -140,15 +141,21 @@ BOURTZI_BOARDS += \
 		bourtzi-qrd-overlay.dtbo \
 		bourtzi-qrd-evros-overlay.dtbo \
 		bourtzi-rcm-overlay.dtbo \
-		bourtzi-rcm-evros-cottid-overlay.dtbo
+		bourtzi-rcm-lcd-overlay.dtbo \
+		bourtzi-rcm-evros-cottid-overlay.dtbo \
+		bourtzi-rcm-evros-cottid-lcd-overlay.dtbo
+
+BOURTZI_4GB_BOARDS += bourtzi-mtp-4gb-overlay.dtbo
 
 NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
 
 canoe-dtb-$(CONFIG_ARCH_BOURTZI) += \
 	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB)) \
+	$(call add-overlays, $(BOURTZI_4GB_BOARDS),$(BOURTZI_4GB_BASE_DTB)) \
 	$(call add-overlays, $(BOURTZI_BOARDS),$(BOURTZI_APQ_BASE_DTB))
-canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB)
+canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB) \
+					 $(BOURTZI_4GB_BOARDS) $(BOURTZI_4GB_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
@@ -252,6 +259,15 @@ bengal-dtb-$(CONFIG_ARCH_BENGAL) += \
 bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
+
+
+ifeq ($(CONFIG_ARCH_BENGAL), y)
+bengal-le-dtb-$(CONFIG_ARCH_BENGAL) += qrb4210-rb2.dtb \
+				qrb4210-rb2-v2.dtb \
+				qrb4210-rb2-v3.dtb \
+				qrb4210-rb2-v4.dtb
+dtb-y += $(bengal-le-dtb-y)
+endif
 
 SCUBA_BASE_DTB +=  scuba-iot.dtb scuba-iot-2gb.dtb scubap-iot.dtb scubap-iot-idp.dtb scubap-iot-idp-2gb.dtb
 
@@ -595,8 +611,8 @@ dtb-y += $(x1e80100-dtb-y)
 
 HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
-SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-lite-cqm.dtb
-SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-lite-cqs.dtb
+SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
+SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
@@ -613,6 +629,16 @@ shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
 	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB))
 shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB)
 dtb-y += $(shikra-dtb-y)
+
+MAHUA_BASE_DTB += mahua.dtb
+
+MAHUA_BOARDS += \
+		   mahua-crd-overlay.dtbo
+
+mahua-dtb-$(CONFIG_ARCH_MAHUA) += \
+	$(call add-overlays, $(MAHUA_BOARDS),$(MAHUA_BASE_DTB))
+mahua-overlays-dtb-$(CONFIG_ARCH_MAHUA) += $(MAHUA_BOARDS) $(MAHUA_BASE_DTB)
+dtb-y += $(mahua-dtb-y)
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
@@ -717,6 +743,7 @@ LEMANS_MULTI_GVM_BOARDS += \
 		lemans-vm-lv-mt-overlay.dtbo
 
 LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx.dtb
+LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx-qcvirtio.dtb
 LEMANS_GH_LV_GVM_QAM_BOARDS += lemans-gh-vm-lv-qam-ridesx-overlay.dtbo
 
 LEMANS_SDP8_LA_GVM_BASE_DTB += sa8255p-sdp8-vm-la.dtb
@@ -818,13 +845,32 @@ SA8797P_MULTI_GVM_BOARDS += \
 SA8797P_MULTI_GVM_BASE_DTB += sa8797p-sdp8-vm-lv-mt.dtb \
 		sa8797p-sdp8-vm-la-mt.dtb sa8797p-v2-sdp8-vm-la-mt.dtb
 
+SECA_LA_GVM_BOARDS += \
+		seca-sdp8-vm-la-overlay.dtbo
+
+SECA_LA_GVM_BASE_DTB += seca-sdp8-vm-la.dtb
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(SA8797P_MULTI_GVM_BOARDS),$(SA8797P_MULTI_GVM_BASE_DTB)) \
+	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
+	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB)
+
+SECA_GH_LA_GVM_QAM_BASE_DTB += \
+	seca-gh-vm-la-qam.dtb \
+	seca-gh-vm-la-qam-star.dtb
+
+SECA_GH_LA_GVM_QAM_BOARDS += seca-gh-vm-la-qam-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SECA_GH_LA_GVM_QAM_BOARDS),$(SECA_GH_LA_GVM_QAM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SECA_GH_LA_GVM_QAM_BOARDS) $(SECA_GH_LA_GVM_QAM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 
@@ -963,6 +1009,18 @@ canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += chora-vm-atp-overlay.dtbo \
 				chora-oemvm-qrd-overlay.dtbo \
 				chora-oemvm-rcm-overlay.dtbo \
 				chora-oemvm-cdp-overlay.dtbo
+dtb-y += $(canoe_tuivm-dtb-y)
+
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_BOURTZI), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += bourtzi-vm-atp-overlay.dtbo \
+				bourtzi-vm-mtp-overlay.dtbo \
+				bourtzi-vm-qrd-overlay.dtbo \
+				bourtzi-vm-rcm-overlay.dtbo \
+				bourtzi-vm-cdp-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif

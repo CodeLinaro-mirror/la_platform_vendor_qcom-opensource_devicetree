@@ -364,13 +364,6 @@
 		pmi632_sdam7: qcom,sdam@b600 {
 			compatible = "qcom,spmi-sdam";
 			reg = <0xb600>;
-			#address-cells = <1>;
-			#size-cells = <1>;
-
-			restart_reason: restart@48 {
-				reg = <0x48 0x1>;
-				bits = <1 7>;
-			};
 		};
 
 		bcl_sensor: bcl@3d00 {
@@ -519,13 +512,13 @@
 			pmi632_trip1: trip1 {
 				temperature = <115000>;
 				hysteresis = <0>;
-				type = "passive";
+				type = "hot";
 			};
 
 			trip2 {
 				temperature = <145000>;
 				hysteresis = <0>;
-				type = "passive";
+				type = "critical";
 			};
 		};
 	};
@@ -570,6 +563,18 @@
 		thermal-sensors = <&bcl_sensor 5>;
 
 		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
 			bcl_lvl0: bcl-lvl0 {
 				temperature = <1>;
 				hysteresis = <1>;
@@ -584,6 +589,18 @@
 		thermal-sensors = <&bcl_sensor 6>;
 
 		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
 			bcl_lvl1: bcl-lvl1 {
 				temperature = <1>;
 				hysteresis = <1>;
@@ -598,6 +615,18 @@
 		thermal-sensors = <&bcl_sensor 7>;
 
 		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
 			bcl_lvl2: bcl-lvl2 {
 				temperature = <1>;
 				hysteresis = <1>;
@@ -612,6 +641,18 @@
 		thermal-sensors = <&bcl_soc>;
 
 		trips {
+			thermal-engine-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
+			thermal-hal-trip {
+				temperature = <100>;
+				hysteresis = <0>;
+				type = "passive";
+			};
+
 			pmi632_low_soc: low-soc {
 				temperature = <90>;
 				hysteresis = <0>;

@@ -56,12 +56,16 @@
 		perst-gpio = <&tlmm 152 GPIO_ACTIVE_HIGH>;
 		wake-gpio = <&tlmm 154 GPIO_ACTIVE_HIGH>;
 
-		pinctrl-names = "default", "sleep";
-		pinctrl-0 = <&pcie6_perst_default
+		pinctrl-names = "init", "default", "sleep";
+		pinctrl-0 = <&pcie6_perst_init
 				&pcie6_clkreq_default
 				&pcie6_wake_default
 				&pcie6_nvme_pwr_default>;
 		pinctrl-1 = <&pcie6_perst_default
+				&pcie6_clkreq_default
+				&pcie6_wake_default
+				&pcie6_nvme_pwr_default>;
+		pinctrl-2 = <&pcie6_perst_default
 				&pcie6_clkreq_sleep
 				&pcie6_wake_default
 				&pcie6_nvme_pwr_sleep>;

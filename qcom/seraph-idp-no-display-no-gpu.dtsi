@@ -4,3 +4,7 @@
  */
 
 #include "seraph-idp.dtsi"
+
+&gxclkctl {
+	status = "disabled";
+};

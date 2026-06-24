@@ -11,6 +11,7 @@
 #include "yupik-pmic-overlay.dtsi"
 #include "pm7250b.dtsi"
 #include "yupik-pm7250b-thermal-overlay.dtsi"
+#include "yupikp-iot-cpe.dtsi"
 
 /*==============================*/
 /*     UFS Related Start        */
@@ -255,6 +256,127 @@
 /*==============================*/
 /*     PCIe Related Start       */
 /*==============================*/
+&tlmm {
+	qps615_enable_default: qps615_enable_default {
+		mux {
+			pins = "gpio136";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio136";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+
+	upd_enable_default: upd_enable_default {
+		mux {
+			pins = "gpio127";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio127";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+
+	upd_ponrest_default: upd_ponrest_default {
+		mux {
+			pins = "gpio125";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio125";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+};
+
+&soc {
+	qps615_enable_vreg: qps615_enable_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qps615_enable_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&qps615_enable_default>;
+		gpio = <&tlmm 136 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <10000>;
+	};
+
+	upd_enable_vreg: upd_enable_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "upd_enable_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&upd_enable_default>;
+		gpio = <&tlmm 127 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&qps615_enable_vreg>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <50000>;
+	};
+
+	upd_ponrest_vreg: upd_ponrest_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "upd_ponrest_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&upd_ponrest_default>;
+		gpio = <&tlmm 125 GPIO_ACTIVE_LOW>;
+		vin-supply = <&upd_enable_vreg>;
+		regulator-always-on;
+		regulator-enable-ramp-delay = <50000>;
+	};
+};
+
+&qps615_0p9_vreg {
+	status = "disabled";
+};
+
+&qps615_1p8_vreg {
+	status = "disabled";
+};
+
+&qps615_rsex_vreg {
+	status = "disabled";
+};
+
+&upd_3p3_vreg {
+	status = "disabled";
+};
+
+&upd_rest_vreg {
+	status = "disabled";
+};
+
+&usbhub_rest_vreg {
+	status = "disabled";
+};
+
+&aqr_vreg {
+	status = "disabled";
+};
+
+&qep_vreg {
+	status = "disabled";
+};
+
+&gcc_pcie_1_gdsc {
+	status = "ok";
+};
+
+&pcie1 {
+	status = "ok";
+	qcom,boot-option = <0x0>;
+	vreg-3p3-supply = <&qps615_enable_vreg>;
+};
+
+&pcie1_msi {
+	status = "ok";
+};
+
 /*==============================*/
 /*     PCIe Related End         */
 /*==============================*/

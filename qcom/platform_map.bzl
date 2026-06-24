@@ -15,6 +15,8 @@ _platform_map = {
             {"name": "sa8797p-gunyah-vm-qam-star.dtb"},
             {"name": "sa8797p-v2-gunyah-vm-qam.dtb"},
             {"name": "sa8797p-v2-gunyah-vm-qam-star.dtb"},
+            {"name": "seca-gh-vm-la-qam.dtb"},
+            {"name": "seca-gh-vm-la-qam-star.dtb"},
             {"name": "monaco-vm-la.dtb"},
             {"name": "monaco-sdp8-vm-lv.dtb"},
             {"name": "monaco-sdp8-vm-lv-headless-mt.dtb"},
@@ -23,6 +25,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la.dtb"},
             {"name": "sa8797p-sdp8-vm-lv-mt.dtb"},
+            {"name": "seca-sdp8-vm-la.dtb"},
             {"name": "lemans-vm-la-mt.dtb"},
             {"name": "sa8255p-sdp8-vm-la.dtb"},
             {"name": "sa8775p-sdp8-vm-la.dtb"},
@@ -49,6 +52,7 @@ _platform_map = {
             {"name": "sa7775p-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "sa7775p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "sa8797p-gunyah-vm-qam-overlay.dtbo"},
+            {"name": "seca-gh-vm-la-qam-overlay.dtbo"},
             {"name": "monaco-vm-la-overlay.dtbo"},
             {"name": "monaco-sdp8-vm-lv-overlay.dtbo"},
             {"name": "monaco-sdp8-vm-lv-headless-mt-overlay.dtbo"},
@@ -57,6 +61,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-lv-mt-overlay.dtbo"},
+            {"name": "seca-sdp8-vm-la-overlay.dtbo"},
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8775p-sdp8-vm-la-overlay.dtbo"},
@@ -267,6 +272,7 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "bourtzi.dtb"},
+            {"name": "bourtzi-4gb.dtb"},
             {
                 "name": "bourtzip.dtb",
                 "apq": True,
@@ -282,8 +288,11 @@ _platform_map = {
             {"name": "bourtzi-qrd-overlay.dtbo"},
             {"name": "bourtzi-qrd-evros-overlay.dtbo"},
             {"name": "bourtzi-rcm-overlay.dtbo"},
+            {"name": "bourtzi-rcm-lcd-overlay.dtbo"},
             {"name": "bourtzi-rcm-evros-cottid-overlay.dtbo"},
+            {"name": "bourtzi-rcm-evros-cottid-lcd-overlay.dtbo"},
             {"name": "bourtzi-rumi-overlay.dtbo"},
+            {"name": "bourtzi-mtp-4gb-overlay.dtbo"},
         ],
     },
     "malabar": {
@@ -388,6 +397,15 @@ _platform_map = {
             {"name": "scuba-iot-qrd-eldo-overlay.dtbo"},
             {"name": "scuba-iot-qrd-non-eldo-overlay.dtbo"},
             {"name": "scuba-iot-rb1-overlay.dtbo"},
+        ],
+    },
+    "bengal-le": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "qrb4210-rb2.dtb"},
+            {"name": "qrb4210-rb2-v2.dtb"},
+            {"name": "qrb4210-rb2-v3.dtb"},
+            {"name": "qrb4210-rb2-v4.dtb"},
         ],
     },
     "monaco": {
@@ -568,7 +586,7 @@ _platform_map = {
             {"name": "alor-interposer-vm-qrd-overlay.dtbo"},
             {"name": "alor-interposer-vm-rcm-overlay.dtbo"},
         ],
-        "binary_compatible_with": ["alor-vm", "chora-vm"],
+        "binary_compatible_with": ["alor-vm", "chora-vm", "bourtzi-vm"],
     },
     "canoe-oemvm": {
         "dtb_list": [
@@ -627,6 +645,16 @@ _platform_map = {
             {"name": "chora-oemvm-mtp-overlay.dtbo"},
             {"name": "chora-oemvm-qrd-overlay.dtbo"},
             {"name": "chora-oemvm-rcm-overlay.dtbo"},
+        ],
+    },
+    "bourtzi-vm": {
+        "dtbo_list": [
+            # keep sorted
+            {"name": "bourtzi-vm-atp-overlay.dtbo"},
+            {"name": "bourtzi-vm-mtp-overlay.dtbo"},
+            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
+            {"name": "bourtzi-vm-qrd-overlay.dtbo"},
+            {"name": "bourtzi-vm-rcm-overlay.dtbo"},
         ],
     },
     "malabar-tuivm": {
@@ -931,8 +959,13 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "vienna.dtb"},
+            {"name": "vienna-low-ram.dtb"},
             {
                 "name": "viennap.dtb",
+                "apq": True,
+            },
+            {
+                "name": "viennap-low-ram.dtb",
                 "apq": True,
             },
         ],
@@ -948,10 +981,6 @@ _platform_map = {
             {"name": "vienna-idp-overlay-pmw6100-v2.dtbo"},
             {"name": "vienna-idp-se8-overlay.dtbo"},
             {"name": "vienna-idp-se8-overlay-pmw6100-v2.dtbo"},
-            {"name": "vienna-rcm-no-cam-overlay.dtbo"},
-            {"name": "vienna-rcm-no-cam-overlay-pmw6100-v2.dtbo"},
-            {"name": "vienna-rcm-overlay.dtbo"},
-            {"name": "vienna-rcm-overlay-pmw6100-v2.dtbo"},
             {"name": "vienna-rcm-no-cam-overlay-le.dtbo"},
             {"name": "vienna-rcm-no-cam-overlay-pmw6100-v2-le.dtbo"},
             {"name": "vienna-rcm-overlay-le.dtbo"},
@@ -966,12 +995,6 @@ _platform_map = {
             {"name": "vienna-wdp-overlay-pmw6100-v2-le.dtbo"},
             {"name": "vienna-wdp-se8-overlay-le.dtbo"},
             {"name": "vienna-wdp-se8-overlay-pmw6100-v2-le.dtbo"},
-            {"name": "vienna-wrd-no-cam-overlay.dtbo"},
-            {"name": "vienna-wrd-no-cam-overlay-pmw6100-v2.dtbo"},
-            {"name": "vienna-wrd-ddsip-overlay.dtbo"},
-            {"name": "vienna-wrd-ddsip-overlay-pmw6100-v2.dtbo"},
-            {"name": "vienna-wrd-overlay.dtbo"},
-            {"name": "vienna-wrd-overlay-pmw6100-v2.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay-le.dtbo"},
             {"name": "vienna-wrd-no-cam-overlay-pmw6100-v2-le.dtbo"},
             {"name": "vienna-wrd-ddsip-overlay-le.dtbo"},
@@ -1006,9 +1029,14 @@ _platform_map = {
                 "name": "shikra-cqs.dtb",
                 "apq": True,
             },
-            {"name": "shikra-lite-cqm.dtb"},
+            {"name": "shikra-cqm-fp1.dtb"},
             {
-                "name": "shikra-lite-cqs.dtb",
+                "name": "shikra-cqs-fp1.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-cqm-fp2.dtb"},
+            {
+                "name": "shikra-cqs-fp2.dtb",
                 "apq": True,
             },
         ],
@@ -1044,6 +1072,14 @@ _platform_map = {
             # keep sorted
             {"name": "shikra-oemvm-atp-overlay.dtbo"},
             {"name": "shikra-oemvm-itp-overlay.dtbo"},
+        ],
+    },
+    "glymur": {
+        "dtb_list": [
+            {"name": "mahua.dtb"},
+        ],
+        "dtbo_list": [
+            {"name": "mahua-crd-overlay.dtbo"},
         ],
     },
 }

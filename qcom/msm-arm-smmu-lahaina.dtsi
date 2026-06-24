@@ -7,7 +7,7 @@
 
 &soc {
 	kgsl_smmu: kgsl-smmu@3da0000 {
-		compatible = "qcom,qsmmu-v500";
+		compatible = "qcom,qsmmu-v500", "qcom,adreno-smmu";
 		reg = <0x3DA0000 0x20000>,
 			<0x3DC2000 0x20>;
 		reg-names = "base", "tcu-base";
@@ -383,13 +383,13 @@
 	};
 
 	apps_iommu_test_device {
-		compatible = "iommu-debug-test";
+		compatible = "qcom,iommu-debug-test";
 		iommus = <&apps_smmu 0x7E0 0>;
 		qcom,iommu-dma = "disabled";
 	};
 
 	apps_iommu_coherent_test_device {
-		compatible = "iommu-debug-test";
+		compatible = "qcom,iommu-debug-test";
 		iommus = <&apps_smmu 0x7E1 0>;
 		qcom,iommu-dma = "disabled";
 		dma-coherent;
