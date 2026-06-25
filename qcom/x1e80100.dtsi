@@ -2963,6 +2963,12 @@
 				    "llcc_broadcast_base",
 				    "llcc_broadcast_and_base";
 			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+
+			llcc_perfmon: llcc-perfmon {
+				compatible = "qcom,llcc-perfmon";
+				clocks = <&aoss_qmp>;
+				clock-names = "qdss_clk";
+			};
 		};
 
 		qcom,msm-adsprpc-mem {
