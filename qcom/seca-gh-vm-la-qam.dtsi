@@ -6,8 +6,8 @@
 #include "seca-gh-vm-la.dtsi"
 #include "seca-vm-usb.dtsi"
 #include "seca-vm-pcie.dtsi"
-#include "seca-gh-vm-qupv3.dtsi"
 #include "seca-vm-pinctrl.dtsi"
+#include "seca-vm-qupv3.dtsi"
 
 / {
 	aliases {
