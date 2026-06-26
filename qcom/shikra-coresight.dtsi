@@ -726,6 +726,8 @@
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
+		status = "disabled";
+
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;

@@ -172,3 +172,19 @@
 &emac0_hw {
 	status = "ok";
 };
+
+&soc {
+	/*
+	 * STM passthrough: exposes the PVM CoreSight STM stimulus port to the
+	 * GVM via hypervisor memory passthrough.  The PVM must configure:
+	 *   pass loc mem:0x16380000,0x80000,rw=0x16380000
+	 *
+	 * Physical base: 0x16380000 (STM stimulus base 0x16280000 + 0x100000)
+	 * Size:          0x80000    (512 KB = 2048 channels x 256 B/channel)
+	 */
+	stm_passthrough: stm-passthrough@16380000 {
+		compatible = "qcom,stm-passthrough";
+		reg = <0x16380000 0x80000>;
+		status = "okay";
+	};
+};
