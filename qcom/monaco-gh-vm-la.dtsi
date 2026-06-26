@@ -1199,9 +1199,9 @@
 
 			virtio-mmio@46 {
 				vdevice-type = "virtio-mmio";
-				patch = "/virtio_blk_la_bootloader_a";
+				generate = "/virtio-mmio";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x2>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
