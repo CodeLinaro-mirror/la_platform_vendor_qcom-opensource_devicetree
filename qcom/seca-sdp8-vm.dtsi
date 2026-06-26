@@ -506,6 +506,23 @@
 	};
 };
 
+&firmware {
+	scm {
+		compatible = "qcom,scm", "qcom,scm-v1.1";
+		qcom,scm-hab;
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <512>;
+		qcom,support-hypervisor;
+	};
+};
+
 &reserved_memory {
 	glink_cma_mem0: glink-cma-region0 {
 		no-map;
