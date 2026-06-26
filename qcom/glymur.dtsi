@@ -8,6 +8,8 @@
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,glymur-gcc.h>
 #include <dt-bindings/clock/qcom,glymur-tcsr.h>
+#include <dt-bindings/interconnect/qcom,icc.h>
+#include <dt-bindings/interconnect/qcom,glymur-rpmh.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -1140,6 +1142,11 @@
 					clock-names = "xo";
 					#clock-cells = <1>;
 				};
+
+				apps_bcm_voter: bcm_voter {
+					compatible = "qcom,bcm-voter";
+				};
+
 			};
 		};
 
@@ -1163,6 +1170,186 @@
 							  <FAST_PATH_TCS 0>;
 				};
 			};
+		};
+
+		clk_virt: interconnect@0 {
+			compatible = "qcom,glymur-clk_virt";
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		mc_virt: interconnect@1 {
+			compatible = "qcom,glymur-mc_virt";
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		cnoc_main: interconnect@1500000 {
+			compatible = "qcom,glymur-cnoc_main";
+			reg = <0x0 0x01500000 0x0 0x17080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		config_noc: interconnect@1600000 {
+			compatible = "qcom,glymur-cnoc_cfg";
+			reg = <0x0 0x01600000 0x0 0x6600>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		system_noc: interconnect@1680000 {
+			compatible = "qcom,glymur-system_noc";
+			reg = <0x0 0x01680000 0x0 0x1c080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		pcie_west_anoc: interconnect@16c0000 {
+			compatible = "qcom,glymur-pcie_west_anoc";
+			reg = <0x0 0x016c0000 0x0 0xf580>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+			clocks = <&gcc GCC_AGGRE_NOC_PCIE_3A_WEST_SF_AXI_CLK>,
+				 <&gcc GCC_AGGRE_NOC_PCIE_3B_WEST_SF_AXI_CLK>,
+				 <&gcc GCC_AGGRE_NOC_PCIE_4_WEST_SF_AXI_CLK>,
+				 <&gcc GCC_AGGRE_NOC_PCIE_6_WEST_SF_AXI_CLK>;
+		};
+
+		pcie_east_anoc: interconnect@16d0000 {
+			compatible = "qcom,glymur-pcie_east_anoc";
+			reg = <0x0 0x016d0000 0x0 0xf300>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+			clocks = <&gcc GCC_AGGRE_NOC_PCIE_5_EAST_SF_AXI_CLK>;
+		};
+
+		aggre1_noc: interconnect@16e0000 {
+			compatible = "qcom,glymur-aggre1_noc";
+			reg = <0x0 0x016e0000 0x0 0x14400>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		aggre2_noc: interconnect@1720000 {
+			compatible = "qcom,glymur-aggre2_noc";
+			reg = <0x0 0x01720000 0x0 0x14400>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+			clocks = <&gcc GCC_AGGRE_USB3_TERT_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_2_AXI_CLK>,
+				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>;
+		};
+
+		aggre3_noc: interconnect@1700000 {
+			compatible = "qcom,glymur-aggre3_noc";
+			reg = <0x0 0x01700000 0x0 0x1d400>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+			clocks = <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>;
+		};
+
+		aggre4_noc: interconnect@1740000 {
+			compatible = "qcom,glymur-aggre4_noc";
+			reg = <0x0 0x01740000 0x0 0x14400>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+			clocks = <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_0_AXI_CLK>,
+				 <&gcc GCC_AGGRE_USB4_1_AXI_CLK>;
+		};
+
+		mmss_noc: interconnect@1780000 {
+			compatible = "qcom,glymur-mmss_noc";
+			reg = <0x0 0x01780000 0x0 0x5b800>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		pcie_east_slv_noc: interconnect@1900000 {
+			compatible = "qcom,glymur-pcie_east_slv_noc";
+			reg = <0x0 0x01900000 0x0 0xe080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		pcie_west_slv_noc: interconnect@1920000 {
+			compatible = "qcom,glymur-pcie_west_slv_noc";
+			reg = <0x0 0x01920000 0x0 0xf180>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		hsc_noc: interconnect@2000000 {
+			compatible = "qcom,glymur-hscnoc";
+			reg = <0x0 0x02000000 0x0 0x93a080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		lpass_lpiaon_noc: interconnect@7400000 {
+			compatible = "qcom,glymur-lpass_lpiaon_noc";
+			reg = <0x0 0x07400000 0x0 0x19080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		lpass_lpicx_noc: interconnect@7420000 {
+			compatible = "qcom,glymur-lpass_lpicx_noc";
+			reg = <0x0 0x07420000 0x0 0x44080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		lpass_ag_noc: interconnect@7e40000 {
+			compatible = "qcom,glymur-lpass_ag_noc";
+			reg = <0x0 0x07e40000 0x0 0xe080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		nsi_noc: interconnect@1d600000 {
+			compatible = "qcom,glymur-nsinoc";
+			reg = <0x0 0x1d600000 0x0 0x14080>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		oobm_ss_noc: interconnect@1f300000 {
+			compatible = "qcom,glymur-oobm_ss_noc";
+			reg = <0x0 0x1f300000 0x0 0x49a00>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
+		};
+
+		nsp_noc: interconnect@320c0000 {
+			compatible = "qcom,glymur-nsp_noc";
+			reg = <0x0 0x320c0000 0x0 0x21280>;
+			qcom,bcm-voter-names = "hlos";
+			qcom,bcm-voters = <&apps_bcm_voter>;
+			#interconnect-cells = <1>;
 		};
 	};
 

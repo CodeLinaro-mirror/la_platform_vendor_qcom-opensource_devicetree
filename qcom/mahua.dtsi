@@ -62,3 +62,26 @@
 			size = <0x0 0x4800000>;
 		};
 };
+
+&config_noc {
+	compatible = "qcom,mahua-cnoc_cfg";
+};
+
+&hsc_noc {
+	compatible = "qcom,mahua-hscnoc";
+};
+
+&mc_virt {
+	compatible = "qcom,mahua-mc_virt";
+};
+
+&pcie_west_anoc {
+	compatible = "qcom,mahua-pcie_west_anoc";
+	clocks = <&gcc GCC_AGGRE_NOC_PCIE_3B_WEST_SF_AXI_CLK>,
+		 <&gcc GCC_AGGRE_NOC_PCIE_4_WEST_SF_AXI_CLK>,
+		 <&gcc GCC_AGGRE_NOC_PCIE_6_WEST_SF_AXI_CLK>;
+};
+
+&pcie_west_slv_noc {
+	compatible = "qcom,mahua-pcie_west_slv_noc";
+};
