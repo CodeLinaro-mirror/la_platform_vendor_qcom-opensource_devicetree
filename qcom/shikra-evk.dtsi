@@ -676,5 +676,5 @@
 };
 
 &usb1 {
-	qcom,default-mode-host;
+	qcom,default-mode-none;
 };
