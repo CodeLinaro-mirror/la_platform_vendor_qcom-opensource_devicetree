@@ -1126,6 +1126,7 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "mahua-crd-overlay.dtbo"},
+            {"name": "mahua-qcb-overlay.dtbo"},
         ],
     },
 }
