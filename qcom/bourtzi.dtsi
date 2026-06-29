@@ -2128,6 +2128,9 @@
 		memory-region = <&ufshc_dma_resv>;
 		dma-coherent;
 
+		qcom,prime-mask = <0x80>;
+		qcom,silver-mask = <0x0f>;
+
 		qcom,max-cpus = <8>;
 		qcom,cluster-mask = <0x3f 0xc0>;
 
