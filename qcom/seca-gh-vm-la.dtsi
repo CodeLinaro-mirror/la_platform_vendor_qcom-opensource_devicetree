@@ -1729,6 +1729,17 @@
 		interrupt-controller;
 	};
 
+	qcom,test-dbl-gvm1 {
+		compatible = "qcom,gh-dbl";
+		qcom,label = <0x4>;
+	};
+
+	qcom,test-msgq-gvm1 {
+		compatible = "qcom,gh-msgq-test";
+		gunyah-label = <4>;
+		affinity = <0>;
+	};
+
 	qcom,gh-qtimer@17C25000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x17425000 0x1000>;
