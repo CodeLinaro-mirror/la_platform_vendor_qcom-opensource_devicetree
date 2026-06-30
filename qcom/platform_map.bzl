@@ -1072,7 +1072,7 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
-    "shikra-low_ram": {
+    "shikra_tiny": {
         "dtb_list": [
             # keep sorted
             {"name": "shikra-cqm.dtb"},
@@ -1080,9 +1080,14 @@ _platform_map = {
                 "name": "shikra-cqs.dtb",
                 "apq": True,
             },
-            {"name": "shikra-lite-cqm.dtb"},
+            {"name": "shikra-cqm-fp1.dtb"},
             {
-                "name": "shikra-lite-cqs.dtb",
+                "name": "shikra-cqs-fp1.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-cqm-fp2.dtb"},
+            {
+                "name": "shikra-cqs-fp2.dtb",
                 "apq": True,
             },
         ],
