@@ -1333,6 +1333,7 @@
 			     <0 416 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "cx_ipeak_danger", "cx_ipeak_safe";
 		victims_table = <4 0 844800000>;
+		#size-cells = <1>;
 	};
 
 	modem_pas: remoteproc-mss@6080000 {
