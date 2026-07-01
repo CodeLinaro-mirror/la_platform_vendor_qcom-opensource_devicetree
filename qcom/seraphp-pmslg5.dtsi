@@ -13,7 +13,7 @@
 		input-disable;
 		output-enable;
 		bias-disable;
-		power-source = <0>;
+		power-source = <1>;
 		qcom,drive-strength = <2>;
 	};
 
@@ -23,7 +23,7 @@
 		input-disable;
 		output-enable;
 		bias-disable;
-		power-source = <0>;
+		power-source = <1>;
 	};
 
 	cam_ext_power1_cs_active: cam_ext_power1_cs_active {
@@ -31,7 +31,7 @@
 		function = "normal";
 		bias-disable;
 		output-high;
-		power-source = <0>;
+		power-source = <1>;
 	};
 
 	cam_ext_power2_cs_active: cam_ext_power2_cs_active {
@@ -39,7 +39,7 @@
 		function = "normal";
 		bias-disable;
 		output-high;
-		power-source = <0>;
+		power-source = <1>;
 	};
 
 	cam_ext_rgb_cam_eldo_en_active: cam_ext_rgb_cam_eldo_en_active {
@@ -59,6 +59,13 @@
 		bias-disable;
 		power-source = <0>;
 	};
+
+	sensor_eldo_en_active: sensor_eldo_en_active {
+		pins = "gpio1";
+		function = "normal";
+		output-high;
+		power-source = <0>;
+	};
 };
 
 &qupv3_se5_i2c {
@@ -67,14 +74,16 @@
 	#size-cells = <0>;
 
 	slg5bv49293L: slg5b@76 {
-		compatible = "renesas,slg5b-left";
+		compatible = "renesas,slg5b";
 		reg = <0x76>;
 		cam_ext_buck1_en = <&pmar2230_gpios 9 GPIO_ACTIVE_LOW>;
 		cam_ext_buck2_en = <&pmar2230_gpios 10 GPIO_ACTIVE_LOW>;
 		cam_ext_power1_cs = <&pmar2230_gpios 7 GPIO_ACTIVE_LOW>;
 		cam_ext_rgb_cam_eldo_en = <&pmar2230_gpios 3 GPIO_ACTIVE_LOW>;
 		cam_ext_et_cam_eldo_en = <&pmar2230_gpios 2 GPIO_ACTIVE_LOW>;
+		sensor_eldo_en = <&pmar2230_gpios 1 GPIO_ACTIVE_LOW>;
 		pinctrl-names = "default";
+		left;
 		pinctrl-0 = <&cam_ext_buck1_en_active
 			&cam_ext_buck2_en_active
 			&cam_ext_power1_cs_active
@@ -91,49 +100,49 @@
 
 		regulators {
 			L1G: pmslgg_l1: ldo1 {
-				regulator-name = "pmslgg_l1";
+				regulator-name = "L1G";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L2G: pmslgg_l2: ldo2 {
-				regulator-name = "pmslgg_l2";
+				regulator-name = "L2G";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L3G: pmslgg_l3: ldo3 {
-				regulator-name = "pmslgg_l3";
+				regulator-name = "L3G";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L4G: pmslgg_l4: ldo4 {
-				regulator-name = "pmslgg_l4";
+				regulator-name = "L4G";
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
 			};
 
 			L5G: pmslgg_l5: ldo5 {
-				regulator-name = "pmslgg_l5";
+				regulator-name = "L5G";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L6G: pmslgg_l6: ldo6 {
-				regulator-name = "pmslgg_l6";
+				regulator-name = "L6G";
 				regulator-min-microvolt = <1100000>;
 				regulator-max-microvolt = <1100000>;
 			};
 
 			L7G: pmslgg_l7: ldo7 {
-				regulator-name = "pmslgg_l7";
+				regulator-name = "L7G";
 				regulator-min-microvolt = <1050000>;
 				regulator-max-microvolt = <1050000>;
 			};
 
 			L8G: pmslgg_l8: ldo8 {
-				regulator-name = "pmslgg_l8";
+				regulator-name = "L8G";
 				regulator-min-microvolt = <1200000>;
 				regulator-max-microvolt = <1200000>;
 			};
@@ -147,7 +156,7 @@
 	#size-cells = <0>;
 
 	slg5bv49293R: slg5b@76 {
-		compatible = "renesas,slg5b-right";
+		compatible = "renesas,slg5b";
 		reg = <0x76>;
 		cam_ext_power2_cs = <&pmar2230_gpios 12 GPIO_ACTIVE_LOW>;
 		pinctrl-names = "default";
@@ -163,50 +172,50 @@
 
 		regulators {
 			L1K: pmslgk_l1: ldo1 {
-				regulator-name = "pmslgk_l1";
+				regulator-name = "L1K";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L2K: pmslgk_l2: ldo2 {
 
-				regulator-name = "pmslgk_l2";
+				regulator-name = "L2K";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L3K: pmslgk_l3: ldo3 {
-				regulator-name = "pmslgk_l3";
+				regulator-name = "L3K";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L4K: pmslgk_l4: ldo4 {
-				regulator-name = "pmslgk_l4";
+				regulator-name = "L4K";
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
 			};
 
 			L5K: pmslgk_l5: ldo5 {
-				regulator-name = "pmslgk_l5";
+				regulator-name = "L5K";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 			};
 
 			L6K: pmslgk_l6: ldo6 {
-				regulator-name = "pmslgk_l6";
+				regulator-name = "L6K";
 				regulator-min-microvolt = <1100000>;
 				regulator-max-microvolt = <1100000>;
 			};
 
 			L7K: pmslgk_l7: ldo7 {
-				regulator-name = "pmslgk_l7";
+				regulator-name = "L7K";
 				regulator-min-microvolt = <1050000>;
 				regulator-max-microvolt = <1050000>;
 			};
 
 			L8K: pmslgk_l8: ldo8 {
-				regulator-name = "pmslgk_l8";
+				regulator-name = "L8K";
 				regulator-min-microvolt = <1200000>;
 				regulator-max-microvolt = <1200000>;
 			};
