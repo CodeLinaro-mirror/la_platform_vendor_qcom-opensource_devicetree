@@ -527,12 +527,6 @@
 		compatible = "goodix,gt928";
 		reg = <0x5d>;
 		status = "okay";
-		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
-		pinctrl-0 = <&ts_int_default>;
-		pinctrl-1 = <&ts_int_output_low>;
-		pinctrl-2 = <&ts_int_output_high>;
-		pinctrl-3 = <&ts_int_input>;
-		vdd_ana-supply = <&touch_panel_extavdd>;
 		touchscreen-max-id = <11>;
 		touchscreen-size-x = <1080>;
 		touchscreen-size-y = <1920>;
