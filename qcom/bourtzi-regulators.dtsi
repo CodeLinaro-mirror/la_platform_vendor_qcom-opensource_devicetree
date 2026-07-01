@@ -198,7 +198,7 @@
 			regulator-name = "pm6450_b_s8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1200000>;
-			regulator-max-microvolt = <2040000>;
+			regulator-max-microvolt = <1504000>;
 			qcom,init-voltage = <1200000>;
 		};
 	};
@@ -390,7 +390,7 @@
 		pm6450_b_l11: vreg-pm6450-b-l11 {
 			regulator-name = "pm6450_b_l11";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <624000>;
+			regulator-min-microvolt = <312000>;
 			regulator-max-microvolt = <752000>;
 			qcom,init-voltage = <752000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
@@ -430,7 +430,7 @@
 		pm6450_b_l13: vreg-pm6450-b-l13 {
 			regulator-name = "pm6450_b_l13";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
-			regulator-min-microvolt = <1200000>;
+			regulator-min-microvolt = <1080000>;
 			regulator-max-microvolt = <1304000>;
 			qcom,init-voltage = <1200000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
