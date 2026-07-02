@@ -804,12 +804,10 @@
 		};
 	};
 
-	modem_diag: dummy_source {
+	modem_diag: modem_diag {
 		compatible = "arm,coresight-dummy-source";
-
 		device-name = "modem_diag";
-		qcom,dummy-source;
-
+		atid = <50>;
 
 		out-ports {
 			port {
