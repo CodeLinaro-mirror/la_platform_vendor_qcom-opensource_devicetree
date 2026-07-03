@@ -982,15 +982,15 @@
 	};
 
 	/* GPU_CC GDSCs */
-	gpu_cc_cx_hw_ctrl: syscon@3d9953c {
+	gpu_cc_cx_hw_ctrl: syscon@3d991b4 {
 		compatible = "syscon";
-		reg = <0x0 0x3d9953c 0x0 0x4>;
+		reg = <0x0 0x3d991b4 0x0 0x4>;
 	};
 
 	/* GPU_CC GDSCs */
-	gpu_cc_cx_gdsc: qcom,gdsc@3d99108 {
+	gpu_cc_cx_gdsc: qcom,gdsc@3d990d0 {
 		compatible = "qcom,gdsc";
-		reg = <0x0 0x3d99108 0x0 0x4>;
+		reg = <0x0 0x3d990d0 0x0 0x4>;
 		hw-ctrl-addr = <&gpu_cc_cx_hw_ctrl>;
 		regulator-name = "gpu_cc_cx_gdsc";
 		qcom,no-status-check-on-disable;
@@ -1002,19 +1002,19 @@
 		status = "ok";
 	};
 
-	gpu_cc_gx_domain_addr: syscon@3d99504 {
+	gpu_cc_gx_domain_addr: syscon@3d9917c {
 		compatible = "syscon";
-		reg = <0x0 0x3d99504 0x0 0x4>;
+		reg = <0x0 0x3d9917c 0x0 0x4>;
 	};
 
-	gpu_cc_gx_sw_reset: syscon@3d99058 {
+	gpu_cc_gx_sw_reset: syscon@3d99050 {
 		compatible = "syscon";
-		reg = <0x0 0x3d99058 0x0 0x4>;
+		reg = <0x0 0x3d99050 0x0 0x4>;
 	};
 
-	gpu_cc_gx_gdsc: qcom,gdsc@3d9905c {
+	gpu_cc_gx_gdsc: qcom,gdsc@3d99054 {
 		compatible = "qcom,gdsc";
-		reg = <0x0 0x3d9905c 0x0 0x4>;
+		reg = <0x0 0x3d99054 0x0 0x4>;
 		regulator-name = "gpu_cc_gx_gdsc";
 		domain-addr = <&gpu_cc_gx_domain_addr>;
 		sw-reset = <&gpu_cc_gx_sw_reset>;
