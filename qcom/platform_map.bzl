@@ -1125,6 +1125,16 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
+    "shikra_auto": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-iqs.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-iqs-overlay.dtbo"},
+        ],
+    },
     "shikra_tiny": {
         "dtb_list": [
             # keep sorted

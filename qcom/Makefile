@@ -670,6 +670,7 @@ HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
 SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
+SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
@@ -680,11 +681,15 @@ SHIKRA_BOARDS += \
 
 NOAPQ_SHIKRA_BOARDS += \
 		 shikra-rumi-overlay.dtbo
+SHIKRA_IQS_BOARDS += \
+                 shikra-iqs-overlay.dtbo
 
 shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
 	$(call add-overlays, $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS),$(SHIKRA_BASE_DTB)) \
-	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB))
-shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB)
+	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB)) \
+	$(call add-overlays, $(SHIKRA_IQS_BOARDS),$(SHIKRA_IQS_BASE_DTB))
+
+shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB) $(SHIKRA_IQS_BOARDS) $(SHIKRA_IQS_BASE_DTB)
 dtb-y += $(shikra-dtb-y)
 
 MAHUA_BASE_DTB += mahua.dtb
