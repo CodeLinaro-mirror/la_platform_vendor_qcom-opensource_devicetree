@@ -263,6 +263,7 @@
 		reg = <0x0 0x10b0d000 0x0 0x1000>;
 		reg-names = "tpdm-base";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <32>;
 
 		atid = <71>;
 		device-name = "tpdm_swao_1";
