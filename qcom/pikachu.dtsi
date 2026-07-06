@@ -539,6 +539,12 @@
 				qcom,intents = <0x1000 3
 						0x3E8  7>;
 			};
+
+			/* DHMS GLINK Channel for LMCU */
+			qcom,dhms {
+				qcom,glink-channels = "dhms_mcu0";
+				qcom,intents = <0x400 20>;
+			};
 		};
 	};
 
@@ -1079,6 +1085,77 @@
 		qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 	};
 
+	bwprof_scmi: qcom,bwprof-scmi {
+		compatible = "qcom,bwprof-scmi";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		reg = <0x1901C040 0xFC0>, <0x1901C000 0x40>;
+		reg-names = "mem-base", "buff-fill-base";
+
+		bwprof_ddr: ddr {
+			compatible = "qcom,bwprof-hw";
+			qcom,hw-type = < 0 >;
+			qcom,bus_width = < 4 >;
+
+			bwprof_ddr_1ms: 1ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 50 51 >;
+			};
+
+			bwprof_ddr_10ms: 10ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 10 >;
+				qcom,master-list = /bits/ 8 < 50 51 53 54 55 56 57 >;
+			};
+
+			bwprof_ddr_100ms: 100ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 100 >;
+				qcom,master-list = /bits/ 8 < 50 51 52 53 54 55 56 57 >;
+			};
+
+			bwprof_ddr_hist: Hist {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 50 51 52 >;
+				qcom,hist-enable;
+			};
+		};
+
+		bwprof_llcc: llcc {
+			compatible = "qcom,bwprof-hw";
+			qcom,hw-type = < 1 >;
+			qcom,bus_width = < 32 >;
+
+			bwprof_llcc_1ms: 1ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 0 1 >;
+			};
+
+			bwprof_llcc_10ms: 10ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 10 >;
+				qcom,master-list = /bits/ 8 < 0 1 3 4 5 6 7 >;
+			};
+
+			bwprof_llcc_100ms: 100ms {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 100 >;
+				qcom,master-list = /bits/ 8 < 0 1 2 3 4 5 6 7 >;
+			};
+
+			bwprof_llcc_hist: Hist {
+				compatible = "qcom,bwprof-sampling-mode";
+				qcom,sample-period = < 1 >;
+				qcom,master-list = /bits/ 8 < 0 1 2 >;
+				qcom,hist-enable;
+			};
+		};
+	};
+
 	pdc: interrupt-controller@0xb220000 {
 		compatible = "qcom,pikachu-pdc", "qcom,pdc";
 		reg = <0xb220000 0x10000>, <0x174000f0 0x64>;
@@ -1439,6 +1516,17 @@
 			clock-names = "qdss_clk";
 			llcc-scid-status-snapshot;
 		};
+
+		slc_perfmon: qcom,slc_perfmon {
+			compatible = "qcom,slc-perfmon";
+			/* Use slc_mem_base (0xD8170000) with perfmon struct at offset 0x700 */
+			reg = <0xD8170000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
+			reg-names = "perfmon_base", "trp_0_base", "trp_1_base", "trp_or_bcast_base";
+			perfmon_offset = <0x700>;
+			clocks = <&aoss_qmp QDSS_CLK>;
+			clock-names = "qdss_clk";
+			slc-scid-status-snapshot;
+		};
 	};
 
 	qcom,msm-adsprpc-mem {
@@ -1644,6 +1732,86 @@
 	qcom,cpufreq-hw-debug {
 		compatible = "qcom,cpufreq-hw-epss-debug";
 		qcom,freq-hw-domain = <&cpufreq_hw 0>;
+	};
+
+	pdm_pwm: pdm_pwm@88f0000 {
+		compatible = "qcom,pdm-pwm-v2";
+		reg = <0x88f0000 0xc000>;
+		clocks = <&gcc GCC_PDM_AHB_CLK>;
+		clock-names =  "pdm_ahb_clk";
+		assigned-clocks = <&gcc GCC_PWM0_XO512_CLK>;
+		assigned-clock-rates = <19200000>;
+		#pwm-cells = <3>;
+
+		pwm@0 {
+			frame-index = <0>;
+			frame-offset = <0x1000>;
+			clocks = <&gcc GCC_PWM0_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@1 {
+			frame-index = <1>;
+			frame-offset = <0x2000>;
+			clocks = <&gcc GCC_PWM1_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@2 {
+			frame-index = <2>;
+			frame-offset = <0x3000>;
+			clocks = <&gcc GCC_PWM2_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@3 {
+			frame-index = <3>;
+			frame-offset = <0x4000>;
+			clocks = <&gcc GCC_PWM3_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@4 {
+			frame-index = <4>;
+			frame-offset = <0x5000>;
+			clocks = <&gcc GCC_PWM4_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@5 {
+			frame-index = <5>;
+			frame-offset = <0x6000>;
+			clocks = <&gcc GCC_PWM5_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@6 {
+			frame-index = <6>;
+			frame-offset = <0x7000>;
+			clocks = <&gcc GCC_PWM6_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@7 {
+			frame-index = <7>;
+			frame-offset = <0x8000>;
+			clocks = <&gcc GCC_PWM7_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@8 {
+			frame-index = <8>;
+			frame-offset = <0x9000>;
+			clocks = <&gcc GCC_PWM8_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@9 {
+			frame-index = <9>;
+			frame-offset = <0xa000>;
+			clocks = <&gcc GCC_PWM9_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
 	};
 
 	qcom,msm-imem@14680000 {
@@ -2404,6 +2572,21 @@
 					<&CPU1 0x17810058 0x17810060>,
 					<&CPU2 0x17820058 0x17820060>,
 					<&CPU3 0x17830058 0x17830060>;
+	};
+	/* IOVA reservation node — restricts DHMS DMA allocations to CACHE_6 range */
+	dhms_dma_region: dhms_dma_iommu_region {
+		iommu-addresses = <&dhms_rpmsg_lmcu 0x00000000 0xD0000000>,
+			<&dhms_rpmsg_lmcu 0xD8000000 0x28000000>;
+	};
+
+
+	/* DHMS RPMSG Platform Device - Kernel driver for DHMS */
+	dhms_rpmsg_lmcu: dhms-rpmsg-lmcu {
+		compatible = "qcom,dhms-rpmsg";
+		iommus = <&apps_smmu 0x01141 0x0>;
+		dma-coherent;
+		memory-region = <&dhms_dma_region>;
+		status = "okay";
 	};
 };
 

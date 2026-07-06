@@ -51,6 +51,9 @@
 				<&aggre2_noc MASTER_USB3_0 &cnoc2 SLAVE_IPA_CFG>,
 				<&gem_noc MASTER_APPSS_PROC &cnoc2 SLAVE_USB3_0>;
 
+		usb-role-switch;
+		extcon = <&eud>;
+
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0xa600000 0x0 0xd800>;
@@ -74,6 +77,12 @@
 			dr_mode = "otg";
 			maximum-speed = "high-speed";
 			usb-role-switch;
+		};
+
+		port {
+			usb_port0: endpoint {
+				remote-endpoint = <&usb_port0_connector>;
+			};
 		};
 	};
 

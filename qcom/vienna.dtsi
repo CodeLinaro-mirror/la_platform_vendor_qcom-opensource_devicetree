@@ -496,6 +496,11 @@
 				compatible = "qcom,vienna-rpmh-clk";
 				#clock-cells = <1>;
 			};
+
+			dcvs_fp: qcom,dcvs-fp {
+				compatible = "qcom,dcvs-fp";
+				qcom,ddr-bcm-name = "MC4";
+			};
 		};
 	};
 
@@ -1197,6 +1202,17 @@
 
 		wm_sleepstate_smp2p_in: qcom,sleepstate-in {
 			qcom,entry-name = "sleepstate_see";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_dump_debug_out: dump-debug-out {
+			qcom,entry-name = "dump-debug-out";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_dump_debug_in: qcom,dump-debug-in {
+			qcom,entry-name = "dump-debug-in";
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
@@ -2379,6 +2395,12 @@
 				interconnects = <&gem_noc MASTER_APPSS_PROC
 						&mc_virt SLAVE_EBI1>;
 			};
+
+			ddr_dcvs_fp: fp {
+				compatible = "qcom,dcvs-path";
+				qcom,dcvs-path-type = <1>;
+				qcom,fp-voter = <&dcvs_fp>;
+			};
 		};
 
 		qcom_ddrqos_dcvs_hw: ddrqos {
@@ -2401,7 +2423,7 @@
 		ddr {
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
-			qcom,sampling-path = <&ddr_dcvs_sp>;
+			qcom,sampling-path = <&ddr_dcvs_fp>;
 			qcom,miss-ev = <0x2A>;
 
 			silver {

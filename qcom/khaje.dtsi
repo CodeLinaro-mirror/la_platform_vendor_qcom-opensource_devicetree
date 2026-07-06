@@ -431,9 +431,19 @@
 		#size-cells = <2>;
 		ranges;
 
-		hyp_mem: hyp_region@45700000 {
+		hyp_mem: hyp_region@0x44600000 {
 			no-map;
-			reg = <0x0 0x45700000 0x0 0x600000>;
+			reg = <0x0 0x44600000 0x0 0xe00000>;
+		};
+
+		hyp_mem1: hyp_region1@0x45400000 {
+			no-map;
+			reg = <0x0 0x45400000 0x0 0x800000>;
+		};
+
+		pvmfw_mem: pvmfw_region@0x48000000 {
+			no-map;
+			reg = <0x0 0x48000000 0x0 0x100000>;
 		};
 
 		xbl_aop_mem: xbl_aop_region@45e00000 {
@@ -1047,15 +1057,6 @@
 		clocks = <&gcc GCC_AHB2PHY_USB_CLK>;
 		clock-names = "eud_ahb2phy_clk";
 		status = "ok";
-	};
-
-	qcom,msm-gladiator-v2@f100000 {
-		compatible = "qcom,msm-gladiator-v2";
-		reg = <0xf100000 0xdc00>;
-		reg-names = "gladiator_base";
-		interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-		clock-names = "atb_clk";
-		clocks = <&rpmcc RPM_QDSS_CLK>;
 	};
 
 	wdog: qcom,wdt@f017000 {
@@ -2047,8 +2048,10 @@
 	};
 
 	cx_ipeak_lm: cx_ipeak@3ed000 {
+		#size-cells = <1>;
 		compatible = "qcom,cx-ipeak-v2";
 		reg = <0x3ed000 0xe008>;
+		status = "ok";
 	};
 
 	modem_pas: remoteproc-mss@6080000 {

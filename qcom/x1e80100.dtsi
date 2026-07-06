@@ -81,6 +81,9 @@
 		spi22 = &qupv3_se22_spi;
 		spi23 = &qupv3_se23_spi;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		usb0 = &dwc3_0; /*usb0 child node*/
+		usb1 = &dwc3_1; /*usb1 child node*/
+		usb2 = &dwc3_2; /*usb2 child node*/
 	};
 
 	cpus {
@@ -1412,7 +1415,7 @@
 				dma-coherent;
 			};
 
-			qcom_cedev_s_cb {
+			qcom_cedev_s_cb: qcom_cedev_s_cb {
 				compatible = "qcom,qcedev,context-bank";
 				label = "secure_context";
 				iommus = <&dpd_smmu 0x9>;
@@ -2253,6 +2256,15 @@
 			};
 		};
 
+		usb_audio_qmi_dev: usb_audio_qmi_dev {
+			compatible = "qcom,usb-audio-qmi-dev";
+			iommus = <&apps_smmu 0x100b 0x0>;
+			qcom,iommu-dma = "disabled";
+			qcom,usb-audio-stream-id = <0xb>;
+			qcom,usb-audio-intr-num = <2>;
+			status = "disabled";
+		};
+
 		usb4: ssusb@a200000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0x0a200000 0x0 0x100000>;
@@ -2510,7 +2522,7 @@
 
 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
 				 <&rpmhcc RPMH_CXO_CLK>,
-				 <&tcsrcc TCSR_USB4_2_CLKREF_EN>,
+				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
 				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
 				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,

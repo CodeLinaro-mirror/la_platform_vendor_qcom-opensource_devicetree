@@ -128,6 +128,8 @@
 		vdda18-supply = <&pm4125_l13>;
 		vdda33-supply = <&pm4125_l21>;
 		qcom,vdd-voltage-level = <0 925000 970000>;
+		qcom,vdda18-voltage-level = <0 1800000 1800000>;
+		qcom,vdda33-voltage-level = <0 2950000 2950000>;
 		qcom,tune2-efuse-bit-pos = <25>;
 		qcom,tune2-efuse-num-bits = <4>;
 		qcom,qusb-phy-init-seq = <0xf8 0x80
@@ -167,6 +169,8 @@
 		vdda18-supply = <&pm4125_l13>;
 		vdda33-supply = <&pm4125_l21>;
 		qcom,vdd-voltage-level = <0 925000 970000>;
+		qcom,vdda18-voltage-level = <0 1800000 1800000>;
+		qcom,vdda33-voltage-level = <0 2950000 2950000>;
 		qcom,tune2-efuse-bit-pos = <20>;
 		qcom,tune2-efuse-num-bits = <4>;
 		qcom,qusb-phy-init-seq = <0xf8 0x80

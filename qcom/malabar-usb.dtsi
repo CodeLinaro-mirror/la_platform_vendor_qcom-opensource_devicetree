@@ -78,6 +78,7 @@
 			dr_mode = "otg";
 			maximum-speed = "high-speed";
 			usb-role-switch;
+			imod-interval-ns = <160000>;
 		};
 	};
 
