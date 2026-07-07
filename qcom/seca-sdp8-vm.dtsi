@@ -506,6 +506,42 @@
 	};
 };
 
+&hab {
+	mmidgrp200: mmidgrp200 {
+	    dma-coherent;
+	};
+
+	mmidgrp300: mmidgrp300 {
+	    dma-coherent;
+	};
+
+	mmidgrp400: mmidgrp400 {
+	    dma-coherent;
+	};
+
+	mmidgrp500: mmidgrp500 {
+	    dma-coherent;
+	};
+
+	mmidgrp1700: mmidgrp1700 {
+	    grp-start-id = <1700>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1800: mmidgrp1800 {
+	    grp-start-id = <1800>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1900: mmidgrp1900 {
+	    grp-start-id = <1900>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+};
+
 &reserved_memory {
 	glink_cma_mem0: glink-cma-region0 {
 		no-map;
