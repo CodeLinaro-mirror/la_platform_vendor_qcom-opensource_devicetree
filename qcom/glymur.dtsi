@@ -371,6 +371,10 @@
 			qcom,dload-mode = <&tcsr 0x99000>;
 		};
 
+		qcom_scm_smcinvoke {
+			compatible = "qcom,scm-smcinvoke";
+		};
+
 	};
 	qcom_tzlog: tz-log@0x14680720 {
 		compatible = "qcom,tz-log";
