@@ -81,6 +81,9 @@
 		spi22 = &qupv3_se22_spi;
 		spi23 = &qupv3_se23_spi;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		usb0 = &dwc3_0; /*usb0 child node*/
+		usb1 = &dwc3_1; /*usb1 child node*/
+		usb2 = &dwc3_2; /*usb2 child node*/
 	};
 
 	cpus {
@@ -2251,6 +2254,15 @@
 					};
 				};
 			};
+		};
+
+		usb_audio_qmi_dev: usb_audio_qmi_dev {
+			compatible = "qcom,usb-audio-qmi-dev";
+			iommus = <&apps_smmu 0x100b 0x0>;
+			qcom,iommu-dma = "disabled";
+			qcom,usb-audio-stream-id = <0xb>;
+			qcom,usb-audio-intr-num = <2>;
+			status = "disabled";
 		};
 
 		usb4: ssusb@a200000 {

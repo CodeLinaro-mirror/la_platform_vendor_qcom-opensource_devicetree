@@ -1214,6 +1214,28 @@
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
+
+		smp2p_smem_mailbox_1_out: qcom,smp2p-smem-mailbox-1-out {
+			qcom,entry-name = "smem-mailbox";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_smem_mailbox_1_in: qcom,smp2p-smem-mailbox-1-in {
+			qcom,entry-name = "smem-mailbox";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test1_in: qcom,smp2p-test1-in {
+			qcom,entry-name = "smp2p";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		smp2p_test1_out: qcom,smp2p-test1-out {
+			qcom,entry-name = "smp2p";
+			#qcom,smem-state-cells = <1>;
+		};
 	};
 
 	qcom,smp2p-adsp {
@@ -1333,6 +1355,20 @@
 			qcom,glinkpkt-edge = "mpss";
 			qcom,glinkpkt-ch-name = "DATA11";
 			qcom,glinkpkt-dev-name = "smd11";
+		};
+
+		qcom,glinkpkt-ims-sub-1 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "Ims_dc_sub1";
+			qcom,glinkpkt-dev-name = "ims_dc_sub1";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-ims-sub-2 {
+			qcom,glinkpkt-edge = "mpss";
+			qcom,glinkpkt-ch-name = "Ims_dc_sub2";
+			qcom,glinkpkt-dev-name = "ims_dc_sub2";
+			qcom,glinkpkt-enable-ch-close;
 		};
 	};
 
@@ -2495,6 +2531,8 @@
 		mx-uV-uA = <RPMH_REGULATOR_LEVEL_TURBO 100000>;
 		reg-names = "cx","mx";
 
+		qcom,qmp = <&aoss_qmp>;
+
 		/* Inputs from wpss */
 		interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
 				      <&wpss_smp2p_in 0 0>,
@@ -2701,6 +2739,10 @@
 #include "bourtzi-qupv3.dtsi"
 #include "bourtzi-debug.dtsi"
 #include "bourtzi-coresight.dtsi"
+#include "ipcc-test-bourtzi.dtsi"
+/delete-node/ &ipcc_self_ping_mpss;
+/delete-node/ &ipcc_self_ping_adsp;
+/delete-node/ &ipcc_self_ping_wpss;
 
 &qupv3_se7_2uart {
 	status = "ok";

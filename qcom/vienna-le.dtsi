@@ -63,6 +63,11 @@
 	reg = <0x0 0x95200000 0x0 0x2B00000>;
 };
 
+/* Disable Display LPI memory for LE variants */
+&displaylpi_mem {
+	status = "disabled";
+};
+
 /* Disable I2C9 for LE variants */
 &i2c9 {
 	status = "disabled";

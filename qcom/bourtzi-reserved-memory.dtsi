@@ -90,9 +90,9 @@
 		reg = <0x0 0x82a00000 0x0 0x300000>;
 	};
 
-	splash_screen_mem: splash_screen_region@83600000 {
-		no-map;
+	splash_memory: splash_region@83600000 {
 		reg = <0x0 0x83600000 0x0 0xd00000>;
+		label = "cont_splash_region";
 	};
 
 	camera_mem: camera_region@84b00000 {

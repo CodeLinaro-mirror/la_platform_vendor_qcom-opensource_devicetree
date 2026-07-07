@@ -25,6 +25,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la.dtb"},
             {"name": "sa8797p-sdp8-vm-lv-mt.dtb"},
+            {"name": "seca-sdp8-vm-la.dtb"},
             {"name": "lemans-vm-la-mt.dtb"},
             {"name": "sa8255p-sdp8-vm-la.dtb"},
             {"name": "sa8775p-sdp8-vm-la.dtb"},
@@ -60,6 +61,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8797p-sdp8-vm-lv-mt-overlay.dtbo"},
+            {"name": "seca-sdp8-vm-la-overlay.dtbo"},
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8775p-sdp8-vm-la-overlay.dtbo"},
@@ -341,6 +343,10 @@ _platform_map = {
             {"name": "scubap-iot.dtb"},
             {"name": "scubap-iot-idp.dtb"},
             {"name": "scubap-iot-idp-2gb.dtb"},
+            {"name": "bengal-iot.dtb"},
+            {"name": "bengalp-iot.dtb"},
+            {"name": "bengal-iot-2gb.dtb"},
+            {"name": "bengalp-iot-2gb.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -398,6 +404,14 @@ _platform_map = {
             {"name": "scuba-iot-qrd-eldo-overlay.dtbo"},
             {"name": "scuba-iot-qrd-non-eldo-overlay.dtbo"},
             {"name": "scuba-iot-rb1-overlay.dtbo"},
+            {"name": "bengal-iot-idp-overlay.dtbo"},
+            {"name": "bengalp-iot-idp-overlay.dtbo"},
+            {"name": "bengalp-iot-idp-usbc-2gb-overlay.dtbo"},
+            {"name": "bengal-iot-idp-usbc-2gb-overlay.dtbo"},
+            {"name": "bengal-iot-idp-2gb-overlay.dtbo"},
+            {"name": "bengal-iot-idp-usbc-overlay.dtbo"},
+            {"name": "bengalp-iot-idp-2gb-overlay.dtbo"},
+            {"name": "bengalp-iot-idp-usbc-overlay.dtbo"},
         ],
     },
     "bengal-le": {
@@ -546,9 +560,16 @@ _platform_map = {
         ],
         "custom_dtbo_img_list": [
             {
-                "name": "x1e80100-crd",
-                "src": ["x1e80100-crd-overlay.dtbo", "x1e80100.dtb"],
-                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/x1e80100_crd_dtbo.config",
+                "name": "hamoa",
+                "src": [
+                    "x1e80100.dtb",
+                    "x1p42100.dtb",
+                    "x1e80100-crd-overlay.dtbo",
+                    "x1e80100-qcb-overlay.dtbo",
+                    "x1e80100-qcp-overlay.dtbo",
+                    "x1p42100-crd-overlay.dtbo",
+                ],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/hamoa_dtbo.config",
             },
         ],
         "binary_compatible_with": ["x1p42100"],
@@ -1050,6 +1071,30 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
+    "shikra-low_ram": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-cqm.dtb"},
+            {
+                "name": "shikra-cqs.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-lite-cqm.dtb"},
+            {
+                "name": "shikra-lite-cqs.dtb",
+                "apq": True,
+            },
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
+            {"name": "shikra-rumi-overlay.dtbo"},
+        ],
+    },
     "shikra-tuivm": {
         "dtb_list": [
             # keep sorted
@@ -1080,6 +1125,7 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "mahua-crd-overlay.dtbo"},
+            {"name": "mahua-qcb-overlay.dtbo"},
         ],
     },
 }
