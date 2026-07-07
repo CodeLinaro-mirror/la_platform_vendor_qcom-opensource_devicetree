@@ -87,7 +87,7 @@
 
 	wlan_msa_mem: wlan_msa_region@82a00000 {
 		no-map;
-		reg = <0x0 0x82a00000 0x0 0x300000>;
+		reg = <0x0 0x82a00000 0x0 0xc00000>;
 	};
 
 	splash_memory: splash_region@83600000 {
