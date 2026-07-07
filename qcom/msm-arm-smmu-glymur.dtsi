@@ -194,6 +194,20 @@
 		#iommu-cells = <1>;
 	};
 
+	dma_dev {
+		compatible = "qcom,iommu-dma";
+		memory-region = <&system_cma>;
+	};
+
+	dpd_smmu: dpd_smmu {
+		compatible = "qcom,dpd-smmu";
+		#iommu-cells = <1>;
+	};
+
+	dpd_proxy {
+		compatible = "qcom,dpd-proxy";
+	};
+
 	iommu_test_device {
 		compatible = "qcom,iommu-debug-test";
 
