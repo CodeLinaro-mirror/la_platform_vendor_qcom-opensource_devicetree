@@ -1027,8 +1027,8 @@
 			qcom,vccq-parent-supply = <&pm_v8j_s5>;
 			qcom,vccq-parent-max-microamp = <210000>;
 
-			qcom,vccq-shutdown-supply = <&pm_v8i_l2>;
-			qcom,vccq-shutdown-max-microamp = <1200000>;
+			qcom,vccq-proxy-vote-supply = <&pm_v8i_l2>;
+			qcom,vccq-proxy-vote-max-microamp = <1200000>;
 
 			lanes-per-direction = <2>;
 			phys = <&ufsphy_mem>;

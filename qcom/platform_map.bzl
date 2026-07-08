@@ -389,6 +389,7 @@ _platform_map = {
             {"name": "khajeg-idp-usbc-overlay.dtbo"},
             {"name": "khajeg-idp-pm8010-overlay.dtbo"},
             {"name": "khajeg-idps-display-90hz-overlay.dtbo"},
+            {"name": "khaje-idp-lp4-overlay.dtbo"},
             {"name": "bengal-idp-overlay.dtbo"},
             {"name": "bengal-rumi-overlay.dtbo"},
             {"name": "bengal-qrd-overlay.dtbo"},
@@ -404,6 +405,7 @@ _platform_map = {
             {"name": "scuba-iot-qrd-eldo-overlay.dtbo"},
             {"name": "scuba-iot-qrd-non-eldo-overlay.dtbo"},
             {"name": "scuba-iot-rb1-overlay.dtbo"},
+            {"name": "scuba-iot-idp-lp4-overlay.dtbo"},
             {"name": "bengal-iot-idp-overlay.dtbo"},
             {"name": "bengalp-iot-idp-overlay.dtbo"},
             {"name": "bengalp-iot-idp-usbc-2gb-overlay.dtbo"},
@@ -1071,7 +1073,7 @@ _platform_map = {
             {"name": "shikra-rumi-overlay.dtbo"},
         ],
     },
-    "shikra-low_ram": {
+    "shikra_tiny": {
         "dtb_list": [
             # keep sorted
             {"name": "shikra-cqm.dtb"},
@@ -1079,9 +1081,14 @@ _platform_map = {
                 "name": "shikra-cqs.dtb",
                 "apq": True,
             },
-            {"name": "shikra-lite-cqm.dtb"},
+            {"name": "shikra-cqm-fp1.dtb"},
             {
-                "name": "shikra-lite-cqs.dtb",
+                "name": "shikra-cqs-fp1.dtb",
+                "apq": True,
+            },
+            {"name": "shikra-cqm-fp2.dtb"},
+            {
+                "name": "shikra-cqs-fp2.dtb",
                 "apq": True,
             },
         ],

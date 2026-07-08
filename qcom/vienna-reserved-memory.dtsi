@@ -168,9 +168,9 @@
 		reg = <0x0 0xB81C0000 0x0 0x40000>;
 	};
 
-	thermisto_md_toc_mem: thermisto_md_toc_region@db1d0000 {
+	thermisto_md_toc_mem: thermisto_md_toc_region@d7fff000 {
 		no-map;
-		reg = <0x0 0xdb1d0000 0x0 0x1000>;
+		reg = <0x0 0xd7fff000 0x0 0x1000>;
 	};
 
 	xbl_sc_mem: xbl_sc_region@d8000000 {
