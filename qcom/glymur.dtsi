@@ -1489,6 +1489,52 @@
 			#power-domain-cells = <1>;
 		};
 
+		apsscc: syscon@17f06000 {
+			compatible = "syscon";
+			reg = <0x0 0x17f06000 0x0 0xc>;
+		};
+
+		mccc0: syscon@2108a000 {
+			compatible = "syscon";
+			reg = <0x0 0x2108a000 0x0 0x54>;
+		};
+
+		mccc1: syscon@2208a000 {
+			compatible = "syscon";
+			reg = <0x0 0x2208a000 0x0 0x54>;
+		};
+
+		debugcc: clock-controller@0 {
+			compatible = "qcom,glymur-debugcc";
+			qcom,camcc = <&camcc>;
+			qcom,dispcc = <&dispcc>;
+			qcom,evacc = <&evacc>;
+			qcom,gcc = <&gcc>;
+			qcom,gxclkctl = <&gxclkctl>;
+			qcom,apsscc = <&apsscc>;
+			qcom,gpucc = <&gpucc>;
+			qcom,mccc0 = <&mccc0>;
+			qcom,mccc1 = <&mccc1>;
+			qcom,videocc = <&videocc>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&camcc 0>,
+				 <&dispcc 0>,
+				 <&evacc 0>,
+				 <&gcc 0>,
+				 <&gxclkctl 0>,
+				 <&gpucc 0>,
+				 <&videocc 0>;
+			clock-names = "xo_clk_src",
+				      "camcc",
+				      "dispcc",
+				      "evacc",
+				      "gcc",
+				      "gxclkctl",
+				      "gpucc",
+				      "videocc";
+			#clock-cells = <1>;
+		};
+
 		google,debug-kinfo {
 			compatible = "google,debug-kinfo";
 			memory-region = <&kinfo_mem>;
