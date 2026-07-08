@@ -8,8 +8,14 @@
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/clock/qcom,glymur-camcc.h>
+#include <dt-bindings/clock/qcom,glymur-dispcc.h>
+#include <dt-bindings/clock/qcom,glymur-evacc.h>
 #include <dt-bindings/clock/qcom,glymur-gcc.h>
+#include <dt-bindings/clock/qcom,glymur-gpucc.h>
+#include <dt-bindings/clock/qcom,kaanapali-gxclkctl.h>
 #include <dt-bindings/clock/qcom,glymur-tcsr.h>
+#include <dt-bindings/clock/qcom,glymur-videocc.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,glymur-rpmh.h>
 
@@ -1011,6 +1017,107 @@
 			clocks = <&rpmhcc RPMH_CXO_CLK>;
 			#clock-cells = <1>;
 			#reset-cells = <1>;
+		};
+
+		gpucc: clock-controller@3d90000 {
+			compatible = "qcom,glymur-gpucc", "syscon";
+			reg = <0x0 0x03d90000 0x0 0x9800>;
+			reg-name = "cc_base";
+			vdd_cx-supply = <&VDD_CX_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				<&gcc GCC_GPU_GPLL0_CLK_SRC>,
+				<&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		gxclkctl: clock-controller@3d64000 {
+			compatible = "qcom,glymur-gxclkctl";
+			reg = <0x0 0x03d64000 0x0 0x6000>;
+			reg-name = "cc_base";
+			vdd_gfx-supply = <&VDD_GFX_GFX_MXC_VOTER_LEVEL>;
+			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		videocc: clock-controller@aaf0000 {
+			compatible = "qcom,glymur-videocc", "syscon";
+			reg = <0x0 0xaaf0000 0x0 0x10000>;
+			reg-name = "cc_base";
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+			vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				<&rpmhcc RPMH_CXO_CLK_A>,
+				<&sleep_clk>,
+				<&gcc GCC_VIDEO_AHB_CLK>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		evacc: clock-controller@abf0000 {
+			compatible = "qcom,glymur-evacc";
+			reg = <0x0 0x0abf0000 0x0 0x10000>;
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+			vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+			clocks = <&gcc GCC_EVA_AHB_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		camcc: clock-controller@ade0000 {
+			compatible = "qcom,glymur-camcc";
+			reg = <0 0x0ade0000 0 0x20000>;
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			vdd_mxc-supply = <&VDD_MXC_LEVEL>;
+			vdd_mm_mxc_voter-supply = <&VDD_MM_MXC_VOTER_LEVEL>;
+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK_A>,
+				 <&sleep_clk>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
+
+		dispcc: clock-controller@af00000 {
+			compatible = "qcom,glymur-dispcc";
+			reg = <0x0 0x0af00000 0x0 0x20000>;
+			vdd_mm-supply = <&VDD_MM_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				 <&sleep_clk>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <0>,
+				 <&gcc GCC_DISP_AHB_CLK>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
 		};
 
 		google,debug-kinfo {
