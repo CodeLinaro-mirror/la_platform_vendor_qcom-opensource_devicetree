@@ -602,3 +602,4 @@
 
 #include "seca-vm-pinctrl.dtsi"
 #include "seca-vm-usb.dtsi"
+#include "seca-vm-qupv3.dtsi"
