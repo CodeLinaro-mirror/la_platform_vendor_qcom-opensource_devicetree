@@ -7,6 +7,7 @@
 
 #include "glymur.dtsi"
 #include "mahua-dma-heaps.dtsi"
+#include "mahua-reserved-memory.dtsi"
 
 /delete-node/ &cluster2_pd;
 /delete-node/ &cpu_map_cluster2;
