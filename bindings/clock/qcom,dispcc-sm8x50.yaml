@@ -22,6 +22,7 @@ description: |
     dt-bindings/clock/qcom,dispcc-canoe.h
     dt-bindings/clock/qcom,alor-dispcc.h
     dt-bindings/clock/qcom,chora-dispcc.h
+    dt-bindings/clock/qcom,glymur-dispcc.h
 
 properties:
   compatible:
@@ -38,6 +39,7 @@ properties:
       - qcom,alor-dispcc
       - qcom,whale-dispcc
       - qcom,chora-dispcc
+      - qcom,glymur-dispcc
 
   clocks:
     items:
