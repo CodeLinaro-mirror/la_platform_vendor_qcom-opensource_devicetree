@@ -104,7 +104,6 @@
 		qcom,air-cl45-phy-addr = <0>;
 		qcom,star-cl45-phy-addr = <8>;
 
-		gdsc_emac-supply = <&gcc_emac1_gdsc>;
 		phys = <&serdes1>;
 		phy-names = "serdes";
 		phy-mode = "2500base-x";
