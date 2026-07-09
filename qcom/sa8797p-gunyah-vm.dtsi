@@ -1993,6 +1993,24 @@
 		reset-names = "serdes_reset";
 	};
 
+	efuse: efuse@360d4320 {
+		compatible = "qcom,sa8797p-qfprom", "qcom,qfprom";
+		reg = <0x360d4320 0x8>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		nvmem-layout {
+			compatible = "qcom,sa8797p-eth-mac";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			eth1_mac: eth1-mac@0 {
+				reg = <0x0 0x6>;
+				qcom,byte-fixups = <5 0x6>;
+			};
+		};
+	};
+
 	ethernet1: ethernet@1a80000 {
 		status = "disabled";
 		compatible = "qcom,sa8797p-ethqos", "snps,dwxgmac";
@@ -2039,6 +2057,9 @@
 
 		snps,pbl = <0x10>;
 		dma-coherent;
+
+		nvmem-cells = <&eth1_mac>;
+		nvmem-cell-names = "mac-address";
 
 		rx-fifo-depth = <98304>;
 		tx-fifo-depth = <98304>;
