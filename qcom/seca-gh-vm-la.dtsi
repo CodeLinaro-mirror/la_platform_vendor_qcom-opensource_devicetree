@@ -1458,6 +1458,14 @@
 		};
 	};
 
+	tsc@1c81000 {
+		compatible = "qcom,tsc-vm";
+		reg = <0x1c81000 0x1000>;
+		reg-names = "tsc";
+		qcom,tsc-nsec-update;
+		status = "okay";
+	};
+
 	qcom,mpm2-sleep-counter@c221000 {
 			compatible = "qcom,mpm2-sleep-counter";
 			reg = <0xc221000 0x1000>;
