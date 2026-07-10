@@ -2718,6 +2718,7 @@
 #include "bourtzi-debug.dtsi"
 #include "bourtzi-coresight.dtsi"
 #include "ipcc-test-bourtzi.dtsi"
+#include "msm-rdbg-scuba.dtsi"
 /delete-node/ &ipcc_self_ping_mpss;
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_wpss;
