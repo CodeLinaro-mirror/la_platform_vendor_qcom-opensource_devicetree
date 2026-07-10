@@ -2717,6 +2717,13 @@
 		memory-region-names = "trustedvm_cma" , "oemvm_cma";
 	};
 
+	qcom,qrtr-gunyah-oemvm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x108>;
+		peer-name = <4>;
+	};
+
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
