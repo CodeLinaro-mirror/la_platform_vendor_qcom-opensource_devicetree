@@ -34,7 +34,7 @@
 	memory { device_type = "memory"; reg = <0x0 0x38000000 0x0 0xa00000>; };
 
 	chosen: chosen {
-		bootargs = "loglevel=6 log_buf_len=256K bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 loop.max_part=7 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc hibernate=nocompress pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x2";
+		bootargs = "loglevel=6 log_buf_len=256K bootconfig swiotlb=0 kasan=off cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on restrict_cma_redirect=false pci=pcie_bus_safe,noaer pcie_pme=nomsi printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 kernel.panic_on_rcu_stall=1 no-steal-acc ftrace_dump_on_oops can.stats_timer=0 fw_devlink.strict=1 service_locator.enable=1 firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware irqaffinity=0-1 loop.max_part=7 cpufreq.default_governor=performance android_arch_task_struct_size=512 no-steal-acc hibernate=nocompress pci-msm-drv.pcie_sm_regs=0x1D07000,0x1040,0x1048,0x3000,0x2 net.ifnames=0";
 	};
 
 	reserved_memory: reserved-memory {};
@@ -1602,6 +1602,86 @@
 		sys_dbg@af8 {
 			compatible = "qcom,msm-imem-gpu-dump-skip";
 			reg = <0xb0c 0x4>;
+		};
+	};
+
+	pdm_pwm: pdm_pwm@88f0000 {
+		compatible = "qcom,pdm-pwm-v2";
+		reg = <0x88f0000 0xc000>;
+		clocks = <&gcc GCC_PDM_AHB_CLK>;
+		clock-names =  "pdm_ahb_clk";
+		assigned-clocks = <&gcc GCC_PWM0_XO512_CLK>;
+		assigned-clock-rates = <19200000>;
+		#pwm-cells = <3>;
+
+		pwm@0 {
+			frame-index = <0>;
+			frame-offset = <0x1000>;
+			clocks = <&gcc GCC_PWM0_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@1 {
+			frame-index = <1>;
+			frame-offset = <0x2000>;
+			clocks = <&gcc GCC_PWM1_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@2 {
+			frame-index = <2>;
+			frame-offset = <0x3000>;
+			clocks = <&gcc GCC_PWM2_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@3 {
+			frame-index = <3>;
+			frame-offset = <0x4000>;
+			clocks = <&gcc GCC_PWM3_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@4 {
+			frame-index = <4>;
+			frame-offset = <0x5000>;
+			clocks = <&gcc GCC_PWM4_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@5 {
+			frame-index = <5>;
+			frame-offset = <0x6000>;
+			clocks = <&gcc GCC_PWM5_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@6 {
+			frame-index = <6>;
+			frame-offset = <0x7000>;
+			clocks = <&gcc GCC_PWM6_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@7 {
+			frame-index = <7>;
+			frame-offset = <0x8000>;
+			clocks = <&gcc GCC_PWM7_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@8 {
+			frame-index = <8>;
+			frame-offset = <0x9000>;
+			clocks = <&gcc GCC_PWM8_XO512_CLK>;
+			clock-names = "frame-clk";
+		};
+
+		pwm@9 {
+			frame-index = <9>;
+			frame-offset = <0xa000>;
+			clocks = <&gcc GCC_PWM9_XO512_CLK>;
+			clock-names = "frame-clk";
 		};
 	};
 

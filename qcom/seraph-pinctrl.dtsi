@@ -382,6 +382,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -396,6 +397,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -408,6 +410,7 @@
 			config {
 				pins = "gpio67", "gpio68";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};
@@ -938,6 +941,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -952,6 +956,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -964,6 +969,7 @@
 			config {
 				pins = "gpio65", "gpio66";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};
@@ -1449,6 +1455,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -1463,6 +1470,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -1475,6 +1483,7 @@
 			config {
 				pins = "gpio4", "gpio5";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};
