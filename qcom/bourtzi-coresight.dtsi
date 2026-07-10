@@ -1552,6 +1552,29 @@
 		};
 
 		out-ports {
+			port {
+				funnel_ddr_dl0_out_replicator_ddr_dl0: endpoint {
+					remote-endpoint =
+					<&replicator_ddr_dl0_in_funnel_ddr_dl0>;
+				};
+			};
+		};
+	};
+
+	ddr_dl0_replicator {
+		compatible = "arm,coresight-static-replicator";
+		device-name = "replicator_ddr_dl0";
+
+		in-ports {
+			port {
+				replicator_ddr_dl0_in_funnel_ddr_dl0: endpoint {
+					remote-endpoint =
+					<&funnel_ddr_dl0_out_replicator_ddr_dl0>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -1560,7 +1583,7 @@
 				funnel_ddr_out_tpda_dl_center_9: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_9_in_funnel_ddr>;
-					source = <&tpdm_ddr_ch01>;
+					filter-source = <&tpdm_ddr_ch01>;
 				};
 			};
 
@@ -1569,7 +1592,7 @@
 				funnel_ddr_out_tpda_dl_center_11: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_11_in_funnel_ddr>;
-					source = <&tpdm_ddr>;
+					filter-source = <&tpdm_ddr>;
 				};
 			};
 
@@ -1578,12 +1601,12 @@
 				funnel_ddr_out_tpda_dl_center_12: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_12_in_funnel_ddr>;
-					source = <&tpdm_shrm>;
+					filter-source = <&tpdm_shrm>;
 				};
 			};
-
 		};
 	};
+
 
 	funnel_dlct_1: funnel@10c02000 {
 		compatible = "arm,primecell";
@@ -1619,6 +1642,29 @@
 		};
 
 		out-ports {
+			port {
+				funnel_dlct1_out_replicator_dlct1: endpoint {
+					remote-endpoint =
+					<&replicator_dlct1_in_funnel_dlct1>;
+				};
+			};
+		};
+	};
+
+	dlct1_replicator {
+		compatible = "arm,coresight-static-replicator";
+		device-name = "replicator_dlct1";
+
+		in-ports {
+			port {
+				replicator_dlct1_in_funnel_dlct1: endpoint {
+					remote-endpoint =
+					<&funnel_dlct1_out_replicator_dlct1>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			port@0 {
@@ -1626,7 +1672,7 @@
 				funnel_dl_center_1_out_tpda_dl_center_10: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_10_in_funnel_dl_center_1>;
-					source = <&tpdm_rdpm>;
+					filter-source = <&tpdm_rdpm>;
 				};
 			};
 
@@ -1635,7 +1681,7 @@
 				funnel_dl_center_1_out_tpda_dl_center_11: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center_11_in_funnel_dl_center_1>;
-					source = <&tpdm_rdpm_mx>;
+					filter-source = <&tpdm_rdpm_mx>;
 				};
 			};
 		};
@@ -2234,6 +2280,29 @@
 		};
 
 		out-ports {
+			port {
+				funnel_dl_south_out_replicator_dl_south: endpoint {
+					remote-endpoint =
+					<&replicator_dl_south_in_funnel_dl_south>;
+				};
+			};
+		};
+	};
+
+	dl_south_replicator {
+		compatible = "arm,coresight-static-replicator";
+		device-name = "replicator_dl_south";
+
+		in-ports {
+			port {
+				replicator_dl_south_in_funnel_dl_south: endpoint {
+					remote-endpoint =
+					<&funnel_dl_south_out_replicator_dl_south>;
+				};
+			};
+		};
+
+		out-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -2242,7 +2311,7 @@
 				funnel_dl_south_out_tpda_dl_center2_7: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center2_7_in_funnel_dl_south>;
-					source = <&tpdm_dl_south0>;
+					filter-source = <&tpdm_dl_south0>;
 				};
 			};
 
@@ -2251,7 +2320,7 @@
 				funnel_dl_south_out_tpda_dl_center2_8: endpoint {
 					remote-endpoint =
 					<&tpda_dl_center2_8_in_funnel_dl_south>;
-					source = <&tpdm_dl_south1>;
+					filter-source = <&tpdm_dl_south1>;
 				};
 			};
 
@@ -3067,7 +3136,7 @@
 		compatible = "arm,coresight-tmc", "arm,primecell";
 
 		reg = <0x0 0x10048000 0x0 0x1000>;
-		reg-names = "tmc-base", "bam-base";
+		reg-names = "tmc-base";
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x04e0 0>;
