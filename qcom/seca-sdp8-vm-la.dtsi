@@ -3,6 +3,10 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/mailbox/qcom-ipcc.h>
+#include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/mailbox/qcom-ipcc-sa8797p.h>
+
 &{/} {
 	rename_devices: rename_devices {
 		compatible = "qcom,rename-devices";
@@ -54,6 +58,16 @@
 };
 
 &soc {
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
+	};
+
 	google_debug_kinfo: google,debug-kinfo {
 		compatible = "google,debug-kinfo";
 		memory-region = <&kinfo_mem>;
@@ -72,4 +86,47 @@
 
 &scmi {
 	status = "ok";
+};
+
+&usb2 {
+	interrupts-extended = <&pdc 8 IRQ_TYPE_EDGE_RISING>,
+			<&qvm_vdev_gic GIC_SPI 907 IRQ_TYPE_LEVEL_HIGH>,
+			<&pdc 7 IRQ_TYPE_EDGE_RISING>;
+	status = "ok";
+};
+
+&eusb2_phy2 {
+	status = "ok";
+};
+
+&usb1 {
+	interrupts-extended = <&qvm_vdev_gic GIC_SPI 918 IRQ_TYPE_LEVEL_HIGH>,
+			<&pdc 41 IRQ_TYPE_LEVEL_HIGH>,
+			<&pdc 13 IRQ_TYPE_EDGE_RISING>,
+			<&pdc 12 IRQ_TYPE_EDGE_RISING>;
+	status = "ok";
+};
+
+&usb_1_qmp_combo_phy {
+	status = "ok";
+};
+
+&eusb2_phy1 {
+	status = "ok";
+};
+
+&usb0 {
+	interrupts-extended = <&qvm_vdev_gic GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+		<&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+		<&pdc 14 IRQ_TYPE_EDGE_RISING>,
+		<&pdc 15 IRQ_TYPE_EDGE_RISING>;
+	status = "disabled";
+};
+
+&eusb2_phy0 {
+	status = "disabled";
+};
+
+&usb_0_qmp_combo_phy {
+	status = "disabled";
 };

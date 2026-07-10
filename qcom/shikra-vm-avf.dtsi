@@ -5,11 +5,12 @@
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
+#include <dt-bindings/clock/qcom,shikra-gcc.h>
 
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <733 0x10000>, <757 0x10000>; // Same as PVM
+	qcom,msm-id = <759 0x10000>, <758 0x20000>, <756 0x10000>;
 
 	host {
 		#address-cells = <0x2>;
@@ -233,6 +234,13 @@
 	ranges;
 	compatible = "simple-bus";
 
+	gcc: clock-controller@1400000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "gcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+	};
+
 	/*
 	 * Refer all non device nodes which are already not referred by a device node
 	 * Some of the non device nodes might be already a dependency.
@@ -243,6 +251,7 @@
 		required-subnodes = <&qcom_scm
 			&dmesg_dump
 			&kinfo_mem
+			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
