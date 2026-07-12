@@ -89,6 +89,13 @@ properties:
     description: boot device detection values for NAND.
     $ref: /schemas/types.yaml#/definitions/uint32-array
 
+  qcom,ebi2-lpm-cfg:
+    type: boolean
+    description:
+      If present, the driver clears QPIC_EBI2_CFG.DRIVE_OE_EN (bit 26) once at
+      probe so data lanes float when idle during low-power modes. Required on M.2
+      board platforms. No functional impact during active operation.
+
 required:
   - compatible
   - reg
