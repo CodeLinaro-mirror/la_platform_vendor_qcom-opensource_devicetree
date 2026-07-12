@@ -10,6 +10,7 @@
 
 &qnand_1 {
 	status = "ok";
+	qcom,ebi2-lpm-cfg;
 };
 
 &pmx75_eusb2_repeater {
