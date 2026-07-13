@@ -1198,6 +1198,10 @@ _platform_map = {
             {"name": "mahua-qcb-overlay.dtbo"},
             {"name": "mahua-idp-overlay.dtbo"},
             {"name": "mahua-rcm-overlay.dtbo"},
+            {"name": "mahua-crd-cologne-overlay.dtbo"},
+            {"name": "mahua-qcb-cologne-overlay.dtbo"},
+            {"name": "mahua-idp-cologne-overlay.dtbo"},
+            {"name": "mahua-rcm-cologne-overlay.dtbo"},
         ],
         "custom_dtbo_img_list": [
             {
@@ -1208,6 +1212,10 @@ _platform_map = {
                     "mahua-qcb-overlay.dtbo",
                     "mahua-idp-overlay.dtbo",
                     "mahua-rcm-overlay.dtbo",
+                    "mahua-crd-cologne-overlay.dtbo",
+                    "mahua-qcb-cologne-overlay.dtbo",
+                    "mahua-idp-cologne-overlay.dtbo",
+                    "mahua-rcm-cologne-overlay.dtbo",
                 ],
                 "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/mahua_dtbo.config",
             },
