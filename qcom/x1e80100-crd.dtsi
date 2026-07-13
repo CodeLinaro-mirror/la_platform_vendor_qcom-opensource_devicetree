@@ -33,6 +33,20 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&touch_avdd_default>;
 	};
+
+	wwan_fcpo: wwan_fcpo {
+		compatible = "regulator-fixed";
+		regulator-name = "WWAN_FCPO";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&pm8550ve_c_gpios 4 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&sdx_vph_pwr>;
+		enable-active-high;
+	};
+};
+
+&pcie5 {
+	vreg-3p3-supply = <&wwan_fcpo>;
 };
 
 &qupv3_se8_i2c {

@@ -13,6 +13,12 @@
 #include "yupik-pm7250b-thermal-overlay.dtsi"
 #include "yupikp-iot-cpe.dtsi"
 
+/ {
+	chosen {
+		bootargs = "firmware_class.path=/vendor/firmware";
+	};
+};
+
 /*==============================*/
 /*     UFS Related Start        */
 /*==============================*/
@@ -270,6 +276,47 @@
 		};
 	};
 
+	YT8521_default: YT8521_default {
+		mux {
+			pins = "gpio117";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio117";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+
+	RTL8211_default: RTL8211_default {
+		mux {
+			pins = "gpio123";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio123";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+
+	qps615_intn_wol {
+		RTL8211_intn_wol_sig: RTL8211_intn_wol_sig {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio32";
+				input-enable;
+				bias-disable;
+			};
+		};
+	};
+
 	upd_enable_default: upd_enable_default {
 		mux {
 			pins = "gpio127";
@@ -306,6 +353,30 @@
 		gpio = <&tlmm 136 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 		regulator-enable-ramp-delay = <10000>;
+	};
+
+	YT8521_enable_vreg: YT8521_enable_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "YT8521_enable_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&YT8521_default>;
+		gpio = <&tlmm 117 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&qps615_enable_vreg>;
+		enable-active-high;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	RTL8211_enable_vreg: RTL8211_enable_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "RTL8211_enable_vreg";
+		pinctrl-names = "default";
+		pinctrl-0 = <&RTL8211_default>;
+		gpio = <&tlmm 123 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&qps615_enable_vreg>;
+		enable-active-high;
+		regulator-always-on;
+		regulator-boot-on;
 	};
 
 	upd_enable_vreg: upd_enable_vreg {
@@ -375,6 +446,62 @@
 
 &pcie1_msi {
 	status = "ok";
+};
+
+&pcie1_bus2_dev3_fn0 {
+	qps615_eth0,qps615_eth0@pcie1_rp {
+		reg = <0x0 0x0 0x0 0x0 0x0>;
+		qcom,phy-rst-gpio = <0>;
+		qcom,phy-rst-delay-us = <100000>;
+		qcom,phy-rst-gpio-flags = <1>;
+
+		qcom,phy-built-in-wol;
+		/delete-property/pinctrl-names;
+		/delete-property/pinctrl-0;
+		/delete-property/interrupts-extended;
+		/delete-property/interrupt-names;
+
+		qcom,phy-port-interface = <4>;
+		qcom,mdc-clk = <0x8>;
+		qcom,c45-state = <0>;
+		qcom,link-down-macrst = <0>;
+		qcom,start-phy-addr = <0x0>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		qcom,iommu-group = <&eth0_pci_iommu_group>;
+		eth0_pci_iommu_group: eth0_pci_iommu_group {
+			qcom,iommu-dma = "atomic";
+		};
+	};
+
+	qps615_eth1,qps615_eth1@pcie1_rp {
+		reg = <0x100 0x0 0x0 0x0 0x0>;
+		qcom,phy-rst-gpio = <1>;
+		qcom,phy-rst-delay-us = <100000>;
+		qcom,phy-rst-gpio-flags = <1>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&RTL8211_intn_wol_sig>;
+
+		interrupts-extended = <&tlmm 32 IRQ_TYPE_EDGE_FALLING>;
+		interrupt-names = "wol_irq";
+
+		qcom,phy-port-interface = <3>;
+		qcom,mdc-clk = <0x8>;
+		qcom,c45-state = <0>;
+		qcom,link-down-macrst = <0>;
+		qcom,start-phy-addr = <0x1>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		qcom,iommu-group = <&eth1_pci_iommu_group>;
+		eth1_pci_iommu_group: eth1_pci_iommu_group {
+			qcom,iommu-dma = "atomic";
+		};
+	};
 };
 
 /*==============================*/

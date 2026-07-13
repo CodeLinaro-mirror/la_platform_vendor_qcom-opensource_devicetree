@@ -30,6 +30,7 @@
 		qcom,disable-host-ssphy-powerdown;
 		qcom,use-eusb2-phy;
 		qcom,use-pdc-interrupts;
+		qcom,disable-xhci-runtime-pm;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
@@ -300,6 +301,7 @@
 		qcom,use-pdc-interrupts;
 		qcom,disable-host-ssphy-powerdown;
 		qcom,use-eusb2-phy;
+		qcom,disable-xhci-runtime-pm;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
@@ -569,6 +571,7 @@
 		qcom,use-pdc-interrupts;
 		qcom,use-eusb2-phy;
 		qcom,disable-wakeup;
+		qcom,disable-xhci-runtime-pm;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of

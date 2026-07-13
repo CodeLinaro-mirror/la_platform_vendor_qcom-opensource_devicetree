@@ -20,6 +20,7 @@
 /delete-node/ &CPU11;
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cluster_device2;
+/delete-node/ &qfprom;
 
 &ddr_clusterX {
 	qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
@@ -167,4 +168,19 @@
 	qcom,vreg-1p2-voltage-level = <1256000 1256000 38800>;
 	qcom,vreg-0p9-voltage-level = <880000 880000 560000>;
 
+};
+
+&soc {
+	qfprom: qfprom@221c8000 {
+		compatible = "qcom,x1p42100-qfprom", "qcom,qfprom";
+		reg = <0x0 0x221c8000 0x0 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		read-only;
+
+		gpu_speed_bin: gpu_speed_bin@119 {
+			reg = <0x119 0x2>;
+			bits = <7 9>;
+			};
+	};
 };
