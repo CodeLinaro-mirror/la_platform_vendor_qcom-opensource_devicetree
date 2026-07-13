@@ -366,6 +366,10 @@
 			compatible = "qcom,smcinvoke";
 		};
 	};
+	qcom_tzlog: tz-log@0x14680720 {
+		compatible = "qcom,tz-log";
+		reg = <0x0 0x14680720 0x0 0x4000>;
+	};
 
 	psci {
 		compatible = "arm,psci-1.0";
