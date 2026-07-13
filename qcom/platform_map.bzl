@@ -568,6 +568,7 @@ _platform_map = {
                     "x1e80100-qcb-overlay.dtbo",
                     "x1e80100-qcp-overlay.dtbo",
                     "x1p42100-crd-overlay.dtbo",
+                    "x1p42100-crd-cologne-overlay.dtbo",
                 ],
                 "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/hamoa_dtbo.config",
             },
@@ -580,6 +581,7 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "x1p42100-crd-overlay.dtbo"},
+            {"name": "x1p42100-crd-cologne-overlay.dtbo"},
         ],
     },
     "hamoa_la": {
