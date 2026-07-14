@@ -1079,6 +1079,14 @@
 			#mbox-cells = <1>;
 		};
 
+		qcom,tmecom-qmp-client {
+			compatible = "qcom,tmecom-qmp-client";
+			mboxes = <&qmp_tme 0>;
+			mbox-names = "tmecom";
+			label = "tmecom";
+			depends-on-supply = <&qmp_tme>;
+		};
+
 		tcsrcc: clock-controller@1fd5000 {
 			compatible = "qcom,glymur-tcsr",
 				     "syscon";
