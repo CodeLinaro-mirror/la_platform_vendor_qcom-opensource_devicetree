@@ -365,6 +365,12 @@
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
 		};
+
+		qcom_scm {
+			compatible = "qcom,scm";
+			qcom,dload-mode = <&tcsr 0x99000>;
+		};
+
 	};
 	qcom_tzlog: tz-log@0x14680720 {
 		compatible = "qcom,tz-log";
@@ -650,6 +656,11 @@
 		#size-cells = <2>;
 		ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
 		dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
+
+		dload_mode {
+			compatible = "qcom,dload-mode";
+		};
+
 		clocks {
 			xo_board: xo_board {
 				compatible = "fixed-clock";
@@ -1007,6 +1018,18 @@
 			interrupt-controller;
 			#interrupt-cells = <3>;
 			#mbox-cells = <2>;
+		};
+
+		eud: qcom,msm-eud@fd0000 {
+			compatible = "qcom,msm-eud";
+			interrupt-names = "eud_irq";
+			interrupts = <GIC_SPI 760 IRQ_TYPE_LEVEL_HIGH>;
+			reg = <0x0 0xfd0000 0x0 0x2000>,
+				<0x0 0xfd2000 0x0 0x1000>;
+			reg-names = "eud_base", "eud_mode_mgr2";
+			qcom,secure-eud-en;
+			qcom,eud-utmi-delay = /bits/ 16 <255>;
+			status = "ok";
 		};
 
 		tcsr: syscon@1f40000 {
@@ -2003,6 +2026,31 @@
 			qcom,bcm-voter-names = "hlos";
 			qcom,bcm-voters = <&apps_bcm_voter>;
 			#interconnect-cells = <1>;
+		};
+
+
+		qfprom: qfprom@361c8000 {
+			compatible = "qcom,glymur-qfprom", "qcom,qfprom";
+			reg = <0x0 0x361c8000 0x0 0x1000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			read-only;
+		};
+
+		qcom,mem-buf {
+			compatible = "qcom,mem-buf";
+			qcom,mem-buf-capabilities = "supplier";
+			qcom,vmid = <3>;
+		};
+
+		qcom,mem-buf-msgq {
+			compatible = "qcom,mem-buf-msgq";
+			qcom,msgq-names = "trusted_vm", "oem_vm";
+		};
+
+		qcom,secure-buffer {
+			compatible = "qcom,secure-buffer";
+			qcom,vmid-cp-camera-preview-ro;
 		};
 	};
 
