@@ -4,10 +4,14 @@
  */
 
 #include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/input/input.h>
-#include <dt-bindings/input/linux-event-codes.h>
-#include <dt-bindings/interrupt-controller/irq.h>
-#include <dt-bindings/spmi/spmi.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmh0101.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmh0110.h>
+#include <dt-bindings/iio/qcom,spmi-adc5-gen4-pmk8850.h>
+
+#define PMK8850_SID     0
+#define PMH0101_SID     1
+#define PMH0110_F_SID   5
+#define PMH0110_H_SID   7
 
 #include "pmcx0102-mahua.dtsi"
 #include "pmh0110-mahua.dtsi"
@@ -62,6 +66,74 @@
 		compatible = "qcom,pmic-pon-log";
 		nvmem = <&pmk8850_sdam_5>, <&pmk8850_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
+	};
+};
+
+&pmk8850_vadc {
+	/* PMK8850 ADC Channels */
+	pmk8850_offset_ref	{
+		reg = <PMK8850_ADC5_GEN4_OFFSET_REF(0, PMK8850_SID)>;
+		label = "pmk8850_offset_ref";
+	};
+
+	pmk8850_vref_1p25 {
+		reg = <PMK8850_ADC5_GEN4_1P25VREF(0, PMK8850_SID)>;
+		label = "pmk8850_vref_1p25";
+	};
+
+	pmk8850_die_temp {
+		reg = <PMK8850_ADC5_GEN4_DIE_TEMP(0, PMK8850_SID)>;
+		label = "pmk8850_die_temp";
+	};
+
+	pmk8850_xo_therm {
+		reg = <PMK8850_ADC5_GEN4_AMUX_THM1_XO_THERM_100K_PU(0, PMK8850_SID)>;
+		label = "pmk8850_xo_therm";
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,adc-tm-type = <1>;
+	};
+
+	/* PMH0101 ADC Channels */
+	pmh0101_offset_ref {
+		reg = <PMH0101_ADC5_GEN4_OFFSET_REF(0, PMH0101_SID)>;
+		label = "pmh0101_offset_ref";
+	};
+
+	pmh0101_vref_1p25 {
+		reg = <PMH0101_ADC5_GEN4_1P25VREF(0, PMH0101_SID)>;
+		label = "pmh0101_vref_1p25";
+	};
+
+	pmh0101_die_temp {
+		reg = <PMH0101_ADC5_GEN4_DIE_TEMP(0, PMH0101_SID)>;
+		label = "pmh0101_die_temp";
+	};
+
+	pmh0101_vph_pwr {
+		reg = <PMH0101_ADC5_GEN4_VPH_PWR(0, PMH0101_SID)>;
+		label = "pmh0101_vph_pwr";
+	};
+
+	/* PMH0110 ADC Channels */
+	pmh0110_f_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_F_SID)>;
+		label = "pmh0110_f_die_temp";
+	};
+
+	pmh0110_f_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_F_SID)>;
+		label = "pmh0110_f_vph_pwr";
+	};
+
+	pmh0110_h_die_temp {
+		reg = <PMH0110_ADC5_GEN4_DIE_TEMP(0, PMH0110_H_SID)>;
+		label = "pmh0110_h_die_temp";
+	};
+
+	pmh0110_h_vph_pwr {
+		reg = <PMH0110_ADC5_GEN4_VPH_PWR(0, PMH0110_H_SID)>;
+		label = "pmh0110_h_vph_pwr";
 	};
 };
 
