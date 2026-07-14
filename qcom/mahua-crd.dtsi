@@ -22,6 +22,7 @@
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
 		regulator-boot-on;
+		startup-delay-us = <40000>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&nvme_reg_en>;
 	};
