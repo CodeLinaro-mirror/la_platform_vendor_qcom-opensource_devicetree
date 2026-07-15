@@ -341,6 +341,14 @@ properties:
     description: Support Device-Vendor Id.
     $ref: /schemas/types.yaml#/definitions/uint32
 
+  qcom,tc2bdf-tc-count:
+    description: Support TC+BDF to SID mapping and max TC count.
+    $ref: /schemas/types.yaml#/definitions/uint32
+
+  qcom,rtpm-enabled:
+    description: This is a boolean flag that indicates Runtime PM is enabled.
+    type: boolean
+
   qcom,pcie-phy-ver:
     description: States the PCIe PHY HSR version.
     $ref: /schemas/types.yaml#/definitions/uint32
