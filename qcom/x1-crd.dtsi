@@ -5,6 +5,7 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
 
 &tlmm {
 	eusb6_reset_n: eusb6-reset-n-state {
@@ -47,15 +48,33 @@
 };
 
 &usb_mp_qmpphy0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp_qmpphy1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb_mp {
 	status = "okay";
+	interrupts-extended = <&intc GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
+				<&intc GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
+				<&intc GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
+				<&pdc 54 IRQ_TYPE_EDGE_RISING>,
+				<&pdc 53 IRQ_TYPE_EDGE_RISING>;
+	interrupt-names = "pwr_event_1", "pwr_event_2", "hs_phy_2",
+				"dp_hs_phy_2", "dm_hs_phy_2";
+
+	qcom,select-utmi-as-pipe-clk;
+	usb@a400000 {
+		phys = <&usb_mp_hsphy0>,
+			<&usb_mp_hsphy1>;
+
+		phy-names = "usb2-0",
+				"usb2-1";
+
+		maximum-speed = "high-speed";
+	};
 };
 
 &pmc8380_f_gpios {
