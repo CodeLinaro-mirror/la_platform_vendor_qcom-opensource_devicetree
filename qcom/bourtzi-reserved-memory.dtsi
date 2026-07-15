@@ -132,7 +132,19 @@
 
 	mpss_mem: mpss_region@8a000000 {
 		no-map;
-		reg = <0x0 0x8a000000 0x0 0xda00000>;
+		reg = <0x0 0x8a000000 0x0 0xaa00000>;
+	};
+
+	dsm_mem: dsm_region@97a00000 {
+		reg = <0x0 0x97a00000 0x0 0x2200000>;
+		no-map;
+	};
+
+	dsm_cma_mem: dsm_cma_region@99c00000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x99c00000 0x0 0x800000>;
+		reusable;
+		alignment = <0x0 0x400000>;
 	};
 
 	xbl_sc_mem: xbl_sc_region@a6e00000 {
