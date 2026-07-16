@@ -27,6 +27,10 @@
 	status = "disabled";
 };
 
+&cpusys_vm_mem {
+	status = "disabled";
+};
+
 &soc {
 	gh-secure-vm-loader@0 {
 		status = "disabled";

@@ -114,7 +114,7 @@
 		reg = <0x0 0x8a000000 0x0 0xda00000>;
 	};
 
-	xbl_sc_mem: xbl_sc_region@a6e00000 {
+	xbl_sc_mem: xbl_sc_region@84600000 {
 		no-map;
 		reg = <0x0 0x84600000 0x0 0x40000>;
 	};
