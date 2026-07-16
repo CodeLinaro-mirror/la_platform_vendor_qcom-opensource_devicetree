@@ -192,8 +192,7 @@
 			<&gcc GCC_AHB2PHY_USB_CLK>;
 		clock-names =  "ref_clk_src", "cfg_ahb_clk";
 
-		/*Fix: update reset to GCC_QUSB2PHY_SEC_BCR once available from clk side*/
-		resets = <&gcc GCC_USB_PHY_CFG_AHB2PHY_BCR>;
+		resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
 		reset-names = "phy_reset";
 	};
 
