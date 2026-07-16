@@ -222,7 +222,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -242,7 +242,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -256,7 +256,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -270,7 +270,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
