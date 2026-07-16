@@ -5,7 +5,7 @@
 
 /dts-v1/;
 
-#include "taycan.dtsi"
+#include "taycan-1gb.dtsi"
 #include "ravelin-idp.dtsi"
 
 / {
