@@ -143,6 +143,36 @@ properties:
         items:
           - const: qcom,whalep
 
+      - description: Qualcomm Technologies, Inc. Waipio
+        items:
+          - enum:
+              - qcom,waipio-atp
+              - qcom,atp
+              - qcom,waipio-cdp
+              - qcom,cdp
+              - qcom,waipio-mtp
+              - qcom,mtp
+              - qcom,waipio-qrd
+              - qcom,qrd
+              - qcom,waipio-rumi
+              - qcom,rumi
+          - const: qcom,waipio
+
+      - description: Qualcomm Technologies, Inc. Waipiop
+        items:
+          - enum:
+              - qcom,waipiop-atp
+              - qcom,atp
+              - qcom,waipiop-cdp
+              - qcom,cdp
+              - qcom,waipiop-mtp
+              - qcom,mtp
+              - qcom,waipiop-qrd
+              - qcom,qrd
+              - qcom,waipiop-rumi
+              - qcom,rumi
+          - const: qcom,waipiop
+
       - description: Qualcomm Technologies, Inc. Chora
         items:
           - enum:
