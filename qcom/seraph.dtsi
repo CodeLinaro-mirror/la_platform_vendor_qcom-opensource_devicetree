@@ -1218,7 +1218,7 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		reg = <0x1901C000 0x1000>;
+		reg = <0x1901BE00 0x1200>;
 		reg-names = "mem-base";
 		mboxes = <&cpucp 2>;
 
