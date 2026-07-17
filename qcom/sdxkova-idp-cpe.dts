@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 /dts-v1/;
@@ -15,4 +15,9 @@
 			"qcom,sdxkova", "qcom,idp";
 	qcom,msm-id = <677 0x10000>, <678 0x10000>, <679 0x10000>;
 	qcom,board-id = <0x1010022 0x401>;
+
+	fspapp_client {
+		compatible = "qcom,fspapp-client";
+		status = "okay";
+	};
 };
