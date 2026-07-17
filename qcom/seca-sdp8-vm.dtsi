@@ -452,7 +452,7 @@
 
 	vm_restart: restart {
 		compatible = "qcom,vm-restart";
-		status = "disabled";
+		status = "ok";
 	};
 
 	pdc: interrupt-controller@b220000 {
