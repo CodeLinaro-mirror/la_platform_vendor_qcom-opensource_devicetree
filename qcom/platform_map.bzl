@@ -1031,8 +1031,13 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {"name": "pikachus.dtb"},
             {
                 "name": "pikachup.dtb",
+                "apq": True,
+            },
+            {
+                "name": "pikachups.dtb",
                 "apq": True,
             },
         ],
@@ -1043,6 +1048,12 @@ _platform_map = {
             {"name": "pikachup-idp-overlay.dtbo"},
             {"name": "pikachu-idp-dtof-overlay.dtbo"},
             {"name": "pikachup-idp-dtof-overlay.dtbo"},
+            {"name": "pikachus-atp-overlay.dtbo"},
+            {"name": "pikachups-atp-overlay.dtbo"},
+            {"name": "pikachus-idp-overlay.dtbo"},
+            {"name": "pikachups-idp-overlay.dtbo"},
+            {"name": "pikachus-idp-dtof-overlay.dtbo"},
+            {"name": "pikachups-idp-dtof-overlay.dtbo"},
             {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },

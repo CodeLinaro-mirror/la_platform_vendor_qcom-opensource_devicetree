@@ -521,8 +521,9 @@ seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
 seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
 
-PIKACHU_BASE_DTB += pikachu.dtb
-PIKACHU_APQ_BASE_DTB += pikachup.dtb
+PIKACHU_BASE_DTB += pikachu.dtb  pikachus.dtb
+PIKACHU_APQ_BASE_DTB += pikachup.dtb pikachups.dtb
+
 
 PIKACHU_BOARDS += \
 		pikachu-atp-overlay.dtbo \
@@ -530,7 +531,13 @@ PIKACHU_BOARDS += \
 		pikachu-idp-dtof-overlay.dtbo \
 		pikachup-atp-overlay.dtbo \
 		pikachup-idp-overlay.dtbo \
-		pikachup-idp-dtof-overlay.dtbo
+		pikachup-idp-dtof-overlay.dtbo \
+		pikachus-atp-overlay.dtbo \
+		pikachus-idp-overlay.dtbo \
+		pikachus-idp-dtof-overlay.dtbo \
+		pikachups-atp-overlay.dtbo \
+		pikachups-idp-overlay.dtbo \
+		pikachups-idp-dtof-overlay.dtbo
 
 NOAPQ_PIKACHU_BOARDS += \
 		pikachu-rumi-overlay.dtbo
