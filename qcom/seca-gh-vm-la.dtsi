@@ -1512,7 +1512,7 @@
 	};
 
 	tlmm: pinctrl@f000000 {
-		compatible = "qcom,sa8797p-tlmm";
+		compatible = "qcom,seca-tlmm";
 		reg = <0xf000000 0x1000000>;
 		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
 		gpio-controller;
