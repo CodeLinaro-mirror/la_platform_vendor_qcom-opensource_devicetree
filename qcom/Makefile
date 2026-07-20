@@ -690,7 +690,10 @@ seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += seraph-vm-base.dtb \
 				seraph-vm-idp-overlay.dtbo \
 				seraph-vm-idp-no-display-overlay.dtbo \
 				seraph-vm-idp-no-display-no-gpu-overlay.dtbo \
-				seraph-vm-idp-dtof-overlay.dtbo
+				seraph-vm-idp-dtof-overlay.dtbo \
+				seraph-vm-qar-overlay.dtbo \
+				seraph-vm-qar-camera-audio-overlay.dtbo \
+				seraph-vm-qar-3rd-camera-audio-overlay.dtbo
 
 dtb-y += $(seraph_tuivm-dtb-y)
 endif
