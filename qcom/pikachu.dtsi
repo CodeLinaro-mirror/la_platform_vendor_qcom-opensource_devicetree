@@ -2345,7 +2345,7 @@
 		ipa_smmu_rtp: ipa_smmu_rtp {
 			compatible = "qcom,ipa-smmu-rtp-cb";
 			iommus = <&apps_smmu 0x0a3 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
+			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_rtp_partition>;
 			qcom,iommu-dma = "atomic";
 			dma-coherent;
