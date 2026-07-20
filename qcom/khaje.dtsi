@@ -2253,6 +2253,7 @@
 
 		device-name = "tpdm_west";
 		qcom,dsb-element-bits = <32>;
+		qcom,dsb-msrs-num = <16>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2271,6 +2272,7 @@
 		reg-names = "tpdm-base";
 
 		device-name = "tpdm_spdm";
+		qcom,cmb-element-bits = <32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
@@ -2290,7 +2292,6 @@
 		reg-names = "funnel-base";
 
 		device-name = "funnel_turing";
-		qcom,dsb-element-bits = <1 32>;
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
