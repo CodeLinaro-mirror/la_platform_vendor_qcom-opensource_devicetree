@@ -52,8 +52,8 @@
 	status = "disabled";
 };
 
-/* Disable audio calibration database carveout for Vienna LE variants. */
-&ac_db_mem {
+/* Disable audio data exchange carveout for Vienna LE variants. */
+&audio_data_exchange_mem {
 	status = "disabled";
 };
 
