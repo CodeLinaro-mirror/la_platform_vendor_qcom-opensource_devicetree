@@ -171,6 +171,14 @@
 	status = "ok";
 };
 
+&qupv3_0 {
+	status = "ok";
+};
+
+&qupv3_se3_4uart {
+	status = "ok";
+};
+
 &ufs2phy_mem {
 	status = "ok";
 };
