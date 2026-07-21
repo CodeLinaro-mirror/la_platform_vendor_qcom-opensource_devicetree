@@ -4,3 +4,4 @@
  */
 
 #include "sdxkova-idp-lga-v3.dtsi"
+#include "sdxkova-qcn9625.dtsi"

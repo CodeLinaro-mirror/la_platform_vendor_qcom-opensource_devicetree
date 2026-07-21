@@ -3,9 +3,9 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-
 #include "sdxkova-pmic-overlay.dtsi"
 #include "sdxkova-qcn9224.dtsi"
+#include "sdxkova-qcn9625.dtsi"
 
 &pmx75_vbus_detect {
 	status = "ok";
