@@ -3498,6 +3498,11 @@
 			#power-domain-cells = <1>;
 		};
 
+		apsscc: syscon@17455000 {
+			compatible = "syscon";
+			reg = <0x0 0x17455000 0x0 0x20>;
+		};
+
 		mccc: syscon@240ba000 {
 			compatible = "syscon";
 			reg = <0x0 0x240ba000 0x0 0x800>;
@@ -3505,6 +3510,7 @@
 
 		debugcc: clock-controller@0 {
 			compatible = "qcom,x1e80100-debugcc";
+			qcom,apsscc = <&apsscc>;
 			qcom,av1ecc = <&av1ecc>;
 			qcom,camcc = <&camcc>;
 			qcom,dispcc = <&dispcc>;
