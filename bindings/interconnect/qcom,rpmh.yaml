@@ -322,6 +322,43 @@ properties:
       - qcom,ravelin-pcie_anoc
       - qcom,ravelin-system_noc
       - qcom,ravelin-video_aggre_noc
+      - qcom,glymur-aggre1_noc
+      - qcom,glymur-aggre2_noc
+      - qcom,glymur-aggre3_noc
+      - qcom,glymur-aggre4_noc
+      - qcom,glymur-clk_virt
+      - qcom,glymur-cnoc_cfg
+      - qcom,glymur-cnoc_main
+      - qcom,glymur-hscnoc
+      - qcom,glymur-lpass_ag_noc
+      - qcom,glymur-lpass_lpiaon_noc
+      - qcom,glymur-lpass_lpicx_noc
+      - qcom,glymur-mc_virt
+      - qcom,glymur-mmss_noc
+      - qcom,glymur-nsinoc
+      - qcom,glymur-nsp_noc
+      - qcom,glymur-oobm_ss_noc
+      - qcom,glymur-pcie_east_anoc
+      - qcom,glymur-pcie_east_slv_noc
+      - qcom,glymur-pcie_west_anoc
+      - qcom,glymur-pcie_west_slv_noc
+      - qcom,glymur-system_noc
+      - qcom,mahua-cnoc_cfg
+      - qcom,mahua-hscnoc
+      - qcom,mahua-mc_virt
+      - qcom,mahua-pcie_west_anoc
+      - qcom,mahua-pcie_west_slv_noc
+      - qcom,waipio-aggre1_noc
+      - qcom,waipio-aggre2_noc
+      - qcom,waipio-clk_virt
+      - qcom,waipio-config_noc
+      - qcom,waipio-gem_noc
+      - qcom,waipio-lpass_ag_noc
+      - qcom,waipio-mc_virt
+      - qcom,waipio-mmss_noc
+      - qcom,waipio-nsp_noc
+      - qcom,waipio-pcie_anoc
+      - qcom,waipio-system_noc
 
   '#interconnect-cells': true
 

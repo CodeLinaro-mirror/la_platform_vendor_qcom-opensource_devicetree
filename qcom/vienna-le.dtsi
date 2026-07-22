@@ -72,3 +72,11 @@
 &i2c9 {
 	status = "disabled";
 };
+
+/* Reserve M55/WM audio buffer DDR region for LE variants. */
+&reserved_memory {
+	m55_audio_buffer_mem: m55_audio_buffer_region@849a0000 {
+		no-map;
+		reg = <0x0 0x849a0000 0x0 0x480000>;
+	};
+};

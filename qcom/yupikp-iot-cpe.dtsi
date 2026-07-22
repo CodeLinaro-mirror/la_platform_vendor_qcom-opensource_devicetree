@@ -206,6 +206,16 @@
 			/* BDF 4.0.0 */
 			pcie1_bus4_dev0_fn0: pcie1_bus4_dev0_fn0 {
 				reg = <0x0 0x0 0x0 0x0 0x0>;
+
+				qcom,iommu-group = <&xhci_pci_iommu_group0>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				xhci_pci_iommu_group0: xhci_pci_iommu_group0 {
+					qcom,iommu-dma = "fastmap";
+					qcom,iommu-pagetable = "coherent";
+					qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE", "non-fatal";
+				};
 			};
 		};
 

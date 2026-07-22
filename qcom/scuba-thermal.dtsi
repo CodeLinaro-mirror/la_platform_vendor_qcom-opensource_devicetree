@@ -7,13 +7,14 @@
 
 &soc {
 	tsens0:tsens@04410000 {
-		compatible = "qcom,tsens-v2";
-		reg = <0x04411000 0x1ff>, /* SROT */
-			<0x04410000 0x8>; /* TM */
-		#qcom,sensors = <10>;
-		interrupts = <&mpm 2 IRQ_TYPE_LEVEL_HIGH>,
+		compatible = "qcom,tsens24xx";
+		reg = <0x04410000 0x8>,
+			<0x04411000 0x1ff>;
+		reg-names = "tsens_srot_physical",
+					"tsens_tm_physical";
+		interrupts-extended = <&mpm 2 IRQ_TYPE_LEVEL_HIGH>,
 				<&intc 0 190 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "uplow", "critical";
+		interrupt-names = "tsens-upper-lower", "tsens-critical";
 		#thermal-sensor-cells = <1>;
 	};
 

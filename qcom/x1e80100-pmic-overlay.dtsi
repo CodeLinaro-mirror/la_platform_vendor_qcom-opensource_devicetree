@@ -344,7 +344,7 @@
 
 &pmic_glink_debug {
 	spmi@1 {
-		reg = <0>;
+		reg = <1>;
 		#address-cells = <2>;
 		#size-cells = <0>;
 
@@ -366,10 +366,5 @@
 			qcom,can-sleep;
 		};
 
-		smb2360_3_debug: pmic@c {
-			compatible = "qcom,spmi-pmic";
-			reg = <12 SPMI_USID>;
-			qcom,can-sleep;
-		};
 	};
 };

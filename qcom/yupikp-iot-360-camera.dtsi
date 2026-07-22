@@ -255,6 +255,42 @@
 /*==============================*/
 /*     PCIe Related Start       */
 /*==============================*/
+
+&soc {
+	rtl8111h_3v3_vreg: rtl8111h_3v3_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "rtl8111h_3v3_vreg";
+		gpio = <&tlmm 106 0>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <10000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	rtl8111h_isolate_vreg: rtl8111h_isolate_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "rtl8111h_isolate_vreg";
+		gpio = <&tlmm 105 0>;
+		vin-supply = <&rtl8111h_3v3_vreg>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+};
+
+&pcie1 {
+	status = "ok";
+	qcom,boot-option = <0x0>;
+};
+
+&pcie1_msi {
+	status = "ok";
+};
+
 /*==============================*/
 /*     PCIe Related End         */
 /*==============================*/
@@ -269,3 +305,17 @@
 /*==============================*/
 /*     PD FL7112 Related End    */
 /*==============================*/
+
+&qupv3_se1_i2c {
+	status = "ok";
+
+	cap1296@28 {
+		compatible = "microchip,cap1296";
+		status = "ok";
+		reg = <0x28>;
+		vddio-supply = <&L12C>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <54 0>;
+		irq-gpio = <&tlmm 54 GPIO_ACTIVE_LOW>;
+	};
+};

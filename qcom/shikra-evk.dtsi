@@ -505,6 +505,43 @@
 
 &i2c3 {
 	status = "ok";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	expander0: pca953x@38 {
+		compatible = "ti,tca9538";
+		#gpio-cells = <2>;
+		gpio-controller;
+		reg = <0x38>;
+	};
+
+	expander1: pca953x@3C {
+		compatible = "ti,tca9538";
+		#gpio-cells = <2>;
+		gpio-controller;
+		reg = <0x3C>;
+
+		io-exp-hog6 {
+			gpio-hog;
+			gpios = <6 GPIO_ACTIVE_HIGH>;
+			output-high;
+			line-name = "keye_pwr_en";
+		};
+	};
+
+	expander2: pca953x@20 {
+		compatible = "ti,tca9539";
+		#gpio-cells = <2>;
+		gpio-controller;
+		reg = <0x20>;
+	};
+
+	expander3: pca953x@21 {
+		compatible = "ti,tca9539";
+		#gpio-cells = <2>;
+		gpio-controller;
+		reg = <0x21>;
+	};
 
 	pcie0_i2c_ctrl: pcie0_i2c_ctrl {
 		compatible = "qcom,pcie-i2c-ntn3";

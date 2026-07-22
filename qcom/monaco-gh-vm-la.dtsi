@@ -26,7 +26,7 @@
 	};
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n androidboot.audio=ar driver_async_probe=arm-scmi pcie_pme=nomsi fw_devlink.strict=1";
+		bootargs = "nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n androidboot.audio=ar driver_async_probe=arm-scmi pcie_pme=nomsi fw_devlink.strict=1 androidboot.dtbo_idx=6";
 	};
 
 	reserved_memory: reserved-memory {
@@ -371,6 +371,12 @@
 				0x0 0x23047000 0x0 0x23047000 0x0 0x1000 0x0
 				/* QTimer region */
 				0x0 0x17c23000 0x0 0x17c23000 0x0 0x1000 0x0
+				/* GFX - TCSR region */
+				0x0 0x1fd8000 0x0 0x1fd8000 0x0 0x1000 0x1
+				0x0 0x1fd9000 0x0 0x1fd9000 0x0 0x1000 0x3
+				0x0 0x1fdd000 0x0 0x1fdd000 0x0 0x1000 0x3
+				0x0 0x1fdb000 0x0 0x1fdb000 0x0 0x1000 0x0
+				0x0 0x1fdf000 0x0 0x1fdf000 0x0 0x1000 0x0
 				>;
 
 		gic-irq-ranges = <
@@ -400,6 +406,9 @@
 				522 522
 				476 476
 				474 474
+				/* GFX - TCSR GIC IRQ */
+				270 270
+				271 271
 				>;
 
 		memory {
@@ -420,7 +429,7 @@
 			affinity = "static";
 			affinity-map = <0x7 0x6 0x5 0x4 0x3 0x2 0x1 0x0>;
 			sched-priority = <0>;       /* relative to PVM */
-			sched-timeslice = <5000>;   /* in ms */
+			sched-timeslice = <1000>;   /* in ms */
 		};
 
 		interrupts {
@@ -1190,9 +1199,9 @@
 
 			virtio-mmio@46 {
 				vdevice-type = "virtio-mmio";
-				patch = "/virtio_blk_la_bootloader_a";
+				generate = "/virtio-mmio";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x2>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;

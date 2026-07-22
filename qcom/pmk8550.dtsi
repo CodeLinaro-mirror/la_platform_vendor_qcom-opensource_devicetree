@@ -72,6 +72,11 @@ pmk8550: qcom,pmk8550@0 {
 		xo_calib_data: xo_calib-data@59 {
 			reg = <0x59 0x1>;
 		};
+
+		oem_telemetry_flag: oem-telemetry-flag@aa {
+			reg = <0xaa 0x1>;
+			bits = <0 1>;
+		};
 	};
 
 	pmk8550_sdam_5: sdam@7400 {
@@ -172,6 +177,10 @@ pmk8550: qcom,pmk8550@0 {
 		#address-cells = <1>;
 		#size-cells = <0>;
 		#pwm-cells = <2>;
+	};
+
+	pmk8550_qvadj: qcom,voltage-adj-device {
+		compatible = "qcom,vadj";
 	};
 
 	pmk8550_vadc: vadc@9000 {

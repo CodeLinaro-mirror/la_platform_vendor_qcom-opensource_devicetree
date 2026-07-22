@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.dtbo_idx=13";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.dtbo_idx=25";
 	};
 
 	reserved_memory: reserved-memory {
@@ -1327,8 +1327,7 @@
 				};
 			};
 
-
-			/* Reserved device */
+			/* VHAB 12 device */
 			virtio-mmio@51 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
@@ -1340,6 +1339,40 @@
 				dma_base = <0x0 0x2D8000>;
 				memory {
 					qcom,label = <0x54>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* Compressched virtio */
+			virtio-mmio@52 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x308000>;
+				memory {
+					qcom,label = <0x55>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* Reserved device */
+			virtio-mmio@53 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x30C000>;
+				memory {
+					qcom,label = <0x56>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
@@ -1960,6 +1993,24 @@
 		reset-names = "serdes_reset";
 	};
 
+	efuse: efuse@360d4320 {
+		compatible = "qcom,sa8797p-qfprom", "qcom,qfprom";
+		reg = <0x360d4320 0x8>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		nvmem-layout {
+			compatible = "qcom,sa8797p-eth-mac";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			eth1_mac: eth1-mac@0 {
+				reg = <0x0 0x6>;
+				qcom,byte-fixups = <5 0x6>;
+			};
+		};
+	};
+
 	ethernet1: ethernet@1a80000 {
 		status = "disabled";
 		compatible = "qcom,sa8797p-ethqos", "snps,dwxgmac";
@@ -2006,6 +2057,9 @@
 
 		snps,pbl = <0x10>;
 		dma-coherent;
+
+		nvmem-cells = <&eth1_mac>;
+		nvmem-cell-names = "mac-address";
 
 		rx-fifo-depth = <98304>;
 		tx-fifo-depth = <98304>;

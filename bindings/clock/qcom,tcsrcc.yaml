@@ -20,6 +20,7 @@ description: |
   - dt-bindings/clock/qcom,tcsrcc-chora.h
   - dt-bindings/clock/qcom,pikachu-tcsrcc.h
   - dt-bindings/clock/qcom,tcsrcc-seraph.h
+  - dt-bindings/clock/qcom,glymur-tcsr.h
 
 properties:
   compatible:
@@ -30,6 +31,7 @@ properties:
       - qcom,chora-tcsrcc
       - qcom,pikachu-tcsrcc
       - qcom,seraph-tcsrcc
+      - qcom,glymur-tcsr
 
 required:
   - compatible
