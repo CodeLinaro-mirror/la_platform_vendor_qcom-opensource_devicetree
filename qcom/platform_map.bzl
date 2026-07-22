@@ -1176,7 +1176,9 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "shikra-vm-atp-overlay.dtbo"},
+            {"name": "shikra-vm-eitp-overlay.dtbo"},
             {"name": "shikra-vm-itp-overlay.dtbo"},
+            {"name": "shikra-vm-itps-overlay.dtbo"},
         ],
     },
     "shikra-oemvm": {
@@ -1188,7 +1190,9 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "shikra-oemvm-atp-overlay.dtbo"},
+            {"name": "shikra-oemvm-eitp-overlay.dtbo"},
             {"name": "shikra-oemvm-itp-overlay.dtbo"},
+            {"name": "shikra-oemvm-itps-overlay.dtbo"},
         ],
     },
     "glymur": {
