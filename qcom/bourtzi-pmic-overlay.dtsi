@@ -146,13 +146,14 @@
 };
 
 &gcc {
-	qcom,critical-devices = <&qupv3_se6_i2c>;
+	qcom,critical-devices = <&qupv3_se8_i2c>;
 };
 
-&qupv3_se6_i2c {
+&qupv3_se8_i2c {
 	#address-cells = <1>;
 	#size-cells = <0>;
 	status = "okay";
+	qcom,leica-used-i2c;
 
 	pm8010m: pmic@14 {
 		compatible = "qcom,pm8008";
