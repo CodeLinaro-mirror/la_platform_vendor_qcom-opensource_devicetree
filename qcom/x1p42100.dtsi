@@ -188,3 +188,7 @@
 			};
 	};
 };
+
+&pmc8380_g {
+	status = "disabled";
+};
