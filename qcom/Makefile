@@ -220,7 +220,12 @@ sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA) += sdxkova-idp-cpe.dtb \
 				sdxkova-idp-cpe-v5.dtb \
 				sdxkova-idp-cpe-v6.dtb \
 				sdxkova-idp-lga-v2.dtb \
-				sdxkova-idp-lga-v4.dtb
+				sdxkova-idp-lga-v4.dtb \
+				sdxkova-idp-lga-v5.dtb \
+				sdxkova-idp-lga-v6.dtb \
+				sdxkova-idp-qmp5.dtb \
+				sdxkova-idp-qmp5-v2.dtb \
+				sdxkova-idp-qmp5-v3.dtb
 
 sdxkova-prpl-dtb-$(CONFIG_ARCH_SDXKOVA) += $(sdxkova-cpe-wkk-dtb-$(CONFIG_ARCH_SDXKOVA))
 sdxkova-prpl-min-dtb-$(CONFIG_ARCH_SDXKOVA) += $(sdxkova-prpl-dtb-$(CONFIG_ARCH_SDXKOVA))

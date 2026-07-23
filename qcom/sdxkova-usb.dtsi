@@ -105,7 +105,7 @@
 
 	dwc3_mem_region: dwc3_mem_region {
 		iommu-addresses = <&dwc3 0x0 0x0 0x0 0x90000000>,
-					<&dwc3 0x0 0xA0000000 0xffffffff 0x10000000>;
+					<&dwc3 0x0 0xB0000000 0xffffffff 0x10000000>;
 	};
 
 	/* USB port related High Speed PHY */

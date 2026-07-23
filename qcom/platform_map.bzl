@@ -41,6 +41,11 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
             {"name": "sdxkova-idp-lga-v4.dtb"},
+            {"name": "sdxkova-idp-lga-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v6.dtb"},
+            {"name": "sdxkova-idp-qmp5.dtb"},
+            {"name": "sdxkova-idp-qmp5-v2.dtb"},
+            {"name": "sdxkova-idp-qmp5-v3.dtb"},
             # From sdxkova.cpe.tarang
             {"name": "sdxkova-idp-cpe-v7.dtb"},
         ],
@@ -71,6 +76,11 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
             {"name": "sdxkova-idp-lga-v4.dtb"},
+            {"name": "sdxkova-idp-lga-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v6.dtb"},
+            {"name": "sdxkova-idp-qmp5.dtb"},
+            {"name": "sdxkova-idp-qmp5-v2.dtb"},
+            {"name": "sdxkova-idp-qmp5-v3.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -86,6 +96,11 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
+            {"name": "sdxkova-idp-lga-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v6.dtb"},
+            {"name": "sdxkova-idp-qmp5.dtb"},
+            {"name": "sdxkova-idp-qmp5-v2.dtb"},
+            {"name": "sdxkova-idp-qmp5-v3.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -101,6 +116,11 @@ _platform_map = {
             {"name": "sdxkova-idp-cpe-v5.dtb"},
             {"name": "sdxkova-idp-cpe-v6.dtb"},
             {"name": "sdxkova-idp-lga-v2.dtb"},
+            {"name": "sdxkova-idp-lga-v5.dtb"},
+            {"name": "sdxkova-idp-lga-v6.dtb"},
+            {"name": "sdxkova-idp-qmp5.dtb"},
+            {"name": "sdxkova-idp-qmp5-v2.dtb"},
+            {"name": "sdxkova-idp-qmp5-v3.dtb"},
         ],
         "dtbo_list": [
             # keep sorted

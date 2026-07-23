@@ -175,8 +175,8 @@
 
 &dwc3 {
 	qcom,iommu-dma = "fastmap";
-	qcom,iommu-dma-addr-pool = <0x0 0x90000000 0x0 0x10000000>;
-	qcom,iommu-geometry = <0x0 0x90000000 0x0 0x10000000>;
+	qcom,iommu-dma-addr-pool = <0x0 0x90000000 0x0 0x20000000>;
+	qcom,iommu-geometry = <0x0 0x90000000 0x0 0x20000000>;
 	/delete-property/ memory-region;
 };
 
