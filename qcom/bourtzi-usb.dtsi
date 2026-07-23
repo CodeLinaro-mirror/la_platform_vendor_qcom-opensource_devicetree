@@ -110,6 +110,8 @@
 
 		resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
 		reset-names = "phy_reset";
+
+		qcom,param-override-seq = <0xc6 0x70>;  /* override_x1 */
 	};
 
 	usb_nop_phy: usb_nop_phy {
