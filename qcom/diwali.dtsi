@@ -743,13 +743,12 @@
 		num-cpus = <8>;
 	};
 
-	rpmh-sleep-stats@c3f0000 {
-		compatible = "qcom,rpmh-sleep-stats";
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v3";
 		reg = <0xc3f0000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "adsp", "adsp_island",
-			  "cdsp", "apss", "wpss";
-		mboxes = <&qmp_aop 0>;
-		ddr-freq-update;
+			"apss", "wpss";
 	};
 
 	sys-pm-vx@c320000 {
@@ -757,12 +756,6 @@
 		reg = <0xc320000 0x0400>;
 		mboxes = <&qmp_aop 0>;
 		mbox-names = "aop";
-	};
-
-	subsystem-sleep-stats {
-		compatible = "qcom,subsystem-sleep-stats";
-		reg = <0xc3f0000 0x400>;
-		ddr-freq-update;
 	};
 
 	memtimer: timer@17420000 {
