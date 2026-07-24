@@ -2365,20 +2365,12 @@
 		mbox-names = "aop";
 	};
 
-	soc-sleep-stats@c3f0000 {
-		compatible = "qcom,rpmh-sleep-stats";
-		reg = <0xc3f0000 0x400>;
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v3";
+		reg = <0x0c3f0000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "adsp", "adsp_island",
-			  "cdsp", "slpi", "slpi_island",
-			  "apss";
-		mboxes = <&qmp_aop 0>;
-		ddr-freq-update;
-	};
-
-	subsystem-sleep-stats {
-		compatible = "qcom,subsystem-sleep-stats";
-		reg = <0xc3f0000 0x400>;
-		ddr-freq-update;
+			"cdsp", "apss", "slpi", "slpi_island";
 	};
 
 	qcom,msm-cdsp-loader {
