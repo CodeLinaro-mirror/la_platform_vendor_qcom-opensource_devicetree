@@ -832,7 +832,7 @@
 	sram@4690000 {
 		compatible = "qcom,rpm-stats-v2";
 		reg = <0x04690000 0x10000>;
-		ss-name = "modem", "cdsp", "apss";
+		ss-name = "modem", "cdsp", "apss", "lmcu";
 	};
 
 	apcs_glb: mailbox@f400000 {
