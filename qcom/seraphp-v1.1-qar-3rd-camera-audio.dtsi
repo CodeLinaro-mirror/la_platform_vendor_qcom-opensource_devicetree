@@ -48,8 +48,23 @@
 		compatible = "ti,et-irled";
 		reg = <0x65>;
 	};
+
+	nxp_eusb2_repeater_se5: eusb2_repeater@4f {
+		compatible = "nxp,eusb2-repeater";
+		reg = <0x4f>;
+		vdd1v8-supply = <&pmar2230_l3>;
+		vdd3v3-supply = <&pmar2230_l14>;
+	};
 };
 
+&nxp_eusb2_repeater {
+	status = "disabled";
+};
+
+&eusb2_phy0 {
+	dummy-supply = <&nxp_eusb2_repeater_se5>;
+	usb-repeater = <&nxp_eusb2_repeater_se5>;
+};
 
 &slg5bv49293L {
 	ldo4-mv = <1800>;
