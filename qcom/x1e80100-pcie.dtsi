@@ -16,6 +16,8 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
+		regulator-boot-on;
+		startup-delay-us = <40000>;
 	};
 
 	pcie6: pcie@0x1bf8000 {
@@ -27,8 +29,9 @@
 			<0x0 0x01fc0000 0x0 0x30000>,
 			<0x6 0x00000000 0x0 0x10000000>,
 			<0x6 0x00000f40 0x0 0xa8>,
-			<0x6 0x10000000 0x0 0x4000>;
-		reg-names = "parf", "phy", "phy_portb", "tcsr", "dm_core", "elbi", "iatu";
+			<0x6 0x10000000 0x0 0x4000>,
+			<0x0 0x01bfb000 0x0 0x1000>;
+		reg-names = "parf", "phy", "phy_portb", "tcsr", "dm_core", "elbi", "iatu", "mhi";
 
 		cell-index = <6>;
 		linux,pci-domain = <6>;
@@ -164,6 +167,7 @@
 		qcom,target-link-speed = <0x4>;
 		qcom,target-link-width = <0x4>;
 		qcom,no-client-based-bw-voting;
+		qcom,no-l0s-supported;
 		qcom,boot-option = <0x2>;
 		qcom,aux-clk-freq = <20>; /* 19.2 MHz */
 		qcom,drv-l1ss-timeout-us = <5000>;
@@ -551,8 +555,9 @@
 			<0x0 0x1c0e000 0x0 0x2000>,
 			<0x7 0x80000000 0x0 0x10000000>,
 			<0x7 0x80000f40 0x0 0xa8>,
-			<0x7 0x90000000 0x0 0x4000>;
-		reg-names = "parf", "phy", "dm_core", "elbi", "iatu";
+			<0x7 0x90000000 0x0 0x4000>,
+			<0x0 0x01c0b000 0x0 0x1000>;
+		reg-names = "parf", "phy", "dm_core", "elbi", "iatu","mhi";
 
 		cell-index = <4>;
 		linux,pci-domain = <4>;

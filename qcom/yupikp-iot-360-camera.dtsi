@@ -305,3 +305,17 @@
 /*==============================*/
 /*     PD FL7112 Related End    */
 /*==============================*/
+
+&qupv3_se1_i2c {
+	status = "ok";
+
+	cap1296@28 {
+		compatible = "microchip,cap1296";
+		status = "ok";
+		reg = <0x28>;
+		vddio-supply = <&L12C>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <54 0>;
+		irq-gpio = <&tlmm 54 GPIO_ACTIVE_LOW>;
+	};
+};

@@ -16,8 +16,8 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=6 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange androidboot.hardware=qcom androidboot.selinux=enforcing androidboot.memcg=1 androidboot.recover_usb=1 androidboot.usbcontroller=a200000.dwc3";
-		bootconfig = "androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=6 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootconfig = "androidboot.fstab_suffix=hgy.seca.qcom";
 	};
 
 	reserved_memory: reserved-memory {
@@ -1421,6 +1421,40 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	qcom,msm-imem@14680000 {
+		compatible = "qcom,msm-imem";
+		reg = <0x14680000 0x1000>;
+		ranges = <0x0 0x14680000 0x1000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		status = "ok";
+		boot_stats@6b0 {
+			compatible = "qcom,msm-imem-boot_stats";
+			reg = <0x6b0 0x20>;
+		};
+
+		mem_dump_table@10 {
+			compatible = "qcom,msm-imem-mem_dump_table";
+			reg = <0x10 0x8>;
+		};
+
+		dload_type@1c {
+			compatible = "qcom,msm-imem-dload-type";
+			reg = <0x1c 0x4>;
+		};
+
+		diag_dload@c8 {
+			compatible = "qcom,msm-imem-diag-dload";
+			reg = <0xc8 0xc8>;
+		};
+	};
+
+	qcom,mpm2-sleep-counter@c221000 {
+			compatible = "qcom,mpm2-sleep-counter";
+			reg = <0xc221000 0x1000>;
+			clock-frequency = <32768>;
+	};
 
 	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
 		compatible = "qcom,ipcc";

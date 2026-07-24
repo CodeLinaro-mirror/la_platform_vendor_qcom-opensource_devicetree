@@ -7,6 +7,7 @@
 
 #include "glymur.dtsi"
 #include "mahua-dma-heaps.dtsi"
+#include "mahua-reserved-memory.dtsi"
 
 /delete-node/ &cluster2_pd;
 /delete-node/ &cpu_map_cluster2;
@@ -85,3 +86,43 @@
 &pcie_west_slv_noc {
 	compatible = "qcom,mahua-pcie_west_slv_noc";
 };
+
+&pcie5 {
+	status = "okay";
+};
+
+&pcie4 {
+	status = "okay";
+};
+
+&tlmm {
+	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+		mux {
+			pins = "gpio94";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio94";
+			bias-pull-up;
+			output-high;
+		};
+	};
+};
+
+&{/} {
+	vreg_wlan_3p3: wlan-3p3-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vreg_wlan_3p3";
+
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		gpio = <&tlmm 94 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&wlan_tps_3v3_enable_state>;
+	};
+};
+

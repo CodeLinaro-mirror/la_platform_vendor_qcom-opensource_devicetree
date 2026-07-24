@@ -50,7 +50,7 @@
 			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x0443 0x0>;
 		memory-region = <&qup0_se_iommu_region>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
 		#address-cells = <2>;
@@ -454,7 +454,7 @@
 			 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x0123 0x0>;
 		memory-region = <&qup1_se_iommu_region>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
 		#address-cells = <2>;
@@ -862,7 +862,7 @@
 			 <&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x0423 0x0>;
 		memory-region = <&qup2_se_iommu_region>;
-		qcom,iommu-geometry = <0x40000000 0x10000000>;
+		qcom,iommu-geometry = <0x0 0x40000000 0x0 0x10000000>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
 		#address-cells = <2>;

@@ -140,8 +140,8 @@
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L2_3>;
 			qcom,freq-domain = <&cpufreq_hw 1>;
-			capacity-dmips-mhz = <1946>;
-			dynamic-power-coefficient = <489>;
+			capacity-dmips-mhz = <2273>;
+			dynamic-power-coefficient = <494>;
 			#cooling-cells = <2>;
 
 			L1_I_3: l1-icache {
@@ -2046,7 +2046,7 @@
 			< 0x0008 0xFF 0xFF 0xFF >,
 			< 0x0011 0xFF 0xFF 0xFF >,
 			< 0x0017 0xFF 0xFF 0xFF >,
-			< 0x002A 0xFF 0xFF 0xFF >;
+			< 0x0037 0xFF 0xFF 0xFF >;
 	};
 
 	ddr_freq_table: ddr-freq-table {
@@ -2121,7 +2121,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddr_dcvs_hw>;
 			qcom,sampling-path = <&ddr_dcvs_sp>;
-			qcom,miss-ev = <0x2A>;
+			qcom,miss-ev = <0x37>;
 
 			silver {
 				compatible = "qcom,memlat-mon";
@@ -2229,7 +2229,7 @@
 			compatible = "qcom,memlat-grp";
 			qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
 			qcom,sampling-path = <&ddrqos_dcvs_sp>;
-			qcom,miss-ev = <0x2A>;
+			qcom,miss-ev = <0x37>;
 
 			ddrqos_gold_lat: gold {
 				compatible = "qcom,memlat-mon";
