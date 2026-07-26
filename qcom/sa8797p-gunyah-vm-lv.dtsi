@@ -1101,6 +1101,30 @@
 				};
 			};
 
+			hab_virq_dbl13 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_d";
+				qcom,label = <0xd>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl14 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_e";
+				qcom,label = <0xe>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl15 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_f";
+				qcom,label = <0xf>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
 			swiotlb-shm {
 				vdevice-type = "shm";
 				generate = "/swiotlb";
