@@ -1968,7 +1968,6 @@
 
 				snps,dis_u2_susphy_quirk;
 				snps,dis_enblslpm_quirk;
-				snps,usb3_lpm_capable;
 				snps,dis-u1-entry-quirk;
 				snps,dis-u2-entry-quirk;
 				xhci-skip-phy-init-quirk;
@@ -1991,7 +1990,7 @@
 			vdda12-supply = <&L3E>;
 
 			clocks = <&xo_board>,
-				 <&tcsrcc TCSR_USB3_MP0_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src",
 				      "ref";
 
@@ -2010,7 +2009,7 @@
 			vdda12-supply = <&L3E>;
 
 			clocks = <&xo_board>,
-				 <&tcsrcc TCSR_USB3_MP1_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src",
 				      "ref";
 
