@@ -1942,6 +1942,7 @@
 			interconnect-names = "usb-ddr", "apps-usb";
 
 			wakeup-source;
+			qcom,use-eusb2-phy;
 
 			#address-cells = <2>;
 			#size-cells = <2>;
