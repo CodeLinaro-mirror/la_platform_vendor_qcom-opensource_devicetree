@@ -184,19 +184,19 @@
 		#address-cells = <2>;
 		#size-cells = <0>;
 
-		smb2360_0_debug: pmic@9 {
+		smb2370_0_debug: pmic@9 {
 			compatible = "qcom,spmi-pmic";
 			reg = <9 SPMI_USID>;
 			qcom,can-sleep;
 		};
 
-		smb2360_1_debug: pmic@a {
+		smb2370_1_debug: pmic@a {
 			compatible = "qcom,spmi-pmic";
 			reg = <10 SPMI_USID>;
 			qcom,can-sleep;
 		};
 
-		smb2360_2_debug: pmic@b {
+		smb2370_2_debug: pmic@b {
 			compatible = "qcom,spmi-pmic";
 			reg = <11 SPMI_USID>;
 			qcom,can-sleep;
