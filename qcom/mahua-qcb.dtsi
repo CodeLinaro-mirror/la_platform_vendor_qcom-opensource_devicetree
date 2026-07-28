@@ -6,9 +6,50 @@
 #include <dt-bindings/clock/qcom,glymur-gcc.h>
 #include "mahua-pmic-overlay.dtsi"
 #include "mahua-thermal-overlay.dtsi"
+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
 
 &soc {
+	regulator_usb3_vbus: regulator-usb3-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_USB3_VBUS";
+		gpio = <&pmh0104_l_e1_gpios 6 GPIO_ACTIVE_HIGH>;
+		pinctrl-0 = <&usb3_vbus_en>;
+		pinctrl-names = "default";
+		enable-active-high;
+		regulator-always-on;
+	};
 
+	regulator_usb5_vbus: regulator-usb5-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_USB5_VBUS";
+		gpio = <&pmh0104_l_e1_gpios 8 GPIO_ACTIVE_HIGH>;
+		pinctrl-0 = <&usb5_vbus_en>;
+		pinctrl-names = "default";
+		enable-active-high;
+		regulator-always-on;
+	};
+};
+
+&pmh0104_l_e1_gpios {
+	usb3_vbus_en: usb3-vbus-en-state {
+		pins = "gpio6";
+		function = "normal";
+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+		input-disable;
+		output-enable;
+		output-high;
+		power-source = <0>;
+	};
+
+	usb5_vbus_en: usb5-vbus-en-state {
+		pins = "gpio8";
+		function = "normal";
+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+		input-disable;
+		output-enable;
+		output-high;
+		power-source = <0>;
+	};
 };
 
 &smb2370_l_e2 {
@@ -181,4 +222,80 @@
 	periph-7c3-supply = <&L3H>;
 	periph-7c4-supply = <&L4H>;
 	periph-b9b-supply = <&S1L>;
+};
+
+&tlmm {
+	eusb3_reset_n: eusb3-reset-n-state {
+		pins = "gpio8";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+		output-low;
+	};
+
+	eusb5_reset_n: eusb5-reset-n-state {
+		pins = "gpio184";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+		output-low;
+	};
+};
+
+&qupv3_se5_i2c {
+	clock-frequency = <400000>;
+
+	status = "okay";
+
+	eusb3_repeater: redriver@43 {
+		compatible = "nxp,ptn3222";
+		reg = <0x43>;
+
+		vdd3v3-supply = <&L8B_E0>;
+		vdd1v8-supply = <&L15B_E0>;
+
+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+
+		pinctrl-0 = <&eusb3_reset_n>;
+		pinctrl-names = "default";
+
+		#phy-cells = <0>;
+	};
+
+	eusb5_repeater: redriver@4f {
+		compatible = "nxp,ptn3222";
+		reg = <0x4f>;
+
+		vdd3v3-supply = <&L8B_E0>;
+		vdd1v8-supply = <&L15B_E0>;
+
+		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
+
+		pinctrl-0 = <&eusb5_reset_n>;
+		pinctrl-names = "default";
+
+		#phy-cells = <0>;
+	};
+};
+
+&usb_mp_hsphy0 {
+	phys = <&eusb3_repeater>;
+	status = "okay";
+};
+
+&usb_mp_hsphy1 {
+	phys = <&eusb5_repeater>;
+	status = "okay";
+};
+
+&usb_mp_qmpphy0 {
+	status = "okay";
+};
+
+&usb_mp_qmpphy1 {
+	status = "okay";
+};
+
+&usb_mp {
+	status = "okay";
 };
