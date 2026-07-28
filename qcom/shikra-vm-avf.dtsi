@@ -31,6 +31,16 @@
 			reg = <0xf410000 0x1000>;
 			android,pvmfw,target = <&wdog>;
 		};
+
+		qcom,gpi-dma@4a00000 {
+			reg = <0x0 0x4a00000 0x0 0x60000>;
+			android,pvmfw,target = <&gpi_dma0>;
+		};
+
+		qcom,qupv3_0_geni_se@0x4ac0000 {
+			reg=<0x0 0x4ac0000 0x0 0x2000>;
+			android,pvmfw,target = <&qupv3_0>;
+		};
 	};
 
 	qcom,vm-config {
@@ -487,6 +497,7 @@
 		dma-coherent;
 		ranges;
 		status = "ok";
+		required-subnodes = <&i2c4>;
 
 		i2c4: i2c@4a90000 {
 			compatible = "qcom,i2c-geni";
