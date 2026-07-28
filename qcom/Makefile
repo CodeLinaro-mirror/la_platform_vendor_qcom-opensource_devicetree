@@ -544,10 +544,37 @@ SERAPH_BOARDS += \
 		seraphp-v1.1-qar-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-overlay.dtbo \
 		seraphp-qar-camera-audio-overlay.dtbo \
-		seraphp-qar-overlay.dtbo
+		seraphp-qar-overlay.dtbo \
+		seraph-atp-overlay-le.dtbo \
+		seraphp-atp-overlay-le.dtbo \
+		seraph-idp-overlay-le.dtbo \
+		seraphp-idp-overlay-le.dtbo \
+		seraph-idp-dtof-overlay-le.dtbo \
+		seraphp-idp-dtof-overlay-le.dtbo \
+		seraph-idp-no-display-overlay-le.dtbo \
+		seraphp-idp-no-display-overlay-le.dtbo \
+		seraph-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraph-v1.1-atp-overlay-le.dtbo \
+		seraphp-v1.1-atp-overlay-le.dtbo \
+		seraph-v1.1-idp-overlay-le.dtbo \
+		seraphp-v1.1-idp-overlay-le.dtbo \
+		seraph-v1.1-idp-dtof-overlay-le.dtbo \
+		seraphp-v1.1-idp-dtof-overlay-le.dtbo \
+		seraph-v1.1-idp-no-display-overlay-le.dtbo \
+		seraphp-v1.1-idp-no-display-overlay-le.dtbo \
+		seraph-v1.1-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-v1.1-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-v1.1-qar-3rd-camera-audio-overlay-le.dtbo \
+		seraphp-v1.1-qar-camera-audio-overlay-le.dtbo \
+		seraphp-v1.1-qar-overlay-le.dtbo \
+		seraphp-qar-camera-audio-overlay-le.dtbo \
+		seraphp-qar-overlay-le.dtbo
+
 
 NOAPQ_SERAPH_BOARDS += \
-                  seraph-rumi-overlay.dtbo
+                  seraph-rumi-overlay.dtbo \
+                  seraph-rumi-overlay-le.dtbo
 
 seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(NOAPQ_SERAPH_BOARDS),$(SERAPH_BASE_DTB))\
