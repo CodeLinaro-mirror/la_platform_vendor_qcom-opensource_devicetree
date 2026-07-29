@@ -1129,6 +1129,8 @@ _platform_map = {
         "dtb_list": [
             # keep sorted
             {"name": "shikra-iqs.dtb"},
+            {"name": "shikra-iqs-fp1.dtb"},
+            {"name": "shikra-iqs-fp2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted

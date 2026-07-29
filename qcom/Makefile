@@ -670,7 +670,7 @@ HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
 SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
-SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb
+SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb shikra-iqs-fp1.dtb shikra-iqs-fp2.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
