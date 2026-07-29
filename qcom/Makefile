@@ -697,7 +697,9 @@ MAHUA_BASE_DTB += mahua.dtb
 
 MAHUA_BOARDS += \
 		   mahua-crd-overlay.dtbo \
-		   mahua-qcb-overlay.dtbo
+		   mahua-qcb-overlay.dtbo \
+		   mahua-idp-overlay.dtbo \
+		   mahua-rcm-overlay.dtbo
 
 mahua-dtb-$(CONFIG_ARCH_MAHUA) += \
 	$(call add-overlays, $(MAHUA_BOARDS),$(MAHUA_BASE_DTB))

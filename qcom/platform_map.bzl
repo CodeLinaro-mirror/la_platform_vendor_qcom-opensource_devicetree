@@ -1196,6 +1196,8 @@ _platform_map = {
         "dtbo_list": [
             {"name": "mahua-crd-overlay.dtbo"},
             {"name": "mahua-qcb-overlay.dtbo"},
+            {"name": "mahua-idp-overlay.dtbo"},
+            {"name": "mahua-rcm-overlay.dtbo"},
         ],
         "custom_dtbo_img_list": [
             {
@@ -1204,6 +1206,8 @@ _platform_map = {
                     "mahua.dtb",
                     "mahua-crd-overlay.dtbo",
                     "mahua-qcb-overlay.dtbo",
+                    "mahua-idp-overlay.dtbo",
+                    "mahua-rcm-overlay.dtbo",
                 ],
                 "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/mahua_dtbo.config",
             },
