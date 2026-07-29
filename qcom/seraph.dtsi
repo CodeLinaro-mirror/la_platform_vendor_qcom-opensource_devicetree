@@ -2022,10 +2022,10 @@
 
 		slc_perfmon: qcom,slc_perfmon {
 			compatible = "qcom,slc-perfmon";
-			/* Use slc_mem_base (0xD8170000) with perfmon struct at offset 0x700 */
-			reg = <0xD8170000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
+			/* Dedicated perfmon shared mem region, perfmon struct at offset 0x0 */
+			reg = <0xd8171000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
 			reg-names = "perfmon_base", "trp_0_base", "trp_1_base", "trp_or_bcast_base";
-			perfmon_offset = <0x700>;
+			perfmon_offset = <0x0>;
 			clocks = <&aoss_qmp QDSS_CLK>;
 			clock-names = "qdss_clk";
 			slc-scid-status-snapshot;
