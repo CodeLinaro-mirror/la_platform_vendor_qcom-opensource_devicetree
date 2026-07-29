@@ -9,6 +9,7 @@
 #include "mahua-dma-heaps.dtsi"
 #include "mahua-reserved-memory.dtsi"
 
+/delete-node/ &bwmon_llcc_cluster2;
 /delete-node/ &cluster2_pd;
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cpu12;
@@ -23,6 +24,13 @@
 /delete-node/ &cpu_pd15;
 /delete-node/ &cpu_pd16;
 /delete-node/ &cpu_pd17;
+/delete-node/ &ddr_cluster2;
+/delete-node/ &ddrqos_cluster2;
+/delete-node/ &llcc_cluster2;
+
+&ddr_clusterX_compute {
+	qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+};
 
 &tlmm {
 	gpio-reserved-ranges = <4 4>, /* EC TZ Secure I3C */
@@ -62,6 +70,12 @@
 			alignment = <0x0 0x400000>;
 			size = <0x0 0x4800000>;
 		};
+};
+
+&gic_router {
+	qcom,gic-class0-cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
+	qcom,gic-class1-cpus = <&cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+	qcom,gic-cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
 };
 
 &config_noc {
