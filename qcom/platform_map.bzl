@@ -585,6 +585,8 @@ _platform_map = {
             {"name": "ravelin-qrd-4gb-overlay.dtbo"},
             {"name": "montague-rumi-overlay.dtbo"},
             {"name": "montague-hsp-overlay.dtbo"},
+            {"name": "montague-hsp-fp-overlay.dtbo"},
+            {"name": "montague-hsp-fp2-overlay.dtbo"},
             {"name": "montague-rcm-overlay.dtbo"},
             {"name": "montague-wsa-overlay.dtbo"},
             {"name": "montague-wsd-overlay.dtbo"},
