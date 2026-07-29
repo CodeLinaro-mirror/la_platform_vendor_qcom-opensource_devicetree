@@ -31,6 +31,7 @@
 
 	aliases: aliases {
 		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
+		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart14@880000";
 	};
 };
 
@@ -140,6 +141,10 @@
 };
 
 &qupv3_se17_4uart {
+	status = "okay";
+};
+
+&qupv3_se14_4uart {
 	status = "okay";
 };
 
