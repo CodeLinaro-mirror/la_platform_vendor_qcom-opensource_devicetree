@@ -798,6 +798,7 @@ _platform_map = {
             {"name": "seraphp-v1.1-idp-no-display-overlay.dtbo"},
             {"name": "seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-proto-config3-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-3rd-camera-audio-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-overlay.dtbo"},
