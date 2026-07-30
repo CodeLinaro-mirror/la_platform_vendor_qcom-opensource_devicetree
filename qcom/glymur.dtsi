@@ -367,6 +367,25 @@
 			compatible = "qcom,smcinvoke";
 		};
 
+		scmi {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "arm,scmi";
+			mboxes = <&cpucp 0>, <&cpucp 2>;
+			mbox-names = "tx", "rx";
+			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
+
+			scmi_dvfs: protocol@13 {
+				reg = <0x13>;
+				#power-domain-cells = <1>;
+			};
+
+			cpucp_scmi_qcom: protocol@80 {
+				reg = <0x80>;
+				#clock-cells = <1>;
+			};
+		};
+
 		qcom_scm {
 			compatible = "qcom,scm";
 			qcom,dload-mode = <&tcsr 0x99000>;
@@ -712,6 +731,25 @@
 			alignment = <0x0 0x400000>;
 			size = <0x0 0xa400000>;
 			linux,cma-default;
+		};
+	};
+
+	mmio_sram: mmio-sram@18b4e000 {
+		compatible = "mmio-sram";
+		reg = <0x0 0x18b4e000 0x0 0x400>;
+
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0x0 0x0 0x18b4e000 0x400>;
+
+		cpu_scp_lpri0: scmi-shmem@0 {
+			compatible = "arm,scmi-shmem";
+			reg = <0x0 0x200>;
+		};
+
+		cpu_scp_lpri1: scmi-shmem@200 {
+			compatible = "arm,scmi-shmem";
+			reg = <0x200 0x200>;
 		};
 	};
 
@@ -1530,6 +1568,40 @@
 			};
 		};
 
+		llcc: system-cache-controller@20400000 {
+			compatible = "qcom,glymur-llcc";
+			reg = <0x0 0x21800000 0x0 0x100000>,
+			      <0x0 0x21a00000 0x0 0x100000>,
+			      <0x0 0x21c00000 0x0 0x100000>,
+			      <0x0 0x21e00000 0x0 0x100000>,
+			      <0x0 0x22800000 0x0 0x100000>,
+			      <0x0 0x22a00000 0x0 0x100000>,
+			      <0x0 0x22c00000 0x0 0x100000>,
+			      <0x0 0x22e00000 0x0 0x100000>,
+			      <0x0 0x23800000 0x0 0x100000>,
+			      <0x0 0x23a00000 0x0 0x100000>,
+			      <0x0 0x23c00000 0x0 0x100000>,
+			      <0x0 0x23e00000 0x0 0x100000>,
+			      <0x0 0x20400000 0x0 0x100000>,
+			      <0x0 0x20600000 0x0 0x100000>;
+			reg-names = "llcc0_base",
+				    "llcc1_base",
+				    "llcc2_base",
+				    "llcc3_base",
+				    "llcc4_base",
+				    "llcc5_base",
+				    "llcc6_base",
+				    "llcc7_base",
+				    "llcc8_base",
+				    "llcc9_base",
+				    "llcc10_base",
+				    "llcc11_base",
+				    "llcc_broadcast_base",
+				    "llcc_broadcast_and_base";
+
+			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+		};
+
 		qcom_pmu: qcom,pmu {
 			compatible = "qcom,pmu";
 			qcom,long-counter;
@@ -1923,6 +1995,29 @@
 			interrupts-extended = <&smp2p_test2_in 0 0>;
 		};
 
+		qcom,smp2p-soccp {
+			compatible = "qcom,smp2p";
+			qcom,smem = <617>, <616>;
+			interrupt-parent = <&ipcc_mproc>;
+			interrupts = <IPCC_CLIENT_SOCCP
+				      IPCC_MPROC_SIGNAL_SMP2P
+				      IRQ_TYPE_EDGE_RISING>;
+			mboxes = <&ipcc_mproc IPCC_CLIENT_SOCCP IPCC_MPROC_SIGNAL_SMP2P>;
+			qcom,local-pid = <0>;
+			qcom,remote-pid = <19>;
+
+			soccp_smp2p_out: master-kernel {
+				qcom,entry-name = "master-kernel";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			soccp_smp2p_in: slave-kernel {
+				qcom,entry-name = "slave-kernel";
+				interrupt-controller;
+				#interrupt-cells = <2>;
+			};
+		};
+
 		pdc: interrupt-controller@b220000 {
 			compatible = "qcom,glymur-pdc", "qcom,pdc";
 			reg = <0x0 0x0b220000 0x0 0x10000>;
@@ -2033,6 +2128,30 @@
 			qcom,smem-state-names = "stop";
 
 			status = "okay";
+
+			remoteproc_adsp_glink: glink-edge {
+				qcom,remote-pid = <2>;
+				transport = "smem";
+				mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
+					  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+				mbox-names = "adsp_smem";
+				interrupt-parent = <&ipcc_mproc>;
+				interrupts = <IPCC_CLIENT_LPASS
+					      IPCC_MPROC_SIGNAL_GLINK_QMP
+					      IRQ_TYPE_EDGE_RISING>;
+
+				label = "adsp";
+				qcom,glink-label = "lpass";
+
+				qcom,adsp_qrtr {
+					qcom,glink-channels = "IPCRTR";
+					qcom,intents = <0x800  5
+							0x2000 3
+							0x4400 2>;
+
+					qcom,no-wake-svc = <0x190>;
+				};
+			};
 		};
 
 		cdsp_pas: remoteproc-cdsp@32300000 {
@@ -2076,6 +2195,28 @@
 			qcom,smem-state-names = "stop";
 
 			status = "okay";
+
+			remoteproc_cdsp_glink: glink-edge {
+				qcom,remote-pid = <5>;
+				transport = "smem";
+				mboxes = <&ipcc_mproc IPCC_CLIENT_CDSP
+					  IPCC_MPROC_SIGNAL_GLINK_QMP>;
+				mbox-names = "cdsp_smem";
+				interrupt-parent = <&ipcc_mproc>;
+				interrupts = <IPCC_CLIENT_CDSP
+					      IPCC_MPROC_SIGNAL_GLINK_QMP
+					      IRQ_TYPE_EDGE_RISING>;
+
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+
+				qcom,cdsp_qrtr {
+					qcom,glink-channels = "IPCRTR";
+					qcom,intents = <0x800  5
+							0x2000 3
+							0x4400 2>;
+				};
+			};
 		};
 
 		intc: interrupt-controller@17000000 {
@@ -2161,6 +2302,23 @@
 			restrict-access;
 		};
 
+		cpucp: qcom,cpucp@18830000 {
+			compatible = "qcom,cpucp-v2";
+			reg = <0x0 0x17620000 0x0 0x10000>,
+				<0x0 0x18830000 0x0 0x10000>;
+			reg-names = "rx", "tx";
+			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+			#mbox-cells = <1>;
+		};
+
+		cpucp_log: qcom,cpucp_log@0x80e10000 {
+			compatible = "qcom,cpucp-log";
+			reg =	<0x0 0x80e10000 0x0 0x10000>,
+				<0x0 0x80e20000 0x0 0x10000>;
+			mboxes = <&cpucp 1>;
+			qcom,log-type = <0>;
+		};
+
 		apps_rsc: rsc@18900000 {
 			label = "apps_rsc";
 			compatible = "qcom,rpmh-rsc";
@@ -2198,6 +2356,20 @@
 				};
 
 			};
+		};
+
+		qcom,qrtr-mhi-cnss {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x1103>;
+			qcom,net-id = <0>;
+			qcom,low-latency;
+		};
+
+		qcom,qrtr-mhi-cnss1 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x1107>;
+			qcom,net-id = <1>;
+			qcom,low-latency;
 		};
 
 		disp_rsc: rsc@af20000 {
