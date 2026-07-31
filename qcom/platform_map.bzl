@@ -35,6 +35,10 @@ _platform_map = {
             {"name": "sun-tp.dtb"},
             {"name": "sun-tp-v2.dtb"},
             {
+                "name": "sunp-iot.dtb",
+                "apq": True,
+            },
+            {
                 "name": "sunp-tp.dtb",
                 "apq": True,
             },
