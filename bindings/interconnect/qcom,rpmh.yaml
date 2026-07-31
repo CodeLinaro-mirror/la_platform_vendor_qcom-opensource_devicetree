@@ -348,6 +348,17 @@ properties:
       - qcom,mahua-mc_virt
       - qcom,mahua-pcie_west_anoc
       - qcom,mahua-pcie_west_slv_noc
+      - qcom,waipio-aggre1_noc
+      - qcom,waipio-aggre2_noc
+      - qcom,waipio-clk_virt
+      - qcom,waipio-config_noc
+      - qcom,waipio-gem_noc
+      - qcom,waipio-lpass_ag_noc
+      - qcom,waipio-mc_virt
+      - qcom,waipio-mmss_noc
+      - qcom,waipio-nsp_noc
+      - qcom,waipio-pcie_anoc
+      - qcom,waipio-system_noc
 
   '#interconnect-cells': true
 

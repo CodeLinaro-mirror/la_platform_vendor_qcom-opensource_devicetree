@@ -64,8 +64,6 @@
 	apps_smmu: iommu@15000000 {
 		compatible = "qcom,qsmmu-v500";
 		reg = <0x0 0x15000000 0x0 0x100000>;
-		qcom,handoff-smrs = <0x1de0 0x2>, <0x1420 0x0>;
-		qcom,reset-stream-mapping-groups;
 		#iommu-cells = <2>;
 		#global-interrupts = <1>;
 		dma-coherent;
@@ -194,6 +192,20 @@
 		interrupt-names = "eventq", "cmdq-sync", "gerror";
 		dma-coherent;
 		#iommu-cells = <1>;
+	};
+
+	dma_dev {
+		compatible = "qcom,iommu-dma";
+		memory-region = <&system_cma>;
+	};
+
+	dpd_smmu: dpd_smmu {
+		compatible = "qcom,dpd-smmu";
+		#iommu-cells = <1>;
+	};
+
+	dpd_proxy {
+		compatible = "qcom,dpd-proxy";
 	};
 
 	iommu_test_device {

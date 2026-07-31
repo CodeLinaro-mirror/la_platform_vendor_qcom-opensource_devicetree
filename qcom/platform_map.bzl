@@ -27,6 +27,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-lv-mt.dtb"},
             {"name": "seca-sdp8-vm-la.dtb"},
             {"name": "lemans-vm-la-mt.dtb"},
+            {"name": "lemans-vm-la1-mt.dtb"},
             {"name": "sa8255p-sdp8-vm-la.dtb"},
             {"name": "sa8775p-sdp8-vm-la.dtb"},
             {"name": "sa8255p-sdp8-vm-la-mt.dtb"},
@@ -63,6 +64,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "seca-sdp8-vm-la-overlay.dtbo"},
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
+            {"name": "lemans-vm-la1-mt-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8775p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-mt-overlay.dtbo"},
@@ -676,7 +678,6 @@ _platform_map = {
             # keep sorted
             {"name": "bourtzi-vm-atp-overlay.dtbo"},
             {"name": "bourtzi-vm-mtp-overlay.dtbo"},
-            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
             {"name": "bourtzi-vm-qrd-overlay.dtbo"},
             {"name": "bourtzi-vm-rcm-overlay.dtbo"},
         ],
@@ -780,6 +781,9 @@ _platform_map = {
             {"name": "seraph-vm-idp-no-display-overlay.dtbo"},
             {"name": "seraph-vm-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraph-vm-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-vm-qar-overlay.dtbo"},
+            {"name": "seraph-vm-qar-camera-audio-overlay.dtbo"},
+            {"name": "seraph-vm-qar-3rd-camera-audio-overlay.dtbo"},
         ],
         "binary_compatible_with": ["pikachu-tuivm"],
     },
@@ -1030,8 +1034,13 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {"name": "pikachus.dtb"},
             {
                 "name": "pikachup.dtb",
+                "apq": True,
+            },
+            {
+                "name": "pikachups.dtb",
                 "apq": True,
             },
         ],
@@ -1042,6 +1051,12 @@ _platform_map = {
             {"name": "pikachup-idp-overlay.dtbo"},
             {"name": "pikachu-idp-dtof-overlay.dtbo"},
             {"name": "pikachup-idp-dtof-overlay.dtbo"},
+            {"name": "pikachus-atp-overlay.dtbo"},
+            {"name": "pikachups-atp-overlay.dtbo"},
+            {"name": "pikachus-idp-overlay.dtbo"},
+            {"name": "pikachups-idp-overlay.dtbo"},
+            {"name": "pikachus-idp-dtof-overlay.dtbo"},
+            {"name": "pikachups-idp-dtof-overlay.dtbo"},
             {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },
@@ -1134,6 +1149,17 @@ _platform_map = {
         "dtbo_list": [
             {"name": "mahua-crd-overlay.dtbo"},
             {"name": "mahua-qcb-overlay.dtbo"},
+        ],
+        "custom_dtbo_img_list": [
+            {
+                "name": "glymur",
+                "src": [
+                    "mahua.dtb",
+                    "mahua-crd-overlay.dtbo",
+                    "mahua-qcb-overlay.dtbo",
+                ],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/mahua_dtbo.config",
+            },
         ],
     },
 }

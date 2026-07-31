@@ -521,8 +521,9 @@ seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(APQ_SERAPH_BOARDS),$(SERAPH_APQ_BASE_DTB))
 seraph-overlays-dtb-$(CONFIG_ARCH_SERAPH) += $(NOAPQ_SERAPH_BOARDS) $(SERAPH_BASE_DTB) $(SERAPH_APQ_BASE_DTB)
 
-PIKACHU_BASE_DTB += pikachu.dtb
-PIKACHU_APQ_BASE_DTB += pikachup.dtb
+PIKACHU_BASE_DTB += pikachu.dtb  pikachus.dtb
+PIKACHU_APQ_BASE_DTB += pikachup.dtb pikachups.dtb
+
 
 PIKACHU_BOARDS += \
 		pikachu-atp-overlay.dtbo \
@@ -530,7 +531,13 @@ PIKACHU_BOARDS += \
 		pikachu-idp-dtof-overlay.dtbo \
 		pikachup-atp-overlay.dtbo \
 		pikachup-idp-overlay.dtbo \
-		pikachup-idp-dtof-overlay.dtbo
+		pikachup-idp-dtof-overlay.dtbo \
+		pikachus-atp-overlay.dtbo \
+		pikachus-idp-overlay.dtbo \
+		pikachus-idp-dtof-overlay.dtbo \
+		pikachups-atp-overlay.dtbo \
+		pikachups-idp-overlay.dtbo \
+		pikachups-idp-dtof-overlay.dtbo
 
 NOAPQ_PIKACHU_BOARDS += \
 		pikachu-rumi-overlay.dtbo
@@ -683,7 +690,10 @@ seraph_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += seraph-vm-base.dtb \
 				seraph-vm-idp-overlay.dtbo \
 				seraph-vm-idp-no-display-overlay.dtbo \
 				seraph-vm-idp-no-display-no-gpu-overlay.dtbo \
-				seraph-vm-idp-dtof-overlay.dtbo
+				seraph-vm-idp-dtof-overlay.dtbo \
+				seraph-vm-qar-overlay.dtbo \
+				seraph-vm-qar-camera-audio-overlay.dtbo \
+				seraph-vm-qar-3rd-camera-audio-overlay.dtbo
 
 dtb-y += $(seraph_tuivm-dtb-y)
 endif
@@ -784,6 +794,9 @@ LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx.dtb
 LEMANS_GH_LV_GVM_QAM_BASE_DTB += lemans-gh-vm-lv-qam-ridesx-qcvirtio.dtb
 LEMANS_GH_LV_GVM_QAM_BOARDS += lemans-gh-vm-lv-qam-ridesx-overlay.dtbo
 
+LEMANS_GH_LV_GVM_FLEX_QAM_BASE_DTB += lemans-gh-vm-lv-flex-qam-ridesx.dtb
+LEMANS_GH_LV_GVM_FLEX_QAM_BOARDS += lemans-gh-vm-lv-flex-qam-ridesx-overlay.dtbo
+
 LEMANS_SDP8_LA_GVM_BASE_DTB += sa8255p-sdp8-vm-la.dtb
 
 LEMANS_SDP8_LA_GVM_BOARDS += sa8255p-sdp8-vm-la-overlay.dtbo
@@ -813,20 +826,24 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(LEMANS_LV_GVM_BOARDS),$(LEMANS_LV_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_MULTI_GVM_BOARDS),$(LEMANS_MULTI_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_GH_LV_GVM_QAM_BOARDS),$(LEMANS_GH_LV_GVM_QAM_BASE_DTB)) \
+	$(call add-overlays, $(LEMANS_GH_LV_GVM_FLEX_QAM_BOARDS),$(LEMANS_GH_LV_GVM_FLEX_QAM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_SDP8_LA_GVM_BOARDS),$(LEMANS_SDP8_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_FLEX_SDP8_LA_GVM_BOARDS),$(LEMANS_FLEX_SDP8_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_SDP8_MULTI_GVM_BOARDS),$(LEMANS_SDP8_MULTI_GVM_BASE_DTB)) \
-	$(call add-overlays, $(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS),$(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB))
+	$(call add-overlays, $(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS),$(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB)) \
+	$(call add-overlays, $(LEMANS_MULTI_LA_GVM_BOARDS),$(LEMANS_MULTI_LA_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(LEMANS_LA_GVM_BOARDS) $(LEMANS_LA_GVM_BASE_DTB) \
 	$(LEMANS_LV_GVM_BOARDS) $(LEMANS_LV_GVM_BASE_DTB) \
 	$(LEMANS_MULTI_GVM_BOARDS) $(LEMANS_MULTI_GVM_BASE_DTB) \
 	$(LEMANS_GH_LV_GVM_QAM_BOARDS) $(LEMANS_GH_LV_GVM_QAM_BASE_DTB) \
+	$(LEMANS_GH_LV_GVM_FLEX_QAM_BOARDS) $(LEMANS_GH_LV_GVM_FLEX_QAM_BASE_DTB) \
 	$(LEMANS_SDP8_LA_GVM_BOARDS) $(LEMANS_SDP8_LA_GVM_BASE_DTB) \
 	$(LEMANS_FLEX_SDP8_LA_GVM_BOARDS) $(LEMANS_FLEX_SDP8_LA_GVM_BASE_DTB) \
 	$(LEMANS_SDP8_MULTI_GVM_BOARDS) $(LEMANS_SDP8_MULTI_GVM_BASE_DTB) \
-	$(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS) $(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB)
+	$(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS) $(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB) \
+	$(LEMANS_MULTI_LA_GVM_BOARDS) $(LEMANS_MULTI_LA_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)
 
@@ -1057,8 +1074,7 @@ ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += bourtzi-vm-atp-overlay.dtbo \
 				bourtzi-vm-mtp-overlay.dtbo \
 				bourtzi-vm-qrd-overlay.dtbo \
-				bourtzi-vm-rcm-overlay.dtbo \
-				bourtzi-vm-cdp-overlay.dtbo
+				bourtzi-vm-rcm-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif
@@ -1104,8 +1120,15 @@ LEMANS_MULTI_GVM_BASE_DTB += \
 LEMANS_MULTI_GVM_BOARDS += \
                 lemans-vm-la-mt-overlay.dtbo
 
+LEMANS_MULTI_LA_GVM_BASE_DTB += \
+               lemans-vm-la1-mt.dtb
+
+LEMANS_MULTI_LA_GVM_BOARDS += \
+               lemans-vm-la1-mt-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
                 $(call add-overlays, $(LEMANS_MULTI_GVM_BOARDS),$(LEMANS_MULTI_GVM_BASE_DTB))
+
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
                 $(LEMANS_MULTI_GVM_BOARDS) $(LEMANS_MULTI_GVM_BASE_DTB)

@@ -6,8 +6,8 @@
 #include "seca-gh-vm-la.dtsi"
 #include "seca-vm-usb.dtsi"
 #include "seca-vm-pcie.dtsi"
-#include "seca-gh-vm-qupv3.dtsi"
 #include "seca-vm-pinctrl.dtsi"
+#include "seca-vm-qupv3.dtsi"
 
 / {
 	aliases {
@@ -74,7 +74,11 @@
 		0x0 0x9008000 0x0 0x9008000 0x0 0x1000 0x0
 		/* TLMM region */
 		0x0 0x0F000000 0x0 0x0F000000 0x0 0x01000000 0x0
-
+		/* Imem region */
+		0x0 0x14680000 0x0 0x14680000 0x0 0x1000 0x0
+		0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
+		/* VCODEC CS1 region */
+		0x0 0xAAA1000 0x0 0xAAA1000 0x0 0x1000 0x0
 	>;
 
 	gic-irq-ranges = <
@@ -115,6 +119,8 @@
 		272 272
 		/* MPROC NS1 IPCC GIC IRQ */
 		471 471
+		/* VCODEC CS1 */
+		214 214
 	>;
 
 	vcpus {

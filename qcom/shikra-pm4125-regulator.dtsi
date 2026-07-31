@@ -166,7 +166,8 @@
 		L9A: pm4125_l9: regulator-l9 {
 			regulator-min-microvolt = <875000>;
 			regulator-max-microvolt = <1000000>;
-			qcom,init-voltage = <928000>;
+			qcom,send-defaults;
+			qcom,init-enable = <0>;
 			status = "okay";
 		};
 	};

@@ -51,7 +51,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 loglevel=6 can.stats_timer=0 log_buf_len=512K earlycon swiotlb=0 kasan=off ufshcd-core.use_mcq_mode=n cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 irqaffinity=0-3 ftrace_dump_on_oops slub_debug=- ";
+		bootargs = "nokaslr kpti=0 loglevel=6 can.stats_timer=0 log_buf_len=256K earlycon swiotlb=noforce kasan=off ufshcd-core.use_mcq_mode=n cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 irqaffinity=0-3 ftrace_dump_on_oops slub_debug=- ";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -1566,6 +1566,14 @@
 		read-only;
 		ranges;
 
+		feat_conf12: feat_conf12@0130 {
+			reg = <0x0130 0x4>;
+		};
+
+		feat_conf13: feat_conf13@0134 {
+			reg = <0x0134 0x4>;
+		};
+
 		gpu_speed_bin: gpu_speed_bin@119 {
 			reg = <0x119 0x2>;
 			bits = <5 8>;
@@ -1574,6 +1582,18 @@
 		boot_config: boot_config@600 {
 			reg = <0x600 0x1>;
 		};
+	};
+
+	qfprom_sys: qfprom@0 {
+		compatible = "qcom,qfprom-sys";
+		nvmem-cells = <&feat_conf12>,
+				<&feat_conf13>,
+				<&boot_config>,
+				<&gpu_speed_bin>;
+		nvmem-cell-names = "feat_conf12",
+				"feat_conf13",
+				"boot_config",
+				"gpu_speed_bin";
 	};
 
 	qcom,memshare {
@@ -1637,6 +1657,17 @@
 			qcom,allocate-on-request;
 			qcom,shared;
 			label = "modem";
+		};
+
+		qcom,client_dsm_harq {
+			compatible = "qcom,memshare-peripheral";
+			client_name = "md_op1";
+			qcom,peripheral-size = <0x800000>;
+			qcom,client-id = <9>;
+			memory-region = <&dsm_cma_mem>;
+			label = "modem";
+			qcom,dynamic-size-feature;
+			qcom,dynamic-size-max = <0x800000>;
 		};
 	};
 
@@ -2218,6 +2249,9 @@
 		memory-region = <&ufshc_dma_resv>;
 		dma-coherent;
 
+		qcom,prime-mask = <0x80>;
+		qcom,silver-mask = <0x0f>;
+
 		qcom,max-cpus = <8>;
 		qcom,cluster-mask = <0x3f 0xc0>;
 
@@ -2443,7 +2477,7 @@
 				<&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
-		memory-region = <&mpss_mem &system_cma>;
+		memory-region = <&mpss_mem &system_cma &dsm_mem>;
 		firmware-name = "modem.mdt";
 
 		/* Inputs from mss */
@@ -2672,6 +2706,12 @@
 		reg-names = "crypto-base","crypto-bam-base";
 		interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bam-pipe-pair = <2>;
+		qcom,offload-ops-support;
+		qcom,bam-pipe-offload-cpb-hlos = <1>;
+		qcom,bam-pipe-offload-hlos-cpb = <3>;
+		qcom,bam-pipe-offload-hlos-cpb-1 = <8>;
+		qcom,bam-pipe-offload-hlos-hlos = <4>;
+		qcom,bam-pipe-offload-hlos-hlos-1 = <9>;
 		qcom,ce-hw-instance = <0>;
 		qcom,ce-device = <0>;
 		qcom,ce-hw-shared;
@@ -2718,6 +2758,7 @@
 #include "bourtzi-debug.dtsi"
 #include "bourtzi-coresight.dtsi"
 #include "ipcc-test-bourtzi.dtsi"
+#include "msm-rdbg-scuba.dtsi"
 /delete-node/ &ipcc_self_ping_mpss;
 /delete-node/ &ipcc_self_ping_adsp;
 /delete-node/ &ipcc_self_ping_wpss;
