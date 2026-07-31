@@ -3118,7 +3118,7 @@
 
 	llcc_freq_table: llcc-freq-table {
 		qcom,freq-tbl =
-			<   19200 >,
+			<  192000 >,
 			<  350000 >,
 			<  533000 >,
 			<  695000 >,
