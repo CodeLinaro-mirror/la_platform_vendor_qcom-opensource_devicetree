@@ -13,6 +13,7 @@
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
 	qcom,msm-id = <606 0x10000>;
+	qcom,msm-name = "SA_GUNYAH_VM";
 	interrupt-parent = <&intc>;
 
 	qcom,mem-buf {
