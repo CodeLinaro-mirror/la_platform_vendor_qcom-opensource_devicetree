@@ -1861,6 +1861,10 @@
 				compatible = "qcom,altmode-glink";
 				#altmode-cells = <1>;
 			};
+
+			rtc_glink: qcom,rtc-glink {
+				compatible = "qcom,rtc-glink";
+			};
 		};
 
 		qcom,pmic_glink_log {
