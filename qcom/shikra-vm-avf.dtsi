@@ -502,9 +502,9 @@
 	};
 };
 
-#include "shikra-vm-rm-info-avf.dtsi"
-#include "shikra-vm-dma-heaps-avf.dtsi"
 #include "msm-arm-smmu-shikra-vm-avf.dtsi"
+#include "shikra-vm-dma-heaps-avf.dtsi"
+#include "shikra-vm-rm-info-avf.dtsi"
 
 &i2c4 {
 	status = "ok";
