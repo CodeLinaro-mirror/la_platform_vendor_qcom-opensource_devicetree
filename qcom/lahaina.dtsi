@@ -628,6 +628,12 @@ soc: soc { };
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x6400000>;
 	};
+
+	ramoops_mem: ramoops_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
 };
 
 &soc {
@@ -2977,6 +2983,13 @@ soc: soc { };
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm", "oem_vm";
+	};
+
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
 	};
 
 	aggre1_noc: interconnect@16e0000 {
