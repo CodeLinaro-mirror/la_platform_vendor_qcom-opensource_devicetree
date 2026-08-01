@@ -1904,9 +1904,9 @@
 			qcom,second-vote = <&qcom_llcc_ddr_vote>;
 		};
 
-		bwmon_ddr: qcom,bwmon-ddr@21090000 {
+		bwmon_ddr: qcom,bwmon-ddr@20091000 {
 			compatible = "qcom,bwmon5";
-			reg = <0x0 0x21090000 0x0 0x1000>;
+			reg = <0x0 0x20091000 0x0 0x1000>;
 			reg-names = "base";
 			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
 			qcom,hw-timer-hz = <19200000>;
