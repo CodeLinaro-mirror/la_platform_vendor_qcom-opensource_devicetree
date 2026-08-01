@@ -1850,7 +1850,7 @@
 			depends-on-supply = <&ipcc_mproc>;
 
 			battery_charger: qcom,battery_charger {
-				compatible = "qcom,battery-charger";
+				compatible = "qcom,x1e80100-battery-charger";
 			};
 
 			ucsi: qcom,ucsi {
