@@ -27,6 +27,10 @@
 	#address-cells = <2>;
 	#size-cells = <2>;
 
+	chosen {
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3 pcie_aspm=off";
+	};
+
 	aliases: aliases {
 		serial0 = &qupv3_se21_2uart;
 		hsuart0 = &qupv3_se14_4uart;
