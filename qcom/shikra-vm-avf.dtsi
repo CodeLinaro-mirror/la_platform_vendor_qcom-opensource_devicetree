@@ -149,6 +149,15 @@
 				qcom,label = <0x101>;
 			};
 
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
+			};
+
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
 				generate = "/hypervisor/ddump-shm";
@@ -158,6 +167,18 @@
 					qcom,label = <0x107>;
 					#address-cells = <0x2>;
 					base = <0x00 0x64016000>;
+				};
+			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					#address-cells = <0x2>;
+					base = <0x00 0x6400c000>;
 				};
 			};
 
@@ -266,6 +287,8 @@
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
 			&qcom_mem_buf
+			&qrtr_gunyah
+			&qmsgq_gunyah
 			&mem_buf_msgq
 			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
@@ -345,6 +368,17 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qmsgq_gunyah: qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <4>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+	      compatible = "qcom,qrtr-gunyah";
+	      gunyah-label = <0x103>;
 	};
 
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
