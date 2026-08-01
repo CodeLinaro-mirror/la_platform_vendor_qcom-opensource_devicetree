@@ -939,62 +939,6 @@
 			};
 		};
 
-		pmx_ts_int_default {
-			ts_int_default: ts_int_default {
-				mux {
-					pins = "gpio85";
-					function = "gpio";
-				};
-
-				config {
-				drive-strength = <16>;
-				/*bias-pull-up;*/
-				input-enable;
-				bias-disable;
-				};
-			};
-		};
-
-		pmx_ts_int_output_high {
-			ts_int_output_high: ts_int_output_high {
-				mux {
-					pins = "gpio85";
-					function = "gpio";
-				};
-
-				config {
-					output-high;
-				};
-			};
-		};
-
-		pmx_ts_int_output_low {
-			ts_int_output_low: ts_int_output_low {
-				mux {
-					pins = "gpio85";
-					function = "gpio";
-				};
-
-				config {
-					output-low;
-				};
-			};
-		};
-
-		pmx_ts_int_input {
-			ts_int_input: ts_int_input {
-				mux {
-					pins = "gpio85";
-					function = "gpio";
-				};
-
-				config {
-					input-enable;
-					bias-disable;
-				};
-			};
-		};
-
 		sdc2_on: sdc2_on {
 			clk {
 				pins = "sdc2_clk";
