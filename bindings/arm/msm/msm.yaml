@@ -533,6 +533,12 @@ properties:
           - enum:
               - qcom,mahua-crd
               - qcom,crd
+              - qcom,mahua-qcb
+              - qcom,qcb
+              - qcom,mahua-idp
+              - qcom,idp
+              - qcom,mahua-rcm
+              - qcom,rcm
           - const: qcom,mahua
 
       - description: Qualcomm Technologies, Inc. PIKACHU
