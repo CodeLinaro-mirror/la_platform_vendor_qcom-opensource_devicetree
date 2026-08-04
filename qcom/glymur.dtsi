@@ -21,6 +21,7 @@
 #include <dt-bindings/clock/qcom,glymur-videocc.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,glymur-rpmh.h>
+#include <dt-bindings/phy/phy-qcom-qmp.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -2533,8 +2534,8 @@
 				dma-coherent;
 
 				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-				phys = <&usb2_phy_0>;
-				phy-names = "usb2-phy";
+				phys = <&usb2_phy_0>, <&usb3_phy_0 QMP_USB43DP_USB3_PHY>;
+				phy-names = "usb2-phy", "usb3-phy";
 				snps,disable-clk-gating;
 				snps,has-lpm-erratum;
 				snps,hird-threshold = /bits/ 8 <0x0>;
@@ -2549,6 +2550,26 @@
 				dr_mode = "otg";
 				maximum-speed = "super-speed-plus";
 				usb-role-switch;
+			};
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_ss0_dwc3_hs: endpoint {
+					};
+				};
+
+				port@1 {
+					reg = <1>;
+
+					usb_ss0_dwc3_ss: endpoint {
+						remote-endpoint = <&usb_ss0_qmpphy_in>;
+					};
+				};
 			};
 		};
 
@@ -2582,6 +2603,63 @@
 			reset-names = "phy_reset";
 
 			status = "disabled";
+		};
+
+		usb3_phy_0: phy@fd5000 {
+			compatible = "qcom,glymur-qmp-usb3-dp-phy";
+			reg = <0x0 0x00fd5000 0x0 0x8000>;
+			reg-names = "qmp_phy_base";
+
+			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+				 <&rpmhcc RPMH_CXO_CLK>,
+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
+				 <&usb3_phy_0_wrapper_gcc_usb30_pipe_clk>,
+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+			clock-names = "aux",
+				      "ref",
+				      "com_aux",
+				      "pipe_clk_mux",
+				      "pipe_clk_ext_src",
+				      "usb3_pipe";
+
+			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+				 <&gcc GCC_USB3PHY_PHY_PRIM_BCR>;
+			reset-names = "phy",
+				      "common";
+
+			power-domains = <&gcc GCC_USB_0_PHY_GDSC>;
+
+			#clock-cells = <1>;
+			#phy-cells = <1>;
+
+			vdda-phy-supply = <&L4H_E0>;
+			vdda-pll-supply = <&L3F_E0>;
+			refgen-supply = <&L2F_E0>;
+
+			orientation-switch;
+
+			status = "disabled";
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+
+					usb_ss0_qmpphy_out: endpoint {
+					};
+				};
+
+				port@1 {
+					reg = <1>;
+
+					usb_ss0_qmpphy_in: endpoint {
+						remote-endpoint = <&usb_ss0_dwc3_ss>;
+					};
+				};
+			};
 		};
 
 		clk_virt: interconnect@0 {
