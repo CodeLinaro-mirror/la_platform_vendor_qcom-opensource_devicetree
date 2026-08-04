@@ -3196,4 +3196,31 @@
 			};
 		};
 	};
+
+	qspi_clk: qspi-clk-state {
+		pins = "gpio127";
+		function = "qspi0";
+		bias-pull-down;
+		drive-strength = <6>;
+	};
+
+	qspi_data: qspi-data-state {
+		pins = "gpio128", "gpio129", "gpio130", "gpio131";
+		function = "qspi0";
+		bias-pull-down;
+		drive-strength = <6>;
+	};
+
+	qspi_cs0: qspi-cs0-state {
+		pins = "gpio132";
+		function = "qspi0";
+		bias-disable;
+		drive-strength = <6>;
+	};
+
+	qspi_sleep: qspi-sleep-state {
+		pins = "gpio127", "gpio128", "gpio129", "gpio130", "gpio131", "gpio132";
+		function = "gpio";
+		output-disable;
+	};
 };
