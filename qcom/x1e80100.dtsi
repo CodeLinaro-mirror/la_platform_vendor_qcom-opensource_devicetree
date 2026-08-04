@@ -942,7 +942,7 @@
 
 			 alg2 {
 				 alg-name = "alg2";
-				 status = "disabled";
+				 status = "ok";
 
 			 };
 
