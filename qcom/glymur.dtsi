@@ -2762,6 +2762,18 @@
 				 <&gcc GCC_AGGRE_USB4_1_AXI_CLK>;
 		};
 
+		wdog: qcom,wdt@17600000 {
+			compatible = "qcom,msm-watchdog";
+			reg = <0x0 0x17600000 0x0 0x1000>;
+			reg-names = "wdt-base";
+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+			qcom,bark-time = <11000>;
+			qcom,pet-time = <9360>;
+			qcom,ipi-ping;
+			qcom,wakeup-enable;
+		};
+
 		mmss_noc: interconnect@1780000 {
 			compatible = "qcom,glymur-mmss_noc";
 			reg = <0x0 0x01780000 0x0 0x5b800>;
