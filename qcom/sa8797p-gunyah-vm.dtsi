@@ -2078,6 +2078,9 @@
 		snps,pbl = <0x10>;
 		dma-coherent;
 
+		nvmem-cells = <&eth1_mac>;
+		nvmem-cell-names = "mac-address";
+
 		rx-fifo-depth = <98304>;
 		tx-fifo-depth = <98304>;
 
