@@ -2250,6 +2250,7 @@
 			qcom,glinkpkt-ch-name = "hci_arbiter_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_hci_arbiter_chnl";
 			qcom,glinkpkt-enable-ch-close;
+			qcom,glinkpkt-enable-wakelock;
 		};
 
 		qcom,glinkpkt-socket-offload {
@@ -2257,6 +2258,7 @@
 			qcom,glinkpkt-ch-name = "bt_socket_hal_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_socket_hal_chnl";
 			qcom,glinkpkt-enable-ch-close;
+			qcom,glinkpkt-enable-wakelock;
 		};
 
 		qcom,glinkpkt-gatt-offload {
@@ -2264,6 +2266,7 @@
 			qcom,glinkpkt-ch-name = "gatt_offload_chnl";
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
 			qcom,glinkpkt-enable-ch-close;
+			qcom,glinkpkt-enable-wakelock;
 		};
 
 		qcom,glinkpkt-wm-qsh-0 {
