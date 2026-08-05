@@ -2527,6 +2527,13 @@
 			qcom,sample-invalid-time = <40000000>;
 		};
 
+		sram@c3f0000 {
+			compatible = "qcom,rpmh-stats-v4";
+			reg = <0x0 0x0c30f000 0x0 0x400>;
+			qcom,qmp = <&aoss_qmp>;
+			ss-name = "adsp", "adsp_island", "cdsp", "apss";
+		};
+
 		usb_ss0: ssusb@a600000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0xa600000 0x0 0x100000>;
