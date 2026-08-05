@@ -2387,45 +2387,46 @@
 
 
 
-	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
-		compatible = "qcom,spmi-pmic-arb";
-		reg = <0xc42d000 0x4000>,
-		      <0xc400000 0x3000>,
-		      <0xc500000 0x400000>,
-		      <0xc440000 0x80000>,
-		      <0xc4c0000 0x10000>;
-		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
-		interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "periph_irq";
-		interrupt-controller;
-		#interrupt-cells = <4>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		cell-index = <0>;
+	spmi_arb: spmi@c400000 {
+		compatible = "qcom,waipio-spmi-pmic-arb","qcom,x1e80100-spmi-pmic-arb";
+		reg = <0xc400000 0x3000>,    /* core   - shared */
+		      <0xc500000 0x400000>,  /* chnls  - shared */
+		      <0xc440000 0x80000>;   /* obsrvr - shared */
+		reg-names = "core", "chnls", "obsrvr";
 		qcom,channel = <0>;
 		qcom,ee = <0>;
-		qcom,bus-id = <0>;
-	};
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
 
-	spmi1_bus: qcom,spmi@c432000 {
-		compatible = "qcom,spmi-pmic-arb";
-		reg = <0xc432000 0x4000>,
-		      <0xc400000 0x3000>,
-		      <0xc500000 0x400000>,
-		      <0xc440000 0x80000>,
-		      <0xc4d0000 0x10000>;
-		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
-		interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "periph_irq";
-		interrupt-controller;
-		#interrupt-cells = <4>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		cell-index = <0>;
-		qcom,channel = <0>;
-		qcom,ee = <0>;
-		qcom,bus-id = <1>;
-		depends-on-supply = <&spmi0_bus>;
+		spmi_bus: spmi0_bus: spmi@c42d000 {
+			reg = <0xc42d000 0x4000>,  /* cnfg - bus0 */
+			      <0xc4c0000 0x10000>; /* intr - bus0 */
+			reg-names = "cnfg", "intr";
+			qcom,bus-id = <0>;
+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			cell-index = <0>;
+		};
+
+		spmi1_bus: spmi@c432000 {
+			reg = <0xc432000 0x4000>,  /* cnfg - bus1 */
+			      <0xc4d0000 0x10000>; /* intr - bus1 */
+			reg-names = "cnfg", "intr";
+			qcom,bus-id = <1>;
+			interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			cell-index = <0>;
+			depends-on-supply = <&spmi0_bus>;
+		};
 	};
 
 	spmi0_debug_bus: qcom,spmi-debug@10b14000 {
