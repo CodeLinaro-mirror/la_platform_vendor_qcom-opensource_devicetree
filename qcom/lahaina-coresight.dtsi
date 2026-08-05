@@ -104,8 +104,8 @@
 
 	tmc_etf_swao: tmc@6b05000 {
 		compatible = "arm,coresight-tmc", "arm,primecell";
-
 		arm,primecell-periphid = <0x000bb961>;
+
 		reg = <0x6b05000 0x1000>;
 		reg-names = "tmc-base";
 
@@ -136,24 +136,29 @@
 
 	tmc_etr: tmc@6048000 {
 		compatible = "arm,coresight-tmc", "arm,primecell";
+		arm,primecell-periphid = <0x000bb961>;
 
 		reg = <0x6048000 0x1000>,
 		      <0x6064000 0x15000>;
 		reg-names = "tmc-base", "bam-base";
+		device-name = "tmc_etr0";
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x0480 0>,
 			<&apps_smmu 0x0520 0>;
 
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		arm,buffer-size = <0x400000>;
 		arm,scatter-gather;
 
 		dma-coherent;
 		qcom,sw-usb;
-		device-name = "tmc_etr0";
-
+		coresight-ctis = <&cti0 &cti3_swao>;
 		coresight-csr = <&csr>;
 		csr-atid-offset = <0xf8>;
-		csr-irqctrl-offset = <0x6c>;
 		byte-cntr-name = "byte-cntr";
 		byte-cntr-class-name = "coresight-tmc-etr-stream";
 
@@ -177,16 +182,27 @@
 		compatible = "arm,coresight-dummy-source";
 
 		device-name = "tpdm_lpass_lpi";
-		atid = <100>;
-		qcom,dummy-source;
+		trace-name = "tpda-lpass-lpi";
+		atid = <26>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				tpdm_lpass_lpi_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_tpdm_lpass_lpi>;
 				};
 			};
+
+			port@1 {
+                                reg = <1>;
+                                lpass_lpi_out_qmi: endpoint {
+                                        remote-endpoint =
+                                        <&qmi_in_lpass_lpi>;
+                                };
+                        };
 		};
 	};
 
@@ -513,7 +529,7 @@
 		      <0x16280000 0x180000>,
 		      <0x7820f0 0x4>;
 		reg-names = "stm-base", "stm-stimulus-base", "stm-debug-status";
-
+		atid = <16>;
 		device-name = "stm0";
 
 		clocks = <&aoss_qmp>;
@@ -710,17 +726,26 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem2_etm0";
-		status = "disabled";
-		qcom,inst-id = <11>;
 		qcom,atid-num = <1>;
 		atid = <39>;
 		trace-name = "modem2-etm0";
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg =  <0>;
 				modem2_etm0_out_funnel_modem: endpoint {
 					remote-endpoint =
 						<&funnel_modem_in_modem2_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem2_etm0_out_qmi: endpoint {
+					remote-endpoint =
+						<&qmi_in_modem2_etm0>;
 				};
 			};
 		};
@@ -823,17 +848,58 @@
 		compatible = "qcom,coresight-remote-etm";
 
 		device-name = "modem_etm0";
-		status = "disabled";
-		qcom,inst-id = <2>;
 		qcom,atid-num = <2>;
 		atid = <36 37>;
 		trace-name = "modem-etm0";
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				modem_etm0_out_funnel_modem_q6: endpoint {
 					remote-endpoint =
 						<&funnel_modem_q6_in_modem_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				modem_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_modem_etm0>;
+				};
+			};
+		};
+	};
+
+	modem0-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem0";
+		qcom,inst-id = <2>;
+
+		in-ports {
+			port {
+				qmi_in_modem_etm0: endpoint {
+					remote-endpoint =
+					<&modem_etm0_out_qmi>;
+				};
+			};
+		};
+        };
+
+	modem2-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_modem2";
+		qcom,inst-id = <11>;
+
+		in-ports {
+			port {
+				qmi_in_modem2_etm0: endpoint {
+					remote-endpoint =
+						<&modem2_etm0_out_qmi>;
 				};
 			};
 		};
@@ -1528,126 +1594,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		out-ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			port@0 {
-				reg = <0>;
-				tpdm_video_out_tpda5: endpoint {
-					remote-endpoint =
-					    <&tpda_5_in_tpdm_video>;
-					filter-source = <&tpdm_video>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				tpdm_mdss_out_tpda6: endpoint {
-					remote-endpoint =
-					    <&tpda_6_in_tpdm_mdss>;
-					filter-source = <&tpdm_mdss>;
-				};
-			};
-
-			port@2 {
-				reg = <2>;
-				tpdm_mm_out_tpda8: endpoint {
-					remote-endpoint =
-					    <&tpda_8_in_tpdm_mm>;
-					filter-source = <&tpdm_mm>;
-				};
-			};
-
-			port@3 {
-				reg = <3>;
-				tpdm_lpass_out_tpda_9: endpoint {
-					remote-endpoint =
-					    <&tpda_9_in_tpdm_lpass>;
-					filter-source = <&tpdm_lpass>;
-				};
-			};
-
-			port@4 {
-				reg = <4>;
-				tpdm_ddr_ch02_out_tpda10: endpoint {
-					remote-endpoint =
-					    <&tpda_10_in_tpdm_ddr_ch02>;
-					filter-source = <&tpdm_ddr_ch02>;
-				};
-			};
-
-			port@5 {
-				reg = <5>;
-				tpdm_ddr_ch13_out_tpda11: endpoint {
-					remote-endpoint =
-					    <&tpda_11_in_tpdm_ddr_ch13>;
-					filter-source = <&tpdm_ddr_ch13>;
-				};
-			};
-
-			port@6 {
-				reg = <6>;
-				tpdm_ddr_out_tpda12: endpoint {
-					remote-endpoint =
-					    <&tpda_12_in_tpdm_ddr>;
-					filter-source = <&tpdm_ddr>;
-				};
-			};
-
-			port@7 {
-				reg = <7>;
-				tpdm_shrm_out_tpda13: endpoint {
-					remote-endpoint =
-					    <&tpda_13_in_tpdm_shrm>;
-					filter-source = <&tpdm_shrm>;
-				};
-			};
-
-			port@8 {
-				reg = <8>;
-				tpdm_rdpm_out_tpda14: endpoint {
-					remote-endpoint =
-					    <&tpda_14_in_tpdm_rdpm>;
-					filter-source = <&tpdm_rdpm>;
-				};
-			};
-
-			port@9 {
-				reg = <9>;
-				tpdm_rdpm_mx_out_tpda15: endpoint {
-				remote-endpoint =
-					<&tpda_15_in_tpdm_rdpm_mx>;
-					filter-source = <&tpdm_rdpm_mx>;
-				};
-			};
-
-			port@a {
-				reg = <10>;
-				tpdm_dlct_out_tpda19: endpoint {
-				remote-endpoint =
-					<&tpda_19_in_tpdm_dlct>;
-					filter-source = <&tpdm_dlct>;
-				};
-			};
-
-			port@b {
-				reg = <11>;
-				tpdm_ipcc_out_tpda20: endpoint {
-					remote-endpoint =
-					    <&tpda_20_in_tpdm_ipcc>;
-					filter-source = <&tpdm_ipcc>;
-				};
-			};
-
-			port@c {
-				reg = <12>;
-				funnel_dl_center_out_qatb: endpoint {
-					remote-endpoint =
-					<&qatb_in_funnel_dl_center>;
-				};
-			};
-		};
-
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1696,6 +1642,150 @@
 				funnel_center_in_tpdm_ipcc: endpoint {
 					remote-endpoint =
 					<&tpdm_ipcc_out_funnel_center>;
+				};
+			};
+		};
+
+		out-ports {
+                        port {
+                                funnel_dl_center_out_replicator_dl_center: endpoint {
+                                        remote-endpoint =
+                                        <&replicator_dl_center_in_funnel_dl_center>;
+                                };
+                        };
+                };
+	};
+
+	dl_center_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_dl_center";
+
+		in-ports {
+			port {
+				replicator_dl_center_in_funnel_dl_center: endpoint {
+					remote-endpoint =
+					<&funnel_dl_center_out_replicator_dl_center>;
+				};
+			};
+		};
+
+		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				tpdm_video_out_tpda5: endpoint {
+					remote-endpoint =
+						<&tpda_5_in_tpdm_video>;
+					filter-source = <&tpdm_video>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				tpdm_mdss_out_tpda6: endpoint {
+					remote-endpoint =
+						<&tpda_6_in_tpdm_mdss>;
+					filter-source = <&tpdm_mdss>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				tpdm_mm_out_tpda8: endpoint {
+					remote-endpoint =
+						<&tpda_8_in_tpdm_mm>;
+					filter-source = <&tpdm_mm>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				tpdm_lpass_out_tpda_9: endpoint {
+					remote-endpoint =
+						<&tpda_9_in_tpdm_lpass>;
+					filter-source = <&tpdm_lpass>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				tpdm_ddr_ch02_out_tpda10: endpoint {
+					remote-endpoint =
+						<&tpda_10_in_tpdm_ddr_ch02>;
+					filter-source = <&tpdm_ddr_ch02>;
+				};
+			};
+
+			port@5 {
+				reg = <5>;
+				tpdm_ddr_ch13_out_tpda11: endpoint {
+					remote-endpoint =
+						<&tpda_11_in_tpdm_ddr_ch13>;
+					filter-source = <&tpdm_ddr_ch13>;
+				};
+			};
+
+			port@6 {
+				reg = <6>;
+				tpdm_ddr_out_tpda12: endpoint {
+					remote-endpoint =
+						<&tpda_12_in_tpdm_ddr>;
+					filter-source = <&tpdm_ddr>;
+				};
+			};
+
+			port@7 {
+				reg = <7>;
+				tpdm_shrm_out_tpda13: endpoint {
+					remote-endpoint =
+						<&tpda_13_in_tpdm_shrm>;
+					filter-source = <&tpdm_shrm>;
+				};
+			};
+
+			port@8 {
+				reg = <8>;
+				tpdm_rdpm_out_tpda14: endpoint {
+					remote-endpoint =
+						<&tpda_14_in_tpdm_rdpm>;
+					filter-source = <&tpdm_rdpm>;
+				};
+			};
+
+			port@9 {
+				reg = <9>;
+				tpdm_rdpm_mx_out_tpda15: endpoint {
+					remote-endpoint =
+						<&tpda_15_in_tpdm_rdpm_mx>;
+					filter-source = <&tpdm_rdpm_mx>;
+				};
+			};
+
+			port@a {
+				reg = <10>;
+				tpdm_dlct_out_tpda19: endpoint {
+					remote-endpoint =
+						<&tpda_19_in_tpdm_dlct>;
+					filter-source = <&tpdm_dlct>;
+				};
+			};
+
+			port@b {
+				reg = <11>;
+				tpdm_ipcc_out_tpda20: endpoint {
+					remote-endpoint =
+						<&tpda_20_in_tpdm_ipcc>;
+					filter-source = <&tpdm_ipcc>;
+				};
+			};
+
+			port@c {
+				reg = <12>;
+				funnel_dl_center_out_qatb: endpoint {
+					remote-endpoint =
+						<&qatb_in_funnel_dl_center>;
 				};
 			};
 		};
@@ -2165,36 +2255,6 @@
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
-		out-ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			port@0 {
-				reg = <0>;
-				tpdm_turing_out_tpda21: endpoint {
-					remote-endpoint =
-					    <&tpda_21_in_tpdm_turing>;
-					filter-source = <&tpdm_turing>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				tpdm_llm_turing_out_tpda22: endpoint {
-					remote-endpoint =
-					    <&tpda_22_in_tpdm_llm_turing>;
-					filter-source = <&tpdm_llm_turing>;
-				};
-			};
-
-			port@2 {
-				reg = <2>;
-				funnel_dl_turing_out_qatb: endpoint {
-					remote-endpoint =
-					    <&qatb_in_funnel_dl_turing>;
-				};
-			};
-		};
-
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -2219,6 +2279,60 @@
 				turing_in_turing_dup: endpoint {
 					remote-endpoint =
 					  <&turing_dup_out_turing>;
+				};
+			};
+		};
+
+		out-ports {
+			port {
+				funnel_turing_out_replicator_turing: endpoint {
+					remote-endpoint =
+					<&replicator_turing_in_funnel_turing>;
+				};
+			};
+		};
+	};
+
+	turing_replicator {
+		compatible = "arm,coresight-static-replicator";
+
+		device-name = "replicator_turing";
+
+		in-ports {
+			port {
+				replicator_turing_in_funnel_turing: endpoint {
+					remote-endpoint =
+					<&funnel_turing_out_replicator_turing>;
+				};
+			};
+		};
+
+		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				tpdm_turing_out_tpda21: endpoint {
+					remote-endpoint =
+						<&tpda_21_in_tpdm_turing>;
+					filter-source = <&tpdm_turing>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				tpdm_llm_turing_out_tpda22: endpoint {
+					remote-endpoint =
+						<&tpda_22_in_tpdm_llm_turing>;
+					filter-source = <&tpdm_llm_turing>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				funnel_dl_turing_out_qatb: endpoint {
+					remote-endpoint =
+						<&qatb_in_funnel_dl_turing>;
 				};
 			};
 		};
@@ -2587,10 +2701,37 @@
 		trace-name = "turing-etm0";
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				turing_etm_out_funnel_dup_turing: endpoint {
 					remote-endpoint =
 					<&funnel_dup_turing_in_turing_etm>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				turing_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_turing_etm0>;
+				};
+			};
+		};
+	};
+
+	turing-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi_turing";
+		qcom,inst-id = <13>;
+
+		in-ports {
+			port {
+				qmi_in_turing_etm0: endpoint {
+					remote-endpoint =
+					<&turing_etm0_out_qmi>;
 				};
 			};
 		};
@@ -2605,10 +2746,47 @@
 		atid = <40>;
 
 		out-ports {
-			port {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
 				audio_etm0_out_funnel_lpass_lpi: endpoint {
 					remote-endpoint =
 					<&funnel_lpass_lpi_in_audio_etm0>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				audio_etm0_out_qmi: endpoint {
+					remote-endpoint =
+					<&qmi_in_audio_etm0>;
+				};
+			};
+		};
+	};
+
+	audio-qmi {
+		compatible = "qcom,coresight-qmi";
+
+		device-name = "qmi-audio";
+		qcom,inst-id = <5>;
+		in-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				qmi_in_audio_etm0: endpoint {
+					remote-endpoint =
+					<&audio_etm0_out_qmi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				qmi_in_lpass_lpi: endpoint {
+					remote-endpoint =
+					<&lpass_lpi_out_qmi>;
 				};
 			};
 		};
@@ -2940,15 +3118,6 @@
 				};
 			};
 		};
-	};
-
-	hwevent {
-		compatible = "qcom,coresight-hwevent";
-
-		device-name = "hwevent";
-		coresight-csr = <&csr>;
-		clocks = <&aoss_qmp>;
-		clock-names = "apb_pclk";
 	};
 
 	ipcb_tgu: tgu@6b0e000 {
