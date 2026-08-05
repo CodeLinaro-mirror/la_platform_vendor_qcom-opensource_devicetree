@@ -2693,3 +2693,4 @@
 };
 
 #include "msm-rdbg-scuba.dtsi"
+#include "scuba-walt.dtsi"
