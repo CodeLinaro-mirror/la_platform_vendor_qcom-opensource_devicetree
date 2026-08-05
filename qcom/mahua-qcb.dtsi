@@ -10,6 +10,10 @@
 
 };
 
+&smb2370_l_e2 {
+	status = "disabled";
+};
+
 &pmk8850_vadc {
 	pmh0101_sys_therm7 {
 		reg = <PMH0101_ADC5_GEN4_AMUX_THM1_100K_PU(0, PMH0101_SID)>;
