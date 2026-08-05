@@ -71,11 +71,6 @@
 		reg = <0x0 0x82700000 0x0 0x100000>;
 	};
 
-	ac_db_mem: ac_db_region@82B00000 {
-		no-map;
-		reg = <0x0 0x82B00000 0x0 0x300000>;
-	};
-
 	displaylpi_mem: displaylpi_region@82f00000 {
 		no-map;
 		reg = <0x0 0x82f00000 0x0 0x1800000>;
@@ -84,6 +79,11 @@
 	xbl_smmu_pt_mem: xbl_smmu_pt_region@84700000 {
 		no-map;
 		reg = <0x0 0x84700000 0x0 0x100000>;
+	};
+
+	audio_data_exchange_mem: audio_data_exchange_region@849a0000 {
+		no-map;
+		reg = <0x0 0x849a0000 0x0 0x480000>;
 	};
 
 	mpss_mem: mpss_region@8ba00000 {
@@ -133,7 +133,7 @@
 
 	adspslpi_mem: adspslpi_region@95200000 {
 		no-map;
-		reg = <0x0 0x95200000 0x0 0x3200000>;
+		reg = <0x0 0x95200000 0x0 0x2b00000>;
 	};
 
 	wear_microcontroller_m55_mem: wear_microcontroller_m55_region@92680000 {

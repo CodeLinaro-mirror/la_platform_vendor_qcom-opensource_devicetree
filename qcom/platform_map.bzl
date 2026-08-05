@@ -27,6 +27,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-lv-mt.dtb"},
             {"name": "seca-sdp8-vm-la.dtb"},
             {"name": "lemans-vm-la-mt.dtb"},
+            {"name": "lemans-vm-la1-mt.dtb"},
             {"name": "sa8255p-sdp8-vm-la.dtb"},
             {"name": "sa8775p-sdp8-vm-la.dtb"},
             {"name": "sa8255p-sdp8-vm-la-mt.dtb"},
@@ -63,6 +64,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-lv-mt-overlay.dtbo"},
             {"name": "seca-sdp8-vm-la-overlay.dtbo"},
             {"name": "lemans-vm-la-mt-overlay.dtbo"},
+            {"name": "lemans-vm-la1-mt-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8775p-sdp8-vm-la-overlay.dtbo"},
             {"name": "sa8255p-sdp8-vm-la-mt-overlay.dtbo"},
@@ -296,6 +298,42 @@ _platform_map = {
             {"name": "bourtzi-rcm-4gb-overlay.dtbo"},
             {"name": "bourtzi-rcm-4gb-lcd-overlay.dtbo"},
             {"name": "bourtzi-rumi-overlay.dtbo"},
+        ],
+    },
+    "waipio": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "waipio.dtb"},
+            {"name": "waipiop.dtb"},
+            {"name": "waipio-v2.dtb"},
+            {"name": "waipiop-v2.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "waipio-rumi-overlay.dtbo"},
+            {"name": "waipio-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8008-overlay.dtbo"},
+            {"name": "waipio-atp-pm8008-overlay.dtbo"},
+            {"name": "waipio-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8010-overlay.dtbo"},
+            {"name": "waipio-qrd-pm8010-2s-overlay.dtbo"},
+            {"name": "waipio-atp-pm8010-overlay.dtbo"},
+            {"name": "waipio-lemur-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-lemur-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-lemur-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-lemur-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-kiwi-mtp-pm8008-overlay.dtbo"},
+            {"name": "waipio-kiwi-mtp-pm8010-overlay.dtbo"},
+            {"name": "waipio-kiwi-cdp-pm8008-overlay.dtbo"},
+            {"name": "waipio-kiwi-cdp-pm8010-overlay.dtbo"},
+            {"name": "waipio-mtp-68disp-pm8008-overlay.dtbo"},
+            {"name": "waipio-mtp-68disp-pm8010-overlay.dtbo"},
+            {"name": "waipio-cdp-xr-overlay.dtbo"},
+            {"name": "waipio-mtp-xr-overlay.dtbo"},
+            {"name": "waipio-cdp-xr-pcie-overlay.dtbo"},
+            {"name": "waipio-mtp-xr-pcie-overlay.dtbo"},
         ],
     },
     "malabar": {
@@ -570,6 +608,7 @@ _platform_map = {
                     "x1e80100-qcb-overlay.dtbo",
                     "x1e80100-qcp-overlay.dtbo",
                     "x1p42100-crd-overlay.dtbo",
+                    "x1p42100-crd-cologne-overlay.dtbo",
                 ],
                 "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/hamoa_dtbo.config",
             },
@@ -582,6 +621,7 @@ _platform_map = {
         ],
         "dtbo_list": [
             {"name": "x1p42100-crd-overlay.dtbo"},
+            {"name": "x1p42100-crd-cologne-overlay.dtbo"},
         ],
     },
     "hamoa_la": {
@@ -760,6 +800,7 @@ _platform_map = {
             {"name": "seraphp-v1.1-idp-no-display-overlay.dtbo"},
             {"name": "seraph-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo"},
+            {"name": "seraphp-v1.1-qar-proto-config3-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-3rd-camera-audio-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-camera-audio-overlay.dtbo"},
             {"name": "seraphp-v1.1-qar-overlay.dtbo"},
@@ -779,6 +820,9 @@ _platform_map = {
             {"name": "seraph-vm-idp-no-display-overlay.dtbo"},
             {"name": "seraph-vm-idp-no-display-no-gpu-overlay.dtbo"},
             {"name": "seraph-vm-idp-dtof-overlay.dtbo"},
+            {"name": "seraph-vm-qar-overlay.dtbo"},
+            {"name": "seraph-vm-qar-camera-audio-overlay.dtbo"},
+            {"name": "seraph-vm-qar-3rd-camera-audio-overlay.dtbo"},
         ],
         "binary_compatible_with": ["pikachu-tuivm"],
     },
@@ -1029,8 +1073,13 @@ _platform_map = {
     "pikachu": {
         "dtb_list": [
             {"name": "pikachu.dtb"},
+            {"name": "pikachus.dtb"},
             {
                 "name": "pikachup.dtb",
+                "apq": True,
+            },
+            {
+                "name": "pikachups.dtb",
                 "apq": True,
             },
         ],
@@ -1041,6 +1090,12 @@ _platform_map = {
             {"name": "pikachup-idp-overlay.dtbo"},
             {"name": "pikachu-idp-dtof-overlay.dtbo"},
             {"name": "pikachup-idp-dtof-overlay.dtbo"},
+            {"name": "pikachus-atp-overlay.dtbo"},
+            {"name": "pikachups-atp-overlay.dtbo"},
+            {"name": "pikachus-idp-overlay.dtbo"},
+            {"name": "pikachups-idp-overlay.dtbo"},
+            {"name": "pikachus-idp-dtof-overlay.dtbo"},
+            {"name": "pikachups-idp-dtof-overlay.dtbo"},
             {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },
@@ -1071,6 +1126,16 @@ _platform_map = {
             {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
             {"name": "shikra-rumi-overlay.dtbo"},
+        ],
+    },
+    "shikra_auto": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "shikra-iqs.dtb"},
+        ],
+        "dtbo_list": [
+            # keep sorted
+            {"name": "shikra-iqs-overlay.dtbo"},
         ],
     },
     "shikra_tiny": {
@@ -1133,6 +1198,17 @@ _platform_map = {
         "dtbo_list": [
             {"name": "mahua-crd-overlay.dtbo"},
             {"name": "mahua-qcb-overlay.dtbo"},
+        ],
+        "custom_dtbo_img_list": [
+            {
+                "name": "glymur",
+                "src": [
+                    "mahua.dtb",
+                    "mahua-crd-overlay.dtbo",
+                    "mahua-qcb-overlay.dtbo",
+                ],
+                "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/mahua_dtbo.config",
+            },
         ],
     },
 }

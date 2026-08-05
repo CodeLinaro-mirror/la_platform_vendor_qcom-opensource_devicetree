@@ -452,7 +452,7 @@
 
 	vm_restart: restart {
 		compatible = "qcom,vm-restart";
-		status = "disabled";
+		status = "ok";
 	};
 
 	pdc: interrupt-controller@b220000 {
@@ -488,7 +488,6 @@
 
 	qcom,secure-buffer {
 		compatible = "qcom,secure-buffer";
-		status = "disabled";
 	};
 
 	qcom,mem-buf {
@@ -496,13 +495,64 @@
 		qcom,mem-buf-capabilities = "consumer";
 		qcom,vmid = <52>;
 		qcom,vm-uses-hyp-assign;
-		status = "disabled";
 	};
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
 		qcom,msgq-names = "trusted_vm";
-		status = "disabled";
+	};
+};
+
+&firmware {
+	scm {
+		compatible = "qcom,scm", "qcom,scm-v1.1";
+		qcom,scm-hab;
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
+	};
+
+	qtee_shmbridge {
+		compatible = "qcom,tee-shared-memory-bridge";
+		qcom,custom-bridge-size = <512>;
+		qcom,support-hypervisor;
+	};
+};
+
+&hab {
+	mmidgrp200: mmidgrp200 {
+	    dma-coherent;
+	};
+
+	mmidgrp300: mmidgrp300 {
+	    dma-coherent;
+	};
+
+	mmidgrp400: mmidgrp400 {
+	    dma-coherent;
+	};
+
+	mmidgrp500: mmidgrp500 {
+	    dma-coherent;
+	};
+
+	mmidgrp1700: mmidgrp1700 {
+	    grp-start-id = <1700>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1800: mmidgrp1800 {
+	    grp-start-id = <1800>;
+	    role = "fe";
+	    remote-vmids = <0>;
+	};
+
+	mmidgrp1900: mmidgrp1900 {
+	    grp-start-id = <1900>;
+	    role = "fe";
+	    remote-vmids = <0>;
 	};
 };
 
@@ -552,3 +602,5 @@
 
 #include "seca-vm-pinctrl.dtsi"
 #include "seca-vm-usb.dtsi"
+#include "seca-vm-qupv3.dtsi"
+#include "seca-sdp8-vm-pcie.dtsi"

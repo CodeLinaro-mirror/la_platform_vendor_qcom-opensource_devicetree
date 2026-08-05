@@ -35,6 +35,16 @@
 		compatible = "qcom,va-minidump";
 		memory-region = <&va_md_mem>;
 	};
+
+	ipcc_mproc_apps_ns2: qcom,ipcc@9009000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9009000 0x1000>;
+		interrupts = <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "disabled";
+	};
 };
 
 &hab {
