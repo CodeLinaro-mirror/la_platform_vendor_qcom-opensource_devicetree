@@ -3485,5 +3485,15 @@
 			0C 0A 08 06 04 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0F
 			10 12 13 14 16 2A 29 28 26 24 22 21 20 1F 1E 1D 1C 18 00 00 00 00 00 00 00 00 00 00 00 00
 			00 00 00 00 82 01];
+
+		goodix,qts_en;
+		goodix,touch-type = "primary";
+		qts,trusted-touch-mode = "vm_mode";
+		qts,touch-environment = "pvm";
+		qts,trusted-touch-type = "primary";
+		qts,trusted-touch-spi-irq = <155>;
+		qts,trusted-touch-io-bases = <0x4a90000>;
+		qts,trusted-touch-io-sizes = <0x4000>;
+		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
 	};
 };
