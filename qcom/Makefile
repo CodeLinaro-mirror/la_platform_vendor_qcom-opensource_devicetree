@@ -675,6 +675,10 @@ SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-atp-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-imxcam-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo \
 		 shikra-lite-evk-eSMPS-nfc-overlay.dtbo \
 		 shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo
 
