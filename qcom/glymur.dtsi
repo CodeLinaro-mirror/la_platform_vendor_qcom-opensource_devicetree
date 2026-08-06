@@ -29,7 +29,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-3 pcie_aspm=off";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-5 pcie_aspm=off";
 	};
 
 	aliases: aliases {
