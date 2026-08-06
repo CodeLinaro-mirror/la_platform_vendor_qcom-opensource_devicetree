@@ -8,7 +8,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <733 0x10000>, <757 0x10000>;
+	qcom,msm-id = <759 0x10000>, <758 0x20000>, <756 0x10000>;
 
 	host {
 		#address-cells = <0x2>;
@@ -42,13 +42,6 @@
 		vm-guid = "847bfe26-0b12-5728-812a-06103f6bdec0";
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
-
-		/*
-		 * Allow VMMIO traps. Currently doesn't include
-		 * PVTIME, VIRTFREQ and GIC virtual devices.
-		 * GIC is emulated by Gunyah.
-		 */
-		vmmio-ranges;
 
 		segments {
 			fallback-dtb = <2>;

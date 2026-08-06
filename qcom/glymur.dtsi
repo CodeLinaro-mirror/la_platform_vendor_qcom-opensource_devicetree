@@ -4,6 +4,10 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/clock/qcom,glymur-gcc.h>
+#include <dt-bindings/clock/qcom,glymur-tcsr.h>
 
 / {
 	interrupt-parent = <&intc>;
@@ -428,7 +432,7 @@
 		};
 	};
 
-	reserved-memory {
+	reserved_memory: reserved-memory {
 		#address-cells = <2>;
 		#size-cells = <2>;
 		ranges;
@@ -540,6 +544,20 @@
 			hwlocks = <&tcsr_mutex 3>;
 			no-map;
 		};
+
+		kinfo_mem: debug_kinfo_region {
+			alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+			size = <0x0 0x1000>;
+			no-map;
+		};
+
+		adsp_mem_heap: adsp_heap_region {
+			compatible = "shared-dma-pool";
+			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+			reusable;
+			alignment = <0x0 0x400000>;
+			size = <0x0 0xC00000>;
+		};
 	};
 
 	soc: soc {
@@ -548,6 +566,355 @@
 		#size-cells = <2>;
 		ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
 		dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
+		clocks {
+			xo_board: xo_board {
+				compatible = "fixed-clock";
+				clock-frequency = <38400000>;
+				clock-output-names = "xo_board";
+				#clock-cells = <0>;
+			};
+
+			sleep_clk: sleep_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <32000>;
+				clock-output-names = "sleep_clk";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_0_phy_dp0_gmux_clk_src: gcc_usb4_0_phy_dp0_gmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_0_phy_dp0_gmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_0_phy_dp1_gmux_clk_src: gcc_usb4_0_phy_dp1_gmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_0_phy_dp1_gmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_0_phy_pcie_pipegmux_clk_src: gcc_usb4_0_phy_pcie_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_0_phy_pcie_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_0_phy_pipegmux_clk_src: gcc_usb4_0_phy_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_0_phy_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_0_phy_sys_pipegmux_clk_src: gcc_usb4_0_phy_sys_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_0_phy_sys_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_1_phy_dp0_gmux_2_clk_src: gcc_usb4_1_phy_dp0_gmux_2_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_1_phy_dp0_gmux_2_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_1_phy_dp1_gmux_2_clk_src: gcc_usb4_1_phy_dp1_gmux_2_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_1_phy_dp1_gmux_2_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_1_phy_pcie_pipegmux_clk_src: gcc_usb4_1_phy_pcie_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_1_phy_pcie_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_1_phy_pipegmux_clk_src: gcc_usb4_1_phy_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_1_phy_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_1_phy_sys_pipegmux_clk_src: gcc_usb4_1_phy_sys_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_1_phy_sys_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_2_phy_dp0_gmux_clk_src: gcc_usb4_2_phy_dp0_gmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_2_phy_dp0_gmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_2_phy_dp1_gmux_clk_src: gcc_usb4_2_phy_dp1_gmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_2_phy_dp1_gmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_2_phy_pcie_pipegmux_clk_src: gcc_usb4_2_phy_pcie_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_2_phy_pcie_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_2_phy_pipegmux_clk_src: gcc_usb4_2_phy_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_2_phy_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			gcc_usb4_2_phy_sys_pipegmux_clk_src: gcc_usb4_2_phy_sys_pipegmux_clk_src {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "gcc_usb4_2_phy_sys_pipegmux_clk_src";
+				#clock-cells = <0>;
+			};
+
+			pcie_3a_pipe_clk: pcie_3a_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "pcie_3a_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			pcie_3b_pipe_clk: pcie_3b_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "pcie_3b_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			pcie_4_pipe_clk: pcie_4_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "pcie_4_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			pcie_5_pipe_clk: pcie_5_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "pcie_5_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			pcie_6_pipe_clk: pcie_6_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "pcie_6_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_0_gcc_usb4_rx0_clk: qusb4phy_0_gcc_usb4_rx0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_0_gcc_usb4_rx0_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_0_gcc_usb4_rx1_clk: qusb4phy_0_gcc_usb4_rx1_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_0_gcc_usb4_rx1_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_1_gcc_usb4_rx0_clk: qusb4phy_1_gcc_usb4_rx0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_1_gcc_usb4_rx0_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_1_gcc_usb4_rx1_clk: qusb4phy_1_gcc_usb4_rx1_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_1_gcc_usb4_rx1_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_2_gcc_usb4_rx0_clk: qusb4phy_2_gcc_usb4_rx0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_2_gcc_usb4_rx0_clk";
+				#clock-cells = <0>;
+			};
+
+			qusb4phy_2_gcc_usb4_rx1_clk: qusb4phy_2_gcc_usb4_rx1_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "qusb4phy_2_gcc_usb4_rx1_clk";
+				#clock-cells = <0>;
+			};
+
+			ufs_phy_rx_symbol_0_clk: ufs_phy_rx_symbol_0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "ufs_phy_rx_symbol_0_clk";
+				#clock-cells = <0>;
+			};
+
+			ufs_phy_rx_symbol_1_clk: ufs_phy_rx_symbol_1_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "ufs_phy_rx_symbol_1_clk";
+				#clock-cells = <0>;
+			};
+
+			ufs_phy_tx_symbol_0_clk: ufs_phy_tx_symbol_0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "ufs_phy_tx_symbol_0_clk";
+				#clock-cells = <0>;
+			};
+
+			usb3_phy_0_wrapper_gcc_usb30_pipe_clk: usb3_phy_0_wrapper_gcc_usb30_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb3_phy_0_wrapper_gcc_usb30_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb3_phy_1_wrapper_gcc_usb30_pipe_clk: usb3_phy_1_wrapper_gcc_usb30_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb3_phy_1_wrapper_gcc_usb30_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb3_phy_2_wrapper_gcc_usb30_pipe_clk: usb3_phy_2_wrapper_gcc_usb30_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb3_phy_2_wrapper_gcc_usb30_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb3_uni_phy_mp_gcc_usb30_pipe_0_clk: usb3_uni_phy_mp_gcc_usb30_pipe_0_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb3_uni_phy_mp_gcc_usb30_pipe_0_clk";
+				#clock-cells = <0>;
+			};
+
+			usb3_uni_phy_mp_gcc_usb30_pipe_1_clk: usb3_uni_phy_mp_gcc_usb30_pipe_1_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb3_uni_phy_mp_gcc_usb30_pipe_1_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_0_phy_gcc_usb4_pcie_pipe_clk: usb4_0_phy_gcc_usb4_pcie_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_0_phy_gcc_usb4_pcie_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_0_phy_gcc_usb4rtr_max_pipe_clk: usb4_0_phy_gcc_usb4rtr_max_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_0_phy_gcc_usb4rtr_max_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_1_phy_gcc_usb4_pcie_pipe_clk: usb4_1_phy_gcc_usb4_pcie_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_1_phy_gcc_usb4_pcie_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_1_phy_gcc_usb4rtr_max_pipe_clk: usb4_1_phy_gcc_usb4rtr_max_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_1_phy_gcc_usb4rtr_max_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_2_phy_gcc_usb4_pcie_pipe_clk: usb4_2_phy_gcc_usb4_pcie_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_2_phy_gcc_usb4_pcie_pipe_clk";
+				#clock-cells = <0>;
+			};
+
+			usb4_2_phy_gcc_usb4rtr_max_pipe_clk: usb4_2_phy_gcc_usb4rtr_max_pipe_clk {
+				compatible = "fixed-clock";
+				clock-frequency = <1000>;
+				clock-output-names = "usb4_2_phy_gcc_usb4rtr_max_pipe_clk";
+				#clock-cells = <0>;
+			};
+		};
+
+		gcc: clock-controller@100000 {
+			compatible = "qcom,glymur-gcc", "syscon";
+			reg = <0x0 0x00100000 0x0 0x1f9000>;
+			reg-name = "cc_base";
+			vdd_cx-supply = <&VDD_CX_LEVEL>;
+			vdd_mx-supply = <&VDD_MX_LEVEL>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>,
+				<&rpmhcc RPMH_CXO_CLK_A>,
+				<&sleep_clk>,
+				<&gcc_usb4_0_phy_dp0_gmux_clk_src>,
+				<&gcc_usb4_0_phy_dp1_gmux_clk_src>,
+				<&gcc_usb4_0_phy_pcie_pipegmux_clk_src>,
+				<&gcc_usb4_0_phy_pipegmux_clk_src>,
+				<&gcc_usb4_0_phy_sys_pipegmux_clk_src>,
+				<&gcc_usb4_1_phy_dp0_gmux_2_clk_src>,
+				<&gcc_usb4_1_phy_dp1_gmux_2_clk_src>,
+				<&gcc_usb4_1_phy_pcie_pipegmux_clk_src>,
+				<&gcc_usb4_1_phy_pipegmux_clk_src>,
+				<&gcc_usb4_1_phy_sys_pipegmux_clk_src>,
+				<&gcc_usb4_2_phy_dp0_gmux_clk_src>,
+				<&gcc_usb4_2_phy_dp1_gmux_clk_src>,
+				<&gcc_usb4_2_phy_pcie_pipegmux_clk_src>,
+				<&gcc_usb4_2_phy_pipegmux_clk_src>,
+				<&gcc_usb4_2_phy_sys_pipegmux_clk_src>,
+				<&pcie_3a_pipe_clk>,
+				<&pcie_3b_pipe_clk>,
+				<&pcie_4_pipe_clk>,
+				<&pcie_5_pipe_clk>,
+				<&pcie_6_pipe_clk>,
+				<&qusb4phy_0_gcc_usb4_rx0_clk>,
+				<&qusb4phy_0_gcc_usb4_rx1_clk>,
+				<&qusb4phy_1_gcc_usb4_rx0_clk>,
+				<&qusb4phy_1_gcc_usb4_rx1_clk>,
+				<&qusb4phy_2_gcc_usb4_rx0_clk>,
+				<&qusb4phy_2_gcc_usb4_rx1_clk>,
+				<&ufs_phy_rx_symbol_0_clk>,
+				<&ufs_phy_rx_symbol_1_clk>,
+				<&ufs_phy_tx_symbol_0_clk>,
+				<&usb3_phy_0_wrapper_gcc_usb30_pipe_clk>,
+				<&usb3_phy_1_wrapper_gcc_usb30_pipe_clk>,
+				<&usb3_phy_2_wrapper_gcc_usb30_pipe_clk>,
+				<&usb3_uni_phy_mp_gcc_usb30_pipe_0_clk>,
+				<&usb3_uni_phy_mp_gcc_usb30_pipe_1_clk>,
+				<&usb4_0_phy_gcc_usb4_pcie_pipe_clk>,
+				<&usb4_0_phy_gcc_usb4rtr_max_pipe_clk>,
+				<&usb4_1_phy_gcc_usb4_pcie_pipe_clk>,
+				<&usb4_1_phy_gcc_usb4rtr_max_pipe_clk>,
+				<&usb4_2_phy_gcc_usb4_pcie_pipe_clk>,
+				<&usb4_2_phy_gcc_usb4rtr_max_pipe_clk>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+			#power-domain-cells = <1>;
+		};
 
 		tcsr: syscon@1f40000 {
 			compatible = "syscon";
@@ -563,6 +930,100 @@
 			compatible = "qcom,tcsr-mutex";
 			syscon  = <&tcsr_mutex_block 0 0x1000>;
 			#hwlock-cells = <1>;
+		};
+
+		tcsrcc: clock-controller@1fd5000 {
+			compatible = "qcom,glymur-tcsr",
+				     "syscon";
+			reg = <0x0 0x1fd5000 0x0 0x21000>;
+			clocks = <&rpmhcc RPMH_CXO_CLK>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+		};
+
+		google,debug-kinfo {
+			compatible = "google,debug-kinfo";
+			memory-region = <&kinfo_mem>;
+		};
+
+		qcom,logbuf-vendor-hooks {
+			compatible = "qcom,logbuf-vendor-hooks";
+		};
+
+		vendor_hooks: qcom,cpu-vendor-hooks {
+			compatible = "qcom,cpu-vendor-hooks";
+		};
+
+		tlmm: pinctrl@f100000 {
+			compatible = "qcom,glymur-tlmm";
+			reg = <0x0 0x0f100000 0x0 0xf00000>;
+			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			gpio-ranges = <&tlmm 0 0 249>;
+			wakeup-parent = <&pdc>;
+		};
+
+		qcom,msm-imem@14680000 {
+			compatible = "qcom,msm-imem";
+			reg = <0x0 0x14680000 0x0 0x2c000>;
+			ranges = <0x0 0x0 0x14680000 0x2c000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			mem_dump_table@010 {
+				compatible = "qcom,msm-imem-mem_dump_table";
+				reg = <0x010 0x8>;
+			};
+
+			dload_type@01c {
+				compatible = "qcom,msm-imem-dload-type";
+				reg = <0x01c 0x4>;
+			};
+
+			boot_stats@6b0 {
+				compatible = "qcom,msm-imem-boot_stats";
+				reg = <0x6b0 0x20>;
+			};
+
+			kaslr_offset@6d0 {
+				compatible = "qcom,msm-imem-kaslr_offset";
+				reg = <0x6d0 0xc>;
+			};
+
+			pil@94c {
+				compatible = "qcom,pil-reloc-info";
+				reg = <0x94c 0xc8>;
+			};
+
+			pil@6dc {
+				compatible = "qcom,msm-imem-pil-disable-timeout";
+				reg = <0x6dc 0x4>;
+			};
+
+			diag_dload@0c8 {
+				compatible = "qcom,msm-imem-diag-dload";
+				reg = <0x0c8 0xc8>;
+			};
+		};
+
+		pdc: interrupt-controller@b220000 {
+			compatible = "qcom,glymur-pdc", "qcom,pdc";
+			reg = <0x0 0x0b220000 0x0 0x10000>;
+
+			qcom,pdc-ranges = <0 745 51>,
+					  <51 527 47>,
+					  <98 609 32>,
+					  <130 717 12>,
+					  <142 251 5>,
+					  <147 796 16>,
+					  <171 4104 36>;
+
+			#interrupt-cells = <2>;
+			interrupt-parent = <&intc>;
+			interrupt-controller;
 		};
 
 		intc: interrupt-controller@17000000 {
@@ -641,6 +1102,68 @@
 				status = "disabled";
 			};
 		};
+
+		qcom,msm-adsprpc-mem {
+			compatible = "qcom,msm-adsprpc-mem-region";
+			memory-region = <&adsp_mem_heap>;
+			restrict-access;
+		};
+
+		apps_rsc: rsc@18900000 {
+			label = "apps_rsc";
+			compatible = "qcom,rpmh-rsc";
+			reg = <0x0 0x18900000 0x0 0x10000>,
+			      <0x0 0x18910000 0x0 0x10000>,
+			      <0x0 0x18920000 0x0 0x10000>;
+			reg-names = "drv-0", "drv-1", "drv-2";
+			qcom,drv-count = <3>;
+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+			power-domains = <&system_pd>;
+
+			apps_rsc_drv2: drv@2 {
+				qcom,drv-id = <2>;
+				qcom,tcs-offset = <0xd00>;
+				qcom,tcs-distance = <0x2a0>;
+				channel@0 {
+					qcom,tcs-config = <ACTIVE_TCS    2>,
+							  <SLEEP_TCS     3>,
+							  <WAKE_TCS      3>,
+							  <CONTROL_TCS   0>,
+							  <FAST_PATH_TCS 0>;
+				};
+
+				rpmhcc: clock-controller {
+					compatible = "qcom,glymur-rpmh-clk";
+					clocks = <&xo_board>;
+					clock-names = "xo";
+					#clock-cells = <1>;
+				};
+			};
+		};
+
+		disp_rsc: rsc@af20000 {
+			label = "disp_rsc";
+			compatible = "qcom,rpmh-rsc";
+			reg = <0x0 0xaf20000 0x0 0x10000>;
+			reg-names = "drv-0";
+			qcom,drv-count = <1>;
+			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
+
+			disp_rsc_drv0: drv@0 {
+				qcom,drv-id = <0>;
+				qcom,tcs-offset = <0x1c00>;
+				qcom,tcs-distance = <0x2a0>;
+				channel@0 {
+					qcom,tcs-config = <ACTIVE_TCS    0>,
+							  <SLEEP_TCS     1>,
+							  <WAKE_TCS      1>,
+							  <CONTROL_TCS   0>,
+							  <FAST_PATH_TCS 0>;
+				};
+			};
+		};
 	};
 
 	arch_timer: timer {
@@ -652,3 +1175,7 @@
 			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
 	};
 };
+
+#include "glymur-pinctrl.dtsi"
+#include "mahua-regulators.dtsi"
+#include "msm-arm-smmu-glymur.dtsi"

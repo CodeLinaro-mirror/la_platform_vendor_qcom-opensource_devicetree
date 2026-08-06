@@ -36,6 +36,7 @@ properties:
       - qcom,canoe-dispcc
       - qcom,canoe-dispcc_mx
       - qcom,alor-dispcc
+      - qcom,whale-dispcc
       - qcom,chora-dispcc
 
   clocks:

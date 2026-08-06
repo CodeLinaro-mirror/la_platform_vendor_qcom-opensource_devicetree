@@ -11,8 +11,8 @@
 			vsmmu@c600000 { // APPS_MMU500_SMMU_APP
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0xc600000>;
-				num-cbs = <0x3>;
-				num-smrs = <0x3>;
+				num-cbs = <0x5>;
+				num-smrs = <0x8>;
 				patch = "/soc/apps-smmu@c600000";
 			};
 		};
@@ -30,12 +30,17 @@
 		qcom,use-3-lvl-tables;
 
 		qcom,actlr =
-			/* Display */
-			<0x0420 0x0002 0x00000103>,
-			<0x0421 0x0000 0x00000103>,
+			/* Camera */
+			<0x0401 0x0000 0x00000103>,
+			<0x0601 0x0000 0x00000103>,
+			<0x0621 0x0000 0x00000103>,
+			<0x0641 0x0000 0x00000103>,
 
-			/* QUP0 */
-			<0x00e3 0x0000 0x00000003>,
-			<0x00f6 0x0000 0x00000003>;
+			/* Display */
+			<0x0421 0x0000 0x00000103>,
+			<0x0424 0x0002 0x00000103>,
+
+			/* Compute */
+			<0x020B 0x0000 0x00000003>;
 	};
 };

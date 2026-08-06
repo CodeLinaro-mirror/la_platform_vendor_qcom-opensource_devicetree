@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=1 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=1 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0 androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange androidboot.hardware=qcom androidboot.selinux=enforcing androidboot.memcg=1 androidboot.recover_usb=1 androidboot.usbcontroller=a200000.dwc3";
 		bootconfig = "androidboot.fstab_suffix=hgy.seca.qcom androidboot.force_normal_boot=1 androidboot.verifiedbootstate=orange";
 	};
 
@@ -84,6 +84,26 @@
 		cp_np_pt_mem: cp_np_pt_region {
 			qcom,label = <0x9C>;
 			qcom,secure-pt-reserved;
+		};
+
+		glink_cma_mem1: glink-cma-region@1 {
+			no-map;
+			qcom,label = <0x60>;
+		};
+
+		glink_cma_mem2: glink-cma-region@2 {
+			no-map;
+			qcom,label = <0x61>;
+		};
+
+		glink_cma_mem5: glink-cma-region@5 {
+			no-map;
+			qcom,label = <0x64>;
+		};
+
+		glink_cma_mem6: glink-cma-region@6 {
+			no-map;
+			qcom,label = <0x65>;
 		};
 
 		soccp_fe_vm_1: soccp_fe_vm_1 {
@@ -238,6 +258,12 @@
 		qcom,dev-name = "bootloader_a";
 	};
 
+	virtio_mmio_i2c_9 {
+		virtio_i2c_9: virtio_i2c_9@0 {
+			compatible = "virtio,device22";
+		};
+	};
+
 	virtio_mmio_gpio {
 	};
 
@@ -256,6 +282,9 @@
 		qcom,primary-vm-index = <0>;
 		vm-attrs = "guest-ram-dump" ,"vpm-virq", "allow-unprotected";
 		qcom,peripheral-vmids = <0x9 0xa 0xb>;
+
+		virtio-iommu-stream-id-ranges-temp = <0x20000 0x10000 0x30000 0x10000>;
+		vits-device-id-ranges-temp = <0xa0000 0x1 0xa0100 0x1 0xb0000 0x1 0xb0100 0x1>;
 
 		memory {
 			#address-cells = <0x2>;
@@ -1269,18 +1298,52 @@
 
 		};
 
+		pci@0 {
+			vdevice-type = "pci";
+			patch = "/vsoc/pcie@0";
+			config-base-address = <0x0 0x28200000>;
+			config-size = <0x0 0x200000>;
+			npmem-base-address = <0x0 0x28100000>;
+			npmem-size = <0x0 0x100000>;
+			enable-msi;
+			dma-coherent;
+		};
 
+		virtio-iommu@0 {
+			vdevice-type = "virtio-iommu";
+			/*
+			 * Use existing PCI config below, no patch or generate
+			 * The HW address of the target SMMUv3
+			 */
+			smmu-handle = <0x0 0x9980000>;
+			/*
+			 * How many stream do we expect to support on this interface
+			 * to limit memory consumption
+			 */
+			max-streams = <10>;
+			pci-slot-index = <0x1>;
+		};
 	};
 
-
+	vsoc: vsoc {
+		/*
+		 * Virtual PCI device for Virtio-iommu
+		 * RM is now choosing the addr for this bus, use the index instead
+		 */
+		vpci_0: pcie@0 {
+			/* Device @1,0 matches up with pci-slot-index <0x1> vm-config */
+			virtio_iommu0: virtio-iommu@1,0 {
+				/* This IOMMU programming interface uses slot 00:01.0 */
+				compatible = "pci1af4,1057";
+				reg = <0x00000800 0x0 0x0 0x0 0x0>;
+				#iommu-cells = <1>;
+			};
+		};
+	};
 
 	firmware: firmware {
 		scm {
 			compatible = "qcom,scm";
-		};
-
-		qcom_smcinvoke {
-			compatible = "qcom,smcinvoke";
 		};
 
 		qcom_mem_object {
@@ -1318,6 +1381,53 @@
 	#size-cells = <1>;
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	ipcc_mproc_apps_ns1: qcom,ipcc@9008000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9008000 0x1000>;
+		interrupts = <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "ok";
+	};
+
+	virtio_glink_cma: virtio-glink-cma@2e000000 {
+		glink_bridge: virtio-glink-bridge {
+			compatible = "virtio,device49162";
+			remoteproc_cdsp_glink: glink-edge {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_NSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_NSP0 0>;
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+			};
+
+			remoteproc_cdsp1_glink: glink-edge1 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_NSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_NSP1 0>;
+				label = "cdsp1";
+				qcom,glink-label = "cdsp1";
+			};
+
+			remoteproc_hpass0_glink: glink-edge4 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_ADSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_ADSP0 0>;
+				label = "adsp";
+				qcom,glink-label = "adsp";
+			};
+
+			remoteproc_hpass1_glink: glink-edge5 {
+				interrupt-parent = <&ipcc_mproc_apps_ns1>;
+				interrupts = <IPCC_MPROC_ADSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns1 IPCC_MPROC_ADSP1 0>;
+				label = "adsp1";
+				qcom,glink-label = "adsp1";
+			};
+		};
+	};
 
 	psci {
 		compatible = "arm,psci-1.0";

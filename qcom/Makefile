@@ -131,21 +131,22 @@ canoe-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DT
 BOURTZI_BASE_DTB += bourtzi.dtb
 BOURTZI_4GB_BASE_DTB += bourtzi-4gb.dtb
 BOURTZI_APQ_BASE_DTB += bourtzip.dtb
+BOURTZI_4GB_APQ_BASE_DTB += bourtzip-4gb.dtb
 
 BOURTZI_BOARDS += \
 		bourtzi-atp-overlay.dtbo \
-		bourtzi-cdp-overlay.dtbo \
-		bourtzi-cdp-lcd-overlay.dtbo \
-		bourtzi-mtp-overlay.dtbo \
 		bourtzi-mtp-evros-cottid-overlay.dtbo \
 		bourtzi-qrd-overlay.dtbo \
 		bourtzi-qrd-evros-overlay.dtbo \
-		bourtzi-rcm-overlay.dtbo \
-		bourtzi-rcm-lcd-overlay.dtbo \
 		bourtzi-rcm-evros-cottid-overlay.dtbo \
 		bourtzi-rcm-evros-cottid-lcd-overlay.dtbo
 
-BOURTZI_4GB_BOARDS += bourtzi-mtp-4gb-overlay.dtbo
+BOURTZI_4GB_BOARDS += \
+		bourtzi-mtp-4gb-overlay.dtbo \
+		bourtzi-cdp-4gb-overlay.dtbo \
+		bourtzi-cdp-4gb-lcd-overlay.dtbo \
+		bourtzi-rcm-4gb-overlay.dtbo \
+		bourtzi-rcm-4gb-lcd-overlay.dtbo
 
 NOAPQ_BOURTZI_BOARDS += \
 		bourtzi-rumi-overlay.dtbo
@@ -153,9 +154,10 @@ NOAPQ_BOURTZI_BOARDS += \
 canoe-dtb-$(CONFIG_ARCH_BOURTZI) += \
 	$(call add-overlays, $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS),$(BOURTZI_BASE_DTB)) \
 	$(call add-overlays, $(BOURTZI_4GB_BOARDS),$(BOURTZI_4GB_BASE_DTB)) \
-	$(call add-overlays, $(BOURTZI_BOARDS),$(BOURTZI_APQ_BASE_DTB))
+	$(call add-overlays, $(BOURTZI_BOARDS),$(BOURTZI_APQ_BASE_DTB)) \
+	$(call add-overlays, $(BOURTZI_4GB_BOARDS),$(BOURTZI_4GB_APQ_BASE_DTB))
 canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_BOARDS) $(BOURTZI_BASE_DTB) $(BOURTZI_APQ_BASE_DTB) \
-					 $(BOURTZI_4GB_BOARDS) $(BOURTZI_4GB_BASE_DTB)
+	                                     $(BOURTZI_4GB_BOARDS) $(BOURTZI_4GB_BASE_DTB) $(BOURTZI_4GB_APQ_BASE_DTB)
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
@@ -232,7 +234,8 @@ KHAJE_BOARDS += \
 		khajeg-idp-nopmi-overlay.dtbo \
 		khajeg-idp-usbc-overlay.dtbo \
 		khajeg-idp-pm8010-overlay.dtbo \
-		khajeg-idps-display-90hz-overlay.dtbo
+		khajeg-idps-display-90hz-overlay.dtbo \
+		khaje-idp-lp4-overlay.dtbo
 
 bengal-dtb-$(CONFIG_ARCH_KHAJE) += \
         $(call add-overlays, $(KHAJE_BOARDS) ,$(KHAJE_BASE_DTB))
@@ -241,6 +244,7 @@ bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
 BENGAL_BASE_DTB += bengal.dtb bengalp.dtb bengal-1gb.dtb bengal-2gb.dtb
+BENGAL_IOT_BASE_DTB += bengal-iot.dtb bengalp-iot.dtb bengal-iot-2gb.dtb bengalp-iot-2gb.dtb
 
 BENGAL_BOARDS += \
 		bengal-idp-overlay.dtbo\
@@ -254,9 +258,21 @@ BENGAL_BOARDS += \
 		bengal-idp-usbc-1gb-overlay.dtbo \
 		bengal-idp-usbc-2gb-overlay.dtbo
 
+BENGAL_IOT_BOARDS +=\
+		bengal-iot-idp-overlay.dtbo \
+		bengalp-iot-idp-overlay.dtbo \
+		bengalp-iot-idp-usbc-2gb-overlay.dtbo \
+		bengal-iot-idp-usbc-2gb-overlay.dtbo \
+		bengal-iot-idp-2gb-overlay.dtbo \
+		bengal-iot-idp-usbc-overlay.dtbo \
+		bengalp-iot-idp-2gb-overlay.dtbo \
+		bengalp-iot-idp-usbc-overlay.dtbo
+
 bengal-dtb-$(CONFIG_ARCH_BENGAL) += \
-        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB))
-bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB)
+        $(call add-overlays, $(BENGAL_BOARDS) ,$(BENGAL_BASE_DTB)) \
+	$(call add-overlays, $(BENGAL_IOT_BOARDS), $(BENGAL_IOT_BASE_DTB))
+
+bengal-overlays-dtb-$(CONFIG_ARCH_BENGAL) += $(BENGAL_BOARDS) $(BENGAL_BASE_DTB) $(BENGAL_IOT_BOARDS) $(BENGAL_IOT_BASE_DTB)
 
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
@@ -276,7 +292,8 @@ SCUBA_BOARDS += \
                  scuba-iot-idp-usbc-overlay.dtbo \
                  scuba-iot-qrd-eldo-overlay.dtbo \
                  scuba-iot-qrd-non-eldo-overlay.dtbo \
-                 scuba-iot-rb1-overlay.dtbo
+                 scuba-iot-rb1-overlay.dtbo \
+                 scuba-iot-idp-lp4-overlay.dtbo
 
 bengal-dtb-$(CONFIG_ARCH_SCUBA) += \
 	$(call add-overlays, $(SCUBA_BOARDS), $(SCUBA_BASE_DTB))
@@ -725,6 +742,26 @@ dtb-y += $(canoe_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_LEMANS_QCVIRTIO), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+
+LEMANS_LV_GVM_QCVIRTIO_BASE_DTB += lemans-vm-lv-qcvirtio.dtb
+
+LEMANS_LV_GVM_QCVIRTIO_BOARDS += \
+                lemans-vm-lv-qcvirtio-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(LEMANS_LV_GVM_QCVIRTIO_BOARDS),$(LEMANS_LV_GVM_QCVIRTIO_BASE_DTB))
+
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(LEMANS_LV_GVM_QCVIRTIO_BOARDS) $(LEMANS_LV_GVM_QCVIRTIO_BASE_DTB)
+
+dtb-y += $(autogvm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 LEMANS_LA_GVM_BASE_DTB += lemans-vm-la.dtb
@@ -845,17 +882,24 @@ SA8797P_MULTI_GVM_BOARDS += \
 SA8797P_MULTI_GVM_BASE_DTB += sa8797p-sdp8-vm-lv-mt.dtb \
 		sa8797p-sdp8-vm-la-mt.dtb sa8797p-v2-sdp8-vm-la-mt.dtb
 
+SECA_LA_GVM_BOARDS += \
+		seca-sdp8-vm-la-overlay.dtbo
+
+SECA_LA_GVM_BASE_DTB += seca-sdp8-vm-la.dtb
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(SA8797P_MULTI_GVM_BOARDS),$(SA8797P_MULTI_GVM_BASE_DTB)) \
+	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
+	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB)
 
 SECA_GH_LA_GVM_QAM_BASE_DTB += \
 	seca-gh-vm-la-qam.dtb \
-	seca-gh-vm-la-qam-star.dtb \
+	seca-gh-vm-la-qam-star.dtb
 
 SECA_GH_LA_GVM_QAM_BOARDS += seca-gh-vm-la-qam-overlay.dtbo
 
