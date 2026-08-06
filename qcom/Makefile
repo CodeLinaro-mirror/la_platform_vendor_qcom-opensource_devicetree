@@ -259,6 +259,8 @@ RAVELIN_BOARDS += \
 		 ravelin-qrd-overlay.dtbo \
 		 montague-rumi-overlay.dtbo \
 		 montague-hsp-overlay.dtbo \
+		 montague-hsp-fp-overlay.dtbo \
+		 montague-hsp-fp2-overlay.dtbo \
 		 montague-rcm-overlay.dtbo \
 		 montague-wsa-overlay.dtbo \
 		 montague-wsd-overlay.dtbo \
