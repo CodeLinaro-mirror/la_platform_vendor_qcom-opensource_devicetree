@@ -675,7 +675,13 @@ X1P42100_BASE_DTB += x1p42100.dtb
 
 X1P42100_BOARDS += \
 		   x1p42100-crd-overlay.dtbo \
-		   x1p42100-crd-cologne-overlay.dtbo
+		   x1p42100-crd-cologne-overlay.dtbo \
+		   x1p42100-qcb-v1-overlay.dtbo \
+		   x1p42100-qcb-v2-overlay.dtbo \
+		   x1p42100-qcb-v3-overlay.dtbo \
+		   x1p42100-cdp-v1-overlay.dtbo \
+		   x1p42100-cdp-v2-overlay.dtbo \
+		   x1p42100-cdp-v3-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
