@@ -37,6 +37,17 @@
 		qcom,core-clk-rate = <133333333>;
 		qcom,core-clk-rate-hs = <66666667>;
 
+		interconnect-names = "usb-ddr", "ddr-usb";
+		interconnects = <&system_noc MASTER_USB3 &mc_virt SLAVE_EBI_CH0>,
+				<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_USB3>;
+
+		qcom,interconnect-values-nom = /* NOMINAL Votes */
+			<1000000 4500000>,
+			<0 40000>;
+		qcom,interconnect-values-svs = /* SVS Votes */
+			<240000 700000>,
+			<0 40000>;
+
 		extcon = <&eud>;
 		dummy-supply = <&apps_smmu>;
 
@@ -192,8 +203,7 @@
 			<&gcc GCC_AHB2PHY_USB_CLK>;
 		clock-names =  "ref_clk_src", "cfg_ahb_clk";
 
-		/*Fix: update reset to GCC_QUSB2PHY_SEC_BCR once available from clk side*/
-		resets = <&gcc GCC_USB_PHY_CFG_AHB2PHY_BCR>;
+		resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
 		reset-names = "phy_reset";
 	};
 

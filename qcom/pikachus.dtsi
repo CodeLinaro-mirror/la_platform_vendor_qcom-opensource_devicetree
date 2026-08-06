@@ -4,6 +4,8 @@
  */
 
 #include "pikachu.dtsi"
+#include "pikachus-regulators.dtsi"
+
 / {
 	model = "Qualcomm Technologies, Inc. PikachuS SoC";
 	compatible = "qcom,pikachus";

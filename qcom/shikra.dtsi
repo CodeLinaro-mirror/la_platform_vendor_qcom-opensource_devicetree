@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmcc.h>
 #include <dt-bindings/clock/qcom,shikra-audiocorecc.h>
 #include <dt-bindings/clock/qcom,shikra-dispcc.h>
@@ -787,6 +788,15 @@
 		qcom,vmid-cp-camera-preview-ro;
 	};
 
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
 	};
@@ -832,7 +842,7 @@
 	sram@4690000 {
 		compatible = "qcom,rpm-stats-v2";
 		reg = <0x04690000 0x10000>;
-		ss-name = "modem", "cdsp", "apss";
+		ss-name = "modem", "cdsp", "apss", "lmcu";
 	};
 
 	apcs_glb: mailbox@f400000 {
@@ -1028,7 +1038,8 @@
 			     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,gpii-mask = <0xff>;
+		qcom,static-gpii-mask = <0x1>;
+		qcom,gpii-mask = <0xfe>;
 		qcom,ev-factor = <1>;
 		memory-region = <&qup0_gpi_iommu_region>;
 		qcom,gpi-ee-offset = <0x10000>;
@@ -1326,8 +1337,8 @@
 			pinctrl-1 = <&qup_i2c4_sleep>;
 			pinctrl-names = "default",
 					"sleep";
-			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0>,
-			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0>;
+			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0x2>,
+			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0x2>;
 			dma-names = "tx",
 				    "rx";
 			#address-cells = <1>;
@@ -2707,6 +2718,13 @@
 		memory-region-names = "trustedvm_cma" , "oemvm_cma";
 	};
 
+	qcom,qrtr-gunyah-oemvm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x108>;
+		peer-name = <4>;
+	};
+
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
@@ -2736,6 +2754,16 @@
 		peer-name = <2>;
 	};
 
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		qcom,master;
+		tuivm {
+			qcom,label = <0x08>;
+			qcom,vmid = <45>;
+			tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0>;
+		};
+	};
+
 	qcom,gh-qtimer@F42B000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x0F42B000 0x0 0x1000>;
@@ -2761,6 +2789,18 @@
 		peer-name = <2>;
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
+	};
+
+	cache-controller@e00000 {
+		compatible = "qcom,shikra-llcc";
+		reg = <0x0e00000 0x80000>,
+		      <0x0f00000 0x80000>,
+		      <0x1000000 0x80000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base";
+		cap-based-alloc-and-pwr-collapse;
+		interrupts = <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
+					<GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>;
+		status = "okay";
 	};
 
 };
@@ -3358,11 +3398,6 @@
 		status = "okay";
 		interrupt-parent = <&tlmm>;
 		interrupts = <85 0x2800>;
-		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
-		pinctrl-0 = <&ts_int_default>;
-		pinctrl-1 = <&ts_int_output_low>;
-		pinctrl-2 = <&ts_int_output_high>;
-		pinctrl-3 = <&ts_int_input>;
 
 		reset-gpios = <&tlmm 76 0x1>;
 		irq-gpios = <&tlmm 85 0x1>;

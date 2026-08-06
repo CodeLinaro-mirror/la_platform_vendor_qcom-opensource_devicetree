@@ -161,6 +161,39 @@ canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_B
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
+WAIPIO_BASE_DTB += waipio.dtb waipiop.dtb waipio-v2.dtb waipiop-v2.dtb
+WAIPIO_BOARDS += \
+		waipio-rumi-overlay.dtbo \
+		waipio-mtp-pm8008-overlay.dtbo \
+		waipio-cdp-pm8008-overlay.dtbo \
+		waipio-qrd-pm8008-overlay.dtbo \
+		waipio-atp-pm8008-overlay.dtbo \
+		waipio-mtp-pm8010-overlay.dtbo \
+		waipio-cdp-pm8010-overlay.dtbo \
+		waipio-qrd-pm8010-overlay.dtbo \
+		waipio-qrd-pm8010-2s-overlay.dtbo \
+		waipio-atp-pm8010-overlay.dtbo \
+		waipio-lemur-mtp-pm8008-overlay.dtbo \
+		waipio-lemur-mtp-pm8010-overlay.dtbo \
+		waipio-lemur-cdp-pm8008-overlay.dtbo \
+		waipio-lemur-cdp-pm8010-overlay.dtbo \
+		waipio-kiwi-mtp-pm8008-overlay.dtbo \
+		waipio-kiwi-mtp-pm8010-overlay.dtbo \
+		waipio-kiwi-cdp-pm8008-overlay.dtbo \
+		waipio-kiwi-cdp-pm8010-overlay.dtbo \
+		waipio-mtp-68disp-pm8008-overlay.dtbo \
+		waipio-mtp-68disp-pm8010-overlay.dtbo \
+		waipio-cdp-xr-overlay.dtbo \
+		waipio-mtp-xr-overlay.dtbo \
+		waipio-cdp-xr-pcie-overlay.dtbo \
+		waipio-mtp-xr-pcie-overlay.dtbo
+
+waipio-dtb-$(CONFIG_ARCH_WAIPIO) += \
+	$(call add-overlays, $(WAIPIO_BOARDS) ,$(WAIPIO_BASE_DTB))
+waipio-overlays-dtb-$(CONFIG_ARCH_WAIPIO) += $(WAIPIO_BOARDS) $(WAIPIO_BASE_DTB)
+
+dtb-y += $(waipio-dtb-y) $(waipio-overlays-dtb-y)
+
 MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
@@ -507,6 +540,7 @@ SERAPH_BOARDS += \
 		seraphp-v1.1-idp-dtof-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo \
+		seraphp-v1.1-qar-proto-config3-overlay.dtbo \
 		seraphp-v1.1-qar-3rd-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-overlay.dtbo \
@@ -613,7 +647,8 @@ dtb-y += $(vienna-dtb-y)
 X1P42100_BASE_DTB += x1p42100.dtb
 
 X1P42100_BOARDS += \
-		   x1p42100-crd-overlay.dtbo
+		   x1p42100-crd-overlay.dtbo \
+		   x1p42100-crd-cologne-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
@@ -637,6 +672,7 @@ HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
 SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
+SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
@@ -647,11 +683,15 @@ SHIKRA_BOARDS += \
 
 NOAPQ_SHIKRA_BOARDS += \
 		 shikra-rumi-overlay.dtbo
+SHIKRA_IQS_BOARDS += \
+                 shikra-iqs-overlay.dtbo
 
 shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
 	$(call add-overlays, $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS),$(SHIKRA_BASE_DTB)) \
-	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB))
-shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB)
+	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB)) \
+	$(call add-overlays, $(SHIKRA_IQS_BOARDS),$(SHIKRA_IQS_BASE_DTB))
+
+shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB) $(SHIKRA_IQS_BOARDS) $(SHIKRA_IQS_BASE_DTB)
 dtb-y += $(shikra-dtb-y)
 
 MAHUA_BASE_DTB += mahua.dtb

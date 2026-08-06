@@ -1850,7 +1850,7 @@
 			depends-on-supply = <&ipcc_mproc>;
 
 			battery_charger: qcom,battery_charger {
-				compatible = "qcom,battery-charger";
+				compatible = "qcom,x1e80100-battery-charger";
 			};
 
 			ucsi: qcom,ucsi {
@@ -1860,6 +1860,10 @@
 			altmode: qcom,altmode {
 				compatible = "qcom,altmode-glink";
 				#altmode-cells = <1>;
+			};
+
+			rtc_glink: qcom,rtc-glink {
+				compatible = "qcom,rtc-glink";
 			};
 		};
 
@@ -3008,6 +3012,13 @@
 			qcom,low-latency;
 		};
 
+		qcom,qrtr-mhi-cnss2 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x0308>;
+			qcom,net-id = <1>;
+			qcom,low-latency;
+		};
+
 		msm_gpu: qcom,kgsl-3d0@3d00000 { };
 
 		clocks {
@@ -3521,6 +3532,11 @@
 			#power-domain-cells = <1>;
 		};
 
+		apsscc: syscon@17455000 {
+			compatible = "syscon";
+			reg = <0x0 0x17455000 0x0 0x20>;
+		};
+
 		mccc: syscon@240ba000 {
 			compatible = "syscon";
 			reg = <0x0 0x240ba000 0x0 0x800>;
@@ -3528,6 +3544,7 @@
 
 		debugcc: clock-controller@0 {
 			compatible = "qcom,x1e80100-debugcc";
+			qcom,apsscc = <&apsscc>;
 			qcom,av1ecc = <&av1ecc>;
 			qcom,camcc = <&camcc>;
 			qcom,dispcc = <&dispcc>;

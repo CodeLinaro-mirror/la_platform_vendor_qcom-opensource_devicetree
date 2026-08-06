@@ -1658,18 +1658,20 @@
 					<&adsp_smp2p_in 2 0>,
 					<&adsp_smp2p_in 1 0>,
 					<&adsp_smp2p_in 3 0>,
-					<&adsp_smp2p_in 7 0>;
+					<&adsp_smp2p_in 7 0>,
+					<&adsp_smp2p_in 11 0>;
 
 		interrupt-names = "wdog",
 				"fatal",
 				"handover",
 				"ready",
 				"stop-ack",
-				"shutdown-ack";
+				"shutdown-ack",
+				"pong";
 
 		/* Outputs to turing */
-		qcom,smem-states = <&adsp_smp2p_out 0>;
-		qcom,smem-state-names = "stop";
+		qcom,smem-states = <&adsp_smp2p_out 0>, <&adsp_smp2p_out 8>;
+		qcom,smem-state-names = "stop", "ping";
 
 		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
