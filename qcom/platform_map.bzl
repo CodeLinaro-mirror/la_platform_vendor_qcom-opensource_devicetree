@@ -731,6 +731,7 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "bourtzi-vm-atp-overlay.dtbo"},
+            {"name": "bourtzi-vm-cdp-overlay.dtbo"},
             {"name": "bourtzi-vm-mtp-overlay.dtbo"},
             {"name": "bourtzi-vm-qrd-overlay.dtbo"},
             {"name": "bourtzi-vm-rcm-overlay.dtbo"},
