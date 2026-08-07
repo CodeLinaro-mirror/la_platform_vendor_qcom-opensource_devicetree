@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/misc/qcom,fspapp-client.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Qualcomm FSP Application Client
+
+maintainers:
+  - SasiKumar <sasikuma@oss.qualcomm.com>
+
+description: |
+  The Qualcomm FSP (Firmware Service Processor) Application Client
+  provides an interface for communicating with the FSP firmware service.
+  It is used by the Linux kernel to exchange messages and control data
+  with firmware running on a dedicated subsystem.
+
+properties:
+  compatible:
+    const: qcom,fspapp-client
+
+required:
+  - compatible
+
+additionalProperties: false
+
+examples:
+  - |
+    fspapp_client {
+        compatible = "qcom,fspapp-client";
+    };
