@@ -1500,6 +1500,14 @@
 				peer-default;
 			};
 
+			eth-switch-dbl {
+				vdevice-type = "doorbell";
+				generate = "/soc/eth-switch-dbl";
+				qcom,label = <0x10>;
+				push-compatible = "qcom,eth-switch-dbl";
+				peer-default;
+			};
+
 			test-msgq-gvm1 {
 				vdevice-type = "message-queue-pair";
 				generate = "/hypervisor/test-msgq-gvm1-pair";
