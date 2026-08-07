@@ -1182,10 +1182,15 @@ ifeq ($(CONFIG_ARCH_SHIKRA), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 shikra_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += shikra-vm-base.dtb \
 				shikra-vm-atp-overlay.dtbo \
-			        shikra-vm-itp-overlay.dtbo \
+			        shikra-vm-eitp-overlay.dtbo \
+				shikra-vm-itp-overlay.dtbo \
+			        shikra-vm-itps-overlay.dtbo \
 			        shikra-oemvm-base.dtb \
 				shikra-oemvm-atp-overlay.dtbo \
-				shikra-oemvm-itp-overlay.dtbo
+				shikra-oemvm-eitp-overlay.dtbo \
+				shikra-oemvm-itp-overlay.dtbo \
+				shikra-oemvm-itps-overlay.dtbo
+
 dtb-y += $(shikra_tuivm-dtb-y)
 
 endif
