@@ -2597,6 +2597,11 @@
 		compatible = "qcom,scm";
 		qcom,dload-mode = <&tcsr 0x99000>;
 	};
+
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
 };
 
 &reserved_memory {
