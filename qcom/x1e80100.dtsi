@@ -965,6 +965,7 @@
 			dev-ref-clk-freq = <0>; /* 19.2 MHz */
 
 			qcom,ice-use-hwkm;
+			qcom,cluster-mask = <0x0f 0xff0>;
 
 			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
 				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
@@ -1036,7 +1037,18 @@
 			phy-names = "ufsphy";
 			#reset-cells = <1>;
 
+			qcom,max-cpus = <12>;
+
 			status = "disabled";
+
+			qos0 {
+				vote = <44>;
+				perf;
+			};
+
+			qos1 {
+				vote = <44>;
+			};
 		};
 
 		sdhc_2_dma_resv: sdhc_2_dma_resv_region {
