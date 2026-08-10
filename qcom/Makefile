@@ -1095,6 +1095,9 @@ endif
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 
+PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB := prime-lemans-gh-vm-la-qam-ridesx.dtb
+PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS := prime-lemans-gh-vm-la-qam-ridesx-overlay.dtbo
+
 LEMANS_GH_LA_GVM_QAM_BASE_DTB += lemans-gh-vm-la-qam-ridesx.dtb
 LEMANS_GH_LA_GVM_QAM_BOARDS += lemans-gh-vm-la-qam-ridesx-overlay.dtbo
 
@@ -1102,10 +1105,12 @@ LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB += lemans-gh-vm-la-flex-qam-ridesx.dtb
 LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS += lemans-gh-vm-la-flex-qam-ridesx-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS),$(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_GH_LA_GVM_QAM_BOARDS),$(LEMANS_GH_LA_GVM_QAM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS),$(LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS) $(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB) \
 	$(LEMANS_GH_LA_GVM_QAM_BOARDS) $(LEMANS_GH_LA_GVM_QAM_BASE_DTB) \
 	$(LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS) $(LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB)
 
