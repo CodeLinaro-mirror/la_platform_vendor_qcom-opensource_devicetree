@@ -41,7 +41,7 @@
 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
 		input-disable;
 		output-enable;
-		output-high;
+		output-low;
 		power-source = <0>;
 	};
 
@@ -51,7 +51,7 @@
 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
 		input-disable;
 		output-enable;
-		output-high;
+		output-low;
 		power-source = <0>;
 	};
 
@@ -73,7 +73,6 @@
 		pinctrl-0 = <&usb3_vbus_en>;
 		pinctrl-names = "default";
 		enable-active-high;
-		regulator-always-on;
 	};
 
 	regulator_usb6_vbus: regulator-usb6-vbus {
@@ -83,7 +82,6 @@
 		pinctrl-0 = <&usb6_vbus_en>;
 		pinctrl-names = "default";
 		enable-active-high;
-		regulator-always-on;
 	};
 
 	regulator_usb5_vbus: regulator-usb5-vbus {
@@ -279,6 +277,8 @@
 
 &usb_mp {
 	status = "okay";
+	vbus_dwc3_0-supply = <&regulator_usb3_vbus>;
+	vbus_dwc3_1-supply = <&regulator_usb6_vbus>;
 };
 
 &usb2_phy_4 {
