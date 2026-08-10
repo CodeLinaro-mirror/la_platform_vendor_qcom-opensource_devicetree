@@ -30,6 +30,22 @@
 		no-map;
 		reg = <0x0 0x51400000 0x0 0x500000>;
 	};
+
+	bitstream_sec_mem: bitstream-sec-mem@55700000 {
+		no-map;
+		reg = <0x0 0x55700000 0x0 0x3C00000>;
+	};
+};
+
+&soc {
+        qcom,dma-heaps {
+		qcom,secure_bitstream {
+			qcom,dma-heap-name = "qcom,secure-bitstream";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			memory-region = <&bitstream_sec_mem>;
+			qcom,token = <0x40000>;
+		};
+	};
 };
 
 &qcom_cedev {
