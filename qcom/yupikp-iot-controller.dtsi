@@ -25,7 +25,7 @@
 
 		vol_up {
 			label = "volume_up";
-			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
+			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
 			linux,input-type = <1>;
 			linux,code = <KEY_VOLUMEUP>;
 			gpio-key,wakeup;
@@ -416,6 +416,37 @@
 
 /*==============================*/
 /*     Camera Related End        */
+/*==============================*/
+
+/*==============================*/
+/*     Key Related Start        */
+/*==============================*/
+
+&pm7325_gpios {
+	/delete-node/ key_vol_up;
+};
+
+&tlmm {
+	key_vol_up {
+		key_vol_up_default: key_vol_up_default {
+			mux {
+				pins = "gpio35";
+				function = "normal";
+			};
+
+			config {
+				pins = "gpio35";
+				input-enable;
+				bias-pull-up;
+				power-source = <1>;
+				drive-strength = <2>;
+			};
+		};
+	};
+};
+
+/*==============================*/
+/*     Key Related End          */
 /*==============================*/
 
 &bluetooth {
