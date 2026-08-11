@@ -76,6 +76,7 @@
 			num-hc-interrupters = /bits/ 16 <3>;
 			dr_mode = "otg";
 			maximum-speed = "high-speed";
+			usb-psy-name = "usb";
 			usb-role-switch;
 		};
 
