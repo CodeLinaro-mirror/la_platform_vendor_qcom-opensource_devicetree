@@ -9,6 +9,7 @@
 #include "yupik-pmic-overlay.dtsi"
 #include "pm7250b.dtsi"
 #include "yupik-pm7250b-thermal-overlay.dtsi"
+#include "yupikp-iot-cpe.dtsi"
 
 &soc {
 	gpio_keys {
@@ -64,6 +65,19 @@
 			qcom,can-sleep;
 		};
 	};
+};
+
+&gcc_pcie_1_gdsc {
+	status = "ok";
+};
+
+&pcie1 {
+	status = "ok";
+	qcom,boot-option = <0x2>;
+};
+
+&pcie1_msi {
+	status = "ok";
 };
 
 &ufsphy_mem {
@@ -190,6 +204,10 @@
 	status = "disabled";
 };
 
+&pmr735a_1 {
+	status = "disabled";
+};
+
 &sdhc_2 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&sdc2_on>;
@@ -210,6 +228,53 @@
 
 &fsa4480 {
 	status = "disabled";
+};
+
+&qupv3_se1_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+	clock-frequency = <100000>;
+
+	redriver: redriver@1c {
+		compatible = "onnn,nb7vpq904m";
+		reg = <0x1c>;
+
+		vcc-supply = <&pm8350c_l7>;
+
+		retimer-switch;
+		orientation-switch;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				redriver_ss_out: endpoint {
+					remote-endpoint = <&pmic_glink_ss_in>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				redriver_ss_in: endpoint {
+					data-lanes = <3 2 1 0>;
+					remote-endpoint = <&usb_qmp_dp_phy_ep>;
+				};
+			};
+		};
+	};
+};
+
+&usb_qmp_dp_phy {
+	port {
+		usb_qmp_dp_phy_ep: endpoint {
+			remote-endpoint = <&redriver_ss_in>;
+		};
+	};
 };
 
 &usb0 {
@@ -233,6 +298,13 @@
 
 				usb_port0_connector: endpoint {
 					remote-endpoint = <&usb_port0>;
+				};
+			};
+			port@1 {
+				reg = <1>;
+
+				pmic_glink_ss_in: endpoint {
+					remote-endpoint = <&redriver_ss_out>;
 				};
 			};
 		};

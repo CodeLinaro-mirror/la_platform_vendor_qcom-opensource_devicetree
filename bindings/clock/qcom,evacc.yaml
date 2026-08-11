@@ -17,6 +17,7 @@ description: |
   - dt-bindings/clock/qcom,evacc-canoe.h
   - dt-bindings/clock/qcom,pikachu-evacc.h
   - dt-bindings/clock/qcom,evacc-seraph.h
+  - dt-bindings/clock/qcom,glymur-evacc.h
 
 properties:
   compatible:
@@ -26,6 +27,7 @@ properties:
       - qcom,pikachu-evacc
       - qcom,seraph-evacc
       - qcom,whale-evacc
+      - qcom,glymur-evacc
 
   clocks:
     items:

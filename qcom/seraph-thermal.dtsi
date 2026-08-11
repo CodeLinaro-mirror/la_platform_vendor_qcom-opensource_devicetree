@@ -200,7 +200,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 
 			cpu00_config: cpu00-config {
@@ -334,7 +334,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 
@@ -364,7 +364,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -388,7 +388,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 
 			gpu0_tj_cfg: tj_cfg {
@@ -425,7 +425,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 
 			gpu1_tj_cfg: tj_cfg {
@@ -461,7 +461,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -484,7 +484,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -507,7 +507,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -530,7 +530,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -553,7 +553,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -576,7 +576,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -599,7 +599,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};
@@ -622,7 +622,7 @@
 			reset-mon-cfg {
 				temperature = <115000>;
 				hysteresis = <5000>;
-				type = "passive";
+				type = "hot";
 			};
 		};
 	};

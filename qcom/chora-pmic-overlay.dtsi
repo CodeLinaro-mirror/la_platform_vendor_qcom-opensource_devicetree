@@ -473,3 +473,8 @@
 		pinctrl-0 = <&s6b_ext_enable_default>;
 	};
 };
+
+&pmk8550_qvadj {
+	compatible = "qcom,vadj-chora", "qcom,vadj";
+	qcom,qmp = <&aoss_qmp>;
+};

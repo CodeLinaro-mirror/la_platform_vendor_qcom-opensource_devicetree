@@ -86,7 +86,7 @@
 			tx-fifo-resize;
 			usb-phy = <&eusb2_phy0>, <&usb_qmp_dp_phy>;
 			usb-role-switch;
-			dr_mode = "peripheral";
+			dr_mode = "otg";
 			maximum-speed = "super-speed-plus";
 		};
 	};

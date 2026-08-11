@@ -13,10 +13,6 @@
 			thermal-hal-config {
 				temperature = <95000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -32,10 +28,6 @@
 
 			cpu00-config {
 				temperature = <112000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};
@@ -53,11 +45,6 @@
 			cpu01-config {
 				temperature = <112000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
-
 		};
 	};
 
@@ -73,10 +60,6 @@
 
 			cpu10-config {
 				temperature = <112000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};
@@ -94,10 +77,6 @@
 			cpu11-config {
 				temperature = <112000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -109,10 +88,6 @@
 
 			thermal-hal-config {
 				temperature = <95000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};
@@ -130,10 +105,6 @@
 			tj_cfg {
 				temperature = <95000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -150,10 +121,6 @@
 			nsp-0-trip {
 				temperature = <95000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -165,10 +132,6 @@
 
 			thermal-hal-config {
 				temperature = <95000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};
@@ -182,10 +145,6 @@
 			thermal-hal-config {
 				temperature = <95000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -198,10 +157,6 @@
 			thermal-hal-config {
 				temperature = <95000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -213,10 +168,6 @@
 
 			thermal-hal-config {
 				temperature = <95000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};
@@ -234,10 +185,6 @@
 			cpu02-config {
 				temperature = <112000>;
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-			};
 		};
 	};
 
@@ -249,10 +196,6 @@
 
 			thermal-hal-config {
 				temperature = <95000>;
-			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
 			};
 		};
 	};

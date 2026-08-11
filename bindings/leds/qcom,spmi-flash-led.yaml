@@ -22,6 +22,7 @@ properties:
   compatible:
     items:
       - enum:
+          - qcom,pm2250-flash-led
           - qcom,pm6150l-flash-led
           - qcom,pm8150c-flash-led
           - qcom,pm8150l-flash-led

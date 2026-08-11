@@ -211,6 +211,7 @@
 };
 
 &pm2250_flash {
+	qcom,use-smb-battery-interface;
 	#io-channel-cells = <1>;
 	io-channels = <&pm2250_qg PSY_IIO_RESISTANCE>,
 		<&pm2250_qg PSY_IIO_VOLTAGE_OCV>,

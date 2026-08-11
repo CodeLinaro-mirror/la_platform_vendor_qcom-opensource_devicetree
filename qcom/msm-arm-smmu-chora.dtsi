@@ -18,6 +18,7 @@
 		dma-coherent;
 
 		power-domains = <&gpucc GPU_CC_CX_SMMU_GDSC>;
+		interconnects = <&gem_noc MASTER_GPU_TCU &mc_virt SLAVE_EBI1>;
 
 		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>,
 			<&gcc GCC_GPU_MEMNOC_GFX_CLK>,
@@ -69,6 +70,7 @@
 			reg = <0x0 0x3de8000 0x0 0x1000>;
 			qcom,stream-id-range = <0x0 0x400>;
 			qcom,iova-width = <49>;
+			interconnects = <&gem_noc MASTER_GPU_TCU &mc_virt SLAVE_EBI1>;
 			qcom,num-qtb-ports = <2>;
 		};
 	};

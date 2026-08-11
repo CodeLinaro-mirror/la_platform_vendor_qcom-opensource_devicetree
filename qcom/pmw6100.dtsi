@@ -85,6 +85,10 @@
 				bits = <1 7>;
 			};
 
+			xo_calib_data: xo_calib-data@59 {
+				reg = <0x59 0x1>;
+			};
+
 			fmd_set: fmd-set@9a {
 				reg = <0x9a 0x1>;
 			};
@@ -96,6 +100,11 @@
 			fmd_chg_pon: fmd-chg-pon@9f {
 				reg = <0x9f 0x1>;
 			};
+
+			logo_orientation: logo-orientation@63 {
+				reg = <0x63 0x1>;
+			};
+
 		};
 
 		pmic_lpm: qti,pmic-lpm@7200 {

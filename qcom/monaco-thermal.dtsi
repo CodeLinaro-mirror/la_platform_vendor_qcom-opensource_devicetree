@@ -495,7 +495,7 @@
 		trips {
 			zeroc_0_trip: active-config0 {
 				temperature = <1>;
-				hysteresis = <1>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};

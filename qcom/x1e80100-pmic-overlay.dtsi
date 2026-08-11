@@ -76,6 +76,11 @@
 	};
 };
 
+&battery_charger {
+	qcom,wireless-charging-not-supported;
+	qcom,multiport-usb = <2>;
+};
+
 &pmk8550_rtc {
 	qcom,no-alarm; /* alarm owned by ADSP */
 };
@@ -107,6 +112,7 @@
 		compatible = "qcom,pmic-pon-log";
 		nvmem = <&pmk8550_sdam_5>, <&pmk8550_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
+		depends-on-supply = <&wdog>;
 	};
 };
 
@@ -338,7 +344,7 @@
 
 &pmic_glink_debug {
 	spmi@1 {
-		reg = <0>;
+		reg = <1>;
 		#address-cells = <2>;
 		#size-cells = <0>;
 
@@ -360,10 +366,5 @@
 			qcom,can-sleep;
 		};
 
-		smb2360_3_debug: pmic@c {
-			compatible = "qcom,spmi-pmic";
-			reg = <12 SPMI_USID>;
-			qcom,can-sleep;
-		};
 	};
 };

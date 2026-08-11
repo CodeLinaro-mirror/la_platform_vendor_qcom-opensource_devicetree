@@ -71,16 +71,6 @@
 		reg = <0x0 0x82700000 0x0 0x100000>;
 	};
 
-	ac_db_mem: ac_db_region@82B00000 {
-		no-map;
-		reg = <0x0 0x82B00000 0x0 0x300000>;
-	};
-
-	deepsleep_backup_mem: deepsleep_backup_region@82e00000 {
-		no-map;
-		reg = <0x0 0x82e00000 0x0 0x100000>;
-	};
-
 	displaylpi_mem: displaylpi_region@82f00000 {
 		no-map;
 		reg = <0x0 0x82f00000 0x0 0x1800000>;
@@ -91,14 +81,9 @@
 		reg = <0x0 0x84700000 0x0 0x100000>;
 	};
 
-	dae_deepsleep_mem: dae_deepsleep_region@84800000 {
+	audio_data_exchange_mem: audio_data_exchange_region@849a0000 {
 		no-map;
-		reg = <0x0 0x84800000 0x0 0x190000>;
-	};
-
-	hyp_carveout_mem: hyp_carveout_region@86700000 {
-		no-map;
-		reg = <0x0 0x86700000 0x0 0x1100000>;
+		reg = <0x0 0x849a0000 0x0 0x480000>;
 	};
 
 	mpss_mem: mpss_region@8ba00000 {
@@ -148,7 +133,7 @@
 
 	adspslpi_mem: adspslpi_region@95200000 {
 		no-map;
-		reg = <0x0 0x95200000 0x0 0x3200000>;
+		reg = <0x0 0x95200000 0x0 0x2b00000>;
 	};
 
 	wear_microcontroller_m55_mem: wear_microcontroller_m55_region@92680000 {
@@ -183,9 +168,9 @@
 		reg = <0x0 0xB81C0000 0x0 0x40000>;
 	};
 
-	thermisto_md_toc_mem: thermisto_md_toc_region@db1d0000 {
+	thermisto_md_toc_mem: thermisto_md_toc_region@d7fff000 {
 		no-map;
-		reg = <0x0 0xdb1d0000 0x0 0x1000>;
+		reg = <0x0 0xd7fff000 0x0 0x1000>;
 	};
 
 	xbl_sc_mem: xbl_sc_region@d8000000 {

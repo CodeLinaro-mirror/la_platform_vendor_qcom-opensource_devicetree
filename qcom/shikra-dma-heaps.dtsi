@@ -6,9 +6,22 @@
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
 
 &soc {
-	qcom,dma-heaps {
+	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
 		depends-on-supply = <&qcom_scm>;
+
+		qcom,display {
+			qcom,dma-heap-name = "qcom,display";
+			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			qcom,max-align = <9>;
+			memory-region = <&non_secure_display_memory>;
+		};
+
+		qcom,secure_display {
+			qcom,dma-heap-name = "qcom,secure-display";
+			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			memory-region = <&secure_display_memory>;
+		};
 
 		qcom,qseecom {
 			qcom,dma-heap-name = "qcom,qseecom";

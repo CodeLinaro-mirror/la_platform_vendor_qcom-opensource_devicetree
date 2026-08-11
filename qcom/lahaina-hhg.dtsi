@@ -76,7 +76,7 @@
 };
 
 &thermal_zones {
-	cpu-1-6-step {
+	cpu-1-6 {
 		trips {
 			fan_cpu16_config0: fan-cpu16-config0 {
 				temperature = <80000>;
@@ -115,7 +115,7 @@
 		};
 	};
 
-	cpu-1-7-step {
+	cpu-1-7 {
 		trips {
 			fan_cpu17_config0: fan-cpu17-config0 {
 				temperature = <80000>;
@@ -154,7 +154,7 @@
 		};
 	};
 
-	gpuss-0-step {
+	gpuss-0 {
 		trips {
 			fan_gpuss0_config0: fan-gpuss0-config0 {
 				temperature = <85000>;
@@ -193,7 +193,7 @@
 		};
 	};
 
-	gpuss-1-step {
+	gpuss-1 {
 		trips {
 			fan_gpuss1_config0: fan-gpuss1-config0 {
 				temperature = <85000>;
@@ -232,10 +232,7 @@
 		};
 	};
 
-	video-step {
-		polling-delay-passive = <0>;
-		polling-delay = <0>;
-		thermal-governor = "step_wise";
+	video {
 		thermal-sensors = <&tsens1 6>;
 		trips {
 			fan_video_config0: fan-video-config0 {
@@ -264,28 +261,20 @@
 		};
 	};
 
-	gpu-skin-avg-step {
-		disable-thermal-zone;
+	camera-therm {
+		status = "disabled";
 	};
 
-	camera-therm-usr {
-		disable-thermal-zone;
+	rear-cam-therm {
+		status = "disabled";
 	};
 
-	rear-cam-therm-usr {
-		disable-thermal-zone;
+	tof-therm {
+		status = "disabled";
 	};
 
-	tof-therm-usr {
-		disable-thermal-zone;
-	};
-
-	quiet-therm-usr {
-		polling-delay-passive = <0>;
-		polling-delay = <0>;
-		thermal-governor = "user_space";
+	quiet-therm {
 		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM2_100K_PU>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -295,12 +284,8 @@
 		};
 	};
 
-	qtm-w-therm-usr {
-		polling-delay-passive = <0>;
-		polling-delay = <0>;
-		thermal-governor = "user_space";
+	qtm-w-therm {
 		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM4_100K_PU>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -310,12 +295,8 @@
 		};
 	};
 
-	qtm-n-therm-usr {
-		polling-delay-passive = <0>;
-		polling-delay = <0>;
-		thermal-governor = "user_space";
+	qtm-n-therm {
 		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM5_100K_PU>;
-		wake-capable-sensor;
 		trips {
 			active-config0 {
 				temperature = <125000>;

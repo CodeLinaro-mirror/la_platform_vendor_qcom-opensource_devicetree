@@ -16,7 +16,7 @@
 };
 
 &dispcc {
-	compatible = "qcom,alor-dispcc", "syscon";
+	compatible = "qcom,whale-dispcc", "syscon";
 };
 
 &evacc {

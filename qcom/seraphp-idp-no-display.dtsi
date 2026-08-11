@@ -4,3 +4,9 @@
  */
 
 #include "seraph-idp.dtsi"
+
+&reserved_memory {
+	splash_memory: splash_region@b8000000 {
+		status = "disabled";
+	};
+};

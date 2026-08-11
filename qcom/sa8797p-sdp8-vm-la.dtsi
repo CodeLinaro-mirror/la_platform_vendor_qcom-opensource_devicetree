@@ -36,7 +36,7 @@
 
 &chosen {
 	bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-15 cgroup.memory=nokmem,nosocket kpti=0 ufshcd-core.use_mcq_mode=n qcom_dma_heaps.enable_bitstream_contig_heap=y arm64.nopauth kasan=off msm_show_resume_irq.debug_mask=1 fw_devlink.strict=1 driver_async_probe=arm-scmi";
-	bootconfig = "androidboot.dtbo_idx=25 androidboot.fstab_suffix=hqx.nord.qcom";
+	bootconfig = "androidboot.dtbo_idx=28 androidboot.fstab_suffix=hqx.nord.qcom";
 };
 
 &reserved_memory {
@@ -58,6 +58,11 @@
 		no-map;
 		reg = <0x0 0x0 0x0 0x0>;
 		label = "sdv_dice_mem";
+	};
+
+	soccp_fe_vm_1: soccp_fe_vm_1_region@86cac000 {
+		no-map;
+		reg = <0x0 0x86cac000 0x0 0x18d000>;
 	};
 };
 
@@ -227,6 +232,10 @@
 
 &eusb2_phy1 {
 	status = "ok";
+};
+
+&usb_audio_qmi_dev {
+	status = "okay";
 };
 
 &usb0 {

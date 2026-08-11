@@ -34,6 +34,9 @@ properties:
   lt,hdmi-en-gpio:
     description: GPIO mapping for HDMI EN
 
+  lt,reset-gpio-active-high:
+    description: support active-high reset GPIO
+
   vdd-supply:
     description: Regulator for 1.8V MIPI phy power.
 
@@ -74,6 +77,7 @@ examples:
         interrupt-names = "lt_irq";
         lt,irq-gpio = <&tlmm 125 0x0>;
         lt,reset-gpio = <&tlmm 134 0x0>;
+        lt,reset-gpio-active-high;
         lt,hdmi-ps-gpio = <&tlmm 136 0x0>;
         lt,hdmi-en-gpio = <&tlmm 137 0x0>;
 

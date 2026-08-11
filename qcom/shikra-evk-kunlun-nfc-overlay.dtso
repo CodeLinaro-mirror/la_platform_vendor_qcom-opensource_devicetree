@@ -10,6 +10,6 @@
 
 / {
   model = "Qualcomm Technologies, Inc. Shikra EVK Kunlun NFC";
-  compatible = "qcom,shikra-evk", "qcom,shikra-cqm", "qcom,shikra-cqs", "qcom,evk";
+  compatible = "qcom,shikra-evk", "qcom,shikra", "qcom,shikra-cqm", "qcom,shikra-cqs", "qcom,evk";
   qcom,board-id = <0x20033 0x0>;
 };

@@ -1014,7 +1014,7 @@
 		reg = <0x0 0x8b49000 0x0 0x1000>;
 		reg-names = "tpda-base";
 
-		status = "disabled";
+		status = "okay";
 		device-name = "tpda_south";
 
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
@@ -1025,7 +1025,7 @@
 			#size-cells = <0>;
 
 			port@0 {
-				reg = <0>;
+				reg = <2>;
 				tpda_south_in_tpdm_south: endpoint {
 					remote-endpoint =
 					<&tpdm_south_out_tpda_south>;
@@ -1057,7 +1057,7 @@
 		clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
 		clock-names = "apb_pclk";
 
-		status = "disabled";
+		status = "okay";
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;

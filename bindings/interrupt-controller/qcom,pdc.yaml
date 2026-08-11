@@ -45,6 +45,7 @@ properties:
           - qcom,seraph-pdc
           - qcom,chora-pdc
           - qcom,pikachu-pdc
+          - qcom,bourtzi-pdc
       - const: qcom,pdc
 
   reg:

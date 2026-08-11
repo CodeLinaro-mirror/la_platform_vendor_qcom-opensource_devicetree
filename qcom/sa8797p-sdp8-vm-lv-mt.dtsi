@@ -35,6 +35,20 @@
 		compatible = "qcom,va-minidump";
 		memory-region = <&va_md_mem>;
 	};
+
+	ipcc_mproc_apps_ns2: qcom,ipcc@9009000 {
+		compatible = "qcom,ipcc";
+		reg = <0x9009000 0x1000>;
+		interrupts = <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
+		status = "disabled";
+	};
+};
+
+&hab {
+	vmid = <3>;
 };
 
 &virt_scmi {
@@ -44,6 +58,10 @@
 
 &scmi {
 	status = "ok";
+};
+
+&qcom_rng_ee13 {
+	status = "disabled";
 };
 
 &qupv3_2 {
@@ -111,5 +129,13 @@
 
 &usb_0_qmp_combo_phy {
 	power-domains = <&scmi_power 24>, <&scmi_power 25>;
+	status = "disabled";
+};
+
+&xpcs1 {
+	status = "disabled";
+};
+
+&ethernet1 {
 	status = "disabled";
 };

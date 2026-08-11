@@ -9,6 +9,7 @@
 #include <dt-bindings/leds/common.h>
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/iio/qcom,spmi-vadc.h>
+#include <dt-bindings/leds/common.h>
 
 &spmi_bus {
 	#address-cells = <2>;
@@ -350,40 +351,18 @@
 			};
 		};
 
-		pm2250_flash: qcom,flash_led@d300 {
-			compatible = "qcom,pm2250-flash-led";
+		pm2250_flash: led-controller@d300 {
+			compatible = "qcom,pm2250-flash-led","qcom,spmi-flash-led";
 			reg = <0xd300>;
-			interrupts = <0x1 0xd3 0x0 IRQ_TYPE_EDGE_RISING>,
-				     <0x1 0xd3 0x3 IRQ_TYPE_EDGE_RISING>,
-				     <0x1 0xd3 0x4 IRQ_TYPE_EDGE_RISING>;
-			interrupt-names = "led-fault-irq",
-					  "all-ramp-down-done-irq",
-					  "all-ramp-up-done-irq";
 
-			pm2250_flash0: qcom,flash_0 {
-				label = "flash";
-				qcom,led-name = "led:flash_0";
-				qcom,max-current-ma = <1000>;
-				qcom,default-led-trigger = "flash0_trigger";
-				qcom,id = <0>;
-				qcom,duration-ms = <1280>;
-				qcom,ires-ua = <12500>;
-			};
-
-			pm2250_torch0: qcom,torch_0 {
-				label = "torch";
-				qcom,led-name = "led:torch_0";
-				qcom,max-current-ma = <200>;
-				qcom,default-led-trigger = "torch0_trigger";
-				qcom,id = <0>;
-				qcom,ires-ua = <12500>;
-			};
-
-			pm2250_switch0: qcom,led_switch_0 {
-				label = "switch";
-				qcom,led-name = "led:switch_0";
-				qcom,led-mask = <1>;
-				qcom,default-led-trigger = "switch0_trigger";
+			pm2250_flash_led0: led-0 {
+				function = LED_FUNCTION_FLASH;
+				color = <LED_COLOR_ID_WHITE>;
+				led-sources = <1>;
+				led-max-microamp = <200000>;
+				flash-max-microamp = <1000000>;
+				flash-max-timeout-us = <1280000>;
+				function-enumerator = <0>;
 			};
 		};
 

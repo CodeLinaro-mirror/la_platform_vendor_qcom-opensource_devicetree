@@ -41,6 +41,7 @@ properties:
       - qcom,x1e80100-rpmh-clk
       - qcom,pikachu-rpmh-clk
       - qcom,seraph-rpmh-clk
+      - qcom,glymur-rpmh-clk
 
   clocks:
     maxItems: 1

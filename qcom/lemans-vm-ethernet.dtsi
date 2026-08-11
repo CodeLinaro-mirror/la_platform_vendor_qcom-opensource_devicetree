@@ -104,7 +104,6 @@
 		qcom,air-cl45-phy-addr = <0>;
 		qcom,star-cl45-phy-addr = <8>;
 
-		gdsc_emac-supply = <&gcc_emac1_gdsc>;
 		phys = <&serdes1>;
 		phy-names = "serdes";
 		phy-mode = "2500base-x";
@@ -127,5 +126,17 @@
 		rx-fifo-depth = <16384>;
 		tx-fifo-depth = <16384>;
 		status = "disabled";
+
+		mdio: mdio {
+			compatible = "snps,dwmac-mdio";
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
+
+		fixed-link {
+			status = "disabled";
+			speed = <2500>;
+			full-duplex;
+		};
 	};
 };

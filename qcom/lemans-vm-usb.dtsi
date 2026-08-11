@@ -107,6 +107,8 @@
 			0xc7 0x70	/* override_x1 */
 			0x17 0x74	/* override x2 */
 			0x03 0x78>;	/* override x3 */
+
+		status = "disabled";
 	};
 
 	/* Primary USB port related QMP PHY */

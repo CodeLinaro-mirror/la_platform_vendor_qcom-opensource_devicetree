@@ -33,6 +33,7 @@ properties:
       - qcom,sys-pm-chora
       - qcom,sys-pm-pikachu
       - qcom,sys-pm-seraph
+      - qcom,sys-pm-bourtzi
 
   reg:
     maxItems: 1
@@ -63,6 +64,7 @@ allOf:
               - qcom,sys-pm-chora
               - qcom,sys-pm-pikachu
               - qcom,sys-pm-seraph
+              - qcom,sys-pm-bourtzi
     then:
       properties:
         reg:

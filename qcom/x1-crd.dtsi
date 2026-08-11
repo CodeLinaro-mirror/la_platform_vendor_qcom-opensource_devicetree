@@ -271,6 +271,14 @@
 					remote-endpoint = <&usb_port0_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb0_configure_in: endpoint {
+					remote-endpoint = <&usb_port0_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -320,6 +328,14 @@
 					remote-endpoint = <&usb_port1_ssphy_out>;
 				};
 			};
+
+			port@2 {
+				reg = <2>;
+
+				retimer_usb1_configure_in: endpoint {
+					remote-endpoint = <&usb_port1_configure_out>;
+				};
+			};
 		};
 	};
 };
@@ -344,12 +360,14 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_0>;
 	gpios = <&tlmm 121 0>;
+	qcom,enabled-retimer;
 };
 
 &ucsi {
 	/* Left-side front port */
-	connector {
+	connector@0 {
 		compatible = "usb-c-connector";
+		reg = <0>;
 		power-role = "dual";
 		data-role = "dual";
 
@@ -366,10 +384,35 @@
 			};
 		};
 	};
+
+	/* Left-side front port */
+	connector@1 {
+		compatible = "usb-c-connector";
+		reg = <1>;
+		power-role = "dual";
+		data-role = "dual";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				pmic_glink_port1_hs_in: endpoint {
+					remote-endpoint = <&usb_port1_hs_in>;
+				};
+			};
+		};
+	};
 };
 
 &usb_port0_hs_in {
 	remote-endpoint = <&pmic_glink_port0_hs_in>;
+};
+
+&usb_port1_hs_in {
+	remote-endpoint = <&pmic_glink_port1_hs_in>;
 };
 
 &usb_port0_ssphy_out {
@@ -378,6 +421,10 @@
 
 &usb_port0_dwc3_ss {
 	remote-endpoint = <&retimer_usb0_ss_out>;
+};
+
+&usb_port0_configure_out {
+	remote-endpoint = <&retimer_usb0_configure_in>;
 };
 
 &smb2360_1_eusb2_repeater {
@@ -396,9 +443,11 @@
 
 &usb1 {
 	status = "okay";
+	usb-role-switch;
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_1>;
 	gpios = <&tlmm 123 0>;
+	qcom,enabled-retimer;
 };
 
 &usb_port1_ssphy_out {
@@ -409,30 +458,34 @@
 	remote-endpoint = <&retimer_usb1_ss_out>;
 };
 
+&usb_port1_configure_out {
+	remote-endpoint = <&retimer_usb1_configure_in>;
+};
+
 &usb2_phy_4 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb4 {
-	status = "okay";
+	status = "disabled";
 };
 
 &smb2360_2_eusb2_repeater {
 	vdd18-supply = <&L3D>;
-	vdd3-supply = <&L2B>;
+	vdd3-supply = <&L8B>;
 };
 
 &usb2_phy_2 {
 	phys = <&smb2360_2_eusb2_repeater>;
-	status = "okay";
+	status = "disabled";
 };
 
 &usb3_phy_2 {
-	status = "okay";
+	status = "disabled";
 };
 
 &usb2 {
-	status = "okay";
+	status = "disabled";
 	dwc3@a000000 {
 		dr_mode = "host";
 	};

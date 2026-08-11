@@ -32,6 +32,8 @@
 			"gpu_cc_hub_cx_int",
 			"gpu_cc_hub_aon_clk";
 
+		interconnects = <&gem_noc MASTER_GPU_TCU &mc_virt SLAVE_EBI1>;
+
 		qcom,actlr =
 			/* All CBs of GFX: +15 deep PF */
 			<0x0000 0x0401 0x0000032b>,

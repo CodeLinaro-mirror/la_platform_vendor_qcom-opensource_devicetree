@@ -743,6 +743,11 @@
 			reg = <0x6011 0x1>;
 			bits = <3 1>;
 		};
+
+		gpu_speed_bin: gpu_speed_bin@6006 {
+			reg = <0x6006 0x2>;
+			bits = <5 8>;
+		};
 	};
 
 	mem_dump {

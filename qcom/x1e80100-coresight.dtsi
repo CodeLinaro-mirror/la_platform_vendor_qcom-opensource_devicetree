@@ -4670,7 +4670,6 @@
 
 		device-name = "tpdm_dl_north_0";
 
-		qcom,hw-enable-check;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -4693,7 +4692,6 @@
 
 		device-name = "tpdm_dl_north_1";
 
-		qcom,hw-enable-check;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
 
@@ -4809,6 +4807,7 @@
 		qcom,hw-enable-check;
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
+		status = "disabled";
 
 		out-ports {
 			port {

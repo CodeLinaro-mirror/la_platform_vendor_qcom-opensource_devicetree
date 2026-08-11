@@ -3,6 +3,19 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&reserved_memory {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	ranges;
+
+	etr_trace_buf: etr_trace_buf {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x80000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x8000000>;
+		reusable;
+	};
+};
+
 &soc {
 	ipcb_tgu: tgu@1130E000 {
 		compatible = "arm,primecell";
@@ -3388,6 +3401,8 @@
 		reg-names = "tmc-base";
 
 		device-name = "tmc_etr0";
+
+		memory-region = <&etr_trace_buf>;
 
 		qcom,iommu-dma = "bypass";
 		iommus = <&apps_smmu 0x03e0 0x40>;

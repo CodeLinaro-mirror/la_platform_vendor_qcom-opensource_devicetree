@@ -15,7 +15,7 @@
 };
 
 #include "sa8255p-sdp8-vm.dtsi"
-#include "sa8775p-sdp8-vm-cpu-conf.dtsi"
+#include "sa8775p-sdp8-vm-cpu-conf-mt.dtsi"
 #include "sa8775p-sdp8-vm-lv-mt.dtsi"
 
 &{/} {
