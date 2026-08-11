@@ -53,5 +53,5 @@
 };
 
 &qcom_crypto {
-	status = "okay";
+	status = "disabled";
 };
