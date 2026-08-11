@@ -5,6 +5,7 @@
 
 #include "mahua-pmic-overlay.dtsi"
 #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+#include "mahua-thermal-overlay.dtsi"
 
 &pmh0101_gpios {
 	nvme_reg_en: nvme-reg-en-state {

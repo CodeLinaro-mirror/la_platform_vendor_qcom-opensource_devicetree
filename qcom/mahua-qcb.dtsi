@@ -5,6 +5,7 @@
 
 #include <dt-bindings/clock/qcom,glymur-gcc.h>
 #include "mahua-pmic-overlay.dtsi"
+#include "mahua-thermal-overlay.dtsi"
 
 &soc {
 
