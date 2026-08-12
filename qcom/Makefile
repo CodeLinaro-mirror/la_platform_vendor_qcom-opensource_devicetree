@@ -42,7 +42,8 @@ SUN_BOARDS += \
 		sun-rcm-overlay.dtbo \
 		sun-rcm-v8-overlay.dtbo \
 		sun-atp-overlay.dtbo \
-		sunp-hdk-overlay.dtbo
+		sunp-hdk-overlay.dtbo \
+		sunp-iot-vc-overlay.dtbo
 
 NOAPQ_SUN_BOARDS += \
 		 sun-rumi-overlay.dtbo
