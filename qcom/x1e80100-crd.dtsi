@@ -6,6 +6,7 @@
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1e80100-thermal-overlay.dtsi"
 #include "x1-crd.dtsi"
+#include <dt-bindings/clock/qcom,x1e80100-gcc.h>
 
 &pm8550ve_i_gpios {
 	touch_avdd_default: touch_avdd_default {
@@ -43,6 +44,26 @@
 		vin-supply = <&sdx_vph_pwr>;
 		enable-active-high;
 	};
+};
+
+&sdhc_2 {
+	vdd-supply = <&pm_humu_l9>;
+	qcom,vdd-voltage-level = <2960000 2960000>;
+	qcom,vdd-current-level = <33 977000>;
+
+	vdd-io-supply = <&pm_humu_l6>;
+	qcom,vdd-io-voltage-level = <1800000 2960000>;
+	qcom,vdd-io-current-level = <0 22000>;
+
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc2_on>;
+	pinctrl-1 = <&sdc2_off>;
+
+	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
+
+	resets = <&gcc GCC_SDCC2_BCR>;
+	reset-names = "core_reset";
+	status = "ok";
 };
 
 &pcie5 {
