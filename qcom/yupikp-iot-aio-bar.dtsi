@@ -235,6 +235,16 @@
 	status = "disabled";
 };
 
+&usb1 {
+	/delete-property/ usb-role-switch;
+	/delete-property/ qcom,default-mode-none;
+	qcom,default-mode-host;
+	dwc3@8c00000 {
+		/delete-property/ usb-role-switch;
+		dr_mode = "host";
+	};
+};
+
 /*==============================*/
 /*     USB Related End          */
 /*==============================*/
