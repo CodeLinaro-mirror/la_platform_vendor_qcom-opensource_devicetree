@@ -2085,6 +2085,26 @@
 			interrupt-controller;
 		};
 
+		qspi: qspi@88dc000 {
+			compatible = "qcom,qspi-v1";
+			reg = <0x0 0x088dc000 0x0 0x1000>;
+			iommus = <&apps_smmu 0xd20 0x0>;
+			qcom,iommu-dma = "disabled";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&gcc GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
+				<&gcc GCC_QSPI_CORE_CLK>;
+			clock-names = "iface", "core";
+			interconnects = <&aggre3_noc MASTER_QSPI_0 &mc_virt SLAVE_EBI1>,
+					<&hsc_noc MASTER_APPSS_PROC &config_noc SLAVE_QSPI_0>;
+			interconnect-names = "qspi-memory", "qspi-config";
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&qspi_clk>, <&qspi_cs0>, <&qspi_data>;
+			pinctrl-1 = <&qspi_sleep>;
+			status = "disabled";
+		};
+
 	pmic-glink {
 		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_RTR_SOCCP_APPS";
