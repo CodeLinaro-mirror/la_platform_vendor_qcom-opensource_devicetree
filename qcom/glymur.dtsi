@@ -2655,6 +2655,12 @@
 			num-clusters = <3>;
 		};
 
+		sys-pm-vx@c320000 {
+			compatible = "qcom,sys-pm-violators-v2";
+			reg = <0x0 0x0c302000 0x0 0x400>, <0x0 0xc305000 0x0 0x400>;
+			qcom,qmp = <&aoss_qmp>;
+		};
+
 		usb_ss0: ssusb@a600000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0xa600000 0x0 0x100000>;
