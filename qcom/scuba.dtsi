@@ -1043,15 +1043,8 @@
 	};
 
 	qcom_rng: qrng@4453000 {
-		compatible = "qcom,msm-rng";
+		compatible = "qcom,trng";
 		reg = <0x4453000 0x1000>;
-		qcom,msm-rng-hwkm-clk;
-		qcom,no-qrng-config;
-		qcom,msm-bus,name = "msm-rng-noc";
-		qcom,msm-bus,num-cases = <2>;
-		qcom,msm-bus,num-paths = <1>;
-		clock-names = "km_clk_src";
-		clocks = <&rpmcc RPM_SMD_HWKM_CLK>;
 	};
 
 	qcom_cedev: qcedev@1b20000 {
@@ -1253,7 +1246,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -1474,6 +1467,14 @@
 	sram@4690000 {
 		compatible = "qcom,rpm-stats-v2";
 		reg = <0x04690000 0x10000>;
+	};
+
+	qcom,rpm-master-stats@45f0150 {
+		compatible = "qcom,rpm-master-stats";
+		reg = <0x45f0150 0x5000>;
+		qcom,masters = "APSS", "MPSS", "ADSP", "CDSP", "TZ";
+		qcom,master-stats-version = <2>;
+		qcom,master-offset = <4096>;
 	};
 
 	mem_dump {
@@ -2685,3 +2686,4 @@
 };
 
 #include "msm-rdbg-scuba.dtsi"
+#include "scuba-walt.dtsi"

@@ -78,3 +78,12 @@
 	};
 };
 
+&spmi0_bus {
+	/delete-node/ pm8010@c;
+	/delete-node/ pm8010@d;
+};
+
+&spmi0_debug_bus {
+	/delete-node/ qcom,pm8010-debug@c;
+	/delete-node/ qcom,pm8010-debug@d;
+};

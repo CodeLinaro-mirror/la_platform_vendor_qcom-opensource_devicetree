@@ -38,6 +38,7 @@
 	};
 
 	reserved_memory: reserved-memory {};
+	ddr-regions { };
 
 	aliases: aliases {
 		serial0 = &uart11;
@@ -259,6 +260,9 @@
 
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	disp_rdump_region@d5100000 {
+	};
 
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
@@ -603,6 +607,30 @@
 			qcom,glinkpkt-edge = "cdsp";
 			qcom,glinkpkt-ch-name = "LOOPBACK_DATA_CDSP";
 			qcom,glinkpkt-dev-name = "glink_pkt_data_cdsp";
+		};
+
+		qcom,glinkpkt-ctrl-soccp {
+			qcom,glinkpkt-edge = "soccp";
+			qcom,glinkpkt-ch-name = "LOOPBACK_CTL_SOCCP";
+			qcom,glinkpkt-dev-name = "glink_pkt_ctrl_soccp";
+		};
+
+		qcom,glinkpkt-data-soccp {
+			qcom,glinkpkt-edge = "soccp";
+			qcom,glinkpkt-ch-name = "LOOPBACK_DATA_SOCCP";
+			qcom,glinkpkt-dev-name = "glink_pkt_data_soccp";
+		};
+
+		qcom,glinkpkt-ctrl-lmcu {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "LOOPBACK_CTL_LMCU";
+			qcom,glinkpkt-dev-name = "glink_pkt_ctrl_lmcu";
+		};
+
+		qcom,glinkpkt-data-lmcu {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "LOOPBACK_DATA_LMCU";
+			qcom,glinkpkt-dev-name = "glink_pkt_data_lmcu";
 		};
 
 		qcom,glinkpkt-ctrl-lpass {
@@ -977,9 +1005,13 @@
 			< 350000 >,
 			< 533000 >,
 			< 600000 >,
-			< 710670 >,
-			< 806000 >,
-			< 933000 >;
+			< 710670 >;
+	};
+
+	ddrqos_freq_table: ddrqos-freq-table {
+		qcom,freq-tbl =
+		< 0 >,
+		< 1 >;
 	};
 
 	qcom_dcvs: qcom,dcvs {
@@ -1043,6 +1075,20 @@
 			};
 
 		};
+
+		qcom_ddrqos_dcvs_hw: ddrqos {
+			compatible = "qcom,dcvs-hw";
+			qcom,dcvs-hw-type = <3>;
+			qcom,bus-width = <1>;
+			qcom,freq-tbl = <&ddrqos_freq_table>;
+
+			ddrqos_dcvs_sp: sp {
+				compatible = "qcom,dcvs-path";
+				qcom,dcvs-path-type = <0>;
+				interconnects = <&mc_virt MASTER_LLCC
+					 &mc_virt SLAVE_EBI1>;
+			};
+		};
 	};
 
 	qcom_memlat: qcom,memlat {
@@ -1092,9 +1138,9 @@
 					<  960000 350000 >,
 					< 1113600 533000 >,
 					< 1497600 600000 >,
-					< 1747200 710670 >,
-					< 1843200 806000 >,
-					< 2016000 933000 >;
+					< 1747200 600000 >,
+					< 1843200 710670 >,
+					< 2016000 710670 >;
 				qcom,sampling-enabled;
 			};
 
@@ -1103,7 +1149,7 @@
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
 					< 1747200 250000 >,
-					< 2016000 933000 >;
+					< 2016000 710670 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -1138,6 +1184,22 @@
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
+			};
+		};
+
+		ddrqos {
+			compatible = "qcom,memlat-grp";
+			qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
+			qcom,sampling-path = <&ddrqos_dcvs_sp>;
+			qcom,miss-ev = <0x1000>;
+
+			ddrqos_silver_latfloor: silver-latfloor {
+				compatible = "qcom,memlat-mon";
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+				qcom,cpufreq-memfreq-tbl =
+					< 1747200 0 >,
+					< 2016000 1 >;
+				qcom,sampling-enabled;
 			};
 		};
 	};
@@ -1597,10 +1659,10 @@
 
 		slc_perfmon: qcom,slc_perfmon {
 			compatible = "qcom,slc-perfmon";
-			/* Use slc_mem_base (0xD8170000) with perfmon struct at offset 0x700 */
-			reg = <0xD8170000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
+			/* Dedicated perfmon shared mem region, perfmon struct at offset 0x0 */
+			reg = <0xd8171000 0x1000>, <0x25000000 0x60000>, <0x25400000 0x60000>, <0x25800000 0x60000>;
 			reg-names = "perfmon_base", "trp_0_base", "trp_1_base", "trp_or_bcast_base";
-			perfmon_offset = <0x700>;
+			perfmon_offset = <0x0>;
 			clocks = <&aoss_qmp QDSS_CLK>;
 			clock-names = "qdss_clk";
 			slc-scid-status-snapshot;
@@ -2345,7 +2407,7 @@
 		ipa_smmu_rtp: ipa_smmu_rtp {
 			compatible = "qcom,ipa-smmu-rtp-cb";
 			iommus = <&apps_smmu 0x0a3 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
+			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_rtp_partition>;
 			qcom,iommu-dma = "atomic";
 			dma-coherent;
@@ -2408,6 +2470,7 @@
 
 		interconnect-names = "rproc_ddr", "crypto_ddr";
 
+		firmware-name = "adsp2.mdt", "adsp2_dtb.mdt";
 		memory-region = <&adsp_mem &q6_adsp_dtb_mem>;
 
 		subdev-firmware-name = "lpaicp.mdt", "lpaicp_dtb.mdt";

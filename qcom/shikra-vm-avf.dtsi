@@ -6,11 +6,12 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,shikra-gcc.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <759 0x10000>, <758 0x20000>, <756 0x10000>;
+	qcom,msm-id = <758 0x10000>, <756 0x10000>;
 
 	host {
 		#address-cells = <0x2>;
@@ -29,6 +30,16 @@
 		qcom,wdt@0xf410000 { // APSS_WDT_TMR1_APSS_WDT
 			reg = <0xf410000 0x1000>;
 			android,pvmfw,target = <&wdog>;
+		};
+
+		qcom,gpi-dma@4a00000 {
+			reg = <0x0 0x4a00000 0x0 0x60000>;
+			android,pvmfw,target = <&gpi_dma0>;
+		};
+
+		qcom,qupv3_0_geni_se@0x4ac0000 {
+			reg=<0x0 0x4ac0000 0x0 0x2000>;
+			android,pvmfw,target = <&qupv3_0>;
 		};
 	};
 
@@ -57,6 +68,15 @@
 		qcom,sensitive;
 
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
+
+		/* GPII - 8 is used for QUP LEVM case */
+		iomemory-ranges = <0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
+
+		/* Dynamically nominate the vmmio ranges */
+		vmmio-ranges;
+
+		/* QUP0: SE4: GPII8 : GIC_SPI IRQ 519 + 32 = 551 */
+		gic-irq-ranges = <551 551>;
 
 		segments {
 			ramdisk = <3>;
@@ -139,6 +159,15 @@
 				qcom,label = <0x101>;
 			};
 
+			msgqsock-msgq {
+				vdevice-type = "message-queue-pair";
+				generate = "/hypervisor/msgqsock-msgq-pair";
+				message-size = <0xf0>;
+				queue-depth = <0x8>;
+				peer = "vm-name:qcom,oemvm";
+				qcom,label = <0x103>;
+			};
+
 			ddump-shm {
 				vdevice-type = "shm-doorbell";
 				generate = "/hypervisor/ddump-shm";
@@ -148,6 +177,18 @@
 					qcom,label = <0x107>;
 					#address-cells = <0x2>;
 					base = <0x00 0x64016000>;
+				};
+			};
+
+			qrtr-shm {
+				vdevice-type = "shm-doorbell";
+				generate = "/hypervisor/qrtr-shm";
+				push-compatible = "qcom,qrtr-gunyah-gen";
+				peer-default;
+				memory {
+					qcom,label = <0x103>;
+					#address-cells = <0x2>;
+					base = <0x00 0x6400c000>;
 				};
 			};
 
@@ -256,6 +297,8 @@
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
 			&qcom_mem_buf
+			&qrtr_gunyah
+			&qmsgq_gunyah
 			&mem_buf_msgq
 			&virtio_mem_device
 			&qcom_gunyah_panic_notifier
@@ -283,12 +326,12 @@
 		#gpio-cells = <2>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
-		/* TODO: Valid pins — must match tlmm-vm-gpio-list in PVM shikra.dtsi */
+		gpios = /bits/ 16 <12 13>;
 	};
 
 	tlmm-vm-test {
 		compatible = "qcom,tlmm-vm-test";
-		tlmm-vm-gpio-list = <>;
+		tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0>;
 	};
 
 	pinctrl@400000 {
@@ -335,6 +378,17 @@
 		compatible = "qcom,gh-msgq-test";
 		gunyah-label = <0x104>;
 		affinity = <0>;
+	};
+
+	qmsgq_gunyah: qmsgq-gunyah {
+		compatible = "qcom,qmsgq-gh";
+		msgq-label = <0x103>;
+		peer = <4>;
+	};
+
+	qrtr_gunyah: qrtr-gunyah {
+	      compatible = "qcom,qrtr-gunyah";
+	      gunyah-label = <0x103>;
 	};
 
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
@@ -388,15 +442,87 @@
 		qcom,custom-bridge-size = <64>;
 		qcom,support-hypervisor;
 	};
+
+	qup_iommu_group: qup_common_iommu_group {
+		iommu-addresses = <&qupv3_0 0x0 0x40000000>,
+				  <&gpi_dma0 0x50000000 0xb0000000>;
+	};
+
+	gpi_dma0: qcom,gpi-dma@4a00000 {
+		compatible = "qcom,gpi-dma";
+		#dma-cells = <5>;
+		reg = <0x0 0x4a00000 0x0 0x60000>;
+		reg-names = "gpi-top";
+		iommus = <&apps_smmu 0xf8 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
+		dma-coherent;
+		interrupts = <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,max-num-gpii = <16>;
+		qcom,static-gpii-mask = <0x100>;
+		qcom,gpii-mask = <0x0>;
+		qcom,ev-factor = <1>;
+		qcom,gpi-ee-offset = <0x10000>;
+		qcom,le-vm;
+		status = "ok";
+	};
+
+	qupv3_0: qcom,qupv3_0_geni_se@4ac0000 {
+		compatible = "qcom,geni-se-qup";
+		reg = <0x0 0x4ac0000 0x0 0x2000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clock-names = "m-ahb", "s-ahb";
+		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+			 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+		iommus = <&apps_smmu 0xf8 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
+		dma-coherent;
+		ranges;
+		status = "ok";
+		required-subnodes = <&i2c4>;
+
+		i2c4: i2c@4a90000 {
+			compatible = "qcom,i2c-geni";
+			reg = <0x4a90000 0x4000>;
+			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0x12>,
+			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0x12>;
+			dma-names = "tx",
+				    "rx";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			qcom,le-vm;
+			status = "disabled";
+		};
+	};
 };
 
-#include "shikra-vm-rm-info-avf.dtsi"
-#include "shikra-vm-dma-heaps-avf.dtsi"
 #include "msm-arm-smmu-shikra-vm-avf.dtsi"
+#include "shikra-vm-dma-heaps-avf.dtsi"
+#include "shikra-vm-rm-info-avf.dtsi"
 
 &i2c4 {
 	status = "ok";
-	gt9xx-i2c@5d {
+	qcom,touch-active = "goodix,gt928";
+	required-subnodes = <&gt9xx>;
+
+	gt9xx: gt9xx-i2c@5d {
 		compatible = "goodix,gt928";
 		reg = <0x5d>;
 		status = "okay";
@@ -417,6 +543,7 @@
 		goodix,auto-update = <0>;
 		goodix,auto-update-cfg = <0>;
 		goodix,power-off-sleep = <0>;
+		goodix,touch-type = "primary";
 		goodix,cfg-group0 = [
 			42 38 04 80 07 0A 35 00 01 08 32 05 50 3C 03 05 00 00 00 00 00 00 00 18 1A 1E 14 8C 2E 0E
 			32 34 7F 08 00 00 01 BB 02 1D 00 00 00 00 00 03 64 32 00 00 00 23 46 94 C5 02 00 00 00 00
@@ -426,12 +553,13 @@
 			10 12 13 14 16 2A 29 28 26 24 22 21 20 1F 1E 1D 1C 18 00 00 00 00 00 00 00 00 00 00 00 00
 			00 00 00 00 82 01];
 
+		goodix,qts_en;
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "tvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <598>;
-		qts,trusted-touch-io-bases = <0xa80000>;
-		qts,trusted-touch-io-sizes = <0x1000>;
+		qts,trusted-touch-spi-irq = <155>;
+		qts,trusted-touch-io-bases = <0x4a90000>;
+		qts,trusted-touch-io-sizes = <0x4000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
 	};
 };

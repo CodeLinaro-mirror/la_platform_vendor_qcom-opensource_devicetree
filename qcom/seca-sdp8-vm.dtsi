@@ -452,7 +452,7 @@
 
 	vm_restart: restart {
 		compatible = "qcom,vm-restart";
-		status = "disabled";
+		status = "ok";
 	};
 
 	pdc: interrupt-controller@b220000 {
@@ -603,3 +603,4 @@
 #include "seca-vm-pinctrl.dtsi"
 #include "seca-vm-usb.dtsi"
 #include "seca-vm-qupv3.dtsi"
+#include "seca-sdp8-vm-pcie.dtsi"

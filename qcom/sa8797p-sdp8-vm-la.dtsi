@@ -59,6 +59,11 @@
 		reg = <0x0 0x0 0x0 0x0>;
 		label = "sdv_dice_mem";
 	};
+
+	soccp_fe_vm_1: soccp_fe_vm_1_region@86cac000 {
+		no-map;
+		reg = <0x0 0x86cac000 0x0 0x18d000>;
+	};
 };
 
 &soc {

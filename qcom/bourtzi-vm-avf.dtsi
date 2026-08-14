@@ -82,8 +82,7 @@
 		 * iomemory-ranges <PA IPA SIZE ACCESS>
 		 * Soc dependent
 		 */
-		iomemory-ranges = <0x0 0xae8f000 0x0 0xae8f000 0x0 0x1000 0x0
-				0x0 0x0928000 0x0 0x0928000 0x0 0x4000 0x0
+		iomemory-ranges = <0x0 0x0928000 0x0 0x0928000 0x0 0x4000 0x0
 				0x0 0xc400000 0x0 0xc400000 0x0 0x3000 0x1
 				0x0 0xc440000 0x0 0xc440000 0x0 0x10000 0x1
 				0x0 0xc450000 0x0 0xc450000 0x0 0x70000 0x1
@@ -352,7 +351,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		// Valid Soc dependent pin
-		gpios = /bits/ 16 <92 93 10 11 12 13>;
+		gpios = /bits/ 16 <92 93 10 11 12 13 95 105>;
 
 		required-subnodes = <&qupv3_se11_i2c_active
 				&qupv3_se11_i2c_sleep>;
@@ -392,11 +391,13 @@
 				&tlmm 10 0
 				&tlmm 11 0
 				&tlmm 12 0
-				&tlmm 13 0x2008>;
+				&tlmm 13 0x2008
+				&tlmm 95 0
+				&tlmm 105 0x2008>;
 	};
 
 	tlmm_vm_test: tlmm-vm-test {
-		ccompatible = "qcom,tlmm-vm-test";
+		compatible = "qcom,tlmm-vm-test";
 		pinctrl-names = "active", "sleep";
 		pinctrl-0 = <&qupv3_se11_i2c_active>;
 		pinctrl-1 = <&qupv3_se11_i2c_sleep>;

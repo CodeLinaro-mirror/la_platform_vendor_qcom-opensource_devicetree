@@ -17,6 +17,7 @@
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
 		regulator-boot-on;
+		startup-delay-us = <40000>;
 	};
 
 	pcie6: pcie@0x1bf8000 {

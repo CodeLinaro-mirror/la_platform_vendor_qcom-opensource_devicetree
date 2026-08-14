@@ -62,6 +62,11 @@
 			};
 		};
 
+		pm8350c_pwm_2: pwms@eb00 {
+			compatible = "qcom,pm8350c-pwm";
+			#pwm-cells = <2>;
+		};
+
 		pm8350c_bcl: bcl@4700 {
 			compatible = "qcom,bcl-v5";
 			reg = <0x4700 0x100>;

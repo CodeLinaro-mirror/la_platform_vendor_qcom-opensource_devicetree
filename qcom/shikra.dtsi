@@ -3,6 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+#include <dt-bindings/arm/msm/qti-smmu-proxy-dt-ids.h>
 #include <dt-bindings/clock/qcom,rpmcc.h>
 #include <dt-bindings/clock/qcom,shikra-audiocorecc.h>
 #include <dt-bindings/clock/qcom,shikra-dispcc.h>
@@ -35,7 +36,6 @@
 		mmc0 = &sdhc_1;
 		mmc1 = &sdhc_2; /* SDC2 SD card slot */
 		i2c3 = &i2c3;
-		spi5 = &spi5;
 		hsuart0 = &uart8;
 	};
 
@@ -140,8 +140,8 @@
 			i-cache-size = <0x8000>;
 			next-level-cache = <&L2_3>;
 			qcom,freq-domain = <&cpufreq_hw 1>;
-			capacity-dmips-mhz = <1946>;
-			dynamic-power-coefficient = <489>;
+			capacity-dmips-mhz = <2273>;
+			dynamic-power-coefficient = <494>;
 			#cooling-cells = <2>;
 
 			L1_I_3: l1-icache {
@@ -787,6 +787,15 @@
 		qcom,vmid-cp-camera-preview-ro;
 	};
 
+	qti,smmu-proxy {
+		compatible = "smmu-proxy-sender";
+	};
+
+	qcom,seccamtest {
+		compatible = "qcom,seccamtest";
+		qti,smmu-proxy-cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
+	};
+
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
 	};
@@ -832,7 +841,7 @@
 	sram@4690000 {
 		compatible = "qcom,rpm-stats-v2";
 		reg = <0x04690000 0x10000>;
-		ss-name = "modem", "cdsp", "apss";
+		ss-name = "modem", "cdsp", "apss", "lmcu";
 	};
 
 	apcs_glb: mailbox@f400000 {
@@ -1028,7 +1037,8 @@
 			     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,gpii-mask = <0xff>;
+		qcom,static-gpii-mask = <0x1>;
+		qcom,gpii-mask = <0xfe>;
 		qcom,ev-factor = <1>;
 		memory-region = <&qup0_gpi_iommu_region>;
 		qcom,gpi-ee-offset = <0x10000>;
@@ -1326,8 +1336,8 @@
 			pinctrl-1 = <&qup_i2c4_sleep>;
 			pinctrl-names = "default",
 					"sleep";
-			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0>,
-			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0>;
+			dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C 64 0x2>,
+			       <&gpi_dma0 1 4 QCOM_GPI_I2C 64 0x2>;
 			dma-names = "tx",
 				    "rx";
 			#address-cells = <1>;
@@ -1655,6 +1665,35 @@
 					"shutdown";
 			qcom,wakeup-byte = <0xFD>;
 			qcom,suspend-ignore-children;
+			status = "disabled";
+		};
+
+		spi9: spi@4aa4000 {
+			compatible = "qcom,spi-geni";
+			reg = <0x4aa4000 0x4000>;
+			reg-names = "se_phys";
+			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&gcc GCC_QUPV3_WRAP0_S9_CLK>;
+			clock-names = "se-clk";
+			interconnects =
+			<&clk_virt MASTER_QUP_CORE_0 &clk_virt SLAVE_QUP_CORE_0>,
+			<&mem_noc MASTER_AMPSS_M0 &config_noc SLAVE_QUP_0>,
+			<&system_noc MASTER_QUP_0 &mc_virt SLAVE_EBI_CH0>;
+			interconnect-names = "qup-core",
+					     "qup-config",
+					     "qup-memory";
+			pinctrl-0 = <&qup_spi9_miso>, <&qup_spi9_mosi>,
+				    <&qup_spi9_clk>, <&qup_spi9_cs>;
+			pinctrl-1 = <&qup_spi9_sleep>;
+			pinctrl-names = "default",
+					"sleep";
+			dmas = <&gpi_dma0 0 9 QCOM_GPI_SPI 64 0>,
+			       <&gpi_dma0 1 9 QCOM_GPI_SPI 64 0>;
+			dma-names = "tx",
+				    "rx";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			spi-max-frequency = <50000000>;
 			status = "disabled";
 		};
 
@@ -2707,6 +2746,13 @@
 		memory-region-names = "trustedvm_cma" , "oemvm_cma";
 	};
 
+	qcom,qrtr-gunyah-oemvm {
+		compatible = "qcom,qrtr-gunyah";
+		qcom,master;
+		gunyah-label = <0x108>;
+		peer-name = <4>;
+	};
+
 	qcom,test-dbl-tuivm {
 		compatible = "qcom,gh-dbl";
 		qcom,label = <0x104>;
@@ -2736,6 +2782,16 @@
 		peer-name = <2>;
 	};
 
+	tlmm-vm-mem-access {
+		compatible = "qcom,tlmm-vm-mem-access";
+		qcom,master;
+		tuivm {
+			qcom,label = <0x08>;
+			qcom,vmid = <45>;
+			tlmm-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0>;
+		};
+	};
+
 	qcom,gh-qtimer@F42B000 {
 		compatible = "qcom,gh-qtmr";
 		reg = <0x0 0x0F42B000 0x0 0x1000>;
@@ -2761,6 +2817,18 @@
 		peer-name = <2>;
 		memory-region = <&vm_comm_mem>;
 		shared-buffer-size = <0x1000>;
+	};
+
+	cache-controller@e00000 {
+		compatible = "qcom,shikra-llcc";
+		reg = <0x0e00000 0x80000>,
+		      <0x0f00000 0x80000>,
+		      <0x1000000 0x80000>;
+		reg-names = "llcc0_base", "llcc1_base", "llcc_broadcast_or_base";
+		cap-based-alloc-and-pwr-collapse;
+		interrupts = <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
+					<GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>;
+		status = "okay";
 	};
 
 };
@@ -3110,6 +3178,31 @@
 		function = "gpio";
 	};
 
+	qup_spi9_clk: qup_spi9_clk-state {
+		pins = "gpio50";
+		function = "qup0_se9_l2";
+	};
+
+	qup_spi9_cs: qup_spi9_cs-state {
+		pins = "gpio51";
+		function = "qup0_se9_l3";
+	};
+
+	qup_spi9_miso: qup_spi9_miso-state {
+		pins = "gpio48";
+		function = "qup0_se9_l0";
+	};
+
+	qup_spi9_mosi: qup_spi9_mosi-state {
+		pins = "gpio49";
+		function = "qup0_se9_l1";
+	};
+
+	qup_spi9_sleep: qup_spi9_sleep-state {
+		pins = "gpio48", "gpio49", "gpio50", "gpio51";
+		function = "gpio";
+	};
+
 	qup_uart0_rx: qup-uart0-rx-state {
 		pins = "gpio1";
 		function = "qup0_se0_l3";
@@ -3358,11 +3451,6 @@
 		status = "okay";
 		interrupt-parent = <&tlmm>;
 		interrupts = <85 0x2800>;
-		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
-		pinctrl-0 = <&ts_int_default>;
-		pinctrl-1 = <&ts_int_output_low>;
-		pinctrl-2 = <&ts_int_output_high>;
-		pinctrl-3 = <&ts_int_input>;
 
 		reset-gpios = <&tlmm 76 0x1>;
 		irq-gpios = <&tlmm 85 0x1>;
@@ -3397,5 +3485,15 @@
 			0C 0A 08 06 04 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0F
 			10 12 13 14 16 2A 29 28 26 24 22 21 20 1F 1E 1D 1C 18 00 00 00 00 00 00 00 00 00 00 00 00
 			00 00 00 00 82 01];
+
+		goodix,qts_en;
+		goodix,touch-type = "primary";
+		qts,trusted-touch-mode = "vm_mode";
+		qts,touch-environment = "pvm";
+		qts,trusted-touch-type = "primary";
+		qts,trusted-touch-spi-irq = <155>;
+		qts,trusted-touch-io-bases = <0x4a90000>;
+		qts,trusted-touch-io-sizes = <0x4000>;
+		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
 	};
 };
