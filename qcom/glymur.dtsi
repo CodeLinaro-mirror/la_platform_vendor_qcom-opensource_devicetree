@@ -2650,6 +2650,11 @@
 			ss-name = "adsp", "adsp_island", "cdsp", "apss";
 		};
 
+		cpuss_sleep_stats: cpuss-sleep-stats {
+			compatible = "qcom,cpuss-sleep-stats-v6", "qcom,cpuss-sleep-stats-glymur";
+			num-clusters = <3>;
+		};
+
 		usb_ss0: ssusb@a600000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0xa600000 0x0 0x100000>;
