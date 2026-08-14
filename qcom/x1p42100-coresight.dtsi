@@ -2597,7 +2597,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-
+		status = "disabled";
 		out-ports {
 			port {
 				tpdm_dlmm_out_tpda_dlmm: endpoint {
@@ -2617,7 +2617,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-
+		status = "disabled";
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -2660,7 +2660,7 @@
 
 		clocks = <&aoss_qmp>;
 		clock-names = "apb_pclk";
-
+		status = "disabled";
 		in-ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
