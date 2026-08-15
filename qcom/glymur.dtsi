@@ -446,6 +446,12 @@
 		};
 
 	};
+
+	qcom,hdcp {
+		compatible = "qcom,hdcp";
+		qcom,use-smcinvoke = <1>;
+	};
+
 	qcom_tzlog: tz-log@0x14680720 {
 		compatible = "qcom,tz-log";
 		reg = <0x0 0x14680720 0x0 0x4000>;
