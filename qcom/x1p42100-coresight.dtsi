@@ -216,6 +216,9 @@
 		trace-name = "turing-etm0";
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
 			port@0 {
 				reg = <0>;
 				turing_etm0_out_funnel_turing: endpoint {
@@ -2003,6 +2006,9 @@
 		atid = <44>;
 
 		out-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
 			port@0 {
 				reg = <0>;
 				wpss_etm0_out_funnel_wpss: endpoint {
@@ -5092,6 +5098,7 @@
 		};
 
 		out-ports {
+			#address-cells = <1>;
 			#size-cells = <0>;
 
 			port@0 {
