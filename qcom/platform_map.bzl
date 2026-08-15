@@ -1135,7 +1135,11 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
@@ -1176,7 +1180,11 @@ _platform_map = {
         "dtbo_list": [
             # keep sorted
             {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
