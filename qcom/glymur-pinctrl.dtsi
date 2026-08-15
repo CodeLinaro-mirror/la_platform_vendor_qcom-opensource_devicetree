@@ -1662,6 +1662,20 @@
 				bias-disable;
 			};
 		};
+
+		/* RX to be in gpio mode for sleep config */
+		qupv3_se14_rx_wake: qupv3_se14_rx_wake {
+			mux {
+				pins = "gpio59";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio59";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
 	};
 
 	qupv3_se14_i2c_pins: qupv3_se14_i2c_pins {
