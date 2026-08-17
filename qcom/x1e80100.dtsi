@@ -2993,10 +2993,27 @@
 			qcom,low-latency;
 		};
 
+		/* QRTR MHI entry for SDX35 */
+		qcom,qrtr-mhi-cnss3 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x110a>;
+			qcom,net-id = <0>;
+			qcom,low-latency;
+		};
+
+		/* QRTR MHI entry for SDX65 */
 		qcom,qrtr-mhi-cnss2 {
 			compatible = "qcom,qrtr-mhi";
 			qcom,dev-id = <0x0308>;
-			qcom,net-id = <1>;
+			qcom,net-id = <0>;
+			qcom,low-latency;
+		};
+
+		/* QRTR MHI entry for SDX81 */
+		qcom,qrtr-mhi-cnss4 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x0309>;
+			qcom,net-id = <0>;
 			qcom,low-latency;
 		};
 
