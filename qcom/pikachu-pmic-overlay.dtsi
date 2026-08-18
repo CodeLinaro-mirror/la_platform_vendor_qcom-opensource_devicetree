@@ -25,7 +25,7 @@
 };
 
 &usb0 {
-	extcon = <&pmar2230_extcon>;
+	extcon = <&eud>, <&pmar2230_extcon>;
 };
 
 &soc {

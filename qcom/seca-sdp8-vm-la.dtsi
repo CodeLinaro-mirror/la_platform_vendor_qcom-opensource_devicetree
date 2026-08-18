@@ -28,6 +28,11 @@
 					"vendor_boot_a", "init_boot_b", "init_boot_a";
 		};
 	};
+
+	aliases: aliases {
+		hsuart0 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart@88c000";
+		hsuart1 = "/soc/qcom,qupv3_2_geni_se@8c0000/qcom,qup_uart14@880000";
+	};
 };
 
 &chosen {
@@ -129,4 +134,20 @@
 
 &usb_0_qmp_combo_phy {
 	status = "disabled";
+};
+
+&qupv3_2 {
+	status = "okay";
+};
+
+&qupv3_se17_4uart {
+	status = "okay";
+};
+
+&qupv3_se14_4uart {
+	status = "okay";
+};
+
+&pcie2 {
+	status = "okay";
 };

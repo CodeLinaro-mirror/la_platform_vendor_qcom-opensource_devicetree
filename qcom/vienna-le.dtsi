@@ -52,8 +52,8 @@
 	status = "disabled";
 };
 
-/* Disable audio calibration database carveout for Vienna LE variants. */
-&ac_db_mem {
+/* Disable audio data exchange carveout for Vienna LE variants. */
+&audio_data_exchange_mem {
 	status = "disabled";
 };
 
@@ -71,4 +71,20 @@
 /* Disable I2C9 for LE variants */
 &i2c9 {
 	status = "disabled";
+};
+
+/* Reserve M55/WM audio buffer DDR region for LE variants. */
+&reserved_memory {
+	m55_audio_buffer_mem: m55_audio_buffer_region@849a0000 {
+		no-map;
+		reg = <0x0 0x849a0000 0x0 0x480000>;
+	};
+};
+
+&soc {
+	qcom,m55-audio-uio@849A0000 {
+		compatible = "qcom,sharedmem-uio";
+		reg = <0x849A0000 0x480000>;
+		reg-names = "m55_audio_buffer";
+	};
 };

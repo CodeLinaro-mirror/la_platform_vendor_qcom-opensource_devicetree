@@ -7,7 +7,9 @@
 
 #include "glymur.dtsi"
 #include "mahua-dma-heaps.dtsi"
+#include "mahua-reserved-memory.dtsi"
 
+/delete-node/ &bwmon_llcc_cluster2;
 /delete-node/ &cluster2_pd;
 /delete-node/ &cpu_map_cluster2;
 /delete-node/ &cpu12;
@@ -22,6 +24,15 @@
 /delete-node/ &cpu_pd15;
 /delete-node/ &cpu_pd16;
 /delete-node/ &cpu_pd17;
+/delete-node/ &ddr_cluster2;
+/delete-node/ &ddrqos_cluster2;
+/delete-node/ &llcc_cluster2;
+/delete-node/ &pdp2;
+/delete-node/ &pdp2_log;
+
+&ddr_clusterX_compute {
+	qcom,cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+};
 
 &tlmm {
 	gpio-reserved-ranges = <4 4>, /* EC TZ Secure I3C */
@@ -63,6 +74,12 @@
 		};
 };
 
+&gic_router {
+	qcom,gic-class0-cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
+	qcom,gic-class1-cpus = <&cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+	qcom,gic-cpulist = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9 &cpu10 &cpu11>;
+};
+
 &config_noc {
 	compatible = "qcom,mahua-cnoc_cfg";
 };
@@ -84,4 +101,75 @@
 
 &pcie_west_slv_noc {
 	compatible = "qcom,mahua-pcie_west_slv_noc";
+};
+
+&pcie5 {
+	status = "okay";
+};
+
+&pcie4 {
+	status = "okay";
+};
+
+&tlmm {
+	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+		mux {
+			pins = "gpio94";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio94";
+			bias-pull-up;
+			output-high;
+		};
+	};
+};
+
+&{/} {
+	vreg_wlan_3p3: wlan-3p3-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vreg_wlan_3p3";
+
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		gpio = <&tlmm 94 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&wlan_tps_3v3_enable_state>;
+	};
+};
+
+&qcom_pmu {
+	qcom,pmu-events-tbl =
+		< 0x0008 0xfff 0x02 0x02 >,
+		< 0x0011 0xfff 0x01 0x00 >,
+		< 0x0017 0xfff 0xff 0x05 >;
+};
+
+&llcc {
+	qcom,override-fuse-num-banks;
+	qcom,num-banks=<8>;
+	reg = <0x0 0x21800000 0x0 0x100000>,
+		<0x0 0x21a00000 0x0 0x100000>,
+		<0x0 0x21c00000 0x0 0x100000>,
+		<0x0 0x21e00000 0x0 0x100000>,
+		<0x0 0x22800000 0x0 0x100000>,
+		<0x0 0x22a00000 0x0 0x100000>,
+		<0x0 0x22c00000 0x0 0x100000>,
+		<0x0 0x22e00000 0x0 0x100000>,
+		<0x0 0x20400000 0x0 0x100000>,
+		<0x0 0x20600000 0x0 0x100000>;
+	reg-names = "llcc0_base",
+			"llcc1_base",
+			"llcc2_base",
+			"llcc3_base",
+			"llcc4_base",
+			"llcc5_base",
+			"llcc6_base",
+			"llcc7_base",
+			"llcc_broadcast_base",
+			"llcc_broadcast_and_base";
 };

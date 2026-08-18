@@ -82,8 +82,7 @@
 		 * iomemory-ranges <PA IPA SIZE ACCESS>
 		 * Soc dependent
 		 */
-		iomemory-ranges = <0x0 0xae8f000 0x0 0xae8f000 0x0 0x1000 0x0
-				0x0 0x0928000 0x0 0x0928000 0x0 0x4000 0x0
+		iomemory-ranges = <0x0 0x0928000 0x0 0x0928000 0x0 0x4000 0x0
 				0x0 0xc400000 0x0 0xc400000 0x0 0x3000 0x1
 				0x0 0xc440000 0x0 0xc440000 0x0 0x10000 0x1
 				0x0 0xc450000 0x0 0xc450000 0x0 0x70000 0x1
@@ -244,6 +243,9 @@
 };
 
 &{/} {
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+
 	dmesg_dump: dmesg-dump {
 		compatible = "qcom,dmesg-dump";
 		gunyah-label = <0x107>;
@@ -320,8 +322,8 @@
 			&qti_smmu_proxy
 			&qti_smmu_proxy_camera_cb
 			&qti_smmu_proxy_display_cb
+			&qti_smmu_proxy_rotator_cb
 			&qcom_gunyah_panic_notifier
-			&tlmm_vm_mem_access
 			&virtio_mem_device
 			&google_debug_kinfo>;
 	};
@@ -476,7 +478,7 @@
 		compatible = "smmu-proxy-receiver";
 	};
 
-	qti,smmu-proxy-camera-cb {
+	qti_smmu_proxy_camera_cb: qti,smmu-proxy-camera-cb {
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_CAMERA_CB>;
 		qcom,iommu-defer-smr-config;
@@ -496,7 +498,7 @@
 		dma-coherent;
 	};
 
-	smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
+	qti_smmu_proxy_display_cb: qti,smmu-proxy-display-cb {
 		compatible = "smmu-proxy-cb";
 		qti,cb-id = <QTI_SMMU_PROXY_DISPLAY_CB>;
 		qcom,iommu-defer-smr-config;

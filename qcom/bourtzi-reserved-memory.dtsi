@@ -87,7 +87,7 @@
 
 	wlan_msa_mem: wlan_msa_region@82a00000 {
 		no-map;
-		reg = <0x0 0x82a00000 0x0 0x300000>;
+		reg = <0x0 0x82a00000 0x0 0xc00000>;
 	};
 
 	splash_memory: splash_region@83600000 {
@@ -112,12 +112,7 @@
 
 	adsp_mem: adsp_region@87300000 {
 		no-map;
-		reg = <0x0 0x87300000 0x0 0x2100000>;
-	};
-
-	q6_adsp_dtb_mem: q6_adsp_dtb_region@89400000 {
-		no-map;
-		reg = <0x0 0x89400000 0x0 0x80000>;
+		reg = <0x0 0x87300000 0x0 0x1c00000>;
 	};
 
 	ipa_fw_mem: ipa_fw_region@89480000 {
@@ -135,14 +130,21 @@
 		reg = <0x0 0x8949a000 0x0 0x2000>;
 	};
 
-	q6_mpss_dtb_mem: q6_mpss_dtb_region@89f80000 {
-		no-map;
-		reg = <0x0 0x89f80000 0x0 0x80000>;
-	};
-
 	mpss_mem: mpss_region@8a000000 {
 		no-map;
-		reg = <0x0 0x8a000000 0x0 0xda00000>;
+		reg = <0x0 0x8a000000 0x0 0xaa00000>;
+	};
+
+	dsm_mem: dsm_region@97a00000 {
+		reg = <0x0 0x97a00000 0x0 0x2200000>;
+		no-map;
+	};
+
+	dsm_cma_mem: dsm_cma_region@99c00000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x99c00000 0x0 0x800000>;
+		reusable;
+		alignment = <0x0 0x400000>;
 	};
 
 	xbl_sc_mem: xbl_sc_region@a6e00000 {

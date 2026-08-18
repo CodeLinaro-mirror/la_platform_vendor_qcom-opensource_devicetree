@@ -42,7 +42,7 @@
 		qcom,core-clk-rate-hs = <66666667>;
 		qcom,core-clk-rate-disconnected = <133333333>;
 		qcom,pm-qos-latency = <2>;
-
+		qcom,hibernate-skip-thaw;
 		orientation-override = "A";
 
 		qcom,num-gsi-evt-buffs = <0x3>;

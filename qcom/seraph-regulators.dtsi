@@ -311,7 +311,7 @@
 		qcom,resource-name = "L4A_E0";
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
-			<RPMH_REGULATOR_MODE_LPM
+			<RPMH_REGULATOR_MODE_RET
 			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 
@@ -489,7 +489,7 @@
 		qcom,resource-name = "L13A_E0";
 		qcom,regulator-type = "pmic7-ldo";
 		qcom,supported-modes =
-			<RPMH_REGULATOR_MODE_LPM
+			<RPMH_REGULATOR_MODE_RET
 			RPMH_REGULATOR_MODE_AUTO>;
 		qcom,mode-threshold-currents = <0 30000>;
 

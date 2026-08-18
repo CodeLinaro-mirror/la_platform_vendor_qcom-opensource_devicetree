@@ -503,6 +503,9 @@
 		};
 	};
 };
+&bluetooth {
+	status = "disabled";
+};
 
 /*==============================*/
 /*     PCIe Related End         */
