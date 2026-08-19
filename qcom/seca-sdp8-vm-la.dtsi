@@ -146,3 +146,35 @@
 &pcie2 {
 	status = "okay";
 };
+
+&remoteproc_cdsp_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <0>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp1_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <1>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_hpass0_glink {
+	qcom,fastrpc {
+		label = "hpass";
+		instance-id = <0>;
+		dsp-type = <5>;
+	};
+};
+
+&remoteproc_hpass1_glink {
+	qcom,fastrpc {
+		label = "hpass";
+		instance-id = <1>;
+		dsp-type = <5>;
+	};
+};
