@@ -1232,6 +1232,23 @@
 				};
 			};
 
+			/* Compressched virtio */
+			virtio-mmio@52 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x308000>;
+				memory {
+					qcom,label = <0x55>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
 			vsmmu@15a00000 {
 				vdevice-type = "vsmmu-v2";
 				smmu-handle = <0x15a00000>;
