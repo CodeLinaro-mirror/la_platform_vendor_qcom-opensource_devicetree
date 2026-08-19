@@ -162,3 +162,15 @@
 		mem-type = <2>;
 	};
 };
+
+&usb2_phy_2 {
+	status = "okay";
+};
+
+&usb3_phy_2 {
+	status = "okay";
+};
+
+&usb2 {
+	status = "okay";
+};
