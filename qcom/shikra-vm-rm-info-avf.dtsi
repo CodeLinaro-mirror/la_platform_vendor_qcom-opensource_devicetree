@@ -5,6 +5,11 @@
 
 / {
 	host {
+		buffer@81000c000 {
+			reg = <0x08 0x1000c000 0x00 0x9000>;
+			android,pvmfw,target = <&qrtr_buff>;
+		};
+
 		buffer@810015000 {
 			reg = <0x08 0x10015000 0x00 0x1000>;
 			android,pvmfw,target = <&gpn_buff>;
@@ -30,6 +35,13 @@
 };
 
 &reserved_memory {
+	qrtr_buff: buffer@81000c000 {
+		compatible = "qcom,qrtr-gunyah-gen";
+		reg = <0x08 0x1000c000 0x00 0x9000>;
+		no-map;
+		qcom,label = <0x103>;
+	};
+
 	gpn_buff: buffer@810015000 {
 		compatible = "qcom,gunyah-panic-gen";
 		reg = <0x08 0x10015000 0x00 0x1000>;
@@ -46,6 +58,12 @@
 };
 
 &{/}  {
+	qrtr_shm: qrtr-shm {
+		compatible = "qcom,qrtr-gunyah-gen", "qcom,gunyah-shm-doorbell";
+		memory-region = <&qrtr_buff>;
+		qcom,label = <0x103>;
+	};
+
 	ddump_shm: ddump-shm {
 		compatible = "qcom,ddump-gunyah-gen", "qcom,gunyah-shm-doorbell";
 		memory-region = <&ddump_buff>;
@@ -78,6 +96,7 @@
 &non_devices_common {
 		required-subnodes-rm = <&ddump_shm
 				&gpn_shm
+				&qrtr_shm
 				&minidump
 				&qcom_gunyah_vm>;
 };
