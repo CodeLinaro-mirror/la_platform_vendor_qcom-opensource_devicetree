@@ -35,7 +35,7 @@
 };
 
 &chosen {
-	bootconfig = "androidboot.dtbo_idx=27 androidboot.fstab_suffix=hqx.nord.qcom";
+	bootconfig = "androidboot.dtbo_idx=28 androidboot.fstab_suffix=hqx.nord.qcom";
 };
 
 &reserved_memory {
