@@ -1085,7 +1085,7 @@
 				};
 			};
 
-			/* reserved 1 */
+			/* fastrpc */
 			virtio-mmio@43 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
@@ -1094,9 +1094,26 @@
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
-				dma_base = <0x0 0x278000>;
+				dma_base = <0x0 0x272000>;
 				memory {
 					qcom,label = <0x12B>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* reserved */
+			virtio-mmio@44 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x276000>;
+				memory {
+					qcom,label = <0x12C>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
@@ -1523,5 +1540,61 @@
 			remote-vmids = <0>;
 			dma-coherent;
 		};
+	};
+};
+
+&remoteproc_cdsp_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <0>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp1_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <1>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp2_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <2>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_cdsp3_glink {
+	qcom,fastrpc {
+		label = "nsp";
+		instance-id = <3>;
+		dsp-type = <1>;
+	};
+};
+
+&remoteproc_hpass0_glink {
+	qcom,fastrpc {
+		label = "hpass";
+		instance-id = <0>;
+		dsp-type = <5>;
+	};
+};
+
+&remoteproc_hpass1_glink {
+	qcom,fastrpc {
+		label = "hpass";
+		instance-id = <1>;
+		dsp-type = <5>;
+	};
+};
+
+&remoteproc_hpass2_glink {
+	qcom,fastrpc {
+		label = "hpass";
+		instance-id = <2>;
+		dsp-type = <5>;
 	};
 };
