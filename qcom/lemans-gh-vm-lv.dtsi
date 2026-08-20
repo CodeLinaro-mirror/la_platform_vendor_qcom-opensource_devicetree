@@ -57,6 +57,11 @@
 			no-map;
 		};
 
+		glink_cma_mem: glink_cma_region {
+			no-map;
+			qcom,label = <0x150>;
+		};
+
 		tlmm_shared_iomem: tlmm_sh_iomem {
 			no-map;
 			qcom,label = <0x7E>;
