@@ -73,6 +73,7 @@ _platform_map = {
             {"name": "sun-rcm-overlay.dtbo"},
             {"name": "sun-rcm-v8-overlay.dtbo"},
             {"name": "sunp-hdk-overlay.dtbo"},
+            {"name": "sunp-iot-vc-overlay.dtbo"},
             {"name": "sun-rumi-overlay.dtbo"},
         ],
         "binary_compatible_with": ["tuna", "kera"],
