@@ -43,6 +43,10 @@
 			};
 		};
 
+		pmk8350_qvadj: qcom,voltage-adj-device {
+			compatible = "qcom,vadj";
+		};
+
 		pmk8350_vadc: vadc@3100 {
 			compatible = "qcom,spmi-adc7";
 			reg = <0x3100>;

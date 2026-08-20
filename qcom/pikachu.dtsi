@@ -38,6 +38,7 @@
 	};
 
 	reserved_memory: reserved-memory {};
+	ddr-regions { };
 
 	aliases: aliases {
 		serial0 = &uart11;
@@ -259,6 +260,9 @@
 
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
+
+	disp_rdump_region@d5100000 {
+	};
 
 	qcom,qrtr-gunyah-tuivm {
 		compatible = "qcom,qrtr-gunyah";
@@ -540,6 +544,42 @@
 						0x3E8  7>;
 			};
 
+			qcom,glinkpkt-lmcu-qsh-drc-0 {
+				qcom,glink-channels = "qsh_drc_1_0";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-drc-1 {
+				qcom,glink-channels = "qsh_drc_1_1";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-drc-2 {
+				qcom,glink-channels = "qsh_drc_1_2";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-drc-3 {
+				qcom,glink-channels = "qsh_drc_1_3";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-drc-4 {
+				qcom,glink-channels = "qsh_drc_1_4";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
+			qcom,glinkpkt-lmcu-qsh-drc-5 {
+				qcom,glink-channels = "qsh_drc_1_5";
+				qcom,intents = <0x1000 3
+						0x3E8  7>;
+			};
+
 			/* DHMS GLINK Channel for LMCU */
 			qcom,dhms {
 				qcom,glink-channels = "dhms_mcu0";
@@ -740,6 +780,48 @@
 			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_1_8";
 			qcom,glinkpkt-enable-ch-close;
 		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-0 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_0";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_0";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-1 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_1";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_1";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-2 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_2";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_2";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-3 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_3";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_3";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-4 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_4";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_4";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-qsh-drc-5 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "qsh_drc_1_5";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_5";
+			qcom,glinkpkt-enable-ch-close;
+		};
 	};
 
 	intc: interrupt-controller@17200000 {
@@ -899,9 +981,13 @@
 			< 350000 >,
 			< 533000 >,
 			< 600000 >,
-			< 710670 >,
-			< 806000 >,
-			< 933000 >;
+			< 710670 >;
+	};
+
+	ddrqos_freq_table: ddrqos-freq-table {
+		qcom,freq-tbl =
+		< 0 >,
+		< 1 >;
 	};
 
 	qcom_dcvs: qcom,dcvs {
@@ -965,6 +1051,20 @@
 			};
 
 		};
+
+		qcom_ddrqos_dcvs_hw: ddrqos {
+			compatible = "qcom,dcvs-hw";
+			qcom,dcvs-hw-type = <3>;
+			qcom,bus-width = <1>;
+			qcom,freq-tbl = <&ddrqos_freq_table>;
+
+			ddrqos_dcvs_sp: sp {
+				compatible = "qcom,dcvs-path";
+				qcom,dcvs-path-type = <0>;
+				interconnects = <&mc_virt MASTER_LLCC
+					 &mc_virt SLAVE_EBI1>;
+			};
+		};
 	};
 
 	qcom_memlat: qcom,memlat {
@@ -1014,9 +1114,9 @@
 					<  960000 350000 >,
 					< 1113600 533000 >,
 					< 1497600 600000 >,
-					< 1747200 710670 >,
-					< 1843200 806000 >,
-					< 2016000 933000 >;
+					< 1747200 600000 >,
+					< 1843200 710670 >,
+					< 2016000 710670 >;
 				qcom,sampling-enabled;
 			};
 
@@ -1025,7 +1125,7 @@
 				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 				qcom,cpufreq-memfreq-tbl =
 					< 1747200 250000 >,
-					< 2016000 933000 >;
+					< 2016000 710670 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
 			};
@@ -1060,6 +1160,22 @@
 					< 2016000 1612800 >;
 				qcom,sampling-enabled;
 				qcom,compute-mon;
+			};
+		};
+
+		ddrqos {
+			compatible = "qcom,memlat-grp";
+			qcom,target-dev = <&qcom_ddrqos_dcvs_hw>;
+			qcom,sampling-path = <&ddrqos_dcvs_sp>;
+			qcom,miss-ev = <0x1000>;
+
+			ddrqos_silver_latfloor: silver-latfloor {
+				compatible = "qcom,memlat-mon";
+				qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+				qcom,cpufreq-memfreq-tbl =
+					< 1747200 0 >,
+					< 2016000 1 >;
+				qcom,sampling-enabled;
 			};
 		};
 	};
@@ -2267,7 +2383,7 @@
 		ipa_smmu_rtp: ipa_smmu_rtp {
 			compatible = "qcom,ipa-smmu-rtp-cb";
 			iommus = <&apps_smmu 0x0a3 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
+			qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 			memory-region = <&ipa_smmu_rtp_partition>;
 			qcom,iommu-dma = "atomic";
 			dma-coherent;

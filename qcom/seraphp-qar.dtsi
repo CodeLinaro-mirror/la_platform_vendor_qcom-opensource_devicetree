@@ -21,3 +21,22 @@
 		reg = <0x30>;
 	};
 };
+
+&charger {
+	interrupts = <30 2>;
+};
+
+&pmic_alert_int_active {
+	mux {
+		pins = "gpio30";
+		function = "normal";
+	};
+
+	config {
+		pins = "gpio30";
+		drive-strength = <2>;
+		bias-pull-up;
+		input-enable;
+		qcom,apps;
+	};
+};

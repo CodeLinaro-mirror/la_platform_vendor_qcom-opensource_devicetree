@@ -57,6 +57,7 @@ properties:
           - qcom,pm8998-gpio
           - qcom,pma8084-gpio
           - qcom,pmc8380-gpio
+          - qcom,pmcx0102-gpio
           - qcom,pmd802x-gpio
           - qcom,pmg1110-gpio
           - qcom,pmh0101-gpio
@@ -306,6 +307,7 @@ allOf:
         compatible:
           contains:
             enum:
+              - qcom,pmcx0102-gpio
               - qcom,pmh0110-gpio
               - qcom,pmi8998-gpio
     then:
@@ -482,6 +484,7 @@ $defs:
                  - gpio1-gpio26 for pm8998
                  - gpio1-gpio22 for pma8084
                  - gpio1-gpio10 for pmc8380
+                 - gpio1-gpio14 for pmcx0102
                  - gpio1-gpio4 for pmd802x
                  - gpio1-gpio4 for pmg1110
                  - gpio1-gpio18 for pmh0101
