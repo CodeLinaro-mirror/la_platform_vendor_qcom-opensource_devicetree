@@ -41,6 +41,11 @@
 			reg=<0x0 0x4ac0000 0x0 0x2000>;
 			android,pvmfw,target = <&qupv3_0>;
 		};
+
+		qcom,apcs@F400000 {
+			reg = <0x0 0xF400000 0x0 0x1000>;
+			android,pvmfw,target = <&apcs_mproc>;
+		};
 	};
 
 	qcom,vm-config {
@@ -70,13 +75,15 @@
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
 		/* GPII - 8 is used for QUP LEVM case */
-		iomemory-ranges = <0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
+		iomemory-ranges = <0x0 0xF400000 0x0 0xF400000 0x0 0x1000 0x0
+				0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
 
 		/* Dynamically nominate the vmmio ranges */
 		vmmio-ranges;
 
 		/* QUP0: SE4: GPII8 : GIC_SPI IRQ 519 + 32 = 551 */
-		gic-irq-ranges = <551 551>;
+		gic-irq-ranges = <327 327
+				551 551>;
 
 		segments {
 			ramdisk = <3>;
@@ -395,6 +402,15 @@
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10d>;
+	};
+
+	apcs_mproc: qcom,apcs@0xF400000 {
+		compatible = "qcom,shikra-apcs-hmss-global";
+		reg = <0x0 0xF400000 0x0 0x1000>;
+		interrupts = <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 
 	qcom_mem_buf: qcom,mem-buf {
