@@ -2828,15 +2828,11 @@
 };
 
 #include "shikra-pinctrl.dtsi"
-#include "shikra-pcie.dtsi"
 #include "shikra-reserved-memory.dtsi"
-#include "shikra-pm4125-regulator.dtsi"
-#include "shikra-pm8005-regulator.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"
 #include "msm-rdbg-shikra.dtsi"
-#include "shikra-usb.dtsi"
 #include "shikra-walt.dtsi"
 #include "shikra-debug.dtsi"
 #include "shikra-coresight.dtsi"
