@@ -64,6 +64,12 @@
 		reg = <0x0 0xd8632000 0x0 0x05600000>;
 		no-map;
 	};
+
+	ramoops_mem: ramoops-region {
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
+		size = <0x0 0x200000>;
+		no-map;
+	};
 };
 
 &usb_audio_qmi_dev {
@@ -72,4 +78,13 @@
 
 &pcie5 {
 	status = "disabled";
+};
+
+&soc {
+	qcom_ramoops {
+		compatible = "qcom,ramoops";
+		memory-region = <&ramoops_mem>;
+		pmsg-size = <0x200000>;
+		mem-type = <2>;
+	};
 };
