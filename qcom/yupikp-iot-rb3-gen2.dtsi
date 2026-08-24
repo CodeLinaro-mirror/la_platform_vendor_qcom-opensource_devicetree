@@ -310,3 +310,8 @@
 		};
 	};
 };
+
+&bluetooth {
+	status = "disabled";
+};
+

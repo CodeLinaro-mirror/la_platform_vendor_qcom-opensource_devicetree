@@ -170,7 +170,7 @@
 };
 
 &pm8350c_pwm {
-	status = "disabled";
+	status = "ok";
 };
 
 &pm8350c_switch0 {
@@ -502,6 +502,9 @@
 			qcom,iommu-dma = "atomic";
 		};
 	};
+};
+&bluetooth {
+	status = "disabled";
 };
 
 /*==============================*/

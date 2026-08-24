@@ -339,6 +339,19 @@
 		};
 
 		qupv3_se2_i2c_pins: qupv3_se2_i2c_pins {
+			qupv3_se2_i2c_active: qupv3_se2_i2c_active {
+				mux {
+					pins = "gpio8", "gpio9";
+					function = "qup02";
+				};
+
+				config {
+					pins = "gpio8", "gpio9";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+
 			qupv3_se2_i2c_sda_active: qupv3_se2_i2c_sda_active {
 				mux {
 					pins = "gpio8";

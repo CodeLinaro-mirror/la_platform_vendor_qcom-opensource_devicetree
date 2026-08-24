@@ -60,6 +60,11 @@
 		no-map;
 		reg = <0x0 0xa6c00000 0x0 0x400000>;
 	};
+
+	ta_mem: ta@d8632000 {
+		reg = <0x0 0xd8632000 0x0 0x05600000>;
+		no-map;
+	};
 };
 
 &usb_audio_qmi_dev {
