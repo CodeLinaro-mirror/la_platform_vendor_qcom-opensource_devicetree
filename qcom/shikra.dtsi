@@ -3435,6 +3435,8 @@
 
 &i2c4 {
 	status = "ok";
+	qcom,touch-active = "goodix,gt928";
+	qcom,la-vm;
 	gt9xx-i2c@5d {
 		compatible = "goodix,gt928";
 		reg = <0x5d>;
@@ -3481,7 +3483,7 @@
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "pvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <267>;
+		qts,trusted-touch-spi-irq = <270>;
 		qts,trusted-touch-io-bases = <0x4a90000>;
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
