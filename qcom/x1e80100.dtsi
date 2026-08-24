@@ -2637,6 +2637,7 @@
 			interconnects = <&usb_south_anoc MASTER_USB3_2 0 &mc_virt SLAVE_EBI1 0>,
 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_2 0>;
 
+			wakeup-source;
 			/*
 			 * Establish dependency on smmu driver so that depopulate path of
 			 * deferred probe doesn't run into existing bug in smmu driver.
