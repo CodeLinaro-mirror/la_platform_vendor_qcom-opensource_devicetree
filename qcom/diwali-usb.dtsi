@@ -3,7 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include <dt-bindings/clock/qcom,gcc-diwali.h>
+#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 #include <dt-bindings/phy/qcom,usb3-5nm-qmp-combo.h>
 
 &soc {
