@@ -20,9 +20,7 @@
 };
 
 &qupv3_se4_spi {
-	st_fts@0 {
-		status = "disabled";
-	};
+	status = "disabled";
 };
 
 &pmih010x_eusb2_repeater {
