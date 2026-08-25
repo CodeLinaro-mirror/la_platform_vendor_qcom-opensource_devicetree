@@ -499,10 +499,6 @@
 	bias-pull-up;
 };
 
-&qusb_phy0 {
-	extcon = <&pm4125_charger>;
-};
-
 &i2c3 {
 	status = "ok";
 	#address-cells = <1>;
@@ -635,11 +631,11 @@
 	pinctrl-1 = <&sdc1_off>;
 	pinctrl-names = "default", "sleep";
 
-	vdd-supply = <&L20A>;
+	vdd-supply = <&L17A>;
 	qcom,vdd-voltage-level = <2952000 2952000>;
 	qcom,vdd-current-level = <0 570340>;
 
-	vdd-io-supply = <&L14A>;
+	vdd-io-supply = <&S4A>;
 	qcom,vdd-io-always-on;
 	qcom,vdd-io-lpm-sup;
 	qcom,vdd-io-voltage-level = <1800000 1800000>;
@@ -654,11 +650,11 @@
 };
 
 &sdhc_2 {
-	vdd-supply = <&L21A>;
+	vdd-supply = <&L10A>;
 	qcom,vdd-current-level = <0 976310>;
 	qcom,vdd-voltage-level = <2950000 2950000>;
 
-	vdd-io-supply = <&L4A>;
+	vdd-io-supply = <&L2A>;
 	qcom,vdd-io-voltage-level = <1800000 2960000>;
 	qcom,vdd-io-current-level = <0 22000>;
 
@@ -679,7 +675,7 @@
 };
 
 &usb0 {
-	extcon = <&qusb_phy0>, <&eud>;
+	extcon = <&eud>;
 };
 
 &usb1 {
