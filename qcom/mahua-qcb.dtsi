@@ -108,6 +108,12 @@
 	vdda-pll-supply = <&pm_f10_f_l4_e1>;
 	vdda-pll-max-microamp = <18340>;
 
+	vdda-qref-supply = <&pm_f10_f_l1_e1>;
+	vdda-qref-max-microamp = <30000>;
+
+	vdda-refgen-supply = <&pm_f10_c_l1>;
+	vdda-refgen-max-microamp = <219070>;
+
 	status = "okay";
 };
 
@@ -124,6 +130,9 @@
 
 	qcom,vddp-ref-clk-supply = <&pm_f10_f_l1_e1>;
 	qcom,vddp-ref-clk-max-microamp = <850>;
+
+	qcom,vccq-parent-supply = <&pm_f10_f_s7>;
+	qcom,vccq-parent-max-microamp = <1200000>;
 
 	status = "okay";
 };
