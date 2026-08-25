@@ -679,9 +679,11 @@ X1P42100_BOARDS += \
 		   x1p42100-qcb-v1-overlay.dtbo \
 		   x1p42100-qcb-v2-overlay.dtbo \
 		   x1p42100-qcb-v3-overlay.dtbo \
+		   x1p42100-qcb-v4-overlay.dtbo \
 		   x1p42100-cdp-v1-overlay.dtbo \
 		   x1p42100-cdp-v2-overlay.dtbo \
 		   x1p42100-cdp-v3-overlay.dtbo \
+		   x1p42100-cdp-v5-overlay.dtbo \
 		   x1p42100-canim-crd-overlay.dtbo \
 		   x1p42100-canim-crd-cologne-overlay.dtbo \
 		   x1p42100-canim-qcb-v1-overlay.dtbo \
