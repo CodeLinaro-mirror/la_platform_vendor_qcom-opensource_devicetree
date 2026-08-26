@@ -3,7 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include <dt-bindings/clock/qcom,gcc-sm8450.h>
+#include <dt-bindings/clock/qcom,gcc-diwali.h>
 #include <dt-bindings/phy/qcom,usb3-5nm-qmp-combo.h>
 
 &soc {
@@ -12,8 +12,8 @@
 		reg = <0xa600000 0x100000>;
 		reg-names = "core_base";
 
-		#address-cells = <2>;
-		#size-cells = <2>;
+		#address-cells = <1>;
+		#size-cells = <1>;
 		ranges;
 
 		USB3_GDSC-supply = <&gcc_usb30_prim_gdsc>;
@@ -29,9 +29,9 @@
 		reset-names = "core_reset";
 
 		interrupts-extended = <&pdc 14 IRQ_TYPE_EDGE_RISING>,
-			<&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
-			<&pdc 15 IRQ_TYPE_EDGE_RISING>;
+				      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+				      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+				      <&pdc 15 IRQ_TYPE_EDGE_RISING>;
 		interrupt-names = "dp_hs_phy_irq", "pwr_event_irq",
 				"ss_phy_irq", "dm_hs_phy_irq";
 		qcom,use-pdc-interrupts;
@@ -53,15 +53,14 @@
 		interconnects = <&aggre1_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
 				<&aggre1_noc MASTER_USB3_0 &config_noc SLAVE_IPA_CFG>,
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
-		extcon = <&eud>;
 
-		dwc3_0: dwc3@a600000 {
+		dwc3@a600000 {
 			compatible = "snps,dwc3";
-			reg = <0x0 0xa600000 0x0 0xd93c>;
+			reg = <0xa600000 0xd93c>;
 
-			iommus = <&apps_smmu 0x0 0x0>;
+			iommus = <&apps_smmu 0x40 0x0>;
 			qcom,iommu-dma = "atomic";
-			memory-region = <&dwc3_mem_region>;
+			qcom,iommu-dma-addr-pool = <0x90000000 0x60000000>;
 			dma-coherent;
 
 			interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
@@ -76,17 +75,38 @@
 			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
-			num-hc-interrupters = /bits/ 16 <3>;
-			dr_mode = "otg";
+			dr_mode = "peripheral";
 			maximum-speed = "super-speed-plus";
-			usb-role-switch;
 		};
 
-	};
+		qcom,usbbam@a704000 {
+			compatible = "qcom,usb-bam-msm";
+			reg = <0xa704000 0x18000>;
+			interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
 
-	dwc3_mem_region: dwc3_mem_region {
-		iommu-addresses = <&dwc3_0 0x0 0x0 0x0 0x90000000>,
-				<&dwc3_0 0x0 0xf0000000 0xffffffff 0x10000000>;
+			qcom,usb-bam-fifo-baseaddr = <0x146a6000>;
+			qcom,usb-bam-num-pipes = <4>;
+			qcom,disable-clk-gating;
+			qcom,usb-bam-override-threshold = <0x4001>;
+			qcom,usb-bam-max-mbps-highspeed = <400>;
+			qcom,usb-bam-max-mbps-superspeed = <3600>;
+			qcom,reset-bam-on-connect;
+
+			qcom,pipe0 {
+				label = "ssusb-qdss-in-0";
+				qcom,usb-bam-mem-type = <2>;
+				qcom,dir = <1>;
+				qcom,pipe-num = <0>;
+				qcom,peer-bam = <0>;
+				qcom,peer-bam-physical-address = <0x10064000>;
+				qcom,src-bam-pipe-index = <0>;
+				qcom,dst-bam-pipe-index = <0>;
+				qcom,data-fifo-offset = <0x0>;
+				qcom,data-fifo-size = <0x1800>;
+				qcom,descriptor-fifo-offset = <0x1800>;
+				qcom,descriptor-fifo-size = <0x800>;
+			};
+		};
 	};
 
 	/* USB port related High Speed PHY */
@@ -97,10 +117,10 @@
 		reg-names = "hsusb_phy_base",
 			"eud_enable_reg";
 
-		vdd-supply = <&pm8350_l5>;
-		vdda18-supply = <&pm8350c_l1>;
-		vdda33-supply = <&pm8350_l2>;
-		qcom,vdd-voltage-level = <0 880000 880000>;
+		vdd-supply = <&L10C>;
+		vdda18-supply = <&L1C>;
+		vdda33-supply = <&L2B>;
+		qcom,vdd-voltage-level = <0 880000 918750>;
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_EUSB3_0_CLKREF_EN>;
@@ -116,25 +136,25 @@
 		reg = <0x88e8000 0x3000>;
 		reg-names = "qmp_phy_base";
 
-		vdd-supply = <&pm8350_l1>;
+		vdd-supply = <&L1B>;
 		qcom,vdd-voltage-level = <0 912000 912000>;
 		qcom,vdd-max-load-uA = <47000>;
-		core-supply = <&pm8350_l6>;
+		core-supply = <&L6B>;
+
+		resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+			<&gcc GCC_USB3_PHY_PRIM_BCR>;
+		reset-names = "global_phy_reset", "phy_reset";
 
 		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
-			<&gcc USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK>,
+			<&usb3_phy_wrapper_gcc_usb30_pipe_clk>,
 			<&rpmhcc RPMH_CXO_CLK>,
 			<&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
 			<&gcc GCC_USB3_0_CLKREF_EN>;
 		clock-names = "aux_clk", "pipe_clk", "pipe_clk_mux",
 				"pipe_clk_ext_src", "ref_clk_src",
 				"com_aux_clk", "ref_clk";
-
-		resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
-			<&gcc GCC_USB3_PHY_PRIM_BCR>;
-		reset-names = "global_phy_reset", "phy_reset";
 
 		pinctrl-names = "default";
 		pinctrl-0 = <&usb3phy_portselect_default>;
@@ -317,4 +337,5 @@
 		qcom,usb-audio-stream-id = <0xf>;
 		qcom,usb-audio-intr-num = <2>;
 	};
+
 };

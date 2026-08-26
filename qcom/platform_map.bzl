@@ -307,6 +307,10 @@ _platform_map = {
             {"name": "waipiop.dtb"},
             {"name": "waipio-v2.dtb"},
             {"name": "waipiop-v2.dtb"},
+            {"name": "diwali.dtb"},
+            {"name": "diwalip.dtb"},
+            {"name": "diwali-lte.dtb"},
+            {"name": "diwali-hsp.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -334,6 +338,16 @@ _platform_map = {
             {"name": "waipio-mtp-xr-overlay.dtbo"},
             {"name": "waipio-cdp-xr-pcie-overlay.dtbo"},
             {"name": "waipio-mtp-xr-pcie-overlay.dtbo"},
+            {"name": "diwali-rumi-overlay.dtbo"},
+            {"name": "diwali-idp-overlay.dtbo"},
+            {"name": "diwali-atp-overlay.dtbo"},
+            {"name": "diwali-qrd-overlay.dtbo"},
+            {"name": "diwali-idp-amoled-overlay.dtbo"},
+            {"name": "diwali-idp-usbc-overlay.dtbo"},
+            {"name": "diwali-idp-hsp-overlay.dtbo"},
+            {"name": "diwali-idp-nopmi-overlay.dtbo"},
+            {"name": "diwali-qrd-nopmi-overlay.dtbo"},
+            {"name": "diwali-qrd-pm8350b-overlay.dtbo"},
         ],
     },
     "malabar": {
