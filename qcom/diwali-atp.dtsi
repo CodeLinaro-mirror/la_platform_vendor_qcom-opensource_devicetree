@@ -140,7 +140,7 @@
 
 	status = "ok";
 };
-
+/*
 &usb0 {
 	usb-role-switch;
 	extcon = <&eud>;
@@ -166,3 +166,4 @@
 		};
 	};
 };
+*/

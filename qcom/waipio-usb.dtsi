@@ -53,7 +53,7 @@
 		interconnects = <&aggre1_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
 				<&aggre1_noc MASTER_USB3_0 &config_noc SLAVE_IPA_CFG>,
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
-		extcon = <&eud>;
+		//extcon = <&eud>;
 
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
@@ -77,7 +77,7 @@
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
 			num-hc-interrupters = /bits/ 16 <3>;
-			dr_mode = "otg";
+			dr_mode = "peripheral";
 			maximum-speed = "super-speed-plus";
 			usb-role-switch;
 		};

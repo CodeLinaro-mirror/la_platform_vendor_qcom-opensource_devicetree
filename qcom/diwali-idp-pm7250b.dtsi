@@ -8,7 +8,7 @@
 &battery_charger {
 	qcom,thermal-mitigation = <3000000 1500000 1000000 500000>;
 };
-
+/*
 &usb0 {
 	usb-role-switch;
 	extcon = <&eud>;
@@ -34,3 +34,4 @@
 		};
 	};
 };
+*/

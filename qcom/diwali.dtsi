@@ -7,7 +7,7 @@
 #include <dt-bindings/clock/qcom,camcc-diwali.h>
 #include <dt-bindings/clock/qcom,dispcc-diwali.h>
 #include <dt-bindings/clock/qcom,gpucc-diwali.h>
-#include <dt-bindings/clock/qcom,gcc-diwali.h>
+#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include <dt-bindings/clock/qcom,videocc-diwali.h>
 #include <dt-bindings/interconnect/qcom,diwali.h>
@@ -663,7 +663,7 @@
 			//power-domains = <&CLUSTER_PD>;
 
 			rpmhcc: clock-controller {
-				compatible = "qcom,diwali-rpmh-clk";
+				compatible = "qcom,fillmore-rpmh-clk";
 				#clock-cells = <1>;
 			};
 
@@ -958,7 +958,7 @@
 	};
 
 	gcc: clock-controller@100000 {
-		compatible = "qcom,diwali-gcc", "syscon";
+		compatible = "qcom,fillmore-gcc", "syscon";
 		reg = <0x100000 0x1f4200>;
 		reg-name = "cc_base";
 		vdd_cx-supply = <&VDD_CX_LEVEL>;
