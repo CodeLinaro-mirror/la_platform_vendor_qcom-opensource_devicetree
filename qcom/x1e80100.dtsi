@@ -3936,7 +3936,7 @@
 };
 
 &tlmm {
-	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+	wlan_tps_kiwi_3v3_enable_state: wlan-tps-kiwi-3v3-enable {
 		mux {
 			pins = "gpio214";
 			function = "gpio";
@@ -3948,10 +3948,23 @@
 			output-high;
 		};
 	};
+
+	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+		mux {
+			pins = "gpio225";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio225";
+			bias-pull-up;
+			output-high;
+		};
+	};
 };
 
 &{/} {
-	vreg_wlan_3p3: wlan-3p3-regulator {
+	vreg_wlan_kiwi_3p3: wlan-kiwi-3p3-regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "vreg_wlan_3p3";
 
@@ -3959,6 +3972,20 @@
 		regulator-max-microvolt = <3300000>;
 
 		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&wlan_tps_kiwi_3v3_enable_state>;
+	};
+
+	vreg_wlan_3p3: wlan-3p3-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vreg_wlan_3p3";
+
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		gpio = <&tlmm 225 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 
 		pinctrl-names = "default";
