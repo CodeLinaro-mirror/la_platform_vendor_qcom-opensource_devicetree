@@ -7,8 +7,6 @@
 #include "x1e80100.dtsi"
 #include "x1p42100-coresight.dtsi"
 #include "x1p42100-regulators.dtsi"
-#include "x1e80100-pmic-overlay.dtsi"
-#include "x1p42100-thermal-overlay.dtsi"
 #include "x1p42100-debug.dtsi"
 #include <dt-bindings/clock/qcom,x1p42100-gcc.h>
 #include <dt-bindings/clock/qcom,x1p42100-videocc.h>
@@ -192,8 +190,4 @@
 			bits = <7 9>;
 			};
 	};
-};
-
-&pmc8380_g {
-	status = "disabled";
 };
