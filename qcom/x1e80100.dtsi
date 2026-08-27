@@ -2628,6 +2628,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
 			qcom,core-clk-rate-hs = <66666667>;
