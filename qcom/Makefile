@@ -671,7 +671,7 @@ vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
 vienna-overlays-dtb-$(CONFIG_ARCH_VIENNA) += $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS) $(VIENNA_BASE_DTB) $(VIENNA_APQ_BASE_DTB)
 dtb-y += $(vienna-dtb-y)
 
-X1P42100_BASE_DTB += x1p42100.dtb
+X1P42100_BASE_DTB += x1p42100.dtb x1p42100-canim.dtb
 
 X1P42100_BOARDS += \
 		   x1p42100-crd-overlay.dtbo \
@@ -681,7 +681,15 @@ X1P42100_BOARDS += \
 		   x1p42100-qcb-v3-overlay.dtbo \
 		   x1p42100-cdp-v1-overlay.dtbo \
 		   x1p42100-cdp-v2-overlay.dtbo \
-		   x1p42100-cdp-v3-overlay.dtbo
+		   x1p42100-cdp-v3-overlay.dtbo \
+		   x1p42100-canim-crd-overlay.dtbo \
+		   x1p42100-canim-crd-cologne-overlay.dtbo \
+		   x1p42100-canim-qcb-v1-overlay.dtbo \
+		   x1p42100-canim-qcb-v2-overlay.dtbo \
+		   x1p42100-canim-qcb-v3-overlay.dtbo \
+		   x1p42100-canim-cdp-v1-overlay.dtbo \
+		   x1p42100-canim-cdp-v2-overlay.dtbo \
+		   x1p42100-canim-cdp-v3-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
