@@ -3137,9 +3137,9 @@
 			compatible = "qcom,secure-buffer";
 			qcom,vmid-cp-camera-preview-ro;
 		};
-	};
 
-	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+		msm_gpu: qcom,kgsl-3d0@3d00000 { };
+	};
 
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
