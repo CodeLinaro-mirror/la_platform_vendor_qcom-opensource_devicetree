@@ -73,3 +73,10 @@
 &usb {
 	extcon = <&pmx75_vbus_detect>, <&eud>;
 };
+
+&soc {
+	fspapp_client {
+		compatible = "qcom,fspapp-client";
+		status = "okay";
+	};
+};
