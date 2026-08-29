@@ -1947,6 +1947,17 @@
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
 			};
+
+			smp2p_rdbg5_out: qcom,smp2p-rdbg5-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg5_in: qcom,smp2p-rdbg5-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
+			};
 		};
 
 		qcom,smp2p-adsp {
@@ -1991,6 +2002,17 @@
 			smp2p_test2_out: qcom,smp2p-test2-out {
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_out: qcom,smp2p-rdbg2-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_in: qcom,smp2p-rdbg2-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
 			};
 		};
 
@@ -2922,6 +2944,7 @@
 #include "msm-arm-smmu-glymur.dtsi"
 #include "mahua-qupv3.dtsi"
 #include "glymur-pcie.dtsi"
+#include "msm-rdbg.dtsi"
 
 &qupv3_se21_2uart {
 	status = "okay";
