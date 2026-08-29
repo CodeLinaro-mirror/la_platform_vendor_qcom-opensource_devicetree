@@ -79,4 +79,8 @@
 		compatible = "qcom,fspapp-client";
 		status = "okay";
 	};
+	fspapp_fscrypt {
+		compatible = "qcom,fspapp-fscrypt";
+		status = "okay";
+	};
 };
