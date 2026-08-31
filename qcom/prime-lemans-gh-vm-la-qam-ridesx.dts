@@ -17,22 +17,37 @@
 
 &soc {
 	/delete-node/ ptp_virtual;
+	/delete-node/ qcom,ipcc@421000;
+	/delete-node/ qcom,ipcc@461000;
+	/delete-node/ ipcc-self-ping-apss_cl0;
+	/delete-node/ ipcc-self-ping-apss_cl0_ack;
+	/delete-node/ ipcc-self-ping-adsp_cl0;
+	/delete-node/ ipcc-self-ping-adsp_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0_ack;
+	/delete-node/ virtio-glink-cma@2e000000;
+	/delete-node/ syscon@0x1fd8000;
+	/delete-node/ syscon@0x1fd9000;
+	/delete-node/ syscon@0x1fdd000;
+	/delete-node/ syscon@0x1fdb000;
+	/delete-node/ syscon@0x1fdf000;
+	/delete-node/ hgsl_tcsr_sender0;
+	/delete-node/ hgsl_tcsr_sender1;
+	/delete-node/ hgsl_tcsr_receiver0;
+	/delete-node/ hgsl_tcsr_receiver1;
+	/delete-node/ qcom,hgsl@0x2c00000;
 };
 
 &vm_config {
+	/delete-property/ iomemory-ranges;
+	/delete-property/ gic-irq-ranges;
+
 	/* Pass through regions */
 	iomemory-ranges = <
 			/* QRNG region */
 			0x0 0x10dc000 0x0 0x10dc000 0x0 0x1000 0x0
-			/* MPROC NS1 IPCC region */
-			0x0 0x421000 0x0 0x421000 0x0 0x1000 0x0
-			/* Compute L0 IPCC region */
-			0x0 0x461000 0x0 0x461000 0x0 0x1000 0x0
-			0x0 0x1fd8000 0x0 0x1fd8000 0x0 0x1000 0x1
-			0x0 0x1fd9000 0x0 0x1fd9000 0x0 0x1000 0x3
-			0x0 0x1fdd000 0x0 0x1fdd000 0x0 0x1000 0x3
-			0x0 0x1fdb000 0x0 0x1fdb000 0x0 0x1000 0x0
-			0x0 0x1fdf000 0x0 0x1fdf000 0x0 0x1000 0x0
 			/* IMEM region */
 			0x0 0x146D8000 0x0 0x146D8000 0x0 0x1000 0x0
 			/* MPM timer read only*/
@@ -53,14 +68,8 @@
 			0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
 			>;
 
-	/* Pass through IRQs */
+	/* Keep IRQ passthrough only for remaining direct-MMIO guest devices. */
 	gic-irq-ranges = <
-		/* MPROC NS1 IPCC GIC IRQ */
-		591 591
-		/* Compute L0 IPCC GIC IRQ */
-		588 588
-		270 270
-		271 271
 		/* PCIe0 IRQs */
 		339 339
 		340 340
