@@ -9,6 +9,7 @@
 #include "seca-vm-pinctrl.dtsi"
 #include "seca-vm-qupv3.dtsi"
 #include "seca-vm-ethernet.dtsi"
+#include "seca-vm-ufs.dtsi"
 
 / {
 	aliases {
@@ -184,5 +185,9 @@
 };
 
 &pcie3 {
+	status = "ok";
+};
+
+&ufshc2_mem {
 	status = "ok";
 };
