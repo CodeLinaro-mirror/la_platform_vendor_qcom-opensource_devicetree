@@ -290,3 +290,20 @@
 	vbus_dwc3-supply = <&regulator_usb5_vbus>;
 	status = "okay";
 };
+
+&ufsphy_mem {
+	vdda-qref-supply = <&pm_v8j_l3>;
+	vdda-qref-max-microamp = <1300>;
+
+	status = "okay";
+};
+
+&ufshc_mem {
+	vcc-supply = <&pm_humu_l17>;
+	vcc-max-microamp = <1300000>;
+
+	qcom,vddp-ref-clk-supply = <&pm_v8i_l2>;
+	qcom,vddp-ref-clk-max-microamp = <100>;
+
+	status = "okay";
+};
