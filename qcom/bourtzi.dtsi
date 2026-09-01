@@ -51,7 +51,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "nokaslr kpti=0 loglevel=6 can.stats_timer=0 log_buf_len=256K earlycon swiotlb=noforce kasan=off ufshcd-core.use_mcq_mode=n cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 irqaffinity=0-3 ftrace_dump_on_oops slub_debug=- ";
+		bootargs = "nokaslr kpti=0 loglevel=6 can.stats_timer=0 log_buf_len=256K earlycon swiotlb=noforce kasan=off ufshcd-core.use_mcq_mode=n cgroup_disable=pressure cgroup.memory=nokmem,nosocket disable_dma32=on page_poison=on restrict_cma_redirect=false no-steal-acc android_arch_task_struct_size=512 sysctl.kernel.sched_pelt_multiplier=4 irqaffinity=0-5 cpufreq.default_governor=performance loop.max_part=7 fw_devlink.strict=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 printk.console_no_auto_verbose=1 sysctl.kernel.panic_on_rcu_stall=1 ftrace_dump_on_oops slub_debug=- ";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -346,6 +346,14 @@
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0x0 0xC00000>;
+	};
+
+	audio_cma_mem: audio_cma_region {
+		compatible = "shared-dma-pool";
+		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+		reusable;
+		alignment = <0x0 0x400000>;
+		size = <0x0 0x1C00000>;
 	};
 
 	qmc_dma_mem: qmc_dma_region {
@@ -2671,7 +2679,9 @@
 					&tlmm 10 0
 					&tlmm 11 0
 					&tlmm 12 0
-					&tlmm 13 0x2008>;
+					&tlmm 13 0x2008
+					&tlmm 95 0
+					&tlmm 105 0x2008>;
 		};
 	};
 

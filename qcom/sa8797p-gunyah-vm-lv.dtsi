@@ -7,6 +7,7 @@
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
 #include <dt-bindings/mailbox/qcom-ipcc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/mailbox/qcom-ipcc-sa8797p.h>
 
 / {
 	#address-cells = <0x2>;
@@ -81,6 +82,42 @@
 		glink_cma_mem14: glink-cma-region@14 {
 			no-map;
 			qcom,label = <0x156>;
+		};
+
+		cp_pixel_mem: cp_pixel_region {
+			no-map;
+			qcom,target-vmid = <0xa>;
+			qcom,label = <0xD0A>;
+			qcom,unmapped;
+		};
+
+		cp_nonpixel_mem: cp_nonpixel_region {
+			no-map;
+			qcom,target-vmid = <0xb>;
+			qcom,label = <0xD0B>;
+			qcom,unmapped;
+		};
+
+		system_secure_mem: system_secure_region {
+			no-map;
+			qcom,target-vmid = <0x9>;
+			qcom,label = <0xD09>;
+			qcom,unmapped;
+		};
+
+		cp_b_pt_mem: cp_b_pt_region {
+			qcom,label = <0x9D>;
+			qcom,secure-pt-reserved;
+		};
+
+		cp_p_pt_mem: cp_p_pt_region {
+			qcom,label = <0x9E>;
+			qcom,secure-pt-reserved;
+		};
+
+		cp_np_pt_mem: cp_np_pt_region {
+			qcom,label = <0x9F>;
+			qcom,secure-pt-reserved;
 		};
 
 		kinfo_mem: debug_kinfo_region {
@@ -293,6 +330,7 @@
 		qcom,secdomain-ids = <53>;
 		qcom,primary-vm-index = <0>;
 		vm-attrs = "guest-ram-dump" ,"vpm-virq", "allow-unprotected";
+		qcom,peripheral-vmids = <0x9 0xa 0xb>;
 
 		memory {
 			#address-cells = <0x2>;
@@ -1030,12 +1068,12 @@
 				};
 			};
 
-			/* reserved 0 */
+			/* glink */
 			virtio-mmio@42 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/soc/virtio-glink-cma@2e000000";
 				peer-default;
-				vqs-num = <0x2>;
+				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -1062,6 +1100,30 @@
 					#address-cells = <0x2>;
 					allocate-base;
 				};
+			};
+
+			hab_virq_dbl13 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_d";
+				qcom,label = <0xd>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl14 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_e";
+				qcom,label = <0xe>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
+			};
+
+			hab_virq_dbl15 {
+				vdevice-type = "doorbell";
+				generate = "/hypervisor/hab_virq_f";
+				qcom,label = <0xf>;
+				push-compatible = "qcom,msm-virt_irq";
+				peer-default;
 			};
 
 			swiotlb-shm {
@@ -1224,6 +1286,7 @@
 
 	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		qcom,hgy-secure-heap;
 
 		qcom,qseecom {
 			qcom,dma-heap-name = "qcom,qseecom";
@@ -1235,6 +1298,27 @@
 			qcom,dma-heap-name = "qcom,qseecom-ta";
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
 			memory-region = <&qseecom_ta_mem>;
+		};
+
+		qcom-cp-pixel {
+			qcom,dma-heap-name = "qcom,secure-pixel";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			qcom,token = <0x80000>;
+			memory-region = <&cp_pixel_mem>;
+		};
+
+		qcom-cp-nonpixel {
+			qcom,dma-heap-name = "qcom,secure-non-pixel";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			qcom,token = <0x100000>;
+			memory-region = <&cp_nonpixel_mem>;
+		};
+
+		qcom-cp-bitstream {
+			qcom,dma-heap-name = "system-secure";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			qcom,token = <0x40000>;
+			memory-region = <&system_secure_mem>;
 		};
 	};
 
@@ -1281,6 +1365,67 @@
 		interrupt-controller;
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
+	};
+
+	virtio_glink_cma: virtio-glink-cma@2e000000 {
+		glink_bridge: virtio-glink-bridge {
+			compatible = "virtio,device49162";
+			remoteproc_cdsp_glink: glink-edge {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_NSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_NSP0 0>;
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+			};
+
+			remoteproc_cdsp1_glink: glink-edge1 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_NSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_NSP1 0>;
+				label = "cdsp1";
+				qcom,glink-label = "cdsp1";
+			};
+
+			remoteproc_cdsp2_glink: glink-edge2 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_NSP2 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_NSP2 0>;
+				label = "cdsp2";
+				qcom,glink-label = "cdsp2";
+			};
+
+			remoteproc_cdsp3_glink: glink-edge3 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_NSP3 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_NSP3 0>;
+				label = "cdsp3";
+				qcom,glink-label = "cdsp3";
+			};
+
+			remoteproc_hpass0_glink: glink-edge4 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_ADSP0 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_ADSP0 0>;
+				label = "adsp";
+				qcom,glink-label = "adsp";
+			};
+
+			remoteproc_hpass1_glink: glink-edge5 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_ADSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_ADSP1 0>;
+				label = "adsp1";
+				qcom,glink-label = "adsp1";
+			};
+
+			remoteproc_hpass2_glink: glink-edge6 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_MPROC_ADSP2  0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_MPROC_ADSP2 0>;
+				label = "adsp2";
+				qcom,glink-label = "adsp2";
+			};
+		};
 	};
 
 	qcom,mem-buf {

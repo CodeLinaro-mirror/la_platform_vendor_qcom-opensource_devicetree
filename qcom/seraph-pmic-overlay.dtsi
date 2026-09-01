@@ -33,6 +33,28 @@
 	};
 };
 
+&qupv3_se8_i2c {
+	status = "ok";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	charger: max17332@36 {
+		compatible = "maxim,max17332";
+		reg = <0x36>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <19 2>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pmic_alert_int_active>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4350>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-13000)>;   /* mA */
+		ialrt-max   = <13000>;      /* mA */
+	};
+};
 
 &spmi0_debug_bus {
 	qcom,pmg1110-debug@a {

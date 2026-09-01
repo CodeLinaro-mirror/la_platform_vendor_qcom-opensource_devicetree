@@ -149,6 +149,10 @@
 	compatible = "qcom,x1p42100-videocc", "syscon";
 };
 
+&debugcc {
+	compatible = "qcom,x1p42100-debugcc";
+};
+
 &adreno_smmu {
 	qcom,actlr =
 		<0x0000 0x0000 0x0000032b>,
@@ -183,4 +187,8 @@
 			bits = <7 9>;
 			};
 	};
+};
+
+&pmc8380_g {
+	status = "disabled";
 };

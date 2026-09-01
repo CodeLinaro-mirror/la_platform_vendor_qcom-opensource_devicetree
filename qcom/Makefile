@@ -161,6 +161,39 @@ canoe-overlays-dtb-$(CONFIG_ARCH_BOURTZI) += $(BOURTZI_BOARDS) $(NOAPQ_BOURTZI_B
 
 dtb-y += $(canoe-dtb-y) $(canoe-overlays-dtb-y)
 
+WAIPIO_BASE_DTB += waipio.dtb waipiop.dtb waipio-v2.dtb waipiop-v2.dtb
+WAIPIO_BOARDS += \
+		waipio-rumi-overlay.dtbo \
+		waipio-mtp-pm8008-overlay.dtbo \
+		waipio-cdp-pm8008-overlay.dtbo \
+		waipio-qrd-pm8008-overlay.dtbo \
+		waipio-atp-pm8008-overlay.dtbo \
+		waipio-mtp-pm8010-overlay.dtbo \
+		waipio-cdp-pm8010-overlay.dtbo \
+		waipio-qrd-pm8010-overlay.dtbo \
+		waipio-qrd-pm8010-2s-overlay.dtbo \
+		waipio-atp-pm8010-overlay.dtbo \
+		waipio-lemur-mtp-pm8008-overlay.dtbo \
+		waipio-lemur-mtp-pm8010-overlay.dtbo \
+		waipio-lemur-cdp-pm8008-overlay.dtbo \
+		waipio-lemur-cdp-pm8010-overlay.dtbo \
+		waipio-kiwi-mtp-pm8008-overlay.dtbo \
+		waipio-kiwi-mtp-pm8010-overlay.dtbo \
+		waipio-kiwi-cdp-pm8008-overlay.dtbo \
+		waipio-kiwi-cdp-pm8010-overlay.dtbo \
+		waipio-mtp-68disp-pm8008-overlay.dtbo \
+		waipio-mtp-68disp-pm8010-overlay.dtbo \
+		waipio-cdp-xr-overlay.dtbo \
+		waipio-mtp-xr-overlay.dtbo \
+		waipio-cdp-xr-pcie-overlay.dtbo \
+		waipio-mtp-xr-pcie-overlay.dtbo
+
+waipio-dtb-$(CONFIG_ARCH_WAIPIO) += \
+	$(call add-overlays, $(WAIPIO_BOARDS) ,$(WAIPIO_BASE_DTB))
+waipio-overlays-dtb-$(CONFIG_ARCH_WAIPIO) += $(WAIPIO_BOARDS) $(WAIPIO_BASE_DTB)
+
+dtb-y += $(waipio-dtb-y) $(waipio-overlays-dtb-y)
+
 MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
@@ -507,14 +540,42 @@ SERAPH_BOARDS += \
 		seraphp-v1.1-idp-dtof-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-overlay.dtbo \
 		seraphp-v1.1-idp-no-display-no-gpu-overlay.dtbo \
+		seraphp-v1.1-qar-proto-config3-overlay.dtbo \
 		seraphp-v1.1-qar-3rd-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-camera-audio-overlay.dtbo \
 		seraphp-v1.1-qar-overlay.dtbo \
 		seraphp-qar-camera-audio-overlay.dtbo \
-		seraphp-qar-overlay.dtbo
+		seraphp-qar-overlay.dtbo \
+		seraph-atp-overlay-le.dtbo \
+		seraphp-atp-overlay-le.dtbo \
+		seraph-idp-overlay-le.dtbo \
+		seraphp-idp-overlay-le.dtbo \
+		seraph-idp-dtof-overlay-le.dtbo \
+		seraphp-idp-dtof-overlay-le.dtbo \
+		seraph-idp-no-display-overlay-le.dtbo \
+		seraphp-idp-no-display-overlay-le.dtbo \
+		seraph-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraph-v1.1-atp-overlay-le.dtbo \
+		seraphp-v1.1-atp-overlay-le.dtbo \
+		seraph-v1.1-idp-overlay-le.dtbo \
+		seraphp-v1.1-idp-overlay-le.dtbo \
+		seraph-v1.1-idp-dtof-overlay-le.dtbo \
+		seraphp-v1.1-idp-dtof-overlay-le.dtbo \
+		seraph-v1.1-idp-no-display-overlay-le.dtbo \
+		seraphp-v1.1-idp-no-display-overlay-le.dtbo \
+		seraph-v1.1-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-v1.1-idp-no-display-no-gpu-overlay-le.dtbo \
+		seraphp-v1.1-qar-3rd-camera-audio-overlay-le.dtbo \
+		seraphp-v1.1-qar-camera-audio-overlay-le.dtbo \
+		seraphp-v1.1-qar-overlay-le.dtbo \
+		seraphp-qar-camera-audio-overlay-le.dtbo \
+		seraphp-qar-overlay-le.dtbo
+
 
 NOAPQ_SERAPH_BOARDS += \
-                  seraph-rumi-overlay.dtbo
+                  seraph-rumi-overlay.dtbo \
+                  seraph-rumi-overlay-le.dtbo
 
 seraph-dtb-$(CONFIG_ARCH_SERAPH) += \
 	$(call add-overlays, $(SERAPH_BOARDS) $(NOAPQ_SERAPH_BOARDS),$(SERAPH_BASE_DTB))\
@@ -613,7 +674,14 @@ dtb-y += $(vienna-dtb-y)
 X1P42100_BASE_DTB += x1p42100.dtb
 
 X1P42100_BOARDS += \
-		   x1p42100-crd-overlay.dtbo
+		   x1p42100-crd-overlay.dtbo \
+		   x1p42100-crd-cologne-overlay.dtbo \
+		   x1p42100-qcb-v1-overlay.dtbo \
+		   x1p42100-qcb-v2-overlay.dtbo \
+		   x1p42100-qcb-v3-overlay.dtbo \
+		   x1p42100-cdp-v1-overlay.dtbo \
+		   x1p42100-cdp-v2-overlay.dtbo \
+		   x1p42100-cdp-v3-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
@@ -637,28 +705,43 @@ HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
 SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
 SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
+SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb shikra-iqs-fp1.dtb shikra-iqs-fp2.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-atp-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-imxcam-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo \
 		 shikra-lite-evk-eSMPS-nfc-overlay.dtbo \
 		 shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo
 
 NOAPQ_SHIKRA_BOARDS += \
 		 shikra-rumi-overlay.dtbo
+SHIKRA_IQS_BOARDS += \
+                 shikra-iqs-overlay.dtbo
 
 shikra-dtb-$(CONFIG_ARCH_SHIKRA) += \
 	$(call add-overlays, $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS),$(SHIKRA_BASE_DTB)) \
-	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB))
-shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB)
+	$(call add-overlays, $(SHIKRA_BOARDS) $(APQ_SHIKRA_BOARDS),$(SHIKRA_APQ_BASE_DTB)) \
+	$(call add-overlays, $(SHIKRA_IQS_BOARDS),$(SHIKRA_IQS_BASE_DTB))
+
+shikra-overlays-dtb-$(CONFIG_ARCH_SHIKRA) += $(SHIKRA_BOARDS) $(NOAPQ_SHIKRA_BOARDS) $(SHIKRA_BASE_DTB) $(SHIKRA_APQ_BASE_DTB) $(SHIKRA_IQS_BOARDS) $(SHIKRA_IQS_BASE_DTB)
 dtb-y += $(shikra-dtb-y)
 
 MAHUA_BASE_DTB += mahua.dtb
 
 MAHUA_BOARDS += \
 		   mahua-crd-overlay.dtbo \
-		   mahua-qcb-overlay.dtbo
+		   mahua-qcb-overlay.dtbo \
+		   mahua-idp-overlay.dtbo \
+		   mahua-rcm-overlay.dtbo \
+		   mahua-crd-cologne-overlay.dtbo \
+		   mahua-qcb-cologne-overlay.dtbo \
+		   mahua-idp-cologne-overlay.dtbo \
+		   mahua-rcm-cologne-overlay.dtbo
 
 mahua-dtb-$(CONFIG_ARCH_MAHUA) += \
 	$(call add-overlays, $(MAHUA_BOARDS),$(MAHUA_BASE_DTB))
@@ -1016,6 +1099,9 @@ endif
 ifeq ($(CONFIG_ARCH_LEMANS), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 
+PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB := prime-lemans-gh-vm-la-qam-ridesx.dtb
+PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS := prime-lemans-gh-vm-la-qam-ridesx-overlay.dtbo
+
 LEMANS_GH_LA_GVM_QAM_BASE_DTB += lemans-gh-vm-la-qam-ridesx.dtb
 LEMANS_GH_LA_GVM_QAM_BOARDS += lemans-gh-vm-la-qam-ridesx-overlay.dtbo
 
@@ -1023,10 +1109,12 @@ LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB += lemans-gh-vm-la-flex-qam-ridesx.dtb
 LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS += lemans-gh-vm-la-flex-qam-ridesx-overlay.dtbo
 
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS),$(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_GH_LA_GVM_QAM_BOARDS),$(LEMANS_GH_LA_GVM_QAM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS),$(LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BOARDS) $(PRIME_LEMANS_GH_VM_LA_FLEX_QAM_RIDESX_BASE_DTB) \
 	$(LEMANS_GH_LA_GVM_QAM_BOARDS) $(LEMANS_GH_LA_GVM_QAM_BASE_DTB) \
 	$(LEMANS_GH_LA_GVM_FLEX_QAM_BOARDS) $(LEMANS_GH_LA_GVM_FLEX_QAM_BASE_DTB)
 
@@ -1103,10 +1191,15 @@ ifeq ($(CONFIG_ARCH_SHIKRA), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 shikra_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += shikra-vm-base.dtb \
 				shikra-vm-atp-overlay.dtbo \
-			        shikra-vm-itp-overlay.dtbo \
+			        shikra-vm-eitp-overlay.dtbo \
+				shikra-vm-itp-overlay.dtbo \
+			        shikra-vm-itps-overlay.dtbo \
 			        shikra-oemvm-base.dtb \
 				shikra-oemvm-atp-overlay.dtbo \
-				shikra-oemvm-itp-overlay.dtbo
+				shikra-oemvm-eitp-overlay.dtbo \
+				shikra-oemvm-itp-overlay.dtbo \
+				shikra-oemvm-itps-overlay.dtbo
+
 dtb-y += $(shikra_tuivm-dtb-y)
 
 endif

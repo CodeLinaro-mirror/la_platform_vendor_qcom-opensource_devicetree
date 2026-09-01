@@ -170,7 +170,7 @@
 };
 
 &pm8350c_pwm {
-	status = "disabled";
+	status = "ok";
 };
 
 &pm8350c_switch0 {
@@ -233,6 +233,16 @@
 
 &fsa4480 {
 	status = "disabled";
+};
+
+&usb1 {
+	/delete-property/ usb-role-switch;
+	/delete-property/ qcom,default-mode-none;
+	qcom,default-mode-host;
+	dwc3@8c00000 {
+		/delete-property/ usb-role-switch;
+		dr_mode = "host";
+	};
 };
 
 /*==============================*/
@@ -502,6 +512,9 @@
 			qcom,iommu-dma = "atomic";
 		};
 	};
+};
+&bluetooth {
+	status = "disabled";
 };
 
 /*==============================*/
