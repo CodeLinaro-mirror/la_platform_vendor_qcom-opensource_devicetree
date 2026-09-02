@@ -712,7 +712,7 @@
 			no-map;
 		};
 
-		reserved-region@d8029000 {
+		reserved_mem: reserved-region@d8029000 {
 			reg = <0x0 0xd8029000 0x0 0x1000>;
 			no-map;
 		};
