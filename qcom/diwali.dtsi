@@ -2252,6 +2252,8 @@
 
 		memory-region = <&wpss_mem>;
 
+		firmware-name = "qca6750/wpss.mdt";
+
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
 
