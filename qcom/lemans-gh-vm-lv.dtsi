@@ -57,6 +57,11 @@
 			no-map;
 		};
 
+		glink_cma_mem: glink_cma_region {
+			no-map;
+			qcom,label = <0x150>;
+		};
+
 		tlmm_shared_iomem: tlmm_sh_iomem {
 			no-map;
 			qcom,label = <0x7E>;
@@ -75,6 +80,20 @@
 		qupv3_2_shared_iomem: qupv3_2_sh_iomem {
 			no-map;
 			qcom,label = <0x81>;
+		};
+
+		cp_pixel_mem: cp_pixel_region {
+			no-map;
+			qcom,label = <0xD0A>;
+			qcom,target-vmid = <0xa>;
+			qcom,unmapped;
+		};
+
+		system_secure_mem: system_secure_region {
+			no-map;
+			qcom,label = <0xD09>;
+			qcom,target-vmid = <0x9>;
+			qcom,unmapped;
 		};
 	};
 
@@ -307,6 +326,7 @@
 		qcom,secdomain-ids = <53>;
 		qcom,primary-vm-index = <0>;
 		vm-attrs = "guest-ram-dump", "vpm-virq", "allow-unprotected";
+		qcom,peripheral-vmids = <0x9 0xa>;
 
 		/* Pass through regions */
 		iomemory-ranges = <
@@ -1134,6 +1154,7 @@
 
 	qcom_dma_heaps: qcom,dma-heaps {
 		compatible = "qcom,dma-heaps";
+		qcom,hgy-secure-heap;
 
 		qcom,qseecom {
 			qcom,dma-heap-name = "qcom,qseecom";
@@ -1145,6 +1166,20 @@
 			qcom,dma-heap-name = "qcom,qseecom-ta";
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
 			memory-region = <&qseecom_ta_mem>;
+		};
+
+		qcom-cp-pixel {
+			qcom,dma-heap-name = "qcom,secure-pixel";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			qcom,token = <0x80000>;
+			memory-region = <&cp_pixel_mem>;
+		};
+
+		qcom-cp-bitstream {
+			qcom,dma-heap-name = "system-secure";
+			qcom,dma-heap-type = <HEAP_TYPE_SECURE_CARVEOUT>;
+			qcom,token = <0x40000>;
+			memory-region = <&system_secure_mem>;
 		};
 	};
 

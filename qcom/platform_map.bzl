@@ -41,6 +41,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-mt.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt.dtb"},
             {"name": "prime-lemans-gh-vm-la-qam-ridesx.dtb"},
+            {"name": "prime-lemans-vm-mt-la.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -79,6 +80,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "prime-lemans-gh-vm-la-qam-ridesx-overlay.dtbo"},
+            {"name": "prime-lemans-vm-mt-la-overlay.dtbo"},
         ],
     },
     "canoe": {
@@ -606,6 +608,7 @@ _platform_map = {
                 "src": [
                     "x1e80100.dtb",
                     "x1p42100.dtb",
+                    "x1p42100-canim.dtb",
                     "x1e80100-crd-overlay.dtbo",
                     "x1e80100-qcb-overlay.dtbo",
                     "x1e80100-qcp-overlay.dtbo",
@@ -617,6 +620,14 @@ _platform_map = {
                     "x1p42100-cdp-v1-overlay.dtbo",
                     "x1p42100-cdp-v2-overlay.dtbo",
                     "x1p42100-cdp-v3-overlay.dtbo",
+                    "x1p42100-canim-crd-overlay.dtbo",
+                    "x1p42100-canim-crd-cologne-overlay.dtbo",
+                    "x1p42100-canim-qcb-v1-overlay.dtbo",
+                    "x1p42100-canim-qcb-v2-overlay.dtbo",
+                    "x1p42100-canim-qcb-v3-overlay.dtbo",
+                    "x1p42100-canim-cdp-v1-overlay.dtbo",
+                    "x1p42100-canim-cdp-v2-overlay.dtbo",
+                    "x1p42100-canim-cdp-v3-overlay.dtbo",
                 ],
                 "config_file": "//soc-repo/arch/arm64/boot/dts/vendor:qcom/hamoa_dtbo.config",
             },
@@ -626,6 +637,7 @@ _platform_map = {
     "x1p42100": {
         "dtb_list": [
             {"name": "x1p42100.dtb"},
+            {"name": "x1p42100-canim.dtb"},
         ],
         "dtbo_list": [
             {"name": "x1p42100-crd-overlay.dtbo"},
@@ -636,6 +648,14 @@ _platform_map = {
             {"name": "x1p42100-cdp-v1-overlay.dtbo"},
             {"name": "x1p42100-cdp-v2-overlay.dtbo"},
             {"name": "x1p42100-cdp-v3-overlay.dtbo"},
+            {"name": "x1p42100-canim-crd-overlay.dtbo"},
+            {"name": "x1p42100-canim-crd-cologne-overlay.dtbo"},
+            {"name": "x1p42100-canim-qcb-v1-overlay.dtbo"},
+            {"name": "x1p42100-canim-qcb-v2-overlay.dtbo"},
+            {"name": "x1p42100-canim-qcb-v3-overlay.dtbo"},
+            {"name": "x1p42100-canim-cdp-v1-overlay.dtbo"},
+            {"name": "x1p42100-canim-cdp-v2-overlay.dtbo"},
+            {"name": "x1p42100-canim-cdp-v3-overlay.dtbo"},
         ],
     },
     "hamoa_la": {

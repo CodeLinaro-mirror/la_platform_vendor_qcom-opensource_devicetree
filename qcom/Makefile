@@ -671,7 +671,7 @@ vienna-dtb-$(CONFIG_ARCH_VIENNA) += \
 vienna-overlays-dtb-$(CONFIG_ARCH_VIENNA) += $(VIENNA_BOARDS) $(NOAPQ_VIENNA_BOARDS) $(VIENNA_BASE_DTB) $(VIENNA_APQ_BASE_DTB)
 dtb-y += $(vienna-dtb-y)
 
-X1P42100_BASE_DTB += x1p42100.dtb
+X1P42100_BASE_DTB += x1p42100.dtb x1p42100-canim.dtb
 
 X1P42100_BOARDS += \
 		   x1p42100-crd-overlay.dtbo \
@@ -681,7 +681,15 @@ X1P42100_BOARDS += \
 		   x1p42100-qcb-v3-overlay.dtbo \
 		   x1p42100-cdp-v1-overlay.dtbo \
 		   x1p42100-cdp-v2-overlay.dtbo \
-		   x1p42100-cdp-v3-overlay.dtbo
+		   x1p42100-cdp-v3-overlay.dtbo \
+		   x1p42100-canim-crd-overlay.dtbo \
+		   x1p42100-canim-crd-cologne-overlay.dtbo \
+		   x1p42100-canim-qcb-v1-overlay.dtbo \
+		   x1p42100-canim-qcb-v2-overlay.dtbo \
+		   x1p42100-canim-qcb-v3-overlay.dtbo \
+		   x1p42100-canim-cdp-v1-overlay.dtbo \
+		   x1p42100-canim-cdp-v2-overlay.dtbo \
+		   x1p42100-canim-cdp-v3-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
@@ -904,6 +912,9 @@ LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS += sa8775p-sdp8-vm-la-mt-overlay.dtbo
 
 LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS += sa8775p-sdp8-vm-lv-mt-overlay.dtbo
 
+PRIME_LEMANS_VM_MT_LA_BASE_DTB := prime-lemans-vm-mt-la.dtb
+PRIME_LEMANS_VM_MT_LA_BOARDS := prime-lemans-vm-mt-la-overlay.dtbo
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(LEMANS_LA_GVM_BOARDS),$(LEMANS_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_LV_GVM_BOARDS),$(LEMANS_LV_GVM_BASE_DTB)) \
@@ -914,6 +925,7 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(LEMANS_FLEX_SDP8_LA_GVM_BOARDS),$(LEMANS_FLEX_SDP8_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_SDP8_MULTI_GVM_BOARDS),$(LEMANS_SDP8_MULTI_GVM_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS),$(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB)) \
+	$(call add-overlays, $(PRIME_LEMANS_VM_MT_LA_BOARDS),$(PRIME_LEMANS_VM_MT_LA_BASE_DTB)) \
 	$(call add-overlays, $(LEMANS_MULTI_LA_GVM_BOARDS),$(LEMANS_MULTI_LA_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
@@ -926,6 +938,7 @@ autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(LEMANS_FLEX_SDP8_LA_GVM_BOARDS) $(LEMANS_FLEX_SDP8_LA_GVM_BASE_DTB) \
 	$(LEMANS_SDP8_MULTI_GVM_BOARDS) $(LEMANS_SDP8_MULTI_GVM_BASE_DTB) \
 	$(LEMANS_FLEX_SDP8_MULTI_GVM_BOARDS) $(LEMANS_FLEX_SDP8_MULTI_GVM_BASE_DTB) \
+	$(PRIME_LEMANS_VM_MT_LA_BOARDS) $(PRIME_LEMANS_VM_MT_LA_BASE_DTB) \
 	$(LEMANS_MULTI_LA_GVM_BOARDS) $(LEMANS_MULTI_LA_GVM_BASE_DTB)
 
 dtb-y += $(autogvm-dtb-y)

@@ -473,7 +473,6 @@
 		iommus = <&apps_smmu 0xf8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
 		memory-region = <&qup_iommu_group>;
-		dma-coherent;
 		interrupts = <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
@@ -510,7 +509,6 @@
 		iommus = <&apps_smmu 0xf8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
 		memory-region = <&qup_iommu_group>;
-		dma-coherent;
 		ranges;
 		status = "ok";
 		required-subnodes = <&i2c4>;
