@@ -6,6 +6,7 @@
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1p42100-thermal-overlay.dtsi"
 #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+#include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
 
 &tlmm {
 	eusb3_reset_n: eusb3-reset-n-state {
@@ -306,4 +307,22 @@
 	qcom,vddp-ref-clk-max-microamp = <100>;
 
 	status = "okay";
+};
+
+&usb_mp_dwc3 {
+	snps,usb3_lpm_capable;
+};
+
+&usb_mp_hsphy0 {
+	clocks = <&xo_board>,
+		<&tcsrcc TCSR_USB3_MP0_CLKREF_EN>;
+	clock-names = "ref_clk_src",
+			"ref";
+};
+
+&usb_mp_hsphy1 {
+	clocks = <&xo_board>,
+		<&tcsrcc TCSR_USB3_MP1_CLKREF_EN>;
+	clock-names = "ref_clk_src",
+			"ref";
 };
