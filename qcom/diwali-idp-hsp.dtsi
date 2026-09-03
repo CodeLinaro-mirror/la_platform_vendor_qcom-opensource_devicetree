@@ -10,9 +10,6 @@
 	status = "disabled";
 };
 
-&icnss2 {
-	status = "disabled";
-};
 
 &reserved_memory {
 	cnss_wlan_mem: cnss_wlan_region {
