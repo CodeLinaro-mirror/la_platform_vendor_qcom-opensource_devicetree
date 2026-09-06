@@ -1362,10 +1362,11 @@
 				};
 			};
 
-			/* Reserved device */
+			/* input device */
 			virtio-mmio@53 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
+				virtio,device-type = <18>;
 				peer-default;
 				vqs-num = <0x2>;
 				push-compatible = "virtio,mmio";
@@ -1374,6 +1375,23 @@
 				dma_base = <0x0 0x30C000>;
 				memory {
 					qcom,label = <0x56>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* Reserved device */
+			virtio-mmio@54 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x310000>;
+				memory {
+					qcom,label = <0x57>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
@@ -1497,6 +1515,14 @@
 				vdevice-type = "doorbell-source";
 				generate = "/hypervisor/test-dbl-gvm1-source";
 				qcom,label = <0x4>;
+				peer-default;
+			};
+
+			eth-switch-dbl {
+				vdevice-type = "doorbell";
+				generate = "/soc/eth-switch-dbl";
+				qcom,label = <0x10>;
+				push-compatible = "qcom,eth-switch-dbl";
 				peer-default;
 			};
 
@@ -2078,6 +2104,9 @@
 		snps,pbl = <0x10>;
 		dma-coherent;
 
+		nvmem-cells = <&eth1_mac>;
+		nvmem-cell-names = "mac-address";
+
 		rx-fifo-depth = <98304>;
 		tx-fifo-depth = <98304>;
 
@@ -2247,6 +2276,46 @@
 	logbuf: qcom,logbuf-vendor-hooks {
 		compatible = "qcom,logbuf-vendor-hooks";
 	};
+
+	sdhc_4_dma_resv: sdhc_4_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for SDHC4 buffers to the 256 MB region
+		 * from 0x40000000 - 0x4fffffff.
+		 */
+		iommu-addresses = <&sdhc_4 0x0 0x40000000>,
+		<&sdhc_4 0x50000000 0xb0000000>;
+	};
+
+	sdhc_4: sdhci@00b84000 {
+		compatible = "qcom,sa7255-sdhci";
+
+		reg = <0x00b84000 0x1000>;
+		reg-names = "hc";
+
+		interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
+
+		bus-width = <4>;
+
+		no-sd;
+		no-mmc;
+		non-removable;
+
+		cap-sd-highspeed;
+		no-1-8-v;
+		max-frequency = <50000000>;
+
+		memory-region = <&sdhc_4_dma_resv>;
+		iommus = <&apps_smmu_0 0x1580 0x0>;
+		qcom,iommu-dma = "fastmap";
+		dma-coherent;
+
+		power-domains = <&scmi_power 24>, <&scmi_perf 6>;
+		power-domain-names = "power", "perf";
+		status = "okay";
+	};
+
 };
 
 &remoteproc_cdsp_glink {

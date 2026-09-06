@@ -5,6 +5,11 @@
 
 / {
 	host {
+		buffer@81000c000 {
+			reg = <0x08 0x1000c000 0x00 0x9000>;
+			android,pvmfw,target = <&qrtr_buff>;
+		};
+
 		buffer@810015000 {
 			reg = <0x08 0x10015000 0x00 0x1000>;
 			android,pvmfw,target = <&gpn_buff>;
@@ -13,6 +18,11 @@
 		buffer@810016000 {
 			reg = <0x08 0x10016000 0x00 0x1000>;
 			android,pvmfw,target = <&ddump_buff>;
+		};
+
+		apps-smmu {
+			reg = <0x08 0x200000 0x0 0x100000>;
+			android,pvmfw,target = <&apps_smmu>;
 		};
 	};
 };
@@ -25,6 +35,13 @@
 };
 
 &reserved_memory {
+	qrtr_buff: buffer@81000c000 {
+		compatible = "qcom,qrtr-gunyah-gen";
+		reg = <0x08 0x1000c000 0x00 0x9000>;
+		no-map;
+		qcom,label = <0x103>;
+	};
+
 	gpn_buff: buffer@810015000 {
 		compatible = "qcom,gunyah-panic-gen";
 		reg = <0x08 0x10015000 0x00 0x1000>;
@@ -41,6 +58,12 @@
 };
 
 &{/}  {
+	qrtr_shm: qrtr-shm {
+		compatible = "qcom,qrtr-gunyah-gen", "qcom,gunyah-shm-doorbell";
+		memory-region = <&qrtr_buff>;
+		qcom,label = <0x103>;
+	};
+
 	ddump_shm: ddump-shm {
 		compatible = "qcom,ddump-gunyah-gen", "qcom,gunyah-shm-doorbell";
 		memory-region = <&ddump_buff>;
@@ -73,7 +96,19 @@
 &non_devices_common {
 		required-subnodes-rm = <&ddump_shm
 				&gpn_shm
+				&qrtr_shm
 				&minidump
 				&qcom_gunyah_vm>;
+};
+
+&apps_smmu {
+	#global-interrupts = <0x00>;
+	/*
+	 * To obtain these values, first boot the VM using the base device tree.
+	 * The Resource Manager (RM) will override them, so retrieve the updated values
+	 * from the VM's FDT after pulling.
+	 */
+	interrupts = <0x00 0x81 0x04 0x00 0x82 0x04 0x00 0x83 0x04 0x00 0x84 0x04 0x00 0x85 0x04>;
+	reg = <0x08 0x200000 0x0 0x100000>;
 };
 
