@@ -3,10 +3,12 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "sun-oemvm.dtsi"
+/dts-v1/;
+
+#include "sunp-iot.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. SunP OEMVM";
+	model = "Qualcomm Technologies, Inc. SunP CQ8750S SoC";
 	compatible = "qcom,sunp";
-	qcom,msm-id = <639 0x10000>, <639 0x20000>, <705 0x10000>, <705 0x20000>;
+	qcom,board-id = <0 0>;
 };

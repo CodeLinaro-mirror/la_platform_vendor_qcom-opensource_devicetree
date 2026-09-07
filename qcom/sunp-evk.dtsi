@@ -3,4 +3,4 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "montague-moselle.dtsi"
+#include "sunp-hdk.dtsi"
