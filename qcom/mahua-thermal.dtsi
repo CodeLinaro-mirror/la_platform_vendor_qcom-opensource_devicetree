@@ -96,6 +96,13 @@
 		#thermal-sensor-cells = <1>;
 	};
 
+	qcom,power-telemetry-spel-device@ef3e000 {
+		compatible = "qcom,glymur-spel";
+		reg = <0x0 0xef3e000 0x0 0x1000>,
+		      <0x0 0xef3d000 0x0 0x1000>,
+		      <0x0 0xef3b000 0x0 0x1000>;
+	};
+
 	qcom,cpu-pause {
 		compatible = "qcom,thermal-pause";
 
