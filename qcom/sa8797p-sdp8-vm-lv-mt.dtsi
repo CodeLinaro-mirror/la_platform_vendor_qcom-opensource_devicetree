@@ -168,6 +168,10 @@
 		instance-id = <2>;
 		dsp-type = <5>;
 	};
+
+	qcom,mem-buf {
+		qcom,vmid = <53>;
+	};
 };
 
 &hab {
