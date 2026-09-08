@@ -27,7 +27,7 @@
 	};
 
 	chosen {
-		bootargs = "nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n driver_async_probe=arm-scmi pcie_pme=nomsi fw_devlink.strict=1";
+		bootargs = "nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n driver_async_probe=arm-scmi pcie_pme=nomsi fw_devlink.strict=1 maxcpus=4";
 		bootconfig = "androidboot.audio=ar","androidboot.dtbo_idx=6";
 	};
 
@@ -96,11 +96,34 @@
 		#address-cells = <0x2>;
 		#size-cells = <0x0>;
 
+		cluster_0_opp_table: opp-table0 {
+			compatible = "operating-points-v2";
+			opp-shared;
+
+			opp-2112000000 {
+				opp-hz = /bits/ 64 <2112000000>;
+				opp-microvolt = <968000>;
+			};
+		};
+
+		cluster_1_opp_table: opp-table1 {
+			compatible = "operating-points-v2";
+			opp-shared;
+
+			opp-1958400000 {
+				opp-hz = /bits/ 64 <1958400000>;
+				opp-microvolt = <968000>;
+			};
+		};
+
 		CPU0: cpu@0 {
 			compatible = "arm,armv8";
 			reg = <0x0 0x0>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <507>;
+			operating-points-v2 = <&cluster_0_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -109,6 +132,9 @@
 			reg = <0x0 0x100>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <507>;
+			operating-points-v2 = <&cluster_0_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -117,6 +143,9 @@
 			reg = <0x0 0x200>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <507>;
+			operating-points-v2 = <&cluster_0_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -125,6 +154,9 @@
 			reg = <0x0 0x300>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <507>;
+			operating-points-v2 = <&cluster_0_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -133,6 +165,9 @@
 			reg = <0x0 0x10000>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <350>;
+			dynamic-power-coefficient = <100>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -141,6 +176,9 @@
 			reg = <0x0 0x10100>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <350>;
+			dynamic-power-coefficient = <100>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -149,6 +187,9 @@
 			reg = <0x0 0x10200>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <350>;
+			dynamic-power-coefficient = <100>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -157,6 +198,9 @@
 			reg = <0x0 0x10300>;
 			device_type = "cpu";
 			enable-method = "psci";
+			capacity-dmips-mhz = <350>;
+			dynamic-power-coefficient = <100>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -196,7 +240,9 @@
 					cpu = <&CPU7>;
 				};
 			};
+
 		};
+
 	};
 
 	idle-states {
@@ -429,7 +475,7 @@
 		vcpus {
 			config = "/cpus";
 			affinity = "static";
-			affinity-map = <0x7 0x6 0x5 0x4 0x3 0x2 0x1 0x0>;
+			affinity-map = <0x3 0x2 0x1 0x0 0x7 0x6 0x5 0x4>;
 			sched-priority = <0>;       /* relative to PVM */
 			sched-timeslice = <1000>;   /* in ms */
 		};
@@ -801,7 +847,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_userdata";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x4>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -817,7 +863,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_super";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x4>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
