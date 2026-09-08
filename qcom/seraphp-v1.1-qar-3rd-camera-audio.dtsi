@@ -6,6 +6,13 @@
 #include "seraphp-qar-camera-audio.dtsi"
 #include "seraphp-pmslg5.dtsi"
 
+&reserved_memory {
+	lpai_display_region: lpai_display_region@ba200000 {
+		no-map;
+		reg = <0x0 0xba200000 0x0 0x4000000>;
+	};
+};
+
 &pm8011m {
 	status = "disabled";
 	/delete-node/ pm8011m_reset;
