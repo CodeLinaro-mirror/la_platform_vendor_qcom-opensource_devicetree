@@ -41,6 +41,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-mt.dtb"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt.dtb"},
             {"name": "prime-lemans-gh-vm-la-qam-ridesx.dtb"},
+            {"name": "prime-lemans-vm-mt-la.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -79,6 +80,7 @@ _platform_map = {
             {"name": "sa8797p-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "sa8797p-v2-sdp8-vm-la-mt-overlay.dtbo"},
             {"name": "prime-lemans-gh-vm-la-qam-ridesx-overlay.dtbo"},
+            {"name": "prime-lemans-vm-mt-la-overlay.dtbo"},
         ],
     },
     "canoe": {
