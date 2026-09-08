@@ -303,3 +303,8 @@
 		dsp-type = <5>;
 	};
 };
+
+/* Enable the PL031 RTC virtual device. */
+&rtc {
+	status = "ok";
+};
