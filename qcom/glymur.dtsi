@@ -3179,6 +3179,7 @@
 #include "mahua-qupv3.dtsi"
 #include "glymur-pcie.dtsi"
 #include "msm-rdbg.dtsi"
+#include "ipcc-test-glymur.dtsi"
 
 &qupv3_se21_2uart {
 	status = "okay";
