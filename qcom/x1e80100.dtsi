@@ -712,7 +712,7 @@
 			no-map;
 		};
 
-		reserved-region@d8029000 {
+		reserved_mem: reserved-region@d8029000 {
 			reg = <0x0 0xd8029000 0x0 0x1000>;
 			no-map;
 		};
@@ -2215,7 +2215,7 @@
 			vdda12-supply = <&L2J>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -2331,6 +2331,7 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <120000000>;
@@ -2388,7 +2389,7 @@
 			vdda12-supply = <&L3E>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_2_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -2527,7 +2528,7 @@
 			vdda12-supply = <&L2J>;
 
 			clocks = <&xo_board>,
-				<&tcsrcc TCSR_USB2_1_CLKREF_EN>;
+				 <&rpmhcc RPMH_CXO_CLK>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -3053,10 +3054,27 @@
 			qcom,low-latency;
 		};
 
+		/* QRTR MHI entry for SDX35 */
+		qcom,qrtr-mhi-cnss3 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x110a>;
+			qcom,net-id = <0>;
+			qcom,low-latency;
+		};
+
+		/* QRTR MHI entry for SDX65 */
 		qcom,qrtr-mhi-cnss2 {
 			compatible = "qcom,qrtr-mhi";
 			qcom,dev-id = <0x0308>;
-			qcom,net-id = <1>;
+			qcom,net-id = <0>;
+			qcom,low-latency;
+		};
+
+		/* QRTR MHI entry for SDX81 */
+		qcom,qrtr-mhi-cnss4 {
+			compatible = "qcom,qrtr-mhi";
+			qcom,dev-id = <0x0309>;
+			qcom,net-id = <0>;
 			qcom,low-latency;
 		};
 
@@ -3938,7 +3956,7 @@
 };
 
 &tlmm {
-	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+	wlan_tps_kiwi_3v3_enable_state: wlan-tps-kiwi-3v3-enable {
 		mux {
 			pins = "gpio214";
 			function = "gpio";
@@ -3962,10 +3980,23 @@
 		function = "gpio";
 		bias-disable;
 	};
+	
+	wlan_tps_3v3_enable_state: wlan-tps-3v3-enable {
+		mux {
+			pins = "gpio225";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio225";
+			bias-pull-up;
+			output-high;
+		};
+	};
 };
 
 &{/} {
-	vreg_wlan_3p3: wlan-3p3-regulator {
+	vreg_wlan_kiwi_3p3: wlan-kiwi-3p3-regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "vreg_wlan_3p3";
 
@@ -3973,6 +4004,20 @@
 		regulator-max-microvolt = <3300000>;
 
 		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&wlan_tps_kiwi_3v3_enable_state>;
+	};
+
+	vreg_wlan_3p3: wlan-3p3-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vreg_wlan_3p3";
+
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		gpio = <&tlmm 225 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 
 		pinctrl-names = "default";
