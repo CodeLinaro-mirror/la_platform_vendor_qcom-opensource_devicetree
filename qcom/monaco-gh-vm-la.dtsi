@@ -1621,6 +1621,7 @@
 		qcom,iommu-geometry = <0x80000000 0x40000000>;
 		memory-region = <&emac_iommu_region>;
 		qcom,iommu-dma = "fastmap";
+		status = "disabled";
 	};
 
 	logbuf: qcom,logbuf-vendor-hooks {
