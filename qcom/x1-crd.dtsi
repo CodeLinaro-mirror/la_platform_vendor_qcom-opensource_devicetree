@@ -649,15 +649,15 @@
 
 &usb2_phy_2 {
 	phys = <&smb2360_2_eusb2_repeater>;
-	status = "okay";
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
 };
 
 &usb3_phy_2 {
-	status = "okay";
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
 };
 
 &usb2 {
-	status = "okay";
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
 	usb-role-switch;
 	pinctrl-names = "default";
 	pinctrl-0 = <&usb3phy_portselect_gpio_2>;
