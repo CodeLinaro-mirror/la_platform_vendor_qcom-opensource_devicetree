@@ -16,7 +16,7 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=6 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
+		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=8 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
 		bootconfig = "androidboot.fstab_suffix=hgy.seca.qcom";
 	};
 
@@ -145,36 +145,90 @@
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU2: cpu@200 {
+		CPU2: cpu@10000 {
 			compatible = "arm,armv8";
-			reg = <0x0 0x200>;
+			reg = <0x0 0x10000>;
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU3: cpu@300 {
+		CPU3: cpu@10100 {
 			compatible = "arm,armv8";
-			reg = <0x0 0x300>;
+			reg = <0x0 0x10100>;
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU4: cpu@400 {
+		CPU4: cpu@10200 {
 			compatible = "arm,armv8";
-			reg = <0x0 0x400>;
+			reg = <0x0 0x10200>;
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
-		CPU5: cpu@500 {
+		CPU5: cpu@10300 {
 			compatible = "arm,armv8";
-			reg = <0x0 0x500>;
+			reg = <0x0 0x10300>;
 			device_type = "cpu";
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU6: cpu@10400 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10400>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		CPU7: cpu@10500 {
+			compatible = "arm,armv8";
+			reg = <0x0 0x10500>;
+			device_type = "cpu";
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_PWR_DWN>;
+		};
+
+		cpu-map {
+			cluster0 {
+				core0 {
+					cpu = <&CPU0>;
+				};
+
+				core1 {
+					cpu = <&CPU1>;
+				};
+			};
+
+			cluster1 {
+				core0 {
+					cpu = <&CPU2>;
+				};
+
+				core1 {
+					cpu = <&CPU3>;
+				};
+
+				core2 {
+					cpu = <&CPU4>;
+				};
+
+				core3 {
+					cpu = <&CPU5>;
+				};
+
+				core4 {
+					cpu = <&CPU6>;
+				};
+
+				core5 {
+					cpu = <&CPU7>;
+				};
+			};
 		};
 	};
 
