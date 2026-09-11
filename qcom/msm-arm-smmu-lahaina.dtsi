@@ -368,20 +368,6 @@
 		};
 	};
 
-	kgsl_iommu_test_device {
-		compatible = "qcom,iommu-debug-test";
-		iommus = <&kgsl_smmu 0x7 0>;
-		qcom,iommu-dma = "disabled";
-	};
-
-	kgsl_iommu_coherent_test_device {
-		status = "disabled";
-		compatible = "qcom,iommu-debug-test";
-		iommus = <&kgsl_smmu 0x9 0>;
-		qcom,iommu-dma = "disabled";
-		dma-coherent;
-	};
-
 	iommu_test_device {
 		compatible = "qcom,iommu-debug-test";
 
@@ -416,12 +402,12 @@
 
 		usecase5_kgsl_dma {
 			compatible = "qcom,iommu-debug-usecase";
-			iommus = <&kgsl_smmu 0x400 0>;
+			iommus = <&kgsl_smmu 0x7 0x400>;
 		};
 
 		usecase6_kgsl_coherent {
 			compatible = "qcom,iommu-debug-usecase";
-			iommus = <&kgsl_smmu 0x400 0>;
+			iommus = <&kgsl_smmu 0x7 0x400>;
 			dma-coherent;
 		};
 
