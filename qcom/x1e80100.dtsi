@@ -1945,6 +1945,8 @@
 					<&gem_noc MASTER_APPSS_PROC  &config_noc SLAVE_USB3_MP >;
 			interconnect-names = "usb-ddr", "apps-usb";
 
+			qcom,pm-qos-latency = <2>;
+
 			wakeup-source;
 			qcom,use-eusb2-phy;
 
@@ -2136,8 +2138,10 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+			interconnects = <&aggre1_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
+
+			qcom,pm-qos-latency = <2>;
 
 			wakeup-source;
 			/*
@@ -2451,6 +2455,8 @@
 			interconnects = <&usb_south_anoc MASTER_USB3_1 &mc_virt SLAVE_EBI1>,
 					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_1>;
 
+			qcom,pm-qos-latency = <2>;
+
 			wakeup-source;
 
 			/*
@@ -2636,8 +2642,10 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&usb_south_anoc MASTER_USB3_2 0 &mc_virt SLAVE_EBI1 0>,
-					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_2 0>;
+			interconnects = <&usb_south_anoc MASTER_USB3_2 &mc_virt SLAVE_EBI1>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_2>;
+
+			qcom,pm-qos-latency = <2>;
 
 			wakeup-source;
 			/*
