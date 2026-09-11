@@ -380,15 +380,6 @@
 
 &usb2_phy_2 {
 	phys = <&smb2360_2_eusb2_repeater>;
-	status = "okay";
-};
-
-&usb3_phy_2 {
-	status = "okay";
-};
-
-&usb2 {
-	status = "okay";
 	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
 };
 
