@@ -1005,15 +1005,22 @@ SECA_LA_GVM_BOARDS += \
 
 SECA_LA_GVM_BASE_DTB += seca-sdp8-vm-la.dtb
 
+SECA_MULTI_GVM_BOARDS += \
+		seca-sdp8-vm-lv-mt-overlay.dtbo
+
+SECA_MULTI_GVM_BASE_DTB += seca-sdp8-vm-lv-mt.dtb
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(SA8797P_MULTI_GVM_BOARDS),$(SA8797P_MULTI_GVM_BASE_DTB)) \
-	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB))
+	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(SECA_MULTI_GVM_BOARDS),$(SECA_MULTI_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
-	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB)
+	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB) \
+	$(SECA_MULTI_GVM_BOARDS) $(SECA_MULTI_GVM_BASE_DTB)
 
 SECA_GH_LA_GVM_QAM_BASE_DTB += \
 	seca-gh-vm-la-qam.dtb \
