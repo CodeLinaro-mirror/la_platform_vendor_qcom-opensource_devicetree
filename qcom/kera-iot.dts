@@ -5,10 +5,23 @@
 
 /dts-v1/;
 #include "kera.dtsi"
+#include "kera-iot-reserved-memory.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Kera IoT SoC";
 	compatible = "qcom,kera";
 	qcom,msm-id = <731 0x10000>;
 	qcom,board-id = <0 0>;
+};
+
+&gcc {
+	/delete-property/ protected-clocks;
+};
+
+&gcc_pcie_1_gdsc {
+	status = "ok";
+};
+
+&gcc_pcie_1_phy_gdsc {
+	status = "ok";
 };
