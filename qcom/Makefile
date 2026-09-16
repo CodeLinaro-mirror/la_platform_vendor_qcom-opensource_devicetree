@@ -689,9 +689,11 @@ X1P42100_BOARDS += \
 		   x1p42100-canim-qcb-v1-overlay.dtbo \
 		   x1p42100-canim-qcb-v2-overlay.dtbo \
 		   x1p42100-canim-qcb-v3-overlay.dtbo \
+		   x1p42100-canim-qcb-v4-overlay.dtbo \
 		   x1p42100-canim-cdp-v1-overlay.dtbo \
 		   x1p42100-canim-cdp-v2-overlay.dtbo \
-		   x1p42100-canim-cdp-v3-overlay.dtbo
+		   x1p42100-canim-cdp-v3-overlay.dtbo \
+		   x1p42100-canim-cdp-v5-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))

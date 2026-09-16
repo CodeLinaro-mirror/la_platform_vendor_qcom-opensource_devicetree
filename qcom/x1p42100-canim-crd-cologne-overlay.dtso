@@ -9,7 +9,7 @@
 #include "x1p42100-crd.dtsi"
 
 / {
-        model = "Qualcomm Technologies, Inc. X1P42100 CRD with Cologne attach";
+        model = "Qualcomm Technologies, Inc. X1P42100 Canim CRD with Cologne attach";
         compatible = "qcom,x1p42100-crd", "qcom,x1p42100", "qcom,crd";
         qcom,msm-id = <799 0x10000>;
         qcom,board-id = <40 1>;
