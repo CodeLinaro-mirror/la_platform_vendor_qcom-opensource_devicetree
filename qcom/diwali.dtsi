@@ -357,26 +357,6 @@
 	qcom_smcinvoke {
 		compatible = "qcom,smcinvoke";
 	};
-
-	qcom_mem_object {
-		compatible = "qcom,mem-object";
-	};
-
-	android {
-		vbmeta {
-			parts = "vbmeta,boot,system,vendor,dtbo,recovery";
-		};
-
-		fstab {
-			vendor {
-				dev = "/dev/block/platform/soc/1d84000.ufshc/by-name/vendor";
-				type = "ext4";
-				mnt_flags = "ro,barrier=1,discard";
-				fsmgr_flags = "wait,slotselect,avb";
-				status = "ok";
-			};
-		};
-	};
 };
 
 #include "diwali-reserved-memory.dtsi"
@@ -653,33 +633,28 @@
 		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-		qcom,drv-count = <3>;
-		apps_rsc_drv2: drv@2 {
-			qcom,tcs-offset = <0xd00>;
-			qcom,drv-id = <2>;
-			channel@0 {
-				qcom,tcs-config = <ACTIVE_TCS		3>,
-						<SLEEP_TCS		2>,
-						<WAKE_TCS		2>,
-						<CONTROL_TCS		0>,
-						<FAST_PATH_TCS		1>;
-			};
-			//power-domains = <&CLUSTER_PD>;
+		qcom,tcs-offset = <0xd00>;
+		qcom,drv-id = <2>;
+		qcom,tcs-config = <ACTIVE_TCS		3>,
+				  <SLEEP_TCS		2>,
+				  <WAKE_TCS		2>,
+				  <CONTROL_TCS		0>,
+				  <FAST_PATH_TCS	1>;
+		power-domains = <&CLUSTER_PD>;
 
-			rpmhcc: clock-controller {
-				compatible = "qcom,fillmore-rpmh-clk";
-				#clock-cells = <1>;
-			};
+		rpmhcc: qcom,rpmhclk {
+			compatible = "qcom,fillmore-rpmh-clk";
+			#clock-cells = <1>;
+		};
 
-			apps_bcm_voter: bcm_voter {
-				compatible = "qcom,bcm-voter";
-			};
+		apps_bcm_voter: bcm_voter {
+			compatible = "qcom,bcm-voter";
+		};
 
-			dcvs_fp: qcom,dcvs-fp {
-				compatible = "qcom,dcvs-fp";
-				qcom,ddr-bcm-name = "MC3";
-				qcom,llcc-bcm-name = "SH5";
-			};
+		dcvs_fp: qcom,dcvs-fp {
+			compatible = "qcom,dcvs-fp";
+			qcom,ddr-bcm-name = "MC3";
+			qcom,llcc-bcm-name = "SH5";
 		};
 	};
 
@@ -695,24 +670,17 @@
 		reg-names = "drv-0";
 		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
-		qcom,drv-count = <1>;
+		qcom,tcs-offset = <0x1c00>;
+		qcom,drv-id = <0>;
+		qcom,tcs-config = <ACTIVE_TCS		0>,
+				  <SLEEP_TCS		1>,
+				  <WAKE_TCS		1>,
+				  <CONTROL_TCS		0>,
+				  <FAST_PATH_TCS	0>;
 
-		disp_rsc_drv0: drv@0 {
-			qcom,tcs-offset = <0x1c00>;
-			qcom,drv-id = <0>;
-
-			channel@0 {
-				qcom,tcs-config = <ACTIVE_TCS           0>,
-						<SLEEP_TCS            1>,
-						<WAKE_TCS             1>,
-						<CONTROL_TCS          0>,
-						<FAST_PATH_TCS        0>;
-			};
-
-			disp_bcm_voter: bcm_voter {
-				compatible = "qcom,bcm-voter";
-				qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
-			};
+		disp_bcm_voter: bcm_voter {
+			compatible = "qcom,bcm-voter";
+			qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
 		};
 	};
 
@@ -1563,7 +1531,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-v1_7-4k";
+		compatible = "qcom,msm-sps-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -1624,12 +1592,8 @@
 
 	cache-controller@19200000 {
 		compatible = "qcom,diwali-llcc", "qcom,llcc-v21";
-		reg = <0x19200000 0x80000>,
-		      <0x19300000 0x80000>,
-		      <0x19A00000 0x80000>;
-		reg-names = "llcc0_base",
-			    "llcc1_base",
-			    "llcc_broadcast_base";
+		reg = <0x19200000 0x180000> , <0x19A00000 0x80000>;
+		reg-names = "llcc_base", "llcc_broadcast_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 		llcc-perfmon {
@@ -1975,7 +1939,7 @@
 	};
 
 	aoss_qmp: power-controller@c300000 {
-		compatible = "qcom,aoss-qmp";
+		compatible = "qcom,diwali-aoss-qmp";
 		reg = <0xc300000 0x400>;
 		interrupt-parent = <&ipcc_mproc>;
 		interrupts = <IPCC_CLIENT_AOP
@@ -2040,7 +2004,6 @@
 
 		qcom,qmp = <&aoss_qmp>;
 		memory-region = <&adsp_mem>;
-		firmware-name = "adsp.mdt";
 
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
 				      <&adsp_smp2p_in 0 0>,
@@ -2110,7 +2073,6 @@
 
 		qcom,qmp = <&aoss_qmp>;
 		memory-region = <&cdsp_mem>;
-		firmware-name = "cdsp.mdt";
 
 		/* Inputs from turing */
 		interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
@@ -2194,7 +2156,6 @@
 
 		qcom,qmp = <&aoss_qmp>;
 		memory-region = <&mpss_mem &system_cma>;
-		firmware-name = "modem.mdt";
 
 		/* Inputs from mss */
 		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
@@ -2586,24 +2547,16 @@
 		};
 	};
 
-	ufshc_dma_resv: ufshc_dma_resv_region {
-		/*
-		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
-		 * from 0x1000 - 0xffffffff.
-		 */
-		iommu-addresses = <&ufshc_mem 0x0 0x1000>;
-	};
-
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
 		reg = <0x1d84000 0x3000>,
-			<0x1d88000 0x18000>;
-		reg-names = "ufs_mem", "ice";
+			<0x1d88000 0x8000>,
+			<0x1d90000 0x9000>;
+		reg-names = "ufs_mem", "ufs_ice", "ufs_ice_hwkm";
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
-		qcom,ice-use-hwkm;
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		clock-names =
@@ -2641,7 +2594,61 @@
 		      <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
 		interconnect-names = "ufs-ddr", "cpu-ufs";
 
-		memory-region = <&ufshc_dma_resv>;
+		qcom,ufs-bus-bw,name = "ufshc_mem";
+		qcom,ufs-bus-bw,num-cases = <26>;
+		qcom,ufs-bus-bw,num-paths = <2>;
+		qcom,ufs-bus-bw,vectors-KBps =
+		/*
+		 * During HS G3 UFS runs at nominal voltage corner, vote
+		 * higher bandwidth to push other buses in the data path
+		 * to run at nominal to achieve max throughput.
+		 * 4GBps pushes BIMC to run at nominal.
+		 * 200MBps pushes CNOC to run at nominal.
+		 * Vote for half of this bandwidth for HS G3 1-lane.
+		 * For max bandwidth, vote high enough to push the buses
+		 * to run in turbo voltage corner.
+		 */
+		<0 0>, <0 0>,          /* No vote */
+		<922 0>, <1000 0>,     /* PWM G1 */
+		<1844 0>, <1000 0>,    /* PWM G2 */
+		<3688 0>, <1000 0>,    /* PWM G3 */
+		<7376 0>, <1000 0>,    /* PWM G4 */
+		<1844 0>, <1000 0>,    /* PWM G1 L2 */
+		<3688 0>, <1000 0>,    /* PWM G2 L2 */
+		<7376 0>, <1000 0>,    /* PWM G3 L2 */
+		<14752 0>, <1000 0>,   /* PWM G4 L2 */
+		<127796 0>, <1000 0>,  /* HS G1 RA */
+		<255591 0>, <1000 0>,  /* HS G2 RA */
+		<1492582 0>, <102400 0>,  /* HS G3 RA */
+		<2915200 0>, <204800 0>,  /* HS G4 RA */
+		<255591 0>, <1000 0>,  /* HS G1 RA L2 */
+		<511181 0>, <1000 0>,  /* HS G2 RA L2 */
+		<1492582 0>, <204800 0>, /* HS G3 RA L2 */
+		<2915200 0>, <409600 0>, /* HS G4 RA L2 */
+		<149422 0>, <1000 0>,  /* HS G1 RB */
+		<298189 0>, <1000 0>,  /* HS G2 RB */
+		<1492582 0>, <102400 0>,  /* HS G3 RB */
+		<2915200 0>, <204800 0>,  /* HS G4 RB */
+		<298189 0>, <1000 0>,  /* HS G1 RB L2 */
+		<596378 0>, <1000 0>,  /* HS G2 RB L2 */
+		/* As UFS working in HS G3 RB L2 mode, aggregated
+		 * bandwidth (AB) should take care of providing
+		 * optimum throughput requested. However, as tested,
+		 * in order to scale up CNOC clock, instantaneous
+		 * bindwidth (IB) needs to be given a proper value too.
+		 */
+		<1492582 0>, <204800 409600>, /* HS G3 RB L2 KBPs */
+		<2915200 0>, <409600 409600>, /* HS G4 RB L2 */
+		<7643136 12799218>, <307200 0>; /* Max. bandwidth */
+
+		qcom,bus-vector-names = "MIN",
+		"PWM_G1_L1", "PWM_G2_L1", "PWM_G3_L1", "PWM_G4_L1",
+		"PWM_G1_L2", "PWM_G2_L2", "PWM_G3_L2", "PWM_G4_L2",
+		"HS_RA_G1_L1", "HS_RA_G2_L1", "HS_RA_G3_L1", "HS_RA_G4_L1",
+		"HS_RA_G1_L2", "HS_RA_G2_L2", "HS_RA_G3_L2", "HS_RA_G4_L2",
+		"HS_RB_G1_L1", "HS_RB_G2_L1", "HS_RB_G3_L1", "HS_RB_G4_L1",
+		"HS_RB_G1_L2", "HS_RB_G2_L2", "HS_RB_G3_L2", "HS_RB_G4_L2",
+		"MAX";
 
 		reset-gpios = <&tlmm 170 GPIO_ACTIVE_LOW>;
 		resets = <&gcc GCC_UFS_PHY_BCR>;
@@ -2650,8 +2657,6 @@
 		iommus = <&apps_smmu 0x20 0x0>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
-		qcom,max-cpus = <8>;
-		qcom,cluster-mask = <0x0f 0x70 0x80>;
 
 		/* Multilevel clock scaling support for higher ufs clock freq */
 		multi-level-clk-scaling-support;
