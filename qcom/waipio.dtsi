@@ -2328,9 +2328,10 @@
 						<CONTROL_TCS   0>,
 						<FAST_PATH_TCS 0>;
 			};
-		disp_bcm_voter: bcm_voter {
-			compatible = "qcom,bcm-voter";
-			qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
+
+			disp_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
 			};
 		};
 	};
