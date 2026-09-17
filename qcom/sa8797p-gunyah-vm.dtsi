@@ -414,6 +414,10 @@
 		qcom,dev-name = "bootloader_a";
 	};
 
+	virtio_blk_gvminfo {
+		qcom,dev-name = "gvminfo";
+	};
+
 	virtio_mmio_i2c_9 {
 		virtio_i2c_9: virtio_i2c_9@0 {
 			compatible = "virtio,device22";
@@ -482,9 +486,10 @@
 				qcom,label = <0x1>;
 			};
 
+			/* VBLK gvminfo device */
 			virtio-mmio@0 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/virtio_blk_gvminfo";
 				peer-default;
 				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";
