@@ -83,14 +83,15 @@
 		compatible = "ti,tps6286";
 		reg = <0x40>;
 	};
-};
 
-&spmi0_bus {
-	/delete-node/ pm8010@c;
-	/delete-node/ pm8010@d;
-};
+	ina234b_left: ina234bl@48 {
+		compatible = "ti,ina234b";
+		reg = <0x48>;
+		left;
+	};
 
-&spmi0_debug_bus {
-	/delete-node/ qcom,pm8010-debug@c;
-	/delete-node/ qcom,pm8010-debug@d;
+	ina234b_right: ina234br@49 {
+		compatible = "ti,ina234b";
+		reg = <0x49>;
+	};
 };
