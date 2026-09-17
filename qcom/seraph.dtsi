@@ -336,11 +336,19 @@
 		compatible = "arm,gic-v3";
 		#interrupt-cells = <3>;
 		interrupt-controller;
+		ranges;
 		#redistributor-regions = <1>;
 		redistributor-stride = <0x0 0x20000>;
 		reg = <0x17200000 0x10000>,       /* GICD */
 		     <0x17260000 0xA0000>;       /* GICR * 5 */
 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+
+		gic_its: msi-controller@17240000 {
+			compatible = "arm,gic-v3-its";
+			msi-controller;
+			#msi-cells = <1>;
+			reg = <0x17240000 0x20000>;
+		};
 	};
 
 	arch_timer: timer {
@@ -1878,7 +1886,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		wakeup-parent = <&pdc>;
-		qcom,gpios-reserved = <18 19>;
+		qcom,gpios-reserved = <18 19 28>;
 	};
 
 	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
@@ -2289,6 +2297,38 @@
 			#address-cells = <2>;
 			#size-cells = <0>;
 			qcom,can-sleep;
+		};
+	};
+
+	qcom,pdr_monitor {
+		compatible = "qcom,pdr-monitor";
+
+		pd-adsp-audio {
+			service-name = "tms/servreg";
+			service-path = "msm/adsp/audio_pd";
+			qcom,smem-id = <684>;
+			qcom,smem-host = <2>;
+		};
+
+		pd-adsp-sensor {
+			service-name = "tms/servreg";
+			service-path = "msm/adsp/sensor_pd";
+			qcom,smem-id = <685>;
+			qcom,smem-host = <2>;
+		};
+
+		pd-adsp-xr {
+			service-name = "tms/servreg";
+			service-path = "msm/adsp/xr_pd";
+			qcom,smem-id = <687>;
+			qcom,smem-host = <2>;
+		};
+
+		pd-adsp-ois {
+			service-name = "tms/servreg";
+			service-path = "msm/adsp/ois_pd";
+			qcom,smem-id = <686>;
+			qcom,smem-host = <2>;
 		};
 	};
 

@@ -25,7 +25,7 @@
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	chosen: chosen {
-		bootargs = "android_arch_task_struct_size=512 pcie_ports=compat kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false nokaslr kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
+		bootargs = "android_arch_task_struct_size=512 pcie_ports=compat kasan=off irqaffinity=0-1 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 rcupdate.rcu_expedited=1 rcu_nocbs=0-4 cgroup_disable=pressure cgroup.memory=nokmem,nosocket page_poison=on restrict_cma_redirect=false kpti=0 log_buf_len=256K swiotlb=0 loop.max_part=7 loglevel=8 bootconfig sysctl.kernel.sched_pelt_multiplier=4 no-steal-acc fw_devlink.strict=1";
 
 	};
 
@@ -1752,7 +1752,7 @@
 		      <0x1e00000 0x2000000>,
 		      <0x3e00000 0x100000>,
 		      <0x3f00000 0xa0000>,
-		      <0x1c0a700 0x26000>;
+		      <0x1c0a000 0x26000>;
 		reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
 		interrupts-extended = <&mpm 86 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "periph_irq";
@@ -2467,12 +2467,6 @@
 					iommus = <&apps_smmu 0x0206 0x0000>;
 				};
 
-				compute-cb@9 {
-					compatible = "qcom,fastrpc-compute-cb";
-					reg = <9>;
-					iommus = <&apps_smmu 0x0209 0x0000>;
-				};
-
 			};
 		};
 	};
@@ -2834,15 +2828,11 @@
 };
 
 #include "shikra-pinctrl.dtsi"
-#include "shikra-pcie.dtsi"
 #include "shikra-reserved-memory.dtsi"
-#include "shikra-pm4125-regulator.dtsi"
-#include "shikra-pm8005-regulator.dtsi"
 #include "msm-arm-smmu-shikra.dtsi"
 #include "shikra-dma-heaps.dtsi"
 #include "shikra-thermal.dtsi"
 #include "msm-rdbg-shikra.dtsi"
-#include "shikra-usb.dtsi"
 #include "shikra-walt.dtsi"
 #include "shikra-debug.dtsi"
 #include "shikra-coresight.dtsi"
@@ -3491,9 +3481,9 @@
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "pvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <155>;
+		qts,trusted-touch-spi-irq = <267>;
 		qts,trusted-touch-io-bases = <0x4a90000>;
-		qts,trusted-touch-io-sizes = <0x4000>;
+		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
 	};
 };
