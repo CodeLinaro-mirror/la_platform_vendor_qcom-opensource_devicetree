@@ -1,0 +1,115 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "sun-qrd-sku1-v8.dtsi"
+
+&sdhc_2 {
+	cd-gpios = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+};
+
+&regulator_ocp_notifier {
+	/delete-property/ periph-ac1-supply;
+	/delete-property/ periph-ac2-supply;
+	/delete-property/ periph-ac3-supply;
+	/delete-property/ periph-ac4-supply;
+	/delete-property/ periph-ac5-supply;
+	/delete-property/ periph-ac6-supply;
+	/delete-property/ periph-ac7-supply;
+};
+
+&qupv3_se4_spi {
+	status = "disabled";
+};
+
+&pmih010x_eusb2_repeater {
+	qcom,param-override-seq =
+		/* <value reg_offset> */
+		/* Adjust HS trasmit amplitude */
+		<0xf 0x51
+		/* Tx pre-emphasis tuning */
+		0x5 0x57>;
+};
+
+&pcie0 {
+	qcom,no-client-based-bw-voting;
+};
+
+&tlmm {
+	 lt8711uxe2_dp_lane_sel: lt8711uxe2_dp_lane_sel {
+		 mux {
+			 pins = "gpio50";
+			 function = "gpio";
+		 };
+
+		 config {
+			 pins = "gpio50";
+			 drive-strength = <8>;
+			 bias-disable;
+		 };
+	 };
+
+	 lt8711uxe2_dp_alt_en: lt8711uxe2_dp_alt_en {
+		 mux {
+			 pins = "gpio48";
+			 function = "gpio";
+		 };
+
+		 config {
+			 pins = "gpio48";
+			 drive-strength = <8>;
+			 bias-disable;
+		 };
+	 };
+
+
+	 lt8711uxe2_rst: lt8711uxe2_rst {
+		 mux {
+			 pins = "gpio46";
+			 function = "gpio";
+		 };
+
+		 config {
+			 pins = "gpio46";
+			 drive-strength = <8>;
+			 bias-disable;
+		 };
+	 };
+
+	 lt8711uxe2_int: lt8711uxe2_int {
+		 mux {
+			 pins = "gpio31";
+			 function = "gpio";
+		 };
+
+		 config {
+			 pins = "gpio31";
+			 drive-strength = <8>;
+			 bias-pull-up;
+		 };
+	 };
+};
+
+
+&qupv3_se5_i2c {
+	status = "ok";
+	extcon_lt8711uxe2: lt8711uxe2@3f {
+		compatible = "lt,lt8711uxe2";
+		reg = <0x3f>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
+		lt,irq-gpio = <&tlmm 31 0>;
+		lt,dp-lane-sel = <&tlmm 50 0>;
+		lt,dp-alt-en = <&tlmm 48 0>;
+		lt,reset-gpio = <&tlmm 46 0>;
+		with-hdmi-switch;
+		usb-ss-support;
+		pinctrl-names = "default";
+		pinctrl-0 = <&lt8711uxe2_int &lt8711uxe2_dp_alt_en
+			&lt8711uxe2_dp_lane_sel &lt8711uxe2_rst>;
+		img-fw-rev = <0x000004>;
+		status = "okay";
+	};
+};
+

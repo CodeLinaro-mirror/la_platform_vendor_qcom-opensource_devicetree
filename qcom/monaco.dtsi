@@ -1924,8 +1924,8 @@
 		};
 	};
 
-	soc_util: soc-util {
-		compatible = "qcom,soc-util";
+	wear_config: wear-config {
+		compatible = "qcom,wear-config";
 		nvmem-cells = <&logo_orientation>;
 		nvmem-cell-names = "logo-orientation";
 		status = "ok";
