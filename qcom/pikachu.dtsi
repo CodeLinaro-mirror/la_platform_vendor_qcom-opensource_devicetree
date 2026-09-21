@@ -1243,7 +1243,7 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		reg = <0x1901C040 0xFC0>, <0x1901C000 0x40>;
+		reg = <0x1901BE40 0x11C0>, <0x1901BE00 0x40>;
 		reg-names = "mem-base", "buff-fill-base";
 
 		bwprof_ddr: ddr {
