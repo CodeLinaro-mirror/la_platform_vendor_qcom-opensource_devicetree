@@ -127,11 +127,7 @@
 
 &usb_ss0 {
 	status = "okay";
-};
-
-&dwc3_0 {
-	dr_mode = "peripheral";
-	maximum-speed = "high-speed";
+	usb-role-switch;
 };
 
 &usb_ss0_qmpphy_out {
