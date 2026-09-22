@@ -1112,6 +1112,8 @@ _platform_map = {
             {"name": "pikachups-idp-overlay.dtbo"},
             {"name": "pikachus-idp-dtof-overlay.dtbo"},
             {"name": "pikachups-idp-dtof-overlay.dtbo"},
+            {"name": "pikachu-idp-wcn-v2-overlay.dtbo"},
+            {"name": "pikachup-idp-wcn-v2-overlay.dtbo"},
             {"name": "pikachu-rumi-overlay.dtbo"},
         ],
     },
