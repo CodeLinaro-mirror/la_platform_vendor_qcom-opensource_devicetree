@@ -2317,19 +2317,6 @@
 			qcom,smem-host = <2>;
 		};
 
-		pd-adsp-xr {
-			service-name = "tms/servreg";
-			service-path = "msm/adsp/xr_pd";
-			qcom,smem-id = <687>;
-			qcom,smem-host = <2>;
-		};
-
-		pd-adsp-ois {
-			service-name = "tms/servreg";
-			service-path = "msm/adsp/ois_pd";
-			qcom,smem-id = <686>;
-			qcom,smem-host = <2>;
-		};
 	};
 
 	adsp_pas: remoteproc-adsp@06C00000 {
