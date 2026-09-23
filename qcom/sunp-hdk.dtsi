@@ -131,6 +131,10 @@
 
 &pcie0 {
 	qcom,no-client-based-bw-voting;
+
+	msi-map = <0x0 &gic_its 0x1400 0x1>,
+			<0x100 &gic_its 0x1401 0x1>; /* 32 event IDs */
+	qcom,drv-name = "cesta";
 };
 
 &redriver {
