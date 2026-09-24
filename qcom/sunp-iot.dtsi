@@ -4,7 +4,6 @@
  */
 
 #include "sunp-v2.dtsi"
-#include "sun-iot-reserved-memory.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. SunP CQ8750S SoC";
