@@ -100,13 +100,23 @@
 			compatible = "operating-points-v2";
 			opp-shared;
 
+			opp-2361600000 {
+				opp-hz = /bits/ 64 <2361600000>;
+				opp-microvolt = <968000>;
+			};
+		};
+
+		cluster_1_opp_table: opp-table1 {
+			compatible = "operating-points-v2";
+			opp-shared;
+
 			opp-2112000000 {
 				opp-hz = /bits/ 64 <2112000000>;
 				opp-microvolt = <968000>;
 			};
 		};
 
-		cluster_1_opp_table: opp-table1 {
+		cluster_2_opp_table: opp-table2 {
 			compatible = "operating-points-v2";
 			opp-shared;
 
@@ -144,8 +154,8 @@
 			device_type = "cpu";
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
-			dynamic-power-coefficient = <507>;
-			operating-points-v2 = <&cluster_0_opp_table>;
+			dynamic-power-coefficient = <472>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -155,8 +165,8 @@
 			device_type = "cpu";
 			enable-method = "psci";
 			capacity-dmips-mhz = <1024>;
-			dynamic-power-coefficient = <507>;
-			operating-points-v2 = <&cluster_0_opp_table>;
+			dynamic-power-coefficient = <472>;
+			operating-points-v2 = <&cluster_1_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -167,7 +177,7 @@
 			enable-method = "psci";
 			capacity-dmips-mhz = <350>;
 			dynamic-power-coefficient = <100>;
-			operating-points-v2 = <&cluster_1_opp_table>;
+			operating-points-v2 = <&cluster_2_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -178,7 +188,7 @@
 			enable-method = "psci";
 			capacity-dmips-mhz = <350>;
 			dynamic-power-coefficient = <100>;
-			operating-points-v2 = <&cluster_1_opp_table>;
+			operating-points-v2 = <&cluster_2_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -189,7 +199,7 @@
 			enable-method = "psci";
 			capacity-dmips-mhz = <350>;
 			dynamic-power-coefficient = <100>;
-			operating-points-v2 = <&cluster_1_opp_table>;
+			operating-points-v2 = <&cluster_2_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -200,7 +210,7 @@
 			enable-method = "psci";
 			capacity-dmips-mhz = <350>;
 			dynamic-power-coefficient = <100>;
-			operating-points-v2 = <&cluster_1_opp_table>;
+			operating-points-v2 = <&cluster_2_opp_table>;
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -213,17 +223,20 @@
 				core1 {
 					cpu = <&CPU1>;
 				};
-
-				core2 {
-					cpu = <&CPU2>;
-				};
-
-				core3 {
-					cpu = <&CPU3>;
-				};
 			};
 
 			cluster1 {
+				core0 {
+					cpu = <&CPU2>;
+				};
+
+				core1 {
+					cpu = <&CPU3>;
+				};
+
+			};
+
+			cluster2 {
 				core0 {
 					cpu = <&CPU4>;
 				};
