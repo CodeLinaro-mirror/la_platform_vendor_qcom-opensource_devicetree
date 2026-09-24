@@ -1189,34 +1189,33 @@ _platform_map = {
     "shikra_tiny": {
         "dtb_list": [
             # keep sorted
-            {"name": "shikra-cqm.dtb"},
+            {"name": "shikra-cqm-1gb.dtb"},
             {
-                "name": "shikra-cqs.dtb",
+                "name": "shikra-cqs-1gb.dtb",
                 "apq": True,
             },
-            {"name": "shikra-cqm-fp1.dtb"},
+            {"name": "shikra-cqm-fp1-1gb.dtb"},
             {
-                "name": "shikra-cqs-fp1.dtb",
+                "name": "shikra-cqs-fp1-1gb.dtb",
                 "apq": True,
             },
-            {"name": "shikra-cqm-fp2.dtb"},
+            {"name": "shikra-cqm-fp2-1gb.dtb"},
             {
-                "name": "shikra-cqs-fp2.dtb",
+                "name": "shikra-cqs-fp2-1gb.dtb",
                 "apq": True,
             },
         ],
         "dtbo_list": [
             # keep sorted
-            {"name": "shikra-evk-kunlun-nfc-atp-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-imxcam-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo"},
-            {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
-            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
-            {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
-            {"name": "shikra-rumi-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-atp-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-cologne-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-m2-hsp-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-imxcam-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-cologne-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-m2-hsp-1gb-overlay.dtbo"},
+            {"name": "shikra-evk-kunlun-nfc-1gb-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-1gb-overlay.dtbo"},
+            {"name": "shikra-lite-evk-eSMPS-nfc-1gb-overlay.dtbo"},
         ],
     },
     "shikra-tuivm": {

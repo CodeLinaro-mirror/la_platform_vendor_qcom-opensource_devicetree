@@ -711,20 +711,35 @@ dtb-y += $(x1e80100-dtb-y)
 
 HAMOA_LA_BASE_DTB += hamoa_la.dtb
 
-SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb
-SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb
+SHIKRA_BASE_DTB += shikra-cqm.dtb shikra-cqm-fp1.dtb shikra-cqm-fp2.dtb \
+		   shikra-cqm-1gb.dtb \
+		   shikra-cqm-fp1-1gb.dtb \
+		   shikra-cqm-fp2-1gb.dtb
+SHIKRA_APQ_BASE_DTB += shikra-cqs.dtb shikra-cqs-fp1.dtb shikra-cqs-fp2.dtb \
+		       shikra-cqs-1gb.dtb \
+		       shikra-cqs-fp1-1gb.dtb \
+		       shikra-cqs-fp2-1gb.dtb
 SHIKRA_IQS_BASE_DTB += shikra-iqs.dtb shikra-iqs-fp1.dtb shikra-iqs-fp2.dtb
 
 SHIKRA_BOARDS += \
 		 shikra-evk-kunlun-nfc-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-atp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-atp-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-imxcam-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-hsp-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-m2-cologne-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-imxcam-m2-hsp-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-hsp-1gb-overlay.dtbo \
 		 shikra-evk-kunlun-nfc-imxcam-m2-cologne-overlay.dtbo \
+		 shikra-evk-kunlun-nfc-imxcam-m2-cologne-1gb-overlay.dtbo \
 		 shikra-lite-evk-eSMPS-nfc-overlay.dtbo \
-		 shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo
+		 shikra-lite-evk-eSMPS-nfc-1gb-overlay.dtbo \
+		 shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo \
+		 shikra-lite-evk-eSMPS-nfc-imxcam-1gb-overlay.dtbo
 
 NOAPQ_SHIKRA_BOARDS += \
 		 shikra-rumi-overlay.dtbo
