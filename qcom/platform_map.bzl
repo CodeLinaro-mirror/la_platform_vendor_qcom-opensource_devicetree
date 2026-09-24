@@ -132,6 +132,7 @@ _platform_map = {
             {"name": "canoe-mtp-qmp1000-overlay.dtbo"},
             {"name": "canoe-mtp-st54l-pandeiro-overlay.dtbo"},
             {"name": "canoe-qrd-st54l-kundu-overlay.dtbo"},
+            {"name": "whale-qrd-st54l-kundu-overlay.dtbo"},
             {"name": "canoe-qrd-st54l-pandeiro-overlay.dtbo"},
             {"name": "canoe-rcm-kiwi-overlay.dtbo"},
             {"name": "canoe-rcm-overlay.dtbo"},
