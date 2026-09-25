@@ -29,7 +29,6 @@
 	vdd-supply    = <&pm8150_l4>;
 	vdda18-supply = <&pm8150_l12>;
 	vdda33-supply = <&pm8150_l13>;
-	status = "disabled";
 };
 
 &usb_qmp_phy {
