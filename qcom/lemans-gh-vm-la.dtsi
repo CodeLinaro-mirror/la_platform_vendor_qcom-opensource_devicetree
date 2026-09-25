@@ -1961,7 +1961,7 @@
 	compatible = "qcom,sa8255p-geni-se-qup";
 	reg = <0x9c0000 0x1000>;
 	iommus = <&apps_smmu 0x418 0x0>;
-	qcom,iommu-dma = "default";
+	qcom,iommu-dma = "fastmap";
 	status = "ok";
 };
 
