@@ -3376,6 +3376,15 @@
 			};
 		};
 
+		usb_audio_qmi_dev: usb_audio_qmi_dev {
+			compatible = "qcom,usb-audio-qmi-dev";
+			iommus = <&apps_smmu 0x100b 0x0>;
+			qcom,iommu-dma = "disabled";
+			qcom,usb-audio-stream-id = <0xb>;
+			qcom,usb-audio-intr-num = <2>;
+			status = "disabled";
+		};
+
 		clk_virt: interconnect@0 {
 			compatible = "qcom,glymur-clk_virt";
 			qcom,bcm-voter-names = "hlos";
