@@ -17,7 +17,7 @@
 
 	chosen {
 		bootargs = "console=hvc0 root=/dev/ram rw rootwait nokaslr log_buf_len=1M ufshcd-core.use_mcq_mode=n kpti=0 loglevel=8 printk.devkmsg=on maxcpus=12 driver_async_probe=arm-scmi fw_devlink.strict=1 iommu.strict=0";
-		bootconfig = "androidboot.dtbo_idx=25";
+		bootconfig = "androidboot.dtbo_idx=28";
 	};
 
 	reserved_memory: reserved-memory {
@@ -414,6 +414,10 @@
 		qcom,dev-name = "bootloader_a";
 	};
 
+	virtio_blk_gvminfo {
+		qcom,dev-name = "gvminfo";
+	};
+
 	virtio_mmio_i2c_9 {
 		virtio_i2c_9: virtio_i2c_9@0 {
 			compatible = "virtio,device22";
@@ -482,9 +486,10 @@
 				qcom,label = <0x1>;
 			};
 
+			/* VBLK gvminfo device */
 			virtio-mmio@0 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/virtio_blk_gvminfo";
 				peer-default;
 				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";

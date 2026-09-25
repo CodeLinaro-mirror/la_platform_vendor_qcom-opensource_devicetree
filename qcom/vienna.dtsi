@@ -2425,6 +2425,10 @@
 			compatible = "qcom,altmode-glink";
 			#altmode-cells = <1>;
 		};
+
+		qcom_batt_telemetry: qcom,batt-telemetry {
+			compatible = "qcom,batt-telemetry";
+		};
 	};
 
 	qcom,pmic_glink_log {
