@@ -152,6 +152,46 @@
 		/* BDF 2.3.0 */
 		pcie0_bus2_dev3_fn0: pcie0_bus2_dev3_fn0 {
 			reg = <0x1800 0x0 0x0 0x0 0x0>;
+
+			/* BDF 5.0.0 - QPS615 Port0 ethernet PF - SGMII, RTL8211 PHY addr 7 */
+			qps615_eth0: qps615_eth0@pcie0_rp {
+				reg = <0x0 0x0 0x0 0x0 0x0>;
+				qcom,phy-port-interface = <4>;
+				qcom,mdc-clk = <4>;
+				qcom,c45-state = <0>;
+				qcom,link-down-macrst = <1>;
+				qcom,phy-rst-gpio = <0>;
+				qcom,phy-rst-delay-us = <20000>;
+				qcom,start-phy-addr = <1>;
+				qcom,always-on-supply;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				qcom,iommu-group = <&eth0_pci_iommu_group>;
+				eth0_pci_iommu_group: eth0_pci_iommu_group {
+					qcom,iommu-dma = "atomic";
+				};
+			};
+
+			/* BDF 5.0.1 - QPS615 Port1 ethernet PF - RGMII_ID, RTL8211 PHY addr 1 */
+			qps615_eth1: qps615_eth1@pcie0_rp {
+				reg = <0x100 0x0 0x0 0x0 0x0>;
+				qcom,phy-port-interface = <3>;
+				qcom,mdc-clk = <8>;
+				qcom,c45-state = <0>;
+				qcom,link-down-macrst = <0>;
+				qcom,phy-rst-gpio = <1>;
+				qcom,phy-rst-delay-us = <100000>;
+				qcom,start-phy-addr = <1>;
+				qcom,always-on-supply;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				qcom,iommu-group = <&eth1_pci_iommu_group>;
+				eth1_pci_iommu_group: eth1_pci_iommu_group {
+					qcom,iommu-dma = "atomic";
+				};
+			};
 		};
 	};
 };
