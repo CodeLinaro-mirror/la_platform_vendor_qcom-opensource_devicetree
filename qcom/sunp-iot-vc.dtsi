@@ -30,6 +30,20 @@
 	/delete-property/ periph-ac5-supply;
 	/delete-property/ periph-ac6-supply;
 	/delete-property/ periph-ac7-supply;
+	/delete-property/ periph-c40-supply;
+	/delete-property/ periph-c41-supply;
+	/delete-property/ periph-c42-supply;
+	/delete-property/ periph-c43-supply;
+	/delete-property/ periph-c44-supply;
+	/delete-property/ periph-c45-supply;
+	/delete-property/ periph-c46-supply;
+	/delete-property/ periph-d40-supply;
+	/delete-property/ periph-d41-supply;
+	/delete-property/ periph-d42-supply;
+	/delete-property/ periph-d43-supply;
+	/delete-property/ periph-d44-supply;
+	/delete-property/ periph-d45-supply;
+	/delete-property/ periph-d46-supply;
 };
 
 &qupv3_se4_spi {
@@ -195,6 +209,19 @@
 			 bias-pull-up;
 		 };
 	 };
+
+	lt8712sx_rst: lt8712sx_rst {
+		mux {
+			pins = "gpio51";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio51";
+			drive-strength = <8>;
+			bias-disable;
+		};
+	};
 };
 
 
@@ -218,6 +245,170 @@
 			&lt8711uxe2_dp_lane_sel &lt8711uxe2_rst>;
 		img-fw-rev = <0x000004>;
 		status = "okay";
+	};
+};
+
+&usb0 {
+	extcon = <&extcon_lt8711uxe2>, <&eud>;
+};
+
+&spmi_bus {
+	qcom,pm8010@c {
+		status = "disabled";
+	};
+
+	qcom,pm8010@d {
+		status = "disabled";
+	};
+
+	qcom,pmd802x@4 {
+		status = "disabled";
+	};
+
+	qcom,pmr735d@a {
+		status = "disabled";
+	};
+};
+
+&thermal_zones {
+	pm8010m_tz {
+		status = "disabled";
+	};
+
+	pm8010n_tz {
+		status = "disabled";
+	};
+
+	pmd802x_tz {
+		status = "disabled";
+	};
+
+	pmr735d_tz {
+		status = "disabled";
+	};
+};
+
+&pmic_glink_adc {
+	status = "disabled";
+};
+
+&pmic_glink_debug {
+	i2c@106 {
+		qcom,smb1396@34 {
+			status = "disabled";
+		};
+
+		qcom,smb1396@35 {
+			status = "disabled";
+		};
+	};
+
+	spmi@200 {
+		status = "disabled";
+	};
+};
+
+&spmi0_debug_bus {
+	pm8010@c {
+		status = "disabled";
+	};
+
+	pm8010@d {
+		status = "disabled";
+	};
+
+	pmd802x@4 {
+		status = "disabled";
+	};
+
+	pmr735d@a {
+		status = "disabled";
+	};
+};
+
+&apps_rsc_drv2 {
+	rpmh-regulator-ldok1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok7 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom7 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon7 {
+		status = "disabled";
 	};
 };
 
