@@ -45,6 +45,23 @@
 		};
 	};
 
+	pmic_alert_int: pmic-alert-int {
+		pmic_alert_int_active: pmic_alert_int_active {
+			mux {
+				pins = "gpio19";
+				function = "normal";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <2>;
+				bias-pull-up;
+				input-enable;
+				qcom,apps;
+			};
+		};
+	};
+
 	qupv3_se1_1uart_pins: qupv3_se1_1uart_pins {
 		qupv3_se1_1uart_active: qupv3_se1_1uart_active {
 			mux {
@@ -382,6 +399,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -396,6 +414,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -408,6 +427,7 @@
 			config {
 				pins = "gpio67", "gpio68";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};
@@ -938,6 +958,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -952,6 +973,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -964,6 +986,7 @@
 			config {
 				pins = "gpio65", "gpio66";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};
@@ -1449,6 +1472,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -1463,6 +1487,7 @@
 				drive-strength = <2>;
 				bias-pull-up;
 				qcom,i2c_pull;
+				qcom,apps;
 			};
 		};
 
@@ -1475,6 +1500,7 @@
 			config {
 				pins = "gpio4", "gpio5";
 				drive-strength = <2>;
+				qcom,remote;
 			};
 		};
 	};

@@ -145,3 +145,19 @@
 		};
 	};
 };
+
+&apps_rsc_drv2 {
+	/delete-node/ rpmh-regulator-l1m-e0;
+	/delete-node/ rpmh-regulator-l2m-e0;
+	/delete-node/ rpmh-regulator-l3m-e0;
+	/delete-node/ rpmh-regulator-l4m-e0;
+	/delete-node/ rpmh-regulator-l5m-e0;
+	/delete-node/ rpmh-regulator-l6m-e0;
+	/delete-node/ rpmh-regulator-l7m-e0;
+
+	/delete-node/ rpmh-regulator-l1n-e0;
+	/delete-node/ rpmh-regulator-l3n-e0;
+	/delete-node/ rpmh-regulator-l4n-e0;
+	/delete-node/ rpmh-regulator-l6n-e0;
+	/delete-node/ rpmh-regulator-l7n-e0;
+};

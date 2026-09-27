@@ -121,3 +121,27 @@
 &qcom_rng_ee3 {
 	status = "ok";
 };
+
+&usb0_vbus_boost_regulator {
+	status = "disabled";
+};
+
+&usb1_vbus_boost_regulator {
+	status = "okay";
+};
+
+&usb2_vbus_boost_regulator {
+	status = "disabled";
+};
+
+&usb20_vbus_boost_default {
+	status = "disabled";
+};
+
+&usb21_vbus_boost_default {
+	status = "okay";
+};
+
+&usb22_vbus_boost_default {
+	status = "disabled";
+};

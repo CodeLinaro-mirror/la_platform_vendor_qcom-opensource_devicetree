@@ -10,7 +10,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	qcom,msm-id = <672 0x10000>, <673 0x10000>;
+	qcom,msm-id = <672 0x10000>, <673 0x10000>, <673 0x10001>;
 
 	host {
 		#address-cells = <0x2>;

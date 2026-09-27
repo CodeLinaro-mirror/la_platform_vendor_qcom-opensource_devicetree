@@ -17,9 +17,9 @@ description: |
   - dt-bindings/clock/qcom,camcc-canoe.h
   - dt-bindings/clock/qcom,alor-camcc.h
   - dt-bindings/clock/qcom,chora-camcc.h
-  - dt-bindings/clock/qcom,x1p42100-camcc.h
   - dt-bindings/clock/qcom,pikachu-camcc.h
   - dt-bindings/clock/qcom,camcc-seraph.h
+  - dt-bindings/clock/qcom,glymur-camcc.h
 
 properties:
   compatible:
@@ -27,10 +27,10 @@ properties:
       - qcom,canoe-camcc
       - qcom,alor-camcc
       - qcom,chora-camcc
-      - qcom,x1p42100-camcc
       - qcom,whale-camcc
       - qcom,pikachu-camcc
       - qcom,seraph-camcc
+      - qcom,glymur-camcc
 
   clocks:
     items:

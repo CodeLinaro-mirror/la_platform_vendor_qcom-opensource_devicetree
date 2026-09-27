@@ -43,6 +43,12 @@
 			     <GIC_SPI 670 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 700 IRQ_TYPE_LEVEL_HIGH>;
 
+		clocks = <&gpucc GPU_CC_GPU_SMMU_VOTE_CLK>,
+			 <&gpucc GPU_CC_AHB_CLK>;
+		clock-names = "hlos",
+			      "ahb";
+		power-domains = <&gpucc GPU_CC_CX_GDSC>;
+
 		qcom,actlr =
 			/* All CBs of GFX: +15 deep PF */
 			<0x0000 0x0000 0x0000032b>,
@@ -64,11 +70,13 @@
 	apps_smmu: iommu@15000000 {
 		compatible = "qcom,qsmmu-v500";
 		reg = <0x0 0x15000000 0x0 0x100000>;
-		qcom,handoff-smrs = <0x1de0 0x2>, <0x1420 0x0>;
-		qcom,reset-stream-mapping-groups;
 		#iommu-cells = <2>;
 		#global-interrupts = <1>;
 		dma-coherent;
+
+		clocks = <&gcc GCC_HLOS1_VOTE_MMU_TCU_CLK>;
+		clock-names = "hlos";
+		power-domains = <&gcc GCC_HLOS1_VOTE_MMU_TCU_GDS>;
 
 		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
@@ -194,6 +202,20 @@
 		interrupt-names = "eventq", "cmdq-sync", "gerror";
 		dma-coherent;
 		#iommu-cells = <1>;
+	};
+
+	dma_dev {
+		compatible = "qcom,iommu-dma";
+		memory-region = <&system_cma>;
+	};
+
+	dpd_smmu: dpd_smmu {
+		compatible = "qcom,dpd-smmu";
+		#iommu-cells = <1>;
+	};
+
+	dpd_proxy {
+		compatible = "qcom,dpd-proxy";
 	};
 
 	iommu_test_device {

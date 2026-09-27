@@ -7,5 +7,5 @@
 / {
 	model = "Qualcomm Technologies, Inc. Seraph v1.1";
 	compatible = "qcom,seraph";
-	qcom,msm-id = <672 0x10001>;
+	qcom,msm-id = <672 0x10001>, <792 0x10001>;
 };

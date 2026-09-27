@@ -39,6 +39,7 @@ properties:
       - qcom,yupik-llcc
       - qcom,vienna-llcc
       - qcom,sdmshrike-llcc
+      - qcom,glymur-llcc
       - qcom,alor-llcc
 
   reg:
@@ -51,6 +52,16 @@ properties:
 
   interrupts:
     maxItems: 1
+
+  qcom,override-fuse-num-banks:
+    type: boolean
+    description:
+      Override LLCC fuse-derived bank count.
+
+  qcom,num-banks:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description:
+      Number of LLCC banks when overriding fuse-derived bank count.
 
   child-node:
     description: |
@@ -114,6 +125,27 @@ allOf:
             - const: llcc2_base
             - const: llcc3_base
             - const: llcc_broadcast_base
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: qcom,glymur-llcc
+    then:
+      properties:
+        qcom,override-fuse-num-banks: true
+        qcom,num-banks: true
+    else:
+      properties:
+        qcom,override-fuse-num-banks: false
+        qcom,num-banks: false
+
+  - if:
+      required:
+        - qcom,num-banks
+    then:
+      required:
+        - qcom,override-fuse-num-banks
 
 additionalProperties: false
 

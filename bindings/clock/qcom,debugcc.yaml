@@ -35,6 +35,7 @@ properties:
       - qcom,sm8350-debugcc
       - qcom,sm4450-debugcc
       - qcom,qcm2290-debugcc
+      - qcom,sm8450-debugcc
 
   clocks:
     items:

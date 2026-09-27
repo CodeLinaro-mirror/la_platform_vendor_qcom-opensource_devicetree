@@ -67,3 +67,23 @@
 	ldo8-mv = <800>;
 };
 
+&qupv3_se10_i2c {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	tps6286: tps6286@40 {
+		compatible = "ti,tps6286";
+		reg = <0x40>;
+	};
+};
+
+&spmi0_bus {
+	/delete-node/ pm8010@c;
+	/delete-node/ pm8010@d;
+};
+
+&spmi0_debug_bus {
+	/delete-node/ qcom,pm8010-debug@c;
+	/delete-node/ qcom,pm8010-debug@d;
+};
