@@ -2864,19 +2864,6 @@
 	status = "ok";
 };
 
-&pmic_glink_debug {
-	spmi@0 {
-		reg = <0>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		qcom,pmw6100-debug@0 {
-			compatible = "qcom,spmi-pmic";
-			reg = <0 SPMI_USID>;
-			qcom,can-sleep;
-		};
-	};
-};
-
 &usb0 {
 	usb-role-switch;
 	port {
