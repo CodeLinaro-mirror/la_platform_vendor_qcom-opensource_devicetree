@@ -6,6 +6,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/mailbox/qcom-ipcc.h>
 
 / {
 	#address-cells = <0x2>;
@@ -1017,12 +1018,12 @@
 				};
 			};
 
-			/* reserved 0 */
+			/* glink */
 			virtio-mmio@38 {
 				vdevice-type = "virtio-mmio";
-				generate = "/virtio-mmio";
+				patch = "/soc/virtio-glink-cma@2e000000";
 				peer-default;
-				vqs-num = <0x2>;
+				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -1043,7 +1044,7 @@
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
-				dma_base = <0x0 0x1E6000>;
+				dma_base = <0x0 0x1E0000>;
 				memory {
 					qcom,label = <0x127>;
 					#address-cells = <0x2>;
@@ -1190,6 +1191,28 @@
 		interrupt-controller;
 		#interrupt-cells = <3>;
 		#mbox-cells = <2>;
+	};
+
+	virtio_glink_cma: virtio-glink-cma@2e000000 {
+		glink_bridge: virtio-glink-bridge {
+			compatible = "virtio,device49162"; /* VIRTIO_ID: 0xC00A */
+
+			glink-edge {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_CLIENT_CDSP 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_CLIENT_CDSP 0>;
+				label = "cdsp";
+				qcom,glink-label = "cdsp";
+			};
+
+			glink-edge1 {
+				interrupt-parent = <&ipcc_mproc_apps_ns2>;
+				interrupts = <IPCC_CLIENT_NSP1 0 IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc_mproc_apps_ns2 IPCC_CLIENT_NSP1 0>;
+				label = "cdsp1";
+				qcom,glink-label = "cdsp1";
+			};
+		};
 	};
 
 	qcom,mem-buf {
