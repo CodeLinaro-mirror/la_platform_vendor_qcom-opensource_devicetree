@@ -30,7 +30,7 @@
 	#size-cells = <2>;
 
 	chosen {
-		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-5 pcie_aspm=off";
+		bootargs = "android_arch_task_struct_size=512 firmware_class.path=/vendor/firmware_mnt/image pcie_ports=compat irqaffinity=0-5 pcie_aspm=off kvm-arm.ffa-unmap-on-lend kvm-arm.mode=protected kvm-arm.protected_modules=pkvm-geni.ko,pkvm-smc-filter.ko,qcom_smmu_v2_v3_dispatcher.ko,rpmh-regulator.ko,clk-rpmh.ko,gcc-glymur.ko,gpucc-glymur.ko,gxclkctl-kaanapali.ko cpufreq.default_governor=performance iommu.strict=0";
 	};
 
 	aliases: aliases {
