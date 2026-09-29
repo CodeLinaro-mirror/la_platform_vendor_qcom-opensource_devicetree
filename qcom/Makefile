@@ -1023,6 +1023,17 @@ autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SECA_GH_LA_GVM_QAM_BOARDS) $(SECA_GH_LA_GVM_QAM_BASE_DTB)
 
+SECA_GH_LV_GVM_QAM_BASE_DTB += seca-gh-vm-lv-qam.dtb \
+			       seca-gh-vm-lv-qam-star.dtb
+
+SECA_GH_LV_GVM_QAM_BOARDS += seca-gh-vm-lv-qam-overlay.dtbo
+
+autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(call add-overlays, $(SECA_GH_LV_GVM_QAM_BOARDS),$(SECA_GH_LV_GVM_QAM_BASE_DTB))
+
+autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
+	$(SECA_GH_LV_GVM_QAM_BOARDS) $(SECA_GH_LV_GVM_QAM_BASE_DTB)
+
 dtb-y += $(autogvm-dtb-y) $(autogvm-overlays-dtb-y)
 
 endif
@@ -1175,7 +1186,8 @@ ifeq ($(CONFIG_ARCH_QTI_VM), y)
 canoe_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += bourtzi-vm-atp-overlay.dtbo \
 				bourtzi-vm-mtp-overlay.dtbo \
 				bourtzi-vm-qrd-overlay.dtbo \
-				bourtzi-vm-rcm-overlay.dtbo
+				bourtzi-vm-rcm-overlay.dtbo \
+				bourtzi-vm-cdp-overlay.dtbo
 dtb-y += $(canoe_tuivm-dtb-y)
 
 endif

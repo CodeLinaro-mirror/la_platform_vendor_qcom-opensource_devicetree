@@ -8,6 +8,13 @@
 
 &vm_config {
 	vdevices {
+		// qcvirtio-console (reuse legacy vconsole ring)
+		virtio-mmio@33 {
+			/delete-property/ patch;
+			generate = "/virtio-mmio";
+			vqs-num = <0x4>;
+		};
+
 		virtio-mmio@36 {
 			/delete-property/ patch;
 		};
@@ -66,7 +73,7 @@
 			};
 		};
 
-		// qcvirtio-console
+		// qcvirtio-rng
 		virtio-mmio@50 {
 			vdevice-type = "virtio-mmio";
 			generate = "/virtio-mmio";
