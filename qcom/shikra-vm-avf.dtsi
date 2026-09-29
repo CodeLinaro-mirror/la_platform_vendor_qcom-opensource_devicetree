@@ -41,6 +41,11 @@
 			reg=<0x0 0x4ac0000 0x0 0x2000>;
 			android,pvmfw,target = <&qupv3_0>;
 		};
+
+		qcom,apcs@F400000 {
+			reg = <0x0 0xF400000 0x0 0x1000>;
+			android,pvmfw,target = <&apcs_mproc>;
+		};
 	};
 
 	qcom,vm-config {
@@ -70,13 +75,15 @@
 		vm-attrs = "context-dump", "crash-restart", "no-vpm-aggregation";
 
 		/* GPII - 8 is used for QUP LEVM case */
-		iomemory-ranges = <0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
+		iomemory-ranges = <0x0 0xF400000 0x0 0xF400000 0x0 0x1000 0x0
+				0x0 0x4a30000 0x0 0x4a30000 0x0 0x4000 0x0>;
 
 		/* Dynamically nominate the vmmio ranges */
 		vmmio-ranges;
 
 		/* QUP0: SE4: GPII8 : GIC_SPI IRQ 519 + 32 = 551 */
-		gic-irq-ranges = <551 551>;
+		gic-irq-ranges = <327 327
+				551 551>;
 
 		segments {
 			ramdisk = <3>;
@@ -294,6 +301,7 @@
 			&kinfo_mem
 			&qcom_dma_heaps
 			&qcom_test_dbl_tuivm
+			&tlmm_vm_mem_access
 			&qcom_test_msgq_tuivm
 			&qcom_test_large_dmabuf_tuivm
 			&qcom_mem_buf
@@ -338,9 +346,19 @@
 	pinctrl@400000 {
 	};
 
-	tlmm-vm-mem-access {
+	tlmm_vm_mem_access: tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		depends-on-supply = <&tlmm>;
+		tlmm-vm-gpio-list = <
+			/* Touch gpio pins */
+				&tlmm 12 0
+				&tlmm 13 0
+				&tlmm 76 0
+				&tlmm 85 0
+			/* Display gpio pins */
+				&tlmm 3 0
+				&tlmm 86 0
+				&tlmm 91 0
+				&tlmm 151 0>;
 	};
 
 	wdog: qcom,wdt@0xf410000 {  // Same as PVM
@@ -395,6 +413,15 @@
 	qcom_test_large_dmabuf_tuivm: qcom,test-large-dmabuf-tuivm {
 		compatible = "qcom,gh-large-dmabuf-test";
 		gunyah-label = <0x10d>;
+	};
+
+	apcs_mproc: qcom,apcs@0xF400000 {
+		compatible = "qcom,shikra-apcs-hmss-global";
+		reg = <0x0 0xF400000 0x0 0x1000>;
+		interrupts = <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		#mbox-cells = <2>;
 	};
 
 	qcom_mem_buf: qcom,mem-buf {
@@ -457,7 +484,6 @@
 		iommus = <&apps_smmu 0xf8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
 		memory-region = <&qup_iommu_group>;
-		dma-coherent;
 		interrupts = <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
@@ -494,7 +520,6 @@
 		iommus = <&apps_smmu 0xf8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
 		memory-region = <&qup_iommu_group>;
-		dma-coherent;
 		ranges;
 		status = "ok";
 		required-subnodes = <&i2c4>;

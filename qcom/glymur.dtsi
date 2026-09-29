@@ -97,6 +97,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd0>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 
 			l2_0: l2-cache {
 				compatible = "cache";
@@ -113,6 +115,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd1>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		cpu2: cpu@200 {
@@ -123,6 +127,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd2>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		cpu3: cpu@300 {
@@ -133,6 +139,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd3>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		cpu4: cpu@400 {
@@ -143,6 +151,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd4>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		cpu5: cpu@500 {
@@ -153,6 +163,8 @@
 			next-level-cache = <&l2_0>;
 			power-domains = <&cpu_pd5>, <&scmi_perf 0>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1024>;
+			dynamic-power-coefficient = <100>;
 		};
 
 		cpu6: cpu@10000 {
@@ -163,6 +175,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd6>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 
 			l2_1: l2-cache {
 				compatible = "cache";
@@ -179,6 +193,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd7>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu8: cpu@10200 {
@@ -189,6 +205,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd8>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu9: cpu@10300 {
@@ -199,6 +217,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd9>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu10: cpu@10400 {
@@ -209,6 +229,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd10>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu11: cpu@10500 {
@@ -219,6 +241,8 @@
 			next-level-cache = <&l2_1>;
 			power-domains = <&cpu_pd11>, <&scmi_perf 1>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu12: cpu@20000 {
@@ -229,6 +253,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd12>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 
 			l2_2: l2-cache {
 				compatible = "cache";
@@ -245,6 +271,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd13>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu14: cpu@20200 {
@@ -255,6 +283,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd14>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu15: cpu@20300 {
@@ -265,6 +295,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd15>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu16: cpu@20400 {
@@ -275,6 +307,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd16>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu17: cpu@20500 {
@@ -285,6 +319,8 @@
 			next-level-cache = <&l2_2>;
 			power-domains = <&cpu_pd17>, <&scmi_perf 2>;
 			power-domain-names = "psci", "perf";
+			capacity-dmips-mhz = <1372>;
+			dynamic-power-coefficient = <266>;
 		};
 
 		cpu-map {
@@ -1225,12 +1261,13 @@
 
 			lanes-per-direction = <2>;
 			clock-names = "ref_clk_src",
-				"ref_aux_clk",
+				"ref_aux_clk", "qref_clk",
 				"rx_sym0_mux_clk", "rx_sym1_mux_clk", "tx_sym0_mux_clk",
 				"rx_sym0_phy_clk", "rx_sym1_phy_clk", "tx_sym0_phy_clk";
 
 			clocks = <&rpmhcc RPMH_CXO_CLK>,
 				<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+				<&tcsrcc TCSR_PCIE_4_CLKREF_EN>,
 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
@@ -2079,6 +2116,17 @@
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
 			};
+
+			smp2p_rdbg5_out: qcom,smp2p-rdbg5-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg5_in: qcom,smp2p-rdbg5-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
+			};
 		};
 
 		qcom,smp2p-adsp {
@@ -2123,6 +2171,17 @@
 			smp2p_test2_out: qcom,smp2p-test2-out {
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_out: qcom,smp2p-rdbg2-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_in: qcom,smp2p-rdbg2-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
 			};
 		};
 
@@ -2650,6 +2709,17 @@
 			ss-name = "adsp", "adsp_island", "cdsp", "apss";
 		};
 
+		cpuss_sleep_stats: cpuss-sleep-stats {
+			compatible = "qcom,cpuss-sleep-stats-v6", "qcom,cpuss-sleep-stats-glymur";
+			num-clusters = <3>;
+		};
+
+		sys-pm-vx@c320000 {
+			compatible = "qcom,sys-pm-violators-v2";
+			reg = <0x0 0x0c302000 0x0 0x400>, <0x0 0xc305000 0x0 0x400>;
+			qcom,qmp = <&aoss_qmp>;
+		};
+
 		usb_ss0: ssusb@a600000 {
 			compatible = "qcom,dwc-usb3-msm";
 			reg = <0x0 0xa600000 0x0 0x100000>;
@@ -3090,9 +3160,9 @@
 			compatible = "qcom,secure-buffer";
 			qcom,vmid-cp-camera-preview-ro;
 		};
-	};
 
-	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+		msm_gpu: qcom,kgsl-3d0@3d00000 { };
+	};
 
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
@@ -3109,6 +3179,8 @@
 #include "msm-arm-smmu-glymur.dtsi"
 #include "mahua-qupv3.dtsi"
 #include "glymur-pcie.dtsi"
+#include "msm-rdbg.dtsi"
+#include "ipcc-test-glymur.dtsi"
 
 &qupv3_se21_2uart {
 	status = "okay";

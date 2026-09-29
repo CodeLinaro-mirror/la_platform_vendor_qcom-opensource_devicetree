@@ -221,6 +221,14 @@
 			compatible = "qcom,scm";
 			qcom,dload-mode = <&tcsr 0x13000>;
 		};
+
+		qcom_smcinvoke {
+			compatible = "qcom,smcinvoke";
+		};
+
+		qcom_si_core {
+			compatible = "qcom,si-core";
+		};
 	};
 
 	reserved_memory: reserved-memory {
@@ -1038,13 +1046,6 @@
 			<&rpmcc RPM_SMD_CE1_CLK>;
 	};
 
-	qcom_smcinvoke: smcinvoke@61800000 {
-		compatible = "qcom,smcinvoke";
-		qcom,support-legacy_smc;
-		reg = <0x61800000 0x2100000>;
-		reg-names = "secapp-region";
-	};
-
 	qcom_tzlog: tz-log@c125720 {
 		compatible = "qcom,tz-log";
 		reg = <0xc125720 0x3000>;
@@ -1629,7 +1630,7 @@
 
 		compatible = "qcom,sdhci-msm-v5";
 		reg = <0x4744000 0x1000>, <0x4745000 0x1000>, <0x4748000 0x8000>;
-		reg-names = "hc", "cqhci", "cqhci_ice";
+		reg-names = "hc", "cqhci", "ice";
 
 		interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
 				<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
