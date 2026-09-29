@@ -692,6 +692,13 @@
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
 			qcom,glinkpkt-enable-ch-close;
 		};
+
+		qcom,glinkpkt-lpai-display-ctrl {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "lpai_display_ctrl_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_lpai_display_ctrl";
+			qcom,glinkpkt-enable-ch-close;
+		};
 	};
 
 	memtimer: timer@17420000 {
