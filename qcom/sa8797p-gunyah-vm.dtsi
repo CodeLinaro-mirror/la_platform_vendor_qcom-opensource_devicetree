@@ -148,6 +148,8 @@
 			reg = <0x0 0x0>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -156,6 +158,8 @@
 			reg = <0x0 0x100>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -164,6 +168,8 @@
 			reg = <0x0 0x200>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -172,6 +178,8 @@
 			reg = <0x0 0x300>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -180,6 +188,8 @@
 			reg = <0x0 0x400>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -188,6 +198,8 @@
 			reg = <0x0 0x500>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 5>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -196,6 +208,8 @@
 			reg = <0x0 0x10000>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -204,6 +218,8 @@
 			reg = <0x0 0x10100>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -212,6 +228,8 @@
 			reg = <0x0 0x10200>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -220,6 +238,8 @@
 			reg = <0x0 0x10300>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -228,6 +248,8 @@
 			reg = <0x0 0x10400>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
@@ -236,6 +258,8 @@
 			reg = <0x0 0x10500>;
 			device_type = "cpu";
 			enable-method = "psci";
+			power-domains = <&scmi_perf 4>;
+			power-domain-names = "perf";
 			cpu-idle-states = <&CPU_PWR_DWN>;
 		};
 
