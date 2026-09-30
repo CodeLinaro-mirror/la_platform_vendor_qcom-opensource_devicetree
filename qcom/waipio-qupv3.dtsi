@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interconnect/qcom,waipio.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 
 &soc {
 	/* QUPv3 SE Instances
