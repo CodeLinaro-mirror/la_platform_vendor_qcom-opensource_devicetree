@@ -1025,12 +1025,12 @@
 				};
 			};
 
-			/* reserved 0, label 0x129 */
+			/* ssr, label 0x129 */
 			virtio-mmio@41 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
 				peer-default;
-				vqs-num = <0x2>;
+				vqs-num = <0x1>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -1042,8 +1042,42 @@
 				};
 			};
 
-			/* reserved 1, label 0x12A */
+			/* glink_lv, label 0x12A */
 			virtio-mmio@42 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x1>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x270000>;
+				memory {
+					qcom,label = <0x12A>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* frpc, label 0x12B */
+			virtio-mmio@43 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x2>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x272000>;
+				memory {
+					qcom,label = <0x12B>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
+			/* resv, label 0x12C */
+			virtio-mmio@44 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
 				peer-default;
@@ -1053,7 +1087,7 @@
 				dma-coherent;
 				dma_base = <0x0 0x276000>;
 				memory {
-					qcom,label = <0x12A>;
+					qcom,label = <0x12C>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
