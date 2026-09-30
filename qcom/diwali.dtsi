@@ -825,8 +825,9 @@
 		compatible = "qcom,cpucp";
 		reg =   <0x17400000 0x10>,
 			<0x17d90000 0x2000>;
+		reg-names = "tx", "rx";
 		#mbox-cells = <1>;
-		interrupts = <0 62 4>;
+		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
 	};
 
 	scmi: qcom,scmi {
