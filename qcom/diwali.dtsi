@@ -377,6 +377,8 @@
 				status = "ok";
 			};
 		};
+	qcom_si_core {
+		compatible = "qcom,si-core";
 	};
 };
 
