@@ -359,6 +359,9 @@
 		compatible = "qcom,smcinvoke";
 	};
 
+	qcom_si_core {
+		compatible = "qcom,si-core";
+	};
 };
 
 #include "diwali-reserved-memory.dtsi"
@@ -2494,6 +2497,7 @@
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
+		qcom,ice-use-hwkm;
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		clock-names =
