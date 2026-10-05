@@ -1155,6 +1155,9 @@ _platform_map = {
                 "name": "shikra-cqs-fp2.dtb",
                 "apq": True,
             },
+            {"name": "shikra-iqs.dtb"},
+            {"name": "shikra-iqs-fp1.dtb"},
+            {"name": "shikra-iqs-fp2.dtb"},
         ],
         "dtbo_list": [
             # keep sorted
@@ -1165,6 +1168,7 @@ _platform_map = {
             {"name": "shikra-evk-kunlun-nfc-m2-cologne-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-m2-hsp-overlay.dtbo"},
             {"name": "shikra-evk-kunlun-nfc-overlay.dtbo"},
+            {"name": "shikra-iqs-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-imxcam-overlay.dtbo"},
             {"name": "shikra-lite-evk-eSMPS-nfc-overlay.dtbo"},
             {"name": "shikra-rumi-overlay.dtbo"},
