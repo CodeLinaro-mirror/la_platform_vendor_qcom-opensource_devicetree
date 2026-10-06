@@ -232,3 +232,16 @@
 // qcvirtio-blk uses its own approach to specify and name partitions,
 // so this node is not needed anyway.
 /delete-node/ &rename_devices;
+
+&soc {
+	scmi {
+		compatible = "arm,scmi-virtio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+
+		scmi_sens: protocol@15 {
+			reg = <0x15>;
+		};
+	};
+};
