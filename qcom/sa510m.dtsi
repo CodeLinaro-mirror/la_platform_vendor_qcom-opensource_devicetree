@@ -28,6 +28,12 @@
 		mmc0 = &sdhc_4;
 	};
 
+	qcom_smem_bridge {
+		compatible = "qcom,smem-bridge";
+		qcom,smem-item = <627>;
+		qcom,smem-offset = <0>;
+	};
+
 	chosen: chosen { };
 
 	firmware: firmware {
