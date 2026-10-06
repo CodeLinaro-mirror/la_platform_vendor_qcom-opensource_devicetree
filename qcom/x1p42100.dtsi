@@ -4,12 +4,13 @@
  */
 
 /* X1P42100 is heavily based on X1E80100, with some meaningful differences */
+
+#include <dt-bindings/clock/qcom,x1p42100-gcc.h>
+#include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 #include "x1e80100.dtsi"
 #include "x1p42100-coresight.dtsi"
 #include "x1p42100-regulators.dtsi"
 #include "x1p42100-debug.dtsi"
-#include <dt-bindings/clock/qcom,x1p42100-gcc.h>
-#include <dt-bindings/clock/qcom,x1p42100-videocc.h>
 
 /delete-node/ &bwmon_llcc_cluster0;
 /delete-node/ &CPU8;
@@ -51,6 +52,10 @@
 &gic_router {
 	qcom,gic-class1-cpus = <&CPU4 &CPU5 &CPU6 &CPU7>;
 	qcom,gic-cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7>;
+};
+
+&gic_its {
+	status = "okay";
 };
 
 &pdc {
@@ -169,12 +174,41 @@
 	qcom,num-qtb-ports = <2>;
 };
 
-&pcie6 {
+&pcie4 {
+	/delete-property/ msi-parent;
 
+	msi-map = <0x0 &gic_its 0xC0000 0x10000>,
+		  <0x100 &gic_its 0xC0100 0x10000>; /* 32 event IDs */
+};
+
+&pcie5 {
+	/delete-property/ msi-parent;
+
+	msi-map = <0x0 &gic_its 0xD0000 0x10000>,
+		  <0x100 &gic_its 0xD0100 0x10000>; /* 32 event IDs */
+};
+
+&pcie6 {
 	/* <max min opt> */
 	qcom,vreg-1p2-voltage-level = <1256000 1256000 38800>;
 	qcom,vreg-0p9-voltage-level = <880000 880000 560000>;
 
+	/delete-property/ msi-parent;
+
+	msi-map = <0x0 &gic_its 0xE0000 0x10000>,
+		  <0x100 &gic_its 0xE0100 0x10000>; /* 32 event IDs */
+};
+
+&pcie4_msi {
+	status = "disabled";
+};
+
+&pcie5_msi {
+	status = "disabled";
+};
+
+&pcie6_msi {
+	status = "disabled";
 };
 
 &soc {
@@ -188,6 +222,6 @@
 		gpu_speed_bin: gpu_speed_bin@119 {
 			reg = <0x119 0x2>;
 			bits = <7 9>;
-			};
+		};
 	};
 };
