@@ -45,6 +45,10 @@
 		#mbox-cells = <2>;
 		status = "disabled";
 	};
+
+	qcom,mem-buf {
+		qcom,vmid = <53>;
+	};
 };
 
 &hab {
