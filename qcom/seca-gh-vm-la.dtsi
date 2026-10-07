@@ -1633,6 +1633,8 @@
 		reg = <0x17a00000 0x10000>, /* GICD */
 		      <0x17a60000 0x240000>; /* GICR * 18 */
 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <1>;
 		gic_its: msi-controller@0x17040000 {
 			compatible = "arm,gic-v3-its";
 			msi-controller;
