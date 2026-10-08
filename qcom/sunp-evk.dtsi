@@ -4,3 +4,7 @@
  */
 
 #include "sunp-hdk.dtsi"
+
+&sdhc_2 {
+	cd-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
+};
