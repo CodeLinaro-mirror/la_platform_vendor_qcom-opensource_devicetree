@@ -2294,6 +2294,7 @@
 
 	qcom,pdr_monitor {
 		compatible = "qcom,pdr-monitor";
+		status = "disabled";
 
 		pd-adsp-audio {
 			service-name = "tms/servreg";
