@@ -190,14 +190,14 @@
 		compatible = "nxp,eusb2-repeater";
 		reg = <0x4f>;
 		qcom,param-override-seq = <0x2 0x7
-					0x62 0x8>;
+					0x64 0x8>;
 	};
 
 	eusb2_repeater_usb2: eusb2_repeater@4b {
 		compatible = "nxp,eusb2-repeater";
 		reg = <0x4b>;
 		qcom,param-override-seq = <0x2 0x7
-					0x62 0x8>;
+					0x64 0x8>;
 	};
 };
 
