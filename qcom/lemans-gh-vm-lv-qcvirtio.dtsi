@@ -5,40 +5,6 @@
 
 &vm_config {
 	vdevices {
-		/* qcvirtio-net */
-		virtio-mmio@38 {
-			vdevice-type = "virtio-mmio";
-			generate = "/virtio-mmio";
-			peer-default;
-			vqs-num = <0x3>;
-			push-compatible = "virtio,mmio";
-			sync-reset;
-			dma-coherent;
-			dma_base = <0x0 0x1DE000>;
-			memory {
-				qcom,label = <0x126>;
-				#address-cells = <0x2>;
-				allocate-base;
-			};
-		};
-
-		/* qcvirtio-console */
-		virtio-mmio@39 {
-			vdevice-type = "virtio-mmio";
-			generate = "/virtio-mmio";
-			peer-default;
-			vqs-num = <0x4>;
-			push-compatible = "virtio,mmio";
-			sync-reset;
-			dma-coherent;
-			dma_base = <0x0 0x1E6000>;
-			memory {
-				qcom,label = <0x127>;
-				#address-cells = <0x2>;
-				allocate-base;
-			};
-		};
-
 		/* qcvirtio-input */
 		virtio-mmio@40 {
 			vdevice-type = "virtio-mmio";
@@ -48,7 +14,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x1EE000>;
+			dma_base = <0x0 0x1E4000>;
 			memory {
 				qcom,label = <0x128>;
 				#address-cells = <0x2>;
@@ -65,7 +31,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x1F2000>;
+			dma_base = <0x0 0x1E8000>;
 			memory {
 				qcom,label = <0x129>;
 				#address-cells = <0x2>;
@@ -82,7 +48,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x1F6000>;
+			dma_base = <0x0 0x1EC000>;
 			memory {
 				qcom,label = <0x12A>;
 				#address-cells = <0x2>;
@@ -99,7 +65,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x1FA000>;
+			dma_base = <0x0 0x1F0000>;
 			memory {
 				qcom,label = <0x12B>;
 				#address-cells = <0x2>;
@@ -116,7 +82,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x1FE000>;
+			dma_base = <0x0 0x1F4000>;
 			memory {
 				qcom,label = <0x12C>;
 				#address-cells = <0x2>;
@@ -133,7 +99,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x202000>;
+			dma_base = <0x0 0x1F8000>;
 			memory {
 				qcom,label = <0x12D>;
 				#address-cells = <0x2>;
@@ -150,7 +116,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x206000>;
+			dma_base = <0x0 0x1FC000>;
 			memory {
 				qcom,label = <0x12E>;
 				#address-cells = <0x2>;
@@ -167,7 +133,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x20A000>;
+			dma_base = <0x0 0x200000>;
 			memory {
 				qcom,label = <0x12F>;
 				#address-cells = <0x2>;
@@ -184,7 +150,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x20E000>;
+			dma_base = <0x0 0x204000>;
 			memory {
 				qcom,label = <0x130>;
 				#address-cells = <0x2>;
@@ -202,7 +168,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x212000>;
+			dma_base = <0x0 0x208000>;
 			memory {
 				qcom,label = <0x131>;
 				#address-cells = <0x2>;
@@ -219,7 +185,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x216000>;
+			dma_base = <0x0 0x20C000>;
 			memory {
 				qcom,label = <0x132>;
 				#address-cells = <0x2>;
@@ -237,7 +203,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x21A000>;
+			dma_base = <0x0 0x210000>;
 			memory {
 				qcom,label = <0x133>;
 				#address-cells = <0x2>;
@@ -254,7 +220,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x21E000>;
+			dma_base = <0x0 0x214000>;
 			memory {
 				qcom,label = <0x134>;
 				#address-cells = <0x2>;
@@ -271,7 +237,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x222000>;
+			dma_base = <0x0 0x218000>;
 			memory {
 				qcom,label = <0x135>;
 				#address-cells = <0x2>;
@@ -288,7 +254,7 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x226000>;
+			dma_base = <0x0 0x21C000>;
 			memory {
 				qcom,label = <0x136>;
 				#address-cells = <0x2>;
@@ -296,16 +262,16 @@
 			};
 		};
 
-		/* reserved 0 */
+		/* qcvirtio-net */
 		virtio-mmio@55 {
 			vdevice-type = "virtio-mmio";
 			generate = "/virtio-mmio";
 			peer-default;
-			vqs-num = <0x2>;
+			vqs-num = <0x3>;
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x236000>;
+			dma_base = <0x0 0x22C000>;
 			memory {
 				qcom,label = <0x137>;
 				#address-cells = <0x2>;
@@ -313,8 +279,25 @@
 			};
 		};
 
-		/* reserved 1 */
+		/* qcvirtio-console */
 		virtio-mmio@56 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x234000>;
+			memory {
+				qcom,label = <0x138>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		/* reserved */
+		virtio-mmio@57 {
 			vdevice-type = "virtio-mmio";
 			generate = "/virtio-mmio";
 			peer-default;
@@ -322,9 +305,9 @@
 			push-compatible = "virtio,mmio";
 			sync-reset;
 			dma-coherent;
-			dma_base = <0x0 0x23E000>;
+			dma_base = <0x0 0x23C000>;
 			memory {
-				qcom,label = <0x138>;
+				qcom,label = <0x139>;
 				#address-cells = <0x2>;
 				allocate-base;
 			};
