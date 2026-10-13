@@ -1261,12 +1261,13 @@
 
 			lanes-per-direction = <2>;
 			clock-names = "ref_clk_src",
-				"ref_aux_clk",
+				"ref_aux_clk", "qref_clk",
 				"rx_sym0_mux_clk", "rx_sym1_mux_clk", "tx_sym0_mux_clk",
 				"rx_sym0_phy_clk", "rx_sym1_phy_clk", "tx_sym0_phy_clk";
 
 			clocks = <&rpmhcc RPMH_CXO_CLK>,
 				<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+				<&tcsrcc TCSR_PCIE_4_CLKREF_EN>,
 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
@@ -2115,6 +2116,17 @@
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
 			};
+
+			smp2p_rdbg5_out: qcom,smp2p-rdbg5-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg5_in: qcom,smp2p-rdbg5-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
+			};
 		};
 
 		qcom,smp2p-adsp {
@@ -2159,6 +2171,17 @@
 			smp2p_test2_out: qcom,smp2p-test2-out {
 				qcom,entry-name = "smp2p";
 				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_out: qcom,smp2p-rdbg2-out {
+				qcom,entry-name = "rdbg";
+				#qcom,smem-state-cells = <1>;
+			};
+
+			smp2p_rdbg2_in: qcom,smp2p-rdbg2-in {
+				qcom,entry-name = "rdbg";
+				interrupt-controller;
+				#interrupt-cells = <2>;
 			};
 		};
 
@@ -3137,9 +3160,9 @@
 			compatible = "qcom,secure-buffer";
 			qcom,vmid-cp-camera-preview-ro;
 		};
-	};
 
-	msm_gpu: qcom,kgsl-3d0@3d00000 { };
+		msm_gpu: qcom,kgsl-3d0@3d00000 { };
+	};
 
 	arch_timer: timer {
 		compatible = "arm,armv8-timer";
@@ -3156,6 +3179,8 @@
 #include "msm-arm-smmu-glymur.dtsi"
 #include "mahua-qupv3.dtsi"
 #include "glymur-pcie.dtsi"
+#include "msm-rdbg.dtsi"
+#include "ipcc-test-glymur.dtsi"
 
 &qupv3_se21_2uart {
 	status = "okay";
