@@ -5,7 +5,20 @@
 
 /* 1GB-only overrides shared by Shikra CQM/CQS variants. */
 
+&soc {
+	/delete-node/ gunyah-cma-mem;
+	/delete-node/ qcom,gunyah-panic-notifier;
+	/delete-node/ dmesg-dump;
+	/delete-node/ google,debug-kinfo;
+	/delete-node/ va_mini_dump;
+	qcom,dma-heaps {
+		/delete-node/ qcom,display;
+		/delete-node/ qcom,secure_display;
+	};
+};
+
 /delete-node/ &cdsp_pas;
+/delete-node/ &video_mem;
 
 &reserved_memory {
 	/delete-node/ pvm_fw_region@86300000;
@@ -13,6 +26,12 @@
 	/delete-node/ tags_region@a0100000;
 	/delete-node/ audio_mdsp_carveout_region@86400000;
 	/delete-node/ trust_ui_vm_region@f3800000;
+	/delete-node/ oem_vm_region@f7c00000;
+	/delete-node/ secure_display_region;
+	/delete-node/ non_secure_display_region;
+	/delete-node/ vm_comm_mem_region;
+	/delete-node/ debug_kinfo_region;
+	/delete-node/ va_md_mem_region;
 	hyp_mem: hyp_region@80000000 {
 		no-map;
 		reg = <0x0 0x80000000 0x0 0x0a00000>;
@@ -32,8 +51,4 @@
 		no-map;
 		reg = <0x0 0xa1800000 0x0 0xa00000>;
 	};
-};
-
-&soc {
-	/delete-node/ gunyah-cma-mem;
 };
