@@ -57,9 +57,22 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&touch_panel_extavdd_default>;
 	};
+
+	qps615_rsex_vreg: qps615_rsex_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qps615_rsex_vreg";
+		gpio = <&tlmm 109 GPIO_ACTIVE_HIGH>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		regulator-always-on;
+		regulator-enable-ramp-delay = <10000>;
+	};
 };
 
 &tlmm {
+	qcom,gpios-reserved = <20 21 22 23 111 112>;
+
 	pmx_ts_int_default {
 		ts_int_default: ts_int_default {
 			mux {
@@ -411,6 +424,7 @@
 &pcie1 {
 	status = "ok";
 
+	vreg-3p3-supply = <&qps615_rsex_vreg>;
 	pcie-i2c-phandle = <&qupv3_se4_i2c>;
 	qcom,no-client-based-bw-voting;
 
