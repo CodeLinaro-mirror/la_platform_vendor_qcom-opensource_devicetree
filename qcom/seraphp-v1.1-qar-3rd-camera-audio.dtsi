@@ -120,6 +120,78 @@
 		compatible = "ti,ina234b";
 		reg = <0x49>;
 	};
+
+	charger1: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <57 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int1_active>;
+		pinctrl-1 = <&pmic_alert_int1_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
+};
+
+&qupv3_se5_i2c {
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	charger2: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <58 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int2_active>;
+		pinctrl-1 = <&pmic_alert_int2_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
+};
+
+&qupv3_se1_i2c {
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	charger3: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <59 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int3_active>;
+		pinctrl-1 = <&pmic_alert_int3_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
 };
 
 &spmi0_bus {
@@ -131,3 +203,12 @@
 	/delete-node/ qcom,pm8010-debug@c;
 	/delete-node/ qcom,pm8010-debug@d;
 };
+
+&charger {
+	status = "disabled";
+};
+
+&charger2 {
+	status = "okay";
+};
+
