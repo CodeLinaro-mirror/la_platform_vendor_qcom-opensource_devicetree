@@ -499,6 +499,7 @@ _platform_map = {
             {"name": "katmai-fp2.dtb"},
             {"name": "katmai-fp3.dtb"},
             {"name": "katmai-fp2p5.dtb"},
+            {"name": "katmai-fp4.dtb"},
             {"name": "lahaina.dtb"},
             {"name": "lahaina-v2.dtb"},
             {"name": "lahaina-v2.1.dtb"},
@@ -520,6 +521,10 @@ _platform_map = {
             },
             {
                 "name": "katmaip-fp2p5.dtb",
+                "apq": True,
+            },
+            {
+                "name": "katmaip-fp4.dtb",
                 "apq": True,
             },
             {"name": "yupik.dtb"},
