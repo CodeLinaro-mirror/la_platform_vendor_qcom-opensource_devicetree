@@ -397,6 +397,12 @@
 		alignment = <0x0 0x400000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+               alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+               size = <0x0 0x1000>;
+               no-map;
+       };
+
 	demura_heap_memory: demura_heap_region {
 		compatible = "shared-dma-pool";
 		reusable;
@@ -1539,6 +1545,11 @@
 		reg = <0xc221000 0x1000>;
 		clock-frequency = <32768>;
 	};
+
+	google,debug-kinfo {
+               compatible = "google,debug-kinfo";
+               memory-region = <&kinfo_mem>;
+       };
 
 	qcom,sps {
 		compatible = "qcom,msm-sps-v1_7-4k";
