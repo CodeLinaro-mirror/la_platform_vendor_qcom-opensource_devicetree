@@ -284,6 +284,7 @@
 			dmas = <&gpi_dma0 0 5 3 64 0>,
 			       <&gpi_dma0 1 5 3 64 0>;
 			dma-names = "tx", "rx";
+			qcom,shared;
 			status = "disabled";
 		};
 
