@@ -621,6 +621,9 @@ soc: soc { };
 	ranges = <0 0 0 0xffffffff>;
 	compatible = "simple-bus";
 
+	disp_rdump_region@e1000000 {
+	};
+
 	psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
