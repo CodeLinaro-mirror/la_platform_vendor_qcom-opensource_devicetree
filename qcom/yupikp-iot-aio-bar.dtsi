@@ -220,7 +220,7 @@
 	qcom,charging-disabled;
 	qcom,usb-dp-concurrent-mode-enable;
 
-	extcon = <&extcon_ktm5000>;
+	extcon = <&extcon_ktm5000>,<&eud>;
 
 	qcom,core-clk-rate = <200000000>;
 	qcom,interconnect-values-nom = /* NOMINAL Votes */
