@@ -43,7 +43,8 @@
 				<0 0 0 3 &intc 0 0 GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
 				<0 0 0 4 &intc 0 0 GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>;
 
-		msi-parent = <&pcie5_msi>;
+		msi-map = <0x0 &gic_its 0xd0000 0x10000>,
+			  <0x100 &gic_its 0xd0100 0x10000>; /* 32 event IDs */
 
 		perst-gpio = <&tlmm 152 GPIO_ACTIVE_HIGH>;
 		wake-gpio = <&tlmm 154 GPIO_ACTIVE_HIGH>;
@@ -474,6 +475,7 @@
 			<GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,snps;
+		status = "disabled";
 	};
 
 	pcie4: pcie@0x1bf0000 {
@@ -507,7 +509,8 @@
 				<0 0 0 3 &intc 0 0 GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
 				<0 0 0 4 &intc 0 0 GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>;
 
-		msi-parent = <&pcie4_msi>;
+		msi-map = <0x0 &gic_its 0xc0000 0x10000>,
+			  <0x100 &gic_its 0xc0100 0x10000>; /* 32 event IDs */
 
 		perst-gpio = <&tlmm 146 GPIO_ACTIVE_HIGH>;
 		wake-gpio = <&tlmm 148 GPIO_ACTIVE_HIGH>;
@@ -842,5 +845,6 @@
 			<GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,snps;
+		status = "disabled";
 	};
 };
