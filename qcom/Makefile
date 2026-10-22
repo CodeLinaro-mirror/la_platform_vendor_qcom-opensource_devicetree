@@ -398,7 +398,6 @@ NOAPQ_LAHAINA_BOARDS += \
 		lahaina-rumi-overlay.dtbo \
 		lahaina-cdp-overlay.dtbo \
 		lahaina-cdp-hsp-pro-overlay.dtbo \
-		lahaina-cdp-v2.2-overlay.dtbo \
 		lahaina-mtp-overlay.dtbo \
 		lahaina-mtp-hsp-overlay.dtbo \
 		lahaina-atp-overlay.dtbo \
@@ -410,7 +409,8 @@ NOAPQ_LAHAINA_BOARDS += \
 		lahaina-mtp-hsp-pro-overlay.dtbo \
 		lahaina-qrd-hsp-pro-overlay.dtbo \
 		lahaina-mtp-v2-overlay.dtbo \
-		lahaina-mtp-v2.1-overlay.dtbo
+		lahaina-mtp-v2.1-overlay.dtbo \
+		lahaina-cdp-v2.2-overlay.dtbo
 
 lahaina-dtb-$(CONFIG_ARCH_LAHAINA) += \
 	$(call add-overlays, $(NOAPQ_LAHAINA_BOARDS),$(LAHAINA_BASE_DTB)) \
