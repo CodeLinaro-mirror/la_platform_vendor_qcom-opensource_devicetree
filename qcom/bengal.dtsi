@@ -415,6 +415,9 @@
 
 		qcom_smcinvoke {
 			compatible = "qcom,smcinvoke";
+			qcom,support-legacy_smc;
+			reg = <0x61800000 0x2100000>;
+			reg-names = "secapp-region";
 		};
 
 		qcom_mem_object {
