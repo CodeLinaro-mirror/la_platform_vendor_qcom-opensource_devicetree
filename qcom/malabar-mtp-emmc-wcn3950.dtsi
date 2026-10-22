@@ -4,6 +4,7 @@
  */
 
 #include "malabar-mtp.dtsi"
+#include "malabar-pmiv010x.dtsi"
 
 &sdhc_1 {
 	status = "ok";
