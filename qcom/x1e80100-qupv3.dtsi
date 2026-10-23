@@ -478,6 +478,7 @@
 			dmas = <&gpi_dma1 0 0 3 64 0>,
 			       <&gpi_dma1 1 0 3 64 0>;
 			dma-names = "tx", "rx";
+			qcom,i2c-pm-qos = <0>;
 			status = "disabled";
 		};
 

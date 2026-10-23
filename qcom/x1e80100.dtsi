@@ -2406,6 +2406,7 @@
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
 			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <120000000>;
@@ -2421,6 +2422,9 @@
 			 * deferred probe doesn't run into existing bug in smmu driver.
 			 */
 			dummy-supply = <&apps_smmu>;
+
+			wakeup-source;
+
 			status = "disabled";
 
 			dwc3_4: dwc3@a200000 {

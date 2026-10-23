@@ -55,8 +55,23 @@
 		compatible = "ti,et-irled";
 		reg = <0x65>;
 	};
+
+	nxp_eusb2_repeater_se5: eusb2_repeater@4f {
+		compatible = "nxp,eusb2-repeater";
+		reg = <0x4f>;
+		vdd1v8-supply = <&pmar2230_l3>;
+		vdd3v3-supply = <&pmar2230_l14>;
+	};
 };
 
+&nxp_eusb2_repeater {
+	status = "disabled";
+};
+
+&eusb2_phy0 {
+	dummy-supply = <&nxp_eusb2_repeater_se5>;
+	usb-repeater = <&nxp_eusb2_repeater_se5>;
+};
 
 &slg5bv49293L {
 	ldo4-mv = <1800>;
@@ -84,6 +99,17 @@
 		reg = <0x40>;
 	};
 
+	slg4dc_left: slg4dcl@4 {
+		compatible = "renesas,slg4dc";
+		reg = <0x04>;
+		left;
+	};
+
+	slg4dc_right: slg4dcr@7 {
+		compatible = "renesas,slg4dc";
+		reg = <0x07>;
+	};
+
 	ina234b_left: ina234bl@48 {
 		compatible = "ti,ina234b";
 		reg = <0x48>;
@@ -94,4 +120,95 @@
 		compatible = "ti,ina234b";
 		reg = <0x49>;
 	};
+
+	charger1: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <57 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int1_active>;
+		pinctrl-1 = <&pmic_alert_int1_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
 };
+
+&qupv3_se5_i2c {
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	charger2: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <58 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int2_active>;
+		pinctrl-1 = <&pmic_alert_int2_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
+};
+
+&qupv3_se1_i2c {
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	charger3: max17332@36 {
+		compatible = "maxim,max17335";
+		reg = <0x36>;
+		status = "disabled";
+		nvsid = <0x0b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <59 2>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&pmic_alert_int3_active>;
+		pinctrl-1 = <&pmic_alert_int3_sleep>;
+		talrt-min = <0>;
+		talrt-max = <45>;
+		valrt-min   = <3000>;       /* mV */
+		valrt-max   = <4500>;       /* mV */
+		salrt-min   = <1>;          /* Percent */
+		salrt-max   = <100>;        /* Percent */
+		ialrt-min   = <(-800)>;     /* mA */
+		ialrt-max   = <1240>;       /* mA */
+	};
+};
+
+&spmi0_bus {
+	/delete-node/ pm8010@c;
+	/delete-node/ pm8010@d;
+};
+
+&spmi0_debug_bus {
+	/delete-node/ qcom,pm8010-debug@c;
+	/delete-node/ qcom,pm8010-debug@d;
+};
+
+&charger {
+	status = "disabled";
+};
+
+&charger2 {
+	status = "okay";
+};
+

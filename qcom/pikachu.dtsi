@@ -1150,9 +1150,7 @@
 					<  691200 250000 >,
 					<  960000 350000 >,
 					< 1113600 533000 >,
-					< 1497600 600000 >,
 					< 1747200 600000 >,
-					< 1843200 710670 >,
 					< 2016000 710670 >;
 				qcom,sampling-enabled;
 			};
@@ -1581,6 +1579,7 @@
 		qcom,bam-ee = <0>;
 		qcom,smmu-s1-enable;
 		qcom,no-clock-support;
+		qcom,no-clk-gating;
 		interconnect-names = "data_path";
 		interconnects = <&system_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
 		iommus = <&apps_smmu 0x0080 0x0>,
@@ -1662,6 +1661,7 @@
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 		qcom,sct-initialized;
+		ranges;
 
 		llcc-perfmon {
 			compatible = "qcom,llcc-perfmon";
@@ -2436,7 +2436,8 @@
 
 	gic-interrupt-router {
 		compatible = "qcom,gic-intr-routing";
-		qcom,gic-class0-cpus = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,gic-class0-cpus = <&CPU0 &CPU1>;
+		qcom,gic-class1-cpus = <&CPU2 &CPU3>;
 	};
 
 	cpu_pmu: cpu-pmu {
@@ -2856,7 +2857,7 @@
 	ramoops_mem: ramoops_region {
 		alloc-ranges = <0x0 0x80000000 0x1 0x80000000>;
 		size = <0x0 0x200000>;
-		no-map;
+		reusable;
 	};
 
 	kinfo_mem: debug_kinfo_region {

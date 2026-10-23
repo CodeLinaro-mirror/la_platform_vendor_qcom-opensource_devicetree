@@ -80,10 +80,12 @@
 
 &usb1 {
 	/delete-property/ extcon;
+	usb-role-switch;
 	dwc3@8c00000 {
 		usb-phy = <&usb_emu_phy_1>, <&usb_nop_phy>;
 		maximum-speed = "high-speed";
 		dr_mode = "peripheral";
+		usb-role-switch;
 	};
 };
 

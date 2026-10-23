@@ -106,12 +106,12 @@
 
 	lmcu_mem: lmcu_region@b4402000 {
 		no-map;
-		reg = <0x0 0xb4402000 0x0 0x300000>;
+		reg = <0x0 0xb4402000 0x0 0x500000>;
 	};
 
-	lmcu_dtb_mem: lmcu_dtb_region@b4702000 {
+	lmcu_dtb_mem: lmcu_dtb_region@b4902000 {
 		no-map;
-		reg = <0x0 0xb4702000 0x0 0x40000>;
+		reg = <0x0 0xb4902000 0x0 0x40000>;
 	};
 
 	/* Linux kernel image is loaded at 0xB5000000 */

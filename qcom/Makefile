@@ -34,6 +34,7 @@ CANOE_BOARDS += \
 		canoe-cdp-st54l-pandeiro-no-l3k-overlay.dtbo \
 		canoe-cdp-st54l-pandeiro-overlay.dtbo \
 		canoe-qrd-st54l-kundu-overlay.dtbo \
+		whale-qrd-st54l-kundu-overlay.dtbo \
 		canoe-qrd-st54l-pandeiro-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
@@ -335,8 +336,8 @@ bengal-overlays-dtb-$(CONFIG_ARCH_SCUBA) += $(SCUBA_BOARDS) $(SCUBA_BASE_DTB)
 dtb-y += $(bengal-dtb-y) $(bengal-overlays-dtb-y)
 
 
-YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb yupik.dtb yupik-hsp.dtb
-YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb  yupikp-hsp.dtb
+YUPIK_BASE_DTB += yupik-iot.dtb katmai.dtb katmai-fp2.dtb katmai-fp2p5.dtb katmai-fp3.dtb katmai-fp4.dtb yupik.dtb yupik-hsp.dtb
+YUPIK_APQ_BASE_DTB += yupikp-iot.dtb katmaip.dtb katmaip-fp2.dtb katmaip-fp2p5.dtb katmaip-fp3.dtb katmaip-fp4.dtb yupikp-hsp.dtb
 
 YUPIK_BOARDS += \
 		yupikp-iot-idp-overlay.dtbo \
@@ -689,9 +690,11 @@ X1P42100_BOARDS += \
 		   x1p42100-canim-qcb-v1-overlay.dtbo \
 		   x1p42100-canim-qcb-v2-overlay.dtbo \
 		   x1p42100-canim-qcb-v3-overlay.dtbo \
+		   x1p42100-canim-qcb-v4-overlay.dtbo \
 		   x1p42100-canim-cdp-v1-overlay.dtbo \
 		   x1p42100-canim-cdp-v2-overlay.dtbo \
-		   x1p42100-canim-cdp-v3-overlay.dtbo
+		   x1p42100-canim-cdp-v3-overlay.dtbo \
+		   x1p42100-canim-cdp-v5-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))
@@ -1003,15 +1006,22 @@ SECA_LA_GVM_BOARDS += \
 
 SECA_LA_GVM_BASE_DTB += seca-sdp8-vm-la.dtb
 
+SECA_MULTI_GVM_BOARDS += \
+		seca-sdp8-vm-lv-mt-overlay.dtbo
+
+SECA_MULTI_GVM_BASE_DTB += seca-sdp8-vm-lv-mt.dtb
+
 autogvm-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(call add-overlays, $(SA8797P_LA_GVM_BOARDS),$(SA8797P_LA_GVM_BASE_DTB)) \
 	$(call add-overlays, $(SA8797P_MULTI_GVM_BOARDS),$(SA8797P_MULTI_GVM_BASE_DTB)) \
-	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB))
+	$(call add-overlays, $(SECA_LA_GVM_BOARDS),$(SECA_LA_GVM_BASE_DTB)) \
+	$(call add-overlays, $(SECA_MULTI_GVM_BOARDS),$(SECA_MULTI_GVM_BASE_DTB))
 
 autogvm-overlays-dtb-$(CONFIG_ARCH_QTI_VM) += \
 	$(SA8797P_LA_GVM_BOARDS) $(SA8797P_LA_GVM_BASE_DTB) \
 	$(SA8797P_MULTI_GVM_BOARDS) $(SA8797P_MULTI_GVM_BASE_DTB) \
-	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB)
+	$(SECA_LA_GVM_BOARDS) $(SECA_LA_GVM_BASE_DTB) \
+	$(SECA_MULTI_GVM_BOARDS) $(SECA_MULTI_GVM_BASE_DTB)
 
 SECA_GH_LA_GVM_QAM_BASE_DTB += \
 	seca-gh-vm-la-qam.dtb \
