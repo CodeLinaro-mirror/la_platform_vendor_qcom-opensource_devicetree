@@ -27,6 +27,11 @@
 	qcom,multiport-usb = <2>;
 };
 
+&pmk8850_rtc {
+	qcom,no-alarm; /* alarm owned by SOCCP */
+	status = "disabled";
+};
+
 &pmh0101_gpios {
 	key_vol_up {
 		key_vol_up_default: key_vol_up_default {
