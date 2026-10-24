@@ -83,6 +83,7 @@
 		spi22 = &qupv3_se22_spi;
 		spi23 = &qupv3_se23_spi;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
+		usb0 = &dwc3_0; /*usb0 child node*/
 		usb1 = &dwc3_1; /*usb1 child node*/
 		usb2 = &dwc3_2; /*usb2 child node*/
 	 };
@@ -2900,7 +2901,6 @@
 			#phy-cells = <0>;
 
 			vdd-supply = <&L3F_E0>;
-			qcom,vdd-voltage-level = <0 880000 880000>;
 			vdda12-supply = <&L4H_E0>;
 			vdd_refgen-supply = <&L2F_E0>;
 
@@ -3702,7 +3702,6 @@
 			#phy-cells = <0>;
 
 			vdd-supply = <&L2H_E0>;
-			qcom,vdd-voltage-level = <0 880000 880000>;
 			vdda12-supply = <&L4H_E0>;
 			vdd_refgen-supply = <&L1F_E1>;
 
@@ -3726,7 +3725,6 @@
 			#phy-cells = <0>;
 
 			vdd-supply = <&L2H_E0>;
-			qcom,vdd-voltage-level = <0 880000 880000>;
 			vdda12-supply = <&L4H_E0>;
 			vdd_refgen-supply = <&L1F_E1>;
 
@@ -3904,7 +3902,6 @@
 			reg-names = "eusb2_phy_base";
 
 			vdd-supply = <&L2H_E0>;
-			qcom,vdd-voltage-level = <0 880000 880000>;
 			vdda12-supply = <&L4H_E0>;
 			vdd_refgen-supply = <&L1F_E1>;
 
