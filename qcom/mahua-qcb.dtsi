@@ -214,6 +214,18 @@
 	remote-endpoint = <&pmic_glink_hs_in1>;
 };
 
+&usb2_phy_2 {
+	status = "disabled";
+};
+
+&usb3_phy_2 {
+	status = "disabled";
+};
+
+&usb_ss2 {
+	status = "disabled";
+};
+
 &ufsphy_mem {
 	vdda-phy-supply = <&pm_f10_c_l1>;
 	vdda-phy-max-microamp = <215800>;
