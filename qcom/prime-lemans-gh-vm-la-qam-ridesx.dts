@@ -45,6 +45,8 @@
 };
 
 /delete-node/ &emac0_hw;
+/delete-node/ &pcie0;
+/delete-node/ &pcie_smmu;
 
 &vm_config {
 	/delete-property/ iomemory-ranges;
@@ -60,30 +62,7 @@
 			0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
 			/* Board serial number region */
 			0x0 0x786000 0x0 0x786000 0x0 0x1000 0x1
-			/* PCIe0 region */
-			0x4 0x0 0x4 0x0 0x0 0x10000000 0x0
-			0x0 0x40000000 0x0 0x40000000 0x0 0x100000 0x0
-			0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000 0x0
-			0x4 0x10100000 0x4 0x10100000 0x0 0x100000 0x0
 			>;
-
-	/* Keep IRQ passthrough only for remaining direct-MMIO guest devices. */
-	gic-irq-ranges = <
-		/* PCIe0 IRQs */
-		339 339
-		340 340
-		341 341
-		344 344
-		345 345
-		346 346
-		406 406
-		407 407
-		/* PCIe0 INTx */
-		466 466
-		467 467
-		470 470
-		471 471
-		>;
 };
 
 /delete-node/ &qupv3_se17_4uart;
@@ -97,6 +76,7 @@
 			generate = "/virtio-mmio";
 			vqs-num = <0x4>;
 		};
+		/delete-node/ vsmmu@15200000;
 
 		virtio-mmio@36 {
 			/delete-property/ patch;
