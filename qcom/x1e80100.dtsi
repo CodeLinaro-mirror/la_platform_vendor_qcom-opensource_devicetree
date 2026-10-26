@@ -2637,6 +2637,7 @@
 
 			qcom,pm-qos-latency = <2>;
 
+			wakeup-source;
 			/*
 			 * Establish dependency on smmu driver so that depopulate path of
 			 * deferred probe doesn't run into existing bug in smmu driver.
