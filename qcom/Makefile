@@ -44,7 +44,9 @@ SUN_BOARDS += \
 		sun-atp-overlay.dtbo \
 		sunp-hdk-overlay.dtbo \
 		sunp-iot-vc-overlay.dtbo \
-		sunp-evk-overlay.dtbo
+		sunp-evk-overlay.dtbo \
+		sunp-evk-dvt-overlay.dtbo \
+		sunp-evk-pvt-overlay.dtbo
 
 NOAPQ_SUN_BOARDS += \
 		 sun-rumi-overlay.dtbo
