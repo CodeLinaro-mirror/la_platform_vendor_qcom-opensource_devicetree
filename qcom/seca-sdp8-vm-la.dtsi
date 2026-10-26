@@ -236,3 +236,18 @@
 		dsp-type = <5>;
 	};
 };
+
+&qvm_vdev_gic {
+		gic_its: msi-controller@0x17040000 {
+			compatible = "arm,gic-v3-its";
+			msi-controller;
+			#msi-cells = <1>;
+			reg = <0x17040000 0x20000>;
+		};
+};
+
+&ufshc2_mem {
+	status = "ok";
+	power-domains = <&scmi_power 31>;
+	interrupts = <GIC_SPI 718 IRQ_TYPE_LEVEL_HIGH>;
+};
