@@ -27,7 +27,7 @@
 		};
 
 		pm8350b_pbs2: qcom,pbs@1900 {
-			compatible = "qcom,qpnp-pbs";
+			ccompatible = "qcom,pm8350b-pbs", "qcom,pbs";
 			reg = <0x1900>;
 		};
 
