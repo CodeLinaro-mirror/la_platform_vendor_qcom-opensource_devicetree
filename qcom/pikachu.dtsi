@@ -1636,6 +1636,12 @@
 		tmecrashdump-address-offset = <0x81CA0000>;
 	};
 
+	qcom,power-state {
+		compatible = "qcom,power-state";
+		qcom,subsys-name = "cdsp", "lpass", "soccp";
+		qcom,rproc-handle = <&cdsp_pas>, <&adsp_pas>, <&soccp_pas>;
+	};
+
 	tlmm: pinctrl@f000000 {
 		compatible = "qcom,pikachu-tlmm";
 		reg = <0xF000000 0x1000000>;
