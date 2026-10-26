@@ -240,58 +240,59 @@
 };
 
 &pmk8350_adc_tm {
+	io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM1_100K_PU>,
+			<&pmk8350_vadc PM8350_ADC7_AMUX_THM2_100K_PU>,
+			<&pmk8350_vadc PM8350_ADC7_AMUX_THM3_100K_PU>,
+			<&pmk8350_vadc PM8350_ADC7_AMUX_THM4_100K_PU>,
+			<&pmk8350_vadc PM8350_ADC7_AMUX_THM5_100K_PU>,
+			<&pmk8350_vadc PM8350B_ADC7_AMUX_THM4_100K_PU>,
+			<&pmk8350_vadc PM8350B_ADC7_GPIO2_100K_PU>,
+			<&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
+
 	pm8350_msm_therm {
-		reg = <0>;
-		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM1_100K_PU>;
+		reg = <PM8350_ADC7_AMUX_THM1_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350_cam_flash_therm {
-		reg = <1>;
-		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM2_100K_PU>;
+		reg = <PM8350_ADC7_AMUX_THM2_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350_hot_pocket_therm {
-		reg = <2>;
-		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM3_100K_PU>;
+		reg = <PM8350_ADC7_AMUX_THM3_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350_wide_rfc_therm {
-		reg = <3>;
-		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM4_100K_PU>;
+		reg = <PM8350_ADC7_AMUX_THM4_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350_rear_tof_therm {
-		reg = <4>;
-		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM5_100K_PU>;
+		reg = <PM8350_ADC7_AMUX_THM5_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350b_usb_conn_therm {
-		reg = <5>;
-		io-channels = <&pmk8350_vadc PM8350B_ADC7_AMUX_THM4_100K_PU>;
+		reg = <PM8350B_ADC7_AMUX_THM4_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pm8350b_wl_chg_therm {
-		reg = <6>;
-		io-channels = <&pmk8350_vadc PM8350B_ADC7_GPIO2_100K_PU>;
+		reg = <PM8350B_ADC7_GPIO2_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
 
 	pmk8350_xo_therm {
-		reg = <7>;
-		io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
+		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time = <200>;
 	};
@@ -299,7 +300,7 @@
 
 &thermal_zones {
 	skin-msm-therm {
-		thermal-sensors = <&pmk8350_adc_tm 0>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM1_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -316,7 +317,7 @@
 	};
 
 	camera-therm {
-		thermal-sensors = <&pmk8350_adc_tm 1>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM2_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -333,7 +334,7 @@
 	};
 
 	hot-pock-therm {
-		thermal-sensors = <&pmk8350_adc_tm 2>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM3_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -350,7 +351,7 @@
 	};
 
 	rear-cam-therm {
-		thermal-sensors = <&pmk8350_adc_tm 3>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM4_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -367,7 +368,7 @@
 	};
 
 	tof-therm {
-		thermal-sensors = <&pmk8350_adc_tm 4>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350_ADC7_AMUX_THM5_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -384,7 +385,7 @@
 	};
 
 	conn-therm {
-		thermal-sensors = <&pmk8350_adc_tm 5>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350B_ADC7_AMUX_THM4_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -401,7 +402,7 @@
 	};
 
 	wlc-therm {
-		thermal-sensors = <&pmk8350_adc_tm 6>;
+		thermal-sensors = <&pmk8350_adc_tm PM8350B_ADC7_GPIO2_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -418,7 +419,7 @@
 	};
 
 	xo-therm {
-		thermal-sensors = <&pmk8350_adc_tm 7>;
+		thermal-sensors = <&pmk8350_adc_tm PMK8350_ADC7_AMUX_THM1_100K_PU>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
