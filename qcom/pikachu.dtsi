@@ -2031,18 +2031,36 @@
 		};
 	};
 
+	pcie_crm_hw_0_bcm_voter: bcm_voter@0 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <0>;
+		qcom,crm-pwr-states = <5>;
+	};
+
+	pcie_crm_hw_1_bcm_voter: bcm_voter@1 {
+		compatible = "qcom,bcm-voter";
+		qcom,crm-name = "pcie_crm";
+		qcom,crm-client-idx = <1>;
+		qcom,crm-pwr-states = <5>;
+	};
+
 	clk_virt: interconnect-clk-virt {
 		compatible = "qcom,pikachu-clk_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	mc_virt: interconnect-mc-virt {
 		compatible = "qcom,pikachu-mc_virt";
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	config_noc: interconnect@1600000 {
@@ -2065,8 +2083,10 @@
 		compatible = "qcom,pikachu-gem_noc";
 		reg = <0x24100000 0x161080>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 	};
 
 	lpass_ag_noc: interconnect@35640000 {
@@ -2113,8 +2133,10 @@
 		compatible = "qcom,pikachu-pcie_anoc";
 		reg = <0x016c0000 0xe800>;
 		#interconnect-cells = <1>;
-		qcom,bcm-voter-names = "hlos";
-		qcom,bcm-voters = <&apps_bcm_voter>;
+		qcom,bcm-voter-names = "hlos", "pcie_crm_hw_0", "pcie_crm_hw_1";
+		qcom,bcm-voters = <&apps_bcm_voter>,
+				  <&pcie_crm_hw_0_bcm_voter>,
+				  <&pcie_crm_hw_1_bcm_voter>;
 		clocks = <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
 			 <&gcc GCC_CFG_NOC_PCIE_ANOC_AHB_CLK>;
 	};
