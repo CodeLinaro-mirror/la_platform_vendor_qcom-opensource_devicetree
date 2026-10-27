@@ -19,6 +19,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm";
 	};
 
 	chosen {
@@ -242,7 +243,9 @@
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		tlmm-vm-gpio-list = <>;
+		depends-on-supply = <&tlmm>;
+		tlmm-vm-gpio-list = <&tlmm 0 0 &tlmm 1 0 &tlmm 2 0
+				&tlmm 3 0 &tlmm 17 0 &tlmm 51 0x2008>;
 	};
 
 	vm_tlmm_irq: vm-tlmm-irq@0 {
@@ -261,7 +264,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <>;
+		gpios = /bits/ 16 <0 1 2 3 17 51>;
 	};
 
 	qup_iommu_group: qup_common_iommu_group {

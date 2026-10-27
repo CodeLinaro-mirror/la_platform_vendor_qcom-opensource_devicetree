@@ -36,6 +36,7 @@
 	};
 
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
+
 	ddr-regions { };
 
 	reserved_memory: reserved-memory { };
@@ -633,7 +634,12 @@
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
 		qcom,master;
-		tlmm-vm-gpio-list = <>;
+		tuivm {
+			qcom,label = <0x08>;
+			qcom,vmid = <45>;
+			tlmm-vm-gpio-list = <&tlmm 0 0 &tlmm 1 0 &tlmm 2 0
+					&tlmm 3 0 &tlmm 17 0 &tlmm 51 0x2008>;
+		};
 	};
 
 	arch_timer: timer {
@@ -2606,35 +2612,33 @@
 		qcom,vmid = <3>;
 	};
 
-	qcom,guestvm_loader@e0b00000 {
-		compatible = "qcom,guestvm-loader";
-		qcom,pas-id = <28>;
-		qcom,vmid = <45>;
-		qcom,isolate-cpus;
-		qcom,reserved-cpus = <0x5>, <0x6>;
-		qcom,unisolate-timeout-ms = <12000>;
-		qcom,firmware-name = "trustedvm";
-		memory-region = <&trust_ui_vm_mem>;
-	};
-
-	qcom,guestvm_loader@e0600000 {
-		compatible = "qcom,guestvm-loader";
-		qcom,pas-id = <35>;
-		qcom,vmid = <50>;
-		qcom,firmware-name = "cpusys_vm";
-		memory-region = <&cpusys_vm_mem>;
-	};
-
 	trust_ui_vm: qcom,trust_ui_vm@e55fc000 {
 		reg = <0xe55fc000 0x104000>;
 		vm_name = "trustedvm";
 		shared-buffers = <&trust_ui_vm_vblk0_ring &trust_ui_vm_swiotlb>;
 	};
 
-	qcom,virtio_backend@0 {
-		compatible = "qcom,virtio_backend";
+	trust_ui_vm_virt_be0: trust_ui_vm_virt_be0@11 {
 		qcom,vm = <&trust_ui_vm>;
 		qcom,label = <0x11>;
+	};
+
+	gh-secure-vm-loader@0 {
+		compatible = "qcom,gh-secure-vm-loader";
+		qcom,pas-id = <28>;
+		qcom,vmid = <45>;
+		qcom,firmware-name = "trustedvm";
+		memory-region = <&trust_ui_vm_mem>;
+		virtio-backends = <&trust_ui_vm_virt_be0>;
+	};
+
+	gh-secure-vm-loader@1 {
+		compatible = "qcom,gh-secure-vm-loader";
+		qcom,pas-id = <35>;
+		qcom,vmid = <50>;
+		qcom,firmware-name = "cpusys_vm";
+		qcom,no-shutdown;
+		memory-region = <&cpusys_vm_mem>;
 	};
 
 	qrtr-gunyah {

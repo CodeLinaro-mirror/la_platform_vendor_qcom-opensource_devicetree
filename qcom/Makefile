@@ -877,6 +877,18 @@ dtb-y += $(waipio_tuivm-dtb-y)
 endif
 endif
 
+ifeq ($(CONFIG_ARCH_DIWALI), y)
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+waipio_tuivm-dtb-$(CONFIG_ARCH_QTI_VM) += diwali-vm-atp.dtb\
+                                diwali-vm-idp.dtb \
+                                diwali-vm-rumi.dtb \
+                                diwali-vm-qrd.dtb
+
+dtb-y += $(waipio_tuivm-dtb-y)
+
+endif
+endif
+
 ifeq ($(CONFIG_ARCH_LEMANS_QCVIRTIO), y)
 ifeq ($(CONFIG_ARCH_QTI_VM), y)
 
