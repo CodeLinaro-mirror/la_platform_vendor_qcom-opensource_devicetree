@@ -8,7 +8,7 @@
 #include "katmai-fp4.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. KATMAI FP4 SoC";
+	model = "Qualcomm Technologies, Inc. katmai FP4 SoC";
 	compatible = "qcom,yupik-iot";
 	qcom,board-id = <0 0>;
 };

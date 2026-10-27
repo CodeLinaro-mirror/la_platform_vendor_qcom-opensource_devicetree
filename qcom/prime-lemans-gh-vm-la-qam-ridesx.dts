@@ -1,0 +1,339 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "lemans-gh-vm-la-qam-ridesx.dts"
+#include "prime-board-id.dtsi"
+
+/* QUPv3 SE17 (uart17) and QUPv3 SE3/SE4 (uart3) are reassigned to the PVM
+ * for this board. BT is delivered via the qcvirtio-bt virtio-mmio ring,
+ * so drop the UART passthrough that lemans-gh-vm-la.dtsi otherwise grants.
+ */
+&{/aliases} {
+	/delete-property/ hsuart0;
+	/delete-property/ hsuart1;
+};
+
+&soc {
+	/delete-node/ ptp_virtual;
+	/delete-node/ qcom,ipcc@421000;
+	/delete-node/ qcom,ipcc@461000;
+	/delete-node/ ipcc-self-ping-apss_cl0;
+	/delete-node/ ipcc-self-ping-apss_cl0_ack;
+	/delete-node/ ipcc-self-ping-adsp_cl0;
+	/delete-node/ ipcc-self-ping-adsp_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0_ack;
+	/delete-node/ virtio-glink-cma@2e000000;
+	/delete-node/ syscon@0x1fd8000;
+	/delete-node/ syscon@0x1fd9000;
+	/delete-node/ syscon@0x1fdd000;
+	/delete-node/ syscon@0x1fdb000;
+	/delete-node/ syscon@0x1fdf000;
+	/delete-node/ hgsl_tcsr_sender0;
+	/delete-node/ hgsl_tcsr_sender1;
+	/delete-node/ hgsl_tcsr_receiver0;
+	/delete-node/ hgsl_tcsr_receiver1;
+	/delete-node/ qcom,hgsl@0x2c00000;
+};
+
+&vm_config {
+	/delete-property/ iomemory-ranges;
+	/delete-property/ gic-irq-ranges;
+
+	/* Pass through regions */
+	iomemory-ranges = <
+			/* QRNG region */
+			0x0 0x10dc000 0x0 0x10dc000 0x0 0x1000 0x0
+			/* IMEM region */
+			0x0 0x146D8000 0x0 0x146D8000 0x0 0x1000 0x0
+			/* MPM timer read only*/
+			0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
+			/* Board serial number region */
+			0x0 0x786000 0x0 0x786000 0x0 0x1000 0x1
+			/* PCIe0 region */
+			0x4 0x0 0x4 0x0 0x0 0x10000000 0x0
+			0x0 0x40000000 0x0 0x40000000 0x0 0x100000 0x0
+			0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000 0x0
+			0x4 0x10100000 0x4 0x10100000 0x0 0x100000 0x0
+			/* EMAC1 CH4 region */
+			0x0 0x2300C000 0x0 0x2300C000 0x0 0x1000 0x0
+			/* USB2 region */
+			0x0 0xa400000 0x0 0xa400000 0x0 0x200000 0x0
+			0x0 0x88e7000 0x0 0x88e7000 0x0 0x1000 0x0
+			/* PDC region */
+			0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
+			>;
+
+	/* Keep IRQ passthrough only for remaining direct-MMIO guest devices. */
+	gic-irq-ranges = <
+		/* PCIe0 IRQs */
+		339 339
+		340 340
+		341 341
+		344 344
+		345 345
+		346 346
+		406 406
+		407 407
+		/* PCIe0 INTx */
+		466 466
+		467 467
+		470 470
+		471 471
+		/* EMAC1 CH4 GIC IRQ */
+		808 808
+		860 860
+		/* USB2 IRQs */
+		521 521
+		522 522
+		476 476
+		474 474
+		>;
+};
+
+/delete-node/ &qupv3_se17_4uart;
+/delete-node/ &qupv3_se3_4uart;
+
+&vm_config {
+	vdevices {
+		// qcvirtio-console (reuse legacy vconsole ring)
+		virtio-mmio@33 {
+			/delete-property/ patch;
+			generate = "/virtio-mmio";
+			vqs-num = <0x4>;
+		};
+
+		virtio-mmio@36 {
+			/delete-property/ patch;
+		};
+
+		// qcvirtio-gpu uses virtio-mmio@46
+
+		// qcvirtio-snd
+		virtio-mmio@47 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x24A000>;
+			memory {
+				qcom,label = <0x4F>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-input
+		virtio-mmio@48 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			virtio,device-type = <18>;
+			peer-default;
+			vqs-num = <0x2>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x252000>;
+			memory {
+				qcom,label = <0x51>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-net
+		virtio-mmio@49 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x3>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x256000>;
+			memory {
+				qcom,label = <0x52>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-rng
+		virtio-mmio@50 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x25E000>;
+			memory {
+				qcom,label = <0x53>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-vsock
+		virtio-mmio@51 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x266000>;
+			memory {
+				qcom,label = <0x54>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-gpio
+		virtio-mmio@52 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x26A000>;
+			memory {
+				qcom,label = <0x55>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-scmi
+		virtio-mmio@53 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x26E000>;
+			memory {
+				qcom,label = <0x56>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-spi
+		virtio-mmio@54 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x272000>;
+			memory {
+				qcom,label = <0x57>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-can
+		virtio-mmio@55 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x276000>;
+			memory {
+				qcom,label = <0x58>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-i2c
+		virtio-mmio@56 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x27A000>;
+			memory {
+				qcom,label = <0x59>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// qcvirtio-rtc
+		virtio-mmio@57 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x4>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x27E000>;
+			memory {
+				qcom,label = <0x5A>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+
+		// auto_vm_resv_ring
+		virtio-mmio@60 {
+			vdevice-type = "virtio-mmio";
+			generate = "/virtio-mmio";
+			peer-default;
+			vqs-num = <0x1>;
+			push-compatible = "virtio,mmio";
+			sync-reset;
+			dma-coherent;
+			dma_base = <0x0 0x282000>;
+			memory {
+				qcom,label = <0x5B>;
+				#address-cells = <0x2>;
+				allocate-base;
+			};
+		};
+	};
+};
+
+// Keeping rename_devices node results in endless boot animation.
+// qcvirtio-blk uses its own approach to specify and name partitions,
+// so this node is not needed anyway.
+/delete-node/ &rename_devices;
+
+&soc {
+	scmi {
+		compatible = "arm,scmi-virtio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+
+		scmi_sens: protocol@15 {
+			reg = <0x15>;
+		};
+	};
+};

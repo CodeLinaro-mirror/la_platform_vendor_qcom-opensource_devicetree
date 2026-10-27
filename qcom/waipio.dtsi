@@ -14,6 +14,7 @@
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/power/qcom-aoss-qmp.h>
+#include <dt-bindings/dma/qcom-gpi.h>
 
 / {
 	model = "Qualcomm Technologies, Inc. Waipio";
@@ -26,7 +27,7 @@
 
 	chosen: chosen {
 		bootargs = "console=ttyMSM0,115200n8 loglevel=8 kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat service_locator.enable=1 msm_rtb.filter=0x237 allow_mismatched_32bit_el0 cpufreq.default_governor=performance pelt=8 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 irqaffinity=0-3 ftrace_dump_on_oops pstore.compress=none fsa4480_i2c.async_probe=1 can.stats_timer=0 slub_debug=- allow_file_spec_access android_arch_task_struct_size=512";
-		stdout-path = "/soc/qcom,qup_uart@99c000:115200n8";
+		stdout-path = "serial0:115200n8";
 	};
 
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
@@ -79,10 +80,13 @@
 			reg = <0x0 0x0>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			cpu-idle-states = <&SILVER_OFF>;
+			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			L2_0: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -101,10 +105,13 @@
 			reg = <0x0 0x100>;
 			enable-method = "psci";
 			next-level-cache = <&L2_0>;
+			cpu-idle-states = <&SILVER_OFF>;
+			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU2: cpu@200 {
@@ -113,10 +120,13 @@
 			reg = <0x0 0x200>;
 			enable-method = "psci";
 			next-level-cache = <&L2_2>;
+			cpu-idle-states = <&SILVER_OFF>;
+			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 			L2_2: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -130,10 +140,13 @@
 			reg = <0x0 0x300>;
 			enable-method = "psci";
 			next-level-cache = <&L2_2>;
+			cpu-idle-states = <&SILVER_OFF>;
+			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <1024>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 0>;
 		};
 
 		CPU4: cpu@400 {
@@ -142,10 +155,13 @@
 			reg = <0x0 0x400>;
 			enable-method = "psci";
 			next-level-cache = <&L2_4>;
+			cpu-idle-states = <&GOLD_OFF>;
+			power-domains = <&CPU_PD4>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <2253>;
 			dynamic-power-coefficient = <251>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 			L2_4: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -160,10 +176,13 @@
 			reg = <0x0 0x500>;
 			enable-method = "psci";
 			next-level-cache = <&L2_5>;
+			cpu-idle-states = <&GOLD_OFF>;
+			power-domains = <&CPU_PD5>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <2253>;
 			dynamic-power-coefficient = <251>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 			L2_5: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -177,10 +196,13 @@
 			reg = <0x0 0x600>;
 			enable-method = "psci";
 			next-level-cache = <&L2_6>;
+			cpu-idle-states = <&GOLD_OFF>;
+			power-domains = <&CPU_PD6>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <2253>;
 			dynamic-power-coefficient = <251>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 1>;
 			L2_6: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -194,10 +216,13 @@
 			reg = <0x0 0x700>;
 			enable-method = "psci";
 			next-level-cache = <&L2_7>;
+			cpu-idle-states = <&GOLD_OFF>;
+			power-domains = <&CPU_PD7>;
 			power-domain-names = "psci";
 			capacity-dmips-mhz = <2386>;
 			dynamic-power-coefficient = <396>;
 			#cooling-cells = <2>;
+			qcom,freq-domain = <&cpufreq_hw 2>;
 			L2_7: l2-cache {
 			      compatible = "cache";
 			      cache-level = <2>;
@@ -301,6 +326,10 @@
 
 	qcom_smcinvoke {
 		compatible = "qcom,smcinvoke";
+	};
+
+	qcom_mem_object {
+		compatible = "qcom,mem-object";
 	};
 };
 
@@ -571,14 +600,6 @@
 		size = <0x0 0x1000000>;
 	};
 
-	cnss_wlan_mem: cnss_wlan_region {
-		compatible = "shared-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
-		reusable;
-		alignment = <0x0 0x400000>;
-		size = <0x0 0x2000000>;
-	};
-
 	audio_cma_mem: audio_cma_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
@@ -629,7 +650,7 @@
 };
 
 #include "waipio-clock.dtsi"
-
+#include "waipio-walt.dtsi"
 &soc {
 	#address-cells = <1>;
 	#size-cells = <1>;
@@ -974,6 +995,7 @@
 		interconnect-names = "crypto_ddr";
 
 		memory-region = <&adsp_mem>;
+		firmware-name = "adsp.mdt";
 
 		/* Inputs from ssc */
 		interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
@@ -994,7 +1016,7 @@
 		qcom,smem-states = <&adsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
 
-		glink_edge: glink-edge {
+		remoteproc_adsp_glink: glink-edge {
 			qcom,remote-pid = <2>;
 			transport = "smem";
 			mboxes = <&ipcc_mproc IPCC_CLIENT_LPASS
@@ -1047,6 +1069,7 @@
 		reg-names = "cx","mx";
 
 		memory-region = <&cdsp_mem>;
+		firmware-name = "cdsp.mdt";
 
 		clocks = <&rpmhcc RPMH_CXO_CLK>;
 		clock-names = "xo";
@@ -1076,7 +1099,7 @@
 		qcom,smem-states = <&cdsp_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
 
-		glink-edge {
+		remoteproc_cdsp_glink: glink-edge {
 			qcom,remote-pid = <5>;
 			transport = "smem";
 			mboxes = <&ipcc_mproc IPCC_CLIENT_CDSP
@@ -1137,6 +1160,7 @@
 		interconnect-names = "crypto_ddr";
 
 		memory-region = <&slpi_mem>;
+		firmware-name = "slpi.mdt";
 
 		/* Inputs from ssc */
 		interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
@@ -1155,7 +1179,7 @@
 		qcom,smem-states = <&dsps_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
 
-		glink-edge {
+		remoteproc_slpi_glink: glink-edge {
 			qcom,remote-pid = <3>;
 			transport = "smem";
 			mboxes = <&ipcc_mproc IPCC_CLIENT_SLPI
@@ -1258,6 +1282,7 @@
 		interconnect-names = "rproc_ddr","crypto_ddr";
 
 		memory-region = <&mpss_mem &system_cma>;
+		firmware-name = "modem.mdt";
 
 		/* Inputs from mss */
 		interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
@@ -1278,7 +1303,7 @@
 		qcom,smem-states = <&modem_smp2p_out 0>;
 		qcom,smem-state-names = "stop";
 
-		glink-edge {
+		remoteproc_modem_glink: glink-edge {
 			qcom,remote-pid = <1>;
 			transport = "smem";
 			mboxes = <&ipcc_mproc IPCC_CLIENT_MPSS
@@ -1394,7 +1419,7 @@
 	};
 
 	qcom,pmic_glink {
-		compatible = "qcom,pmic-glink";
+		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_RTR_ADSP_APPS";
 		qcom,subsys-name = "lpass";
 		qcom,protection-domain = "tms/servreg", "msm/adsp/charger_pd";
@@ -1415,7 +1440,7 @@
 	};
 
 	qcom,pmic_glink_log {
-		compatible = "qcom,pmic-glink";
+		compatible = "qcom,qti-pmic-glink";
 		qcom,pmic-glink-channel = "PMIC_LOGS_ADSP_APPS";
 
 		qcom,battery_debug {
@@ -1474,8 +1499,16 @@
 
 	cache-controller@19200000 {
 		compatible = "qcom,waipio-llcc", "qcom,llcc-v21";
-		reg = <0x19200000 0x580000> , <0x19A00000 0x80000>;
-		reg-names = "llcc_base", "llcc_broadcast_base";
+		reg = <0x19200000 0x58000>,
+			<0x19280000 0x58000>,
+			<0x19300000 0x58000>,
+			<0x19380000 0x58000>,
+			<0x19A00000 0x58000>;
+		reg-names = "llcc0_base",
+			"llcc1_base",
+			"llcc2_base",
+			"llcc3_base",
+			"llcc_broadcast_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 
@@ -2084,24 +2117,31 @@
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK_SRC>,
 			<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK_SRC>,
-			<&gcc UFS_PHY_RX_SYMBOL_0_CLK>,
-			<&gcc UFS_PHY_RX_SYMBOL_1_CLK>,
-			<&gcc UFS_PHY_TX_SYMBOL_0_CLK>;
+			<&ufs_phy_rx_symbol_0_clk>,
+			<&ufs_phy_rx_symbol_1_clk>,
+			<&ufs_phy_tx_symbol_0_clk>;
 		resets = <&ufshc_mem 0>;
 		status = "disabled";
+	};
+
+	ufshc_dma_resv: ufshc_dma_resv_region {
+		/*
+		 * Restrict IOVA mappings for UFSHC buffers to the 3 GB region
+		 * from 0x1000 - 0xffffffff.
+		 */
+		iommu-addresses = <&ufshc_mem 0x0 0x1000>;
 	};
 
 	ufshc_mem: ufshc@1d84000 {
 		compatible = "qcom,ufshc";
 		reg = <0x1d84000 0x3000>,
-		      <0x1d88000 0x8000>,
-		      <0x1d90000 0x9000>;
-		reg-names = "ufs_mem", "ufs_ice", "ufs_ice_hwkm";
+		      <0x1d88000 0x18000>;
+		reg-names = "ufs_mem", "ice";
 		interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
 		phys = <&ufsphy_mem>;
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
-
+		qcom,ice-use-hwkm;
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		clock-names =
@@ -2139,62 +2179,7 @@
 		      <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
 		interconnect-names = "ufs-ddr", "cpu-ufs";
 
-		qcom,ufs-bus-bw,name = "ufshc_mem";
-		qcom,ufs-bus-bw,num-cases = <26>;
-		qcom,ufs-bus-bw,num-paths = <2>;
-		qcom,ufs-bus-bw,vectors-KBps =
-		/*
-		 * During HS G3 UFS runs at nominal voltage corner, vote
-		 * higher bandwidth to push other buses in the data path
-		 * to run at nominal to achieve max throughput.
-		 * 4GBps pushes BIMC to run at nominal.
-		 * 200MBps pushes CNOC to run at nominal.
-		 * Vote for half of this bandwidth for HS G3 1-lane.
-		 * For max bandwidth, vote high enough to push the buses
-		 * to run in turbo voltage corner.
-		 */
-		<0 0>, <0 0>,          /* No vote */
-		<922 0>, <1000 0>,     /* PWM G1 */
-		<1844 0>, <1000 0>,    /* PWM G2 */
-		<3688 0>, <1000 0>,    /* PWM G3 */
-		<7376 0>, <1000 0>,    /* PWM G4 */
-		<1844 0>, <1000 0>,    /* PWM G1 L2 */
-		<3688 0>, <1000 0>,    /* PWM G2 L2 */
-		<7376 0>, <1000 0>,    /* PWM G3 L2 */
-		<14752 0>, <1000 0>,   /* PWM G4 L2 */
-		<127796 0>, <1000 0>,  /* HS G1 RA */
-		<255591 0>, <1000 0>,  /* HS G2 RA */
-		<1492582 0>, <102400 0>,  /* HS G3 RA */
-		<2915200 0>, <204800 0>,  /* HS G4 RA */
-		<255591 0>, <1000 0>,  /* HS G1 RA L2 */
-		<511181 0>, <1000 0>,  /* HS G2 RA L2 */
-		<1492582 0>, <204800 0>, /* HS G3 RA L2 */
-		<2915200 0>, <409600 0>, /* HS G4 RA L2 */
-		<149422 0>, <1000 0>,  /* HS G1 RB */
-		<298189 0>, <1000 0>,  /* HS G2 RB */
-		<1492582 0>, <102400 0>,  /* HS G3 RB */
-		<2915200 0>, <204800 0>,  /* HS G4 RB */
-		<298189 0>, <1000 0>,  /* HS G1 RB L2 */
-		<596378 0>, <1000 0>,  /* HS G2 RB L2 */
-		/* As UFS working in HS G3 RB L2 mode, aggregated
-		 * bandwidth (AB) should take care of providing
-		 * optimum throughput requested. However, as tested,
-		 * in order to scale up CNOC clock, instantaneous
-		 * bindwidth (IB) needs to be given a proper value too.
-		 */
-		<1492582 0>, <204800 409600>, /* HS G3 RB L2 KBPs */
-		<2915200 0>, <409600 409600>, /* HS G4 RB L2 */
-		<7643136 0>, <307200 0>; /* Max. bandwidth */
-
-		qcom,bus-vector-names = "MIN",
-		"PWM_G1_L1", "PWM_G2_L1", "PWM_G3_L1", "PWM_G4_L1",
-		"PWM_G1_L2", "PWM_G2_L2", "PWM_G3_L2", "PWM_G4_L2",
-		"HS_RA_G1_L1", "HS_RA_G2_L1", "HS_RA_G3_L1", "HS_RA_G4_L1",
-		"HS_RA_G1_L2", "HS_RA_G2_L2", "HS_RA_G3_L2", "HS_RA_G4_L2",
-		"HS_RB_G1_L1", "HS_RB_G2_L1", "HS_RB_G3_L1", "HS_RB_G4_L1",
-		"HS_RB_G1_L2", "HS_RB_G2_L2", "HS_RB_G3_L2", "HS_RB_G4_L2",
-		"MAX";
-
+		memory-region = <&ufshc_dma_resv>;
 		reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
 		resets = <&gcc GCC_UFS_PHY_BCR>;
 		reset-names = "rst";
@@ -2202,6 +2187,8 @@
 		iommus = <&apps_smmu 0xE0 0x0>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
+		qcom,max-cpus = <8>;
+		qcom,cluster-mask = <0x0f 0x70 0x80>;
 
 		status = "disabled";
 		qos0 {
@@ -2329,6 +2316,7 @@
 			     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,drv-count = <3>;
+		power-domains = <&CLUSTER_PD>;
 		apps_rsc_drv2: drv@2 {
 			qcom,tcs-offset = <0xd00>;
 			qcom,drv-id = <2>;
@@ -2366,6 +2354,7 @@
 		reg-names = "drv-0";
 		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
+		qcom,drv-count = <1>;
 		qcom,tcs-offset = <0x1c00>;
 		qcom,drv-id = <0>;
 		qcom,tcs-config = <ACTIVE_TCS    0>,
@@ -2401,20 +2390,12 @@
 		mbox-names = "aop";
 	};
 
-	soc-sleep-stats@c3f0000 {
-		compatible = "qcom,rpmh-sleep-stats";
-		reg = <0xc3f0000 0x400>;
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v3";
+		reg = <0x0c3f0000 0x400>;
+		qcom,qmp = <&aoss_qmp>;
 		ss-name = "modem", "adsp", "adsp_island",
-			  "cdsp", "slpi", "slpi_island",
-			  "apss";
-		mboxes = <&qmp_aop 0>;
-		ddr-freq-update;
-	};
-
-	subsystem-sleep-stats {
-		compatible = "qcom,subsystem-sleep-stats";
-		reg = <0xc3f0000 0x400>;
-		ddr-freq-update;
+			"cdsp", "apss", "slpi", "slpi_island";
 	};
 
 	qcom,msm-cdsp-loader {
@@ -2626,45 +2607,41 @@
 		};
 	};
 
-	spmi_bus: spmi0_bus: qcom,spmi@c42d000 {
-		compatible = "qcom,spmi-pmic-arb";
-		reg = <0xc42d000 0x4000>,
-		      <0xc400000 0x3000>,
+	spmi_arb: spmi: arbiter@c400000 {
+		compatible = "qcom,waipio-spmi-pmic-arb","qcom,x1e80100-spmi-pmic-arb";
+		reg = <0xc400000 0x3000>,
 		      <0xc500000 0x400000>,
-		      <0xc440000 0x80000>,
-		      <0xc4c0000 0x10000>;
-		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
-		interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "periph_irq";
-		interrupt-controller;
-		#interrupt-cells = <4>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		cell-index = <0>;
+		      <0xc440000 0x80000>;
+		reg-names = "core", "chnls", "obsrvr";
 		qcom,channel = <0>;
 		qcom,ee = <0>;
-		qcom,bus-id = <0>;
-	};
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
 
-	spmi1_bus: qcom,spmi@c432000 {
-		compatible = "qcom,spmi-pmic-arb";
-		reg = <0xc432000 0x4000>,
-		      <0xc400000 0x3000>,
-		      <0xc500000 0x400000>,
-		      <0xc440000 0x80000>,
-		      <0xc4d0000 0x10000>;
-		reg-names = "cnfg", "core", "chnls", "obsrvr", "intr";
-		interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "periph_irq";
-		interrupt-controller;
-		#interrupt-cells = <4>;
-		#address-cells = <2>;
-		#size-cells = <0>;
-		cell-index = <0>;
-		qcom,channel = <0>;
-		qcom,ee = <0>;
-		qcom,bus-id = <1>;
-		depends-on-supply = <&spmi0_bus>;
+		spmi_bus: spmi0_bus: spmi@c42d000 {
+			reg = <0xc42d000 0x4000>,
+			      <0xc4c0000 0x10000>;
+			reg-names = "cnfg", "intr";
+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
+
+		spmi1_bus: spmi@c432000 {
+			reg = <0xc432000 0x4000>,
+			      <0xc4d0000 0x10000>;
+			reg-names = "cnfg", "intr";
+			interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "periph_irq";
+			interrupt-controller;
+			#interrupt-cells = <4>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+		};
 	};
 
 	spmi0_debug_bus: qcom,spmi-debug@10b14000 {
@@ -2775,7 +2752,7 @@
 	};
 
 	qcom,sps {
-		compatible = "qcom,msm-sps-4k";
+		compatible = "qcom,msm-sps-v1_7-4k";
 		qcom,pipe-attr-ee;
 	};
 
@@ -3157,28 +3134,6 @@
 		qcom,label = <0x11>;
 	};
 
-	qcom,msm_gsi {
-		compatible = "qcom,msm_gsi";
-		qcom,num-msi = <2>;
-		msi-parent = <&gic_its 0x5480>;
-	};
-
-	qcom,rmnet-ipa {
-		compatible = "qcom,rmnet-ipa3";
-		qcom,rmnet-ipa-ssr;
-		qcom,ipa-platform-type-msm;
-		qcom,ipa-advertise-sg-support;
-		qcom,ipa-napi-enable;
-	};
-
-	qcom,ipa_fws {
-		compatible = "qcom,pil-tz-generic";
-		qcom,pas-id = <0xf>;
-		qcom,firmware-name = "ipa_fws";
-		qcom,pil-force-shutdown;
-		status = "disabled";
-	};
-
 	qcom,qbt_handler {
 		compatible = "qcom,qbt-handler";
 		qcom,ipc-gpio = <&tlmm 40 0>;
@@ -3186,221 +3141,6 @@
 		qcom,intr2-gpio = <&tlmm 42 0>;
 	};
 
-	wlan: qcom,cnss-qca6490@b0000000 {
-		compatible = "qcom,cnss-qca6490";
-		reg = <0xb0000000 0x10000>;
-		reg-names = "smmu_iova_ipa";
-		wlan-en-gpio = <&tlmm 80 0>;
-		qcom,bt-en-gpio = <&tlmm 81 0>;
-		qcom,sw-ctrl-gpio = <&tlmm 82 0>;
-		pinctrl-names = "wlan_en_active", "wlan_en_sleep";
-		pinctrl-0 = <&cnss_wlan_en_active>;
-		pinctrl-1 = <&cnss_wlan_en_sleep>;
-		qcom,wlan;
-		qcom,wlan-rc-num = <0>;
-		qcom,wlan-ramdump-dynamic = <0x420000>;
-		qcom,wlan-cbc-enabled;
-		use-pm-domain;
-		cnss-enable-self-recovery;
-		qcom,same-dt-multi-dev;
-		mboxes = <&qmp_aop 0>;
-		qcom,vreg_ipa="s3e";
-		qcom,xo-clk-gpio = <&tlmm 204 0>;
-
-		vdd-wlan-aon-supply = <&S2E>;
-		qcom,vdd-wlan-aon-config = <1012000 1012000 0 0 1>;
-		vdd-wlan-dig-supply = <&S11B>;
-		qcom,vdd-wlan-dig-config = <966000 966000 0 0 1>;
-		vdd-wlan-io-supply = <&S10B>;
-		qcom,vdd-wlan-io-config = <1800000 1800000 0 0 1>;
-		vdd-wlan-rfa1-supply = <&S1C>;
-		qcom,vdd-wlan-rfa1-config = <1900000 2100000 0 0 1>;
-		vdd-wlan-rfa2-supply = <&S12B>;
-		qcom,vdd-wlan-rfa2-config = <1350000 1350000 0 0 1>;
-		wlan-ant-switch-supply = <&L7E>;
-		qcom,wlan-ant-switch-config = <2800000 2800000 0 0 1>;
-
-		interconnects =
-		<&pcie_noc MASTER_PCIE_0 &pcie_noc SLAVE_ANOC_PCIE_GEM_NOC>,
-		<&gem_noc MASTER_ANOC_PCIE_GEM_NOC &mc_virt SLAVE_EBI1>;
-		interconnect-names = "pcie_to_memnoc", "memnoc_to_ddr";
-
-
-		qcom,icc-path-count = <2>;
-		qcom,bus-bw-cfg-count = <9>;
-		qcom,bus-bw-cfg =
-		/** ICC Path 1 **/
-		<0 0>, /* no vote */
-		/* idle: 0-18 Mbps snoc/anoc: 100 Mhz ddr: 451.2 MHz */
-		<2250 1600000>,
-		/* low: 18-60 Mbps snoc/anoc: 100 Mhz ddr: 451.2 MHz */
-		<7500 1600000>,
-		/* medium: 60-240 Mbps snoc/anoc: 100 Mhz ddr: 451.2 MHz */
-		<30000 1600000>,
-		/* high: 240-1200 Mbps snoc/anoc: 200 Mhz ddr: 451.2 MHz */
-		<100000 3200000>,
-		/* very high: > 1200 Mbps snoc/anoc: 403 Mhz ddr: 1555 MHz */
-		<175000 6448000>,
-		/* ultra high: DBS mode snoc/anoc: 403 Mhz ddr: 2092 MHz */
-		<175000 6448000>,
-		/* super high: DBS mode snoc/anoc: 533 Mhz ddr: 3.2GHz */
-		<175000 8528000>,
-		/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz
-		 * ddr: 547.2 MHz
-		 */
-		<7500 3200000>,
-
-		/** ICC Path 2 **/
-		<0 0>,
-		/* ddr: 451.2 MHz */
-		<2250 1804800>,
-		/* ddr: 451.2 MHz */
-		<7500 1804800>,
-		/* ddr: 451.2 MHz */
-		<30000 1804800>,
-		/* ddr: 451.2 MHz */
-		<100000 1804800>,
-		/* ddr: 1555 MHz */
-		<175000 6220800>,
-		/* ddr: 2092 MHz */
-		<175000 8368000>,
-		/* ddr: 3.2 GHz */
-		<175000 12800000>,
-		/* ddr: 547.2 MHz */
-		<7500 2188800>;
-	};
-
-	ipa_hw: qcom,ipa@3e00000 {
-		compatible = "qcom,ipa";
-		reg =
-			<0x3e00000 0x84000>,
-			<0x3e04000 0xfc000>;
-		reg-names = "ipa-base", "gsi-base";
-		pas-ids = <0xf>;
-		firmware-names = "ipa_fws";
-		memory-regions = <&ipa_gsi_mem>;
-		qcom,ipa-cfg-offset = <0x0140000>;
-		interrupts =
-			<0 654 IRQ_TYPE_LEVEL_HIGH>,
-			<0 432 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "ipa-irq", "gsi-irq";
-		qcom,ipa-hw-ver = <22>; /* IPA core version = IPAv5.1 */
-		qcom,ipa-hw-mode = <0>;
-		qcom,platform-type = <1>; /* MSM platform */
-		qcom,ee = <0>;
-		qcom,entire-ipa-block-size = <0x200000>;
-		qcom,use-ipa-tethering-bridge;
-		qcom,mhi-event-ring-id-limits = <9 11>; /* start and end */
-		qcom,modem-cfg-emb-pipe-flt;
-		qcom,ipa-wdi3-over-gsi;
-		qcom,arm-smmu;
-		qcom,smmu-fast-map;
-		qcom,use-64-bit-dma-mask;
-		qcom,ipa-endp-delay-wa-v2;
-		qcom,ipa-ulso-wa;
-		qcom,lan-rx-napi;
-		qcom,tx-napi;
-		qcom,tx-poll;
-		qcom,wan-use-skb-page;
-		qcom,rmnet-ctl-enable;
-		qcom,rmnet-ll-enable;
-		qcom,ipa-uc-holb-monitor;
-		qcom,ipa-holb-monitor-poll-period = <5>;
-		qcom,ipa-holb-monitor-max-cnt-wlan = <10>;
-		qcom,ipa-holb-monitor-max-cnt-usb = <10>;
-		qcom,ipa-holb-monitor-max-cnt-11ad = <10>;
-		qcom,register-collection-on-crash;
-		qcom,testbus-collection-on-crash;
-		qcom,non-tn-collection-on-crash;
-		qcom,tx-wrapper-cache-max-size = <400>;
-		qcom,ipa-gpi-event-rp-ddr;
-		qcom,ulso-supported;
-		qcom,ulso-ip-id-min-linux-val = <0>;
-		qcom,ulso-ip-id-max-linux-val = <0xffff>;
-		qcom,ulso-ip-id-min-windows-val = <0>;
-		qcom,ulso-ip-id-max-windows-val = <0x7fff>;
-		qcom,max_num_smmu_cb = <4>;
-		clock-names = "core_clk";
-		clocks = <&rpmhcc RPMH_IPA_CLK>;
-		qcom,interconnect,num-cases = <5>;
-		qcom,interconnect,num-paths = <3>;
-		interconnects = <&aggre2_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
-			<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
-			<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
-		interconnect-names = "ipa_to_llcc", "llcc_to_ebi1", "appss_to_ipa";
-		/* No vote */
-		qcom,no-vote =
-		<0 0 0 0 0 0>;
-
-		/* SVS2 */
-		qcom,svs2 =
-		<590000 0 590000 1900000 0 76800>;
-
-		/* SVS */
-		qcom,svs =
-		<1200000 0 1200000 2800000 0 150000>;
-
-		/* NOMINAL */
-		qcom,nominal =
-		<2400000 0 2400000 5500000 0 400000>;
-
-		/* TURBO */
-		qcom,turbo =
-		<3600000 0 3600000 5500000 0 400000>;
-
-		qcom,bus-vector-names = "MIN", "SVS2", "SVS", "NOMINAL",
-			"TURBO";
-		qcom,throughput-threshold = <2000 4000 8000>;
-		qcom,scaling-exceptions = <>;
-
-		/* smp2p information */
-		qcom,smp2p_map_ipa_1_out {
-			compatible = "qcom,smp2p-map-ipa-1-out";
-			qcom,smem-states = <&smp2p_ipa_1_out 0>;
-			qcom,smem-state-names = "ipa-smp2p-out";
-		};
-
-		qcom,smp2p_map_ipa_1_in {
-			compatible = "qcom,smp2p-map-ipa-1-in";
-			interrupts-extended = <&smp2p_ipa_1_in 0 0>;
-			interrupt-names = "ipa-smp2p-in";
-		};
-
-		ipa_smmu_ap: ipa_smmu_ap {
-			compatible = "qcom,ipa-smmu-ap-cb";
-			iommus = <&apps_smmu 0x5C0 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
-			qcom,additional-mapping =
-				/* modem tables in IMEM */
-				<0x146A8000 0x146A8000 0x2000>;
-			qcom,iommu-dma = "fastmap";
-			dma-coherent;
-			qcom,ipa-q6-smem-size = <45056>;
-		};
-
-		ipa_smmu_wlan: ipa_smmu_wlan {
-			compatible = "qcom,ipa-smmu-wlan-cb";
-			iommus = <&apps_smmu 0x5C1 0x0>;
-			qcom,iommu-dma = "atomic";
-			dma-coherent;
-		};
-
-		ipa_smmu_uc: ipa_smmu_uc {
-			compatible = "qcom,ipa-smmu-uc-cb";
-			iommus = <&apps_smmu 0x5C2 0x0>;
-			qcom,iommu-dma-addr-pool = <0x20000000 0x20000000>;
-			qcom,iommu-dma = "atomic";
-			dma-coherent;
-		};
-
-		ipa_smmu_11ad: ipa_smmu_11ad {
-			compatible = "qcom,ipa-smmu-11ad-cb";
-			iommus = <&apps_smmu 0x5C4 0x0>;
-			dma-coherent;
-			qcom,shared-cb;
-			qcom,iommu-group = <>;
-		};
-	};
 
 	mhi_qrtr_cnss {
 		compatible = "qcom,qrtr-mhi";
@@ -3428,29 +3168,6 @@
 #include "waipio-pcie.dtsi"
 #include "msm-rdbg.dtsi"
 #include "waipio-thermal.dtsi"
-
-&pcie0_rp {
-	#address-cells = <5>;
-	#size-cells = <0>;
-
-	cnss_pci: cnss_pci {
-		reg = <0 0 0 0 0>;
-		qcom,iommu-group = <&cnss_pci_iommu_group>;
-		memory-region = <&cnss_wlan_mem>;
-
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-		cnss_pci_iommu_group: cnss_pci_iommu_group {
-			qcom,iommu-msi-size = <0x1000>;
-			qcom,iommu-dma-addr-pool = <0xa0000000 0x10000000>;
-			qcom,iommu-dma = "fastmap";
-			qcom,iommu-pagetable = "coherent";
-			qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE",
-					    "non-fatal";
-		};
-	};
-};
 
 &qupv3_se7_2uart {
 	status = "ok";
