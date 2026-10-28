@@ -74,31 +74,6 @@
 			dmas = <&gpi_dma0 0 0 3 64 0>,
 			       <&gpi_dma0 1 0 3 64 0>;
 			dma-names = "tx", "rx";
-<<<<<<< HEAD   (518efb Merge b137491febf7bb6b5b236968743e579e9d6fd805 on remote bra)
-			dummy-supply = <&pcie6>;
-			clock-frequency = <400000>;
-			status = "okay";
-
-			touchpad@15 {
-				compatible = "hid-over-i2c";
-				reg = <0x15>;
-				hid-descr-addr = <0x1>;
-				interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-				pinctrl-0 = <&tpad_default>;
-				pinctrl-names = "default";
-				wakeup-source;
-			};
-
-			keyboard@3a {
-				compatible = "hid-over-i2c";
-				reg = <0x3a>;
-				hid-descr-addr = <0x1>;
-				interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-				pinctrl-0 = <&kybd_default>;
-				pinctrl-names = "default";
-				wakeup-source;
-			};
-=======
 			clock-frequency = <400000>;
 			status = "okay";
 			
@@ -121,7 +96,6 @@
  				pinctrl-names = "default";
  				wakeup-source;
  			};
->>>>>>> CHANGE (8c8252 arm64: dts: qcom: x1e80100: Enable keyboard and touchpad for)
 		};
 
 		qupv3_se0_spi: spi@b80000 {
