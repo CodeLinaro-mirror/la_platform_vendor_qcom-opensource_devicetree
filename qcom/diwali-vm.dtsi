@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 
 / {
 	#address-cells = <0x2>;
@@ -250,6 +251,13 @@
 		reg = <0x0 0x0>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
+	};
+
+	gcc: clock-controller@100000 {
+		compatible = "qcom,dummycc";
+		clock-output-names = "gcc_clocks";
+		#clock-cells = <1>;
+		#reset-cells = <1>;
 	};
 
 	tlmm: pinctrl@f000000 {
