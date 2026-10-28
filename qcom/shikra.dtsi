@@ -967,6 +967,13 @@
 		interrupt-names = "smp2p-sleepstate-in";
 	};
 
+	qcom,qrtr-mhi-cnss {
+		compatible = "qcom,qrtr-mhi";
+		qcom,dev-id = <0x1112>;
+		qcom,net-id = <1>;
+		qcom,low-latency;
+	};
+
 	apcs: syscon@f400000 {
 		compatible = "syscon";
 		reg = <0xf400000 0x1000>;
