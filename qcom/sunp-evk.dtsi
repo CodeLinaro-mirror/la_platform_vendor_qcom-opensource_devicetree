@@ -8,3 +8,13 @@
 &sdhc_2 {
 	cd-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
 };
+
+&regulator_ocp_notifier {
+	/delete-property/ periph-c40-supply;
+	/delete-property/ periph-c41-supply;
+	/delete-property/ periph-c42-supply;
+	/delete-property/ periph-c43-supply;
+	/delete-property/ periph-c44-supply;
+	/delete-property/ periph-c45-supply;
+	/delete-property/ periph-c46-supply;
+};
