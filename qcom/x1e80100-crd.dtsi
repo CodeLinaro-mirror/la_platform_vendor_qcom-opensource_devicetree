@@ -90,17 +90,6 @@
 	};
 };
 
-&qspi {
-	status = "okay";
-	spi_flash: flash@0 {
-		compatible = "jedec,spi-nor";
-		reg = <0>;
-		spi-max-frequency = <37500000>;
-		spi-tx-bus-width = <2>;
-		spi-rx-bus-width = <2>;
-	};
-};
-
 &qupv3_se0_i2c {
 	/* Touchpad shares touch_vcc with the touchscreen and fingerprint sensor */
 	touchpad@15 {
