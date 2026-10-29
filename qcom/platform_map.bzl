@@ -347,6 +347,7 @@ _platform_map = {
         "dtb_list": [
             {"name": "malabar.dtb"},
             {"name": "malabar-4gb.dtb"},
+            {"name": "malabar-qmb.dtb"},
             {
                 "name": "malabarp.dtb",
                 "apq": True,
@@ -366,6 +367,9 @@ _platform_map = {
             {"name": "malabar-mtp-4gb-overlay.dtbo"},
             {"name": "malabar-cdp-emmc-overlay.dtbo"},
             {"name": "malabar-mtp-emmc-overlay.dtbo"},
+            {"name": "malabar-mtp-wcn3950-emmc-overlay.dtbo"},
+            {"name": "malabar-mtp-wcn3950-smb1355-emmc-overlay.dtbo"},
+            {"name": "malabar-rcm-emmc-overlay.dtbo"},
             {"name": "malabar-cdp-ufs3-overlay.dtbo"},
             {"name": "malabar-mtp-ufs3-overlay.dtbo"},
             {"name": "malabar-qrd-ufs3-overlay.dtbo"},

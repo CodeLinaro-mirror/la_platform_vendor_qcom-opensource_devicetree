@@ -194,7 +194,7 @@ waipio-overlays-dtb-$(CONFIG_ARCH_WAIPIO) += $(WAIPIO_BOARDS) $(WAIPIO_BASE_DTB)
 
 dtb-y += $(waipio-dtb-y) $(waipio-overlays-dtb-y)
 
-MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb
+MALABAR_BASE_DTB += malabar.dtb malabar-4gb.dtb malabar-qmb.dtb
 MALABAR_APQ_BASE_DTB += malabarp.dtb
 
 MALABAR_BOARDS += \
@@ -210,6 +210,9 @@ MALABAR_BOARDS += \
 		malabar-mtp-4gb-overlay.dtbo \
 		malabar-cdp-emmc-overlay.dtbo \
 		malabar-mtp-emmc-overlay.dtbo \
+		malabar-mtp-wcn3950-emmc-overlay.dtbo \
+		malabar-mtp-wcn3950-smb1355-emmc-overlay.dtbo \
+		malabar-rcm-emmc-overlay.dtbo \
 		malabar-cdp-ufs3-overlay.dtbo \
 		malabar-mtp-ufs3-overlay.dtbo \
 		malabar-qrd-ufs3-overlay.dtbo
