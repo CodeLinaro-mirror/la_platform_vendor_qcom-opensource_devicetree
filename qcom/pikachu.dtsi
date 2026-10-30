@@ -585,6 +585,13 @@
 				qcom,glink-channels = "dhms_mcu0";
 				qcom,intents = <0x400 20>;
 			};
+
+			qcom,glinkpkt-lmcu-aisw-0 {
+				qcom,glink-channels = "aisw_0";
+				qcom,intents = <0x4000 10
+						0x2000 3
+						0x3E8  7>;
+			};
 		};
 	};
 
@@ -844,6 +851,13 @@
 			qcom,glinkpkt-edge = "lmcu";
 			qcom,glinkpkt-ch-name = "qsh_drc_1_5";
 			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_qsh_drc_1_5";
+			qcom,glinkpkt-enable-ch-close;
+		};
+
+		qcom,glinkpkt-lmcu-aisw-0 {
+			qcom,glinkpkt-edge = "lmcu";
+			qcom,glinkpkt-ch-name = "aisw_0";
+			qcom,glinkpkt-dev-name = "glinkpkt_lmcu_aisw_0";
 			qcom,glinkpkt-enable-ch-close;
 		};
 	};
