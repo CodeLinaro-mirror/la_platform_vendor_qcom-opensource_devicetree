@@ -9,12 +9,7 @@
 		no-map;
 	};
 
-	cpusys_vm_mem: cpusys_vm_region@80e00000 {
-		reg = <0x0 0x80e00000 0x0 0x400000>;
-		no-map;
-	};
-
-	/* TZ Tags region at 0x81200000 is reclaimed by Linux */
+	/* TZ Tags region at 0x80e00000 is reclaimed by Linux */
 
 	xbl_dtlog_mem: xbl_dtlog_region@81a00000 {
 		reg = <0x0 0x81a00000 0x0 0x40000>;
@@ -304,11 +299,6 @@
 	 * ta_mem/dare_tz_tags_mem is dynamically removed from the RAM
 	 * partition tables before boot occurs.
 	 */
-
-	dare_tz_reserved_3_mem: reserved_region@dc800000 {
-		reg = <0x0 0xdc800000 0x0 0x300000>;
-		no-map;
-	};
 
 	trust_ui_vm_mem: trust_ui_vm_region@f3800000 {
 		compatible = "shared-dma-pool";

@@ -34,6 +34,7 @@ CANOE_BOARDS += \
 		canoe-cdp-st54l-pandeiro-no-l3k-overlay.dtbo \
 		canoe-cdp-st54l-pandeiro-overlay.dtbo \
 		canoe-qrd-st54l-kundu-overlay.dtbo \
+		whale-qrd-st54l-kundu-overlay.dtbo \
 		canoe-qrd-st54l-pandeiro-overlay.dtbo \
 		canoe-rcm-kiwi-overlay.dtbo \
 		canoe-rcm-overlay.dtbo \
@@ -679,17 +680,21 @@ X1P42100_BOARDS += \
 		   x1p42100-qcb-v1-overlay.dtbo \
 		   x1p42100-qcb-v2-overlay.dtbo \
 		   x1p42100-qcb-v3-overlay.dtbo \
+		   x1p42100-qcb-v4-overlay.dtbo \
 		   x1p42100-cdp-v1-overlay.dtbo \
 		   x1p42100-cdp-v2-overlay.dtbo \
 		   x1p42100-cdp-v3-overlay.dtbo \
+		   x1p42100-cdp-v5-overlay.dtbo \
 		   x1p42100-canim-crd-overlay.dtbo \
 		   x1p42100-canim-crd-cologne-overlay.dtbo \
 		   x1p42100-canim-qcb-v1-overlay.dtbo \
 		   x1p42100-canim-qcb-v2-overlay.dtbo \
 		   x1p42100-canim-qcb-v3-overlay.dtbo \
+		   x1p42100-canim-qcb-v4-overlay.dtbo \
 		   x1p42100-canim-cdp-v1-overlay.dtbo \
 		   x1p42100-canim-cdp-v2-overlay.dtbo \
-		   x1p42100-canim-cdp-v3-overlay.dtbo
+		   x1p42100-canim-cdp-v3-overlay.dtbo \
+		   x1p42100-canim-cdp-v5-overlay.dtbo
 
 x1p42100-dtb-$(CONFIG_ARCH_X1P42100) += \
 	$(call add-overlays, $(X1P42100_BOARDS),$(X1P42100_BASE_DTB))

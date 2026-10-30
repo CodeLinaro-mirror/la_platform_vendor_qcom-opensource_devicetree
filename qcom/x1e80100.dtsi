@@ -222,7 +222,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -242,7 +242,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -256,7 +256,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -270,7 +270,7 @@
 			next-level-cache = <&L2_2>;
 			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
 			power-domain-names = "psci", "perf";
-			capacity-dmips-mhz = <1024>;
+			capacity-dmips-mhz = <1026>;
 			dynamic-power-coefficient = <100>;
 			#cooling-cells = <2>;
 			cpu-idle-states = <&cluster_c4>;
@@ -1936,6 +1936,8 @@
 					<&gem_noc MASTER_APPSS_PROC  &config_noc SLAVE_USB3_MP >;
 			interconnect-names = "usb-ddr", "apps-usb";
 
+			qcom,pm-qos-latency = <2>;
+
 			wakeup-source;
 
 			#address-cells = <2>;
@@ -2117,6 +2119,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
@@ -2124,8 +2128,10 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+			interconnects = <&aggre1_noc MASTER_USB3_0 &mc_virt SLAVE_EBI1>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
+
+			qcom,pm-qos-latency = <2>;
 
 			wakeup-source;
 			/*
@@ -2219,14 +2225,12 @@
 
 			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
 				 <&rpmhcc RPMH_CXO_CLK>,
-				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>,
 				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
 				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK_SRC>,
 				 <&usb3_phy_0_wrapper_gcc_usb30_pipe_clk>,
 				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
 			clock-names = "aux",
 				      "ref",
-				      "ref_en",
 				      "com_aux",
 				      "pipe_clk_mux",
 				      "pipe_clk_ext_src",
@@ -2320,6 +2324,7 @@
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
 			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <120000000>;
@@ -2335,6 +2340,9 @@
 			 * deferred probe doesn't run into existing bug in smmu driver.
 			 */
 			dummy-supply = <&apps_smmu>;
+
+			wakeup-source;
+
 			status = "disabled";
 
 			dwc3_4: dwc3@a200000 {
@@ -2427,6 +2435,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
@@ -2436,6 +2446,8 @@
 			interconnect-names = "usb-ddr", "ddr-usb";
 			interconnects = <&usb_south_anoc MASTER_USB3_1 &mc_virt SLAVE_EBI1>,
 					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_1>;
+
+			qcom,pm-qos-latency = <2>;
 
 			wakeup-source;
 
@@ -2514,7 +2526,7 @@
 			vdda12-supply = <&L2J>;
 
 			clocks = <&xo_board>,
-				 <&rpmhcc RPMH_CXO_CLK>;
+				 <&tcsrcc TCSR_USB2_1_CLKREF_EN>;
 			clock-names = "ref_clk_src", "ref";
 
 			#phy-cells = <0>;
@@ -2620,8 +2632,10 @@
 			qcom,core-clk-rate-disconnected = <133333333>;
 
 			interconnect-names = "usb-ddr", "ddr-usb";
-			interconnects = <&usb_south_anoc MASTER_USB3_2 0 &mc_virt SLAVE_EBI1 0>,
-					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_2 0>;
+			interconnects = <&usb_south_anoc MASTER_USB3_2 &mc_virt SLAVE_EBI1>,
+					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_2>;
+
+			qcom,pm-qos-latency = <2>;
 
 			/*
 			 * Establish dependency on smmu driver so that depopulate path of
