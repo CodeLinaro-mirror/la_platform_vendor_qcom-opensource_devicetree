@@ -47,6 +47,10 @@
 		status = "okay";
 	};
 
+	qcom,mem-buf {
+		qcom,vmid = <53>;
+	};
+
 	virtio_glink_cma: virtio-glink-cma@2e000000 {
 		compatible = "virtio,mmio";
 		reg = <0x2e000000 0x1000>;
@@ -167,10 +171,6 @@
 		label = "hpass";
 		instance-id = <2>;
 		dsp-type = <5>;
-	};
-
-	qcom,mem-buf {
-		qcom,vmid = <53>;
 	};
 };
 

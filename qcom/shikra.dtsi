@@ -2168,11 +2168,10 @@
 				qcom,sampling-enabled;
 				qcom,cpufreq-memfreq-tbl =
 					<  768000  300000 >,
-					< 1017600  547000 >,
-					< 1094400  768000 >,
-					< 1497600 1017000 >,
-					< 1612800 1555000 >,
-					< 1804800 1804000 >;
+					< 1094400  547000 >,
+					< 1497600  768000 >,
+					< 1612800 1017000 >,
+					< 1804800 1555000 >;
 			};
 
 			gold {
@@ -3445,6 +3444,8 @@
 
 &i2c4 {
 	status = "ok";
+	qcom,touch-active = "goodix,gt928";
+	qcom,la-vm;
 	gt9xx-i2c@5d {
 		compatible = "goodix,gt928";
 		reg = <0x5d>;
@@ -3491,7 +3492,7 @@
 		qts,trusted-touch-mode = "vm_mode";
 		qts,touch-environment = "pvm";
 		qts,trusted-touch-type = "primary";
-		qts,trusted-touch-spi-irq = <267>;
+		qts,trusted-touch-spi-irq = <270>;
 		qts,trusted-touch-io-bases = <0x4a90000>;
 		qts,trusted-touch-io-sizes = <0x1000>;
 		qts,trusted-touch-vm-gpio-list = <&tlmm 12 0 &tlmm 13 0 &tlmm 76 0 &tlmm 85 0x2008>;
