@@ -822,7 +822,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_userdata";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x6>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -838,7 +838,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_super";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x6>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
