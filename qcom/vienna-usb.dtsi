@@ -56,6 +56,7 @@
 
 		qcom,default-bus-vote = <1>; /* use nominal bus voting */
 		qcom,pm-qos-latency = <2>;
+		qcom,hibernate-skip-thaw;
 
 		dummy-supply = <&apps_smmu>;
 
