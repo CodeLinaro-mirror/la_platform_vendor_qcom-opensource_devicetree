@@ -208,6 +208,15 @@
 		pinctrl-1 = <&nfc_int_suspend &nfc_enable_suspend
 				&nfc_clk_req_suspend>;
 	};
+
+	fsa4480: fsa4480@42 {
+		compatible = "qcom,fsa4480-i2c";
+		reg = <0x42>;
+		qcom,use-power-supply = <1>;
+		#io-channel-cells = <1>;
+		io-channels = <&pm2250_charger PSY_IIO_TYPEC_ACCESSORY_MODE>;
+		io-channel-names = "typec_mode";
+	};
 };
 
 &pm2250_flash {
