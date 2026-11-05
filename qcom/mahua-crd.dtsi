@@ -430,3 +430,7 @@
 &usb4 {
 	status = "okay";
 };
+
+&usb_audio_qmi_dev {
+	status = "okay";
+};

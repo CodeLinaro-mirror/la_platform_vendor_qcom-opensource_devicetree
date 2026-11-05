@@ -418,6 +418,6 @@
 	status = "okay";
 };
 
-&dwc3_4 {
-	dr_mode = "host";
+&usb_audio_qmi_dev {
+	status = "okay";
 };

@@ -2939,6 +2939,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
@@ -2955,6 +2957,8 @@
 			 * deferred probe doesn't run into existing bug in smmu driver.
 			 */
 			dummy-supply = <&apps_smmu>;
+
+			wakeup-source;
 
 			dwc3_0: dwc3@a600000 {
 				compatible = "snps,dwc3";
@@ -3134,6 +3138,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
@@ -3333,6 +3339,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <200000000>;
@@ -3489,6 +3497,15 @@
 					};
 				};
 			};
+		};
+
+		usb_audio_qmi_dev: usb_audio_qmi_dev {
+			compatible = "qcom,usb-audio-qmi-dev";
+			iommus = <&apps_smmu 0x100b 0x0>;
+			qcom,iommu-dma = "disabled";
+			qcom,usb-audio-stream-id = <0xb>;
+			qcom,usb-audio-intr-num = <2>;
+			status = "disabled";
 		};
 
 		clk_virt: interconnect@0 {
@@ -3967,6 +3984,8 @@
 			qcom,use-eusb2-phy;
 			qcom,host-poweroff-in-pm-suspend;
 			qcom,default-mode-host;
+			qcom,disable-host-ssphy-powerdown;
+			qcom,force-suspend;
 
 			qcom,dis-sending-cm-l1-quirk;
 			qcom,core-clk-rate = <120000000>;
@@ -3983,6 +4002,9 @@
 			 * deferred probe doesn't run into existing bug in smmu driver.
 			 */
 			dummy-supply = <&apps_smmu>;
+
+			wakeup-source;
+
 			status = "disabled";
 
 			dwc3_4: dwc3@a200000 {
