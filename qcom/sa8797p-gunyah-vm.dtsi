@@ -137,6 +137,24 @@
 			no-map;
 			qcom,label = <0x67>;
 		};
+
+		qcipc_pvm_safe_mem: qcipc_pvm_safe_mem {
+			compatible = "shared-dma-pool";
+			no-map;
+			qcom,label = <0x92>;
+		};
+
+		qcipc_pvm_nonsafe_mem: qcipc_pvm_nonsafe_mem {
+			compatible = "shared-dma-pool";
+			no-map;
+			qcom,label = <0x93>;
+		};
+
+		qcipc_gvm_mem: qcipc_gvm_mem {
+			compatible = "shared-dma-pool";
+			no-map;
+			qcom,label = <0x94>;
+		};
 	};
 
 	cpus {
@@ -1791,6 +1809,12 @@
 			qcom,token = <0x40000>;
 			memory-region = <&system_secure_mem>;
 		};
+
+		qcom,qcipc_gvm {
+			qcom,dma-heap-name = "qcom,qcipc_gvm";
+			qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
+			memory-region = <&qcipc_gvm_mem>;
+		};
 	};
 
 
@@ -2295,6 +2319,29 @@
 		interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "qcom,qtmr-intr";
 		qcom,secondary;
+	};
+
+	named_dmabuf_local: named_dmabuf_local {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "local";
+	};
+
+	named_dmabuf_qcipc_gvm: named-dmabuf-qcipc-gvm {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_gvm";
+		memory-region = <&qcipc_gvm_mem>;
+	};
+
+	named_dmabuf_qcipc_pvm_safe: named-dmabuf-qcipc-pvm-safe {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_pvm_safe";
+		memory-region = <&qcipc_pvm_safe_mem>;
+	};
+
+	named_dmabuf_qcipc_pvm_nonsafe: named-dmabuf-qcipc-pvm-nonsafe {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_pvm_nonsafe";
+		memory-region = <&qcipc_pvm_nonsafe_mem>;
 	};
 
 	google,debug-kinfo {
