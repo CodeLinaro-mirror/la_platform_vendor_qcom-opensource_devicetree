@@ -29,8 +29,8 @@
 		qcom,disable-wakeup;
 		qcom,default-mode-host;
 		qcom,disable-host-ssphy-powerdown;
-		qcom,host-poweroff-in-pm-suspend;
 		qcom,use-eusb2-phy;
+		qcom,disable-xhci-runtime-pm;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
@@ -55,15 +55,15 @@
 			snps,disable-clk-gating;
 
 			snps,has-lpm-erratum;
-			snps,dis_enblslpm_quirk;
 			snps,usb2-gadget-lpm-disable;
 
 			snps,dis-u1-entry-quirk;
 			snps,dis-u2-entry-quirk;
 			snps,dis_u2_susphy_quirk;
-			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 
+			snps,is-utmi-l1-suspend;
+			snps,usb2-lpm-disable;
 			num-hc-interrupters = /bits/ 16 <3>;
 
 			tx-fifo-resize;
@@ -308,8 +308,8 @@
 		qcom,disable-wakeup;
 		qcom,default-mode-host;
 		qcom,disable-host-ssphy-powerdown;
-		qcom,host-poweroff-in-pm-suspend;
 		qcom,use-eusb2-phy;
+		qcom,disable-xhci-runtime-pm;
 
 		/*
 		 * Establish dependency on smmu driver so that depopulate path of
@@ -334,7 +334,6 @@
 			snps,disable-clk-gating;
 
 			snps,has-lpm-erratum;
-			snps,dis_enblslpm_quirk;
 			snps,usb2-gadget-lpm-disable;
 
 			snps,dis-u1-entry-quirk;
@@ -343,6 +342,8 @@
 			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 
+			snps,is-utmi-l1-suspend;
+			snps,usb2-lpm-disable;
 			num-hc-interrupters = /bits/ 16 <3>;
 
 			tx-fifo-resize;
@@ -585,8 +586,7 @@
 		qcom,use-pdc-interrupts;
 
 		qcom,disable-wakeup;
-		qcom,disable-host-ssphy-powerdown;
-		qcom,host-poweroff-in-pm-suspend;
+		qcom,disable-xhci-runtime-pm;
 		qcom,use-eusb2-phy;
 
 		/*
@@ -612,9 +612,9 @@
 			snps,disable-clk-gating;
 
 			snps,has-lpm-erratum;
-			snps,dis_enblslpm_quirk;
+			snps,is-utmi-l1-suspend;
 			snps,usb2-gadget-lpm-disable;
-
+			snps,usb2-lpm-disable;
 			maximum-speed = "high-speed";
 			dr_mode = "otg";
 			usb-role-switch;
