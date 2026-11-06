@@ -813,6 +813,10 @@ _platform_map = {
             {"name": "waipio-vm-mtp.dtb"},
             {"name": "waipio-vm-qrd.dtb"},
             {"name": "waipio-vm-rumi.dtb"},
+            {"name": "diwali-vm-atp.dtb"},
+            {"name": "diwali-vm-idp.dtb"},
+            {"name": "diwali-vm-qrd.dtb"},
+            {"name": "diwali-vm-rumi.dtb"},
         ],
     },
     "gen3auto": {
