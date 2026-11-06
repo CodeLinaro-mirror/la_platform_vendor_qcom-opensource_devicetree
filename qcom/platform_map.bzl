@@ -806,6 +806,15 @@ _platform_map = {
             {"name": "malabar-oemvm-cdp-overlay.dtbo"},
         ],
     },
+    "waipio-tuivm": {
+        "dtb_list": [
+            # keep sorted
+            {"name": "waipio-vm-cdp.dtb"},
+            {"name": "waipio-vm-mtp.dtb"},
+            {"name": "waipio-vm-qrd.dtb"},
+            {"name": "waipio-vm-rumi.dtb"},
+        ],
+    },
     "gen3auto": {
         "dtb_list": [
             # keep sorted
