@@ -350,7 +350,8 @@
 	 * North 4 : SE 4
 	 */
 	qup_iommu_group: qup_common_iommu_group {
-			qcom,iommu-dma-addr-pool = <0x00020000 0xfffe0000>;
+		iommu-addresses = <&gpi_dma0 0x00000000 0x00020000>,
+				<&qupv3_0 0x00000000 0x00020000>;
 	};
 
 	/* GPI */
@@ -361,6 +362,7 @@
 		reg-names = "gpi-top";
 		iommus = <&apps_smmu 0x5b8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
 		interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
@@ -375,7 +377,8 @@
 			<GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
 			<GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,max-num-gpii = <12>;
-		qcom,gpii-mask = <0x80>;
+		qcom,static-gpii-mask = <0x80>;
+		qcom,gpii-mask = <0x0>;
 		qcom,ev-factor = <2>;
 		qcom,gpi-ee-offset = <0x10000>;
 		qcom,le-vm;
@@ -386,10 +389,18 @@
 	qupv3_0: qcom,qupv3_0_geni_se@9c0000 {
 		compatible = "qcom,geni-se-qup";
 		reg = <0x9c0000 0x2000>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clock-names = "m-ahb", "s-ahb";
+		clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+			<&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
 		iommus = <&apps_smmu 0x5b8 0x0>;
 		qcom,iommu-group = <&qup_iommu_group>;
+		memory-region = <&qup_iommu_group>;
 		dma-coherent;
+		ranges;
 		status = "ok";
+		required-subnodes = <&qupv3_se4_i2c &qupv3_se4_spi>;
 
 		/* I2C SE */
 		qupv3_se4_i2c: i2c@990000 {
