@@ -421,3 +421,8 @@
 &usb_audio_qmi_dev {
 	status = "okay";
 };
+
+&pcie5 {
+	status = "disabled";
+};
+
