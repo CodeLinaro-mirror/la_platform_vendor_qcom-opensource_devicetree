@@ -1058,8 +1058,25 @@
 				};
 			};
 
+			/* ssr */
+			virtio-mmio@58 {
+				vdevice-type = "virtio-mmio";
+				generate = "/virtio-mmio";
+				peer-default;
+				vqs-num = <0x1>;
+				push-compatible = "virtio,mmio";
+				sync-reset;
+				dma-coherent;
+				dma_base = <0x0 0x1E4000>;
+				memory {
+					qcom,label = <0x13A>;
+					#address-cells = <0x2>;
+					allocate-base;
+				};
+			};
+
 			/* reserved */
-			virtio-mmio@40 {
+			virtio-mmio@59 {
 				vdevice-type = "virtio-mmio";
 				generate = "/virtio-mmio";
 				peer-default;
@@ -1067,9 +1084,9 @@
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
-				dma_base = <0x0 0x1E4000>;
+				dma_base = <0x0 0x1E6000>;
 				memory {
-					qcom,label = <0x128>;
+					qcom,label = <0x13B>;
 					#address-cells = <0x2>;
 					allocate-base;
 				};
