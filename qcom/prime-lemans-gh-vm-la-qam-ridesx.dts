@@ -38,7 +38,13 @@
 	/delete-node/ hgsl_tcsr_receiver0;
 	/delete-node/ hgsl_tcsr_receiver1;
 	/delete-node/ qcom,hgsl@0x2c00000;
+	/delete-node/ emac-iommu-region;
+	/delete-node/ hsusb@a400000;
+	/delete-node/ hsphy@88e7000;
+	/delete-node/ interrupt-controller@b220000;
 };
+
+/delete-node/ &emac0_hw;
 
 &vm_config {
 	/delete-property/ iomemory-ranges;
@@ -59,13 +65,6 @@
 			0x0 0x40000000 0x0 0x40000000 0x0 0x100000 0x0
 			0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000 0x0
 			0x4 0x10100000 0x4 0x10100000 0x0 0x100000 0x0
-			/* EMAC1 CH4 region */
-			0x0 0x2300C000 0x0 0x2300C000 0x0 0x1000 0x0
-			/* USB2 region */
-			0x0 0xa400000 0x0 0xa400000 0x0 0x200000 0x0
-			0x0 0x88e7000 0x0 0x88e7000 0x0 0x1000 0x0
-			/* PDC region */
-			0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
 			>;
 
 	/* Keep IRQ passthrough only for remaining direct-MMIO guest devices. */
@@ -84,14 +83,6 @@
 		467 467
 		470 470
 		471 471
-		/* EMAC1 CH4 GIC IRQ */
-		808 808
-		860 860
-		/* USB2 IRQs */
-		521 521
-		522 522
-		476 476
-		474 474
 		>;
 };
 
