@@ -684,7 +684,7 @@
 
 &qupv3_se3_4uart {
 	interrupts-extended =  <&qvm_vdev_gic GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
-			<&tlmm 94 IRQ_TYPE_LEVEL_HIGH>;
+			<&tlmm 31 IRQ_TYPE_LEVEL_HIGH>;
 };
 
 &hab {
