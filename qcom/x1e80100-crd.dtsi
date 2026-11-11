@@ -91,9 +91,37 @@
 };
 
 &qupv3_se0_i2c {
-	/* Touchpad shares touch_vcc with the touchscreen and fingerprint sensor */
+	clock-frequency = <400000>;
+
+	status = "okay";
 	touchpad@15 {
+		compatible = "hid-over-i2c";
+		reg = <0x15>;
+
+		hid-descr-addr = <0x1>;
+		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
+
+		/* Touchpad shares touch_vcc with the touchscreen and fingerprint sensor */
 		vdd-supply = <&touch_vcc>;
+		vddl-supply = <&L15B>;
 		post-power-on-delay-ms = <100>;
+
+		pinctrl-0 = <&tpad_default>;
+		pinctrl-names = "default";
+
+		wakeup-source;
+	};
+
+	keyboard@3a {
+		compatible = "hid-over-i2c";
+		reg = <0x3a>;
+
+		hid-descr-addr = <0x1>;
+		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
+
+		pinctrl-0 = <&kybd_default>;
+		pinctrl-names = "default";
+
+		wakeup-source;
 	};
 };
