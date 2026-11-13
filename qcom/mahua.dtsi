@@ -9,6 +9,8 @@
 #include "mahua-dma-heaps.dtsi"
 #include "mahua-reserved-memory.dtsi"
 #include "mahua-thermal.dtsi"
+#include "mahua-coresight.dtsi"
+#include "mahua-debug.dtsi"
 
 /delete-node/ &bwmon_llcc_cluster2;
 /delete-node/ &cluster2_pd;
@@ -178,4 +180,20 @@
 			"llcc7_base",
 			"llcc_broadcast_base",
 			"llcc_broadcast_and_base";
+};
+
+&soc {
+	pcie_crm: crm@1d01000 {
+		label = "pcie_crm";
+		compatible = "qcom,pcie-crm-v2";
+		reg = <0x0 0x1d01000 0x0 0x6000>, <0x0 0x1d07000 0x0 0x400>,
+		<0x0 0x1d07400 0x0 0x400>, <0x0 0x1d07800 0x0 0x2000>,
+		<0x0 0x1d09800 0x0 0x700>, <0x0 0x1d09f00 0x0 0x100>;
+		reg-names = "base", "crm_b", "crm_b_pt", "crm_c", "crm_v", "common";
+		interrupts = <GIC_SPI 673 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "pcie_crm_drv0";
+		clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
+		qcom,hw-drv-ids = <0 1 2 3 4 5>;
+		qcom,sw-drv-ids = <0>;
+	};
 };

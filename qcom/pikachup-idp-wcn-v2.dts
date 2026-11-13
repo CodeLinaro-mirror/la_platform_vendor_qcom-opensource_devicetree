@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+/dts-v1/;
+/plugin/;
+
+#include "pikachup.dtsi"
+#include "pikachup-idp-wcn-v2.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. PikachuP WCN v2.0 IDP";
+	compatible = "qcom,pikachup-idp", "qcom,pikachup", "qcom,idp";
+	qcom,board-id = <0x20022 0>;
+};

@@ -376,7 +376,6 @@
 				0x0 0x421000 0x0 0x421000 0x0 0x1000 0x0
 				/* Compute L0 IPCC region */
 				0x0 0x461000 0x0 0x461000 0x0 0x1000 0x0
-				0x0 0x1fd8000 0x0 0x1fd8000 0x0 0x1000 0x1
 				0x0 0x1fd9000 0x0 0x1fd9000 0x0 0x1000 0x3
 				0x0 0x1fdd000 0x0 0x1fdd000 0x0 0x1000 0x3
 				0x0 0x1fdb000 0x0 0x1fdb000 0x0 0x1000 0x0
@@ -828,7 +827,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_userdata";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x4>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -844,7 +843,7 @@
 				vdevice-type = "virtio-mmio";
 				patch = "/virtio_blk_super";
 				peer-default;
-				vqs-num = <0x1>;
+				vqs-num = <0x4>;
 				push-compatible = "virtio,mmio";
 				sync-reset;
 				dma-coherent;
@@ -1961,7 +1960,7 @@
 	compatible = "qcom,sa8255p-geni-se-qup";
 	reg = <0x9c0000 0x1000>;
 	iommus = <&apps_smmu 0x418 0x0>;
-	qcom,iommu-dma = "default";
+	qcom,iommu-dma = "fastmap";
 	status = "ok";
 };
 

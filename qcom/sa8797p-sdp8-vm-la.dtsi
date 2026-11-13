@@ -64,6 +64,27 @@
 		no-map;
 		reg = <0x0 0x86cac000 0x0 0x18d000>;
 	};
+
+	qcipc_pvm_safe_mem: qcipc-pvm-safe-mem {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "qcipc_pvm_safe_mem";
+		no-map;
+	};
+
+	qcipc_pvm_nonsafe_mem: qcipc-pvm-nonsafe-mem {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "qcipc_pvm_nonsafe_mem";
+		no-map;
+	};
+
+	qcipc_gvm_mem: qcipc-gvm-mem {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "qcipc_gvm_mem";
+		no-map;
+	};
 };
 
 &soc {
@@ -169,6 +190,37 @@
 	va_mini_dump: va_mini_dump {
 		compatible = "qcom,va-minidump";
 		memory-region = <&va_md_mem>;
+	};
+
+	named_dmabuf_local: named_dmabuf_local {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "local";
+	};
+
+	named_dmabuf_qcipc_gvm: named-dmabuf-qcipc-gvm {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_gvm";
+		memory-region = <&qcipc_gvm_mem>;
+	};
+
+	named_dmabuf_qcipc_pvm_safe: named-dmabuf-qcipc-pvm-safe {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_pvm_safe";
+		memory-region = <&qcipc_pvm_safe_mem>;
+	};
+
+	named_dmabuf_qcipc_pvm_nonsafe: named-dmabuf-qcipc-pvm-nonsafe {
+		compatible = "qcom,named-dmabuf";
+		instance-name = "qcipc_pvm_nonsafe";
+		memory-region = <&qcipc_pvm_nonsafe_mem>;
+	};
+};
+
+&qcom_dma_heaps {
+	qcom,qcipc_gvm {
+		qcom,dma-heap-name = "qcom,qcipc_gvm";
+		qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
+		memory-region = <&qcipc_gvm_mem>;
 	};
 };
 
@@ -308,4 +360,9 @@
 		instance-id = <2>;
 		dsp-type = <5>;
 	};
+};
+
+/* Enable the PL031 RTC virtual device. */
+&rtc {
+	status = "ok";
 };

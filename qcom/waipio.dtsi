@@ -1499,16 +1499,18 @@
 
 	cache-controller@19200000 {
 		compatible = "qcom,waipio-llcc", "qcom,llcc-v21";
-		reg = <0x19200000 0x58000>,
-			<0x19280000 0x58000>,
-			<0x19300000 0x58000>,
-			<0x19380000 0x58000>,
-			<0x19A00000 0x58000>;
+		reg = <0x19200000 0x80000>,
+			<0x19600000 0x80000>,
+			<0x19300000 0x80000>,
+			<0x19700000 0x80000>,
+			<0x19A00000 0x80000>,
+			<0x19C00000 0x80000>;
 		reg-names = "llcc0_base",
 			"llcc1_base",
 			"llcc2_base",
 			"llcc3_base",
-			"llcc_broadcast_base";
+			"llcc_broadcast_or_base",
+			"llcc_broadcast_and_base";
 		interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
 		cap-based-alloc-and-pwr-collapse;
 
@@ -2352,20 +2354,26 @@
 		compatible = "qcom,rpmh-rsc";
 		reg = <0xaf20000 0x10000>;
 		reg-names = "drv-0";
+		qcom,drv-count = <1>;
 		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 		clocks = <&dispcc DISP_CC_MDSS_RSCC_AHB_CLK>;
-		qcom,drv-count = <1>;
-		qcom,tcs-offset = <0x1c00>;
-		qcom,drv-id = <0>;
-		qcom,tcs-config = <ACTIVE_TCS    0>,
-				  <SLEEP_TCS     1>,
-				  <WAKE_TCS      1>,
-				  <CONTROL_TCS   0>,
-				  <FAST_PATH_TCS 0>;
 
-		disp_bcm_voter: bcm_voter {
-			compatible = "qcom,bcm-voter";
-			qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
+		disp_rsc_drv0: drv@0 {
+			qcom,tcs-offset = <0x1c00>;
+			qcom,drv-id = <0>;
+
+			channel@0 {
+				qcom,tcs-config = <ACTIVE_TCS    0>,
+						<SLEEP_TCS     1>,
+						<WAKE_TCS      1>,
+						<CONTROL_TCS   0>,
+						<FAST_PATH_TCS 0>;
+			};
+
+			disp_bcm_voter: bcm_voter {
+				compatible = "qcom,bcm-voter";
+				qcom,tcs-wait = <QCOM_ICC_TAG_AMC>;
+			};
 		};
 	};
 
@@ -2742,6 +2750,7 @@
 
 	qcom,mem-buf-msgq {
 		compatible = "qcom,mem-buf-msgq";
+		qcom,msgq-names = "trusted_vm", "oem_vm";
 	};
 
 	qcom_ramoops {

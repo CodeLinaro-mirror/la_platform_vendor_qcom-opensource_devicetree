@@ -38,7 +38,15 @@
 	/delete-node/ hgsl_tcsr_receiver0;
 	/delete-node/ hgsl_tcsr_receiver1;
 	/delete-node/ qcom,hgsl@0x2c00000;
+	/delete-node/ emac-iommu-region;
+	/delete-node/ hsusb@a400000;
+	/delete-node/ hsphy@88e7000;
+	/delete-node/ interrupt-controller@b220000;
 };
+
+/delete-node/ &emac0_hw;
+/delete-node/ &pcie0;
+/delete-node/ &pcie_smmu;
 
 &vm_config {
 	/delete-property/ iomemory-ranges;
@@ -54,45 +62,7 @@
 			0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
 			/* Board serial number region */
 			0x0 0x786000 0x0 0x786000 0x0 0x1000 0x1
-			/* PCIe0 region */
-			0x4 0x0 0x4 0x0 0x0 0x10000000 0x0
-			0x0 0x40000000 0x0 0x40000000 0x0 0x100000 0x0
-			0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000 0x0
-			0x4 0x10100000 0x4 0x10100000 0x0 0x100000 0x0
-			/* EMAC1 CH4 region */
-			0x0 0x2300C000 0x0 0x2300C000 0x0 0x1000 0x0
-			/* USB2 region */
-			0x0 0xa400000 0x0 0xa400000 0x0 0x200000 0x0
-			0x0 0x88e7000 0x0 0x88e7000 0x0 0x1000 0x0
-			/* PDC region */
-			0x0 0xb220000 0x0 0xb220000 0x0 0x10000 0x0
 			>;
-
-	/* Keep IRQ passthrough only for remaining direct-MMIO guest devices. */
-	gic-irq-ranges = <
-		/* PCIe0 IRQs */
-		339 339
-		340 340
-		341 341
-		344 344
-		345 345
-		346 346
-		406 406
-		407 407
-		/* PCIe0 INTx */
-		466 466
-		467 467
-		470 470
-		471 471
-		/* EMAC1 CH4 GIC IRQ */
-		808 808
-		860 860
-		/* USB2 IRQs */
-		521 521
-		522 522
-		476 476
-		474 474
-		>;
 };
 
 /delete-node/ &qupv3_se17_4uart;
@@ -106,6 +76,7 @@
 			generate = "/virtio-mmio";
 			vqs-num = <0x4>;
 		};
+		/delete-node/ vsmmu@15200000;
 
 		virtio-mmio@36 {
 			/delete-property/ patch;

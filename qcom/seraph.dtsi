@@ -692,6 +692,13 @@
 			qcom,glinkpkt-dev-name = "glink_pkt_bt_gatt_offload_chnl";
 			qcom,glinkpkt-enable-ch-close;
 		};
+
+		qcom,glinkpkt-lpai-display-ctrl {
+			qcom,glinkpkt-edge = "lpass";
+			qcom,glinkpkt-ch-name = "lpai_display_ctrl_chnl";
+			qcom,glinkpkt-dev-name = "glink_pkt_lpai_display_ctrl";
+			qcom,glinkpkt-enable-ch-close;
+		};
 	};
 
 	memtimer: timer@17420000 {
@@ -1218,7 +1225,7 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		reg = <0x1901C000 0x1000>;
+		reg = <0x1901BE00 0x1200>;
 		reg-names = "mem-base";
 		mboxes = <&cpucp 2>;
 

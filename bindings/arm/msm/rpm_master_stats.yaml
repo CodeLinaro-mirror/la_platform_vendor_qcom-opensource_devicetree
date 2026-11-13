@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/arm/msm/rpm_master_stats.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Qualcomm RPM Master Statistics
+
+maintainers:
+  - Maulik Shah <mkshah@qti.qualcomm.com>
+
+description: |
+  RPM maintains statistics for each master (APSS, MPSS, ADSP, CDSP, TZ)
+  tracking the number of times the SoC entered deeper sleep modes involving
+  lowering or powering down the backbone rails (Cx and Mx) and the
+  oscillator clock (XO).
+
+properties:
+  compatible:
+    const: "qcom,rpm-master-stats"
+
+  reg:
+    maxItems: 1
+    description:
+      The base address on RPM RAM from where the master stats are read.
+
+  qcom,masters:
+    $ref: /schemas/types.yaml#/definitions/string-array
+    description:
+      List of master names whose statistics are available.
+    items:
+      enum:
+        - APSS
+        - MPSS
+        - ADSP
+        - CDSP
+        - TZ
+
+  qcom,master-stats-version:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description:
+      Version of the master stats data structure in RPM shared memory.
+
+  qcom,master-offset:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description:
+      Byte offset between each master's statistics block in RPM shared memory.
+
+required:
+  - compatible
+  - reg
+  - qcom,masters
+  - qcom,master-stats-version
+  - qcom,master-offset
+
+additionalProperties: false
+
+examples:
+  - |
+    soc {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        rpm-master-stats@45f0150 {
+            compatible = "qcom,rpm-master-stats";
+            reg = <0x45f0150 0x5000>;
+            qcom,masters = "APSS", "MPSS", "ADSP", "CDSP", "TZ";
+            qcom,master-stats-version = <2>;
+            qcom,master-offset = <4096>;
+        };
+    };
+...

@@ -327,6 +327,18 @@
 		};
 	};
 
+	qcom,dynamic-limits-config@0 {
+		compatible = "qcom,dynamic-limits-config";
+		qcom,cpu-cluster-type = <0>;
+		qcom,cpu-core-group-type = <0>;
+	};
+
+	qcom,dynamic-limits-config@1 {
+		compatible = "qcom,dynamic-limits-config";
+		qcom,cpu-cluster-type = <0>;
+		qcom,cpu-core-group-type = <1>;
+	};
+
 	limits_stat: limits-stat {
 		compatible = "qcom,limits-stat";
 		qcom,limits-stat-sensor-names = "cpullc-0-0", "cpullc-0-1", "qmx-0-0",
