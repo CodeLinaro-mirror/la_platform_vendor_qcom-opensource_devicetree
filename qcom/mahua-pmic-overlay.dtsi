@@ -27,6 +27,11 @@
 	qcom,multiport-usb = <2>;
 };
 
+&pmk8850_rtc {
+	qcom,no-alarm; /* alarm owned by SOCCP */
+	status = "disabled";
+};
+
 &pmh0101_gpios {
 	key_vol_up {
 		key_vol_up_default: key_vol_up_default {
@@ -67,6 +72,20 @@
 		nvmem = <&pmk8850_sdam_5>, <&pmk8850_sdam_6>;
 		nvmem-names = "pon_log0", "pon_log1";
 	};
+
+	regulator_ocp_notifier: regulator-ocp-notifier {
+		compatible = "qcom,regulator-ocp-notifier";
+		interrupt-parent = <&spmi0_bus>;
+		interrupts = <0x0 0x71 0x1 IRQ_TYPE_EDGE_RISING>,
+			     <0x0 0x85 0x1 IRQ_TYPE_EDGE_RISING>;
+		nvmem-cells = <&ocp_log>, <&alarm_log>;
+		nvmem-cell-names = "ocp_log", "alarm_log";
+	};
+
+	bcl_soc: bcl-soc {
+		compatible = "qcom,msm-bcl-soc";
+		#thermal-sensor-cells = <0>;
+	};
 };
 
 &thermal_zones {
@@ -85,6 +104,20 @@
 				temperature = <115000>;
 				hysteresis = <0>;
 				type = "critical";
+			};
+		};
+	};
+
+	pmk8850-xo-therm {
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-sensors = <&pmk8850_vadc
+			PMK8850_ADC5_GEN4_AMUX_THM1_XO_THERM_100K_PU(0, PMK8850_SID)>;
+		trips {
+			trip0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
 			};
 		};
 	};
@@ -280,6 +313,19 @@
 			compatible = "qcom,smb2370-eusb2-repeater";
 			reg = <0xfd00>;
 			#phy-cells = <0>;
+		};
+
+		smb2370_bcl: bcl@4700 {
+			compatible = "qcom,smb2370-bcl-v5";
+			reg = <0x4700>;
+			interrupts = <0x9 0x47 0x0 IRQ_TYPE_NONE>,
+				<0x9 0x47 0x1 IRQ_TYPE_NONE>,
+				<0x9 0x47 0x2 IRQ_TYPE_NONE>;
+			interrupt-names = "bcl-lvl0",
+				"bcl-lvl1",
+				"bcl-lvl2";
+			qcom,pmic7-threshold;
+			#thermal-sensor-cells = <1>;
 		};
 	};
 

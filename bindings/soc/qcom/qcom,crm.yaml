@@ -39,6 +39,7 @@ properties:
               - qcom,cam-crm-v2
               - qcom,pcie-crm-v2
               - qcom,disp-crm-v2
+              - qcom,pcie-crm-v2-mahua
 
       - description: v3 of CESTA HW
         items:

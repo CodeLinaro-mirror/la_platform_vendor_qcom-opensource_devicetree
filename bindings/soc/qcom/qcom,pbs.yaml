@@ -19,6 +19,7 @@ properties:
     items:
       - enum:
           - qcom,pmi632-pbs
+          - qcom,pm8350b-pbs
       - const: qcom,pbs
 
   reg:

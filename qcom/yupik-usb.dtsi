@@ -331,8 +331,6 @@
 		clock-names = "core_clk", "iface_clk","bus_aggr_clk",
 					"utmi_clk", "sleep_clk";
 
-		usb-role-switch;
-
 		resets = <&gcc GCC_USB30_SEC_BCR>;
 		reset-names = "core_reset";
 
@@ -368,7 +366,6 @@
 			snps,dis_enblslpm_quirk;
 			maximum-speed = "high-speed";
 			dr_mode = "otg";
-			usb-role-switch;
 		};
 	};
 

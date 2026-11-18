@@ -6,8 +6,78 @@
 #include "lemans-gh-vm-la-qam-ridesx.dts"
 #include "prime-board-id.dtsi"
 
+/* QUPv3 SE17 (uart17) and QUPv3 SE3/SE4 (uart3) are reassigned to the PVM
+ * for this board. BT is delivered via the qcvirtio-bt virtio-mmio ring,
+ * so drop the UART passthrough that lemans-gh-vm-la.dtsi otherwise grants.
+ */
+&{/aliases} {
+	/delete-property/ hsuart0;
+	/delete-property/ hsuart1;
+};
+
+&soc {
+	/delete-node/ ptp_virtual;
+	/delete-node/ qcom,ipcc@421000;
+	/delete-node/ qcom,ipcc@461000;
+	/delete-node/ ipcc-self-ping-apss_cl0;
+	/delete-node/ ipcc-self-ping-apss_cl0_ack;
+	/delete-node/ ipcc-self-ping-adsp_cl0;
+	/delete-node/ ipcc-self-ping-adsp_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp0_cl0_ack;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0;
+	/delete-node/ ipcc-self-ping-gpdsp1_cl0_ack;
+	/delete-node/ virtio-glink-cma@2e000000;
+	/delete-node/ syscon@0x1fd8000;
+	/delete-node/ syscon@0x1fd9000;
+	/delete-node/ syscon@0x1fdd000;
+	/delete-node/ syscon@0x1fdb000;
+	/delete-node/ syscon@0x1fdf000;
+	/delete-node/ hgsl_tcsr_sender0;
+	/delete-node/ hgsl_tcsr_sender1;
+	/delete-node/ hgsl_tcsr_receiver0;
+	/delete-node/ hgsl_tcsr_receiver1;
+	/delete-node/ qcom,hgsl@0x2c00000;
+	/delete-node/ emac-iommu-region;
+	/delete-node/ hsusb@a400000;
+	/delete-node/ hsphy@88e7000;
+	/delete-node/ interrupt-controller@b220000;
+};
+
+/delete-node/ &emac0_hw;
+/delete-node/ &pcie0;
+/delete-node/ &pcie_smmu;
+
+&vm_config {
+	/delete-property/ iomemory-ranges;
+	/delete-property/ gic-irq-ranges;
+
+	/* Pass through regions */
+	iomemory-ranges = <
+			/* QRNG region */
+			0x0 0x10dc000 0x0 0x10dc000 0x0 0x1000 0x0
+			/* IMEM region */
+			0x0 0x146D8000 0x0 0x146D8000 0x0 0x1000 0x0
+			/* MPM timer read only*/
+			0x0 0xc221000 0x0 0xc221000 0x0 0x1000 0x1
+			/* Board serial number region */
+			0x0 0x786000 0x0 0x786000 0x0 0x1000 0x1
+			>;
+};
+
+/delete-node/ &qupv3_se17_4uart;
+/delete-node/ &qupv3_se3_4uart;
+
 &vm_config {
 	vdevices {
+		// qcvirtio-console (reuse legacy vconsole ring)
+		virtio-mmio@33 {
+			/delete-property/ patch;
+			generate = "/virtio-mmio";
+			vqs-num = <0x4>;
+		};
+		/delete-node/ vsmmu@15200000;
+
 		virtio-mmio@36 {
 			/delete-property/ patch;
 		};
@@ -66,7 +136,7 @@
 			};
 		};
 
-		// qcvirtio-console
+		// qcvirtio-rng
 		virtio-mmio@50 {
 			vdevice-type = "virtio-mmio";
 			generate = "/virtio-mmio";
@@ -225,3 +295,16 @@
 // qcvirtio-blk uses its own approach to specify and name partitions,
 // so this node is not needed anyway.
 /delete-node/ &rename_devices;
+
+&soc {
+	scmi {
+		compatible = "arm,scmi-virtio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+
+		scmi_sens: protocol@15 {
+			reg = <0x15>;
+		};
+	};
+};
