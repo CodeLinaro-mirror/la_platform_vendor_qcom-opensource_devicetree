@@ -4,9 +4,15 @@
  */
 
 #include "sunp-v2.dtsi"
+#include "sun-iot-reserved-memory.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. SunP CQ8750S SoC";
 	compatible = "qcom,sunp";
 	qcom,msm-id = <705 0x20000>, <706 0x20000>;
+};
+
+&pcie0 {
+	/delete-property/ msi-map;
+	/delete-property/ qcom,drv-name;
 };
