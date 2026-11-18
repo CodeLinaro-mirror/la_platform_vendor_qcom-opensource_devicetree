@@ -16,6 +16,7 @@ description: |
   See also:
     dt-bindings/clock/qcom,gxclkctl-sun.h
     dt-bindings/clock/qcom,gxclkctl-canoe.h
+    dt-bindings/clock/qcom,kaanapali-gxclkctl.h
 
 properties:
   compatible:
@@ -23,6 +24,7 @@ properties:
       - qcom,sun-gx_clkctl
       - qcom,canoe-gx_clkctl
       - qcom,chora-gx_clkctl
+      - qcom,glymur-gxclkctl
 
   reg:
     maxItems: 1

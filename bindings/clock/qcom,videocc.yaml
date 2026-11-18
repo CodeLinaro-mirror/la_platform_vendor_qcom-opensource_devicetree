@@ -27,6 +27,7 @@ description: |
     dt-bindings/clock/qcom,x1p42100-videocc.h
     dt-bindings/clock/qcom,pikachu-videocc.h
     dt-bindings/clock/qcom,videocc-seraph.h
+    dt-bindings/clock/qcom,glymur-videocc.h
 
 properties:
   compatible:
@@ -50,6 +51,7 @@ properties:
       - qcom,whale-videocc
       - qcom,pikachu-videocc
       - qcom,seraph-videocc
+      - qcom,glymur-videocc
 
   clocks:
     items:

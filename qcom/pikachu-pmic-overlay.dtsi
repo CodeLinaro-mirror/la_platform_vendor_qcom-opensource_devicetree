@@ -13,6 +13,9 @@
 };
 
 &pmar2230_gpios {
+	pinctrl-0 = <&alt_sleep_clk_default>;
+	pinctrl-names = "default";
+
 	key_vol_up {
 		key_vol_up_default: key_vol_up_default {
 			pins = "gpio6";
@@ -22,10 +25,21 @@
 			power-source = <1>;
 		};
 	};
+
+	alt_sleep_clk {
+		alt_sleep_clk_default: alt_sleep_clk_default {
+			pins = "gpio11";
+			function = "func1";
+			input-enable;
+			output-disable;
+			bias-disable;
+			power-source = <0>;
+		};
+	};
 };
 
 &usb0 {
-	extcon = <&pmar2230_extcon>;
+	extcon = <&eud>, <&pmar2230_extcon>;
 };
 
 &soc {

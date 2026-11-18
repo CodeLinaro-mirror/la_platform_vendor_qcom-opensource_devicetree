@@ -211,6 +211,22 @@
 			reg = <0x2f000000 0x112000>;
 		};
 
+		rtc_pclk: rtc-clk {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <32768>;
+			clock-output-names = "apb_pclk";
+		};
+
+		rtc: rtc@1cd00000 {
+			compatible = "arm,pl031", "arm,primecell";
+			reg = <0x1cd00000 0x1000>;
+			clocks = <&rtc_pclk>;
+			clock-names = "apb_pclk";
+			arm,primecell-periphid = <0x00041031>;
+			status = "disabled";
+		};
+
 		virt_scmi: virtio_scmi@1c900000 {
 			compatible = "virtio,mmio";
 			reg = <0x1c900000 0x1000>;

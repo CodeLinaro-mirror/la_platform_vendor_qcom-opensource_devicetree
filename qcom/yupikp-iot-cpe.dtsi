@@ -173,7 +173,7 @@
 &pcie1 {
 	qcom,no-l1ss-supported;
 	dummy-supply = <&pcie_i2c_ctrl>;
-	pcie-i2c-phandle = <&qupv3_se0_i2c>;
+	pcie-i2c-phandle = <&pcie_i2c_ctrl>;
 	vreg-3p3-supply = <&qps615_rsex_vreg>;
 	iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
 		    <0x100 &apps_smmu 0x1c81 0x1>,
@@ -206,6 +206,16 @@
 			/* BDF 4.0.0 */
 			pcie1_bus4_dev0_fn0: pcie1_bus4_dev0_fn0 {
 				reg = <0x0 0x0 0x0 0x0 0x0>;
+
+				qcom,iommu-group = <&xhci_pci_iommu_group0>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				xhci_pci_iommu_group0: xhci_pci_iommu_group0 {
+					qcom,iommu-dma = "fastmap";
+					qcom,iommu-pagetable = "coherent";
+					qcom,iommu-faults = "stall-disable", "HUPCF", "no-CFRE", "non-fatal";
+				};
 			};
 		};
 

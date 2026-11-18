@@ -6,6 +6,7 @@
 #include "x1e80100-pmic-overlay.dtsi"
 #include "x1e80100-thermal-overlay.dtsi"
 #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+#include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
 
 &ufsphy_mem {
 	status = "okay";
@@ -101,6 +102,20 @@
 		pinctrl-names = "default";
 		enable-active-high;
 	};
+
+	wwan_fcpo: wwan_fcpo {
+		compatible = "regulator-fixed";
+		regulator-name = "WWAN_FCPO";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&pm8550ve_c_gpios 4 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&sdx_vph_pwr>;
+		enable-active-high;
+	};
+};
+
+&pcie5 {
+	vreg-3p3-supply = <&wwan_fcpo>;
 };
 
 &qupv3_se5_i2c {
@@ -169,8 +184,8 @@
 			port@0 {
 				reg = <0>;
 
-				pmic_glink_port1_hs_in: endpoint {
-					remote-endpoint = <&usb_port1_hs_in>;
+				pmic_glink_port0_hs_in: endpoint {
+					remote-endpoint = <&usb_port0_hs_in>;
 				};
 			};
 		};
@@ -190,8 +205,28 @@
 			port@0 {
 				reg = <0>;
 
-				pmic_glink_port0_hs_in: endpoint {
-					remote-endpoint = <&usb_port0_hs_in>;
+				pmic_glink_port1_hs_in: endpoint {
+					remote-endpoint = <&usb_port1_hs_in>;
+				};
+			};
+		};
+	};
+
+	connector@2 {
+		compatible = "usb-c-connector";
+		reg = <2>;
+		power-role = "dual";
+		data-role = "dual";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				pmic_glink_port2_hs_in: endpoint {
+					remote-endpoint = <&usb_port2_hs_in>;
 				};
 			};
 		};
@@ -297,4 +332,56 @@
 &usb4 {
 	vbus_dwc3-supply = <&regulator_usb5_vbus>;
 	status = "okay";
+};
+
+&usb_mp_dwc3 {
+	snps,usb3_lpm_capable;
+};
+
+&usb_mp_hsphy0 {
+	clocks = <&xo_board>,
+		<&tcsrcc TCSR_USB3_MP0_CLKREF_EN>;
+	clock-names = "ref_clk_src",
+			"ref";
+};
+
+&usb_mp_hsphy1 {
+	clocks = <&xo_board>,
+		<&tcsrcc TCSR_USB3_MP1_CLKREF_EN>;
+	clock-names = "ref_clk_src",
+			"ref";
+};
+
+&smb2360_2_eusb2_repeater {
+	vdd18-supply = <&L3D>;
+	vdd3-supply = <&L8B>;
+};
+
+&usb2_phy_2 {
+	phys = <&smb2360_2_eusb2_repeater>;
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
+};
+
+&usb3_phy_2 {
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
+};
+
+&usb2 {
+	/* default disabled;status inherited "okay" from hamoa_la.dtsi base */
+	usb-role-switch;
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb3phy_portselect_gpio_2>;
+	gpios = <&tlmm 125 0>;
+};
+
+&usb_port2_hs_in {
+	remote-endpoint = <&pmic_glink_port2_hs_in>;
+};
+
+&usb_port2_ssphy_out {
+	remote-endpoint = <&usb_port2_dwc3_ss>;
+};
+
+&usb_port2_dwc3_ss {
+	remote-endpoint = <&usb_port2_ssphy_out>;
 };

@@ -524,3 +524,7 @@
 		};
 	};
 };
+
+&pmk8350_qvadj {
+	compatible = "qcom,vadj-malabar", "qcom,vadj";
+};

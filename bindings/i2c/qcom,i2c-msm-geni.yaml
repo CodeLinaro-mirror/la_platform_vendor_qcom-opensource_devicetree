@@ -51,6 +51,13 @@ properties:
       - const: default
       - const: sleep
 
+  qcom,i2c-pm-qos:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description:
+      CPU latency QoS constraint in microseconds to prevent deep idle states
+      during I2C transfers. Lower values prevent deeper idle states and reduce
+      transfer latency at the cost of higher power consumption.
+
   reg:
     maxItems: 1
 
@@ -88,5 +95,6 @@ examples:
         dmas = <&gpi_dma1 0 0 3 64 0>,
                 <&gpi_dma1 1 0 3 64 0>;
         dma-names = "tx", "rx";
+        qcom,i2c-pm-qos = <0>;
     };
 ...

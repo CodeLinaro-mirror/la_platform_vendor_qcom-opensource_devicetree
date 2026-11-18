@@ -78,7 +78,7 @@
 			reg = <0x98c000 0x4000>;
 			reg-names = "se_phys";
 			interrupts-extended = <&intc GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
-					<&tlmm 94 IRQ_TYPE_LEVEL_HIGH>;
+					<&tlmm 31 IRQ_TYPE_LEVEL_HIGH>;
 			clock-names = "se-clk";
 			clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
 			pinctrl-names = "default", "active", "sleep", "shutdown";

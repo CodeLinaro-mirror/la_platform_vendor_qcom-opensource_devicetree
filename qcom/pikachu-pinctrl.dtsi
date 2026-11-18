@@ -448,7 +448,7 @@
 			config {
 				pins = "gpio41", "gpio42";
 				drive-strength = <2>;
-				bias-pull-down;
+				bias-bus-hold;
 			};
 		};
 	};
@@ -558,6 +558,21 @@
 			config {
 				pins = "gpio0", "gpio1",
 					"gpio2", "gpio3";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qup_spi2_cs_gpio_sleep: qup_spi2_cs_gpio_sleep {
+			mux {
+				pins = "gpio0", "gpio1",
+					"gpio2";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio0", "gpio1",
+					"gpio2";
 				drive-strength = <2>;
 				bias-disable;
 			};

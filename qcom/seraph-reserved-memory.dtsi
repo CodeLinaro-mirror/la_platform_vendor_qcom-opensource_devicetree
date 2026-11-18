@@ -239,6 +239,11 @@
 		reg = <0x0 0xa2c00000 0x0 0x700000>;
 	};
 
+	splash_memory: splash_region@b8000000 {
+		reg = <0x0 0xb8000000 0x0 0x2200000>;
+		label = "cont_splash_region";
+	};
+
 	/* UEFI region at 0xa7000000 is reclaimed by Linux */
 
 	/* Linux kernel image is loaded at 0xa8000000 */

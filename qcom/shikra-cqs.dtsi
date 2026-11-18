@@ -4,6 +4,10 @@
  */
 
 #include "shikra.dtsi"
+#include "shikra-pm4125-regulator.dtsi"
+#include "shikra-pm8005-regulator.dtsi"
+#include "shikra-pcie.dtsi"
+#include "shikra-usb.dtsi"
 #include "shikra-pmic-overlay-pm4125.dtsi"
 #include <dt-bindings/net/ti-dp83867.h>
 
@@ -14,11 +18,9 @@
 
 	emac0_phy_pwr: regulator-emac0-phy {
 		compatible = "regulator-fixed";
-		regulator-name = "emac0-phy-pwr";
+		regulator-name = "vreg_rgmii";
 		gpio = <&tlmm 149 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
-		regulator-boot-on;
-		regulator-always-on;
 		pinctrl-0 = <&emac0_phy_pwr_default>;
 		pinctrl-names = "default";
 	};
@@ -69,6 +71,7 @@
 	phy-handle = <&rgmii_phy>;
 	phy-mode = "rgmii-id";
 	max-speed = <1000>;
+	vreg_rgmii-supply = <&emac0_phy_pwr>;
 
 	pinctrl-names = "default";
 	pinctrl-0 = <&ethernet0_defaults>;
