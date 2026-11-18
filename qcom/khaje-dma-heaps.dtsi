@@ -52,5 +52,12 @@
 			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
 			memory-region = <&audio_cma_mem>;
 		};
+
+		qcom,drm {
+			qcom,dma-heap-name = "qcom,drm";
+			qcom,dma-heap-type = <HEAP_TYPE_CMA>;
+			qcom,uncached-heap;
+			memory-region = <&drm_memory>;
+		};
 	};
 };
